@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-10-19T00:37:34.683326+00:00",
+  "timestamp": "2023-10-22T00:40:33.754661+00:00",
   "repo": "sergiobelotti/network-inventory",
   "labels": [
     {
@@ -50,5 +50,46 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOKiDYo85dQHk8",
+      "title": "initial proposal for base model",
+      "url": "https://github.com/sergiobelotti/network-inventory/pull/1",
+      "state": "OPEN",
+      "author": "sergiobelotti",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "initial proposal for base model draft as discussed during the call 10-18-23\r\nDiff with respect ccamp draft https://www.ietf.org/rfcdiff?url1=draft-ietf-ccamp-network-inventory-yang-02&url2=https://raw.githubusercontent.com/sergiobelotti/network-inventory/IETF-118/draft-y3bp-network-inventory-yang.txt",
+      "createdAt": "2023-10-19T10:23:44Z",
+      "updatedAt": "2023-10-20T02:00:21Z",
+      "baseRepository": "sergiobelotti/network-inventory",
+      "baseRefName": "main",
+      "baseRefOid": "a9d9e4b2f2abc00a91796401672ebad145591271",
+      "headRepository": "sergiobelotti/network-inventory",
+      "headRefName": "IETF-118",
+      "headRefOid": "642aa094e56d56aacca7bc4f7f176d6238094a19",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo85krKdv",
+          "commit": {
+            "abbreviatedOid": "642aa09"
+          },
+          "author": "QiufangMa",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "I think you might need to rename the file to draft-y3bp-ivy-network-inventory-yang*, otherwise we won't be able to see it in IVY doc list.",
+          "createdAt": "2023-10-20T02:00:21Z",
+          "updatedAt": "2023-10-20T02:00:21Z",
+          "comments": []
+        }
+      ]
+    }
+  ]
 }
