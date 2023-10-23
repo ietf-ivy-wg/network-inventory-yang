@@ -3,7 +3,7 @@ title: "A YANG Data Model for Network Inventory"
 abbrev: "Network Inventory YANG"
 category: std
 
-docname: draft-y3bp-network-inventory-yang-latest
+docname: draft-y3bp-ivy-network-inventory-yang-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
