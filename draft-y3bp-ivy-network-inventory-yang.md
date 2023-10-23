@@ -21,7 +21,7 @@ venue:
 #  mail: WG@example.com
 #  arch: https://example.com/WG
   github: "sergiobelotti/network-inventory"
-  latest: "https://sergiobelotti.github.io/network-inventory/draft-y3bp-network-inventory-yang.html"
+  latest: "https://sergiobelotti.github.io/network-inventory/draft-y3bp-ivy-network-inventory-yang.html"
 
 author:
   -
