@@ -17,11 +17,11 @@ module: ietf-network-inventory
         +--rw components
            +--rw component* [component-id]
               +--rw component-id            string
+              +--rw class                   union
               +--rw uuid?                   yang:uuid
               +--rw name?                   string
               +--rw description?            string
               +--rw alias?                  string
-              +--rw class                   union
               +--rw child-component-ref
               +--rw parent-rel-pos?         int32
               +--rw parent-component-ref

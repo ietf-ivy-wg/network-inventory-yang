@@ -27,7 +27,20 @@ module ietf-network-inventory {
     "WG Web:   <https://datatracker.ietf.org/wg/ivy/>
      WG List:  <mailto:inventory-yang@ietf.org>
 
-     Editor:   TBA";
+     Editor:   Chaode Yu
+               <yuchaode@huawei.com>
+
+     Editor:   Sergio Belotti
+               <sergio.belotti@nokia.com>
+
+     Editor:   Jean-Francois Bouquier
+               <jeff.bouquier@vodafone.com>
+
+     Editor:   Fabio Peruzzini
+               <fabio.peruzzini@telecomitalia.it>
+
+     Editor:   Phil Bedard
+               <phbedard@cisco.com>";
 
   description
     "This module defines a base model for retrieving network 
@@ -60,7 +73,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
   
-  revision 2023-10-12 {
+  revision 2023-10-23 {
     description
       "Initial version";
     reference
@@ -195,7 +208,6 @@ module ietf-network-inventory {
             description
               "Component identifier";
           }
-          uses common-entity-attributes;
           leaf class {
             type union {
               type identityref {
@@ -209,6 +221,7 @@ module ietf-network-inventory {
             description
               "The type of the component.";
           }
+          uses common-entity-attributes;
           container child-component-ref {
             description
               "A placeholder for adding the reference to child 
