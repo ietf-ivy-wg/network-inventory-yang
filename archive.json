@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-10-24T00:37:33.078081+00:00",
+  "timestamp": "2023-10-26T00:36:36.634098+00:00",
   "repo": "sergiobelotti/network-inventory",
   "labels": [
     {
@@ -94,9 +94,17 @@
       "labels": [],
       "body": "Is still needed this section?",
       "createdAt": "2023-10-23T08:34:02Z",
-      "updatedAt": "2023-10-23T08:34:02Z",
+      "updatedAt": "2023-10-24T10:04:05Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think we can keep the text but move it to an appendix of the document",
+          "createdAt": "2023-10-24T10:04:04Z",
+          "updatedAt": "2023-10-24T10:04:04Z"
+        }
+      ]
     },
     {
       "number": 5,
