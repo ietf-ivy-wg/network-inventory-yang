@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-11-16T00:39:49.780321+00:00",
+  "timestamp": "2023-11-19T00:42:40.764088+00:00",
   "repo": "sergiobelotti/network-inventory",
   "labels": [
     {
@@ -177,6 +177,22 @@
           "updatedAt": "2023-10-23T10:45:38Z"
         }
       ]
+    },
+    {
+      "number": 9,
+      "id": "I_kwDOKiDYo853Mx26",
+      "title": "WG adoption comments from Med",
+      "url": "https://github.com/sergiobelotti/network-inventory/issues/9",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> Some quick comments:\r\n> \r\n>   *   Please soften the various citations to ACTN. I would simply remove them.\r\n>   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\r\n>   *   Consider if some data nodes that are defined in other models can be added directly to the base model, e.g., the following ones from draft-li\r\n> \r\n>        +--ro required-components*          -> ../uuid\r\n>        +--ro dependent-components*         -> ../uuid\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/\r\n",
+      "createdAt": "2023-11-17T20:03:19Z",
+      "updatedAt": "2023-11-17T20:03:19Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
