@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-11-30T00:39:58.334525+00:00",
+  "timestamp": "2023-12-03T00:42:28.462609+00:00",
   "repo": "sergiobelotti/network-inventory",
   "labels": [
     {
@@ -47,6 +47,11 @@
       "name": "wontfix",
       "description": "This will not be worked on",
       "color": "ffffff"
+    },
+    {
+      "name": "wga",
+      "description": "",
+      "color": "FBCA04"
     }
   ],
   "issues": [
@@ -59,12 +64,22 @@
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "wga"
+      ],
       "body": "Some of the hardware and software attributes defined in Section 3.1 of [RFC7317] can be borrowed, such as platform-os version and machine.\r\n",
       "createdAt": "2023-10-23T08:32:25Z",
-      "updatedAt": "2023-10-23T08:32:25Z",
+      "updatedAt": "2023-12-01T12:47:37Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "WG adoption comment from Bo:\r\n\r\n> 1. Section 2.2. Network Element: Adds a reference of RFC 7317 to indicate that the NE software version is the platform software version.\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/MT7vspJ4AmI8I0YeLgPJCOrmjMk/",
+          "createdAt": "2023-12-01T12:47:09Z",
+          "updatedAt": "2023-12-01T12:47:09Z"
+        }
+      ]
     },
     {
       "number": 3,
@@ -75,12 +90,22 @@
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "wga"
+      ],
       "body": "Need to discuss if to use parent-component-ref as in the original CCAMP WG draft or to define a parent attribute as in RFC8348",
       "createdAt": "2023-10-23T08:32:56Z",
-      "updatedAt": "2023-10-23T08:32:56Z",
+      "updatedAt": "2023-12-01T12:51:26Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "WG adoption comment from Bo:\r\n\r\n> 2. Section 2.4.1. New Parent Identifiers' Reference: The YANG model has no definition on this. Suggest to define the component relationship rather than parent relationship, and also adds the child component relationship, e.g., define the child component as a list.\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/MT7vspJ4AmI8I0YeLgPJCOrmjMk/",
+          "createdAt": "2023-12-01T12:48:26Z",
+          "updatedAt": "2023-12-01T12:48:26Z"
+        }
+      ]
     },
     {
       "number": 4,
@@ -187,10 +212,30 @@
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "wga"
+      ],
       "body": "> Some quick comments:\r\n> \r\n>   *   Please soften the various citations to ACTN. I would simply remove them.\r\n>   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\r\n>   *   Consider if some data nodes that are defined in other models can be added directly to the base model, e.g., the following ones from draft-li\r\n> \r\n>        +--ro required-components*          -> ../uuid\r\n>        +--ro dependent-components*         -> ../uuid\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/\r\n",
       "createdAt": "2023-11-17T20:03:19Z",
-      "updatedAt": "2023-11-17T20:03:19Z",
+      "updatedAt": "2023-12-01T12:51:42Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 10,
+      "id": "I_kwDOKiDYo854c18r",
+      "title": "WG adoption comments from Qiufang",
+      "url": "https://github.com/sergiobelotti/network-inventory/issues/10",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "wga"
+      ],
+      "body": "> As discussed in the design team call which happened last week, I would like the authors to consider adding a requirement or use cases section to illustrate what we would like to cover in this draft. We had some discussion about what should and what should not be in the scope of this draft both in the IETF meeting and in the weekly calls. I think it would be helpful if the requirements or use cases could be discussed and agreed upon.\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/FrD6aIOfr8IKCM0-6uoi188gOgg/",
+      "createdAt": "2023-12-01T12:53:10Z",
+      "updatedAt": "2023-12-01T12:53:10Z",
       "closedAt": null,
       "comments": []
     }
