@@ -65,9 +65,7 @@ contributor:
     org: Huawei Technologies
     email: lana.wubo@huawei.com
   -
-    name: Chenfang Zhang
-    org: China Unicom
-    email: zhangcf80@chinaunicom.cn
+    name: TBD
   -
     name: Oscar Gonzalez de Dios
     ins: O. Gonzalez de Dios
