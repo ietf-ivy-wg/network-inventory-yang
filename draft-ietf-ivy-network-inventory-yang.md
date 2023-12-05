@@ -10,7 +10,7 @@ date:
 consensus: true
 v: 3
 # area: AREA
-workgroup: IVY Working Group
+# workgroup: IVY Working Group
 keyword:
  - next generation
  - unicorn
@@ -20,8 +20,8 @@ venue:
 #  type: Working Group
 #  mail: WG@example.com
 #  arch: https://example.com/WG
-  github: "sergiobelotti/network-inventory"
-  latest: "https://sergiobelotti.github.io/network-inventory/draft-y3bp-ivy-network-inventory-yang.html"
+  github: "ietf-ivy-wg/network-inventory-yang"
+  latest: "https://ietf-ivy-wg.github.io/network-inventory-yang/draft-ietf-ivy-network-inventory-yang.html"
 
 author:
   -
