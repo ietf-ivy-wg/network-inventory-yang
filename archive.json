@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-03T00:42:28.462609+00:00",
+  "timestamp": "2023-12-05T00:40:32.732983+00:00",
   "repo": "sergiobelotti/network-inventory",
   "labels": [
     {
@@ -215,9 +215,9 @@
       "labels": [
         "wga"
       ],
-      "body": "> Some quick comments:\r\n> \r\n>   *   Please soften the various citations to ACTN. I would simply remove them.\r\n>   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\r\n>   *   Consider if some data nodes that are defined in other models can be added directly to the base model, e.g., the following ones from draft-li\r\n> \r\n>        +--ro required-components*          -> ../uuid\r\n>        +--ro dependent-components*         -> ../uuid\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/\r\n",
+      "body": "> Some quick comments:\r\n> \r\n>   *   Please soften the various citations to ACTN. I would simply remove them.\r\n>   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\r\n>   *   Consider if some data nodes that are defined in other models can be added directly to the base model, e.g., the following ones from draft-li\r\n> \r\n> ```\r\n>       +--ro required-components*          -> ../uuid\r\n>       +--ro dependent-components*         -> ../uuid\r\n> \r\n> ```\r\n> \r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/\r\n",
       "createdAt": "2023-11-17T20:03:19Z",
-      "updatedAt": "2023-12-01T12:51:42Z",
+      "updatedAt": "2023-12-04T09:15:58Z",
       "closedAt": null,
       "comments": []
     },
