@@ -2,21 +2,21 @@
 
 
 
-IVY Working Group                                                  C. Yu
+Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 25 April 2024                                             Nokia
+Expires: 8 June 2024                                               Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                         23 October 2023
+                                                         6 December 2023
 
 
                 A YANG Data Model for Network Inventory
-                draft-y3bp-network-inventory-yang-latest
+              draft-ietf-ivy-network-inventory-yang-latest
 
 Abstract
 
@@ -29,14 +29,14 @@ About This Document
 
    This note is to be removed before publishing as an RFC.
 
-   The latest revision of this draft can be found at
-   https://sergiobelotti.github.io/network-inventory/draft-y3bp-network-
-   inventory-yang.html.  Status information for this document may be
-   found at https://datatracker.ietf.org/doc/draft-y3bp-network-
-   inventory-yang/.
+   The latest revision of this draft can be found at https://ietf-ivy-
+   wg.github.io/network-inventory-yang/draft-ietf-ivy-network-inventory-
+   yang.html.  Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-ietf-ivy-network-inventory-
+   yang/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/sergiobelotti/network-inventory.
+   https://github.com/ietf-ivy-wg/network-inventory-yang.
 
 Status of This Memo
 
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 April 2024.
+   This Internet-Draft will expire on 8 June 2024.
 
 Copyright Notice
 
@@ -1332,9 +1332,7 @@ Contributors
    Email: lana.wubo@huawei.com
 
 
-   Chenfang Zhang
-   China Unicom
-   Email: zhangcf80@chinaunicom.cn
+   TBD
 
 
    Oscar Gonzalez de Dios
