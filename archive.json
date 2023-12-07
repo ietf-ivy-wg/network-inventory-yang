@@ -1,7 +1,7 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-05T00:40:32.732983+00:00",
-  "repo": "sergiobelotti/network-inventory",
+  "timestamp": "2023-12-07T00:39:54.874811+00:00",
+  "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
       "name": "bug",
@@ -52,6 +52,11 @@
       "name": "wga",
       "description": "",
       "color": "FBCA04"
+    },
+    {
+      "name": "config",
+      "description": "",
+      "color": "FBCA04"
     }
   ],
   "issues": [
@@ -59,7 +64,7 @@
       "number": 2,
       "id": "I_kwDOKiDYo850n-ME",
       "title": "Attributes from RFC7317",
-      "url": "https://github.com/sergiobelotti/network-inventory/issues/2",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/2",
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
@@ -85,7 +90,7 @@
       "number": 3,
       "id": "I_kwDOKiDYo850n-Zs",
       "title": "Child and parent component navigation",
-      "url": "https://github.com/sergiobelotti/network-inventory/issues/3",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/3",
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
@@ -111,7 +116,7 @@
       "number": 4,
       "id": "I_kwDOKiDYo850n-3G",
       "title": "Efficiency Issue",
-      "url": "https://github.com/sergiobelotti/network-inventory/issues/4",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/4",
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
@@ -135,7 +140,7 @@
       "number": 5,
       "id": "I_kwDOKiDYo850n_Dx",
       "title": "Example of YANG code for the grouping ",
-      "url": "https://github.com/sergiobelotti/network-inventory/issues/5",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/5",
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
@@ -151,7 +156,7 @@
       "number": 6,
       "id": "I_kwDOKiDYo850n_Om",
       "title": "Software patch",
-      "url": "https://github.com/sergiobelotti/network-inventory/issues/6",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/6",
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
@@ -167,7 +172,7 @@
       "number": 7,
       "id": "I_kwDOKiDYo850n_wy",
       "title": "Initial text for Security Considerations",
-      "url": "https://github.com/sergiobelotti/network-inventory/issues/7",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/7",
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
@@ -183,15 +188,17 @@
       "number": 8,
       "id": "I_kwDOKiDYo850o3MS",
       "title": "Write operations",
-      "url": "https://github.com/sergiobelotti/network-inventory/issues/8",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/8",
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
-      "labels": [],
-      "body": "Need to further discuss whether the base network inventory YANG model should support write operations (RW) or not (RO)\r\n\r\nSee:\r\n\r\n- https://mailarchive.ietf.org/arch/msg/inventory-yang/Z6reCPdR3UGbHFl152AhB1_QIvw/\r\n- https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/95\r\n- https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/82\r\n- https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/54\r\n",
+      "labels": [
+        "config"
+      ],
+      "body": "Need to further discuss whether the base network inventory YANG model should support write operations (RW) or not (RO)\r\n\r\nSee:\r\n\r\n- https://mailarchive.ietf.org/arch/msg/inventory-yang/Z6reCPdR3UGbHFl152AhB1_QIvw/\r\n- https://github.com/ietf-ccamp-wg/network-inventory-yang/issues/28\r\n- https://github.com/ietf-ccamp-wg/network-inventory-yang/issues/22\r\n- https://github.com/ietf-ccamp-wg/network-inventory-yang/issues/14\r\n",
       "createdAt": "2023-10-23T10:40:39Z",
-      "updatedAt": "2023-10-23T10:45:38Z",
+      "updatedAt": "2023-12-05T13:18:03Z",
       "closedAt": null,
       "comments": [
         {
@@ -207,7 +214,7 @@
       "number": 9,
       "id": "I_kwDOKiDYo853Mx26",
       "title": "WG adoption comments from Med",
-      "url": "https://github.com/sergiobelotti/network-inventory/issues/9",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/9",
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
@@ -225,7 +232,7 @@
       "number": 10,
       "id": "I_kwDOKiDYo854c18r",
       "title": "WG adoption comments from Qiufang",
-      "url": "https://github.com/sergiobelotti/network-inventory/issues/10",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/10",
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
@@ -238,6 +245,577 @@
       "updatedAt": "2023-12-01T12:53:10Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 11,
+      "id": "I_kwDOKiDYo854xQJJ",
+      "title": "Missing attributes from RFC8348",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/11",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "YuChaode"
+      ],
+      "labels": [],
+      "body": "Evaluate whether there are attributes missing in RFC8348 which are needed to be reported in the Network Inventory model\r\n\r\nSee: https://github.com/italobusi/ietf-network-inventory/issues/2#issuecomment-903086514\r\n",
+      "createdAt": "2021-10-13T17:40:14Z",
+      "updatedAt": "2023-12-05T13:18:27Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2022-06-22 Network Inventory weekly call](https://github.com/italobusi/ietf-network-inventory/blob/main/minutes/minutes-2022-06-22.md)**\r\n\r\nChaode presented some attributes not considered in RFC8348 for the equipment-room, rack, chassis, (sub-) slot , NE, board, port etc:\r\n\r\n[Attributes\u2014\u20140621.xlsx](https://github.com/italobusi/ietf-network-inventory/files/9041401/Attributes.0621.xlsx)\r\n\r\nThe attributes have been reviewed one by one. Perhaps some of them are too detailed. Would be good to have the inputs from other Vendors like Nokia and Cisco to be able to cross-check if some attributes are missing according to these other Vendors.\r\n\r\nChaode then presented a proposal to define which attributes should be RW or RO. Aihua mentioned that, in principle, everything in the HW network inventory data model should be Read-Only.\r\n\r\n- [ ] @jbouqui153 : check internally if RO is confirmed for network inventory info\r\n",
+          "createdAt": "2022-07-04T17:58:06Z",
+          "updatedAt": "2022-07-04T17:58:06Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2022-07-01 Network Inventory weekly call](https://github.com/italobusi/ietf-network-inventory/blob/main/minutes/minutes-2022-07-01.md)**\r\n\r\n> [x] @jbouqui153 : check internally if RO is confirmed for network inventory info\r\n\r\nIt is confirmed that all the attributes in the inventory model should be RO\r\n\r\nReview of the additional attributes provided by Chaode in [Attributes\u2014\u20140621.xlsx](https://github.com/italobusi/ietf-network-inventory/files/9041401/Attributes.0621.xlsx) and agreed that:\r\n- proposed attributes for the equipment-room\r\n  - country-or-region and province-or-state attributes should not be added since this information is already provided by the location attribute already existing in PR ietf-ccamp-wg/ietf-network-inventory#43 (to be renamed as site-location)\r\n  - rename the site attribute as site-name\r\n  - the data type for the room-no should be string\r\n  - remove the value unknown from the cable-layout-type and defent-static-floor attributes: the attribute can be omitted when not know\r\n- proposed attributes for the ne:\r\n  - the product-name is already existing in draft PR ietf-ccamp-wg/ietf-network-inventory#43\r\n  - clarify the IPv4 and IPv6 addresses are to connect with the management system\r\n \r\n",
+          "createdAt": "2022-07-04T18:05:24Z",
+          "updatedAt": "2022-07-04T18:05:24Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2022-09-14 Network Inventory weekly call](https://github.com/italobusi/ietf-network-inventory/blob/main/minutes/minutes-2022-09-14.md)**\r\n\r\nChenfang and Chaode has reviewed the missing attributes and provided a proposal: [Attribute_from_CU@2022-09-14.xlsx](https://github.com/italobusi/ietf-network-inventory/files/9567063/Attribute_from_CU%402022-09-14.xlsx).\r\n\r\nThe attributes highlighted in yellow are identified gaps that need to be addressed by new attributes.\r\n\r\nThe proposal has been presented. To be further discussed in the next calls\r\n",
+          "createdAt": "2022-09-14T14:25:09Z",
+          "updatedAt": "2022-09-14T14:25:09Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2022-09-21 Network Inventory weekly call](https://github.com/italobusi/ietf-network-inventory/blob/main/minutes/minutes-2022-09-21.md)**\r\n\r\nReviewed table from @YuChaode : [Attributes.xlsx](https://github.com/italobusi/ietf-network-inventory/files/9745442/Attributes.xlsx)\r\n\r\nJeff: The attributes from China Unicom are too detailed. I suggest to discuss the attributes table sent from @YuChaode before to discuss whether the attributes from RFC8348 are applicable for NE and components.",
+          "createdAt": "2022-10-10T11:18:47Z",
+          "updatedAt": "2022-10-10T11:19:07Z"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOKiDYo854xQgI",
+      "title": "Management of MPO ports",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/12",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Check how it is possible to manage MPO ports\r\n\r\nSee: https://github.com/italobusi/ietf-network-inventory/issues/32#issuecomment-1041621665\r\n",
+      "createdAt": "2022-02-16T15:25:22Z",
+      "updatedAt": "2023-12-05T13:19:14Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2022-02-16 Network Inventory weekly call\r\n](https://github.com/italobusi/ietf-network-inventory/blob/main/minutes/minutes-2022-02-16.md)**\r\n\r\nJeff: The ports refer to the TX/RX port on the transceiver. And for the MPO/break out cable, i am also agree to have a list of destination to describe the multiple breakout ports. And for those ports which there is no transceiver plugged-in, the port still need to be provided in inventory.  We also agree that there could be multiple network elements on a rack. For the site's definition, i am not quite sure, but i also agree that site and equipment room can be both optional.\r\n\r\nChenfang: I have some other understanding for MPO port. Can be discussed in next week's meeting.\r\n\r\nIt is all aligned that we will not do update on the inventory draft's texting for the upcoming IETF 113 meeting, because of the discussion of generic model and CU proposed model is not finished.\r\n",
+          "createdAt": "2022-02-22T20:24:07Z",
+          "updatedAt": "2022-02-22T20:24:07Z"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOKiDYo854xQ5b",
+      "title": "Clarify RFC8348 container terminology",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/13",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The comment is not related specifically to this sentence, but it is related in general to \"container\". I've noticed this term is never defined in the document. Shouldn't we add that?\r\n\r\n_Originally posted by @sergiobelotti in https://github.com/ietf-ccamp-wg/ietf-network-inventory/pull/51#discussion_r1001641252_\r\n\r\ncould we change this sentence to \"Openconfig-platform data model is NE-level and uses a generic component concept to describe its inner equipment and holders, which is similar to ietf-hardware model...\"? In the terminology of component at the beginning, component is also refer to equipment and holders.\r\n\r\n_Originally posted by @YuChaode in https://github.com/ietf-ccamp-wg/ietf-network-inventory/pull/51#discussion_r1003263854_\r\n      ",
+      "createdAt": "2022-10-24T12:59:13Z",
+      "updatedAt": "2023-12-05T13:19:53Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 14,
+      "id": "I_kwDOKiDYo854xRFq",
+      "title": "Configuration Capability of Inventory Data Model",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/14",
+      "state": "OPEN",
+      "author": "YuChaode",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "config"
+      ],
+      "body": "1. The name of our current data model infers it supports retrieval function only, and currently,  all the attributes defined in our data model are all read only. Will inventory data model support configuration for some attributes in the future? Or should these configurations be supported by some other data models?\r\n2. There could be some configuration requirement for NE/board/port name, location, description, alias, etc. An alternative way to support these configuration is configuring from network topology data model, but there are two things we need to consider more:\r\n(1) A NE/port could be multiple nodes/TPs in different layers of topology, it is not quite convenient to modify all the nodes/TPs.\r\n(2) Board object is not defined in network topology data model and there could be some other configuration requirement besides name, location, description, alias, E.G. board's working mode .etc.\r\n3. Another alternative way to support configuration function is configuring through ietf-hardware data model in RFC8348.  But it is still not able to support configuration for equipment room, rack and NE, because hardware data model is a NE-level data model.",
+      "createdAt": "2022-12-01T01:29:16Z",
+      "updatedAt": "2023-12-05T13:20:13Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "YuChaode",
+          "authorAssociation": "COLLABORATOR",
+          "body": "[Analysis of attributes' configuration scenario.xlsx](https://github.com/ietf-ccamp-wg/ietf-network-inventory/files/13502914/Analysis.of.attributes.configuration.scenario.xlsx)\r\n[Discussion of configurations capabilities of inventory base model.pptx](https://github.com/ietf-ccamp-wg/ietf-network-inventory/files/13502915/Discussion.of.configurations.capabilities.of.inventory.base.model.pptx)\r\n\r\nThe material discussed on the meeting at Nov.30th, 2023.",
+          "createdAt": "2023-11-29T16:11:35Z",
+          "updatedAt": "2023-11-29T16:11:35Z"
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "id": "I_kwDOKiDYo854xRbI",
+      "title": "Part number",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/15",
+      "state": "OPEN",
+      "author": "vlopezalvarez",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Hi, I've seen that we have in the draft the concept of \"part number\". RFC 8348 defines the parameter model-name to obtain this information. \r\n\r\n\"The vendor-specific model name identifier string\r\n              associated with this physical component.  The preferred\r\n              value is the customer-visible part number, which may be\r\n              printed on the component itself.\"\r\n\r\nAs we're changing the model of 8348. Is there any reason to include the \"part number\" instead of reusing model-name?",
+      "createdAt": "2022-12-21T17:57:32Z",
+      "updatedAt": "2023-12-05T13:20:39Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "YuChaode",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi, Victor, we thought that since model-name was designed to use as part-number,  it was more straightforward to use part-number. Part-number is more common in Operators' network management.",
+          "createdAt": "2023-02-01T03:15:48Z",
+          "updatedAt": "2023-02-01T03:15:48Z"
+        },
+        {
+          "author": "oscargdd",
+          "authorAssociation": "NONE",
+          "body": "Part-number is widely used in the community. Besides it matches with openconfig part-no, so industry-wide there is no confussion. ",
+          "createdAt": "2023-03-15T14:21:12Z",
+          "updatedAt": "2023-03-15T14:21:12Z"
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "id": "I_kwDOKiDYo854xRl2",
+      "title": "Terminology and use cases clarification",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/16",
+      "state": "OPEN",
+      "author": "YuChaode",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This is the slide we discussed in last week\r\n[Meeting Material_02.08.pptx](https://github.com/italobusi/ietf-network-inventory/files/10733238/Meeting.Material_02.08.pptx)\r\n",
+      "createdAt": "2023-02-14T14:17:39Z",
+      "updatedAt": "2023-12-05T13:20:55Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2023-02-08 Network Inventory weekly call](https://github.com/italobusi/ietf-network-inventory/blob/main/minutes/minutes-2023-02-08.md)**\r\n\r\nReviewed slides from Chaode\r\n\r\nAgreed to clean-up the terminology in the draft and provide some description of the use cases in the scope of our draft\r\n\r\nThe figure describing the different OSS systems can be simplified to focus only on the OSS systems which are relevant for the inventory use cases.",
+          "createdAt": "2023-02-23T21:44:45Z",
+          "updatedAt": "2023-02-23T21:44:45Z"
+        },
+        {
+          "author": "oscargdd",
+          "authorAssociation": "NONE",
+          "body": "The ITU-T definition seems to cover wider scope. Please be clear in the draft what is the scope here. Is there a term such as hardware inventory?",
+          "createdAt": "2023-03-15T14:10:42Z",
+          "updatedAt": "2023-03-15T14:10:42Z"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "I_kwDOKiDYo854xRuH",
+      "title": "Add timestamp to know when a component information was retrived",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/17",
+      "state": "OPEN",
+      "author": "oscargdd",
+      "authorAssociation": "NONE",
+      "assignees": [
+        "oscargdd",
+        "FabioPeruzzini",
+        "jbouqui153"
+      ],
+      "labels": [],
+      "body": "In current model you don't know how old is the information. The proposal is to add a timestamp for each component/device to know when a component information was lastr retrived/updated. Note that the retriaval is a time consuming process, so every component/device can have been updated at different time/day. We can debate wheter to have the timestamp per device or per component",
+      "createdAt": "2023-03-15T11:53:28Z",
+      "updatedAt": "2023-12-05T13:21:10Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2023-05-17 Network Inventory weekly call](https://github.com/italobusi/ietf-network-inventory/blob/main/minutes/minutes-2023-05-17.md)**\r\n\r\nNeed to clarify the meaning of the timestamp: whether it is the last time the information has been validated or whether it is the last time the information has been updated (changed) or both\r\n\r\nWe can define two optional timestamps to allow implementation freedom\r\n\r\nNeed to define whether these timestamps are defined per component or per device: it is possible to put the integrity timestamp at the device level and the change timestamp on a component level\r\n\r\nNeed to clarify that these timestamps are not intended to be used for assurance but only for planning, installation or to verify upgrades in the network\r\n\r\nChaode: what about adding a command to request the controller to refresh the information?\r\n\r\nA refresh action can be added to the model\r\n\r\nThe integrity timestamp is also needed for the \"non-detectable\" information for equipment-room, rack and device: in this case the refresh action is not applicable\r\n\r\nNeed to clarify better the use cases\r\n\r\n- [ ] @oscargdd @FabioPeruzzini @jbouqui153 Provide more information about the use cases\r\n",
+          "createdAt": "2023-05-22T10:02:08Z",
+          "updatedAt": "2023-05-22T10:02:08Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2023-06-14 Network Inventory weekly call](https://github.com/italobusi/ietf-network-inventory/blob/main/minutes/minutes-2023-06-14.md)**\r\n\r\n> Need to clarify better the use cases\r\n> \r\n> * [ ]  @oscargdd @FabioPeruzzini @jbouqui153 Provide more information about the use cases\r\n\r\nOscar:In general what I've got from operation department is to have the possibility to understand how old are the inventory information.Would be a timestamp indicating when the component was inserted and another one for the last time it was reported.\r\n\r\nNigel:In T-API notification/streaming there is fine grained timestamps but not on traditional T-API GET inventory.\r\n\r\nJeff: will ask in next TIP MUST optical weekly call the other operators but seems more reasonable not to modify our YANG model to consider these timestamps. probably these timestamps can be managed through notifications mechanism at a protocol level.\r\n\r\nDiscussions about flexibility to have these timestamps vs increased complexity for implementing it.\r\n",
+          "createdAt": "2023-06-21T11:24:37Z",
+          "updatedAt": "2023-06-21T11:24:37Z"
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "id": "I_kwDOKiDYo854xR5l",
+      "title": "Use node-id instead of uuid for indexing  network elements",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/18",
+      "state": "OPEN",
+      "author": "oscargdd",
+      "authorAssociation": "NONE",
+      "assignees": [
+        "YuChaode"
+      ],
+      "labels": [
+        "enhancement"
+      ],
+      "body": "[RFC 8345](https://datatracker.ietf.org/doc/rfc8345/https://datatracker.ietf.org/doc/rfc8345/) uses node-id for the indexing of the nodes.  It would be better to have the same convention. Either reuse the node-id type, or use inet:uri. This way it is not restricted to the use of uuids.\r\n\r\n```\r\ntypedef node-id {\r\n       type inet:uri;\r\n       description\r\n         \"Identifier for a node.  The precise structure of the node-id\r\n          will be up to the implementation.  For example, some\r\n          implementations MAY pick a URI that includes the network-id\r\n          as part of the path.  The identifier SHOULD be chosen\r\n          such that the same node in a real network topology will\r\n          always be identified through the same identifier, even if\r\n          the data model is instantiated in separate datastores.  An\r\n          implementation MAY choose to capture semantics in the\r\n          identifier -- for example, to indicate the type of node.\";\r\n     }\r\n```",
+      "createdAt": "2023-03-15T13:11:27Z",
+      "updatedAt": "2023-12-05T13:21:29Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2023-05-17 Network Inventory weekly call](https://github.com/italobusi/ietf-network-inventory/blob/main/minutes/minutes-2023-05-17.md)**\r\n\r\nIt was clarified the issue applies to the identification of the network element and not to the identification of the components\r\n\r\nUsing the node-id, which is an URI, allows also using UUID to identify NEs but allows other types of identification\r\n\r\nChaode has raised concerns with using the node-id to correlate a node in the topology model with a NE in the inventory model in case of multi-layer NE\r\n\r\nNeed to continue the discussion next week\r\n",
+          "createdAt": "2023-05-22T10:03:43Z",
+          "updatedAt": "2023-05-22T10:03:43Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2023-06-14 Network Inventory weekly call](https://github.com/italobusi/ietf-network-inventory/blob/main/minutes/minutes-2023-06-14.md)**\r\n\r\n> It was clarified the issue applies to the identification of the network element and not to the identification of the components\r\n> \r\n> Using the node-id, which is an URI, allows also using UUID to identifiy NEs but allows other types of identification\r\n> \r\n> Chaode has raised concerns with using the node-id to correlate a node in the topology model with a NE in the inventory model in case of multi-layer NE\r\n> \r\n> Need to continue the discussiong it \r\n> \r\n\r\nIt has been clarified that the URI used for xxx is not correlated with the node-id in the topology model: the navigation between the inventory and the topology view can be done using the ietf-hw-inventory-ref-topo model\r\n\r\nAgreement to change the key for the network-element list to be an URI rather than a UUID\r\n",
+          "createdAt": "2023-06-21T11:22:53Z",
+          "updatedAt": "2023-06-21T11:22:53Z"
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "id": "I_kwDOKiDYo854xSH2",
+      "title": "Model port breakouts",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/19",
+      "state": "OPEN",
+      "author": "oscargdd",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Currently, the model does not support port breakouts. Today it is a very common functionality that should be modeled.",
+      "createdAt": "2023-03-15T14:44:05Z",
+      "updatedAt": "2023-12-05T13:21:58Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 20,
+      "id": "I_kwDOKiDYo854xSXG",
+      "title": "Indicate per-component attributes",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/20",
+      "state": "OPEN",
+      "author": "oscargdd",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Now, the model defines atributes common for all components. However, we need to start clarifying for each component which is the information required.",
+      "createdAt": "2023-03-15T15:23:24Z",
+      "updatedAt": "2023-12-05T13:22:15Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 21,
+      "id": "I_kwDOKiDYo854xSte",
+      "title": "Relationship between network element and chassis",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/21",
+      "state": "OPEN",
+      "author": "oscargdd",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Currently \r\nNetwork Element is a device installed on one or several chassis and can afford some specific transmission function independently.\r\n\r\nBut the hierarchy is element->component (and component can be chassis).\r\n\r\nWhat happens with multichassis?\r\n\r\nI think a network element can have multiple chassis...",
+      "createdAt": "2023-03-15T17:08:40Z",
+      "updatedAt": "2023-12-05T13:22:39Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 22,
+      "id": "I_kwDOKiDYo854xS9y",
+      "title": "Management of planned and removed components",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/22",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "config"
+      ],
+      "body": "Investigate the requirements and YANG model updates to manage planned and removed components",
+      "createdAt": "2023-05-25T18:16:56Z",
+      "updatedAt": "2023-12-05T13:23:01Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2023-05-24 Network Inventory weekly call](https://github.com/italobusi/ietf-network-inventory/blob/main/minutes/minutes-2023-05-24.md)**\r\n\r\nThere is a lot of potential complexity when dealing with planning of components and may be worthwhile understanding what should be covered by the inventory model\r\n\r\nJeff/Fabio: at least it could be important to mark an holder as reserved (e.g., because a new board is planned to be deployed there)\r\n",
+          "createdAt": "2023-05-25T18:29:50Z",
+          "updatedAt": "2023-05-25T18:29:50Z"
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "id": "I_kwDOKiDYo854xTRq",
+      "title": "Use of term \"network\" is confusing",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/23",
+      "state": "OPEN",
+      "author": "nigel-r-davis",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#LL23C48-L23C48\r\n\r\nIn the text referenced and throughout the document \"network hardware inventory\" should simply be \"hardware inventory\".",
+      "createdAt": "2023-06-07T12:41:23Z",
+      "updatedAt": "2023-12-05T13:23:22Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#LL23C48-L23C48\r\n> \r\n> In the text referenced and throughout the document \"network hardware inventory\" should simply be \"hardware inventory\".\r\n\r\nIf I remind correctly the intention to use the word \"network\" was to distinguish the scope of this inventory model with respect RFC 8348, that is also an inventory model but with single server scope (i.e. device model). Maybe the word is not correct and something better can be found, but the intention was that one. \r\nsee \r\nhttps://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#L178",
+          "createdAt": "2023-06-07T12:58:18Z",
+          "updatedAt": "2023-06-07T12:58:18Z"
+        },
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "Intention makes sense. \r\n\r\nPerhaps \"network wide\" and \"physical inventory\".\r\n\r\nWe can consider this when we move into Ivy.",
+          "createdAt": "2023-07-05T14:20:21Z",
+          "updatedAt": "2023-07-05T14:20:21Z"
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "id": "I_kwDOKiDYo854xTbV",
+      "title": "Blurring physical and functional boundary",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/24",
+      "state": "OPEN",
+      "author": "nigel-r-davis",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#LL29C20-L29C20\r\n\r\nThe text \"can be augmented, when required, with technology-specific (e.g., optical) inventory data\" appears to blur an important boundary. The functional data should not augment the physical model.",
+      "createdAt": "2023-06-07T12:45:48Z",
+      "updatedAt": "2023-12-05T13:23:36Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "I think here, perhaps the wording should be changed to \"can reference (or be referenced from) functional entities (e.g. technology-specific), when required. \". \r\n\r\nThere should be no hardware distinction for packet, optical etc. equipment.",
+          "createdAt": "2023-07-05T14:25:37Z",
+          "updatedAt": "2023-07-05T14:25:37Z"
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "I_kwDOKiDYo854xThn",
+      "title": "Clarification of Scope",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/25",
+      "state": "OPEN",
+      "author": "nigel-r-davis",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#L422\r\n\r\nFrom the structure of the YANG the model is for inventory in an NE and not for spares holding etc. Please confirm.",
+      "createdAt": "2023-06-14T12:24:30Z",
+      "updatedAt": "2023-12-05T13:23:49Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "We should ensure that the model can also apply to a spares holding situation.",
+          "createdAt": "2023-07-05T14:26:47Z",
+          "updatedAt": "2023-07-05T14:26:47Z"
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "id": "I_kwDOKiDYo854xTpJ",
+      "title": "Specific properties",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/26",
+      "state": "OPEN",
+      "author": "nigel-r-davis",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#L573\r\n\r\nIn TAPI we determined that the following per type properties were relevant:\r\n\r\n       |  |  |  +--ro common-equipment-properties\r\n       |  |  |  |  +--ro asset-type-identifier?        string\r\n       |  |  |  |  +--ro equipment-type-description?   string\r\n       |  |  |  |  +--ro equipment-type-identifier?    string\r\n       |  |  |  |  +--ro equipment-type-name?          string\r\n       |  |  |  |  +--ro equipment-type-version?       string\r\n       |  |  |  |  +--ro manufacturer-identifier?      string\r\n       |  |  |  |  +--ro manufacturer-name?            string\r\n\r\nand that the following per instance properties were relevant\r\n       |  |  |  |  +--ro asset-instance-identifier?   string\r\n       |  |  |  |  +--ro is-powered?                  boolean\r\n       |  |  |  |  +--ro manufacture-date?            tapi-common:date-and-time\r\n       |  |  |  |  +--ro serial-number?               string\r\n       |  |  |  |  +--ro temperature?                 decimal64\r\n\r\nis-powered and temperature are questionable properties at this level. Temperature modeling should be independent and probably requires an explicit positioned non-fru to carry the detector which is itself essentially functional. Likewise, power modelling.",
+      "createdAt": "2023-06-14T12:56:05Z",
+      "updatedAt": "2023-12-05T13:24:07Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "Meeting 20230621: OK. Aligned,",
+          "createdAt": "2023-06-21T14:58:24Z",
+          "updatedAt": "2023-06-21T14:58:24Z"
+        },
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "One final challenge here. The generalization to component of equipment and of holder means that a holder (e.g., a slot) has a manufacture-date distinct from that of its containing equipment (which is strange). When discussing this in TMF (some while ago), it was clear that solids and spaces had distinct characteristics. The solid fits well with component as it is a distinct thing, the space does not. The holder is a space with the potential to hold an equipment. In ONF TAPI it is not necessary to have an explicit holder (which is used to deal with the potential to equip.",
+          "createdAt": "2023-07-05T14:45:14Z",
+          "updatedAt": "2023-07-05T14:45:14Z"
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "id": "I_kwDOKiDYo854xTzG",
+      "title": "Modelling software",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/27",
+      "state": "OPEN",
+      "author": "nigel-r-davis",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#LL574C1-L574C1\r\n\r\nIn TAPI we have kept the issue of software/firmware modelling separate from Equipment. I suggest we look more deeply at the software/firmware modelling.",
+      "createdAt": "2023-06-14T12:57:52Z",
+      "updatedAt": "2023-12-05T13:24:28Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "Meeting 20230621: This is a lightweight treatment that may become redundant when a full software model is developed. This is work for another activity.",
+          "createdAt": "2023-06-21T15:05:48Z",
+          "updatedAt": "2023-06-21T15:05:48Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@italobusi : check relationship with other comments related to software management in the base model",
+          "createdAt": "2023-12-01T11:18:35Z",
+          "updatedAt": "2023-12-01T11:18:35Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The issue is related to why the base model should contain software/firmware version and therefore it is applicable to the base model\r\n\r\nAlso related with https://github.com/sergiobelotti/network-inventory/issues/6\r\n",
+          "createdAt": "2023-12-01T12:59:39Z",
+          "updatedAt": "2023-12-01T12:59:39Z"
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "id": "I_kwDOKiDYo854xUA9",
+      "title": "Expectation/Intention and Actual",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/28",
+      "state": "OPEN",
+      "author": "nigel-r-davis",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "config"
+      ],
+      "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#L629\r\n\r\nIt TAPI we support the preprovisioning of slots. The NE essentially expects an equipment to be inserted. This is a traditional capability and is a rudimentary planning/intent model. Many devices support this capability. It is important to represent this. In TAPI we use the equipment (component) to represent both the expectation and actual. If we were to do that here, the component would have a structure for expectation and a structure for actual along with a mismatch representation capability. We should discuss this in more detail.\r\n",
+      "createdAt": "2023-06-14T13:44:20Z",
+      "updatedAt": "2023-12-05T13:24:53Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I would like to get confirmation about the need to support this requirement since I am not sure addressing this requirement is as easy as it appears at the first glance ...\r\n\r\nFor a given holder we can define two attributes, one reported the expected component (e.g., component X) and the actual component (e.g., component Y):\r\n- a 'missing component' error can be detected when the expected component is defined by there is no actual component installed;\r\n- an 'unexpected component' error/warning can be detected when there is an actual component is installed but no expected component is defined;\r\n- a 'component mismatch' error can be detected when the actual component does not match the expected component\r\n\r\nHowever, the mismatch may happen anywhere in the hierarchy of components/holders: the holders and sub-components for expected component X can be completely different than the holders and sub-components for the actual component Y\r\n\r\nHow this case can be managed?\r\n\r\nMaybe, a more flexible/complete solution could be to define two hierarchies of components: one for the expected components and one for the actual components which may match/mismatch at any level\r\n\r\nAnother doubt: is the expected component only reported (read-only) in the network-inventory or would it be also possible to configure the expected component?\r\n\r\nIf we allow the configuration of the expected components, how to deal with the cases where there are different expected components at the controller's NBI and on the device?\r\n\r\nNMDA could help but the behavior needs to be clarified especially in case of a hierarchy of controllers\r\n",
+          "createdAt": "2023-06-20T13:18:43Z",
+          "updatedAt": "2023-06-20T13:18:43Z"
+        },
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "In the ONF core we explored the use of two hierarchies and realized that we could have a flexible split. If the actual and expected match suitably, a single hierarchy can be used to deal with both aspects. Once there is a discrepancy the model can split into two hierarchies from that point on. Worth a discussion. \r\n\r\nIf the equipment supports expectation, then it should be configurable. Expectation may need to deal with constraints like intent. This aspect needs a further discussion.",
+          "createdAt": "2023-07-05T14:59:26Z",
+          "updatedAt": "2023-07-05T14:59:26Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> A slot can have the following states:\r\n> \r\n> * Empty: no component is installed and no expected component has been provisioned;\r\n> * Installed & not expected: a component is inserted but no expected component has been provisioned;\r\n> * Expected & not Installed: an expected component has been provisioned but no component is currently installed;\r\n> * Installed & Expected: an expected component has been provisioned and it is currently installed;\r\n> * Mismatch of Installed & Expected: there is an inconsistency between the expected component and the installed component;\r\n> * Unavailable: this holder cannot accept the installation or provisioning of components (this is typically caused by a double width card installed next to this slot);\r\n> * Unknown: the state of the slot is not known;\r\n> \r\n> Is there a need to manage/report these states within the network inventory?\r\n\r\nSee also: https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/15#issue-1023941241",
+          "createdAt": "2023-11-29T12:28:46Z",
+          "updatedAt": "2023-11-29T12:28:46Z"
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "id": "I_kwDOKiDYo854xUKL",
+      "title": "General considerations",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/29",
+      "state": "OPEN",
+      "author": "nigel-r-davis",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#L18\r\n\r\nThis model deals with physical things (solids and spaces). The model does not yet cover some physical aspects such as connectors, cables, strands and physical spans. We have some work that may be helpful in TAPI. We should avoid broad physical modeling such as geographic structures etc.\r\n\r\nthe ability to hot-swap and to deal with other dynamics should be considered in this model.\r\n\r\nOther characteristics such as height, length, width, weight etc. may be best handled in a spec layer. This needs to be discussed in some details. This also applies to the humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics.\r\n\r\nThe model intentionally does not cover functional aspects. We should work on the relationship between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really functional protections. ONF have some work that may help here.\r\n\r\nThere are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed could be a valid augment to a module that has a fan.\r\n\r\nThe model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should be considered carefully.\r\n\r\nThe model of power is unusual in that it is narrow functional. There is a flow etc. The relationship between this model and power  needs to be considered carefully. Power is not physical but from the perspective of the other functions it is essentially the motive force. There is no detailed model of power. In other bodies, power is \"smunged\" into the physical model.  This needs to be considered very carefully.\r\n\r\nThe model of software is complex and should be separate from the model of the physical solution.\r\n\r\nState machines associated with the power-up cycle, admin state etc. really related to the functional model and should be considered carefully.",
+      "createdAt": "2023-06-14T14:32:04Z",
+      "updatedAt": "2023-12-05T13:25:11Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 30,
+      "id": "I_kwDOKiDYo854xUTS",
+      "title": "Proposal for peer-mount",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/30",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "A proposal for peer-mount from Alex Clemm: [Peer-Mount + inventory.pdf](https://github.com/ietf-ccamp-wg/ietf-network-inventory/files/12601793/Peer-Mount.%2B.inventory.pdf)\r\n\r\n",
+      "createdAt": "2023-09-13T20:48:44Z",
+      "updatedAt": "2023-12-05T13:25:32Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2023-09-13 Network Inventory weekly call](https://github.com/italobusi/ietf-network-inventory/blob/main/minutes/minutes-2023-09-13.md)**\r\n\r\nAlex presented some slide to describe a proposal for Peer-Mount: [Peer-Mount + inventory.pdf](https://github.com/ietf-ccamp-wg/ietf-network-inventory/files/12601793/Peer-Mount.%2B.inventory.pdf)\r\n\r\nThe Peer-Mount solution provides a capability to mount subtrees from remote datastores into a local datastore analogous to mounting remote directories in a distributed file system.  This enables providing federated datastores with a holistic network view without the need for redundant models and copies of the same data across different systems.  Such a capability could become of interest in the future should increasing amounts of management data need to be integrated with network inventory data, for example current state of inventoried elements, data about interfaces, etc.  \r\n\r\nThe proposal was overall well-received, with several attendees contributing to the discussion, involving questions related to scalability, differences between peer-mount and schema-mount, instantiation vs modeling issues.  A 00 draft is in the works and Alex stated that the authors of Peer-Mount are looking for potential coauthors.  \r\n",
+          "createdAt": "2023-09-15T12:17:57Z",
+          "updatedAt": "2023-09-15T12:17:57Z"
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "id": "I_kwDOKiDYo854ydMX",
+      "title": "Comments raised during the call for adoption",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/31",
+      "state": "CLOSED",
+      "author": "boucadair",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Some quick comments:\r\n\u2022\tPlease soften the various citations to ACTN. I would simply remove them.\r\n\u2022\tConsider adding a dedicated section to describe the provisions in the model for future augmentations. \r\n\u2022\tConsider if some data nodes that are defined in other models can be added directly to the base model, e.g., the following ones from draft-li\r\n\r\n       +--ro required-components*          -> ../uuid\r\n       +--ro dependent-components*         -> ../uuid\r\n",
+      "createdAt": "2023-12-01T17:05:38Z",
+      "updatedAt": "2023-12-05T17:00:25Z",
+      "closedAt": "2023-12-05T17:00:25Z",
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "NONE",
+          "body": "Redundant with https://github.com/ietf-ivy-wg/network-inventory-yang/issues/9",
+          "createdAt": "2023-12-05T17:00:25Z",
+          "updatedAt": "2023-12-05T17:00:25Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -245,19 +823,19 @@
       "number": 1,
       "id": "PR_kwDOKiDYo85dQHk8",
       "title": "initial proposal for base model",
-      "url": "https://github.com/sergiobelotti/network-inventory/pull/1",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/1",
       "state": "MERGED",
       "author": "sergiobelotti",
-      "authorAssociation": "OWNER",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "initial proposal for base model draft as discussed during the call 10-18-23\r\nDiff with respect ccamp draft https://www.ietf.org/rfcdiff?url1=draft-ietf-ccamp-network-inventory-yang-02&url2=https://raw.githubusercontent.com/sergiobelotti/network-inventory/IETF-118/draft-y3bp-network-inventory-yang.txt",
       "createdAt": "2023-10-19T10:23:44Z",
       "updatedAt": "2023-10-23T08:37:09Z",
-      "baseRepository": "sergiobelotti/network-inventory",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "a9d9e4b2f2abc00a91796401672ebad145591271",
-      "headRepository": "sergiobelotti/network-inventory",
+      "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "IETF-118",
       "headRefOid": "ae4087b39a38ebe1a1ede582b947f808fdc5d853",
       "closedAt": "2023-10-23T08:37:09Z",
