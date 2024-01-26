@@ -1,37 +1,49 @@
 module: ietf-network-inventory
-  +--rw network-elements
-     +--rw network-element* [ne-id]
-        +--rw ne-id            string
-        +--rw ne-type?         identityref
-        +--rw uuid?            yang:uuid
-        +--rw name?            string
-        +--rw description?     string
-        +--rw alias?           string
-        +--rw hardware-rev?    string
-        +--rw software-rev?    string
-        +--rw mfg-name?        string
-        +--rw mfg-date?        yang:date-and-time
-        +--rw part-number?     string
-        +--rw serial-number?   string
-        +--rw product-name?    string
-        +--rw components
-           +--rw component* [component-id]
-              +--rw component-id            string
-              +--rw class                   union
-              +--rw uuid?                   yang:uuid
-              +--rw name?                   string
-              +--rw description?            string
-              +--rw alias?                  string
-              +--rw child-component-ref
-              +--rw parent-rel-pos?         int32
-              +--rw parent-component-ref
-              +--rw hardware-rev?           string
-              +--rw firmware-rev?           string
-              +--rw software-rev?           string
-              +--rw serial-num?             string
-              +--rw mfg-name?               string
-              +--rw part-number?            string
-              +--rw asset-id?               string
-              +--rw is-fru?                 boolean
-              +--rw mfg-date?               yang:date-and-time
-              +--rw uri*                    inet:uri
+   +--rw network-inventory
+      +--rw network-elements
+         +--rw network-element* [ne-id]
+            +--rw ne-id            string
+            +--ro ne-type?         identityref
+            +--ro uuid?            yang:uuid
+            +--rw name?            string
+            +--rw description?     string
+            +--rw alias?           string
+            +--ro hardware-rev?    string
+            +--ro software-rev?    string
+            +--ro mfg-name?        string
+            +--ro mfg-date?        yang:date-and-time
+            +--ro part-number?     string
+            +--ro serial-number?   string
+            +--ro product-name?    string
+            +--rw components
+               +--rw component* [component-id]
+               |  +--rw component-id            string
+               |  +--ro class                   union
+               |  +--ro uuid?                   yang:uuid
+               |  +--rw name?                   string
+               |  +--rw description?            string
+               |  +--rw alias?                  string
+               |  +--ro child-component-ref
+               |  +--ro parent-rel-pos?         int32
+               |  +--ro parent-component-ref
+               |  +--ro hardware-rev?           string
+               |  +--ro firmware-rev?           string
+               |  +--ro software-rev?           string
+               |  +--ro serial-num?             string
+               |  +--ro mfg-name?               string
+               |  +--ro part-number?            string
+               |  +--ro asset-id?               string
+               |  +--ro is-fru?                 boolean
+               |  +--ro mfg-date?               yang:date-and-time
+               |  +--ro uri*                    inet:uri
+               +--ro (component-class)?
+                  +--:(chassis)
+                  |  +--ro chassis-specific-info
+                  +--:(container)
+                  |  +--ro slot-specific-info
+                  +--:(module)
+                  |  +--ro board-specific-info
+                  +--:(port)
+                  |  +--ro port-specific-info
+                  +--:(software)
+                     +--ro software-specific-info
