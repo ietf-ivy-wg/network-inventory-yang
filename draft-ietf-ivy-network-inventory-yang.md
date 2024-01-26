@@ -228,6 +228,9 @@ The YANG data model defined in this document conforms to the Network Management 
 
   > an interface on board
 
+  Container:
+  > Within this document , with the term "container" we consider an hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.
+
 ## Requirements Notation
 
 {::boilerplate bcp14}
@@ -265,12 +268,10 @@ in this document uses a flat list of network element.
 
 The "ne-type" is defined as a YANG identity to describe the type of the network element. This document defines only the "physical-network-element" identity.
 
-The component definition is also generalized to support any type of
+The component definition is also generalized to support any types of
 component, such as hardware, software, or firmware.
 
-The component "class" is defined as a union between the hardware
-class identity, defined in "iana-hardware", and the "non-hardware"
-identity, defined in this document.
+Different types of components can be distinguished by the component-sepecific-info structure.
 
 The identity definition of additional types of "ne-type" and "non-
 hardware" identity of component are outside the scope of this
@@ -458,7 +459,7 @@ We re-defined some attributes listed in {{!RFC8348}}, based on some integration 
 
 ~~~~ ascii-art
   +--ro components
-     +--ro component* [uuid]
+     +--ro component* [component-id]
         ...................................
         +--ro parent-component-references
         |   +--ro component-reference* [index]
@@ -475,11 +476,21 @@ The hierarchical components' identifier could be found by the "component-referen
 According to the management requirements from operators, some important attributes are not defined in {{!RFC8348}}. These attributes could be component-specific and are not suitable to define under the component list node. So, the model can be augmented with HW/SW specific-info-grouping containing attributes applicable to HW e.g. boards/slot or SW e.g. software-module/boot-loader component only.
 
 ~~~~ ascii-art
-  augment /ni:network-elements/ni:network-element:
-    +--rw virtual-ne-attributes
-  augment /ni:network-elements/ni:network-element/ni:components
-            /ni:component:
-    +--rw software-module-specific-info
++--rw components
+   +--rw component* [component-id]
+   |  +--rw component-id            string
+   .......................................
+   +--rw (component-class)?
+      +--:(chassis)
+      |  +--rw chassis-specific-info
+      +--:(container)
+      |  +--rw slot-specific-info
+      +--:(module)
+      |  +--rw board-specific-info
+      +--:(port)
+      |  +--rw port-specific-info
+      +--:(software)
+         +--rw software-specific-info
 ~~~~
 
 ### Part Number
@@ -493,16 +504,6 @@ According to the description in {{!RFC8348}}, the attribute named "model-name" u
         +--ro part-number?           string
         ...................................
 ~~~~
-
-## Efficiency Issue
-
-During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks.  More discussions are needed to address these concerns.
-
-Considering that relational databases are widely used by traditional OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in current draft, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller & OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.
-
-An alternative YANG model structure, which defines the inventory objects directly, instead of defining generic components, has also been analyzed. However, also with this model, there still could be some scalability limitations when synchronizing full inventory resources in large scale of networks. This scalability limitation is caused by the limited transmission capabilities of HTTP protocol. We think that this scalability limitation should be solved at protocol level rather than data model level.
-
-The model proposed by this draft is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this draft. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.
 
 {: #ni-augment}
 
@@ -625,6 +626,18 @@ As it mentioned in {{ne-component}} that state data and performance data are out
 Mostly, our inventory data model can cover the attributes from OpenConfig.
 
 {: numbered="false"}
+
+
+## Efficiency Issue
+
+During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks.  More discussions are needed to address these concerns.
+
+Considering that relational databases are widely used by traditional OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in current draft, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller & OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.
+
+An alternative YANG model structure, which defines the inventory objects directly, instead of defining generic components, has also been analyzed. However, also with this model, there still could be some scalability limitations when synchronizing full inventory resources in large scale of networks. This scalability limitation is caused by the limited transmission capabilities of HTTP protocol. We think that this scalability limitation should be solved at protocol level rather than data model level.
+
+The model proposed by this draft is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this draft. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.
+
 
 # Acknowledgments
 
