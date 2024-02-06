@@ -12,7 +12,6 @@ module: ietf-network-inventory
             +--ro software-rev?    string
             +--ro mfg-name?        string
             +--ro mfg-date?        yang:date-and-time
-            +--ro part-number?     string
             +--ro serial-number?   string
             +--ro product-name?    string
             +--rw components
