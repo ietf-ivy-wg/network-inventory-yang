@@ -271,7 +271,7 @@ The "ne-type" is defined as a YANG identity to describe the type of the network 
 The component definition is also generalized to support any types of
 component, such as hardware, software, or firmware.
 
-Different types of components can be distinguished by the class of component. Attributes related to specific class of component can be found in the component-specific-info structure.
+Different types of components can be distinguished by the class of component. The component "class" is defined as a union between the hardware class identity, defined in "iana-hardware", and the "non-hardware" identity, defined in this document. Attributes related to specific class of component can be found in the component-specific-info structure.
 
 The identity definition of additional types of "ne-type" and "non-
 hardware" identity of component are outside the scope of this
