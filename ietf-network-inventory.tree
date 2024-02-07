@@ -16,33 +16,33 @@ module: ietf-network-inventory
             +--ro product-name?    string
             +--rw components
                +--rw component* [component-id]
-               |  +--rw component-id            string
-               |  +--ro class                   union
-               |  +--ro uuid?                   yang:uuid
-               |  +--rw name?                   string
-               |  +--rw description?            string
-               |  +--rw alias?                  string
-               |  +--ro child-component-ref
-               |  +--ro parent-rel-pos?         int32
-               |  +--ro parent-component-ref
-               |  +--ro hardware-rev?           string
-               |  +--ro firmware-rev?           string
-               |  +--ro software-rev?           string
-               |  +--ro serial-num?             string
-               |  +--ro mfg-name?               string
-               |  +--ro part-number?            string
-               |  +--ro asset-id?               string
-               |  +--ro is-fru?                 boolean
-               |  +--ro mfg-date?               yang:date-and-time
-               |  +--ro uri*                    inet:uri
-               +--ro (component-class)?
-                  +--:(chassis)
-                  |  +--ro chassis-specific-info
-                  +--:(container)
-                  |  +--ro slot-specific-info
-                  +--:(module)
-                  |  +--ro board-specific-info
-                  +--:(port)
-                  |  +--ro port-specific-info
-                  +--:(software)
-                     +--ro software-specific-info
+                  +--rw component-id              string
+                  +--ro class                     union
+                  +--ro uuid?                     yang:uuid
+                  +--rw name?                     string
+                  +--rw description?              string
+                  +--rw alias?                    string
+                  +--ro child-component-ref
+                  +--ro parent-rel-pos?           int32
+                  +--ro parent-component-ref
+                  +--ro hardware-rev?             string
+                  +--ro firmware-rev?             string
+                  +--ro software-rev?             string
+                  +--ro serial-num?               string
+                  +--ro mfg-name?                 string
+                  +--ro part-number?              string
+                  +--ro asset-id?                 string
+                  +--ro is-fru?                   boolean
+                  +--ro mfg-date?                 yang:date-and-time
+                  +--ro uri*                      inet:uri
+                  +--rw (component-class)?
+                     +--:(chassis)
+                     |  +--rw chassis-specific-info
+                     +--:(container)
+                     |  +--rw slot-specific-info
+                     +--:(module)
+                     |  +--rw board-specific-info
+                     +--:(port)
+                     |  +--rw port-specific-info
+                     +--:(software)
+                        +--rw software-specific-info
