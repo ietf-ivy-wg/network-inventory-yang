@@ -468,9 +468,9 @@ module ietf-network-inventory {
               reference
                 "RFC 6933: Entity MIB (Version 4) - entPhysicalUris";
             }
+            
+            uses component-specific-info-grouping;
           }
-        
-          uses component-specific-info-grouping;
         }
       }
     }
