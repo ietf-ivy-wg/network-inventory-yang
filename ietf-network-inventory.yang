@@ -3,6 +3,12 @@ module ietf-network-inventory {
   namespace "urn:ietf:params:xml:ns:yang:ietf-network-inventory";
   prefix ni;
   
+  import iana-hardware {
+    prefix ianahw;
+    reference
+    "https://www.iana.org/assignments/yang-parameters";
+  }
+
   import ietf-yang-types {
     prefix yang;
     reference
@@ -67,7 +73,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
   
-  revision 2023-10-23 {
+  revision 2024-02-07 {
     description
       "Initial version";
     reference
