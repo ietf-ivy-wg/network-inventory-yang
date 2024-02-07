@@ -177,7 +177,6 @@ module ietf-network-inventory {
       "Provide component-specific attributes for different 
       components.";
     choice component-class {
-      config false;
       description
         "This component-specific extension differs by different 
         component classes.";
