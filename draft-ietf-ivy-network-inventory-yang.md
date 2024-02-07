@@ -625,9 +625,6 @@ As it mentioned in {{ne-component}} that state data and performance data are out
 
 Mostly, our inventory data model can cover the attributes from OpenConfig.
 
-{: numbered="false"}
-
-
 ## Efficiency Issue
 
 During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks.  More discussions are needed to address these concerns.
