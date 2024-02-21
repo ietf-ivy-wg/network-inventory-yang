@@ -568,9 +568,7 @@ sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2023-03-07.yan
 
 --- back
 
-# Appendix
-
-## Comparison With Openconfig-platform Data Model
+# Comparison With Openconfig-platform Data Model
 
 Since more and more devices can be managed by domain controller through OpenConfig, to ensure that our inventory data model can cover these devices' inventory data, we have compared our inventory data model with the "openconfig-platform" model which is the data model used to manage inventory information in OpenConfig.
 
@@ -625,7 +623,7 @@ As it mentioned in {{ne-component}} that state data and performance data are out
 
 Mostly, our inventory data model can cover the attributes from OpenConfig.
 
-## Efficiency Issue
+# Efficiency Issue
 
 During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks.  More discussions are needed to address these concerns.
 
@@ -635,6 +633,7 @@ An alternative YANG model structure, which defines the inventory objects directl
 
 The model proposed by this draft is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this draft. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.
 
+{: numbered="false"}
 
 # Acknowledgments
 
