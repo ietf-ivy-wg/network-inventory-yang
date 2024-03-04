@@ -65,7 +65,9 @@ contributor:
     org: Huawei Technologies
     email: lana.wubo@huawei.com
   -
-    name: TBD
+    name: Chenfang Zhang
+    org: China Unicom
+    email: zhangcf80@chinaunicom.cn
   -
     name: Oscar Gonzalez de Dios
     ins: O. Gonzalez de Dios
@@ -479,18 +481,12 @@ According to the management requirements from operators, some important attribut
 +--rw components
    +--rw component* [component-id]
    |  +--rw component-id            string
-   .......................................
-   +--rw (component-class)?
-      +--:(chassis)
-      |  +--rw chassis-specific-info
-      +--:(container)
-      |  +--rw slot-specific-info
-      +--:(module)
-      |  +--rw board-specific-info
-      +--:(port)
-      |  +--rw port-specific-info
-      +--:(software)
-         +--rw software-specific-info
+   |   .......................................
+   |  +--ro chassis-specific-info
+   |  +--ro slot-specific-info
+   |  +--ro board-specific-info
+   |  +--ro port-specific-info
+   |  +--ro software-specific-info
 ~~~~
 
 ### Part Number
@@ -552,7 +548,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include ./ietf-network-inventory.yang}
 ~~~~
 {: #fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2023-03-07.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2024-03-04.yang"}
 
 # Manageability Considerations
 
