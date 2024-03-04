@@ -170,10 +170,10 @@ module ietf-network-inventory {
       config false;
       type string;
       description
-        "The vendor-specific and human-interpretable string describing
-        the network element type. It is expected that vendors assign 
-        unique product names to different NE types within the scope of
-        the vendor.";
+        "The vendor-specific serial number of the network element 
+        instance. It is expected that vendors assign unique serial 
+        numbers to different network element instances within the 
+        scope of the product name.";
     }
   }
   
