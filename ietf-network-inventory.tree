@@ -31,18 +31,13 @@ module: ietf-network-inventory
                   +--ro serial-num?               string
                   +--ro mfg-name?                 string
                   +--ro part-number?              string
+                  +--ro product-name?             string
                   +--ro asset-id?                 string
                   +--ro is-fru?                   boolean
                   +--ro mfg-date?                 yang:date-and-time
                   +--ro uri*                      inet:uri
-                  +--rw (component-class)?
-                     +--:(chassis)
-                     |  +--rw chassis-specific-info
-                     +--:(container)
-                     |  +--rw slot-specific-info
-                     +--:(module)
-                     |  +--rw board-specific-info
-                     +--:(port)
-                     |  +--rw port-specific-info
-                     +--:(software)
-                        +--rw software-specific-info
+                  +--ro chassis-specific-info
+                  +--ro slot-specific-info
+                  +--ro board-specific-info
+                  +--ro port-specific-info
+                  +--ro software-specific-info
