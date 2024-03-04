@@ -171,9 +171,9 @@ module ietf-network-inventory {
       type string;
       description
         "The vendor-specific and human-interpretable string describing
-		the network element type. It is expected that vendors assign 
-		unique product names to different NE types within the scope of
-		the vendor.";
+        the network element type. It is expected that vendors assign 
+        unique product names to different NE types within the scope of
+        the vendor.";
     }
   }
   
@@ -181,51 +181,51 @@ module ietf-network-inventory {
     description 
       "Provide component-specific attributes for different 
       components.";
-	
+    
     container chassis-specific-info {
-	  when "../class = 'ianahw:chassis'";
-	  description 
+      when "../class = 'ianahw:chassis'";
+      description 
         "This container contains some attributes belong to
         chassis only.";
-	  uses chassis-specific-info-grouping;
-	  config false;
-	}
-	
-	container slot-specific-info {
-	  when "../class = 'ianahw:container'";
-	  description 
+      uses chassis-specific-info-grouping;
+      config false;
+    }
+    
+    container slot-specific-info {
+      when "../class = 'ianahw:container'";
+      description 
         "This container contains some attributes belong to
         slot only.";
-	  uses slot-specific-info-grouping;
-	  config false;
-	}
-	
-	container board-specific-info {
-	  when "../class = 'ianahw:module'";
-	  description 
+      uses slot-specific-info-grouping;
+      config false;
+    }
+    
+    container board-specific-info {
+      when "../class = 'ianahw:module'";
+      description 
         "This container contains some attributes belong to
         board only.";
-	  uses board-specific-info-grouping;
-	  config false;
-	}
-	
-	container port-specific-info {
-	  when "../class = 'ianahw:port'";
-	  description 
+      uses board-specific-info-grouping;
+      config false;
+    }
+    
+    container port-specific-info {
+      when "../class = 'ianahw:port'";
+      description 
         "This container contains some attributes belong to
         port only.";
-	  uses port-specific-info-grouping;
-	  config false;
-	}
-	
-	container software-specific-info {
-	  when "../class = 'ianahw:software'";
-	  description 
+      uses port-specific-info-grouping;
+      config false;
+    }
+    
+    container software-specific-info {
+      when "../class = 'ianahw:software'";
+      description 
         "This container contains some attributes belong to
         software only.";
-	  uses software-specific-info-grouping;
-	  config false;
-	}
+      uses software-specific-info-grouping;
+      config false;
+    }
   }
 
   grouping chassis-specific-info-grouping {
@@ -372,7 +372,7 @@ module ietf-network-inventory {
               reference
                 "RFC 6933: Entity MIB (Version 4) -
                           entPhysicalSoftwareRev";
-            }           
+            }
             leaf serial-num {
               config false;
               type string;
