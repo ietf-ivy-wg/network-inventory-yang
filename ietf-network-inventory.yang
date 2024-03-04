@@ -73,7 +73,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
   
-  revision 2024-02-07 {
+  revision 2024-03-04 {
     description
       "Initial version";
     reference
@@ -162,13 +162,18 @@ module ietf-network-inventory {
       config false;
       type string;
       description
-        "The vendor-specific serial number string for the NE";
+        "The vendor-specific serial number of NE. It is expected that
+        vendors assign unique serial numbers to different NEs within 
+        the scope of the part number.";
     }
     leaf product-name {
       config false;
       type string;
       description
-        "indicates the vendor-spefic device type infomation.";
+        "The vendor-specific serial number of the network element 
+        instance. It is expected that vendors assign unique serial 
+        numbers to different network element instances within the 
+        scope of the product name.";
     }
   }
   
@@ -176,52 +181,50 @@ module ietf-network-inventory {
     description 
       "Provide component-specific attributes for different 
       components.";
-    choice component-class {
-      description
-        "This component-specific extension differs by different 
-        component classes.";
-      case chassis {
-        container chassis-specific-info {
-          description 
-            "This container contains some attributes belong to
-            chassis only.";
-          uses chassis-specific-info-grouping;
-        }
-      }
-      case container {
-        container slot-specific-info {
-          description 
-            "This container contains some attributes belong to
-            slot or sub-slot only.";
-          uses slot-specific-info-grouping;
-        }
-      }
-      case module {
-        container board-specific-info {
-          description 
-            "This container contains some attributes belong to
-            board only.";
-          uses board-specific-info-grouping;
-        }
-      }
-      case port {
-        container port-specific-info {
-          description 
-            "This container contains some attributes belong to
-            port only.";
-          uses port-specific-info-grouping;
-        }
-      }
-      case software {
-        container software-specific-info {
-          description
-            "This container contains some attributes belong to
-            software only.";
-          
-          uses software-specific-info-grouping;
-        }
-      }
-    //TO BE ADDED: transceiver
+    
+    container chassis-specific-info {
+      when "../class = 'ianahw:chassis'";
+      description 
+        "This container contains some attributes belong to
+        chassis only.";
+      uses chassis-specific-info-grouping;
+      config false;
+    }
+    
+    container slot-specific-info {
+      when "../class = 'ianahw:container'";
+      description 
+        "This container contains some attributes belong to
+        slot only.";
+      uses slot-specific-info-grouping;
+      config false;
+    }
+    
+    container board-specific-info {
+      when "../class = 'ianahw:module'";
+      description 
+        "This container contains some attributes belong to
+        board only.";
+      uses board-specific-info-grouping;
+      config false;
+    }
+    
+    container port-specific-info {
+      when "../class = 'ianahw:port'";
+      description 
+        "This container contains some attributes belong to
+        port only.";
+      uses port-specific-info-grouping;
+      config false;
+    }
+    
+    container software-specific-info {
+      when "../class = 'ianahw:software'";
+      description 
+        "This container contains some attributes belong to
+        software only.";
+      uses software-specific-info-grouping;
+      config false;
     }
   }
 
@@ -374,13 +377,10 @@ module ietf-network-inventory {
               config false;
               type string;
               description
-                "The vendor-specific serial number string for the
-                component.  The preferred value is the serial number
-                string actually printed on the component itself (if
-                present).";
-              reference
-                "RFC 6933: Entity MIB (Version 4) - 
-                entPhysicalSerialNum";
+                "The vendor-specific serial number of the component 
+                instance. It is expected that vendors assign unique 
+                serial numbers to different component instances within
+                the scope of the part number.";
             }
             leaf mfg-name {
               config false;
@@ -407,18 +407,20 @@ module ietf-network-inventory {
               config false;
               type string;
               description
-                "A code used to uniquely identify a type of component when 
-                  referencing it, it could be visible and 
-                  vendor-sepecific, usually it may be printed on the 
-                  component itself.
-  
-                If the part number string associated with the physical
-                component is unknown to the server, then this node is 
-                not instantiated.";
-              reference
-                "RFC 6933: Entity MIB (Version 4) - 
-                entPhysicalModelName";
+                "The vendor-specific part number of the component 
+                type. It is expected that vendors assign unique part
+                numbers to different component types within the scope
+                of the vendor.";
             }
+            leaf product-name {
+              config false;
+              type string;
+              description
+                "The vendor-specific and human-interpretable string 
+                describing the component type. It is expected that 
+                vendors assign unique product names to different 
+                component types within the scope of the vendor.";
+            } 
             leaf asset-id {
               config false;
               type string;
