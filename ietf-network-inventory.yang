@@ -73,7 +73,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
   
-  revision 2024-03-04 {
+  revision 2024-04-01 {
     description
       "Initial version";
     reference
@@ -162,18 +162,19 @@ module ietf-network-inventory {
       config false;
       type string;
       description
-        "The vendor-specific serial number of NE. It is expected that
-        vendors assign unique serial numbers to different NEs within 
-        the scope of the part number.";
+        "The vendor-specific serial number of the network element 
+        instance. It is expected that vendors assign unique serial 
+        numbers to different network element instances within the 
+        scope of the product name.";
     }
     leaf product-name {
       config false;
       type string;
       description
-        "The vendor-specific serial number of the network element 
-        instance. It is expected that vendors assign unique serial 
-        numbers to different network element instances within the 
-        scope of the product name.";
+        "The vendor-specific and human-interpretable string describing
+        the network element type. It is expected that vendors assign 
+        unique product names to different NE types within the scope of
+        the vendor.";
     }
   }
   
@@ -372,7 +373,7 @@ module ietf-network-inventory {
               reference
                 "RFC 6933: Entity MIB (Version 4) -
                           entPhysicalSoftwareRev";
-            }
+            }           
             leaf serial-num {
               config false;
               type string;
