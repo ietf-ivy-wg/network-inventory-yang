@@ -2,18 +2,19 @@ module: ietf-network-inventory
    +--rw network-inventory
       +--rw network-elements
          +--rw network-element* [ne-id]
-            +--rw ne-id            string
-            +--ro ne-type?         identityref
-            +--ro uuid?            yang:uuid
-            +--rw name?            string
-            +--rw description?     string
-            +--rw alias?           string
-            +--ro hardware-rev?    string
-            +--ro software-rev?    string
-            +--ro mfg-name?        string
-            +--ro mfg-date?        yang:date-and-time
-            +--ro serial-number?   string
-            +--ro product-name?    string
+            +--rw ne-id                 string
+            +--ro ne-type?              identityref
+            +--ro uuid?                 yang:uuid
+            +--rw name?                 string
+            +--rw description?          string
+            +--rw alias?                string
+            +--ro hardware-rev?         string
+            +--ro software-rev?         string
+            +--ro software-patch-rev*   string
+            +--ro mfg-name?             string
+            +--ro mfg-date?             yang:date-and-time
+            +--ro serial-number?        string
+            +--ro product-name?         string
             +--rw components
                +--rw component* [component-id]
                   +--rw component-id              string
@@ -28,6 +29,7 @@ module: ietf-network-inventory
                   +--ro hardware-rev?             string
                   +--ro firmware-rev?             string
                   +--ro software-rev?             string
+                  +--ro software-patch-rev*       string
                   +--ro serial-num?               string
                   +--ro mfg-name?                 string
                   +--ro part-number?              string
