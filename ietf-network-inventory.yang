@@ -148,13 +148,13 @@ module ietf-network-inventory {
       description
         "The vendor-specific software revision string for the NE.";
     }
-	leaf-list software-patch-rev {
-	  config false;
-	  type string;
-	  description
-	    "The vendor-specific patch software revision string for the 
-		NE.";
-	}
+    leaf-list software-patch-rev {
+      config false;
+      type string;
+      description
+        "The vendor-specific patch software revision string for the 
+        NE.";
+    }
     leaf mfg-name {
       config false;
       type string;
@@ -381,13 +381,13 @@ module ietf-network-inventory {
                 "RFC 6933: Entity MIB (Version 4) -
                           entPhysicalSoftwareRev";
             }
-	        leaf-list software-patch-rev {
-	          config false;
-	          type string;
-	          description
-        	    "The vendor-specific patch software revision string 
-				for the component.";
-        	}
+            leaf-list software-patch-rev {
+              config false;
+              type string;
+              description
+                "The vendor-specific patch software revision string 
+                for the component.";
+            }
             leaf serial-num {
               config false;
               type string;
