@@ -73,7 +73,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
   
-  revision 2024-04-01 {
+  revision 2024-04-09 {
     description
       "Initial version";
     reference
@@ -147,6 +147,13 @@ module ietf-network-inventory {
       type string;
       description
         "The vendor-specific software revision string for the NE.";
+    }
+    leaf-list software-patch-rev {
+      config false;
+      type string;
+      description
+        "The vendor-specific patch software revision string for the 
+        NE.";
     }
     leaf mfg-name {
       config false;
@@ -373,7 +380,14 @@ module ietf-network-inventory {
               reference
                 "RFC 6933: Entity MIB (Version 4) -
                           entPhysicalSoftwareRev";
-            }           
+            }
+            leaf-list software-patch-rev {
+              config false;
+              type string;
+              description
+                "The vendor-specific patch software revision string 
+                for the component.";
+            }
             leaf serial-num {
               config false;
               type string;
