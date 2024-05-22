@@ -225,15 +225,6 @@ module ietf-network-inventory {
       uses port-specific-info-grouping;
       config false;
     }
-    
-    container software-specific-info {
-      when "../class = 'ianahw:software'";
-      description 
-        "This container contains some attributes belong to
-        software only.";
-      uses software-specific-info-grouping;
-      config false;
-    }
   }
 
   grouping chassis-specific-info-grouping {
