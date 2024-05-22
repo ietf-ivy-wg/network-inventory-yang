@@ -14,7 +14,7 @@ module ietf-network-inventory {
     reference
       "RFC6991: Common YANG Data Types.";
   }
-  
+
   import ietf-inet-types {
     prefix inet;
     reference
@@ -104,8 +104,8 @@ module ietf-network-inventory {
       "A set of attributes which are common to all the entities
       (e.g., component, equipment room) defined in this module.";
     leaf uuid {
-      config false;
       type yang:uuid;
+      config false;
       description
         "Uniquely identifies an entity (e.g., component).";
     }
@@ -137,37 +137,37 @@ module ietf-network-inventory {
     description
       "Attributes applicable to network elements.";
     leaf hardware-rev {
-      config false;
       type string;
+      config false;
       description
         "The vendor-specific hardware revision string for the NE.";
     }
     leaf software-rev {
-      config false;
       type string;
+      config false;
       description
         "The vendor-specific software revision string for the NE.";
     }
     leaf-list software-patch-rev {
-      config false;
       type string;
+      config false;
       description
         "The vendor-specific patch software revision string for the 
         NE.";
     }
     leaf mfg-name {
-      config false;
       type string;
+      config false;
       description "The name of the manufacturer of this NE";
     }
     leaf mfg-date {
-      config false;
       type yang:date-and-time;
+      config false;
       description "The date of manufacturing of the NE.";
     }
     leaf serial-number {
-      config false;
       type string;
+      config false;
       description
         "The vendor-specific serial number of the network element 
         instance. It is expected that vendors assign unique serial 
@@ -175,8 +175,8 @@ module ietf-network-inventory {
         scope of the product name.";
     }
     leaf product-name {
-      config false;
       type string;
+      config false;
       description
         "The vendor-specific and human-interpretable string describing
         the network element type. It is expected that vendors assign 
@@ -192,38 +192,38 @@ module ietf-network-inventory {
     
     container chassis-specific-info {
       when "../class = 'ianahw:chassis'";
+      config false;
       description 
         "This container contains some attributes belong to
         chassis only.";
       uses chassis-specific-info-grouping;
-      config false;
     }
     
     container slot-specific-info {
       when "../class = 'ianahw:container'";
+      config false;
       description 
         "This container contains some attributes belong to
         slot only.";
       uses slot-specific-info-grouping;
-      config false;
     }
     
     container board-specific-info {
       when "../class = 'ianahw:module'";
+      config false;
       description 
         "This container contains some attributes belong to
         board only.";
       uses board-specific-info-grouping;
-      config false;
     }
     
     container port-specific-info {
       when "../class = 'ianahw:port'";
+      config false;
       description 
         "This container contains some attributes belong to
         port only.";
       uses port-specific-info-grouping;
-      config false;
     }
   }
 
@@ -251,13 +251,9 @@ module ietf-network-inventory {
       "Specific attributes applicable to ports only.";
   }
 
-  grouping software-specific-info-grouping {
-  //To be enriched in the future.
-    description
-      "Specific attributes applicable to software only.";
-  }  
-  
   grouping ne-info-grouping {  
+    description
+      "Grouping for network elements.";
     container network-elements {
       description
         "The top-level container for the list of network elements 
@@ -272,11 +268,11 @@ module ietf-network-inventory {
             "Network Element (NE) identifier.";
         }
         leaf ne-type {
-          config false;
           type identityref {
             base ne-type;
           }
           default "ne-physical";
+          config false;
           description
             "The type of network element (NE).";
         }
@@ -296,7 +292,6 @@ module ietf-network-inventory {
                 "Component identifier";
             }
           leaf class {
-            config false;
             type union {
               type identityref {
                 base ianahw:hardware-class;
@@ -305,6 +300,7 @@ module ietf-network-inventory {
                 base non-hardware-component-class;
               }
             }
+            config false;
             mandatory true;
             description
               "The type of the component.";
@@ -320,10 +316,10 @@ module ietf-network-inventory {
                 sub-components as openconfig-platform.";
             }
             leaf parent-rel-pos {
-              config false;
               type int32 {
                 range "0 .. 2147483647";
               }
+              config false;
               description
                 "The relative position with respect to the parent
                 component among all the sibling components.";
@@ -341,8 +337,8 @@ module ietf-network-inventory {
                 draft-ietf-ccamp-network-inventory-yang-02.";
             }
             leaf hardware-rev {
-              config false;
               type string;
+              config false;
               description
                 "The vendor-specific hardware revision string for the
                 component.  The preferred value is the hardware 
@@ -353,8 +349,8 @@ module ietf-network-inventory {
                           entPhysicalHardwareRev";
             }
             leaf firmware-rev {
-              config false;
               type string;
+              config false;
               description
                 "The vendor-specific firmware revision string for the
                 component.";
@@ -363,8 +359,8 @@ module ietf-network-inventory {
                           entPhysicalFirmwareRev";
             }
             leaf software-rev {
-              config false;
               type string;
+              config false;
               description
                 "The vendor-specific software revision string for the
                 component.";
@@ -373,15 +369,15 @@ module ietf-network-inventory {
                           entPhysicalSoftwareRev";
             }
             leaf-list software-patch-rev {
-              config false;
               type string;
+              config false;
               description
                 "The vendor-specific patch software revision string 
                 for the component.";
             }
             leaf serial-num {
-              config false;
               type string;
+              config false;
               description
                 "The vendor-specific serial number of the component 
                 instance. It is expected that vendors assign unique 
@@ -389,8 +385,8 @@ module ietf-network-inventory {
                 the scope of the part number.";
             }
             leaf mfg-name {
-              config false;
               type string;
+              config false;
               description
                 "The name of the manufacturer of this physical 
                 component.
@@ -410,8 +406,8 @@ module ietf-network-inventory {
                 entPhysicalMfgName";
             }
             leaf part-number {
-              config false;
               type string;
+              config false;
               description
                 "The vendor-specific part number of the component 
                 type. It is expected that vendors assign unique part
@@ -419,8 +415,8 @@ module ietf-network-inventory {
                 of the vendor.";
             }
             leaf product-name {
-              config false;
               type string;
+              config false;
               description
                 "The vendor-specific and human-interpretable string 
                 describing the component type. It is expected that 
@@ -428,8 +424,8 @@ module ietf-network-inventory {
                 component types within the scope of the vendor.";
             } 
             leaf asset-id {
-              config false;
               type string;
+              config false;
               description
                 "This node is a user-assigned asset tracking 
                 identifier for the component.
@@ -445,8 +441,8 @@ module ietf-network-inventory {
                 entPhysicalAssetID";
             }
             leaf is-fru {
-              config false;
               type boolean;
+              config false;
               description
                 "This node indicates whether or not this component is
                 considered a 'field-replaceable unit' by the vendor.  
@@ -459,8 +455,8 @@ module ietf-network-inventory {
                 "RFC 6933: Entity MIB (Version 4) - entPhysicalIsFRU";
             }
             leaf mfg-date {
-              config false;
               type yang:date-and-time;
+              config false;
               description
                 "The date of manufacturing of the managed component.";
               reference
@@ -468,8 +464,8 @@ module ietf-network-inventory {
                 entPhysicalMfgDate";
             }
             leaf-list uri {
-              config false;
               type inet:uri;
+              config false;
               description
                 "This node contains identification information about 
                 the component.";
@@ -485,6 +481,9 @@ module ietf-network-inventory {
   }
   
   container network-inventory {
+    description
+	  "Top-level container for network inventory.";
+
     uses ne-info-grouping;
     
   }
