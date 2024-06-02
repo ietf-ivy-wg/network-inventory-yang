@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-05-30T00:41:28.548702+00:00",
+  "timestamp": "2024-06-02T00:44:52.895274+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -2153,6 +2153,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 49,
+      "id": "PR_kwDOKiDYo85xBCuD",
+      "title": "Fix 50 errors, 4 warnings",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/49",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-05-30T13:59:52Z",
+      "updatedAt": "2024-05-30T13:59:52Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "0c5e46008f11ce492738a4ade12608beb0caa74f",
+      "headRepository": "boucadair/network-inventory-yang",
+      "headRefName": "patch-1",
+      "headRefOid": "2adfa5eae6fb236db3cc391014839e771d4ff9bd",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
