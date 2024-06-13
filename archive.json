@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-11T00:42:26.977243+00:00",
+  "timestamp": "2024-06-13T00:42:09.887950+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1467,7 +1467,7 @@
       "labels": [],
       "body": "This issue was raised when we were considering how to introduce transceiver into the base model.\r\nWe found the understandings of port  were not aligned, so we collected four scenarios of port & transceiver installation and run this discussion with several proposals.\r\nThe slide we discussed on the weekly call of 8th May, 2024 is attached below:\r\n[Discussion of Port Modeling-20240508.pptx](https://github.com/ietf-ivy-wg/network-inventory-yang/files/15258754/Discussion.of.Port.Modeling-20240508.pptx)  ",
       "createdAt": "2024-05-09T06:57:12Z",
-      "updatedAt": "2024-06-05T16:54:27Z",
+      "updatedAt": "2024-06-12T22:54:32Z",
       "closedAt": null,
       "comments": [
         {
@@ -1539,6 +1539,13 @@
           "body": "**[2024-06-05 Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-06-05)**\r\n\r\nReviewed updated slides: [port-examples-07.pptx](https://github.com/ietf-ivy-wg/network-inventory-yang/files/15488959/port-examples-07.pptx)\r\n\r\nThe slides have been updated marking the examples where it has been already agreed to model the multiplexing function as a functional element\r\n\r\nUpdated slides: [port-examples-08.pptx](https://github.com/user-attachments/files/15593784/port-examples-08.pptx)\r\n\r\n\r\nExample 6b has been analyzed with the expectations that other MPO-related scenarios can be modeled as simpler special configuration\r\n\r\nIt was also pointed out that Examples 6a and 6b seems more complex that the current practice: Example 6c has been added to match the most common scenario today\r\n\r\nIt has been agreed that there is no need to model the breakout cables to describe these scenarios\r\n\r\nTwo options have been considered in the call:\r\n\r\n- Option 1 (OpenConfig): modelled as N child port components under a parent port component. The parent port component is associated with the MPO connector. However, it was not clear whether the child port component is defined for each pin in the MPO connector, for each pin pair in the MPO connector or for each group of pin pairs associated with the same client LTP/interface.\r\n- Option 2: modelled as N ports (one port for each pin pair in the MPO connector)\r\n  - Associations with the connector known by the port naming (connector + pin)\r\n  - The association between a client LTP/interface is modelled as in Example 1 (where the different ports are associated with different connectors)\r\n\r\nMore investigation is needed to understand the OpenConfig model. Some examples are provided in the OpenConfig YANG model:\r\n\r\nhttps://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform-port.yang#L138\r\n\r\nHowever, it is not fully clear how the model can be used to model the examples in the slides. Some JSON (or pseudo-JSON) code showing how the OpenConfig models the examples in the slides would be useful.\r\n",
           "createdAt": "2024-06-05T16:51:19Z",
           "updatedAt": "2024-06-05T16:51:19Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-06-12 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-06-12)**\r\n\r\nSlides from Nigel about TAPI model for access ports: [ModelFigures.pptx](https://mailarchive.ietf.org/arch/msg/inventory-yang/D8Y7gNwXPemcpl4TaMHHzQG8PjY/4/)\r\n\r\nThe connector is an element which is atomically removed/inserted\r\n\r\nIf there is no need to manage the pins in a connector (e.g., the MPO connector for the 100GE-SR4), a single access port can be created and associated with a connector on an equipment (circuit pack or SFP)\r\n\r\nIn case of breakout, the pins need to be managed and multiple access ports are defined referencing the same connector on an equipment (circuit pack or SFP). One or more pins can be assigned to an access port.\r\n\r\nThere is no managed object to represent the connectors and the pins in the connectors: they are known a-priori by a number\r\n\r\nThe connectors associated with a single access port can be located on different equipment (circuit pack or SFP)\r\n\r\nIt could be good to have some JSON (or pseudo-JSON) description of the example in [port-examples-08.pptx](https://github.com/user-attachments/files/15593784/port-examples-08.pptx)\r\n",
+          "createdAt": "2024-06-12T22:54:30Z",
+          "updatedAt": "2024-06-12T22:54:30Z"
         }
       ]
     },
