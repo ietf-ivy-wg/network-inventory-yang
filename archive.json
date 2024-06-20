@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-18T00:43:01.818294+00:00",
+  "timestamp": "2024-06-20T00:41:29.637462+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1467,7 +1467,7 @@
       "labels": [],
       "body": "This issue was raised when we were considering how to introduce transceiver into the base model.\r\nWe found the understandings of port  were not aligned, so we collected four scenarios of port & transceiver installation and run this discussion with several proposals.\r\nThe slide we discussed on the weekly call of 8th May, 2024 is attached below:\r\n[Discussion of Port Modeling-20240508.pptx](https://github.com/ietf-ivy-wg/network-inventory-yang/files/15258754/Discussion.of.Port.Modeling-20240508.pptx)  ",
       "createdAt": "2024-05-09T06:57:12Z",
-      "updatedAt": "2024-06-13T10:26:45Z",
+      "updatedAt": "2024-06-19T19:04:40Z",
       "closedAt": null,
       "comments": [
         {
@@ -1553,6 +1553,13 @@
           "body": "> **[2024-06-12 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-06-12)**\r\n> \r\n> Slides from Nigel about TAPI model for access ports: [ModelFigures.pptx](https://mailarchive.ietf.org/arch/msg/inventory-yang/D8Y7gNwXPemcpl4TaMHHzQG8PjY/4/)\r\n> \r\n> The connector is an element which is atomically removed/inserted\r\n> \r\n> If there is no need to manage the pins in a connector (e.g., the MPO connector for the 100GE-SR4), a single access port can be created and associated with a connector on an equipment (circuit pack or SFP)\r\n> \r\n> In case of breakout, the pins need to be managed and multiple access ports are defined referencing the same connector on an equipment (circuit pack or SFP). One or more pins can be assigned to an access port.\r\n> \r\n> There is no managed object to represent the connectors and the pins in the connectors: they are known a-priori by a number\r\n> \r\n> The connectors associated with a single access port can be located on different equipment (circuit pack or SFP)\r\n> \r\n> It could be good to have some JSON (or pseudo-JSON) description of the example in [port-examples-08.pptx](https://github.com/user-attachments/files/15593784/port-examples-08.pptx)\r\n\r\nThanks @italobusi for the minute. I'm trying to map what I think to have understood about OpenConfig breakout port modeling with what Nigel explained yesterday and I have few questions.\r\n\r\n1. Is what is called \"physical-channel\" in OC equivalent to \"pin\" in TAPI ?\r\n2. Can we say that the \"breakout group\" in OC is equivalent to \"access port\" in TAPI? If yes, any access port should be characterized by speed , where is this information provided in TAPI? I do not see that in the Nigel's slide 11 where access port is introduced .\r\n",
           "createdAt": "2024-06-13T10:26:44Z",
           "updatedAt": "2024-06-13T10:26:44Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-06-19 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-06-19)**\r\n\r\nSlides updated during the call: [port-examples-09.pptx](https://github.com/user-attachments/files/15905050/port-examples-09.pptx)\r\n\r\nMore work is needed to complete the analysis of the OpenConfig-like option\r\n\r\nThe target is to finalize the set of options before IETF 120 to be able to present them at the IVY WG in IETF 120 and to get WG consensus right after\r\n",
+          "createdAt": "2024-06-19T19:04:39Z",
+          "updatedAt": "2024-06-19T19:04:39Z"
         }
       ]
     },
