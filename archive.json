@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-20T00:41:29.637462+00:00",
+  "timestamp": "2024-06-23T00:45:54.178653+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1467,7 +1467,7 @@
       "labels": [],
       "body": "This issue was raised when we were considering how to introduce transceiver into the base model.\r\nWe found the understandings of port  were not aligned, so we collected four scenarios of port & transceiver installation and run this discussion with several proposals.\r\nThe slide we discussed on the weekly call of 8th May, 2024 is attached below:\r\n[Discussion of Port Modeling-20240508.pptx](https://github.com/ietf-ivy-wg/network-inventory-yang/files/15258754/Discussion.of.Port.Modeling-20240508.pptx)  ",
       "createdAt": "2024-05-09T06:57:12Z",
-      "updatedAt": "2024-06-19T19:04:40Z",
+      "updatedAt": "2024-06-22T12:24:21Z",
       "closedAt": null,
       "comments": [
         {
@@ -1560,6 +1560,13 @@
           "body": "**[2024-06-19 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-06-19)**\r\n\r\nSlides updated during the call: [port-examples-09.pptx](https://github.com/user-attachments/files/15905050/port-examples-09.pptx)\r\n\r\nMore work is needed to complete the analysis of the OpenConfig-like option\r\n\r\nThe target is to finalize the set of options before IETF 120 to be able to present them at the IVY WG in IETF 120 and to get WG consensus right after\r\n",
           "createdAt": "2024-06-19T19:04:39Z",
           "updatedAt": "2024-06-19T19:04:39Z"
+        },
+        {
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "body": "OpenConfig Model introduced breakout-mode config for Grey Optics. It does not consider complicated config to pin specific lanes. \r\nUnder pluggable comp - it should have list of breakout groups also.  \r\n\r\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro groups\r\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro group* [index].   // list of group\r\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro index\u00a0\u00a0\u00a0\u00a0\r\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro breakout-speed?\u00a0\u00a0\u00a0\u00a0\u00a0 \u00a0\u00a0\u00a0// optional speed\r\n             + --ro component-ref           // the reference component of this group. \r\n             +--ro channels*?                  // list of lanes/pins for this group \r\n\r\nthoughts ?",
+          "createdAt": "2024-06-22T12:24:20Z",
+          "updatedAt": "2024-06-22T12:24:20Z"
         }
       ]
     },
