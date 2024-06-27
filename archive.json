@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-25T00:42:21.539058+00:00",
+  "timestamp": "2024-06-27T00:42:53.102147+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1467,7 +1467,7 @@
       "labels": [],
       "body": "This issue was raised when we were considering how to introduce transceiver into the base model.\r\nWe found the understandings of port  were not aligned, so we collected four scenarios of port & transceiver installation and run this discussion with several proposals.\r\nThe slide we discussed on the weekly call of 8th May, 2024 is attached below:\r\n[Discussion of Port Modeling-20240508.pptx](https://github.com/ietf-ivy-wg/network-inventory-yang/files/15258754/Discussion.of.Port.Modeling-20240508.pptx)  ",
       "createdAt": "2024-05-09T06:57:12Z",
-      "updatedAt": "2024-06-24T10:15:02Z",
+      "updatedAt": "2024-06-26T15:08:20Z",
       "closedAt": null,
       "comments": [
         {
@@ -1567,6 +1567,27 @@
           "body": "OpenConfig Model introduced breakout-mode config for Grey Optics. It does not consider complicated config to pin specific lanes. \r\nUnder pluggable comp - it should have list of breakout groups also.  \r\n\r\n```\r\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro groups\r\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro group* [index].   // list of group\r\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro index\u00a0\u00a0\u00a0\u00a0\r\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro breakout-speed?\u00a0\u00a0\u00a0\u00a0\u00a0 \u00a0\u00a0\u00a0// optional speed\r\n             + --ro component-ref           // the reference component of this group. \r\n             +--ro channels*?                  // list of lanes/pins for this group \r\n```\r\nthoughts ?",
           "createdAt": "2024-06-22T12:24:20Z",
           "updatedAt": "2024-06-24T10:15:02Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> OpenConfig Model introduced breakout-mode config for Grey Optics. It does not consider complicated config to pin specific lanes. Under pluggable comp - it should have list of breakout groups also.\r\n> \r\n> ```\r\n> \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro groups\r\n> \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro group* [index].   // list of group\r\n> \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro index\u00a0\u00a0\u00a0\u00a0\r\n> \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro breakout-speed?\u00a0\u00a0\u00a0\u00a0\u00a0 \u00a0\u00a0\u00a0// optional speed\r\n>              + --ro component-ref           // the reference component of this group. \r\n>              +--ro channels*?                  // list of lanes/pins for this group \r\n> ```\r\n> \r\n> thoughts ?\r\n\r\nBefore commenting or asking some questions for clarification, let me start checking if I can understand your proposal from an high-level perspective. My understanding is that you are proposing to:\r\n\r\n1. model the \"MPO connector\" as one component instance of class 'port' and to define the container groups under the component with some when statement to make it applicable only to components of type 'port'\r\n\r\n2. define an entry in the group list to represent the set of lanes/pins which are associated with a single client interface (an entry in the group is something similar to the TAPI access-port)\r\n\r\n   For example, considering example 5 in slide 10 of [port-examples-09.pptx](https://github.com/user-attachments/files/15905050/port-examples-09.pptx), there will be M groups where the group 1 (associated with client 1 interface) has K lanes while group M (associated with client M interface) has one lane\r\n\r\nIs my understanding correct?\r\n",
+          "createdAt": "2024-06-26T12:11:21Z",
+          "updatedAt": "2024-06-26T12:11:21Z"
+        },
+        {
+          "author": "philbedard",
+          "authorAssociation": "NONE",
+          "body": "[openconfig-breakout-groups.pptx](https://github.com/user-attachments/files/15991133/openconfig-breakout-groups.pptx)\r\n\r\nAttached is the PPT ",
+          "createdAt": "2024-06-26T15:03:33Z",
+          "updatedAt": "2024-06-26T15:03:33Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-06-26 Base Network Inventory weekly call](https://demo.hedgedoc.org/YXlHvwyEQ-K3CFMWXZuYfQ)**\r\n\r\nUnder review\r\n",
+          "createdAt": "2024-06-26T15:08:19Z",
+          "updatedAt": "2024-06-26T15:08:19Z"
         }
       ]
     },
@@ -2201,7 +2222,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-05-30T13:59:52Z",
-      "updatedAt": "2024-05-30T13:59:52Z",
+      "updatedAt": "2024-06-26T14:09:10Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "0c5e46008f11ce492738a4ade12608beb0caa74f",
