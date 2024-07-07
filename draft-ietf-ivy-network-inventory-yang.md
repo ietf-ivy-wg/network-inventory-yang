@@ -473,7 +473,8 @@ The hierarchical components' identifier could be found by the "component-referen
 
 ### Component-Specific Info Design
 
-According to the management requirements from operators, some important attributes are not defined in {{!RFC8348}}. These attributes could be component-specific and are not suitable to define under the component list node. So, the model can be augmented with HW/SW specific-info-grouping containing attributes applicable to HW e.g. boards/slot or SW e.g. software-module/boot-loader component only.
+According to the management requirements from operators, some important attributes are not defined in {{!RFC8348}}. These attributes could be component-specific and are not suitable to define under the component list node. So, the model can be augmented with HW-specific-info grouping containing attributes applicable to HW e.g. boards/slot components only. Other component-specific attributes, such as SW-specific-info, may be defined in companion augmentation data models, such as
+{{?I-D.wzwb-ivy-network-inventory-software}} and are out of the scope of this model.
 
 ~~~~ ascii-art
 +--rw components
@@ -484,7 +485,6 @@ According to the management requirements from operators, some important attribut
    |  +--ro slot-specific-info
    |  +--ro board-specific-info
    |  +--ro port-specific-info
-   |  +--ro software-specific-info
 ~~~~
 
 ### Part Number

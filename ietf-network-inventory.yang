@@ -221,14 +221,6 @@ module ietf-network-inventory {
          port only.";
       uses port-specific-info-grouping;
     }
-    container software-specific-info {
-      when "../class = 'ianahw:software'";
-      config false;
-      description
-        "This container contains some attributes belong to
-         software only.";
-      uses software-specific-info-grouping;
-    }
   }
 
   grouping chassis-specific-info-grouping {
@@ -255,15 +247,9 @@ module ietf-network-inventory {
       "Specific attributes applicable to ports only.";
   }
 
-  grouping software-specific-info-grouping {
-    //To be enriched in the future.
-    description
-      "Specific attributes applicable to software only.";
-  }
-
   grouping ne-info-grouping {
     description
-      "NE Info.";
+      "Grouping for network elements.";
     container network-elements {
       description
         "The top-level container for the list of network elements
@@ -490,7 +476,7 @@ module ietf-network-inventory {
 
   container network-inventory {
     description
-      "Main container.";
+      "Top-level container for network inventory.";
     uses ne-info-grouping;
   }
 }
