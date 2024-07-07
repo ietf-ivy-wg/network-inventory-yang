@@ -178,10 +178,10 @@ module ietf-network-inventory {
       type string;
       config false;
       description
-        "The vendor-specific and human-interpretable string describing
-         the network element type. It is expected that vendors assign
-         unique product names to different NE types within the scope of
-         the vendor.";
+        "The vendor-specific and human-interpretable string
+         describing the network element type. It is expected that
+         vendors assign unique product names to different NE types
+         within the scope of the vendor.";
     }
   }
 
@@ -337,8 +337,8 @@ module ietf-network-inventory {
               description
                 "The vendor-specific hardware revision string for the
                  component.  The preferred value is the hardware
-                 revision identifier actually printed on the component
-                 itself (if present).";
+                 revision identifier actually printed on the
+                 component itself (if present).";
               reference
                 "RFC 6933: Entity MIB (Version 4) -
                           entPhysicalHardwareRev";
@@ -376,8 +376,8 @@ module ietf-network-inventory {
               description
                 "The vendor-specific serial number of the component
                  instance. It is expected that vendors assign unique
-                 serial numbers to different component instances within
-                 the scope of the part number.";
+                 serial numbers to different component instances
+                 within the scope of the part number.";
             }
             leaf mfg-name {
               type string;
@@ -386,7 +386,8 @@ module ietf-network-inventory {
                 "The name of the manufacturer of this physical
                  component.
                  The preferred value is the manufacturer name string
-                 actually printed on the component itself (if present).
+                 actually printed on the component itself
+                 (if present).
 
                  Note that comparisons between instances of the
                  'model-name', 'firmware-rev', 'software-rev', and
@@ -394,8 +395,8 @@ module ietf-network-inventory {
                  components with the same value of 'mfg-name'.
 
                  If the manufacturer name string associated with the
-                 physical component is unknown to the server, then this
-                 node is not instantiated.";
+                 physical component is unknown to the server, then
+                 this node is not instantiated.";
               reference
                 "RFC 6933: Entity MIB (Version 4) -
                  entPhysicalMfgName";
@@ -406,8 +407,8 @@ module ietf-network-inventory {
               description
                 "The vendor-specific part number of the component
                  type. It is expected that vendors assign unique part
-                 numbers to different component types within the scope
-                 of the vendor.";
+                 numbers to different component types within the
+                 scope of the vendor.";
             }
             leaf product-name {
               type string;
@@ -426,11 +427,13 @@ module ietf-network-inventory {
                  identifier for the component.
 
                  A server implementation MAY map this leaf to the
-                 entPhysicalAssetID MIB object.  Such an implementation
-                 needs to use some mechanism to handle the differences
-                 in size and characters allowed between this leaf and
-                 entPhysicalAssetID.  The definition of such a
-                 mechanism is outside the scope of this document.";
+                 entPhysicalAssetID MIB object.  Such an
+                 implementation needs to use some mechanism to handle
+                 the differences in size and characters allowed
+                 between this leaf and entPhysicalAssetID.
+                 
+                 The definition of such a mechanism is outside the
+                 scope of this document.";
               reference
                 "RFC 6933: Entity MIB (Version 4) -
                  entPhysicalAssetID";
@@ -447,13 +450,15 @@ module ietf-network-inventory {
                  within a field-replaceable unit, the value 'false'
                  should be returned for this node.";
               reference
-                "RFC 6933: Entity MIB (Version 4) - entPhysicalIsFRU";
+                "RFC 6933: Entity MIB (Version 4) -
+                 entPhysicalIsFRU";
             }
             leaf mfg-date {
               type yang:date-and-time;
               config false;
               description
-                "The date of manufacturing of the managed component.";
+                "The date of manufacturing of the managed
+                component.";
               reference
                 "RFC 6933: Entity MIB (Version 4) -
                  entPhysicalMfgDate";
