@@ -153,7 +153,7 @@ links information reported in the network topology model. This represent a prior
 The intention is to define a generic YANG base data model that would be as
 much as possible technology agnostic (valid for IP, optical and
 microwave networks) and that could be augmented, when required, to
-include some technology-specific inventory details together with specific HW or SW component’s attributes.
+include some technology-specific inventory details together with specific HW or SW component's attributes.
 
 {{!RFC8348}} defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller South Bound Interface (SBI) towards the network elements rather than at the domain controller's northbound. However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model presented in this draft.
 
