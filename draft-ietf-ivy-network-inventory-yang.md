@@ -1,5 +1,5 @@
 ---
-title: "A YANG Data Model for Network Inventory"
+title: "A Base YANG Data Model for Network Inventory"
 abbrev: "Network Inventory YANG"
 category: std
 
@@ -97,16 +97,15 @@ informative:
 
 --- abstract
 
-This document defines a base YANG data model for network inventory
-that is application- and technology-agnostic.  This data model can be
-augmented with application-specific and technology-specific details
-in other, more specific network inventory data models.
+This document defines a base YANG data model for network inventory. The scope of this base model is set to
+be application- and technology-agnostic. However, the data model is designed with appropriate provisions to ease
+future augmentations with application-specific and technology-specific details.
 
 --- middle
 
 # Introduction
 
-The purpose of this document is to define a base network inventory
+This document defines a base network inventory
 YANG data model that is application- and technology-agnostic.  The
 base data model can be augmented to describe application-specific or
 technology-specific information.
