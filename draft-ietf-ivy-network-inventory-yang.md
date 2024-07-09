@@ -111,64 +111,37 @@ YANG data model that is application- and technology-agnostic.  The
 base data model can be augmented to describe application-specific or
 technology-specific information.
 
-Network Inventory management is a key component in
-operators' OSS architectures.
-
-Network Inventory is a fundamental functionality in network
-management and was specified many years ago.  Given the emergence of
-data models and their deployment in operator's management and control
-systems, the traditional function of inventory management is also
-requested to be defined as a data model.
-
-Network Inventory management and monitoring is a critical
-part for ensuring the network stays healthy, well-planned, and
-functioning in the operator's network.  Network Inventory
-management allows the operator to keep track of which physical
-devices are deployed in the network including relevant software and
+Network inventory is a fundamental functional block in the overall network
+management which was specified many years ago. Network inventory management is a critical
+part for ensuring that the network remains healthy (e.g., auditing to identify faulty elements), well-planned (e.g., identify assets to upgrade or to decommission), and maintained appropriately to meet the performance objectives. Also, network inventory
+management allows operators to keep track of which devices are deployed in their networks, including relevant embedded software and
 hardware versions.
 
-The Network Inventory management also helps the operator to
-know when to acquire new assets and what is needed, or to
-decommission old or faulty ones, which can help to improve network
-performance and capacity planning.
+Exposing standards interfaces to retrieve and query network elements capabilities as recorded in an inventory are key enablers for many applications that consumes network inventory data. From that standpont and given the emergence of standard data models and their deployment by operators, the conventional function of inventory management is also required to be defined as a data model.
 
-In {{?I-D.ietf-teas-actn-poi-applicability}} a gap was identified
-regarding the lack of a YANG data model that could be used at ACTN
-MPI interface level to report whole/partial network hardware
+For example, {{?I-D.ietf-teas-actn-poi-applicability}} identifies a gap about the lack of a YANG data model that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware
 inventory information available at domain controller level towards
-north-bound systems (e.g., MDSC or OSS layer).
+upper layer systems (e.g., Multi-Domain Service Coordinator (MDSC) or Operations Support Systems (OSS) layers).
 
-{{?RFC8345}} initial goal was to make possible the augmentation of the
-YANG data model with Network Inventory data model but this
-was never developed and the scope was kept limited to network
-topology data only.
-
-It is key for operators to drive the industry towards the use of a
+It is key for operators to coordinate with the industry towards the use of a
 standard YANG data model for Network Inventory data instead
-of using vendors proprietary APIs (e.g., REST API).
+of using vendors proprietary APIs.
 
-In the ACTN architecture, this would bring also clear benefits at
-MDSC level for packet over optical integration scenarios since this
-would enable the correlation of the HW network inventory information with the
-links information reported in the network topology model. This represent a priority for operators to implement this with a standard YANG data model that could be used as soon as possible in multi-vendor integrations of PNCs with MDSCs.
-
-The intention is to define a generic YANG base data model that would be as
-much as possible technology agnostic (valid for IP, optical and
-microwave networks) and that could be augmented, when required, to
-include some technology-specific inventory details together with specific HW or SW component's attributes.
-
-{{!RFC8348}} defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller South Bound Interface (SBI) towards the network elements rather than at the domain controller's northbound. However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model presented in this draft.
-
-The proposed YANG data model has been analyzed at the present stage to cover the common requirements for both HW and SW use cases for Network Inventory.
+{{!RFC8348}} defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller towards the network elements rather than at the domain controller interface to upper applications. However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model presented in this document.
 
 Network Inventory is a collection of data for network devices and
 their components managed by a specific management system.  Per the
-definition of {{?RFC8969}},the network inventory model is a network
+definition of {{?RFC8969}}, the network inventory model is a network
 model.
 
 This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
+This base data model is technology-agnostic (that is, valid for IP/MPLS, optical, and
+microwave networks in particular) and can be augmented to
+include required technology-specific inventory details together with specific hardware or software component's attributes.
 
-{{ni-augment}} provides a set of augmentation considerations for extensions
+The YANG data model defined in the document is scoped to cover the common requirements for both hardware and software (but with base fucntions) use cases for Network Inventory.
+
+{{ni-augment}} provides a set of augmentation considerations for future extensions
 of hardware, software, entitlement, and inventory topology mapping.
 
 The YANG data model defined in this document conforms to the Network Management Datastore Architecture {{!RFC8342}}.
