@@ -173,7 +173,27 @@ of hardware, software, entitlement, and inventory topology mapping.
 
 The YANG data model defined in this document conforms to the Network Management Datastore Architecture {{!RFC8342}}.
 
-## Terminology and Notations
+## Editorial Note (To be removed by RFC Editor)
+
+  > Note to the RFC Editor: This section is to be removed prior to publication.
+
+   This document contains placeholder values that need to be replaced
+   with finalized values at the time of publication.  This note
+   summarizes all of the substitutions that are needed.
+
+   Please apply the following replacements:
+
+   *  XXXX --> the assigned RFC number for this I-D
+
+   *  2024-03-04 --> the actual date of the publication of this document
+
+# Terminology and Notations
+
+## Requirements Notations
+
+{::boilerplate bcp14}
+
+## Terminology
 
   The following terms are defined in {{!RFC7950}} and are not
   redefined here:
@@ -195,70 +215,51 @@ The YANG data model defined in this document conforms to the Network Management 
 
   *  state data
 
-  The terminology for describing YANG data models is found in
-  {{!RFC7950}}.
+  The terminology for describing YANG data models is found in {{!RFC7950}}.
 
-  TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
+  > TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
-  Following terms are used for the representation of the hierarchies in the network inventory.
+  Also, the document makes use of the following terms:
 
   Network Inventory:
-
-  > a collection of data for network devices and their components managed by a specific management system.
+  : A collection of data for network devices and their components managed by a specific management system.
 
   Network Element:
-
-  > a manageable network entity that contains hardware and software units, e.g. a network device installed on one or several chassis
+  : A manageable network entity that contains hardware and software units (e.g., a network device installed on one or several chassis).
 
   Chassis:
-
-  > a holder of the device installation.
+  : A holder of the device installation.
 
   Slot:
-
-  > a holder of the board.
+  : A holder of the board.
 
   Component:
-
-  > a unit of the network element, e.g.  hardware components like chassis, card, port, software components like software-patch, bios, and boot-loader
+  : A unit of the network element, e.g., hardware components (chassis, card, port, etc.), software components (software-patch, bios, etc.), and boot-loader.
 
   Board/Card:
-
-  > a pluggable equipment can be inserted into one or several slots/sub-slots and can afford a specific transmission function independently.
+  : A pluggable equipment can be inserted into one or several slots (or sub-slots) and can afford a specific transmission function independently.
 
   Port:
-
-  > an interface on board
+  : An interface on a board.
 
   Container:
-  > Within this document , with the term "container" we consider an hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.
+  : A hardware component class that is capable of containing one or more removable physical entities (e.g., a slot in a chassis is containing a board).
 
-## Requirements Notation
+## Tree Diagrams
 
-{::boilerplate bcp14}
+The meanings of the symbols in the YANG tree diagrams are defined in {{!RFC8340}}.
 
-## Tree Diagram
+## YANG Prefixes
 
-A simplified graphical representation of the data model is used in {{ni-tree}} of this document.
-The meaning of the symbols in this diagram is defined in {{!RFC8340}}.
+  {{tab-prefixes}} list the prefixes of the modules that are used in this document.
 
-## Prefix in Data Node Names
-
-  In this document, names of data nodes and other data model objects
-  are prefixed using the standard prefix associated with the
-  corresponding YANG imported modules, as shown in the following table.
-
-| Prefix | Yang Module                     | Reference     |
+| Prefix | YANG Module                     | Reference     |
 | ------ | ------------------------------- | ------------- |
-| inet   | ietf-inet-types                 | {{!RFC6991}}  |
-| yang   | ietf-yang-types                 | {{!RFC6991}}  |
+| inet   | ietf-inet-types                 | {{Section 4 of !RFC6991}}  |
+| yang   | ietf-yang-types                 | {{Section 3 of !RFC6991}}  |
 | ianahw | iana-hardware                   | {{IANA_YANG}} |
 | ni     | ietf-network-inventory          | RFC XXXX      |
 {: #tab-prefixes title="Prefixes and corresponding YANG modules"}
-
-RFC Editor Note:
-Please replace XXXX with the RFC number assigned to this document.
-Please remove this note.
 
 # YANG Data Model for Network Inventory Overview
 
