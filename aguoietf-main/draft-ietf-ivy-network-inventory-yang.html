@@ -1,0 +1,2809 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>A YANG Data Model for Network Inventory</title>
+<meta content="Chaode Yu" name="author">
+<meta content="Sergio Belotti" name="author">
+<meta content="Jean-Francois Bouquier" name="author">
+<meta content="Fabio Peruzzini" name="author">
+<meta content="Phil Bedard" name="author">
+<meta content="
+       This document defines a base YANG data model for network inventory
+that is application- and technology-agnostic.  This data model can be
+augmented with application-specific and technology-specific details
+in other, more specific network inventory data models. 
+    " name="description">
+<meta content="xml2rfc 3.22.0" name="generator">
+<meta content="next generation" name="keyword">
+<meta content="unicorn" name="keyword">
+<meta content="sparkling distributed ledger" name="keyword">
+<meta content="draft-ietf-ivy-network-inventory-yang-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.22.0
+    Python 3.12.3
+    ConfigArgParse 1.7
+    google-i18n-address 3.1.0
+    intervaltree 3.1.0
+    Jinja2 3.1.4
+    lxml 4.9.4
+    platformdirs 4.2.2
+    pycountry 22.3.5
+    PyYAML 6.0.1
+    requests 2.32.3
+    setuptools 69.5.1
+    wcwidth 0.2.13
+-->
+<link href="draft-ietf-ivy-network-inventory-yang.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cabin Condensed", sans-serif;
+  font-weight: 600;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1#title {
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+}
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+}
+:is(ol, ul) :is(ol, ul) {
+  margin-left: 1em;
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+.ulCompact li {
+  margin: 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+}
+ul.empty li, .ulEmpty li {
+  margin-top: 0.5em;
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  line-height: 1;
+  margin: 0 0 0 2em;
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+}
+dl.olPercent {
+  --indent: 5ch;
+}
+dl > dt {
+  float: left;
+  margin-right: 2ch;
+  min-width: 8ch;
+}
+dl.dlNewline > dt {
+  float: none;
+}
+dl > dd {
+  margin-bottom: .8em;
+  margin-left: var(--indent) !important; /* stupid element overrides */
+  min-height: 2ex;
+}
+dl.olPercent > dt {
+  min-width: calc(var(--indent) - 2ch);
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:first-child, .break:first-child + *) {
+  margin-top: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:last-child) {
+  margin-bottom: 0;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a, a[href].selfRef:hover {
+  text-decoration: none;
+}
+a[href] {
+  color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
+}
+a[href]:hover {
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
+  pre, svg {
+    display: inline-block;
+    overflow-x: auto;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 0 3px 1em;
+}
+table p {
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+}
+a.pilcrow[href] { color: var(--pilcrow-weak); }
+a.pilcrow[href]:hover { text-decoration: none; }
+@media not print {
+  :hover > a.pilcrow {
+    opacity: 1;
+  }
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
+    background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
+}
+.role {
+  font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+}
+#identifiers dt {
+  width: var(--identifier-width);
+  min-width: var(--identifier-width);
+  clear: left;
+  float: left;
+  text-align: right;
+  margin-right: 1ch;
+}
+#identifiers dd {
+  margin: 0;
+  margin-left: calc(1em + var(--identifier-width)) !important;
+  min-width: 5em;
+}
+#identifiers .authors .author {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+#identifiers .authors .org {
+  font-style: italic;
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: left;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+}
+#toc nav ul {
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+#toc nav li {
+  line-height: 1.3em;
+  margin: 2px 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}
+#toc a.xref {
+  white-space: normal;
+}
+/* references */
+.references dt {
+  text-align: right;
+  font-weight: bold;
+  min-width: 10ch;
+  margin-right: 1.5ch;
+}
+.references dt:target::before {
+  content: "⇒";
+  width: 15px;
+  margin: 0 10px 0 -25px;
+}
+.references dd {
+  margin-left: 12ch !important;
+  overflow: auto;
+}
+
+.refInstance {
+  margin-bottom: 1.25em;
+}
+
+.references .ascii {
+  margin-bottom: 0.25em;
+}
+
+/* index */
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  margin: 1em 0;
+}
+address.vcard .nameRole {
+  font-weight: 700;
+  margin-left: 0;
+}
+address.vcard .label {
+  margin: 0.5em 0;
+}
+address.vcard .type {
+  display: none;
+}
+.alternative-contact {
+  margin: 1.5em 0 1em;
+}
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+/* alternative layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 1px 0 0 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc.active {
+      opacity: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+  }
+  #toc h2::before { /* css hamburger */
+    float: right;
+    position: relative;
+    width: 1em;
+    height: 1px;
+    left: -164px;
+    margin: 8px 0 0 0;
+    background: white none repeat scroll 0 0;
+    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+    content: "";
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active nav {
+    display: block;
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:link,
+  #toc h2 a:focus,
+  #toc h2 a:hover,
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin-top: 2px;
+  }
+}
+
+/* alternative layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  #toc nav > ul  {
+    margin-bottom: 2em;
+  }
+  #toc ul {
+    margin: 0 0 0 4px;
+    font-size: var(--small-font-size);
+  }
+  #toc ul :is(p, li) {
+    margin: 2px 0;
+    line-height: 22px;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre, .vcard {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  :is(h2, h3, h4, h5, h6)+*, dd {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+  .toplink {
+    display: none;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Changes introduced to fix issues found during implementation */
+
+/* Separate body from document info even without intervening H1 */
+section {
+  clear: both;
+}
+
+/* Top align author divs, to avoid names without organization dropping level with org names */
+.author {
+  vertical-align: top;
+}
+
+/* Style section numbers with more space between number and title */
+.section-number {
+  padding-right: 0.5em;
+}
+
+/* Add styling for a link in the ToC that points to the top of the document */
+a.toplink {
+  float: right;
+  margin: 8px 0.5em 0;
+}
+
+/* Provide styling for table cell text alignment */
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
+/* Make the alternative author contact information look less like just another
+   author, and group it closer with the primary author contact information */
+.alternative-contact {
+  margin: 0.5em 0 0.25em 0;
+}
+address .non-ascii {
+  margin: 0 0 0 2em;
+}
+
+/* With it being possible to set tables with alignment
+  left, center, and right, { width: 100%; } does not make sense */
+table {
+  width: auto;
+}
+
+/* Avoid reference text that sits in a block with very wide left margin,
+   because of a long floating dt label.*/
+.references dd {
+  overflow: visible;
+}
+
+/* Control caption placement */
+caption {
+  caption-side: bottom;
+}
+
+/* Limit the width of the author address vcard, so names in right-to-left
+   script don't end up on the other side of the page. */
+
+address.vcard {
+  max-width: 20em;
+  margin-right: auto;
+}
+
+/* For address alignment dependent on LTR or RTL scripts */
+address div.left {
+  text-align: left;
+}
+address div.right {
+  text-align: right;
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
+  stroke: var(--text-color);
+}
+svg :is([stroke="white"], [stroke^="#fff"]) {
+  stroke: var(--background-color);
+}
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
+  fill: var(--text-color);
+}
+svg :is([fill="white"], [fill^="#fff"]) {
+  fill: var(--background-color);
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">Network Inventory YANG</td>
+<td class="right">July 2024</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Yu, et al.</td>
+<td class="center">Expires 8 January 2025</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">Network Working Group</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-ietf-ivy-network-inventory-yang-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2024-07-07" class="published">7 July 2024</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Standards Track</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2025-01-08">8 January 2025</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">C. Yu</div>
+<div class="org">Huawei Technologies</div>
+</div>
+<div class="author">
+      <div class="author-name">S. Belotti</div>
+<div class="org">Nokia</div>
+</div>
+<div class="author">
+      <div class="author-name">J.-F. Bouquier</div>
+<div class="org">Vodafone</div>
+</div>
+<div class="author">
+      <div class="author-name">F. Peruzzini</div>
+<div class="org">TIM</div>
+</div>
+<div class="author">
+      <div class="author-name">P. Bedard</div>
+<div class="org">Cisco</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">A YANG Data Model for Network Inventory</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This document defines a base YANG data model for network inventory
+that is application- and technology-agnostic.  This data model can be
+augmented with application-specific and technology-specific details
+in other, more specific network inventory data models.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-about-this-document">
+<a href="#name-about-this-document" class="section-name selfRef">About This Document</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">
+        The latest revision of this draft can be found at <span><a href="https://ietf-ivy-wg.github.io/network-inventory-yang/draft-ietf-ivy-network-inventory-yang.html">https://ietf-ivy-wg.github.io/network-inventory-yang/draft-ietf-ivy-network-inventory-yang.html</a></span>.
+        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-ietf-ivy-network-inventory-yang/">https://datatracker.ietf.org/doc/draft-ietf-ivy-network-inventory-yang/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">Source for this draft and an issue tracker can be found at
+        <span><a href="https://github.com/ietf-ivy-wg/network-inventory-yang">https://github.com/ietf-ivy-wg/network-inventory-yang</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 8 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2024 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-terminology-and-notations" class="internal xref">Terminology and Notations</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.2">
+                <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="auto internal xref">1.2</a>.  <a href="#name-requirements-notation" class="internal xref">Requirements Notation</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.3">
+                <p id="section-toc.1-1.1.2.3.1" class="keepWithNext"><a href="#section-1.3" class="auto internal xref">1.3</a>.  <a href="#name-tree-diagram" class="internal xref">Tree Diagram</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.4">
+                <p id="section-toc.1-1.1.2.4.1"><a href="#section-1.4" class="auto internal xref">1.4</a>.  <a href="#name-prefix-in-data-node-names" class="internal xref">Prefix in Data Node Names</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-yang-data-model-for-network" class="internal xref">YANG Data Model for Network Inventory Overview</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-common-design-for-all-inven" class="internal xref">Common Design for All Inventory Objects</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
+                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-network-element" class="internal xref">Network Element</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3">
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.  <a href="#name-components" class="internal xref">Components</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3.2.1">
+                    <p id="section-toc.1-1.2.2.3.2.1.1"><a href="#section-2.3.1" class="auto internal xref">2.3.1</a>.  <a href="#name-hardware-components" class="internal xref">Hardware Components</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3.2.2">
+                    <p id="section-toc.1-1.2.2.3.2.2.1"><a href="#section-2.3.2" class="auto internal xref">2.3.2</a>.  <a href="#name-software-components" class="internal xref">Software Components</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4">
+                <p id="section-toc.1-1.2.2.4.1"><a href="#section-2.4" class="auto internal xref">2.4</a>.  <a href="#name-changes-with-respect-to-rfc" class="internal xref">Changes with respect to RFC8348</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4.2.1">
+                    <p id="section-toc.1-1.2.2.4.2.1.1"><a href="#section-2.4.1" class="auto internal xref">2.4.1</a>.  <a href="#name-new-parent-identifiers-refe" class="internal xref">New Parent Identifiers' Reference</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4.2.2">
+                    <p id="section-toc.1-1.2.2.4.2.2.1"><a href="#section-2.4.2" class="auto internal xref">2.4.2</a>.  <a href="#name-component-specific-info-des" class="internal xref">Component-Specific Info Design</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4.2.3">
+                    <p id="section-toc.1-1.2.2.4.2.3.1"><a href="#section-2.4.3" class="auto internal xref">2.4.3</a>.  <a href="#name-part-number" class="internal xref">Part Number</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-extending-network-inventory" class="internal xref">Extending Network Inventory</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-network-inventory-tree-diag" class="internal xref">Network Inventory Tree Diagram</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-yang-data-model-for-network-" class="internal xref">YANG Data Model for Network Inventory</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-manageability-consideration" class="internal xref">Manageability Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-comparison-with-openconfig-" class="internal xref">Comparison With Openconfig-platform Data Model</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-efficiency-issue" class="internal xref">Efficiency Issue</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#appendix-E" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">The purpose of this document is to define a base network inventory
+YANG data model that is application- and technology-agnostic.  The
+base data model can be augmented to describe application-specific or
+technology-specific information.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">Network Inventory management is a key component in
+operators' OSS architectures.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">Network Inventory is a fundamental functionality in network
+management and was specified many years ago.  Given the emergence of
+data models and their deployment in operator's management and control
+systems, the traditional function of inventory management is also
+requested to be defined as a data model.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">Network Inventory management and monitoring is a critical
+part for ensuring the network stays healthy, well-planned, and
+functioning in the operator's network.  Network Inventory
+management allows the operator to keep track of which physical
+devices are deployed in the network including relevant software and
+hardware versions.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">The Network Inventory management also helps the operator to
+know when to acquire new assets and what is needed, or to
+decommission old or faulty ones, which can help to improve network
+performance and capacity planning.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">In <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> a gap was identified
+regarding the lack of a YANG data model that could be used at ACTN
+MPI interface level to report whole/partial network hardware
+inventory information available at domain controller level towards
+north-bound systems (e.g., MDSC or OSS layer).<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> initial goal was to make possible the augmentation of the
+YANG data model with Network Inventory data model but this
+was never developed and the scope was kept limited to network
+topology data only.<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-1-8">It is key for operators to drive the industry towards the use of a
+standard YANG data model for Network Inventory data instead
+of using vendors proprietary APIs (e.g., REST API).<a href="#section-1-8" class="pilcrow">¶</a></p>
+<p id="section-1-9">In the ACTN architecture, this would bring also clear benefits at
+MDSC level for packet over optical integration scenarios since this
+would enable the correlation of the HW network inventory information with the
+links information reported in the network topology model. This represent a priority for operators to implement this with a standard YANG data model that could be used as soon as possible in multi-vendor integrations of PNCs with MDSCs.<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-10">The intention is to define a generic YANG base data model that would be as
+much as possible technology agnostic (valid for IP, optical and
+microwave networks) and that could be augmented, when required, to
+include some technology-specific inventory details together with specific HW or SW component’s attributes.<a href="#section-1-10" class="pilcrow">¶</a></p>
+<p id="section-1-11"><span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller South Bound Interface (SBI) towards the network elements rather than at the domain controller's northbound. However, the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> has been used as a reference for defining the YANG network inventory data model presented in this draft.<a href="#section-1-11" class="pilcrow">¶</a></p>
+<p id="section-1-12">The proposed YANG data model has been analyzed at the present stage to cover the common requirements for both HW and SW use cases for Network Inventory.<a href="#section-1-12" class="pilcrow">¶</a></p>
+<p id="section-1-13">Network Inventory is a collection of data for network devices and
+their components managed by a specific management system.  Per the
+definition of <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>,the network inventory model is a network
+model.<a href="#section-1-13" class="pilcrow">¶</a></p>
+<p id="section-1-14">This document defines one YANG module "ietf-network-inventory" in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#section-1-14" class="pilcrow">¶</a></p>
+<p id="section-1-15"><a href="#ni-augment" class="auto internal xref">Section 3</a> provides a set of augmentation considerations for extensions
+of hardware, software, entitlement, and inventory topology mapping.<a href="#section-1-15" class="pilcrow">¶</a></p>
+<p id="section-1-16">The YANG data model defined in this document conforms to the Network Management Datastore Architecture <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-16" class="pilcrow">¶</a></p>
+<div id="terminology-and-notations">
+<section id="section-1.1">
+        <h3 id="name-terminology-and-notations">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-terminology-and-notations" class="section-name selfRef">Terminology and Notations</a>
+        </h3>
+<p id="section-1.1-1">The following terms are defined in <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> and are not
+  redefined here:<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-1.1-2.1">
+            <p id="section-1.1-2.1.1">client<a href="#section-1.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.1-2.2">
+            <p id="section-1.1-2.2.1">server<a href="#section-1.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.1-2.3">
+            <p id="section-1.1-2.3.1">augment<a href="#section-1.1-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.1-2.4">
+            <p id="section-1.1-2.4.1">data model<a href="#section-1.1-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.1-2.5">
+            <p id="section-1.1-2.5.1">data node<a href="#section-1.1-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-1.1-3">The following terms are defined in <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and are not redefined
+  here:<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-1.1-4.1">
+            <p id="section-1.1-4.1.1">configuration data<a href="#section-1.1-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.1-4.2">
+            <p id="section-1.1-4.2.1">state data<a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-1.1-5">The terminology for describing YANG data models is found in
+  <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span>.<a href="#section-1.1-5" class="pilcrow">¶</a></p>
+<p id="section-1.1-6">TBD: Recap the concept of chassis/slot/component/board/... in <span>[<a href="#TMF_SD2-20" class="cite xref">TMF_SD2-20</a>]</span>.<a href="#section-1.1-6" class="pilcrow">¶</a></p>
+<p id="section-1.1-7">Following terms are used for the representation of the hierarchies in the network inventory.<a href="#section-1.1-7" class="pilcrow">¶</a></p>
+<p id="section-1.1-8">Network Inventory:<a href="#section-1.1-8" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-1.1-9.1">
+            <p id="section-1.1-9.1.1">a collection of data for network devices and their components managed by a specific management system.<a href="#section-1.1-9.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-1.1-10">Network Element:<a href="#section-1.1-10" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-1.1-11.1">
+            <p id="section-1.1-11.1.1">a manageable network entity that contains hardware and software units, e.g. a network device installed on one or several chassis<a href="#section-1.1-11.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-1.1-12">Chassis:<a href="#section-1.1-12" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-1.1-13.1">
+            <p id="section-1.1-13.1.1">a holder of the device installation.<a href="#section-1.1-13.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-1.1-14">Slot:<a href="#section-1.1-14" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-1.1-15.1">
+            <p id="section-1.1-15.1.1">a holder of the board.<a href="#section-1.1-15.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-1.1-16">Component:<a href="#section-1.1-16" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-1.1-17.1">
+            <p id="section-1.1-17.1.1">a unit of the network element, e.g.  hardware components like chassis, card, port, software components like software-patch, bios, and boot-loader<a href="#section-1.1-17.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-1.1-18">Board/Card:<a href="#section-1.1-18" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-1.1-19.1">
+            <p id="section-1.1-19.1.1">a pluggable equipment can be inserted into one or several slots/sub-slots and can afford a specific transmission function independently.<a href="#section-1.1-19.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-1.1-20">Port:<a href="#section-1.1-20" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-1.1-21.1">
+            <p id="section-1.1-21.1.1">an interface on board<a href="#section-1.1-21.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-1.1-22">Container:
+  &gt; Within this document , with the term "container" we consider an hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.<a href="#section-1.1-22" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="requirements-notation">
+<section id="section-1.2">
+        <h3 id="name-requirements-notation">
+<a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-requirements-notation" class="section-name selfRef">Requirements Notation</a>
+        </h3>
+<p id="section-1.2-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
+"MAY", and "OPTIONAL" in this document are to be interpreted as
+described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
+appear in all capitals, as shown here.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="tree-diagram">
+<section id="section-1.3">
+        <h3 id="name-tree-diagram">
+<a href="#section-1.3" class="section-number selfRef">1.3. </a><a href="#name-tree-diagram" class="section-name selfRef">Tree Diagram</a>
+        </h3>
+<p id="section-1.3-1">A simplified graphical representation of the data model is used in <a href="#ni-tree" class="auto internal xref">Section 4</a> of this document.
+The meaning of the symbols in this diagram is defined in <span>[<a href="#RFC8340" class="cite xref">RFC8340</a>]</span>.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="prefix-in-data-node-names">
+<section id="section-1.4">
+        <h3 id="name-prefix-in-data-node-names">
+<a href="#section-1.4" class="section-number selfRef">1.4. </a><a href="#name-prefix-in-data-node-names" class="section-name selfRef">Prefix in Data Node Names</a>
+        </h3>
+<p id="section-1.4-1">In this document, names of data nodes and other data model objects
+  are prefixed using the standard prefix associated with the
+  corresponding YANG imported modules, as shown in the following table.<a href="#section-1.4-1" class="pilcrow">¶</a></p>
+<span id="name-prefixes-and-corresponding-"></span><div id="tab-prefixes">
+<table class="center" id="table-1">
+          <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-prefixes-and-corresponding-" class="selfRef">Prefixes and corresponding YANG modules</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Prefix</th>
+              <th class="text-left" rowspan="1" colspan="1">Yang Module</th>
+              <th class="text-left" rowspan="1" colspan="1">Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">inet</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-inet-types</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">yang</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-yang-types</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">ianahw</td>
+              <td class="text-left" rowspan="1" colspan="1">iana-hardware</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <span>[<a href="#IANA_YANG" class="cite xref">IANA_YANG</a>]</span>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">ni</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-network-inventory</td>
+              <td class="text-left" rowspan="1" colspan="1">RFC XXXX</td>
+            </tr>
+          </tbody>
+        </table>
+</div>
+<p id="section-1.4-3">RFC Editor Note:
+Please replace XXXX with the RFC number assigned to this document.
+Please remove this note.<a href="#section-1.4-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="yang-data-model-for-network-inventory-overview">
+<section id="section-2">
+      <h2 id="name-yang-data-model-for-network">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-yang-data-model-for-network" class="section-name selfRef">YANG Data Model for Network Inventory Overview</a>
+      </h2>
+<p id="section-2-1">The network element definition is generalized to support physical
+devices and other types of inventory objects (e.g., virtual network
+elements) that can be managed as physical network elements from an
+inventory perspective. The data model for Network Element presented
+in this document uses a flat list of network element.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">The "ne-type" is defined as a YANG identity to describe the type of the network element. This document defines only the "physical-network-element" identity.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-3">The component definition is also generalized to support any types of
+component, such as hardware, software, or firmware.<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-4">Different types of components can be distinguished by the class of component. The component "class" is defined as a union between the hardware class identity, defined in "iana-hardware", and the "non-hardware" identity, defined in this document. Attributes related to specific class of component can be found in the component-specific-info structure.<a href="#section-2-4" class="pilcrow">¶</a></p>
+<p id="section-2-5">The identity definition of additional types of "ne-type" and "non-
+hardware" identity of component are outside the scope of this
+document and could be defined in application-specific or technology-
+specific companion augmentation data models, such as
+<span>[<a href="#I-D.wzwb-ivy-network-inventory-software" class="cite xref">I-D.wzwb-ivy-network-inventory-software</a>]</span>.<a href="#section-2-5" class="pilcrow">¶</a></p>
+<p id="section-2-6">In <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, rack, chassis, slot, sub-slot, board and port are defined as components of network elements with generic attributes.<a href="#section-2-6" class="pilcrow">¶</a></p>
+<p id="section-2-7">While <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> is used to manage the hardware of a single server (e.g., a network element), the Network Inventory YANG data model is used to retrieve the base network inventory information that a controller discovers from all the network elements under its control.<a href="#section-2-7" class="pilcrow">¶</a></p>
+<p id="section-2-8">However, the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> has been used as a reference for defining the YANG network inventory data model. This approach can simplify the implementation of this network inventory model when the controller uses the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> to retrieve the hardware  from the network elements under its control.<a href="#section-2-8" class="pilcrow">¶</a></p>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-2-9">
+<pre>
+  +--rw network-elements
+     +--rw network-element* [ne-id]
+        +--rw ne-id            string
+        ............................................
+        +--rw components
+           +--rw component* [component-id]
+              +--rw component-id            string
+              ......................................
+</pre><a href="#section-2-9" class="pilcrow">¶</a>
+</div>
+<div id="common-design-for-all-inventory-objects">
+<section id="section-2.1">
+        <h3 id="name-common-design-for-all-inven">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-common-design-for-all-inven" class="section-name selfRef">Common Design for All Inventory Objects</a>
+        </h3>
+<p id="section-2.1-1">For all the inventory objects, there are some common attributes existing. Such as:<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">Identifier: here we suggest to use uuid format which is widely implemented with systems. It is guaranteed to be globally unique.<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.1-3">Name: name is a human-readable label information which could be used to present on GUI. This name is suggested to be provided by server.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
+<p id="section-2.1-4">Alias: alias is also a human-readable label information which could be modified by user. It could also be present on GUI instead of name.<a href="#section-2.1-4" class="pilcrow">¶</a></p>
+<p id="section-2.1-5">Description: description is a human-readable information which could be also input by user. Description provides more detailed information to prompt users when performing maintenance operations.<a href="#section-2.1-5" class="pilcrow">¶</a></p>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-2.1-6">
+<pre>
+  +--rw network-elements
+     +--rw network-element* [ne-id]
+        +--rw ne-id            string
+        +--rw ne-type?         identityref
+        +--rw uuid?            yang:uuid
+        +--rw name?            string
+        +--rw description?     string
+        +--rw alias?           string
+        ...................................
+        +--rw components
+           +--rw component* [component-id]
+              +--rw component-id            string
+              +--rw uuid?                   yang:uuid
+              +--rw name?                   string
+              +--rw description?            string
+              +--rw alias?                  string
+              +--rw class                   union
+              ...................................
+</pre><a href="#section-2.1-6" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="network-element">
+<section id="section-2.2">
+        <h3 id="name-network-element">
+<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-network-element" class="section-name selfRef">Network Element</a>
+        </h3>
+<p id="section-2.2-1">To be consistent with the component definition, some of the
+attributes defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> for components are reused for network
+elements.  These attributes include:<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-2.2-2">
+<pre>
+  +--rw network-elements
+     +--rw network-element* [ne-id]
+        ...................................
+        +--rw hardware-rev?    string
+        +--rw software-rev?    string
+        +--rw mfg-name?        string
+        +--rw mfg-date?        yang:date-and-time
+        +--rw part-number?     string
+        +--rw serial-number?   string
+        +--rw product-name?    string
+        ...................................
+</pre><a href="#section-2.2-2" class="pilcrow">¶</a>
+</div>
+<p id="section-2.2-3">Note: Not all the attributes defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> are applicable for network element. And there could also be some missing attributes which are not recognized by <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>. More extensions could be introduced in later revisions after the missing attributes are fully discussed.<a href="#section-2.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="ne-component">
+<section id="section-2.3">
+        <h3 id="name-components">
+<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-components" class="section-name selfRef">Components</a>
+        </h3>
+<p id="section-2.3-1">The YANG data model for network inventory mainly follows the same approach of <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> and reports the network hardware inventory as a list of components with different types (e.g., chassis, module, port).<a href="#section-2.3-1" class="pilcrow">¶</a></p>
+<p id="section-2.3-2">The component definition is generalized to both hardware components
+and non-hardware components (e.g., software components).<a href="#section-2.3-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-2.3-3">
+<pre>
+  +--rw components
+      +--rw component* [component-id]
+        +--rw component-id            string
+        +--rw uuid?                   yang:uuid
+        +--rw name?                   string
+        +--rw description?            string
+        +--rw alias?                  string
+        +--rw class                   union
+        +--rw child-component-ref
+        +--rw parent-rel-pos?         int32
+        +--rw parent-component-ref
+        +--rw hardware-rev?           string
+        +--rw firmware-rev?           string
+        +--rw software-rev?           string
+        +--rw serial-num?             string
+        +--rw mfg-name?               string
+        +--rw part-number?            string
+        +--rw asset-id?               string
+        +--rw is-fru?                 boolean
+        +--rw mfg-date?               yang:date-and-time
+        +--rw uri*                    inet:uri
+</pre><a href="#section-2.3-3" class="pilcrow">¶</a>
+</div>
+<p id="section-2.3-4">For state data like admin-state, oper-state and so on, we consider they are related to device hardware management and not network inventory. Therefore, they are outside of scope of this document. Same for the sensor-data, they should be defined in some other performance monitoring data models instead of inventory data model.<a href="#section-2.3-4" class="pilcrow">¶</a></p>
+<div id="hardware-components">
+<section id="section-2.3.1">
+          <h4 id="name-hardware-components">
+<a href="#section-2.3.1" class="section-number selfRef">2.3.1. </a><a href="#name-hardware-components" class="section-name selfRef">Hardware Components</a>
+          </h4>
+<p id="section-2.3.1-1">Based on TMF classification in <span>[<a href="#TMF_SD2-20" class="cite xref">TMF_SD2-20</a>]</span>, hardware components can be divided into two groups, holder group and equipment group. The holder group contains rack, chassis, slot, sub-slot while the equipment group contains network-element, board and port.<a href="#section-2.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.3.1-2">The relationship between typical inventory objects in a physical network element can be described by <a href="#fig-hw-inventory-object-relationship" class="auto internal xref">Figure 1</a> below:<a href="#section-2.3.1-2" class="pilcrow">¶</a></p>
+<span id="name-relationship-between-typica"></span><div id="fig-hw-inventory-object-relationship">
+<figure id="figure-1">
+            <div class="alignLeft art-ascii-art art-text artwork" id="section-2.3.1-3.1">
+<pre>
+                            +-----------------+
+                            | network element |
+                            +-----------------+
+                                    ||
+                                    ||
+                                    ||
+                                    ||1:M
+                                    ||
+                                    ||
+                                    ||
+                                    \/
+                              +-------------+
+                              |   chassis/  |---+
+                              | sub-chassis |&lt;--|
+                              +-------------+
+                                    ||
+                     ______1:N______||_____1:M_______
+                     ||------------------ ---------||
+                     \/                            \/
+              +--------------+               +-----------+
+          +---|     slot     |               |   board   |
+          |--&gt;|  /sub-slot   |               |           |
+              +--------------+               +-----------+
+                                                   ||
+                                                   ||1:N
+                                                   \/
+                                             +-----------+
+                                             |    port   |
+                                             +-----------+
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-relationship-between-typica" class="selfRef">Relationship between typical inventory objects in physical network elements</a>
+            </figcaption></figure>
+</div>
+<p id="section-2.3.1-4">The "iana-hardware" module <span>[<a href="#IANA_YANG" class="cite xref">IANA_YANG</a>]</span> defines YANG identities for
+the hardware component types in the IANA-maintained "IANA-ENTITY-MIB"
+registry.<a href="#section-2.3.1-4" class="pilcrow">¶</a></p>
+<p id="section-2.3.1-5">Some of the definitions taken from <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> are actually based on the ENTITY-MIB <span>[<a href="#RFC6933" class="cite xref">RFC6933</a>]</span>.<a href="#section-2.3.1-5" class="pilcrow">¶</a></p>
+<p id="section-2.3.1-6">For the additional attributes of specific hardware, such as CPU,
+storage, port, power supply is defined in the hardware extension.<a href="#section-2.3.1-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="software-components">
+<section id="section-2.3.2">
+          <h4 id="name-software-components">
+<a href="#section-2.3.2" class="section-number selfRef">2.3.2. </a><a href="#name-software-components" class="section-name selfRef">Software Components</a>
+          </h4>
+<p id="section-2.3.2-1">This document defines "software-rev" of NEs and components, which are
+basic software attributes of a Network Element.<a href="#section-2.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.3.2-2">The software and hardware components share the same attributes of the
+component and have similar replaceable requirements. Generally, the
+device also has other software data, for example, one or more
+software patch information.<a href="#section-2.3.2-2" class="pilcrow">¶</a></p>
+<p id="section-2.3.2-3">The software components of other
+classes, such as platform software, BIOS, bootloader, and software
+patch information, are outside the scope of this document and defined other documents such as
+<span>[<a href="#I-D.wzwb-ivy-network-inventory-software" class="cite xref">I-D.wzwb-ivy-network-inventory-software</a>]</span>.<a href="#section-2.3.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="changes-with-respect-to-rfc8348">
+<section id="section-2.4">
+        <h3 id="name-changes-with-respect-to-rfc">
+<a href="#section-2.4" class="section-number selfRef">2.4. </a><a href="#name-changes-with-respect-to-rfc" class="section-name selfRef">Changes with respect to RFC8348</a>
+        </h3>
+<p id="section-2.4-1">We re-defined some attributes listed in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, based on some integration experience for network wide inventory data.<a href="#section-2.4-1" class="pilcrow">¶</a></p>
+<div id="new-parent-identifiers-reference">
+<section id="section-2.4.1">
+          <h4 id="name-new-parent-identifiers-refe">
+<a href="#section-2.4.1" class="section-number selfRef">2.4.1. </a><a href="#name-new-parent-identifiers-refe" class="section-name selfRef">New Parent Identifiers' Reference</a>
+          </h4>
+<p id="section-2.4.1-1"><span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> provided a "parent-ref" attribute, which was an identifier reference to its parent component. When the MDSC or OSS systems want to find this component's grandparent or higher level component in the hierarchy, they need to retrieve this parent-ref step by step. To reduce this iterative work, we decided to provide a list of hierarchical parent components' identifier references.<a href="#section-2.4.1-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-2.4.1-2">
+<pre>
+  +--ro components
+     +--ro component* [component-id]
+        ...................................
+        +--ro parent-component-references
+        |   +--ro component-reference* [index]
+        |      +--ro index    uint8
+        |      +--ro class?   -&gt; ../../../class
+        |      +--ro uuid?    -&gt; ../../../uuid
+        ...................................
+</pre><a href="#section-2.4.1-2" class="pilcrow">¶</a>
+</div>
+<p id="section-2.4.1-3">The hierarchical components' identifier could be found by the "component-reference" list. The "index" attribute is used to order the list by the hierarchical relationship from topmost component (with the "index" set to 0) to bottom component.<a href="#section-2.4.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="component-specific-info-design">
+<section id="section-2.4.2">
+          <h4 id="name-component-specific-info-des">
+<a href="#section-2.4.2" class="section-number selfRef">2.4.2. </a><a href="#name-component-specific-info-des" class="section-name selfRef">Component-Specific Info Design</a>
+          </h4>
+<p id="section-2.4.2-1">According to the management requirements from operators, some important attributes are not defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>. These attributes could be component-specific and are not suitable to define under the component list node. So, the model can be augmented with HW-specific-info grouping containing attributes applicable to HW e.g. boards/slot components only. Other component-specific attributes, such as SW-specific-info, may be defined in companion augmentation data models, such as
+<span>[<a href="#I-D.wzwb-ivy-network-inventory-software" class="cite xref">I-D.wzwb-ivy-network-inventory-software</a>]</span> and are out of the scope of this model.<a href="#section-2.4.2-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-2.4.2-2">
+<pre>
++--rw components
+   +--rw component* [component-id]
+   |  +--rw component-id            string
+   |   .......................................
+   |  +--ro chassis-specific-info
+   |  +--ro slot-specific-info
+   |  +--ro board-specific-info
+   |  +--ro port-specific-info
+</pre><a href="#section-2.4.2-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="part-number">
+<section id="section-2.4.3">
+          <h4 id="name-part-number">
+<a href="#section-2.4.3" class="section-number selfRef">2.4.3. </a><a href="#name-part-number" class="section-name selfRef">Part Number</a>
+          </h4>
+<p id="section-2.4.3-1">According to the description in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. "Model-name" is not straightforward to understand and we suggest to rename it as "part-number" directly.<a href="#section-2.4.3-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-2.4.3-2">
+<pre>
+  +--ro components
+     +--ro component* [uuid]
+        ...................................
+        +--ro part-number?           string
+        ...................................
+</pre><a href="#section-2.4.3-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="ni-augment">
+<section id="section-3">
+      <h2 id="name-extending-network-inventory">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-extending-network-inventory" class="section-name selfRef">Extending Network Inventory</a>
+      </h2>
+<p id="section-3-1">This document defines the basic network inventory attributes
+applicable to typical network scenarios.  For finer-grained and
+specific management scenarios, the relationship between this model
+and other models is illustrated in Figure 4.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-3-2">
+<pre>
+             +-------------------------+
+             |                         |
+             | Base Network Inventory  |
+             |                         |
+             +------------+------------+
+                          |
+       +------------------+-------------------+
+       |                  |                   |
++------V------+    +------V------      +------V------    +-------------+
+|             |    |             |     |             |   |             |
+| Hardware    |    |  Software   |     |             |   |  Inventory  |
+| Extensions  |    |  Extensions |     | Entitlement |   |  Topology   |
+| e.g. Power  |    |  e.g.       |     |             |   |  Mapping    |
+| supply unit |    |  SW patch   |     |             |   |             |
++-------------+    +-------------+     +-------------+   +-------------+
+</pre><a href="#section-3-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="ni-tree">
+<section id="section-4">
+      <h2 id="name-network-inventory-tree-diag">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-network-inventory-tree-diag" class="section-name selfRef">Network Inventory Tree Diagram</a>
+      </h2>
+<p id="section-4-1"><a href="#fig-ni-tree" class="auto internal xref">Figure 2</a> below shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" (<a href="#ni-yang" class="auto internal xref">Section 5</a>).<a href="#section-4-1" class="pilcrow">¶</a></p>
+<span id="name-network-inventory-tree-diagr"></span><div id="fig-ni-tree">
+<figure id="figure-2">
+        <div class="alignLeft art-ascii-art art-text artwork" id="section-4-2.1">
+<pre>
+module: ietf-network-inventory
+  +--rw network-inventory
+     +--rw network-elements
+        +--rw network-element* [ne-id]
+           +--rw ne-id                 string
+           +--ro ne-type?              identityref
+           +--ro uuid?                 yang:uuid
+           +--rw name?                 string
+           +--rw description?          string
+           +--rw alias?                string
+           +--ro hardware-rev?         string
+           +--ro software-rev?         string
+           +--ro software-patch-rev*   string
+           +--ro mfg-name?             string
+           +--ro mfg-date?             yang:date-and-time
+           +--ro serial-number?        string
+           +--ro product-name?         string
+           +--rw components
+              +--rw component* [component-id]
+                 +--rw component-id             string
+                 +--ro class                    union
+                 +--ro uuid?                    yang:uuid
+                 +--rw name?                    string
+                 +--rw description?             string
+                 +--rw alias?                   string
+                 +--ro child-component-ref
+                 +--ro parent-rel-pos?          int32
+                 +--ro parent-component-ref
+                 +--ro hardware-rev?            string
+                 +--ro firmware-rev?            string
+                 +--ro software-rev?            string
+                 +--ro software-patch-rev*      string
+                 +--ro serial-num?              string
+                 +--ro mfg-name?                string
+                 +--ro part-number?             string
+                 +--ro product-name?            string
+                 +--ro asset-id?                string
+                 +--ro is-fru?                  boolean
+                 +--ro mfg-date?                yang:date-and-time
+                 +--ro uri*                     inet:uri
+                 +--ro chassis-specific-info
+                 +--ro slot-specific-info
+                 +--ro board-specific-info
+                 +--ro port-specific-info
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-network-inventory-tree-diagr" class="selfRef">Network inventory tree diagram</a>
+        </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="ni-yang">
+<section id="section-5">
+      <h2 id="name-yang-data-model-for-network-">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-yang-data-model-for-network-" class="section-name selfRef">YANG Data Model for Network Inventory</a>
+      </h2>
+<span id="name-network-inventory-yang-modu"></span><div id="fig-ni-yang">
+<figure id="figure-3">
+        <div class="breakable lang-yang sourcecode" id="section-5-1.1">
+<pre>&lt;CODE BEGINS&gt; file "ietf-network-inventory@2024-03-04.yang"
+
+module ietf-network-inventory {
+  yang-version 1.1;
+  namespace "urn:ietf:params:xml:ns:yang:ietf-network-inventory";
+  prefix ni;
+
+  import iana-hardware {
+    prefix ianahw;
+    reference
+      "https://www.iana.org/assignments/yang-parameters";
+  }
+  import ietf-yang-types {
+    prefix yang;
+    reference
+      "RFC6991: Common YANG Data Types.";
+  }
+  import ietf-inet-types {
+    prefix inet;
+    reference
+      "RFC6991: Common YANG Data Types.";
+  }
+
+  organization
+    "IETF IVY Working Group";
+  contact
+    "WG Web:   &lt;https://datatracker.ietf.org/wg/ivy/&gt;
+     WG List:  &lt;mailto:inventory-yang@ietf.org&gt;
+
+     Editor:   Chaode Yu
+               &lt;yuchaode@huawei.com&gt;
+
+     Editor:   Sergio Belotti
+               &lt;sergio.belotti@nokia.com&gt;
+
+     Editor:   Jean-Francois Bouquier
+               &lt;jeff.bouquier@vodafone.com&gt;
+
+     Editor:   Fabio Peruzzini
+               &lt;fabio.peruzzini@telecomitalia.it&gt;
+
+     Editor:   Phil Bedard
+               &lt;phbedard@cisco.com&gt;";
+  description
+    "This module defines a base model for retrieving network
+     inventory.
+
+     The model fully conforms to the Network Management
+     Datastore Architecture (NMDA).
+
+     Copyright (c) 2023 IETF Trust and the persons
+     identified as authors of the code.  All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Revised BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     This version of this YANG module is part of RFC XXXX; see
+     the RFC itself for full legal notices.
+
+     The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
+     NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
+     'MAY', and 'OPTIONAL' in this document are to be interpreted as
+     described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
+     they appear in all capitals, as shown here.";
+
+  // RFC Ed.: replace XXXX with actual RFC number and remove this
+  // note.
+  // RFC Ed.: update the date below with the date of RFC publication
+  // and remove this note.
+
+  revision 2024-04-09 {
+    description
+      "Initial version";
+    reference
+      "RFC XXXX: A YANG Data Model for Network Inventory.";
+    //RFC Editor: replace XXXX with actual RFC number, update date
+    //information and remove this note
+  }
+
+  identity non-hardware-component-class {
+    description
+      "Base identity for non hardware components (e.g., software
+       components) in a managed device.";
+  }
+
+  identity ne-type {
+    description
+      "Base identity for network element (NE) types.";
+  }
+
+  identity ne-physical {
+    base ni:ne-type;
+    description
+      "A physical network element (NE). ";
+  }
+
+  grouping common-entity-attributes {
+    description
+      "A set of attributes which are common to all the entities
+       (e.g., component, equipment room) defined in this module.";
+    leaf uuid {
+      type yang:uuid;
+      config false;
+      description
+        "Uniquely identifies an entity (e.g., component).";
+    }
+    leaf name {
+      type string;
+      description
+        "A name for an entity (e.g., component), as specified by
+         a network manager, that provides a non-volatile 'handle'
+         for the entity and that can be modified anytime during the
+         entity lifetime.
+
+         If no configured value exists, the server MAY set the value
+         of this node to a locally unique value in the operational
+         state.";
+    }
+    leaf description {
+      type string;
+      description
+        "a textual description of inventory object";
+    }
+    leaf alias {
+      type string;
+      description
+        "a alias name of inventory objects. This alias name can be
+         specified by network manager.";
+    }
+  }
+
+  grouping ne-specific-info-grouping {
+    description
+      "Attributes applicable to network elements.";
+    leaf hardware-rev {
+      type string;
+      config false;
+      description
+        "The vendor-specific hardware revision string for the NE.";
+    }
+    leaf software-rev {
+      type string;
+      config false;
+      description
+        "The vendor-specific software revision string for the NE.";
+    }
+    leaf-list software-patch-rev {
+      type string;
+      config false;
+      description
+        "The vendor-specific patch software revision string for the
+         NE.";
+    }
+    leaf mfg-name {
+      type string;
+      config false;
+      description
+        "The name of the manufacturer of this NE";
+    }
+    leaf mfg-date {
+      type yang:date-and-time;
+      config false;
+      description
+        "The date of manufacturing of the NE.";
+    }
+    leaf serial-number {
+      type string;
+      config false;
+      description
+        "The vendor-specific serial number of the network element
+         instance. It is expected that vendors assign unique serial
+         numbers to different network element instances within the
+         scope of the product name.";
+    }
+    leaf product-name {
+      type string;
+      config false;
+      description
+        "The vendor-specific and human-interpretable string describing
+         the network element type. It is expected that vendors assign
+         unique product names to different NE types within the scope of
+         the vendor.";
+    }
+  }
+
+  grouping component-specific-info-grouping {
+    description
+      "Provide component-specific attributes for different
+       components.";
+    container chassis-specific-info {
+      when "../class = 'ianahw:chassis'";
+      config false;
+      description
+        "This container contains some attributes belong to
+         chassis only.";
+      uses chassis-specific-info-grouping;
+    }
+    container slot-specific-info {
+      when "../class = 'ianahw:container'";
+      config false;
+      description
+        "This container contains some attributes belong to
+         slot only.";
+      uses slot-specific-info-grouping;
+    }
+    container board-specific-info {
+      when "../class = 'ianahw:module'";
+      config false;
+      description
+        "This container contains some attributes belong to
+         board only.";
+      uses board-specific-info-grouping;
+    }
+    container port-specific-info {
+      when "../class = 'ianahw:port'";
+      config false;
+      description
+        "This container contains some attributes belong to
+         port only.";
+      uses port-specific-info-grouping;
+    }
+  }
+
+  grouping chassis-specific-info-grouping {
+    //To be enriched in the future.
+    description
+      "Specific attributes applicable to chassis only.";
+  }
+
+  grouping slot-specific-info-grouping {
+    //To be enriched in the future.
+    description
+      "Specific attributes applicable to slots only.";
+  }
+
+  grouping board-specific-info-grouping {
+    //To be enriched in the future.
+    description
+      "Specific attributes applicable to boards only.";
+  }
+
+  grouping port-specific-info-grouping {
+    //To be enriched in the future.
+    description
+      "Specific attributes applicable to ports only.";
+  }
+
+  grouping ne-info-grouping {
+    description
+      "Grouping for network elements.";
+    container network-elements {
+      description
+        "The top-level container for the list of network elements
+         within the network.";
+      list network-element {
+        key "ne-id";
+        description
+          "The list of network elements within the network.";
+        leaf ne-id {
+          type string;
+          description
+            "Network Element (NE) identifier.";
+        }
+        leaf ne-type {
+          type identityref {
+            base ne-type;
+          }
+          default "ne-physical";
+          config false;
+          description
+            "The type of network element (NE).";
+        }
+        uses common-entity-attributes;
+        uses ne-specific-info-grouping;
+        container components {
+          description
+            "The top-level container for the list of components
+             within a network element.";
+          list component {
+            key "component-id";
+            description
+              "The list of components within a network element.";
+            leaf component-id {
+              type string;
+              description
+                "Component identifier";
+            }
+            leaf class {
+              type union {
+                type identityref {
+                  base ianahw:hardware-class;
+                }
+                type identityref {
+                  base non-hardware-component-class;
+                }
+              }
+              config false;
+              mandatory true;
+              description
+                "The type of the component.";
+            }
+            uses common-entity-attributes;
+            container child-component-ref {
+              config false;
+              description
+                "A placeholder for adding the reference to child
+                 component(s): to further discuss whether to define
+                 a child leaf-list as RFC8348 or a list of
+                 sub-components as openconfig-platform.";
+            }
+            leaf parent-rel-pos {
+              type int32 {
+                range "0 .. 2147483647";
+              }
+              config false;
+              description
+                "The relative position with respect to the parent
+                 component among all the sibling components.";
+              reference
+                "RFC 6933: Entity MIB (Version 4) -
+                          entPhysicalParentRelPos";
+            }
+            container parent-component-ref {
+              config false;
+              description
+                "A placeholder for adding the reference to parent
+                 component(s): to further discuss whether to define
+                 a parent attribute as RFC8348 or a
+                 parent-component-references container as in
+                 draft-ietf-ccamp-network-inventory-yang-02.";
+            }
+            leaf hardware-rev {
+              type string;
+              config false;
+              description
+                "The vendor-specific hardware revision string for the
+                 component.  The preferred value is the hardware
+                 revision identifier actually printed on the component
+                 itself (if present).";
+              reference
+                "RFC 6933: Entity MIB (Version 4) -
+                          entPhysicalHardwareRev";
+            }
+            leaf firmware-rev {
+              type string;
+              config false;
+              description
+                "The vendor-specific firmware revision string for the
+                 component.";
+              reference
+                "RFC 6933: Entity MIB (Version 4) -
+                          entPhysicalFirmwareRev";
+            }
+            leaf software-rev {
+              type string;
+              config false;
+              description
+                "The vendor-specific software revision string for the
+                 component.";
+              reference
+                "RFC 6933: Entity MIB (Version 4) -
+                          entPhysicalSoftwareRev";
+            }
+            leaf-list software-patch-rev {
+              type string;
+              config false;
+              description
+                "The vendor-specific patch software revision string
+                 for the component.";
+            }
+            leaf serial-num {
+              type string;
+              config false;
+              description
+                "The vendor-specific serial number of the component
+                 instance. It is expected that vendors assign unique
+                 serial numbers to different component instances within
+                 the scope of the part number.";
+            }
+            leaf mfg-name {
+              type string;
+              config false;
+              description
+                "The name of the manufacturer of this physical
+                 component.
+                 The preferred value is the manufacturer name string
+                 actually printed on the component itself (if present).
+
+                 Note that comparisons between instances of the
+                 'model-name', 'firmware-rev', 'software-rev', and
+                 'serial-num' nodes are only meaningful amongst
+                 components with the same value of 'mfg-name'.
+
+                 If the manufacturer name string associated with the
+                 physical component is unknown to the server, then this
+                 node is not instantiated.";
+              reference
+                "RFC 6933: Entity MIB (Version 4) -
+                 entPhysicalMfgName";
+            }
+            leaf part-number {
+              type string;
+              config false;
+              description
+                "The vendor-specific part number of the component
+                 type. It is expected that vendors assign unique part
+                 numbers to different component types within the scope
+                 of the vendor.";
+            }
+            leaf product-name {
+              type string;
+              config false;
+              description
+                "The vendor-specific and human-interpretable string
+                 describing the component type. It is expected that
+                 vendors assign unique product names to different
+                 component types within the scope of the vendor.";
+            }
+            leaf asset-id {
+              type string;
+              config false;
+              description
+                "This node is a user-assigned asset tracking
+                 identifier for the component.
+
+                 A server implementation MAY map this leaf to the
+                 entPhysicalAssetID MIB object.  Such an implementation
+                 needs to use some mechanism to handle the differences
+                 in size and characters allowed between this leaf and
+                 entPhysicalAssetID.  The definition of such a
+                 mechanism is outside the scope of this document.";
+              reference
+                "RFC 6933: Entity MIB (Version 4) -
+                 entPhysicalAssetID";
+            }
+            leaf is-fru {
+              type boolean;
+              config false;
+              description
+                "This node indicates whether or not this component is
+                 considered a 'field-replaceable unit' by the vendor.
+                 If this node contains the value 'true', then this
+                 component identifies a field-replaceable unit.
+                 For all components that are permanently contained
+                 within a field-replaceable unit, the value 'false'
+                 should be returned for this node.";
+              reference
+                "RFC 6933: Entity MIB (Version 4) - entPhysicalIsFRU";
+            }
+            leaf mfg-date {
+              type yang:date-and-time;
+              config false;
+              description
+                "The date of manufacturing of the managed component.";
+              reference
+                "RFC 6933: Entity MIB (Version 4) -
+                 entPhysicalMfgDate";
+            }
+            leaf-list uri {
+              type inet:uri;
+              config false;
+              description
+                "This node contains identification information about
+                 the component.";
+              reference
+                "RFC 6933: Entity MIB (Version 4) - entPhysicalUris";
+            }
+            uses component-specific-info-grouping;
+          }
+        }
+      }
+    }
+  }
+
+  container network-inventory {
+    description
+      "Top-level container for network inventory.";
+    uses ne-info-grouping;
+  }
+}
+
+&lt;CODE ENDS&gt;</pre>
+</div>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-network-inventory-yang-modu" class="selfRef">Network inventory YANG module</a>
+        </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="manageability-considerations">
+<section id="section-6">
+      <h2 id="name-manageability-consideration">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-manageability-consideration" class="section-name selfRef">Manageability Considerations</a>
+      </h2>
+<p id="section-6-1">&lt;Add any manageability considerations&gt;<a href="#section-6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-7">
+      <h2 id="name-security-considerations">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-7-1">&lt;Add any security considerations&gt;<a href="#section-7-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="iana-considerations">
+<section id="section-8">
+      <h2 id="name-iana-considerations">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-8-1">&lt;Add any IANA considerations&gt;<a href="#section-8-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<section id="section-9">
+      <h2 id="name-references">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<div id="sec-normative-references">
+<section id="section-9.1">
+        <h3 id="name-normative-references">
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
+<dl class="references">
+<dt id="IANA_YANG">[IANA_YANG]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"YANG Parameters"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.iana.org/assignments/yang-parameters">https://www.iana.org/assignments/yang-parameters</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2119">[RFC2119]</dt>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6241">[RFC6241]</dt>
+        <dd>
+<span class="refAuthor">Enns, R., Ed.</span>, <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refAuthor">Schoenwaelder, J., Ed.</span>, and <span class="refAuthor">A. Bierman, Ed.</span>, <span class="refTitle">"Network Configuration Protocol (NETCONF)"</span>, <span class="seriesInfo">RFC 6241</span>, <span class="seriesInfo">DOI 10.17487/RFC6241</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6241">https://www.rfc-editor.org/rfc/rfc6241</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6933">[RFC6933]</dt>
+        <dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Romascanu, D.</span>, <span class="refAuthor">Quittek, J.</span>, and <span class="refAuthor">M. Chandramouli</span>, <span class="refTitle">"Entity MIB (Version 4)"</span>, <span class="seriesInfo">RFC 6933</span>, <span class="seriesInfo">DOI 10.17487/RFC6933</span>, <time datetime="2013-05" class="refDate">May 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6933">https://www.rfc-editor.org/rfc/rfc6933</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6991">[RFC6991]</dt>
+        <dd>
+<span class="refAuthor">Schoenwaelder, J., Ed.</span>, <span class="refTitle">"Common YANG Data Types"</span>, <span class="seriesInfo">RFC 6991</span>, <span class="seriesInfo">DOI 10.17487/RFC6991</span>, <time datetime="2013-07" class="refDate">July 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6991">https://www.rfc-editor.org/rfc/rfc6991</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7950">[RFC7950]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"The YANG 1.1 Data Modeling Language"</span>, <span class="seriesInfo">RFC 7950</span>, <span class="seriesInfo">DOI 10.17487/RFC7950</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7950">https://www.rfc-editor.org/rfc/rfc7950</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
+        <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8340">[RFC8340]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M.</span> and <span class="refAuthor">L. Berger, Ed.</span>, <span class="refTitle">"YANG Tree Diagrams"</span>, <span class="seriesInfo">BCP 215</span>, <span class="seriesInfo">RFC 8340</span>, <span class="seriesInfo">DOI 10.17487/RFC8340</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8340">https://www.rfc-editor.org/rfc/rfc8340</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8342">[RFC8342]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M.</span>, <span class="refAuthor">Schoenwaelder, J.</span>, <span class="refAuthor">Shafer, P.</span>, <span class="refAuthor">Watsen, K.</span>, and <span class="refAuthor">R. Wilton</span>, <span class="refTitle">"Network Management Datastore Architecture (NMDA)"</span>, <span class="seriesInfo">RFC 8342</span>, <span class="seriesInfo">DOI 10.17487/RFC8342</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8342">https://www.rfc-editor.org/rfc/rfc8342</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8348">[RFC8348]</dt>
+        <dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Bjorklund, M.</span>, <span class="refAuthor">Dong, J.</span>, and <span class="refAuthor">D. Romascanu</span>, <span class="refTitle">"A YANG Data Model for Hardware Management"</span>, <span class="seriesInfo">RFC 8348</span>, <span class="seriesInfo">DOI 10.17487/RFC8348</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8348">https://www.rfc-editor.org/rfc/rfc8348</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="TMF_SD2-20">[TMF_SD2-20]</dt>
+      <dd>
+<span class="refAuthor">TM Forum</span>, <span class="refTitle">"SD2-20_Equipment Model"</span>, <span class="seriesInfo">TMF MTOSI 4.0, Network Resource Fulfilment (NRF), SD2-20 </span>, <time datetime="2008-05" class="refDate">May 2008</time>, <span>&lt;<a href="https://www.tmforum.org/resources/suite/mtosi-4-0/">https://www.tmforum.org/resources/suite/mtosi-4-0/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-9.2">
+        <h3 id="name-informative-references">
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="I-D.ietf-teas-actn-poi-applicability">[I-D.ietf-teas-actn-poi-applicability]</dt>
+        <dd>
+<span class="refAuthor">Peruzzini, F.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">King, D.</span>, and <span class="refAuthor">D. Ceccarelli</span>, <span class="refTitle">"Applicability of Abstraction and Control of Traffic Engineered Networks (ACTN) to Packet Optical Integration (POI)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-actn-poi-applicability-12</span>, <time datetime="2024-07-05" class="refDate">5 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-poi-applicability-12">https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-poi-applicability-12</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.wzwb-ivy-network-inventory-software">[I-D.wzwb-ivy-network-inventory-software]</dt>
+        <dd>
+<span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Zhou, C.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">M. Boucadair</span>, <span class="refTitle">"A YANG Network Data Model of Network Inventory Software Extensions"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-wzwb-ivy-network-inventory-software-01</span>, <time datetime="2024-04-30" class="refDate">30 April 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-wzwb-ivy-network-inventory-software-01">https://datatracker.ietf.org/doc/html/draft-wzwb-ivy-network-inventory-software-01</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8345">[RFC8345]</dt>
+        <dd>
+<span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Medved, J.</span>, <span class="refAuthor">Varga, R.</span>, <span class="refAuthor">Bahadur, N.</span>, <span class="refAuthor">Ananthakrishnan, H.</span>, and <span class="refAuthor">X. Liu</span>, <span class="refTitle">"A YANG Data Model for Network Topologies"</span>, <span class="seriesInfo">RFC 8345</span>, <span class="seriesInfo">DOI 10.17487/RFC8345</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8345">https://www.rfc-editor.org/rfc/rfc8345</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8969">[RFC8969]</dt>
+      <dd>
+<span class="refAuthor">Wu, Q., Ed.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Xie, C.</span>, and <span class="refAuthor">L. Geng</span>, <span class="refTitle">"A Framework for Automating Service and Network Management with YANG"</span>, <span class="seriesInfo">RFC 8969</span>, <span class="seriesInfo">DOI 10.17487/RFC8969</span>, <time datetime="2021-01" class="refDate">January 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8969">https://www.rfc-editor.org/rfc/rfc8969</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+<div id="comparison-with-openconfig-platform-data-model">
+<section id="appendix-A">
+      <h2 id="name-comparison-with-openconfig-">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-comparison-with-openconfig-" class="section-name selfRef">Comparison With Openconfig-platform Data Model</a>
+      </h2>
+<p id="appendix-A-1">Since more and more devices can be managed by domain controller through OpenConfig, to ensure that our inventory data model can cover these devices' inventory data, we have compared our inventory data model with the "openconfig-platform" model which is the data model used to manage inventory information in OpenConfig.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-2">Openconfig-platform data model is NE-level and uses a generic component concept to describe its inner devices and containers, which is similar to "ietf-hardware" model in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>. Since we have also reused the component concept of <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> in our inventory data model, we can compare the component's attributes between "openconfig-platform" and our model directly , which is stated below:<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+<span id="name-comparison-between-openconf"></span><div id="tab-oc">
+<table class="center" id="table-2">
+        <caption>
+<a href="#table-2" class="selfRef">Table 2</a>:
+<a href="#name-comparison-between-openconf" class="selfRef">Comparison between openconfig platform and inventory data models</a>
+        </caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Attributes in oc-platform</th>
+            <th class="text-left" rowspan="1" colspan="1">Attributes in our model</th>
+            <th class="text-left" rowspan="1" colspan="1">remark</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">name</td>
+            <td class="text-left" rowspan="1" colspan="1">name</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">type</td>
+            <td class="text-left" rowspan="1" colspan="1">class</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">id</td>
+            <td class="text-left" rowspan="1" colspan="1">uuid</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">location</td>
+            <td class="text-left" rowspan="1" colspan="1">location</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">description</td>
+            <td class="text-left" rowspan="1" colspan="1">description</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">mfg-name</td>
+            <td class="text-left" rowspan="1" colspan="1">mfg-name</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">mfg-date</td>
+            <td class="text-left" rowspan="1" colspan="1">mfg-date</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">hardware-version</td>
+            <td class="text-left" rowspan="1" colspan="1">hardware-rev</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">firmware-version</td>
+            <td class="text-left" rowspan="1" colspan="1">firmware-rev</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">software-version</td>
+            <td class="text-left" rowspan="1" colspan="1">software-rev</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">serial-no</td>
+            <td class="text-left" rowspan="1" colspan="1">serial-num</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">part-no</td>
+            <td class="text-left" rowspan="1" colspan="1">part-number</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">clei-code</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">removable</td>
+            <td class="text-left" rowspan="1" colspan="1">is-fru</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">oper-status</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">state data</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">empty</td>
+            <td class="text-left" rowspan="1" colspan="1">contained-child?</td>
+            <td class="text-left" rowspan="1" colspan="1">If there is no contained child, it is empty.</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">parent</td>
+            <td class="text-left" rowspan="1" colspan="1">parent-references</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">redundant-role</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">last-switchover-reason</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">state data</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">last-switchover-time</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">state data</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">last-reboot-reason</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">state data</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">last-reboot-time</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">state data</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">switchover-ready</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">state data</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">temperature</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">performance data</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">memory</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">performance data</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">allocated-power</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">used-power</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">pcie</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">alarm  data</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">properties</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">subcomponents</td>
+            <td class="text-left" rowspan="1" colspan="1">contained-child</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">chassis</td>
+            <td class="text-left" rowspan="1" colspan="1">chassis-specific-info</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">port</td>
+            <td class="text-left" rowspan="1" colspan="1">port-specific-info</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">power-supply</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">fan</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">Fan is considered as a specific board. And no need to define as a single component</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">fabric</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">storage</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">For Optical and IP technology, no need to manage storage on network element</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">cpu</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">For Optical and IP technology, no need to manage CPU on network element</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">integrated-circuit</td>
+            <td class="text-left" rowspan="1" colspan="1">board-specific-info</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">backplane</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">Backplane is considered as a part of board. And no need to define as a single component</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">software-module</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">controller-card</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">Controller card is considered as a specific functional board. And no need to define as a single component</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<p id="appendix-A-4">As it mentioned in <a href="#ne-component" class="auto internal xref">Section 2.3</a> that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. And for some component specific structures in "openconfig-platform", we consider some of them can be contained by our existing structure, such as fan, backplane, and controller-card, while some others do not need to be included in this network inventory model like storage and cpu.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
+<p id="appendix-A-5">Mostly, our inventory data model can cover the attributes from OpenConfig.<a href="#appendix-A-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="efficiency-issue">
+<section id="appendix-B">
+      <h2 id="name-efficiency-issue">
+<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-efficiency-issue" class="section-name selfRef">Efficiency Issue</a>
+      </h2>
+<p id="appendix-B-1">During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks.  More discussions are needed to address these concerns.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">Considering that relational databases are widely used by traditional OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in current draft, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller &amp; OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<p id="appendix-B-3">An alternative YANG model structure, which defines the inventory objects directly, instead of defining generic components, has also been analyzed. However, also with this model, there still could be some scalability limitations when synchronizing full inventory resources in large scale of networks. This scalability limitation is caused by the limited transmission capabilities of HTTP protocol. We think that this scalability limitation should be solved at protocol level rather than data model level.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
+<p id="appendix-B-4">The model proposed by this draft is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this draft. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-C">
+      <h2 id="name-acknowledgments">
+<a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
+      </h2>
+<p id="appendix-C-1">The authors of this document would like to thank the authors of <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> for having identified the gap and requirements to trigger this work.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-2">This document was prepared using kramdown.<a href="#appendix-C-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="contributors">
+<section id="appendix-D">
+      <h2 id="name-contributors">
+<a href="#name-contributors" class="section-name selfRef">Contributors</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Italo Busi</span></div>
+<div dir="auto" class="left"><span class="org">Huawei Technologies</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:italo.busi@huawei.com" class="email">italo.busi@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Aihua Guo</span></div>
+<div dir="auto" class="left"><span class="org">Futurewei Technologies</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:aihuaguo.ietf@gmail.com%E3%80%81" class="email">aihuaguo.ietf@gmail.com、</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Victor Lopez</span></div>
+<div dir="auto" class="left"><span class="org">Nokia</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:victor.lopez@nokia.com" class="email">victor.lopez@nokia.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Bo Wu</span></div>
+<div dir="auto" class="left"><span class="org">Huawei Technologies</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:lana.wubo@huawei.com" class="email">lana.wubo@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">TBD</span></div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Oscar Gonzalez de Dios</span></div>
+<div dir="auto" class="left"><span class="org">Telefonica</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:oscar.gonzalezdedios@telefonica.com" class="email">oscar.gonzalezdedios@telefonica.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Nigel Davis</span></div>
+<div dir="auto" class="left"><span class="org">Ciena</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:ndavis@ciena.com" class="email">ndavis@ciena.com</a>
+</div>
+</address>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-E">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Chaode Yu</span></div>
+<div dir="auto" class="left"><span class="org">Huawei Technologies</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:yuchaode@huawei.com" class="email">yuchaode@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Sergio Belotti</span></div>
+<div dir="auto" class="left"><span class="org">Nokia</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:sergio.belotti@nokia.com" class="email">sergio.belotti@nokia.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Jean-Francois Bouquier</span></div>
+<div dir="auto" class="left"><span class="org">Vodafone</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:jeff.bouquier@vodafone.com" class="email">jeff.bouquier@vodafone.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Fabio Peruzzini</span></div>
+<div dir="auto" class="left"><span class="org">TIM</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:fabio.peruzzini@telecomitalia.it" class="email">fabio.peruzzini@telecomitalia.it</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Phil Bedard</span></div>
+<div dir="auto" class="left"><span class="org">Cisco</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:phbedard@cisco.com" class="email">phbedard@cisco.com</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
