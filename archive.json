@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-23T00:44:30.270743+00:00",
+  "timestamp": "2024-07-25T00:44:07.581851+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1649,7 +1649,7 @@
       "labels": [],
       "body": "Prepare a presentation for the IVY WG at IETF 120",
       "createdAt": "2024-07-03T16:43:45Z",
-      "updatedAt": "2024-07-17T05:21:15Z",
+      "updatedAt": "2024-07-23T07:58:38Z",
       "closedAt": null,
       "comments": [
         {
@@ -1658,6 +1658,13 @@
           "body": "An initial raw set of slides for review during the call on July 17: [yang-data-model-for-network-inventory-00.pptx](https://github.com/user-attachments/files/16260572/yang-data-model-for-network-inventory-00.pptx)\r\n\r\n",
           "createdAt": "2024-07-17T05:20:24Z",
           "updatedAt": "2024-07-17T05:21:15Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Presentation updated, considering the feedbacks on the call on July 17: [yang-data-model-for-network-inventory-01.pptx](https://github.com/user-attachments/files/16345492/yang-data-model-for-network-inventory-01.pptx)\r\n",
+          "createdAt": "2024-07-23T07:58:37Z",
+          "updatedAt": "2024-07-23T07:58:37Z"
         }
       ]
     },
