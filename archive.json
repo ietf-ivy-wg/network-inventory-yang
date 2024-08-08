@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-06T00:44:32.189136+00:00",
+  "timestamp": "2024-08-08T00:45:04.076251+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1718,6 +1718,22 @@
       "updatedAt": "2024-07-20T00:58:19Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 59,
+      "id": "I_kwDOKiDYo86SJ-G9",
+      "title": "Conflict YANG module prefix \"ni\"",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/59",
+      "state": "OPEN",
+      "author": "lana-wu",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The YANG prefix \u201cni\u201d of the base network inventory is conflict with RFC8529 https://datatracker.ietf.org/doc/html/rfc8529#section-6.  \r\nReplace with \u201cnwi\u201d?",
+      "createdAt": "2024-08-07T02:28:07Z",
+      "updatedAt": "2024-08-07T02:28:07Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -2524,6 +2540,32 @@
       "headRepository": "boucadair/network-inventory-yang",
       "headRefName": "patch-6",
       "headRefOid": "a3baae0240967eff41386addfbe470e2c4734899",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 60,
+      "id": "PR_kwDOKiDYo853q_ko",
+      "title": "ni already used in rfc8529#section-6",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/60",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-08-07T06:55:47Z",
+      "updatedAt": "2024-08-07T06:55:47Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "d13257a88ddef39df709dd6dd803c9a9c3361302",
+      "headRepository": "boucadair/network-inventory-yang",
+      "headRefName": "patch-7",
+      "headRefOid": "97e28252e28b1f121865e1ea5b94fb797464dd93",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
