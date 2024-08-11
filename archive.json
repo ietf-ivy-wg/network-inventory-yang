@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-08-08T00:45:04.076251+00:00",
+  "timestamp": "2024-08-11T00:50:22.132596+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -2557,9 +2557,9 @@
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
-      "body": "",
+      "body": "Replace 'ni' prefix with 'nwi': fix #59 ",
       "createdAt": "2024-08-07T06:55:47Z",
-      "updatedAt": "2024-08-07T06:55:47Z",
+      "updatedAt": "2024-08-08T22:18:51Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d13257a88ddef39df709dd6dd803c9a9c3361302",
@@ -2571,7 +2571,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86E2zQO",
+          "commit": {
+            "abbreviatedOid": "97e2825"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-08-08T22:17:17Z",
+          "updatedAt": "2024-08-08T22:17:17Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
