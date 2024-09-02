@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 9 January 2025                                            Nokia
+Expires: 6 March 2025                                              Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                             8 July 2024
+                                                        2 September 2024
 
 
                 A YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 January 2025.
+   This Internet-Draft will expire on 6 March 2025.
 
 Copyright Notice
 
@@ -655,7 +655,7 @@ Table of Contents
    module ietf-network-inventory {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-network-inventory";
-     prefix ni;
+     prefix nwi;
 
      import iana-hardware {
        prefix ianahw;
@@ -745,7 +745,7 @@ Table of Contents
      }
 
      identity ne-physical {
-       base ni:ne-type;
+       base nwi:ne-type;
        description
          "A physical network element (NE). ";
      }
@@ -1224,9 +1224,9 @@ Table of Contents
               Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
               Network Data Model of Network Inventory Software
               Extensions", Work in Progress, Internet-Draft, draft-wzwb-
-              ivy-network-inventory-software-01, 30 April 2024,
+              ivy-network-inventory-software-02, 6 August 2024,
               <https://datatracker.ietf.org/doc/html/draft-wzwb-ivy-
-              network-inventory-software-01>.
+              network-inventory-software-02>.
 
    [RFC8345]  Clemm, A., Medved, J., Varga, R., Bahadur, N.,
               Ananthakrishnan, H., and X. Liu, "A YANG Data Model for
