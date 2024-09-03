@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-01T00:56:41.146617+00:00",
+  "timestamp": "2024-09-03T00:47:08.227025+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -658,7 +658,7 @@
       ],
       "body": "This is the slide we discussed in last week\r\n[Meeting Material_02.08.pptx](https://github.com/ietf-ccamp-wg/ietf-network-inventory/files/10733238/Meeting.Material_02.08.pptx)\r\n",
       "createdAt": "2023-02-14T14:17:39Z",
-      "updatedAt": "2024-02-05T10:44:56Z",
+      "updatedAt": "2024-09-02T13:58:42Z",
       "closedAt": null,
       "comments": [
         {
@@ -688,6 +688,13 @@
           "body": "**[2024-01-31 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/blob/main/minutes/minutes-2024-01-31.md)**\r\n\r\nA 'physical thing' can be seen as something that can be measured with a ruler and potentially weighed with scales\r\n\r\nA NE is not a physical thing: inventory can consider also useful 'grouping/structure of physical things' like network elements (sometimes called device)\r\n\r\nNote: in case of geographically distributed components, with the current model it is possible to group these distributed components as multiple NEs or as a single NE.\r\n\r\nNote: it is important to also consider how the information about the physical things is accessed (this is often an aspect of NE)\r\n\r\nThe 'functional behavior' is outside the scope of the inventory work: the topology, interface and other YANG models are covering the functional behavior. Some navigation capability is needed and the definition of the navigation can be in the scope.\r\n\r\nNeed to clarify that the term inventory in our context is not an unconstrained 'list of anything' but be more precise about the scope of what we are listing. In our context for this initial work, inventory is a representation of the structure of physical things (i.e., not just a list and not all things).\r\n\r\nThere are informational things. Software is an 'informational thing' and it is in the scope of the work (although perhaps not in the first stage). Note that software is not {{Italo: I added not here as I think that that is what you meant to type and it is certainly what I was trying to say}} intended to be the running software which instead is representing the emergent 'functional behavior'.\r\n\r\n- [ ] @nigel-r-davis  prepare some diagrams to show the entities in the scope of our work\r\n\r\nA traditional NE is an assembly of physical things, informational things, the functionality emergent when powered along with the method of access. A virtual NE does not directly have physical components. There are also hybrid NEs with some virtual components and some physical components.\r\n\r\nIt has been suggested also to look at the definitions in draft-palmero-ivy-ps-almo (in particular the asset definition) to see if there are also some concepts that can be used to defined what is in the scope for IVY \r\n\r\n- [ ] Marisol: suggest some improvements to the definitions based on TMF\r\n",
           "createdAt": "2024-01-31T18:06:15Z",
           "updatedAt": "2024-02-05T10:44:56Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Some proposal sent to the mailing list:\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/inventory-yang/IvgK1ca7Sq8TTOfBv9-JbcqzcI0/",
+          "createdAt": "2024-09-02T13:58:40Z",
+          "updatedAt": "2024-09-02T13:58:40Z"
         }
       ]
     },
@@ -1640,7 +1647,7 @@
       "id": "I_kwDOKiDYo86OZhLZ",
       "title": "Presentation at IETF 120",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/50",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -1649,8 +1656,8 @@
       "labels": [],
       "body": "Prepare a presentation for the IVY WG at IETF 120",
       "createdAt": "2024-07-03T16:43:45Z",
-      "updatedAt": "2024-07-23T07:58:38Z",
-      "closedAt": null,
+      "updatedAt": "2024-09-02T12:48:48Z",
+      "closedAt": "2024-09-02T12:48:48Z",
       "comments": [
         {
           "author": "italobusi",
@@ -1724,15 +1731,15 @@
       "id": "I_kwDOKiDYo86SJ-G9",
       "title": "Conflict YANG module prefix \"ni\"",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/59",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "lana-wu",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "The YANG prefix \u201cni\u201d of the base network inventory is conflict with RFC8529 https://datatracker.ietf.org/doc/html/rfc8529#section-6.  \r\nReplace with \u201cnwi\u201d?",
       "createdAt": "2024-08-07T02:28:07Z",
-      "updatedAt": "2024-08-07T02:28:07Z",
-      "closedAt": null,
+      "updatedAt": "2024-09-02T12:55:59Z",
+      "closedAt": "2024-09-02T12:55:59Z",
       "comments": []
     }
   ],
@@ -2552,24 +2559,26 @@
       "id": "PR_kwDOKiDYo853q_ko",
       "title": "ni already used in rfc8529#section-6",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/60",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Replace 'ni' prefix with 'nwi': fix #59 ",
       "createdAt": "2024-08-07T06:55:47Z",
-      "updatedAt": "2024-08-08T22:18:51Z",
+      "updatedAt": "2024-09-02T12:55:58Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d13257a88ddef39df709dd6dd803c9a9c3361302",
       "headRepository": "boucadair/network-inventory-yang",
       "headRefName": "patch-7",
       "headRefOid": "97e28252e28b1f121865e1ea5b94fb797464dd93",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-09-02T12:55:58Z",
+      "mergedAt": "2024-09-02T12:55:58Z",
+      "mergedBy": "YuChaode",
+      "mergeCommit": {
+        "oid": "32e018a9893543b7d92b9fa57add1215b2eb5181"
+      },
       "comments": [],
       "reviews": [
         {
