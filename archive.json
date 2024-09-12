@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-10T00:49:01.216896+00:00",
+  "timestamp": "2024-09-12T00:48:43.006954+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -72,6 +72,16 @@
       "name": "change-request",
       "description": "",
       "color": "5319E7"
+    },
+    {
+      "name": "wait",
+      "description": "",
+      "color": "FBCA04"
+    },
+    {
+      "name": "admin",
+      "description": "",
+      "color": "1D76DB"
     }
   ],
   "issues": [
@@ -658,7 +668,7 @@
       ],
       "body": "This is the slide we discussed in last week\r\n[Meeting Material_02.08.pptx](https://github.com/ietf-ccamp-wg/ietf-network-inventory/files/10733238/Meeting.Material_02.08.pptx)\r\n",
       "createdAt": "2023-02-14T14:17:39Z",
-      "updatedAt": "2024-09-02T13:58:42Z",
+      "updatedAt": "2024-09-11T19:09:31Z",
       "closedAt": null,
       "comments": [
         {
@@ -695,6 +705,13 @@
           "body": "Some proposal sent to the mailing list:\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/inventory-yang/IvgK1ca7Sq8TTOfBv9-JbcqzcI0/",
           "createdAt": "2024-09-02T13:58:40Z",
           "updatedAt": "2024-09-02T13:58:40Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-09-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-11)**\r\n\r\nItalo has sent some thoughts to the IVY WG mailing list before the IVY WG session at IETF 120:\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/inventory-yang/IvgK1ca7Sq8TTOfBv9-JbcqzcI0/\r\n\r\n- [ ] @All: follow-up the discussion on the mailing list",
+          "createdAt": "2024-09-11T19:09:30Z",
+          "updatedAt": "2024-09-11T19:09:30Z"
         }
       ]
     },
@@ -1262,11 +1279,16 @@
       "state": "OPEN",
       "author": "nigel-r-davis",
       "authorAssociation": "NONE",
-      "assignees": [],
-      "labels": [],
+      "assignees": [
+        "prmanna"
+      ],
+      "labels": [
+        "documentation",
+        "needs discussion"
+      ],
       "body": "It is clear that we do not have a tight enough definition of the boundary on the Ivy work. We need to understand what is in scope and what not. It is not practical to list all things in scope, so instead we need rules against which we can evaluate whether something is in scope or out of scope.\r\n\r\nClearly, there are some things we would all agree are in scope and other things we would agree are out of scope. Identifying the inherent properties of those things will help. \r\n\r\nBut there are things that we do not agree about and even if we had a complete definition, there are things on the boundary or that straddle the boundary.\r\n\r\nI emailed the list with some thoughts on how to organize things on a  \"map\" to help us define the boundary.\r\n\r\nI have attempted to sketch a map of things (over simplified in many places) that includes some questions and some sketch definitions. I would be happy to discuss this on our next call.\r\n[IvyBoundary.pptx](https://github.com/ietf-ivy-wg/network-inventory-yang/files/14139708/IvyBoundary.pptx)\r\n",
       "createdAt": "2024-02-02T12:03:16Z",
-      "updatedAt": "2024-02-21T15:44:59Z",
+      "updatedAt": "2024-09-11T19:32:36Z",
       "closedAt": null,
       "comments": [
         {
@@ -1282,6 +1304,13 @@
           "body": "I think the next action is:\r\n- to provide examples of things inside the boundary\r\n- to list the characteristics that identify why the example is in scope\r\n- to provide examples of things outside the boundary\r\n- to list the characteristics that identify why the example is out of scope\r\n- to provide examples of things on the boundary and use the characteristics to explain why the thing is inside or outside the boundary",
           "createdAt": "2024-02-21T15:44:58Z",
           "updatedAt": "2024-02-21T15:44:58Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-09-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-11)**\r\n\r\n- [ ] @prmanna : review this issue as an input for discussion in the next weekly call",
+          "createdAt": "2024-09-11T19:07:11Z",
+          "updatedAt": "2024-09-11T19:32:21Z"
         }
       ]
     },
@@ -1474,7 +1503,7 @@
       "labels": [],
       "body": "This issue was raised when we were considering how to introduce transceiver into the base model.\r\nWe found the understandings of port  were not aligned, so we collected four scenarios of port & transceiver installation and run this discussion with several proposals.\r\nThe slide we discussed on the weekly call of 8th May, 2024 is attached below:\r\n[Discussion of Port Modeling-20240508.pptx](https://github.com/ietf-ivy-wg/network-inventory-yang/files/15258754/Discussion.of.Port.Modeling-20240508.pptx)  ",
       "createdAt": "2024-05-09T06:57:12Z",
-      "updatedAt": "2024-07-03T17:39:17Z",
+      "updatedAt": "2024-09-11T19:01:15Z",
       "closedAt": null,
       "comments": [
         {
@@ -1595,6 +1624,13 @@
           "body": "**[2024-06-26 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-06-26)**\r\n\r\nPhil presented some slides about the OpenConfig modelling: [openconfig-breakout-groups.pptx](https://github.com/user-attachments/files/15991133/openconfig-breakout-groups.pptx)\r\n\r\nA port in OpenConfig is not field replaceable: it is either an 'SFP hole' or integrated connector (in case of non-pluggable ports)\r\n\r\n```\r\nport (SFP hole)\r\n  transceiver\r\n```\r\n\r\nPort is a parent component of the transceiver inserted into that port \r\n\r\nOpenConfig does not model the host channels but only the media channels on the line (as physical channels under the transceiver component if applicable)\r\n\r\nNo breakout configuration means the host \"interface\" maps to all host to transceiver and transceiver to media channels. \r\n\r\nThe OC \"interface\" is referencing the port, the transceiver and the list of media channels\r\n\r\nIn case of a breakout, each interface will reference the same port and the same transceiver, but different physical media channels\r\n\r\nIn the case where the transceiver is on the cable (the cable cannot be unplugged from the SFP), like the QSFP-4x10G-AOC10M, it is modelled as:\r\n\r\n```\r\nport (SFP hole)\r\n  transceiver\r\n  4x children ports\r\n```\r\n",
           "createdAt": "2024-06-26T15:08:19Z",
           "updatedAt": "2024-07-03T17:39:17Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-09-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-11)**\r\n\r\nThe IVY WG chairs have sent an email, right after the discussion at IETF 120, to ask WG what is the opinion regarding the 3 options:\r\n\r\n1. RFC8348\r\n2. OpenConfig\r\n3. TAPI\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/AbrkYA2PZ4f4CQIxsl4AbIdUlFU/\r\n\r\n- [ ] @All: reply email sent by Daniele after IETF 120",
+          "createdAt": "2024-09-11T19:01:14Z",
+          "updatedAt": "2024-09-11T19:01:14Z"
         }
       ]
     },
@@ -1610,9 +1646,17 @@
       "labels": [],
       "body": "Use Case: \r\n\r\n- Passive Hardware should be handled by network inventory? what is the procedure to create a component when the Class and some other attributes are Config False. \r\n\r\n\r\n```\r\n[...]\r\n+--rw components\r\n              +--rw component* [component-id]\r\n                 +--rw component-id              string\r\n                 +--ro class                     union\r\n                 +--ro uuid?                     yang:uuid\r\n                 +--rw name?                     string\r\n                 +--rw description?              string\r\n[...]\r\n```\r\n",
       "createdAt": "2024-05-17T08:29:42Z",
-      "updatedAt": "2024-05-17T08:29:42Z",
+      "updatedAt": "2024-09-11T19:03:53Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-09-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-11)**\r\n\r\nAihua asked if what is foreseen is to use IVY model to expose passive component (that are stored in the domain controller in such way) or it is foreseen that IVY model would be able to provision passive component (read/write discussion).\r\n\r\nAgreed that this issue is definitely in IVY scope but priority 3\r\n",
+          "createdAt": "2024-09-11T19:03:52Z",
+          "updatedAt": "2024-09-11T19:03:52Z"
+        }
+      ]
     },
     {
       "number": 47,
@@ -1715,16 +1759,25 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "italobusi"
+      ],
       "labels": [
-        "bug",
-        "needs discussion"
+        "bug"
       ],
       "body": "The following warning have been detected when compiling the YANG model with yanglint:\r\n\r\n```\r\nlibyang warn: Invalid value \"ianahw:port\" which does not fit the type (Invalid union value \"ianahw:port\" - no matching subtype found.).\r\nlibyang warn: Previous warning generated by XPath subexpression[3] \"class = 'ianahw:port'\" with context node \"/ietf-network-inventory:network-inventory/network-elements/network-element/components/component/port-specific-info\".\r\nlibyang warn: Invalid value \"ianahw:module\" which does not fit the type (Invalid union value \"ianahw:module\" - no matching subtype found.).\r\nlibyang warn: Previous warning generated by XPath subexpression[3] \"class = 'ianahw:module'\" with context node \"/ietf-network-inventory:network-inventory/network-elements/network-element/components/component/board-specific-info\".\r\nlibyang warn: Invalid value \"ianahw:container\" which does not fit the type (Invalid union value \"ianahw:container\" - no matching subtype found.).\r\nlibyang warn: Previous warning generated by XPath subexpression[3] \"class = 'ianahw:container'\" with context node \"/ietf-network-inventory:network-inventory/network-elements/network-element/components/component/slot-specific-info\".\r\nlibyang warn: Invalid value \"ianahw:chassis\" which does not fit the type (Invalid union value \"ianahw:chassis\" - no matching subtype found.).\r\nlibyang warn: Previous warning generated by XPath subexpression[3] \"class = 'ianahw:chassis'\" with context node \"/ietf-network-inventory:network-inventory/network-elements/network-element/components/component/chassis-specific-info\".\r\nlibyang warn: Invalid value \"ianahw:port\" which does not fit the type (Invalid union value \"ianahw:port\" - no matching subtype found.).\r\nlibyang warn: Previous warning generated by XPath subexpression[3] \"class = 'ianahw:port'\" with context node \"/ietf-network-inventory:network-inventory/network-elements/network-element/components/component/port-specific-info\".\r\nlibyang warn: Invalid value \"ianahw:module\" which does not fit the type (Invalid union value \"ianahw:module\" - no matching subtype found.).\r\nlibyang warn: Previous warning generated by XPath subexpression[3] \"class = 'ianahw:module'\" with context node \"/ietf-network-inventory:network-inventory/network-elements/network-element/components/component/board-specific-info\".\r\nlibyang warn: Invalid value \"ianahw:container\" which does not fit the type (Invalid union value \"ianahw:container\" - no matching subtype found.).\r\nlibyang warn: Previous warning generated by XPath subexpression[3] \"class = 'ianahw:container'\" with context node \"/ietf-network-inventory:network-inventory/network-elements/network-element/components/component/slot-specific-info\".\r\nlibyang warn: Invalid value \"ianahw:chassis\" which does not fit the type (Invalid union value \"ianahw:chassis\" - no matching subtype found.).\r\nlibyang warn: Previous warning generated by XPath subexpression[3] \"class = 'ianahw:chassis'\" with context node \"/ietf-network-inventory:network-inventory/network-elements/network-element/components/component/chassis-specific-info\".\r\n```",
       "createdAt": "2024-07-20T00:58:10Z",
-      "updatedAt": "2024-07-20T00:58:19Z",
+      "updatedAt": "2024-09-11T19:05:45Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-09-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-11)**\r\n\r\n- [ ] @italobusi : check with Netmod WG",
+          "createdAt": "2024-09-11T19:05:18Z",
+          "updatedAt": "2024-09-11T19:05:18Z"
+        }
+      ]
     },
     {
       "number": 59,
@@ -1741,6 +1794,61 @@
       "updatedAt": "2024-09-02T12:55:59Z",
       "closedAt": "2024-09-02T12:55:59Z",
       "comments": []
+    },
+    {
+      "number": 61,
+      "id": "I_kwDOKiDYo86WPRXr",
+      "title": "Hackathon at IETF 121",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/61",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "needs discussion",
+        "admin"
+      ],
+      "body": "An Hackathon to check the three options on the table for port/breakout modelling has been proposed at IETF 120\r\n",
+      "createdAt": "2024-09-11T19:22:28Z",
+      "updatedAt": "2024-09-11T19:30:33Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-09-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-11)**\r\n\r\nAn Hackathon to check the three options on the table for port/breakout modelling has been proposed at IETF 120\r\n\r\nTo be discussed during the call next week\r\n\r\n- [ ] @all: evaluate this opportunity\r\n",
+          "createdAt": "2024-09-11T19:22:49Z",
+          "updatedAt": "2024-09-11T19:23:22Z"
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "id": "I_kwDOKiDYo86WPSu9",
+      "title": "Open Issue prioritization",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/62",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [
+        "admin"
+      ],
+      "body": "From the IVY WG discussion at IETF 120, there was some push to move the work a bit faster, considering some use cases in a future update:\r\n\r\nhttps://datatracker.ietf.org/doc/minutes-120-ivy-202407241630/\r\n\r\nIn order to try to move forward a bit faster, it has been proposed to review and prioritize the current list of open issues:\r\n* P1: must be addressed before WG LC of the base model\r\n* P2: preferred to be addressed before WG LC of the base model but can be postponed in case of timing issues\r\n* P3: can be addressed in the context of an augmentation model (which can be developed in parallel) or RFC-bis of the base model\r\n",
+      "createdAt": "2024-09-11T19:24:36Z",
+      "updatedAt": "2024-09-11T19:30:04Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-09-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-11)**\r\n\r\nFrom the IVY WG discussion at IETF 120, there was some push to move the work a bit faster, considering some use cases in a future update:\r\n\r\nhttps://datatracker.ietf.org/doc/minutes-120-ivy-202407241630/\r\n\r\nIn order to try to move forward a bit faster, it has been proposed to review and prioritize the current list of open issues:\r\n* P1: must be addressed before WG LC of the base model\r\n* P2: preferred to be addressed before WG LC of the base model but can be postponed in case of timing issues\r\n* P3: can be addressed in the context of an augmentation model (which can be developed in parallel) or RFC-bis of the base model\r\n\r\nThe table below reports the result of the analysis done during the call:\r\n\r\n| Number | Title | Priority | Comment |\r\n|---|---|---|---|\r\n| #32 | Modelling of fibers and cables | P3 | Current assumption is that this should be outside the scope of the base model\r\n| #35 | Unclear boundary for Ivy work | P1 | To clarify which part of the issue applies to the I-D and which part applies to the IVY WG charter\r\n| #36 | | P2 | These attributes can be removed from the first RFC and added in a -bis version of the RFC (BC change)\r\n| #37 | | P1 | YANG code should be clean before WG LC |\r\n| #40 | Hardware and Firmare revisions for NE | P2 | These attributes can be removed from the first RFC and added in a -bis version of the RFC (BC change)\r\n| #41 | SW upgrades | N/A | To be moved to the SW inventory model after it becomes a WG document\r\n| #42 | Missing component location attribute | P2 | This attribute can be added in a -bis version of the RFC (BC change)\r\n| #44 | Does it make sense to have an operating system name (or software name) at device level? | P2 | These attributes can be removed from the first RFC and added in a -bis version of the RFC (BC change)\r\n| #45 | Modeling of Port and Transceiver | P1\r\n| #46 | How to add Passive Inventory? | P3 | Definitely in the scope of IVY, not clear whether in the scope of the base inventory or augmentation model\r\n| #56 | virtual NE vs. LNE (RFC8530) | P1 | At least keep the terminology open to future extensions, the best option would be to decouple this definition from the base model\r\n| #57 | Align with rfc8348 | P1\r\n| #58 | Warning with yanglint compilation | P1\r\n\r\n- [ ] @italobusi : propose priorities for the other open issues as an input for discussion in the next weekly call",
+          "createdAt": "2024-09-11T19:25:37Z",
+          "updatedAt": "2024-09-11T19:25:37Z"
+        }
+      ]
     }
   ],
   "pulls": [
