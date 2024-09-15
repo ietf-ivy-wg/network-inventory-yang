@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-12T00:48:43.006954+00:00",
+  "timestamp": "2024-09-15T00:54:57.662865+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1503,7 +1503,7 @@
       "labels": [],
       "body": "This issue was raised when we were considering how to introduce transceiver into the base model.\r\nWe found the understandings of port  were not aligned, so we collected four scenarios of port & transceiver installation and run this discussion with several proposals.\r\nThe slide we discussed on the weekly call of 8th May, 2024 is attached below:\r\n[Discussion of Port Modeling-20240508.pptx](https://github.com/ietf-ivy-wg/network-inventory-yang/files/15258754/Discussion.of.Port.Modeling-20240508.pptx)  ",
       "createdAt": "2024-05-09T06:57:12Z",
-      "updatedAt": "2024-09-11T19:01:15Z",
+      "updatedAt": "2024-09-12T03:24:33Z",
       "closedAt": null,
       "comments": [
         {
@@ -1631,6 +1631,13 @@
           "body": "**[2024-09-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-11)**\r\n\r\nThe IVY WG chairs have sent an email, right after the discussion at IETF 120, to ask WG what is the opinion regarding the 3 options:\r\n\r\n1. RFC8348\r\n2. OpenConfig\r\n3. TAPI\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/AbrkYA2PZ4f4CQIxsl4AbIdUlFU/\r\n\r\n- [ ] @All: reply email sent by Daniele after IETF 120",
           "createdAt": "2024-09-11T19:01:14Z",
           "updatedAt": "2024-09-11T19:01:14Z"
+        },
+        {
+          "author": "philbedard",
+          "authorAssociation": "NONE",
+          "body": "I\u2019m somewhat in favor of option #2 for modeling the port and pluggable, but would not adopt a 1:1 mapping of the OC terminology since it has some ambiguity.\r\n\r\nThanks,\r\nPhil\r\n\r\nFrom: italobusi ***@***.***>\r\nDate: Wednesday, September 11, 2024 at 14:01\r\nTo: ietf-ivy-wg/network-inventory-yang ***@***.***>\r\nCc: Phil Bedard ***@***.***>, Comment ***@***.***>\r\nSubject: Re: [ietf-ivy-wg/network-inventory-yang] Modeling of Port and Transceiver (Issue #45)\r\n\r\n2024-09-11 Base Network Inventory weekly call<https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-11>\r\n\r\nThe IVY WG chairs have sent an email, right after the discussion at IETF 120, to ask WG what is the opinion regarding the 3 options:\r\n\r\n  1.  RFC8348\r\n  2.  OpenConfig\r\n  3.  TAPI\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/AbrkYA2PZ4f4CQIxsl4AbIdUlFU/\r\n\r\n  *   @ALL<https://github.com/ALL>: reply email sent by Daniele after IETF 120\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub<https://github.com/ietf-ivy-wg/network-inventory-yang/issues/45#issuecomment-2344452847>, or unsubscribe<https://github.com/notifications/unsubscribe-auth/ACR35ZJVOAK5X4YL2GX3HNDZWCHRBAVCNFSM6AAAAABHOI7YIKVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMZDGNBUGQ2TEOBUG4>.\r\nYou are receiving this because you commented.Message ID: ***@***.***>\r\n",
+          "createdAt": "2024-09-12T03:24:32Z",
+          "updatedAt": "2024-09-12T03:24:32Z"
         }
       ]
     },
