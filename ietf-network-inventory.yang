@@ -70,7 +70,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2024-04-09 {
+  revision 2024-09-16 {
     description
       "Initial version";
     reference
@@ -190,7 +190,7 @@ module ietf-network-inventory {
       "Provide component-specific attributes for different
        components.";
     container chassis-specific-info {
-      when "../class = 'ianahw:chassis'";
+      when 'derived-from-or-self(../class, "ianahw:chassis")';
       config false;
       description
         "This container contains some attributes belong to
@@ -198,7 +198,7 @@ module ietf-network-inventory {
       uses chassis-specific-info-grouping;
     }
     container slot-specific-info {
-      when "../class = 'ianahw:container'";
+      when 'derived-from-or-self(../class, "ianahw:container")';
       config false;
       description
         "This container contains some attributes belong to
@@ -206,7 +206,7 @@ module ietf-network-inventory {
       uses slot-specific-info-grouping;
     }
     container board-specific-info {
-      when "../class = 'ianahw:module'";
+      when 'derived-from-or-self(../class, "ianahw:module")';
       config false;
       description
         "This container contains some attributes belong to
@@ -214,7 +214,7 @@ module ietf-network-inventory {
       uses board-specific-info-grouping;
     }
     container port-specific-info {
-      when "../class = 'ianahw:port'";
+      when 'derived-from-or-self(../class, "ianahw:port")';
       config false;
       description
         "This container contains some attributes belong to
