@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-19T00:50:07.651881+00:00",
+  "timestamp": "2024-09-22T00:55:08.276141+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -483,14 +483,15 @@
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
-        "sergiobelotti"
+        "YuChaode"
       ],
       "labels": [
-        "documentation"
+        "documentation",
+        "agreed"
       ],
       "body": "The comment is not related specifically to this sentence, but it is related in general to \"container\". I've noticed this term is never defined in the document. Shouldn't we add that?\r\n\r\n_Originally posted by @sergiobelotti in https://github.com/ietf-ccamp-wg/ietf-network-inventory/pull/51#discussion_r1001641252_\r\n\r\ncould we change this sentence to \"Openconfig-platform data model is NE-level and uses a generic component concept to describe its inner equipment and holders, which is similar to ietf-hardware model...\"? In the terminology of component at the beginning, component is also refer to equipment and holders.\r\n\r\n_Originally posted by @YuChaode in https://github.com/ietf-ccamp-wg/ietf-network-inventory/pull/51#discussion_r1003263854_\r\n      ",
       "createdAt": "2022-10-24T12:59:13Z",
-      "updatedAt": "2024-01-24T17:03:13Z",
+      "updatedAt": "2024-09-20T08:38:54Z",
       "closedAt": null,
       "comments": [
         {
@@ -1938,9 +1939,9 @@
       "labels": [
         "agreed"
       ],
-      "body": "Network elements could be grouped into a single \"virtual\" element that manages all resources of the  encompassing different hardware chassis. \r\n\r\nIn simple words, two chassis, like two or more switches, can be connected and behave as a single one. \r\n\r\nThis is tackled in rfc8348 with the stack component.  It would be nice to have guidelines on how this should be modeled in this new model.\r\n\r\nFor reference, in one specific implementation of openconfig in this type of system, all interfaces of the child chassis are listed as orphans under /components. There is no reference  of the child chassis, or its line cards. For an inventory solution, we do need the actual hardware list.",
+      "body": "Network elements could be grouped into a single \"virtual\" element that manages all resources of the  encompassing different hardware chassis. \r\n\r\nIn simple words, two chassis, like two or more switches, can be connected and behave as a single one. \r\n\r\nThis is tackled in rfc8348 with the stack component.  It would be nice to have guidelines on how this should be modeled in this new model.\r\n\r\nFor reference, in one specific implementation of openconfig in this type of system, all interfaces of the child chassis are listed as orphans under /components. There is no reference  of the child chassis, or its line cards. For an inventory solution, we do need the actual hardware list.\r\n\r\nSee also https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/6",
       "createdAt": "2024-09-16T14:27:01Z",
-      "updatedAt": "2024-09-18T20:08:50Z",
+      "updatedAt": "2024-09-19T10:24:07Z",
       "closedAt": null,
       "comments": [
         {
@@ -1956,6 +1957,13 @@
           "body": "**[2024-09-18 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-18)**\r\n\r\nThe model is quite flexible to support at least three options to model multi-chassis NEs:\r\n\r\n```\r\nne\r\n  chassis (1)\r\n  chassis (2)\r\n  chassis (3)\r\n```\r\n\r\n```\r\nne\r\n  chassis (1)\r\n    chassis (1)\r\n    chassis (2)\r\n```\r\n\r\n```\r\nne\r\n  stack (1)\r\n    chassis (1)\r\n    chassis (2)\r\n    chassis (3)\r\n```\r\n\r\nThe second option is not straightforward (chassis contained within chassis) but can be used to model Optical NE configuration with a main shelve and multiple subtended sub-shelves, in line with ONF TR-547 requirements.\r\n\r\nThe three options allow expressing different hierarchical relationships between the different chassis and it seems worthwhile keeping this freedom as an vendor specific option.\r\n\r\nHowever, it is useful to provide some clarification (explicitly stating that the second option is also possible) within the I-D.\r\n\r\n- [ ] @italobusi check the current text and propose text changes to clarify how NEs with multiple chassis can be modelled\r\n",
           "createdAt": "2024-09-18T20:07:07Z",
           "updatedAt": "2024-09-18T20:08:50Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I do not know why issue https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/6 has not been transferred to this repository but I have closed it as superseded by this issue and added a reference to the previous issue and discussion in the description of this issue:\r\n\r\n> See also [ietf-ccamp-wg/ietf-network-inventory#6](https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/6)",
+          "createdAt": "2024-09-19T10:24:05Z",
+          "updatedAt": "2024-09-19T10:24:05Z"
         }
       ]
     }
@@ -2757,7 +2765,7 @@
       "labels": [],
       "body": "see the general note at https://github.com/ietf-ivy-wg/network-inventory-yang/pull/54",
       "createdAt": "2024-07-11T08:45:42Z",
-      "updatedAt": "2024-09-18T19:57:34Z",
+      "updatedAt": "2024-09-20T09:32:18Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d13257a88ddef39df709dd6dd803c9a9c3361302",
@@ -2769,7 +2777,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86KJh8B",
+          "commit": {
+            "abbreviatedOid": "a3baae0"
+          },
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-09-20T09:32:18Z",
+          "updatedAt": "2024-09-20T09:32:18Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 60,
