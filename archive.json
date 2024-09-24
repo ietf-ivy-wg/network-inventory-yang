@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-22T00:55:08.276141+00:00",
+  "timestamp": "2024-09-24T00:51:41.509788+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -2661,7 +2661,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-09T14:54:59Z",
-      "updatedAt": "2024-09-18T19:54:56Z",
+      "updatedAt": "2024-09-23T15:11:45Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d13257a88ddef39df709dd6dd803c9a9c3361302",
@@ -2673,7 +2673,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86KcBAE",
+          "commit": {
+            "abbreviatedOid": "e810348"
+          },
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-09-23T15:11:45Z",
+          "updatedAt": "2024-09-23T15:11:45Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 52,
@@ -2687,7 +2701,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-07-09T15:24:48Z",
-      "updatedAt": "2024-09-18T19:55:20Z",
+      "updatedAt": "2024-09-23T15:13:14Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d13257a88ddef39df709dd6dd803c9a9c3361302",
@@ -2699,7 +2713,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86KcCJR",
+          "commit": {
+            "abbreviatedOid": "061f1aa"
+          },
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-09-23T15:13:14Z",
+          "updatedAt": "2024-09-23T15:13:14Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 53,
@@ -2713,7 +2741,7 @@
       "labels": [],
       "body": "simplify, avoid redundant statements, better readability flow, soften actn context, etc.",
       "createdAt": "2024-07-09T15:58:44Z",
-      "updatedAt": "2024-09-18T19:56:42Z",
+      "updatedAt": "2024-09-23T15:45:58Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d13257a88ddef39df709dd6dd803c9a9c3361302",
@@ -2725,7 +2753,28 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86KcNN5",
+          "commit": {
+            "abbreviatedOid": "619065b"
+          },
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-23T15:29:50Z",
+          "updatedAt": "2024-09-23T15:45:58Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "spelling mistake - standpont -> standpoint",
+              "createdAt": "2024-09-23T15:29:50Z",
+              "updatedAt": "2024-09-23T15:45:58Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 54,
@@ -2739,7 +2788,7 @@
       "labels": [],
       "body": "Some of the terms should be positioned vs. terms such as https://datatracker.ietf.org/doc/html/rfc8530#section-2.",
       "createdAt": "2024-07-11T08:44:00Z",
-      "updatedAt": "2024-09-18T19:57:09Z",
+      "updatedAt": "2024-09-23T16:00:38Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d13257a88ddef39df709dd6dd803c9a9c3361302",
@@ -2751,7 +2800,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86Kcf1h",
+          "commit": {
+            "abbreviatedOid": "e2b9418"
+          },
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-09-23T16:00:38Z",
+          "updatedAt": "2024-09-23T16:00:38Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 55,
