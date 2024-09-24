@@ -117,7 +117,7 @@ part for ensuring that the network remains healthy (e.g., auditing to identify f
 management allows operators to keep track of which devices are deployed in their networks, including relevant embedded software and
 hardware versions.
 
-Exposing standards interfaces to retrieve and query network elements capabilities as recorded in an inventory are key enablers for many applications that consumes network inventory data. From that standpont and given the emergence of standard data models and their deployment by operators, the conventional function of inventory management is also required to be defined as a data model.
+Exposing standards interfaces to retrieve and query network elements capabilities as recorded in an inventory are key enablers for many applications that consumes network inventory data. From that standpoint and given the emergence of standard data models and their deployment by operators, the conventional function of inventory management is also required to be defined as a data model.
 
 For example, {{?I-D.ietf-teas-actn-poi-applicability}} identifies a gap about the lack of a YANG data model that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware
 inventory information available at domain controller level towards
