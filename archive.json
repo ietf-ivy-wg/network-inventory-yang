@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-24T00:51:41.509788+00:00",
+  "timestamp": "2024-09-26T00:51:07.157384+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1310,7 +1310,7 @@
       ],
       "body": "It is clear that we do not have a tight enough definition of the boundary on the Ivy work. We need to understand what is in scope and what not. It is not practical to list all things in scope, so instead we need rules against which we can evaluate whether something is in scope or out of scope.\r\n\r\nClearly, there are some things we would all agree are in scope and other things we would agree are out of scope. Identifying the inherent properties of those things will help. \r\n\r\nBut there are things that we do not agree about and even if we had a complete definition, there are things on the boundary or that straddle the boundary.\r\n\r\nI emailed the list with some thoughts on how to organize things on a  \"map\" to help us define the boundary.\r\n\r\nI have attempted to sketch a map of things (over simplified in many places) that includes some questions and some sketch definitions. I would be happy to discuss this on our next call.\r\n[IvyBoundary.pptx](https://github.com/ietf-ivy-wg/network-inventory-yang/files/14139708/IvyBoundary.pptx)\r\n",
       "createdAt": "2024-02-02T12:03:16Z",
-      "updatedAt": "2024-09-18T14:08:48Z",
+      "updatedAt": "2024-09-25T15:36:48Z",
       "closedAt": null,
       "comments": [
         {
@@ -1337,9 +1337,16 @@
         {
           "author": "prmanna",
           "authorAssociation": "NONE",
-          "body": "Base Inventory should include\r\n1. RFC834: chassis, backplane, container (slot, ...), power supply, fan, sensor, module (board, ...), cpu, battery, storage device etc\r\n     a. virtual NE -- Needs to deep dive little more to understand if any field required in base inventory draft.\r\n     b. Logical Separation - it should be automatically covered Base Inventory. This separation does not create any new entity, instead it needs some association management. \r\n     c. SAP attachment - \r\n2. Topology - Separate draft\r\n3. Software - Separate draft\r\n4. Location - Separate draft\r\n5. Entitlement/License - Separate draft\r\n6. Power - Separate draft\r\n\r\nNot in IVY Scope (but has relation) \r\n\t1. Access Control - This is operation. Can be separate draft. It will have a relation with policy, user-management. also with Virtual NE management.\r\n\t2. Logical/Virtual Operation Control on IVY - Need more deep dive.\r\n\t",
+          "body": "Base Inventory should include\r\n1. RFC8348: chassis, backplane, container (slot, ...), power supply, fan, sensor, module (board, ...), cpu, battery, storage device etc\r\n     a. virtual NE -- Needs to deep dive little more to understand if any field required in base inventory draft.\r\n     b. Logical Separation - it should be automatically covered Base Inventory. This separation does not create any new entity, instead it needs some association management. \r\n     c. SAP attachment - \r\n2. Topology - Separate draft\r\n3. Software - Separate draft\r\n4. Location - Separate draft\r\n5. Entitlement/License - Separate draft\r\n6. Power - Separate draft (ie. used power, etc). It has a relation with GREEN.\r\n\r\nNot in IVY Scope (but has relation) \r\n\t1. Access Control - This is operation. Can be separate draft. It will have a relation with policy, user-management. also with Virtual NE management.\r\n\t2. Logical/Virtual Operation Control on IVY - Need more deep dive.\r\n\t",
           "createdAt": "2024-09-18T13:56:09Z",
-          "updatedAt": "2024-09-18T14:08:48Z"
+          "updatedAt": "2024-09-25T14:26:00Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-09-25 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-25)**\r\n\r\n> Base Inventory should include\r\n> \r\n> 1. RFC8348: chassis, backplane, container (slot, ...), power supply, fan, sensor, module (board, ...), cpu, battery, storage device etc\r\n>    a. virtual NE -- Needs to deep dive little more to understand if any field required in base inventory draft.\r\n>    b. Logical Separation - it should be automatically covered Base Inventory. This separation does not create any new entity, instead it needs some association management.\r\n>    c. SAP attachment -\r\n> 2. Topology - Separate draft\r\n> 3. Software - Separate draft\r\n> 4. Location - Separate draft\r\n> 5. Entitlement/License - Separate draft\r\n> 6. Power - Separate draft (ie. used power, etc). It has a relation with GREEN.\r\n> \r\n> Not in IVY Scope (but has relation) 1. Access Control - This is operation. Can be separate draft. It will have a relation with policy, user-management. also with Virtual NE management. 2. Logical/Virtual Operation Control on IVY - Need more deep dive.\r\n\r\n- [ ] @prmanna provide more details on the virtual NE and logical separation use cases to understand their impact on the base inventory model\r\n",
+          "createdAt": "2024-09-25T15:36:47Z",
+          "updatedAt": "2024-09-25T15:36:47Z"
         }
       ]
     },
@@ -2741,13 +2748,13 @@
       "labels": [],
       "body": "simplify, avoid redundant statements, better readability flow, soften actn context, etc.",
       "createdAt": "2024-07-09T15:58:44Z",
-      "updatedAt": "2024-09-23T15:45:58Z",
+      "updatedAt": "2024-09-24T10:14:38Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d13257a88ddef39df709dd6dd803c9a9c3361302",
       "headRepository": "boucadair/network-inventory-yang",
       "headRefName": "patch-4",
-      "headRefOid": "619065b96db9a5aca9d0c0edd66c8df49dcf0c75",
+      "headRefOid": "2dcb9076d22c3acbaf004684f3cc2d642b629e66",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -2773,6 +2780,59 @@
               "updatedAt": "2024-09-23T15:45:58Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86KjKrp",
+          "commit": {
+            "abbreviatedOid": "619065b"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-24T08:13:25Z",
+          "updatedAt": "2024-09-24T08:13:26Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "```suggestion\r\nExposing standards interfaces to retrieve and query network elements capabilities as recorded in an inventory are key enablers for many applications that consumes network inventory data. From that standpoint and given the emergence of standard data models and their deployment by operators, the conventional function of inventory management is also required to be defined as a data model.\r\n```",
+              "createdAt": "2024-09-24T08:13:25Z",
+              "updatedAt": "2024-09-24T08:13:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86KjLGQ",
+          "commit": {
+            "abbreviatedOid": "619065b"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-24T08:14:12Z",
+          "updatedAt": "2024-09-24T08:14:12Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "Thanks @prmanna. Fixed now in https://github.com/ietf-ivy-wg/network-inventory-yang/pull/53/commits/2dcb9076d22c3acbaf004684f3cc2d642b629e66",
+              "createdAt": "2024-09-24T08:14:12Z",
+              "updatedAt": "2024-09-24T08:14:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86KkUmI",
+          "commit": {
+            "abbreviatedOid": "2dcb907"
+          },
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-09-24T10:14:38Z",
+          "updatedAt": "2024-09-24T10:14:38Z",
+          "comments": []
         }
       ]
     },
