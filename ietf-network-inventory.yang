@@ -1,7 +1,7 @@
 module ietf-network-inventory {
   yang-version 1.1;
   namespace "urn:ietf:params:xml:ns:yang:ietf-network-inventory";
-  prefix ni;
+  prefix nwi;
 
   import iana-hardware {
     prefix ianahw;
@@ -90,8 +90,8 @@ module ietf-network-inventory {
       "Base identity for Network Element (NE) types.";
   }
 
-  identity physical {
-    base ni:ne-type;
+  identity ne-physical {
+    base nwi:ne-type;
     description
       "A physical network element.";
   }
