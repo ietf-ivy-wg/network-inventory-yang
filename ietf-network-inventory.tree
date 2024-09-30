@@ -23,20 +23,20 @@ module: ietf-network-inventory
                  +--rw name?                    string
                  +--rw description?             string
                  +--rw alias?                   string
+                 +--ro hardware-rev?            string
+                 +--ro software-rev?            string
+                 +--ro software-patch-rev*      string
+                 +--ro mfg-name?                string
+                 +--ro mfg-date?                yang:date-and-time
+                 +--ro serial-number?           string
+                 +--ro product-name?            string
+                 +--ro firmware-rev?            string
+                 +--ro part-number?             string
+                 +--ro asset-id?                string
                  +--ro child-component-ref
                  +--ro parent-rel-pos?          int32
                  +--ro parent-component-ref
-                 +--ro hardware-rev?            string
-                 +--ro firmware-rev?            string
-                 +--ro software-rev?            string
-                 +--ro software-patch-rev*      string
-                 +--ro serial-num?              string
-                 +--ro mfg-name?                string
-                 +--ro part-number?             string
-                 +--ro product-name?            string
-                 +--ro asset-id?                string
                  +--ro is-fru?                  boolean
-                 +--ro mfg-date?                yang:date-and-time
                  +--ro uri*                     inet:uri
                  +--ro chassis-specific-info
                  +--ro slot-specific-info
