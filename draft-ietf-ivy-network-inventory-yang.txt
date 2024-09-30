@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 6 March 2025                                              Nokia
+Expires: 3 April 2025                                              Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                        2 September 2024
+                                                       30 September 2024
 
 
                 A YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 March 2025.
+   This Internet-Draft will expire on 3 April 2025.
 
 Copyright Notice
 
@@ -665,12 +665,12 @@ Table of Contents
      import ietf-yang-types {
        prefix yang;
        reference
-         "RFC6991: Common YANG Data Types.";
+         "RFC 6991: Common YANG Data Types";
      }
      import ietf-inet-types {
        prefix inet;
        reference
-         "RFC6991: Common YANG Data Types.";
+         "RFC 6991: Common YANG Data Types";
      }
 
      organization
@@ -700,7 +700,7 @@ Table of Contents
         The model fully conforms to the Network Management
         Datastore Architecture (NMDA).
 
-        Copyright (c) 2023 IETF Trust and the persons
+        Copyright (c) 2024 IETF Trust and the persons
         identified as authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -728,7 +728,7 @@ Table of Contents
        description
          "Initial version";
        reference
-         "RFC XXXX: A YANG Data Model for Network Inventory.";
+         "RFC XXXX: A YANG Data Model for Network Inventory";
        //RFC Editor: replace XXXX with actual RFC number, update date
        //information and remove this note
      }
@@ -741,19 +741,19 @@ Table of Contents
 
      identity ne-type {
        description
-         "Base identity for network element (NE) types.";
+         "Base identity for Network Element (NE) types.";
      }
 
      identity ne-physical {
        base nwi:ne-type;
        description
-         "A physical network element (NE). ";
+         "A physical network element.";
      }
 
      grouping common-entity-attributes {
        description
          "A set of attributes which are common to all the entities
-          (e.g., component, equipment room) defined in this module.";
+          (e.g., component or equipment room) defined in this module.";
        leaf uuid {
          type yang:uuid;
          config false;
@@ -775,12 +775,12 @@ Table of Contents
        leaf description {
          type string;
          description
-           "a textual description of inventory object";
+           "A textual description of inventory object";
        }
        leaf alias {
          type string;
          description
-           "a alias name of inventory objects. This alias name can be
+           "An alias name of an inventory object. This alias may be
             specified by network manager.";
        }
      }
@@ -811,7 +811,7 @@ Table of Contents
          type string;
          config false;
          description
-           "The name of the manufacturer of this NE";
+           "The name of the NE manufacturer.";
        }
        leaf mfg-date {
          type yang:date-and-time;
@@ -841,10 +841,9 @@ Table of Contents
 
      grouping component-specific-info-grouping {
        description
-         "Provide component-specific attributes for different
-          components.";
+         "Provides component-specific attributes.";
        container chassis-specific-info {
-         when "../class = 'ianahw:chassis'";
+         when "derived-from-or-self(../class, 'ianahw:chassis')";
          config false;
          description
            "This container contains some attributes belong to
@@ -852,7 +851,7 @@ Table of Contents
          uses chassis-specific-info-grouping;
        }
        container slot-specific-info {
-         when "../class = 'ianahw:container'";
+         when "derived-from-or-self(../class, 'ianahw:container')";
          config false;
          description
            "This container contains some attributes belong to
@@ -860,7 +859,7 @@ Table of Contents
          uses slot-specific-info-grouping;
        }
        container board-specific-info {
-         when "../class = 'ianahw:module'";
+         when "derived-from-or-self(../class, 'ianahw:module')";
          config false;
          description
            "This container contains some attributes belong to
@@ -868,7 +867,7 @@ Table of Contents
          uses board-specific-info-grouping;
        }
        container port-specific-info {
-         when "../class = 'ianahw:port'";
+         when "derived-from-or-self(../class, 'ianahw:port')";
          config false;
          description
            "This container contains some attributes belong to
@@ -915,16 +914,17 @@ Table of Contents
            leaf ne-id {
              type string;
              description
-               "Network Element (NE) identifier.";
+               "An identifier that uniquely identifies the NE in
+                a network.";
            }
            leaf ne-type {
              type identityref {
                base ne-type;
              }
-             default "ne-physical";
+             default "physical";
              config false;
              description
-               "The type of network element (NE).";
+               "The NE type.";
            }
            uses common-entity-attributes;
            uses ne-specific-info-grouping;
@@ -939,7 +939,8 @@ Table of Contents
                leaf component-id {
                  type string;
                  description
-                   "Component identifier";
+                   "An identifier that uniquely identifies the component
+                    in a node.";
                }
                leaf class {
                  type union {
@@ -961,7 +962,7 @@ Table of Contents
                  description
                    "A placeholder for adding the reference to child
                     component(s): to further discuss whether to define
-                    a child leaf-list as RFC8348 or a list of
+                    a child leaf-list as RFC 8348 or a list of
                     sub-components as openconfig-platform.";
                }
                leaf parent-rel-pos {
@@ -995,7 +996,7 @@ Table of Contents
                     component itself (if present).";
                  reference
                    "RFC 6933: Entity MIB (Version 4) -
-                             entPhysicalHardwareRev";
+                              entPhysicalHardwareRev";
                }
                leaf firmware-rev {
                  type string;
@@ -1005,7 +1006,7 @@ Table of Contents
                     component.";
                  reference
                    "RFC 6933: Entity MIB (Version 4) -
-                             entPhysicalFirmwareRev";
+                              entPhysicalFirmwareRev";
                }
                leaf software-rev {
                  type string;
@@ -1015,7 +1016,7 @@ Table of Contents
                     component.";
                  reference
                    "RFC 6933: Entity MIB (Version 4) -
-                             entPhysicalSoftwareRev";
+                              entPhysicalSoftwareRev";
                }
                leaf-list software-patch-rev {
                  type string;
@@ -1090,7 +1091,7 @@ Table of Contents
                     scope of this document.";
                  reference
                    "RFC 6933: Entity MIB (Version 4) -
-                    entPhysicalAssetID";
+                              entPhysicalAssetID";
                }
                leaf is-fru {
                  type boolean;
@@ -1105,7 +1106,7 @@ Table of Contents
                     should be returned for this node.";
                  reference
                    "RFC 6933: Entity MIB (Version 4) -
-                    entPhysicalIsFRU";
+                              entPhysicalIsFRU";
                }
                leaf mfg-date {
                  type yang:date-and-time;
@@ -1115,7 +1116,7 @@ Table of Contents
                    component.";
                  reference
                    "RFC 6933: Entity MIB (Version 4) -
-                    entPhysicalMfgDate";
+                              entPhysicalMfgDate";
                }
                leaf-list uri {
                  type inet:uri;
