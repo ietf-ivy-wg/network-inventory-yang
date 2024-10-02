@@ -11,12 +11,12 @@ module ietf-network-inventory {
   import ietf-yang-types {
     prefix yang;
     reference
-      "RFC6991: Common YANG Data Types.";
+      "RFC 6991: Common YANG Data Types";
   }
   import ietf-inet-types {
     prefix inet;
     reference
-      "RFC6991: Common YANG Data Types.";
+      "RFC 6991: Common YANG Data Types";
   }
 
   organization
@@ -46,7 +46,7 @@ module ietf-network-inventory {
      The model fully conforms to the Network Management
      Datastore Architecture (NMDA).
 
-     Copyright (c) 2023 IETF Trust and the persons
+     Copyright (c) 2024 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -65,8 +65,6 @@ module ietf-network-inventory {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  // RFC Ed.: replace XXXX with actual RFC number and remove this
-  // note.
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
@@ -75,8 +73,6 @@ module ietf-network-inventory {
       "Initial version";
     reference
       "RFC XXXX: A YANG Data Model for Network Inventory.";
-    //RFC Editor: replace XXXX with actual RFC number, update date
-    //information and remove this note
   }
 
   /*
@@ -91,7 +87,7 @@ module ietf-network-inventory {
 
   identity ne-type {
     description
-      "Base identity for network element (NE) types.";
+      "Base identity for Network Element (NE) types.";
   }
 
     identity ne-physical {
@@ -210,16 +206,17 @@ module ietf-network-inventory {
         leaf ne-id {
           type string;
           description
-            "Network Element (NE) identifier.";
+            "An identifier that uniquely identifies the NE in
+             a network.";
         }
         leaf ne-type {
           type identityref {
             base ne-type;
           }
-          default "ne-physical";
+          default "physical";
           config false;
           description
-            "The type of network element (NE).";
+            "The NE type.";
         }
         uses common-entity-attributes;
         container components {
@@ -233,7 +230,8 @@ module ietf-network-inventory {
             leaf component-id {
               type string;
               description
-                "Component identifier";
+                "An identifier that uniquely identifies the component
+                 in a node.";
             }
             leaf class {
               type union {
@@ -302,7 +300,7 @@ module ietf-network-inventory {
                  component.";
               reference
                 "RFC 6933: Entity MIB (Version 4) -
-                          entPhysicalFirmwareRev";
+                           entPhysicalFirmwareRev";
             }
             leaf part-number {
               type string;
@@ -330,7 +328,7 @@ module ietf-network-inventory {
                  scope of this document.";
               reference
                 "RFC 6933: Entity MIB (Version 4) -
-                 entPhysicalAssetID";
+                           entPhysicalAssetID";
             }
             container child-component-ref {
               config false;
@@ -374,7 +372,7 @@ module ietf-network-inventory {
                  should be returned for this node.";
               reference
                 "RFC 6933: Entity MIB (Version 4) -
-                 entPhysicalIsFRU";
+                           entPhysicalIsFRU";
             }
             leaf-list uri {
               type inet:uri;
