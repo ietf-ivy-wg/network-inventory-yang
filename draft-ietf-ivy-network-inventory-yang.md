@@ -185,8 +185,6 @@ The YANG data model defined in this document conforms to the Network Management 
 
    *  XXXX --> the assigned RFC number for this I-D
 
-   *  2024-03-04 --> the actual date of the publication of this document
-
 # Terminology and Notations
 
 ## Requirements Notations
