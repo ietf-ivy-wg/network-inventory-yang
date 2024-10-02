@@ -1032,11 +1032,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Network Inventory YANG</td>
-<td class="right">September 2024</td>
+<td class="right">October 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Yu, et al.</td>
-<td class="center">Expires 3 April 2025</td>
+<td class="center">Expires 5 April 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1049,12 +1049,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ivy-network-inventory-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-09-30" class="published">30 September 2024</time>
+<time datetime="2024-10-02" class="published">2 October 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-04-03">3 April 2025</time></dd>
+<dd class="expires"><time datetime="2025-04-05">5 April 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1117,7 +1117,7 @@ future augmentations with application-specific and technology-specific details.<
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 3 April 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 April 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1256,53 +1256,31 @@ future augmentations with application-specific and technology-specific details.<
 YANG data model that is application- and technology-agnostic.  The
 base data model can be augmented to describe application-specific or
 technology-specific information.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">Network Inventory management is a key component in
-operators' OSS architectures.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">Network Inventory is a fundamental functionality in network
-management and was specified many years ago.  Given the emergence of
-data models and their deployment in operator's management and control
-systems, the traditional function of inventory management is also
-requested to be defined as a data model.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">Network Inventory management and monitoring is a critical
-part for ensuring the network stays healthy, well-planned, and
-functioning in the operator's network.  Network Inventory
-management allows the operator to keep track of which physical
-devices are deployed in the network including relevant software and
-hardware versions.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">The Network Inventory management also helps the operator to
-know when to acquire new assets and what is needed, or to
-decommission old or faulty ones, which can help to improve network
-performance and capacity planning.<a href="#section-1-5" class="pilcrow">¶</a></p>
-<p id="section-1-6">In <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> a gap was identified
-regarding the lack of a YANG data model that could be used at ACTN
-MPI interface level to report whole/partial network hardware
+<p id="section-1-2">Network inventory is a fundamental functional block in the overall network
+management which was specified many years ago. Network inventory management is a critical
+part for ensuring that the network remains healthy (e.g., auditing to identify faulty elements), well-planned (e.g., identify assets to upgrade or to decommission), and maintained appropriately to meet the performance objectives. Also, network inventory
+management allows operators to keep track of which devices are deployed in their networks, including relevant embedded software and
+hardware versions.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">Exposing standards interfaces to retrieve and query network elements capabilities as recorded in an inventory are key enablers for many applications that consume network inventory data. From that standpoint and given the emergence of standard data models and their deployment by operators, the conventional function of inventory management is also required to be defined as a data model.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">For example, <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> identifies a gap about the lack of a YANG data model that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware
 inventory information available at domain controller level towards
-north-bound systems (e.g., MDSC or OSS layer).<a href="#section-1-6" class="pilcrow">¶</a></p>
-<p id="section-1-7"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> initial goal was to make possible the augmentation of the
-YANG data model with Network Inventory data model but this
-was never developed and the scope was kept limited to network
-topology data only.<a href="#section-1-7" class="pilcrow">¶</a></p>
-<p id="section-1-8">It is key for operators to drive the industry towards the use of a
+upper layer systems (e.g., Multi-Domain Service Coordinator (MDSC) or Operations Support Systems (OSS) layers).<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">It is key for operators to coordinate with the industry towards the use of a
 standard YANG data model for Network Inventory data instead
-of using vendors proprietary APIs (e.g., REST API).<a href="#section-1-8" class="pilcrow">¶</a></p>
-<p id="section-1-9">In the ACTN architecture, this would bring also clear benefits at
-MDSC level for packet over optical integration scenarios since this
-would enable the correlation of the HW network inventory information with the
-links information reported in the network topology model. This represent a priority for operators to implement this with a standard YANG data model that could be used as soon as possible in multi-vendor integrations of PNCs with MDSCs.<a href="#section-1-9" class="pilcrow">¶</a></p>
-<p id="section-1-10">The intention is to define a generic YANG base data model that would be as
-much as possible technology agnostic (valid for IP, optical and
-microwave networks) and that could be augmented, when required, to
-include some technology-specific inventory details together with specific HW or SW component's attributes.<a href="#section-1-10" class="pilcrow">¶</a></p>
-<p id="section-1-11"><span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller South Bound Interface (SBI) towards the network elements rather than at the domain controller's northbound. However, the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> has been used as a reference for defining the YANG network inventory data model presented in this draft.<a href="#section-1-11" class="pilcrow">¶</a></p>
-<p id="section-1-12">The proposed YANG data model has been analyzed at the present stage to cover the common requirements for both HW and SW use cases for Network Inventory.<a href="#section-1-12" class="pilcrow">¶</a></p>
-<p id="section-1-13">Network Inventory is a collection of data for network devices and
+of using vendors proprietary APIs.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6"><span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller towards the network elements rather than at the northbound interface of a network controller (e.g., toward an application or another hierarchical network controller). However, the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> has been used as a reference for defining the YANG network inventory data model presented in this document.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">Network Inventory is a collection of data for network devices and
 their components managed by a specific management system.  Per the
-definition of <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>,the network inventory model is a network
-model.<a href="#section-1-13" class="pilcrow">¶</a></p>
-<p id="section-1-14">This document defines one YANG module "ietf-network-inventory" in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#section-1-14" class="pilcrow">¶</a></p>
-<p id="section-1-15"><a href="#ni-augment" class="auto internal xref">Section 3</a> provides a set of augmentation considerations for extensions
-of hardware, software, entitlement, and inventory topology mapping.<a href="#section-1-15" class="pilcrow">¶</a></p>
-<p id="section-1-16">The YANG data model defined in this document conforms to the Network Management Datastore Architecture <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-16" class="pilcrow">¶</a></p>
+definition of <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>, the network inventory model is a network
+model.<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-1-8">This document defines one YANG module "ietf-network-inventory" in <a href="#ni-yang" class="auto internal xref">Section 5</a>.
+This base data model is technology-agnostic (that is, valid for IP/MPLS, optical, and
+microwave networks in particular) and can be augmented to
+include required technology-specific inventory details together with specific hardware or software component's attributes.<a href="#section-1-8" class="pilcrow">¶</a></p>
+<p id="section-1-9">The YANG data model defined in the document is scoped to cover the common requirements for both hardware and software (but with base functions) use cases for Network Inventory.<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-10"><a href="#ni-augment" class="auto internal xref">Section 3</a> provides a set of augmentation considerations for future extensions
+of hardware, software, entitlement, and inventory topology mapping.<a href="#section-1-10" class="pilcrow">¶</a></p>
+<p id="section-1-11">The YANG data model defined in this document conforms to the Network Management Datastore Architecture <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-11" class="pilcrow">¶</a></p>
 <div id="terminology-and-notations">
 <section id="section-1.1">
         <h3 id="name-terminology-and-notations">
@@ -2431,10 +2409,6 @@ module ietf-network-inventory {
 <dt id="I-D.wzwb-ivy-network-inventory-software">[I-D.wzwb-ivy-network-inventory-software]</dt>
         <dd>
 <span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Zhou, C.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">M. Boucadair</span>, <span class="refTitle">"A YANG Network Data Model of Network Inventory Software Extensions"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-wzwb-ivy-network-inventory-software-02</span>, <time datetime="2024-08-06" class="refDate">6 August 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-wzwb-ivy-network-inventory-software-02">https://datatracker.ietf.org/doc/html/draft-wzwb-ivy-network-inventory-software-02</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8345">[RFC8345]</dt>
-        <dd>
-<span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Medved, J.</span>, <span class="refAuthor">Varga, R.</span>, <span class="refAuthor">Bahadur, N.</span>, <span class="refAuthor">Ananthakrishnan, H.</span>, and <span class="refAuthor">X. Liu</span>, <span class="refTitle">"A YANG Data Model for Network Topologies"</span>, <span class="seriesInfo">RFC 8345</span>, <span class="seriesInfo">DOI 10.17487/RFC8345</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8345">https://www.rfc-editor.org/rfc/rfc8345</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8969">[RFC8969]</dt>
       <dd>
