@@ -68,7 +68,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2024-09-30 {
+  revision 2024-10-02 {
     description
       "Initial version";
     reference
@@ -211,9 +211,9 @@ module ietf-network-inventory {
         }
         leaf ne-type {
           type identityref {
-            base ne-type;
+            base nwi:ne-type;
           }
-          default "physical";
+          default "nwi:ne-physical";
           config false;
           description
             "The NE type.";
@@ -335,7 +335,7 @@ module ietf-network-inventory {
               description
                 "A placeholder for adding the reference to child
                  component(s): to further discuss whether to define
-                 a child leaf-list as RFC8348 or a list of
+                 a child leaf-list as RFC 8348 or a list of
                  sub-components as openconfig-platform.";
             }
             leaf parent-rel-pos {
@@ -355,7 +355,7 @@ module ietf-network-inventory {
               description
                 "A placeholder for adding the reference to parent
                  component(s): to further discuss whether to define
-                 a parent attribute as RFC8348 or a
+                 a parent attribute as RFC 8348 or a
                  parent-component-references container as in
                  draft-ietf-ccamp-network-inventory-yang-02.";
             }
@@ -384,28 +384,30 @@ module ietf-network-inventory {
                 "RFC 6933: Entity MIB (Version 4) - entPhysicalUris";
             }
             container chassis-specific-info {
-              when "../class = 'ianahw:chassis'";
+              when "derived-from-or-self(../class, 
+                    'ianahw:chassis')";
               config false;
               description
                 "This container contains some attributes belong to
                 chassis only.";
             }
             container slot-specific-info {
-              when "../class = 'ianahw:container'";
+              when "derived-from-or-self(../class,
+                    'ianahw:container')";
               config false;
               description
                 "This container contains some attributes belong to
                 slot only.";
             }
             container board-specific-info {
-              when "../class = 'ianahw:module'";
+              when "derived-from-or-self(../class, 'ianahw:module')";
               config false;
               description
                 "This container contains some attributes belong to
                 board only.";
             }
             container port-specific-info {
-              when "../class = 'ianahw:port'";
+              when "derived-from-or-self(../class, 'ianahw:port')";
               config false;
               description
                 "This container contains some attributes belong to
