@@ -446,7 +446,7 @@ The hierarchical components' identifier could be found by the "component-referen
 
 ### Component-Specific Info Design
 
-According to the management requirements from operators, some important attributes are not defined in {{!RFC8348}}. These attributes could be component-specific and are not suitable to define under the component list node. So, component-specific attributes can be defined by augmenting the component-specific info containers for the attributes applicable to HW e.g. boards/slot components only. Other component-specific attributes, such as SW-specific-info, may be defined in companion augmentation data models, such as
+According to the management requirements from operators, some important attributes are not defined in {{!RFC8348}}. These attributes could be component-specific and are not suitable to be defined under the component list node. Instead, they can be defined by augmenting the component-specific info container for the attributes applicable to HW e.g. boards/slot components only. Other component-specific attributes, such as SW-specific-info, may be defined in companion augmentation data models, such as
 {{?I-D.wzwb-ivy-network-inventory-software}} and are out of the scope of this model.
 
 ~~~~ ascii-art
