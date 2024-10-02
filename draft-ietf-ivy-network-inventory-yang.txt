@@ -73,29 +73,31 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
-     1.1.  Terminology and Notations
-     1.2.  Requirements Notation
-     1.3.  Tree Diagram
-     1.4.  Prefix in Data Node Names
-   2.  YANG Data Model for Network Inventory Overview
-     2.1.  Common Design for All Inventory Objects
-     2.2.  Network Element
-     2.3.  Components
-       2.3.1.  Hardware Components
-       2.3.2.  Software Components
-     2.4.  Changes with respect to RFC8348
-       2.4.1.  New Parent Identifiers' Reference
-       2.4.2.  Component-Specific Info Design
-       2.4.3.  Part Number
-   3.  Extending Network Inventory
-   4.  Network Inventory Tree Diagram
-   5.  YANG Data Model for Network Inventory
-   6.  Manageability Considerations
-   7.  Security Considerations
-   8.  IANA Considerations
-   9.  References
-     9.1.  Normative References
-     9.2.  Informative References
+     1.1.  Editorial Note (To be removed by RFC Editor)
+   2.  Terminology and Notations
+     2.1.  Requirements Notations
+     2.2.  Terminology
+     2.3.  Tree Diagrams
+     2.4.  YANG Prefixes
+   3.  YANG Data Model for Network Inventory Overview
+     3.1.  Common Design for All Inventory Objects
+     3.2.  Network Element
+     3.3.  Components
+       3.3.1.  Hardware Components
+       3.3.2.  Software Components
+     3.4.  Changes with respect to RFC8348
+       3.4.1.  New Parent Identifiers' Reference
+       3.4.2.  Component-Specific Info Design
+       3.4.3.  Part Number
+   4.  Extending Network Inventory
+   5.  Network Inventory Tree Diagram
+   6.  YANG Data Model for Network Inventory
+   7.  Manageability Considerations
+   8.  Security Considerations
+   9.  IANA Considerations
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
    Appendix A.  Comparison With Openconfig-platform Data Model
    Appendix B.  Efficiency Issue
    Acknowledgments
@@ -154,7 +156,7 @@ Table of Contents
    model.
 
    This document defines one YANG module "ietf-network-inventory" in
-   Section 5.  This base data model is technology-agnostic (that is,
+   Section 6.  This base data model is technology-agnostic (that is,
    valid for IP/MPLS, optical, and microwave networks in particular) and
    can be augmented to include required technology-specific inventory
    details together with specific hardware or software component's
@@ -164,14 +166,37 @@ Table of Contents
    common requirements for both hardware and software (but with base
    functions) use cases for Network Inventory.
 
-   Section 3 provides a set of augmentation considerations for future
+   Section 4 provides a set of augmentation considerations for future
    extensions of hardware, software, entitlement, and inventory topology
    mapping.
 
    The YANG data model defined in this document conforms to the Network
    Management Datastore Architecture [RFC8342].
 
-1.1.  Terminology and Notations
+1.1.  Editorial Note (To be removed by RFC Editor)
+
+      Note to the RFC Editor: This section is to be removed prior to
+      publication.
+
+   This document contains placeholder values that need to be replaced
+   with finalized values at the time of publication.  This note
+   summarizes all of the substitutions that are needed.
+
+   Please apply the following replacements:
+
+   *  XXXX --> the assigned RFC number for this I-D
+
+2.  Terminology and Notations
+
+2.1.  Requirements Notations
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+2.2.  Terminology
 
    The following terms are defined in [RFC7950] and are not redefined
    here:
@@ -196,89 +221,61 @@ Table of Contents
    The terminology for describing YANG data models is found in
    [RFC7950].
 
-   TBD: Recap the concept of chassis/slot/component/board/... in
-   [TMF_SD2-20].
+      TBD: Recap the concept of chassis/slot/component/board/... in
+      [TMF_SD2-20].
 
-   Following terms are used for the representation of the hierarchies in
-   the network inventory.
+   Also, the document makes use of the following terms:
 
-   Network Inventory:
+   Network Inventory:  A collection of data for network devices and
+      their components managed by a specific management system.
 
-      a collection of data for network devices and their components
-      managed by a specific management system.
+   Network Element:  A manageable network entity that contains hardware
+      and software units (e.g., a network device installed on one or
+      several chassis).
 
-   Network Element:
+   Chassis:  A holder of the device installation.
 
-      a manageable network entity that contains hardware and software
-      units, e.g. a network device installed on one or several chassis
+   Slot:  A holder of the board.
 
-   Chassis:
+   Component:  A unit of the network element, e.g., hardware components
+      (chassis, card, port, etc.), software components (software-patch,
+      bios, etc.), and boot-loader.
 
-      a holder of the device installation.
+   Board/Card:  A pluggable equipment can be inserted into one or
+      several slots (or sub-slots) and can afford a specific
+      transmission function independently.
 
-   Slot:
+   Port:  An interface on a board.
 
-      a holder of the board.
+   Container:  A hardware component class that is capable of containing
+      one or more removable physical entities (e.g., a slot in a chassis
+      is containing a board).
 
-   Component:
+2.3.  Tree Diagrams
 
-      a unit of the network element, e.g.  hardware components like
-      chassis, card, port, software components like software-patch,
-      bios, and boot-loader
+   The meanings of the symbols in the YANG tree diagrams are defined in
+   [RFC8340].
 
-   Board/Card:
+2.4.  YANG Prefixes
 
-      a pluggable equipment can be inserted into one or several slots/
-      sub-slots and can afford a specific transmission function
-      independently.
+   Table 1 list the prefixes of the modules that are used in this
+   document.
 
-   Port:
+       +========+========================+========================+
+       | Prefix | YANG Module            | Reference              |
+       +========+========================+========================+
+       | inet   | ietf-inet-types        | Section 4 of [RFC6991] |
+       +--------+------------------------+------------------------+
+       | yang   | ietf-yang-types        | Section 3 of [RFC6991] |
+       +--------+------------------------+------------------------+
+       | ianahw | iana-hardware          | [IANA_YANG]            |
+       +--------+------------------------+------------------------+
+       | ni     | ietf-network-inventory | RFC XXXX               |
+       +--------+------------------------+------------------------+
 
-      an interface on board
+             Table 1: Prefixes and corresponding YANG modules
 
-   Container: > Within this document , with the term "container" we
-   consider an hardware component class capable of containing one or
-   more removable physical entities, e.g. a slot in a chassis is
-   containing a board.
-
-1.2.  Requirements Notation
-
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-   "OPTIONAL" in this document are to be interpreted as described in
-   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
-   capitals, as shown here.
-
-1.3.  Tree Diagram
-
-   A simplified graphical representation of the data model is used in
-   Section 4 of this document.  The meaning of the symbols in this
-   diagram is defined in [RFC8340].
-
-1.4.  Prefix in Data Node Names
-
-   In this document, names of data nodes and other data model objects
-   are prefixed using the standard prefix associated with the
-   corresponding YANG imported modules, as shown in the following table.
-
-             +========+========================+=============+
-             | Prefix | Yang Module            | Reference   |
-             +========+========================+=============+
-             | inet   | ietf-inet-types        | [RFC6991]   |
-             +--------+------------------------+-------------+
-             | yang   | ietf-yang-types        | [RFC6991]   |
-             +--------+------------------------+-------------+
-             | ianahw | iana-hardware          | [IANA_YANG] |
-             +--------+------------------------+-------------+
-             | ni     | ietf-network-inventory | RFC XXXX    |
-             +--------+------------------------+-------------+
-
-              Table 1: Prefixes and corresponding YANG modules
-
-   RFC Editor Note: Please replace XXXX with the RFC number assigned to
-   this document.  Please remove this note.
-
-2.  YANG Data Model for Network Inventory Overview
+3.  YANG Data Model for Network Inventory Overview
 
    The network element definition is generalized to support physical
    devices and other types of inventory objects (e.g., virtual network
@@ -330,7 +327,7 @@ Table of Contents
                  +--rw component-id            string
                  ......................................
 
-2.1.  Common Design for All Inventory Objects
+3.1.  Common Design for All Inventory Objects
 
    For all the inventory objects, there are some common attributes
    existing.  Such as:
@@ -368,7 +365,7 @@ Table of Contents
                  +--rw class                   union
                  ...................................
 
-2.2.  Network Element
+3.2.  Network Element
 
    To be consistent with the component definition, some of the
    attributes defined in [RFC8348] for components are reused for network
@@ -392,7 +389,7 @@ Table of Contents
    introduced in later revisions after the missing attributes are fully
    discussed.
 
-2.3.  Components
+3.3.  Components
 
    The YANG data model for network inventory mainly follows the same
    approach of [RFC8348] and reports the network hardware inventory as a
@@ -430,7 +427,7 @@ Table of Contents
    Same for the sensor-data, they should be defined in some other
    performance monitoring data models instead of inventory data model.
 
-2.3.1.  Hardware Components
+3.3.1.  Hardware Components
 
    Based on TMF classification in [TMF_SD2-20], hardware components can
    be divided into two groups, holder group and equipment group.  The
@@ -483,7 +480,7 @@ Table of Contents
    For the additional attributes of specific hardware, such as CPU,
    storage, port, power supply is defined in the hardware extension.
 
-2.3.2.  Software Components
+3.3.2.  Software Components
 
    This document defines "software-rev" of NEs and components, which are
    basic software attributes of a Network Element.
@@ -498,12 +495,12 @@ Table of Contents
    scope of this document and defined other documents such as
    [I-D.wzwb-ivy-network-inventory-software].
 
-2.4.  Changes with respect to RFC8348
+3.4.  Changes with respect to RFC8348
 
    We re-defined some attributes listed in [RFC8348], based on some
    integration experience for network wide inventory data.
 
-2.4.1.  New Parent Identifiers' Reference
+3.4.1.  New Parent Identifiers' Reference
 
    [RFC8348] provided a "parent-ref" attribute, which was an identifier
    reference to its parent component.  When the MDSC or OSS systems want
@@ -527,7 +524,7 @@ Table of Contents
    the list by the hierarchical relationship from topmost component
    (with the "index" set to 0) to bottom component.
 
-2.4.2.  Component-Specific Info Design
+3.4.2.  Component-Specific Info Design
 
    According to the management requirements from operators, some
    important attributes are not defined in [RFC8348].  These attributes
@@ -548,7 +545,7 @@ Table of Contents
       |  +--ro board-specific-info
       |  +--ro port-specific-info
 
-2.4.3.  Part Number
+3.4.3.  Part Number
 
    According to the description in [RFC8348], the attribute named
    "model-name" under the component, is preferred to have a customer-
@@ -561,7 +558,7 @@ Table of Contents
            +--ro part-number?           string
            ...................................
 
-3.  Extending Network Inventory
+4.  Extending Network Inventory
 
    This document defines the basic network inventory attributes
    applicable to typical network scenarios.  For finer-grained and
@@ -584,10 +581,10 @@ Table of Contents
 | supply unit |    |  SW patch   |     |             |   |             |
 +-------------+    +-------------+     +-------------+   +-------------+
 
-4.  Network Inventory Tree Diagram
+5.  Network Inventory Tree Diagram
 
    Figure 2 below shows the tree diagram of the YANG data model defined
-   in module "ietf-network-inventory" (Section 5).
+   in module "ietf-network-inventory" (Section 6).
 
    module: ietf-network-inventory
      +--rw network-inventory
@@ -636,7 +633,7 @@ Table of Contents
 
                   Figure 2: Network inventory tree diagram
 
-5.  YANG Data Model for Network Inventory
+6.  YANG Data Model for Network Inventory
 
    <CODE BEGINS> file "ietf-network-inventory@2024-03-04.yang"
    module ietf-network-inventory {
@@ -1131,21 +1128,21 @@ Table of Contents
 
                   Figure 3: Network inventory YANG module
 
-6.  Manageability Considerations
+7.  Manageability Considerations
 
    <Add any manageability considerations>
 
-7.  Security Considerations
+8.  Security Considerations
 
    <Add any security considerations>
 
-8.  IANA Considerations
+9.  IANA Considerations
 
    <Add any IANA considerations>
 
-9.  References
+10.  References
 
-9.1.  Normative References
+10.1.  Normative References
 
    [IANA_YANG]
               IANA, "YANG Parameters", n.d.,
@@ -1197,7 +1194,7 @@ Table of Contents
               Resource Fulfilment (NRF), SD2-20 , May 2008,
               <https://www.tmforum.org/resources/suite/mtosi-4-0/>.
 
-9.2.  Informative References
+10.2.  Informative References
 
    [I-D.ietf-teas-actn-poi-applicability]
               Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
@@ -1359,7 +1356,7 @@ Appendix A.  Comparison With Openconfig-platform Data Model
       Table 2: Comparison between openconfig platform and inventory
                                data models
 
-   As it mentioned in Section 2.3 that state data and performance data
+   As it mentioned in Section 3.3 that state data and performance data
    are out of scope of our data model, it is same for alarm data and it
    should be defined in some other alarm data models separately.  And
    for some component specific structures in "openconfig-platform", we
