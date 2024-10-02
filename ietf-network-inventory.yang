@@ -108,7 +108,7 @@ module ietf-network-inventory {
       type yang:uuid;
       config false;
       description
-        "The Universallu Unique Identifier of the entity
+        "The Universally Unique Identifier of the entity
          (e.g., component).";
     }
     leaf name {
