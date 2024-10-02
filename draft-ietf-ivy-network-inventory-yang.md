@@ -127,7 +127,7 @@ It is key for operators to coordinate with the industry towards the use of a
 standard YANG data model for Network Inventory data instead
 of using vendors proprietary APIs.
 
-{{!RFC8348}} defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller towards the network elements rather than at the domain controller interface to upper applications. However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model presented in this document.
+{{!RFC8348}} defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller towards the network elements rather than at the northbound interface of a network controller (e.g., toward an application or another hierarchical network controller). However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model presented in this document.
 
 Network Inventory is a collection of data for network devices and
 their components managed by a specific management system.  Per the
