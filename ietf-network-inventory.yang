@@ -173,7 +173,7 @@ module ietf-network-inventory {
       config false;
       description
         "The vendor-specific serial number of the the entity
-         (e.g., component) instace. It is expected that vendors
+         (e.g., component) instance. It is expected that vendors
          assign unique serial numbers to different network element
          instances within the scope of the product name.";
     }
