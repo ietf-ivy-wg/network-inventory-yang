@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-03T00:51:29.975951+00:00",
+  "timestamp": "2024-10-06T00:55:36.085606+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -3465,13 +3465,13 @@
       "labels": [],
       "body": "Cleaned-up use of YANG groupings: fix #37\r\nAdded text clarifying the design choice for component identifier: fix #57 \r\n\r\n---\r\n\r\nCo-Authored-By: YuChaode <yuchaode@huawei.com>",
       "createdAt": "2024-09-30T10:37:42Z",
-      "updatedAt": "2024-10-02T16:40:19Z",
+      "updatedAt": "2024-10-03T16:11:19Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "8aeda519077e3601d9861b6d39325ab7f8ca2a03",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "fix-37-57",
-      "headRefOid": "e7eb88525f0fad02397feff44131fea6dd1be2de",
+      "headRefOid": "1967f80f0fb5d0e3bcd262792fb88d25c7465952",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -3568,6 +3568,46 @@
               "body": "```suggestion\r\nAccording to the management requirements from operators, some important attributes are not defined in {{!RFC8348}}. These attributes could be component-specific and are not suitable to be defined under the component list node. Instead, they can be defined by augmenting the component-specific info container for the attributes applicable to HW e.g. boards/slot components only. Other component-specific attributes, such as SW-specific-info, may be defined in companion augmentation data models, such as\r\n```",
               "createdAt": "2024-10-02T16:39:59Z",
               "updatedAt": "2024-10-02T16:39:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86L1bHI",
+          "commit": {
+            "abbreviatedOid": "e7eb885"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-03T16:02:20Z",
+          "updatedAt": "2024-10-03T16:09:50Z",
+          "comments": [
+            {
+              "originalPosition": 129,
+              "body": "c/instace/instance",
+              "createdAt": "2024-10-03T16:02:20Z",
+              "updatedAt": "2024-10-03T16:09:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86L1gAH",
+          "commit": {
+            "abbreviatedOid": "e7eb885"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-03T16:11:07Z",
+          "updatedAt": "2024-10-03T16:11:07Z",
+          "comments": [
+            {
+              "originalPosition": 129,
+              "body": "```suggestion\r\n         (e.g., component) instance. It is expected that vendors\r\n```",
+              "createdAt": "2024-10-03T16:11:07Z",
+              "updatedAt": "2024-10-03T16:11:07Z"
             }
           ]
         }
