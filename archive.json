@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-06T00:55:36.085606+00:00",
+  "timestamp": "2024-10-08T00:51:28.613603+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -3465,7 +3465,7 @@
       "labels": [],
       "body": "Cleaned-up use of YANG groupings: fix #37\r\nAdded text clarifying the design choice for component identifier: fix #57 \r\n\r\n---\r\n\r\nCo-Authored-By: YuChaode <yuchaode@huawei.com>",
       "createdAt": "2024-09-30T10:37:42Z",
-      "updatedAt": "2024-10-03T16:11:19Z",
+      "updatedAt": "2024-10-06T05:48:23Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "8aeda519077e3601d9861b6d39325ab7f8ca2a03",
@@ -3610,6 +3610,19 @@
               "updatedAt": "2024-10-03T16:11:07Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86MGSFu",
+          "commit": {
+            "abbreviatedOid": "1967f80"
+          },
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-06T05:48:23Z",
+          "updatedAt": "2024-10-06T05:48:23Z",
+          "comments": []
         }
       ]
     }
