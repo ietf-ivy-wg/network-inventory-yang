@@ -271,7 +271,7 @@ Table of Contents
        +--------+------------------------+------------------------+
        | ianahw | iana-hardware          | [IANA_YANG]            |
        +--------+------------------------+------------------------+
-       | ni     | ietf-network-inventory | RFC XXXX               |
+       | nwi    | ietf-network-inventory | RFC XXXX               |
        +--------+------------------------+------------------------+
 
              Table 1: Prefixes and corresponding YANG modules
@@ -651,7 +651,7 @@ Table of Contents
 
 6.  YANG Data Model for Network Inventory
 
-   <CODE BEGINS> file "ietf-network-inventory@2024-03-04.yang"
+   <CODE BEGINS> file "ietf-network-inventory@2024-10-02.yang"
    module ietf-network-inventory {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-network-inventory";
