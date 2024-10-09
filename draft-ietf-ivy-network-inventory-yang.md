@@ -228,7 +228,7 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{!RFC8340}
 | inet   | ietf-inet-types                 | {{Section 4 of !RFC6991}}  |
 | yang   | ietf-yang-types                 | {{Section 3 of !RFC6991}}  |
 | ianahw | iana-hardware                   | {{IANA_YANG}} |
-| ni     | ietf-network-inventory          | RFC XXXX      |
+| nwi    | ietf-network-inventory          | RFC XXXX      |
 {: #tab-prefixes title="Prefixes and corresponding YANG modules"}
 
 # YANG Data Model for Network Inventory Overview
@@ -527,7 +527,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include ./ietf-network-inventory.yang}
 ~~~~
 {: #fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2024-03-04.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2024-10-02.yang"}
 
 # Manageability Considerations
 
