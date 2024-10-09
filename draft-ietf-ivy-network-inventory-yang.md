@@ -598,6 +598,11 @@ As it mentioned in {{ne-component}} that state data and performance data are out
 
 Mostly, our inventory data model can cover the attributes from OpenConfig.
 
+# Terminology of Container
+
+In {{!RFC8348}}, container is defined as an identity of component class . According to the description, it is capable to container one or more removeable physical entities, e.g. a slot in a chassis is containing a board. It can be mapped to the term of 'holder' in other models.
+Besides, The terms of container in this document can be 'container component' or 'YANG container'. The understanding of the meaning of 'container' should be combined with context.
+
 # Efficiency Issue
 
 During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks.  More discussions are needed to address these concerns.
