@@ -269,7 +269,7 @@ However, the YANG data model defined in {{!RFC8348}} has been used as a referenc
               ......................................
 ~~~~
 
-## Common Design for All Inventory Objects
+## Common Design for All Inventory Objects {#common-attributes}
 
 For all the inventory objects, there are some common attributes existing. Such as:
 
@@ -446,7 +446,7 @@ The hierarchical components' identifier could be found by the "component-referen
 
 ### Component-Specific Info Design
 
-According to the management requirements from operators, some important attributes are not defined in {{!RFC8348}}. These attributes could be component-specific and are not suitable to define under the component list node. So, the model can be augmented with HW-specific-info grouping containing attributes applicable to HW e.g. boards/slot components only. Other component-specific attributes, such as SW-specific-info, may be defined in companion augmentation data models, such as
+According to the management requirements from operators, some important attributes are not defined in {{!RFC8348}}. These attributes could be component-specific and are not suitable to be defined under the component list node. Instead, they can be defined by augmenting the component-specific info container for the attributes applicable to HW e.g. boards/slot components only. Other component-specific attributes, such as SW-specific-info, may be defined in companion augmentation data models, such as
 {{?I-D.wzwb-ivy-network-inventory-software}} and are out of the scope of this model.
 
 ~~~~ ascii-art
@@ -466,11 +466,19 @@ According to the description in {{!RFC8348}}, the attribute named "model-name" u
 
 ~~~~ ascii-art
   +--ro components
-     +--ro component* [uuid]
+     +--ro component* [component-id]
         ...................................
         +--ro part-number?           string
         ...................................
 ~~~~
+
+### Component identifiers
+
+There are some use cases where the name of the components are assigned and changed by the operator. In these cases, the assigned names are also not guaranteed to be always unique.
+
+In order to support these use cases, this model is not aligned with {{!RFC8348}} in defining the component name as the key for the component list.
+
+Instead the name is defined as an optional attribute and the component-id is defined as the key for the component list (in alignment with the approach followed for the network-element list).
 
 {: #ni-augment}
 
