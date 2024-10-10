@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-08T00:51:28.613603+00:00",
+  "timestamp": "2024-10-10T00:51:19.143208+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -519,7 +519,7 @@
       ],
       "body": "The comment is not related specifically to this sentence, but it is related in general to \"container\". I've noticed this term is never defined in the document. Shouldn't we add that?\r\n\r\n_Originally posted by @sergiobelotti in https://github.com/ietf-ccamp-wg/ietf-network-inventory/pull/51#discussion_r1001641252_\r\n\r\ncould we change this sentence to \"Openconfig-platform data model is NE-level and uses a generic component concept to describe its inner equipment and holders, which is similar to ietf-hardware model...\"? In the terminology of component at the beginning, component is also refer to equipment and holders.\r\n\r\n_Originally posted by @YuChaode in https://github.com/ietf-ccamp-wg/ietf-network-inventory/pull/51#discussion_r1003263854_\r\n      ",
       "createdAt": "2022-10-24T12:59:13Z",
-      "updatedAt": "2024-10-01T16:00:51Z",
+      "updatedAt": "2024-10-09T13:43:29Z",
       "closedAt": null,
       "comments": [
         {
@@ -542,6 +542,13 @@
           "body": "> **[2024-01-24 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/blob/main/minutes/minutes-2024-01-24.md)**\r\n\r\n> - [x] @sergiobelotti provide some text proposal to clarify the use of term container within this document\r\n\r\nThe term 'container' may have a broader meaning that the term 'holder', including bins, cabinets, ...\r\n\r\nHowever, in the context of RFC8348 and in the context of components defined in the base inventory model, the term 'container' and 'holder' look synonymous\r\n\r\nAgreed to use the term 'container' in this document, providing a definition as proposed in github and add an appendix with a terminology mapping to show e.g., that the term 'container' in this draft maps with the term 'holder' in other models\r\n\r\nThe terms 'container component' or 'YANG container' can also be used when needed to avoid confusion/ambiguity.\r\n\r\n- [ ] @YuChaode : update the document as agreed\r\n",
           "createdAt": "2024-01-24T17:03:11Z",
           "updatedAt": "2024-01-24T17:03:13Z"
+        },
+        {
+          "author": "YuChaode",
+          "authorAssociation": "COLLABORATOR",
+          "body": "please check the PR #66 ",
+          "createdAt": "2024-10-09T13:43:28Z",
+          "updatedAt": "2024-10-09T13:43:28Z"
         }
       ]
     },
@@ -1471,7 +1478,7 @@
       "id": "I_kwDOKiDYo85_6kUM",
       "title": "Clean-up YANG groupings",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/37",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -1484,8 +1491,8 @@
       ],
       "body": "> Additional comments that may be addressed after the PR is merged (if not addressed, we can track them as new open issues):\r\n> 1. There is no need for empty grouping for the component-specific attributes. An empty container defined as an augmentation target should be enough for the base network inventory model\r\n> 2. It is preferable to avoid defining grouping when used once unless this would help the readability of the code\r\n> \r\n\r\n_Originally posted by @italobusi in https://github.com/ietf-ivy-wg/network-inventory-yang/pull/34#pullrequestreview-1865791290_\r\n            ",
       "createdAt": "2024-02-21T08:00:04Z",
-      "updatedAt": "2024-10-01T15:59:24Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-09T08:37:50Z",
+      "closedAt": "2024-10-09T08:37:50Z",
       "comments": []
     },
     {
@@ -3456,7 +3463,7 @@
       "id": "PR_kwDOKiDYo859GI7r",
       "title": "Clean-up YANG groupings and components identifiers",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/65",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -3465,17 +3472,19 @@
       "labels": [],
       "body": "Cleaned-up use of YANG groupings: fix #37\r\nAdded text clarifying the design choice for component identifier: fix #57 \r\n\r\n---\r\n\r\nCo-Authored-By: YuChaode <yuchaode@huawei.com>",
       "createdAt": "2024-09-30T10:37:42Z",
-      "updatedAt": "2024-10-06T05:48:23Z",
+      "updatedAt": "2024-10-09T08:37:49Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "8aeda519077e3601d9861b6d39325ab7f8ca2a03",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "fix-37-57",
       "headRefOid": "1967f80f0fb5d0e3bcd262792fb88d25c7465952",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-10-09T08:37:49Z",
+      "mergedAt": "2024-10-09T08:37:49Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "a48ddfb32d4ec39f4d3b0b15318916f771535f5a"
+      },
       "comments": [],
       "reviews": [
         {
@@ -3623,6 +3632,53 @@
           "createdAt": "2024-10-06T05:48:23Z",
           "updatedAt": "2024-10-06T05:48:23Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "id": "PR_kwDOKiDYo85-FZaT",
+      "title": "update the terminology of container in appendix",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/66",
+      "state": "OPEN",
+      "author": "YuChaode",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-10-09T13:42:57Z",
+      "updatedAt": "2024-10-09T14:01:10Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "49e78abf82691b1cd29aba72274c28fac5950d1b",
+      "headRepository": "YuChaode/network-inventory-yang",
+      "headRefName": "main",
+      "headRefOid": "b2599e5a8c2dda8aef0cd442cf696892ad4b48f3",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86MgOrt",
+          "commit": {
+            "abbreviatedOid": "b2599e5"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-09T14:00:31Z",
+          "updatedAt": "2024-10-09T14:01:10Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "I think the definition proposed is not totally aligned with the proposed text https://github.com/ietf-ivy-wg/network-inventory-yang/issues/13#issuecomment-1904342163 and as suggested in the comment https://github.com/ietf-ivy-wg/network-inventory-yang/issues/13#issuecomment-1904342163 ",
+              "createdAt": "2024-10-09T14:00:31Z",
+              "updatedAt": "2024-10-09T14:01:10Z"
+            }
+          ]
         }
       ]
     }
