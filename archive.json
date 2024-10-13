@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-10T00:51:19.143208+00:00",
+  "timestamp": "2024-10-13T00:55:13.050750+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -136,16 +136,16 @@
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
-        "YuChaode",
-        "lana-wu"
+        "YuChaode"
       ],
       "labels": [
         "wga",
+        "agreed",
         "priority-1"
       ],
       "body": "Need to discuss if to use parent-component-ref as in the original CCAMP WG draft or to define a parent attribute as in RFC8348",
       "createdAt": "2023-10-23T08:32:56Z",
-      "updatedAt": "2024-10-01T16:02:46Z",
+      "updatedAt": "2024-10-10T11:01:03Z",
       "closedAt": null,
       "comments": [
         {
@@ -161,6 +161,20 @@
           "body": "[Parent & Child Component Navigation.pptx](https://github.com/ietf-ivy-wg/network-inventory-yang/files/14352755/Parent.Child.Component.Navigation.pptx)\r\nA slide to be discuss on 21st Feb meeting.",
           "createdAt": "2024-02-21T01:12:33Z",
           "updatedAt": "2024-02-21T01:12:33Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-10-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-10-09)**\r\n\r\nCamilo: having the information is the objective, I do not think there are so many data nodes that both the options couldn't work. So my position is that I do not have a clear position or preference and both options could work for me.\r\n\r\nAihua: I would stay with RFC8348 approach, since more easy for the server implementation.\r\n\r\nSergio: I would be on the same page of Camilo in general, but I also made an internal check and it seems RFC8348 is the most favorable approach.",
+          "createdAt": "2024-10-10T09:41:50Z",
+          "updatedAt": "2024-10-10T09:41:50Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "- [ ] @YuChaode : please submit a PR proposing changes to the I-D text and YANG model based on the outcome of this discussion",
+          "createdAt": "2024-10-10T11:01:02Z",
+          "updatedAt": "2024-10-10T11:01:02Z"
         }
       ]
     },
@@ -3647,7 +3661,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-10-09T13:42:57Z",
-      "updatedAt": "2024-10-09T14:01:10Z",
+      "updatedAt": "2024-10-10T09:43:01Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "49e78abf82691b1cd29aba72274c28fac5950d1b",
@@ -3658,7 +3672,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-10-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-10-09)**\r\n\r\nSergio: I've left a comment about the proposed text . The proposed text is not totally aligned with the text proposed here https://github.com/ietf-ivy-wg/network-inventory-yang/issues/13#issuecomment-1904342163\r\n\r\nChaode: I've tried to add also the concept that the term 'container' in this draft maps with the term 'holder' in other models. \r\n\r\nSergio: I would agree to add also this sentence in the bottom of the definition proposed or in an appendix.",
+          "createdAt": "2024-10-10T09:43:00Z",
+          "updatedAt": "2024-10-10T09:43:00Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOKiDYo86MgOrt",
