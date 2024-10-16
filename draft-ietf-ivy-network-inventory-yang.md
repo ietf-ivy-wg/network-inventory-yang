@@ -426,23 +426,21 @@ patch information, are outside the scope of this document and defined other docu
 
 We re-defined some attributes listed in {{!RFC8348}}, based on some integration experience for network wide inventory data.
 
-### New Parent Identifiers' Reference
+### Component-Specific Info Design
 
-{{!RFC8348}} provided a "parent-ref" attribute, which was an identifier reference to its parent component. When the MDSC or OSS systems want to find this component's grandparent or higher level component in the hierarchy, they need to retrieve this parent-ref step by step. To reduce this iterative work, we decided to provide a list of hierarchical parent components' identifier references.
+According to the management requirements from operators, some important attributes are not defined in {{!RFC8348}}. These attributes could be component-specific and are not suitable to be defined under the component list node. Instead, they can be defined by augmenting the component-specific info container for the attributes applicable to HW e.g. boards/slot components only. Other component-specific attributes, such as SW-specific-info, may be defined in companion augmentation data models, such as
+{{?I-D.wzwb-ivy-network-inventory-software}} and are out of the scope of this model.
 
 ~~~~ ascii-art
-  +--ro components
-     +--ro component* [component-id]
-        ...................................
-        +--ro parent-component-references
-        |   +--ro component-reference* [index]
-        |      +--ro index    uint8
-        |      +--ro class?   -> ../../../class
-        |      +--ro uuid?    -> ../../../uuid
-        ...................................
++--rw components
+   +--rw component* [component-id]
+   |  +--rw component-id            string
+   |   .......................................
+   |  +--ro chassis-specific-info
+   |  +--ro slot-specific-info
+   |  +--ro board-specific-info
+   |  +--ro port-specific-info
 ~~~~
-
-The hierarchical components' identifier could be found by the "component-reference" list. The "index" attribute is used to order the list by the hierarchical relationship from topmost component (with the "index" set to 0) to bottom component.
 
 ### Part Number
 
