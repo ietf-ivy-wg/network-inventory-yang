@@ -444,22 +444,6 @@ We re-defined some attributes listed in {{!RFC8348}}, based on some integration 
 
 The hierarchical components' identifier could be found by the "component-reference" list. The "index" attribute is used to order the list by the hierarchical relationship from topmost component (with the "index" set to 0) to bottom component.
 
-### Component-Specific Info Design
-
-According to the management requirements from operators, some important attributes are not defined in {{!RFC8348}}. These attributes could be component-specific and are not suitable to be defined under the component list node. Instead, they can be defined by augmenting the component-specific info container for the attributes applicable to HW e.g. boards/slot components only. Other component-specific attributes, such as SW-specific-info, may be defined in companion augmentation data models, such as
-{{?I-D.wzwb-ivy-network-inventory-software}} and are out of the scope of this model.
-
-~~~~ ascii-art
-+--rw components
-   +--rw component* [component-id]
-   |  +--rw component-id            string
-   |   .......................................
-   |  +--ro chassis-specific-info
-   |  +--ro slot-specific-info
-   |  +--ro board-specific-info
-   |  +--ro port-specific-info
-~~~~
-
 ### Part Number
 
 According to the description in {{!RFC8348}}, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. "Model-name" is not straightforward to understand and we suggest to rename it as "part-number" directly.
