@@ -35,7 +35,7 @@ module: ietf-network-inventory
                  +--ro asset-id?                string
                  +--ro child-component-ref
                  +--ro parent-rel-pos?          int32
-                 +--ro parent-component-ref
+                 +--ro parent?                  ../../component/component-id
                  +--ro is-fru?                  boolean
                  +--ro uri*                     inet:uri
                  +--ro chassis-specific-info
