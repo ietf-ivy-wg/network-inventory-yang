@@ -600,8 +600,11 @@ Mostly, our inventory data model can cover the attributes from OpenConfig.
 
 # Terminology of Container
 
-In {{!RFC8348}}, container is defined as an identity of component class . According to the description, it is capable to container one or more removeable physical entities, e.g. a slot in a chassis is containing a board. It can be mapped to the term of 'holder' in other models.
-Besides, The terms of container in this document can be 'container component' or 'YANG container'. The understanding of the meaning of 'container' should be combined with context.
+Within this document , with the term "container" we consider an hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.
+| terminology of IVY base model  |terminology in other model  |
+| ------------------------------ | -------------------------- | 
+| container                      | holder                     |
+{: #tab-term title="terminology mapping"}
 
 # Efficiency Issue
 
