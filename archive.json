@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-15T00:52:22.566739+00:00",
+  "timestamp": "2024-10-17T00:51:43.298143+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -145,7 +145,7 @@
       ],
       "body": "Need to discuss if to use parent-component-ref as in the original CCAMP WG draft or to define a parent attribute as in RFC8348",
       "createdAt": "2023-10-23T08:32:56Z",
-      "updatedAt": "2024-10-10T11:01:03Z",
+      "updatedAt": "2024-10-16T07:48:57Z",
       "closedAt": null,
       "comments": [
         {
@@ -174,7 +174,14 @@
           "authorAssociation": "COLLABORATOR",
           "body": "- [ ] @YuChaode : please submit a PR proposing changes to the I-D text and YANG model based on the outcome of this discussion",
           "createdAt": "2024-10-10T11:01:02Z",
-          "updatedAt": "2024-10-10T11:01:02Z"
+          "updatedAt": "2024-10-16T07:48:37Z"
+        },
+        {
+          "author": "YuChaode",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Please check the PR #66",
+          "createdAt": "2024-10-16T07:48:55Z",
+          "updatedAt": "2024-10-16T07:48:55Z"
         }
       ]
     },
@@ -1883,7 +1890,7 @@
       "id": "I_kwDOKiDYo86PNm87",
       "title": "virtual NE vs. LNE (RFC8530)",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/56",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -1896,8 +1903,8 @@
       ],
       "body": "https://github.com/ietf-ivy-wg/network-inventory-yang/blob/d13257a88ddef39df709dd6dd803c9a9c3361302/draft-ietf-ivy-network-inventory-yang.md?plain=1#L265C1-L269C54\r\n\r\nI suggest to position/align virtual NE vs. LNE per https://datatracker.ietf.org/doc/html/rfc8530#section-2",
       "createdAt": "2024-07-11T09:27:56Z",
-      "updatedAt": "2024-10-02T15:58:14Z",
-      "closedAt": null,
+      "updatedAt": "2024-10-16T15:22:34Z",
+      "closedAt": "2024-10-16T15:22:33Z",
       "comments": [
         {
           "author": "italobusi",
@@ -1905,6 +1912,41 @@
           "body": "@boucadair please consider the following comment: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/35#issuecomment-2389017940\r\n\r\nIf LNEs are different from virtual NEs and outside the scope of IVY WG, I think we can keep the text as it is and close the issue",
           "createdAt": "2024-10-02T15:58:12Z",
           "updatedAt": "2024-10-02T15:58:12Z"
+        },
+        {
+          "author": "lana-wu",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I agree with Italo that LNEs are functions configured on the devices which is out scope of IVY WG. \r\nFor the virtual NEs, We have similar devices deployed: https://datatracker.ietf.org/doc/html/draft-ietf-bess-virtual-pe-00, which has an inventory of cards similar to the physical router and is managed by the same controller as the physical routers",
+          "createdAt": "2024-10-16T09:10:32Z",
+          "updatedAt": "2024-10-16T09:10:32Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I have re-read the current text in the I-D and it looks to me quite generic and open to support any type of inventory object that can be managed as a network-element.\r\n\r\nIf the example text within the brackets '(e.g., virtual network elements)' is contentious, we can remove it, but I am ok to keep it as well.\r\n\r\nIMHO, the definition of what is a virtual NE and why it has to be managed as a network element is outside the scope of this I-D and in the scope of the software inventory I-D.",
+          "createdAt": "2024-10-16T13:34:47Z",
+          "updatedAt": "2024-10-16T13:34:47Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> I agree with Italo that LNEs are functions\r\n\r\nNot sure to get this as RFC8530 says \"An LNE is an independently managed virtual device made up of\r\n   resources allocated to it from the host or parent network device.\"",
+          "createdAt": "2024-10-16T13:44:26Z",
+          "updatedAt": "2024-10-16T13:44:26Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "> If the example text within the brackets '(e.g., virtual network elements)' is contentious, we can remove it, but I am ok to keep it as well.\r\n\r\nAdd LNE as an example would work for me.\r\n\r\n> and in the scope of the software inventory I-D\r\n\r\nDeal. Let's clarify that in the software inventory I-D",
+          "createdAt": "2024-10-16T13:45:48Z",
+          "updatedAt": "2024-10-16T13:45:48Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-10-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-10-16)**\r\n\r\nThere is no agreement that the LNE can be managed as a network-element as defined in the inventory model\r\n\r\nThe current text looks good enough and does not preclude defining new type of network-elements in other modules\r\n\r\nIf LNE is considered in the scope of IVY, a new I-D describing why LNE should be managed in the IVY (and defining an appropriate ne-type) can be submitted to IVY WG at any time\r\n\r\nAgreed to close the issue with no changes to the current text\r\n",
+          "createdAt": "2024-10-16T15:22:33Z",
+          "updatedAt": "2024-10-16T15:22:33Z"
         }
       ]
     },
@@ -2089,7 +2131,7 @@
       ],
       "body": "Network elements could be grouped into a single \"virtual\" element that manages all resources of the  encompassing different hardware chassis. \r\n\r\nIn simple words, two chassis, like two or more switches, can be connected and behave as a single one. \r\n\r\nThis is tackled in rfc8348 with the stack component.  It would be nice to have guidelines on how this should be modeled in this new model.\r\n\r\nFor reference, in one specific implementation of openconfig in this type of system, all interfaces of the child chassis are listed as orphans under /components. There is no reference  of the child chassis, or its line cards. For an inventory solution, we do need the actual hardware list.\r\n\r\nSee also https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/6",
       "createdAt": "2024-09-16T14:27:01Z",
-      "updatedAt": "2024-10-01T15:59:27Z",
+      "updatedAt": "2024-10-16T16:38:01Z",
       "closedAt": null,
       "comments": [
         {
@@ -2112,8 +2154,42 @@
           "body": "I do not know why issue https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/6 has not been transferred to this repository but I have closed it as superseded by this issue and added a reference to the previous issue and discussion in the description of this issue:\r\n\r\n> See also [ietf-ccamp-wg/ietf-network-inventory#6](https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/6)",
           "createdAt": "2024-09-19T10:24:05Z",
           "updatedAt": "2024-09-19T10:24:05Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-10-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-10-16)**\r\n\r\nReviewed slide from @prmanna describing the use cases of stacked switches\r\n\r\nThere is no need to use the stack component to group the different chassis under a single network element. The interconnection between the different chassis can be defined using the cabling model (see #32 ) where internal cabling is also defined.\r\n",
+          "createdAt": "2024-10-16T15:27:38Z",
+          "updatedAt": "2024-10-16T15:27:38Z"
+        },
+        {
+          "author": "jccardonar",
+          "authorAssociation": "NONE",
+          "body": "@italobusi , but how do we know that the chassis are under a single stack, which logically behaves as a single switch (for instance)? or we are deciding we are not going to provide that information?",
+          "createdAt": "2024-10-16T16:37:59Z",
+          "updatedAt": "2024-10-16T16:37:59Z"
         }
       ]
+    },
+    {
+      "number": 67,
+      "id": "I_kwDOKiDYo86agePg",
+      "title": "Presentation at IETF 121",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/67",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "YuChaode"
+      ],
+      "labels": [
+        "admin"
+      ],
+      "body": "",
+      "createdAt": "2024-10-16T15:15:34Z",
+      "updatedAt": "2024-10-16T15:15:34Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -3661,13 +3737,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-10-09T13:42:57Z",
-      "updatedAt": "2024-10-10T09:43:01Z",
+      "updatedAt": "2024-10-16T15:20:51Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "49e78abf82691b1cd29aba72274c28fac5950d1b",
       "headRepository": "YuChaode/network-inventory-yang",
       "headRefName": "main",
-      "headRefOid": "b2599e5a8c2dda8aef0cd442cf696892ad4b48f3",
+      "headRefOid": "48dc0fa7657a60050533fddc0c86c361edfefc21",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -3679,6 +3755,13 @@
           "body": "**[2024-10-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-10-09)**\r\n\r\nSergio: I've left a comment about the proposed text . The proposed text is not totally aligned with the text proposed here https://github.com/ietf-ivy-wg/network-inventory-yang/issues/13#issuecomment-1904342163\r\n\r\nChaode: I've tried to add also the concept that the term 'container' in this draft maps with the term 'holder' in other models. \r\n\r\nSergio: I would agree to add also this sentence in the bottom of the definition proposed or in an appendix.",
           "createdAt": "2024-10-10T09:43:00Z",
           "updatedAt": "2024-10-10T09:43:00Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-10-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-10-16)**\r\n\r\nAgreed to have an appendix with a table providing a mapping between the terminology in [TMF_SD2-20] and the definitions in our model: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/66#discussion_r1802987532\r\n\r\n- [ ] @YuChaode update the PR based on review comments\r\n\r\nThe PR can be merged offline after the review comments are addressed",
+          "createdAt": "2024-10-16T15:20:49Z",
+          "updatedAt": "2024-10-16T15:20:49Z"
         }
       ],
       "reviews": [
@@ -3699,6 +3782,51 @@
               "body": "I think the definition proposed is not totally aligned with the proposed text https://github.com/ietf-ivy-wg/network-inventory-yang/issues/13#issuecomment-1904342163 and as suggested in the comment https://github.com/ietf-ivy-wg/network-inventory-yang/issues/13#issuecomment-1904342163 ",
               "createdAt": "2024-10-09T14:00:31Z",
               "updatedAt": "2024-10-09T14:01:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86NXObS",
+          "commit": {
+            "abbreviatedOid": "411814f"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-16T08:52:09Z",
+          "updatedAt": "2024-10-16T08:52:09Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo86NZVVw",
+          "commit": {
+            "abbreviatedOid": "48dc0fa"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-16T12:02:08Z",
+          "updatedAt": "2024-10-16T12:13:53Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "For better readability I would add an empty line:\r\n\r\n```suggestion\r\n                contains this component.\r\n\r\n                If this leaf is not instantiated, it indicates that \r\n```",
+              "createdAt": "2024-10-16T12:02:08Z",
+              "updatedAt": "2024-10-16T12:13:53Z"
+            },
+            {
+              "originalPosition": 31,
+              "body": "In RFC 8348 there is some text to describe the case where a component has more than one parent (e.g., a multi-slot board) which I think it is worthwhile copying here as well:\r\n\r\n```suggestion\r\n                component.\";\r\n\r\n                In the event that a physical component is contained by\r\n                more than one physical component (e.g., double-wide\r\n                modules), this node contains the identifier of one of these\r\n                components.  An implementation MUST use the same name\r\n                every time this node is instantiated.\";\r\n              reference\r\n```",
+              "createdAt": "2024-10-16T12:04:10Z",
+              "updatedAt": "2024-10-16T14:19:22Z"
+            },
+            {
+              "originalPosition": 7,
+              "body": "I think that the proposed text already exists in the definition section:\r\n\r\n> Container:\r\n> A hardware component class that is capable of containing one or more removable physical entities (e.g., a slot in a chassis is containing a board).\r\n> \r\n\r\nI am wondering whether this appendix cannot be rewritten with a table providing a mapping between the terminology in [TMF_SD2-20] and the definitions in our model. It might be worthwhile referencing this appendix in section 3.3.\r\n",
+              "createdAt": "2024-10-16T12:13:23Z",
+              "updatedAt": "2024-10-16T12:13:53Z"
             }
           ]
         }
