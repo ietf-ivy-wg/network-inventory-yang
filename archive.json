@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-17T00:51:43.298143+00:00",
+  "timestamp": "2024-10-20T00:56:23.709390+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1398,7 +1398,7 @@
       ],
       "body": "It is clear that we do not have a tight enough definition of the boundary on the Ivy work. We need to understand what is in scope and what not. It is not practical to list all things in scope, so instead we need rules against which we can evaluate whether something is in scope or out of scope.\r\n\r\nClearly, there are some things we would all agree are in scope and other things we would agree are out of scope. Identifying the inherent properties of those things will help. \r\n\r\nBut there are things that we do not agree about and even if we had a complete definition, there are things on the boundary or that straddle the boundary.\r\n\r\nI emailed the list with some thoughts on how to organize things on a  \"map\" to help us define the boundary.\r\n\r\nI have attempted to sketch a map of things (over simplified in many places) that includes some questions and some sketch definitions. I would be happy to discuss this on our next call.\r\n[IvyBoundary.pptx](https://github.com/ietf-ivy-wg/network-inventory-yang/files/14139708/IvyBoundary.pptx)\r\n",
       "createdAt": "2024-02-02T12:03:16Z",
-      "updatedAt": "2024-10-02T15:47:40Z",
+      "updatedAt": "2024-10-18T05:41:36Z",
       "closedAt": null,
       "comments": [
         {
@@ -1449,6 +1449,13 @@
           "body": "**[2024-10-02 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-10-02)**\r\n\r\nThere are differences between VNE and LNE, as outlined by the [Virtual NE vs. Logical NE.pptx](https://github.com/user-attachments/files/17230571/Virtual.NE.vs.Logical.NE.pptx) slides\r\n\r\nLogical NEs are considered outside the scope of IVY because they represent logical partitioning of NE resources\r\n\r\nMore discussion is required on the Virtual NE definition and management (within the scope of the SW network inventory model). The base model has been defined to be open to support other type of NEs, besides physical NEs, as well as SW components via proper augmentations (such as those under definition in the SW network inventory model).\r\n",
           "createdAt": "2024-10-02T15:47:38Z",
           "updatedAt": "2024-10-02T15:47:38Z"
+        },
+        {
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "body": "[Virtual NE vs. Logical NE.pptx](https://github.com/user-attachments/files/17428688/Virtual.NE.vs.Logical.NE.pptx)\r\nUpdated with example for Cisco Virtual NE and stacked switch case.",
+          "createdAt": "2024-10-18T05:39:34Z",
+          "updatedAt": "2024-10-18T05:41:36Z"
         }
       ]
     },
@@ -2131,7 +2138,7 @@
       ],
       "body": "Network elements could be grouped into a single \"virtual\" element that manages all resources of the  encompassing different hardware chassis. \r\n\r\nIn simple words, two chassis, like two or more switches, can be connected and behave as a single one. \r\n\r\nThis is tackled in rfc8348 with the stack component.  It would be nice to have guidelines on how this should be modeled in this new model.\r\n\r\nFor reference, in one specific implementation of openconfig in this type of system, all interfaces of the child chassis are listed as orphans under /components. There is no reference  of the child chassis, or its line cards. For an inventory solution, we do need the actual hardware list.\r\n\r\nSee also https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/6",
       "createdAt": "2024-09-16T14:27:01Z",
-      "updatedAt": "2024-10-16T16:38:01Z",
+      "updatedAt": "2024-10-18T06:04:15Z",
       "closedAt": null,
       "comments": [
         {
@@ -2158,9 +2165,9 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2024-10-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-10-16)**\r\n\r\nReviewed slide from @prmanna describing the use cases of stacked switches\r\n\r\nThere is no need to use the stack component to group the different chassis under a single network element. The interconnection between the different chassis can be defined using the cabling model (see #32 ) where internal cabling is also defined.\r\n",
+          "body": "**[2024-10-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-10-16)**\r\n\r\nReviewed slide from @prmanna describing the use cases of stacked switches: [Virtual.NE.vs.Logical.NE.pptx - slide 7](https://github.com/user-attachments/files/17428688/Virtual.NE.vs.Logical.NE.pptx)\r\n\r\nThere is no need to use the stack component to group the different chassis under a single network element. The interconnection between the different chassis can be defined using the cabling model (see #32 ) where internal cabling is also defined.\r\n",
           "createdAt": "2024-10-16T15:27:38Z",
-          "updatedAt": "2024-10-16T15:27:38Z"
+          "updatedAt": "2024-10-18T06:04:15Z"
         },
         {
           "author": "jccardonar",
@@ -2168,6 +2175,20 @@
           "body": "@italobusi , but how do we know that the chassis are under a single stack, which logically behaves as a single switch (for instance)? or we are deciding we are not going to provide that information?",
           "createdAt": "2024-10-16T16:37:59Z",
           "updatedAt": "2024-10-16T16:37:59Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> @italobusi , but how do we know that the chassis are under a single stack, which logically behaves as a single switch (for instance)? or we are deciding we are not going to provide that information?\r\n\r\n@jccardonar I think you can understand this because theses chassis are under the same network element. This looks like the same as case 1 in https://github.com/ietf-ivy-wg/network-inventory-yang/issues/64#issuecomment-2359312360\r\n\r\nIMHO, using the stack component is not needed but also not precluded as show for case 3 in https://github.com/ietf-ivy-wg/network-inventory-yang/issues/64#issuecomment-2359312360. However, my feeling, is that this would be more useful when there is a need to report more than one group of chassis (stacks) within the same network element",
+          "createdAt": "2024-10-17T02:33:41Z",
+          "updatedAt": "2024-10-17T02:33:41Z"
+        },
+        {
+          "author": "jccardonar",
+          "authorAssociation": "NONE",
+          "body": "I see, the chassis are still under the same NE, I was thinking they would be a NE each.. That's ok I guess! An example in the draft would no be bad.",
+          "createdAt": "2024-10-17T02:36:25Z",
+          "updatedAt": "2024-10-17T02:36:25Z"
         }
       ]
     },
