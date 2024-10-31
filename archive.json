@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-29T00:53:25.067178+00:00",
+  "timestamp": "2024-10-31T00:52:48.936932+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -2208,9 +2208,17 @@
       ],
       "body": "",
       "createdAt": "2024-10-16T15:15:34Z",
-      "updatedAt": "2024-10-16T15:15:34Z",
+      "updatedAt": "2024-10-30T16:06:16Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-10-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-10-30)**\r\n\r\nInitial draft of the slides reviewed during the call\r\n\r\n- [ ] @YuChaode  clean-up the slides based on the review of the call and upload them for further review",
+          "createdAt": "2024-10-30T16:06:15Z",
+          "updatedAt": "2024-10-30T16:06:15Z"
+        }
+      ]
     }
   ],
   "pulls": [
