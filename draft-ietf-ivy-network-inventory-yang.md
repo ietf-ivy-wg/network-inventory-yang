@@ -46,7 +46,6 @@ author:
     org: Cisco
     email: phbedard@cisco.com
 
-
 contributor:
   -
     name: Italo Busi
