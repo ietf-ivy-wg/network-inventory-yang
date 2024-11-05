@@ -1378,7 +1378,7 @@ Contributors
 
    Aihua Guo
    Futurewei Technologies
-   Email: aihuaguo.ietf@gmail.com、
+   Email: aihuaguo.ietf@gmail.com
 
 
    Victor Lopez
