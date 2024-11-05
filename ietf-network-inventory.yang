@@ -68,7 +68,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2024-10-02 {
+  revision 2024-10-16 {
     description
       "Initial version";
     reference
@@ -350,14 +350,22 @@ module ietf-network-inventory {
                 "RFC 6933: Entity MIB (Version 4) -
                           entPhysicalParentRelPos";
             }
-            container parent-component-ref {
+            leaf parent {
+              type leaf-ref {
+                path "../../component/component-id";
+                require-instance false;
+              }
               config false;
               description
-                "A placeholder for adding the reference to parent
-                 component(s): to further discuss whether to define
-                 a parent attribute as RFC 8348 or a
-                 parent-component-references container as in
-                 draft-ietf-ccamp-network-inventory-yang-02.";
+                "The identifier of the component that physically
+                contains this component.
+                If this leaf is not instantiated, it indicates that 
+                this component is not contained in any other 
+                component.";
+              reference
+                "RFC 6933: Entity MIB (Version 4) - 
+                entPhysicalContainedIn";
+              
             }
             leaf is-fru {
               type boolean;
