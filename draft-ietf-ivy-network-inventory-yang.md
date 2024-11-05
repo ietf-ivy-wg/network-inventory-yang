@@ -55,7 +55,7 @@ contributor:
   -
     name: Aihua Guo
     org: Futurewei Technologies
-    email: aihuaguo.ietf@gmail.com、
+    email: aihuaguo.ietf@gmail.com
   -
     name: Victor Lopez
     org: Nokia
