@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-17T00:57:55.186896+00:00",
+  "timestamp": "2024-11-19T00:54:39.627013+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1142,7 +1142,7 @@
       ],
       "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#L629\r\n\r\nIt TAPI we support the preprovisioning of slots. The NE essentially expects an equipment to be inserted. This is a traditional capability and is a rudimentary planning/intent model. Many devices support this capability. It is important to represent this. In TAPI we use the equipment (component) to represent both the expectation and actual. If we were to do that here, the component would have a structure for expectation and a structure for actual along with a mismatch representation capability. We should discuss this in more detail.\r\n",
       "createdAt": "2023-06-14T13:44:20Z",
-      "updatedAt": "2024-10-01T16:06:13Z",
+      "updatedAt": "2024-11-18T09:37:58Z",
       "closedAt": null,
       "comments": [
         {
@@ -1165,6 +1165,13 @@
           "body": "> A slot can have the following states:\r\n> \r\n> * Empty: no component is installed and no expected component has been provisioned;\r\n> * Installed & not expected: a component is inserted but no expected component has been provisioned;\r\n> * Expected & not Installed: an expected component has been provisioned but no component is currently installed;\r\n> * Installed & Expected: an expected component has been provisioned and it is currently installed;\r\n> * Mismatch of Installed & Expected: there is an inconsistency between the expected component and the installed component;\r\n> * Unavailable: this holder cannot accept the installation or provisioning of components (this is typically caused by a double width card installed next to this slot);\r\n> * Unknown: the state of the slot is not known;\r\n> \r\n> Is there a need to manage/report these states within the network inventory?\r\n\r\nSee also: https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/15#issue-1023941241",
           "createdAt": "2023-11-29T12:28:46Z",
           "updatedAt": "2023-11-29T12:28:46Z"
+        },
+        {
+          "author": "QiufangMa",
+          "authorAssociation": "NONE",
+          "body": "Hi, my comments as a contributor is that, support of pre-provisioning is not that complex. This is something that could be leveraged by NMDA. What is configured which represents the clients' intention is present in intended ds, and if the server cannot apply the configuration successfully (e.g., because it doesn't match the real hardware), the intention won't be present in operational ds, i.e., only what is actual in use is present in operational ds.\r\nA couple of IETF-published YANG has followed this way, e.g., \r\n\r\n- RFC 8348, regarding how the server supports pre-provisioning of hardware:\r\n  `When the server detects a new hardware component, it\r\n           initializes a list entry in the operational state.\r\n\r\n           If the server does not support configuration of hardware\r\n           components, list entries in the operational state are\r\n           initialized with values for all nodes as detected by the\r\n           implementation.\r\n\r\n           Otherwise, this procedure is followed:\r\n\r\n             1. If there is an entry in the '/hardware/component' list\r\n                in the intended configuration with values for the nodes\r\n                'class', 'parent', and 'parent-rel-pos' that are equal\r\n                to the detected values, then the list entry in the\r\n                operational state is initialized with the configured\r\n                values, including the 'name'.\r\n\r\n             2. Otherwise (i.e., there is no matching configuration\r\n                entry), the list entry in the operational state is\r\n                initialized with values for all nodes as detected by\r\n                the implementation.`\r\n\r\n- RFC 8345, section 4.4.10. Supporting Client-Configured and System-Controlled Network Topologies\r\n- RFC 8343, pre-provisioning of interface configuration\r\n  `When a system-controlled interface is created in the operational\r\n   state by the system, the system tries to apply the interface\r\n   configuration in the intended configuration with the same name as the\r\n   new interface.  If no such interface configuration is found, or if\r\n   the configured type does not match the real interface type, the\r\n   system creates the interface without applying explicit configuration.`\r\n\r\n- and also refer to the 8342 itself for the examples of pre-provisioning of interfaces: \r\n  https://datatracker.ietf.org/doc/html/rfc8342#appendix-C.3.1 ",
+          "createdAt": "2024-11-18T09:36:08Z",
+          "updatedAt": "2024-11-18T09:37:58Z"
         }
       ]
     },
