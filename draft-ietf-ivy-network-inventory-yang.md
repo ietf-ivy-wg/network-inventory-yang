@@ -46,7 +46,6 @@ author:
     org: Cisco
     email: phbedard@cisco.com
 
-
 contributor:
   -
     name: Italo Busi
@@ -55,7 +54,7 @@ contributor:
   -
     name: Aihua Guo
     org: Futurewei Technologies
-    email: aihuaguo.ietf@gmail.com、
+    email: aihuaguo.ietf@gmail.com
   -
     name: Victor Lopez
     org: Nokia
