@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-19T00:54:39.627013+00:00",
+  "timestamp": "2024-11-21T00:54:15.186561+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -722,15 +722,17 @@
       "state": "OPEN",
       "author": "YuChaode",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "YuChaode"
+      ],
       "labels": [
         "documentation",
-        "needs discussion",
+        "agreed",
         "priority-1"
       ],
       "body": "This is the slide we discussed in last week\r\n[Meeting Material_02.08.pptx](https://github.com/ietf-ccamp-wg/ietf-network-inventory/files/10733238/Meeting.Material_02.08.pptx)\r\n",
       "createdAt": "2023-02-14T14:17:39Z",
-      "updatedAt": "2024-10-01T16:00:52Z",
+      "updatedAt": "2024-11-20T16:08:33Z",
       "closedAt": null,
       "comments": [
         {
@@ -774,6 +776,13 @@
           "body": "**[2024-09-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-11)**\r\n\r\nItalo has sent some thoughts to the IVY WG mailing list before the IVY WG session at IETF 120:\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/inventory-yang/IvgK1ca7Sq8TTOfBv9-JbcqzcI0/\r\n\r\n- [ ] @All: follow-up the discussion on the mailing list",
           "createdAt": "2024-09-11T19:09:30Z",
           "updatedAt": "2024-09-11T19:09:30Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-11-20 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-11-20)**\r\n\r\nDiscussed in the IVY WG meeting during IETF 121:\r\n- [Slides](https://datatracker.ietf.org/doc/slides-121-ivy-a-yang-data-model-for-network-inventory/)\r\n- [Minutes](https://datatracker.ietf.org/doc/minutes-121-ivy-202411071300/)\r\n- [Follow-up discussion on IVY mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/_l8eNn_CwxA0Fp9ZMWYQL6BPOqw/)\r\n\r\nKeep silent in this draft about the'energy-object' component type: [IVY Mailing List Discussion](https://mailarchive.ietf.org/arch/msg/inventory-yang/copx9z8XNzUTYHIi4nkv1oeKstM/)\r\n\r\nIn order to be able to provide some text proposal, it has been agreed to keep the RFC 8348 definitions for port, container, chassis and stack and update them based on other comments resolution. A note can be added to clarify to the readers that the definitions of these components is under review and may be changed in future versions of the draft.\r\n\r\n- [ ] @YuChaode  submit an initial proposal for updating the definitions and scope of the draft (target: next weekly meeting)",
+          "createdAt": "2024-11-20T16:08:16Z",
+          "updatedAt": "2024-11-20T16:08:16Z"
         }
       ]
     },
@@ -1663,18 +1672,23 @@
     {
       "number": 45,
       "id": "I_kwDOKiDYo86IUU-0",
-      "title": "Modeling of Port and Transceiver",
+      "title": "Modeling of Ports, Transceivers and Breakouts",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/45",
       "state": "OPEN",
       "author": "YuChaode",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "italobusi",
+        "sergiobelotti",
+        "YuChaode"
+      ],
       "labels": [
+        "agreed",
         "priority-1"
       ],
       "body": "This issue was raised when we were considering how to introduce transceiver into the base model.\r\nWe found the understandings of port  were not aligned, so we collected four scenarios of port & transceiver installation and run this discussion with several proposals.\r\nThe slide we discussed on the weekly call of 8th May, 2024 is attached below:\r\n[Discussion of Port Modeling-20240508.pptx](https://github.com/ietf-ivy-wg/network-inventory-yang/files/15258754/Discussion.of.Port.Modeling-20240508.pptx)  ",
       "createdAt": "2024-05-09T06:57:12Z",
-      "updatedAt": "2024-10-01T15:59:25Z",
+      "updatedAt": "2024-11-20T16:10:05Z",
       "closedAt": null,
       "comments": [
         {
@@ -1809,6 +1823,13 @@
           "body": "I\u2019m somewhat in favor of option #2 for modeling the port and pluggable, but would not adopt a 1:1 mapping of the OC terminology since it has some ambiguity.\r\n\r\nThanks,\r\nPhil\r\n\r\nFrom: italobusi ***@***.***>\r\nDate: Wednesday, September 11, 2024 at 14:01\r\nTo: ietf-ivy-wg/network-inventory-yang ***@***.***>\r\nCc: Phil Bedard ***@***.***>, Comment ***@***.***>\r\nSubject: Re: [ietf-ivy-wg/network-inventory-yang] Modeling of Port and Transceiver (Issue #45)\r\n\r\n2024-09-11 Base Network Inventory weekly call<https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-11>\r\n\r\nThe IVY WG chairs have sent an email, right after the discussion at IETF 120, to ask WG what is the opinion regarding the 3 options:\r\n\r\n  1.  RFC8348\r\n  2.  OpenConfig\r\n  3.  TAPI\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/AbrkYA2PZ4f4CQIxsl4AbIdUlFU/\r\n\r\n  *   @ALL<https://github.com/ALL>: reply email sent by Daniele after IETF 120\r\n\r\n\u2014\r\nReply to this email directly, view it on GitHub<https://github.com/ietf-ivy-wg/network-inventory-yang/issues/45#issuecomment-2344452847>, or unsubscribe<https://github.com/notifications/unsubscribe-auth/ACR35ZJVOAK5X4YL2GX3HNDZWCHRBAVCNFSM6AAAAABHOI7YIKVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMZDGNBUGQ2TEOBUG4>.\r\nYou are receiving this because you commented.Message ID: ***@***.***>\r\n",
           "createdAt": "2024-09-12T03:24:32Z",
           "updatedAt": "2024-09-12T03:24:32Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-11-20 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-11-20)**\r\n\r\nDiscussed in the IVY WG meeting during IETF 121:\r\n- [Slides](https://datatracker.ietf.org/doc/slides-121-ivy-a-yang-data-model-for-network-inventory/)\r\n- [Minutes](https://datatracker.ietf.org/doc/minutes-121-ivy-202411071300/)\r\n- [Follow-up discussion on IVY mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/hXeSC2WjAcFzbKOEFQl5d_WGZL4/)\r\n\r\nThe existing YANG model syntax for modelling the port components looks ok but the definition of the port and container components need to be updated to align with OpenConfig approach to model \"empty holes\" as port components\r\n\r\nThe term 'transceiver' is confusing because the same term is used in the optical impairments topology model to represent a similar but different concept\r\n\r\nIt has been agreed to\r\n- start working on the YANG model and draft text using the term 'transceiver'\r\n- add a note indicating that finding a new term would be useful to avoid confusion with the term 'transceiver' defined in optical impariments mode\r\n- create a new issue for tracking the need to define a new term to replace the term 'transceiver'\r\n\r\nAgreed to create a new issue for updating the IANA hardware module after the definitions in the draft are more stable.\r\n\r\nAgreed to create a new issue to ask Netmod WG for feedbacks: [Daniele mail](https://mailarchive.ietf.org/arch/msg/inventory-yang/HMV09tk8C3NRhv2VkGxJySdP1CA/): this can be done after after the model and the definitions in the draft are more stable\r\n\r\n- [ ] @YuChaode @italobusi @sergiobelotti Submit an initial proposal for updating the YANG model and text in the draft to add support for ports and breakouts based on OpenConfig-like approach and provide some JSON examples of ports and breakouts configurations\r\n",
+          "createdAt": "2024-11-20T16:09:42Z",
+          "updatedAt": "2024-11-20T16:09:42Z"
         }
       ]
     },
@@ -2137,7 +2158,8 @@
       "author": "jccardonar",
       "authorAssociation": "NONE",
       "assignees": [
-        "italobusi"
+        "italobusi",
+        "YuChaode"
       ],
       "labels": [
         "agreed",
@@ -2145,7 +2167,7 @@
       ],
       "body": "Network elements could be grouped into a single \"virtual\" element that manages all resources of the  encompassing different hardware chassis. \r\n\r\nIn simple words, two chassis, like two or more switches, can be connected and behave as a single one. \r\n\r\nThis is tackled in rfc8348 with the stack component.  It would be nice to have guidelines on how this should be modeled in this new model.\r\n\r\nFor reference, in one specific implementation of openconfig in this type of system, all interfaces of the child chassis are listed as orphans under /components. There is no reference  of the child chassis, or its line cards. For an inventory solution, we do need the actual hardware list.\r\n\r\nSee also https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/6",
       "createdAt": "2024-09-16T14:27:01Z",
-      "updatedAt": "2024-10-18T06:04:15Z",
+      "updatedAt": "2024-11-20T16:11:24Z",
       "closedAt": null,
       "comments": [
         {
@@ -2196,6 +2218,13 @@
           "body": "I see, the chassis are still under the same NE, I was thinking they would be a NE each.. That's ok I guess! An example in the draft would no be bad.",
           "createdAt": "2024-10-17T02:36:25Z",
           "updatedAt": "2024-10-17T02:36:25Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-11-20 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-11-20)**\r\n\r\nDiscussed in the IVY WG meeting during IETF 121:\r\n- [Slides](https://datatracker.ietf.org/doc/slides-121-ivy-a-yang-data-model-for-network-inventory/)\r\n- [Minutes](https://datatracker.ietf.org/doc/minutes-121-ivy-202411071300/)\r\n- [Follow-up discussion on IVY mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/eFvEskV926bjO4QzyNdxf4IMqWc/)\r\n\r\n- [ ] @YuChaode Revise and clarify, if needed, the terminology in RFC 8348 and provide some JSON examples for stacked switch and multi-shelf optical NEs (target: December 11 call)\r\n\r\nIt has been highglighted that the intra-NE link may not always be an fiber cable: in principle it can be fiber, waveguide, eletrical, ...\r\n\r\nThis is an issue to discuss further in the context of the passive inventory draft\r\n\r\n- [ ] @italobusi  Pass this information and note to the authors of the passive inventory draft\r\n",
+          "createdAt": "2024-11-20T16:10:57Z",
+          "updatedAt": "2024-11-20T16:11:24Z"
         }
       ]
     },
@@ -2204,7 +2233,7 @@
       "id": "I_kwDOKiDYo86agePg",
       "title": "Presentation at IETF 121",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/67",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2215,8 +2244,8 @@
       ],
       "body": "",
       "createdAt": "2024-10-16T15:15:34Z",
-      "updatedAt": "2024-11-03T19:38:13Z",
-      "closedAt": null,
+      "updatedAt": "2024-11-19T18:09:26Z",
+      "closedAt": "2024-11-19T18:09:25Z",
       "comments": [
         {
           "author": "italobusi",
@@ -2231,8 +2260,31 @@
           "body": "[draft-ietf-ivy-network-inventory-yang.pptx](https://github.com/user-attachments/files/17611801/draft-ietf-ivy-network-inventory-yang.pptx)\r\n",
           "createdAt": "2024-11-03T19:38:12Z",
           "updatedAt": "2024-11-03T19:38:12Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Presentation uploaded on datatracker: https://datatracker.ietf.org/doc/slides-121-ivy-a-yang-data-model-for-network-inventory/",
+          "createdAt": "2024-11-19T18:09:25Z",
+          "updatedAt": "2024-11-19T18:09:25Z"
         }
       ]
+    },
+    {
+      "number": 68,
+      "id": "I_kwDOKiDYo86fcciI",
+      "title": "modularity design",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/68",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Refer to the thread: https://mailarchive.ietf.org/arch/msg/nmop/P2-lPJvx2l7vnqOYlGJYWKJr5xM/",
+      "createdAt": "2024-11-20T08:53:15Z",
+      "updatedAt": "2024-11-20T08:53:15Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -3780,13 +3832,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-10-09T13:42:57Z",
-      "updatedAt": "2024-10-16T15:20:51Z",
+      "updatedAt": "2024-11-20T01:45:35Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
-      "baseRefOid": "49e78abf82691b1cd29aba72274c28fac5950d1b",
+      "baseRefOid": "069c9f7b97f81ad9fe901eaf8c88b1aaa86f1d57",
       "headRepository": "YuChaode/network-inventory-yang",
       "headRefName": "main",
-      "headRefOid": "48dc0fa7657a60050533fddc0c86c361edfefc21",
+      "headRefOid": "f472ff4eac948a4ace5f1f960d817b9e48210603",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
