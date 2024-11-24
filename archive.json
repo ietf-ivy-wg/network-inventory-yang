@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-21T00:54:15.186561+00:00",
+  "timestamp": "2024-11-24T00:58:12.696079+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -2111,20 +2111,21 @@
       "id": "I_kwDOKiDYo86WPSu9",
       "title": "Open Issue prioritization",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/62",
-      "state": "CLOSED",
+      "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
         "italobusi"
       ],
       "labels": [
+        "needs discussion",
         "admin",
         "priority-1"
       ],
       "body": "From the IVY WG discussion at IETF 120, there was some push to move the work a bit faster, considering some use cases in a future update:\r\n\r\nhttps://datatracker.ietf.org/doc/minutes-120-ivy-202407241630/\r\n\r\nIn order to try to move forward a bit faster, it has been proposed to review and prioritize the current list of open issues:\r\n* P1: must be addressed before WG LC of the base model\r\n* P2: preferred to be addressed before WG LC of the base model but can be postponed in case of timing issues\r\n* P3: can be addressed in the context of an augmentation model (which can be developed in parallel) or RFC-bis of the base model\r\n",
       "createdAt": "2024-09-11T19:24:36Z",
-      "updatedAt": "2024-10-02T14:32:52Z",
-      "closedAt": "2024-10-02T14:32:46Z",
+      "updatedAt": "2024-11-21T21:40:53Z",
+      "closedAt": null,
       "comments": [
         {
           "author": "italobusi",
@@ -2146,6 +2147,13 @@
           "body": "**[2024-09-18 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-18)**\r\n\r\nThe table has been reviewed and agreed as follows:\r\n\r\n| Number | Title | Priority | Comment |\r\n|---|---|---|---|\r\n| #2 | Attributes from RFC7317 | P2 | They can be added in a -bis version of the RFC (BC change)\r\n| #3 | Child and parent component navigation | P1 | It is a mandatory requirement to be supported from the first version of the model\r\n| #7 | Initial text for Security Considerations | P1 | Security considerations should be completed before WG LC\r\n| #8 | Write operations | P3 | Change from RO to RW is a BC change\r\n| #9 | WG adoption comments from Med | P1 & P2 | The first two comments are P1, the last is P2\r\n| #10 | WG adoption comments from Qiufang | P1 | It is related to the need to clarify the scope of the I-D\r\n| #11 | Missing attributes from RFC8348 | P2 | These attributes can be removed from the first RFC and added in a -bis version of the RFC (BC change)\r\n| #12 | Management of MPO ports | P1 | It is a mandatory requirement to be supported by the first version of the model\r\n| #13 | Clarify RFC8348 container terminology | P1 | Terminology clarification\r\n| #14 | Configuration Capability of Inventory Data Model | P3 | Related with the support of write operations (see #8)\r\n| #16 | Terminology and use cases clarification | P1\r\n| #17 | Add timestamp to know when a component information was retrieved | P3 | Optional feature which requires further clarifications\r\n| #19 | Model port breakouts | P1 | Duplicated with #12?\r\n| #21 | Relationship between network element and chassis | P1 | It impacts some of the key definitions in the model\r\n| #22 | Management of planned and removed components | P3 |  Related with the support of write operations (see #8)\r\n| #23 | Use of term \"network\" is confusing | P1 | It is part of terminology and scope clarification\r\n| #24 | Blurring physical and functional boundary | P1 | Impacts the whole inventory modelling approach\r\n| #25 | Clarification of Scope | P1\r\n| #26 | Specific properties | P3 | Additional attributes to be reviewed\r\n| #27 | Modelling software | P1 | It is mainly about the need clarify the minimum set of SW inventory requirements being covered by the base model\r\n| #28 | Expectation/Intention and Actual | P3 | Related with the support of write operations (see #8)\r\n| #29 | General considerations | P1 & P3 | Some considerations are relevant for the scope of this I-D, others may be more in the scope of other I-Ds defining augmentation models\r\n| #30 | Proposal for peer-mount | P1 | To be closed to confirm the approach currently being followed in the draft\r\n| #32 | Modelling of fibers and cables | P3 | Current assumption is that this should be outside the scope of the base model\r\n| #35 | Unclear boundary for Ivy work | P1 | To clarify which part of the issue applies to the I-D and which part applies to the IVY WG charter\r\n| #36 |  Add \"asset-id\" attribute to the NE | P2 | These attributes can be removed from the first RFC and added in a -bis version of the RFC (BC change)\r\n| #37 |  Clean-up YANG groupings | P1 | YANG code should be clean before WG LC |\r\n| #40 | Hardware and Firmware revisions for NE | P2 | These attributes can be removed from the first RFC and added in a -bis version of the RFC (BC change)\r\n| #41 | SW upgrades | N/A | To be moved to the SW inventory model after it becomes a WG document\r\n| #42 | Missing component location attribute | P2 | This attribute can be added in a -bis version of the RFC (BC change)\r\n| #44 | Does it make sense to have an operating system name (or software name) at device level? | P2 | These attributes can be removed from the first RFC and added in a -bis version of the RFC (BC change)\r\n| #45 | Modeling of Port and Transceiver | P1\r\n| #46 | How to add Passive Inventory? | P3 | Definitely in the scope of IVY, not clear whether in the scope of the base inventory or augmentation model\r\n| #56 | virtual NE vs. LNE (RFC8530) | P1 | At least keep the terminology open to future extensions, the best option would be to decouple this definition from the base model\r\n| #57 | Align with rfc8348 | P1\r\n| #58 | Warning with yanglint compilation | P1\r\n| #61 | Hackathon at IETF 121 | N/A | Outside the scope of the I-D\r\n| #62 | Open Issue prioritization | P1\r\n| #64 | How would this work with a rfc8348 stack? | P1\r\n\r\nLegenda:\r\n* P1: must be addressed before WG LC of the base model\r\n* P2: preferred to be addressed before WG LC of the base model but can be postponed in case of timing issues\r\n* P3: can be addressed in the context of an augmentation model (which can be developed in parallel) or RFC-bis of the base model\r\n\r\n- [x] @italobusi : add some label to the github open issues to track their relative priorities",
           "createdAt": "2024-09-18T20:00:26Z",
           "updatedAt": "2024-10-02T14:32:25Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See: https://mailarchive.ietf.org/arch/msg/inventory-yang/a6TqL3NsOKT_Wi-xe04XUVNQ-7w/",
+          "createdAt": "2024-11-21T21:40:45Z",
+          "updatedAt": "2024-11-21T21:40:45Z"
         }
       ]
     },
@@ -2283,6 +2291,22 @@
       "body": "Refer to the thread: https://mailarchive.ietf.org/arch/msg/nmop/P2-lPJvx2l7vnqOYlGJYWKJr5xM/",
       "createdAt": "2024-11-20T08:53:15Z",
       "updatedAt": "2024-11-20T08:53:15Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 69,
+      "id": "I_kwDOKiDYo86fpTCy",
+      "title": "Expose references ",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/69",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The mapping draft has this type:\r\n\r\n>   typedef ne-ref {\r\n>     type leafref {\r\n>       path \"/nwi:network-inventory/nwi:network-elements\"\r\n>          + \"/nwi:network-element/nwi:ne-id\";\r\n>     }\r\n>     description\r\n>       \"This type is used by data models that need to reference\r\n>        Network Element.\";\r\n>   }\r\n\r\nI suggest we move that type to the base model to ease reuse by other models.",
+      "createdAt": "2024-11-21T07:34:52Z",
+      "updatedAt": "2024-11-21T07:34:52Z",
       "closedAt": null,
       "comments": []
     }
