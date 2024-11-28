@@ -513,7 +513,7 @@ and other models is illustrated in Figure 4.
 {{fig-ni-tree}} below shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
 
 ~~~~ ascii-art
-{::include ./ietf-network-inventory.tree}
+{::include-fold ./yang/ietf-network-inventory.tree}
 ~~~~
 {: #fig-ni-tree title="Network inventory tree diagram"
 artwork-name="ietf-network-inventory.tree"}
@@ -523,7 +523,7 @@ artwork-name="ietf-network-inventory.tree"}
 # YANG Data Model for Network Inventory
 
 ~~~~ yang
-{::include ./ietf-network-inventory.yang}
+{::include-fold ./yang/ietf-network-inventory.yang}
 ~~~~
 {: #fig-ni-yang title="Network inventory YANG module"
 sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2024-10-02.yang"}
