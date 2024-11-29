@@ -90,7 +90,7 @@ normative:
     title: iana-hardware YANG Module
     author:
       org: IANA
-    target: https://www.iana.org/assignments/iana-hardware/
+    target: https://www.iana.org/assignments/iana-hardware/iana-hardware.xhtml
 
 informative:
 
