@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-28T00:55:46.480311+00:00",
+  "timestamp": "2024-12-01T01:05:20.094752+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -2313,7 +2313,7 @@
       ],
       "body": "Refer to the thread: https://mailarchive.ietf.org/arch/msg/nmop/P2-lPJvx2l7vnqOYlGJYWKJr5xM/",
       "createdAt": "2024-11-20T08:53:15Z",
-      "updatedAt": "2024-11-27T16:27:23Z",
+      "updatedAt": "2024-11-28T13:10:27Z",
       "closedAt": null,
       "comments": [
         {
@@ -2322,6 +2322,13 @@
           "body": "**[2024-11-27 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-11-27)**\r\n\r\nThis issue seems not in the scope of the network inventory model (which is already designed to be open to modular design) but more in the scope of the network inventory topology model and/or the passive inventory model\r\n\r\nThis may not be an issue if there is no need to support a leafref to navigate between link and cables.\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/MxdA8RUlwuRnIbLKfgR_NFZRB0Y/\r\n\r\n- [ ] @boucadair It is proposed to either move the issue to the network inventory topology model or to close the issue\r\n",
           "createdAt": "2024-11-27T16:27:18Z",
           "updatedAt": "2024-11-27T16:27:18Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@italobusi, we can add it to the mapping doc. However, the reason why I though the base doc might be better is that you have this section (which is almost empty) and think some generic guidance about ensuring that the modular approach is not only followed in the base but should be followed in the extensions, etc. \r\n\r\n```\r\n> [4. ](https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-04#section-4)[Extending Network Inventory](https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-04#name-extending-network-inventory)\r\n> This document defines the basic network inventory attributes applicable to typical network scenarios. For finer-grained and specific management scenarios, the relationship between this model and other models is illustrated in Figure 4.\r\n> \r\n>              +-------------------------+\r\n>              |                         |\r\n>              | Base Network Inventory  |\r\n>              |                         |\r\n>              +------------+------------+\r\n>                           |\r\n>        +------------------+-------------------+\r\n>        |                  |                   |\r\n> +------V------+    +------V------      +------V------    +-------------+\r\n> |             |    |             |     |             |   |             |\r\n> | Hardware    |    |  Software   |     |             |   |  Inventory  |\r\n> | Extensions  |    |  Extensions |     | Entitlement |   |  Topology   |\r\n> | e.g. Power  |    |  e.g.       |     |             |   |  Mapping    |\r\n> | supply unit |    |  SW patch   |     |             |   |             |\r\n> +-------------+    +-------------+     +-------------+   +-------------+\r\n```",
+          "createdAt": "2024-11-28T13:10:26Z",
+          "updatedAt": "2024-11-28T13:10:26Z"
         }
       ]
     },
@@ -2342,7 +2349,7 @@
       ],
       "body": "The mapping draft has this type:\r\n\r\n>   typedef ne-ref {\r\n>     type leafref {\r\n>       path \"/nwi:network-inventory/nwi:network-elements\"\r\n>          + \"/nwi:network-element/nwi:ne-id\";\r\n>     }\r\n>     description\r\n>       \"This type is used by data models that need to reference\r\n>        Network Element.\";\r\n>   }\r\n\r\nI suggest we move that type to the base model to ease reuse by other models.",
       "createdAt": "2024-11-21T07:34:52Z",
-      "updatedAt": "2024-11-27T16:28:36Z",
+      "updatedAt": "2024-11-28T13:11:26Z",
       "closedAt": null,
       "comments": [
         {
@@ -2351,6 +2358,13 @@
           "body": "**[2024-11-27 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-11-27)**\r\n\r\nThe proposal has been agreed\r\n\r\nIt seems worthwhile also adding a typedef for referencing port components\r\n\r\nNote: no need to prioritize this issue since it can be closed",
           "createdAt": "2024-11-27T16:28:34Z",
           "updatedAt": "2024-11-27T16:28:34Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Please let me know when this is done so that we can update the mapping module accordingly.",
+          "createdAt": "2024-11-28T13:11:18Z",
+          "updatedAt": "2024-11-28T13:11:26Z"
         }
       ]
     },
@@ -4063,13 +4077,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-11-27T13:08:36Z",
-      "updatedAt": "2024-11-27T16:24:44Z",
+      "updatedAt": "2024-11-29T10:26:23Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "069c9f7b97f81ad9fe901eaf8c88b1aaa86f1d57",
       "headRepository": "boucadair/network-inventory-yang",
       "headRefName": "patch-8",
-      "headRefOid": "21014709cbc420cce6528e6e9cc47c002d978a39",
+      "headRefOid": "e82d438d3fa6dcd88d5e4fb2389e2e48bd01bf57",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -4083,6 +4097,86 @@
           "updatedAt": "2024-11-27T16:24:42Z"
         }
       ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86TLjS-",
+          "commit": {
+            "abbreviatedOid": "2101470"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-11-29T07:46:36Z",
+          "updatedAt": "2024-11-29T07:49:55Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "Looking at draft-ietf-netmod-rfc8407bis, I am wondering whether it should be:\r\n\r\n```suggestion\r\n    target: https://www.iana.org/assignments/iana-hardware/iana-hardware.xhtml\r\n```\r\n",
+              "createdAt": "2024-11-29T07:46:36Z",
+              "updatedAt": "2024-11-29T07:49:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86TLlJl",
+          "commit": {
+            "abbreviatedOid": "2101470"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-29T07:51:56Z",
+          "updatedAt": "2024-11-29T07:51:56Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "The OLD one is correct as redirection is in place to point to the more specific one you added",
+              "createdAt": "2024-11-29T07:51:56Z",
+              "updatedAt": "2024-11-29T07:51:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86TMwdJ",
+          "commit": {
+            "abbreviatedOid": "e82d438"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-11-29T10:26:23Z",
+          "updatedAt": "2024-11-29T10:26:23Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 73,
+      "id": "PR_kwDOKiDYo86DeNXB",
+      "title": "integrate pyang validation",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/73",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-11-28T13:14:03Z",
+      "updatedAt": "2024-11-28T13:18:24Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "069c9f7b97f81ad9fe901eaf8c88b1aaa86f1d57",
+      "headRepository": "boucadair/network-inventory-yang",
+      "headRefName": "patch-9",
+      "headRefOid": "3d12d9349ee1f22a1eabd7f9b35150e238e4af9f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
