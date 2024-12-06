@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 9 May 2025                                                Nokia
+Expires: 9 June 2025                                               Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                         5 November 2024
+                                                         6 December 2024
 
 
               A Base YANG Data Model for Network Inventory
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 May 2025.
+   This Internet-Draft will expire on 9 June 2025.
 
 Copyright Notice
 
@@ -85,7 +85,7 @@ Table of Contents
      3.3.  Components
        3.3.1.  Hardware Components
        3.3.2.  Software Components
-     3.4.  Changes with respect to RFC8348
+     3.4.  Changes Since RFC 8348
        3.4.1.  New Parent Identifiers' Reference
        3.4.2.  Component-Specific Info Design
        3.4.3.  Part Number
@@ -322,30 +322,32 @@ Table of Contents
      +--rw network-elements
         +--rw network-element* [ne-id]
            +--rw ne-id            string
-           ............................................
+           ...
            +--rw components
               +--rw component* [component-id]
                  +--rw component-id            string
-                 ......................................
+                 ...
+
+                      Figure 1: Overall Tree Structure
 
 3.1.  Common Design for All Inventory Objects
 
    For all the inventory objects, there are some common attributes
-   existing.  Such as:
+   Figure 2.  Such as:
 
-   Identifier: here we suggest to use uuid format which is widely
-   implemented with systems.  It is guaranteed to be globally unique.
+   Identifier:  The UUID format is used.  Such identifiers are widely
+      implemented with systems.  It is guaranteed to be globally unique.
 
-   Name: name is a human-readable label information which could be used
-   to present on GUI.  This name is suggested to be provided by server.
+   Name:  A human-readable label information which could be used to
+      present on a GUI.  This name is suggested to be provided by a
+      server.
 
-   Alias: alias is also a human-readable label information which could
-   be modified by user.  It could also be present on GUI instead of
-   name.
+   Alias:  A human-readable label information which could be modified by
+      user.  It could also be present on a GUI instead of name.
 
-   Description: description is a human-readable information which could
-   be also input by user.  Description provides more detailed
-   information to prompt users when performing maintenance operations.
+   Description:  A human-readable information which could be also input
+      by a user.  The description provides more detailed information to
+      prompt users when performing maintenance operations.
 
      +--rw network-elements
         +--rw network-element* [ne-id]
@@ -355,7 +357,7 @@ Table of Contents
            +--rw name?            string
            +--rw description?     string
            +--rw alias?           string
-           ...................................
+           ...
            +--rw components
               +--rw component* [component-id]
                  +--rw component-id            string
@@ -364,17 +366,20 @@ Table of Contents
                  +--rw description?            string
                  +--rw alias?                  string
                  +--rw class                   union
-                 ...................................
+                 ...
+
+          Figure 2: Common Attributes Between Network Elements and
+                             Components Subtree
 
 3.2.  Network Element
 
    To be consistent with the component definition, some of the
    attributes defined in [RFC8348] for components are reused for network
-   elements.  These attributes include:
+   elements as shown in Figure 3.
 
      +--rw network-elements
         +--rw network-element* [ne-id]
-           ...................................
+           ...
            +--rw hardware-rev?    string
            +--rw software-rev?    string
            +--rw mfg-name?        string
@@ -382,23 +387,25 @@ Table of Contents
            +--rw part-number?     string
            +--rw serial-number?   string
            +--rw product-name?    string
-           ...................................
+           ...
 
-   Note: Not all the attributes defined in [RFC8348] are applicable for
-   network element.  And there could also be some missing attributes
-   which are not recognized by [RFC8348].  More extensions could be
-   introduced in later revisions after the missing attributes are fully
-   discussed.
+                     Figure 3: Network Elements Subtree
+
+      Not all the attributes defined in [RFC8348] are applicable for
+      network element.  And there could also be some missing attributes
+      which are not recognized by [RFC8348].  More extensions could be
+      introduced in later revisions after the missing attributes are
+      fully discussed.
 
 3.3.  Components
 
    The YANG data model for network inventory mainly follows the same
    approach of [RFC8348] and reports the network hardware inventory as a
-   list of components with different types (e.g., chassis, module,
+   list of components with different types (e.g., chassis, module, and
    port).
 
-   The component definition is generalized to both hardware components
-   and non-hardware components (e.g., software components).
+   The component definition (Figure 4) is generalized to both hardware
+   components and non-hardware components (e.g., software components).
 
      +--rw components
          +--rw component* [component-id]
@@ -422,11 +429,14 @@ Table of Contents
            +--rw mfg-date?               yang:date-and-time
            +--rw uri*                    inet:uri
 
-   For state data like admin-state, oper-state and so on, we consider
-   they are related to device hardware management and not network
-   inventory.  Therefore, they are outside of scope of this document.
-   Same for the sensor-data, they should be defined in some other
-   performance monitoring data models instead of inventory data model.
+                        Figure 4: Components Subtree
+
+   For state data like "admin-state", "oper-state", and so on, this
+   document considers that they are related to device hardware
+   management, not network inventory.  Therefore, they are outside of
+   the scope of this document.  Same for the sensor-data, they should be
+   defined in some other performance monitoring data models instead of
+   the inventory data model.
 
 3.3.1.  Hardware Components
 
@@ -435,8 +445,8 @@ Table of Contents
    holder group contains rack, chassis, slot, sub-slot while the
    equipment group contains network-element, board and port.
 
-   The relationship between typical inventory objects in a physical
-   network element can be described by Figure 1 below:
+   Figure 5 describes the relationship between typical inventory objects
+   in a physical network element.
 
                                +-----------------+
                                | network element |
@@ -468,18 +478,18 @@ Table of Contents
                                                 |    port   |
                                                 +-----------+
 
-        Figure 1: Relationship between typical inventory objects in
+        Figure 5: Relationship between typical inventory objects in
                          physical network elements
 
    The "iana-hardware" module [IANA_YANG] defines YANG identities for
    the hardware component types in the IANA-maintained "IANA-ENTITY-MIB"
    registry.
 
-   Some of the definitions taken from [RFC8348] are actually based on
-   the ENTITY-MIB [RFC6933].
+   Some of the definitions taken from [RFC8348] are based on the ENTITY-
+   MIB [RFC6933].
 
-   For the additional attributes of specific hardware, such as CPU,
-   storage, port, power supply is defined in the hardware extension.
+   Additional attributes of specific hardware, such as CPU, storage,
+   port, or power supply are defined in the hardware extension.
 
 3.3.2.  Software Components
 
@@ -496,29 +506,29 @@ Table of Contents
    scope of this document and defined other documents such as
    [I-D.wzwb-ivy-network-inventory-software].
 
-3.4.  Changes with respect to RFC8348
+3.4.  Changes Since RFC 8348
 
-   We re-defined some attributes listed in [RFC8348], based on some
-   integration experience for network wide inventory data.
+   This document re-defines some attributes listed in [RFC8348], based
+   on some integration experience for network wide inventory data.
 
 3.4.1.  New Parent Identifiers' Reference
 
-   [RFC8348] provided a "parent-ref" attribute, which was an identifier
+   [RFC8348] provides a "parent-ref" attribute, which was an identifier
    reference to its parent component.  When the MDSC or OSS systems want
    to find this component's grandparent or higher level component in the
    hierarchy, they need to retrieve this parent-ref step by step.  To
-   reduce this iterative work, we decided to provide a list of
+   reduce this iterative work, this document provides a list of
    hierarchical parent components' identifier references.
 
      +--ro components
         +--ro component* [component-id]
-           ...................................
+           ...
            +--ro parent-component-references
            |   +--ro component-reference* [index]
            |      +--ro index    uint8
            |      +--ro class?   -> ../../../class
            |      +--ro uuid?    -> ../../../uuid
-           ...................................
+           ...
 
    The hierarchical components' identifier could be found by the
    "component-reference" list.  The "index" attribute is used to order
@@ -540,12 +550,13 @@ Table of Contents
 
    +--rw components
       +--rw component* [component-id]
-      |  +--rw component-id            string
-      |   .......................................
-      |  +--ro chassis-specific-info
-      |  +--ro slot-specific-info
-      |  +--ro board-specific-info
-      |  +--ro port-specific-info
+         +--rw component-id            string
+         ...
+         +--ro chassis-specific-info
+         +--ro slot-specific-info
+         +--ro board-specific-info
+         +--ro port-specific-info
+         ...
 
 3.4.3.  Part Number
 
@@ -556,9 +567,9 @@ Table of Contents
 
      +--ro components
         +--ro component* [component-id]
-           ...................................
+           ...
            +--ro part-number?           string
-           ...................................
+           ...
 
 3.4.4.  Component identifiers
 
@@ -599,7 +610,7 @@ Table of Contents
 
 5.  Network Inventory Tree Diagram
 
-   Figure 2 below shows the tree diagram of the YANG data model defined
+   Figure 6 below shows the tree diagram of the YANG data model defined
    in module "ietf-network-inventory" (Section 6).
 
    module: ietf-network-inventory
@@ -647,7 +658,7 @@ Table of Contents
                     +--ro board-specific-info
                     +--ro port-specific-info
 
-                  Figure 2: Network inventory tree diagram
+                  Figure 6: Network inventory tree diagram
 
 6.  YANG Data Model for Network Inventory
 
@@ -1075,7 +1086,7 @@ Table of Contents
    }
    <CODE ENDS>
 
-                  Figure 3: Network inventory YANG module
+                  Figure 7: Network inventory YANG module
 
 7.  Manageability Considerations
 
@@ -1094,8 +1105,9 @@ Table of Contents
 10.1.  Normative References
 
    [IANA_YANG]
-              IANA, "YANG Parameters", n.d.,
-              <https://www.iana.org/assignments/yang-parameters>.
+              IANA, "iana-hardware YANG Module", n.d.,
+              <https://www.iana.org/assignments/iana-hardware/iana-
+              hardware.xhtml>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -1123,10 +1135,6 @@ Table of Contents
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
-
-   [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
-              BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
-              <https://www.rfc-editor.org/rfc/rfc8340>.
 
    [RFC8342]  Bjorklund, M., Schoenwaelder, J., Shafer, P., Watsen, K.,
               and R. Wilton, "Network Management Datastore Architecture
@@ -1161,6 +1169,10 @@ Table of Contents
               ivy-network-inventory-software-03, 17 October 2024,
               <https://datatracker.ietf.org/doc/html/draft-wzwb-ivy-
               network-inventory-software-03>.
+
+   [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
+              BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
+              <https://www.rfc-editor.org/rfc/rfc8340>.
 
    [RFC8969]  Wu, Q., Ed., Boucadair, M., Ed., Lopez, D., Xie, C., and
               L. Geng, "A Framework for Automating Service and Network
