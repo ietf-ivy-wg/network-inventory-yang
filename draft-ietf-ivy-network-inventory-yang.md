@@ -87,10 +87,10 @@ normative:
     target: https://www.tmforum.org/resources/suite/mtosi-4-0/
 
   IANA_YANG:
-    title: YANG Parameters
+    title: iana-hardware YANG Module
     author:
       org: IANA
-    target: https://www.iana.org/assignments/yang-parameters
+    target: https://www.iana.org/assignments/iana-hardware/iana-hardware.xhtml
 
 informative:
 
@@ -216,7 +216,7 @@ The YANG data model defined in this document conforms to the Network Management 
 
 ## Tree Diagrams
 
-The meanings of the symbols in the YANG tree diagrams are defined in {{!RFC8340}}.
+The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
 
 ## YANG Prefixes
 
@@ -261,24 +261,29 @@ However, the YANG data model defined in {{!RFC8348}} has been used as a referenc
   +--rw network-elements
      +--rw network-element* [ne-id]
         +--rw ne-id            string
-        ............................................
+        ...
         +--rw components
            +--rw component* [component-id]
               +--rw component-id            string
-              ......................................
+              ...
 ~~~~
+{: #fig-overall title="Overall Tree Structure"}
 
 ## Common Design for All Inventory Objects {#common-attributes}
 
-For all the inventory objects, there are some common attributes existing. Such as:
+For all the inventory objects, there are some common attributes {{fig-nec-tree}}. Such as:
 
-Identifier: here we suggest to use uuid format which is widely implemented with systems. It is guaranteed to be globally unique.
+Identifier:
+: The UUID format is used. Such identifiers are widely implemented with systems. It is guaranteed to be globally unique.
 
-Name: name is a human-readable label information which could be used to present on GUI. This name is suggested to be provided by server.
+Name:
+: A human-readable label information which could be used to present on a GUI. This name is suggested to be provided by a server.
 
-Alias: alias is also a human-readable label information which could be modified by user. It could also be present on GUI instead of name.
+Alias:
+: A human-readable label information which could be modified by user. It could also be present on a GUI instead of name.
 
-Description: description is a human-readable information which could be also input by user. Description provides more detailed information to prompt users when performing maintenance operations.
+Description:
+: A human-readable information which could be also input by a user. The description provides more detailed information to prompt users when performing maintenance operations.
 
 ~~~~ ascii-art
   +--rw network-elements
@@ -289,7 +294,7 @@ Description: description is a human-readable information which could be also inp
         +--rw name?            string
         +--rw description?     string
         +--rw alias?           string
-        ...................................
+        ...
         +--rw components
            +--rw component* [component-id]
               +--rw component-id            string
@@ -298,19 +303,20 @@ Description: description is a human-readable information which could be also inp
               +--rw description?            string
               +--rw alias?                  string
               +--rw class                   union
-              ...................................
+              ...
 ~~~~
+{: #fig-nec-tree title="Common Attributes Between Network Elements and Components Subtree"}
 
 ## Network Element
 
 To be consistent with the component definition, some of the
 attributes defined in {{!RFC8348}} for components are reused for network
-elements.  These attributes include:
+elements as shown in {{fig-ne-tree}}.
 
 ~~~~ ascii-art
   +--rw network-elements
      +--rw network-element* [ne-id]
-        ...................................
+        ...
         +--rw hardware-rev?    string
         +--rw software-rev?    string
         +--rw mfg-name?        string
@@ -318,18 +324,17 @@ elements.  These attributes include:
         +--rw part-number?     string
         +--rw serial-number?   string
         +--rw product-name?    string
-        ...................................
+        ...
 ~~~~
+{: #fig-ne-tree title="Network Elements Subtree"}
 
-Note: Not all the attributes defined in {{?RFC8348}} are applicable for network element. And there could also be some missing attributes which are not recognized by {{?RFC8348}}. More extensions could be introduced in later revisions after the missing attributes are fully discussed.
+> Not all the attributes defined in {{?RFC8348}} are applicable for network element. And there could also be some missing attributes which are not recognized by {{?RFC8348}}. More extensions could be introduced in later revisions after the missing attributes are fully discussed.
 
-{: #ne-component}
+## Components {#ne-component}
 
-## Components
+The YANG data model for network inventory mainly follows the same approach of {{!RFC8348}} and reports the network hardware inventory as a list of components with different types (e.g., chassis, module, and port).
 
-The YANG data model for network inventory mainly follows the same approach of {{!RFC8348}} and reports the network hardware inventory as a list of components with different types (e.g., chassis, module, port).
-
-The component definition is generalized to both hardware components
+The component definition ({{fig-comp-tree}}) is generalized to both hardware components
 and non-hardware components (e.g., software components).
 
 ~~~~ ascii-art
@@ -355,14 +360,15 @@ and non-hardware components (e.g., software components).
         +--rw mfg-date?               yang:date-and-time
         +--rw uri*                    inet:uri
 ~~~~
+{: #fig-comp-tree title="Components Subtree"}
 
-For state data like admin-state, oper-state and so on, we consider they are related to device hardware management and not network inventory. Therefore, they are outside of scope of this document. Same for the sensor-data, they should be defined in some other performance monitoring data models instead of inventory data model.
+For state data like "admin-state", "oper-state", and so on, this document considers that they are related to device hardware management, not network inventory. Therefore, they are outside of the scope of this document. Same for the sensor-data, they should be defined in some other performance monitoring data models instead of the inventory data model.
 
 ### Hardware Components
 
 Based on TMF classification in {{TMF_SD2-20}}, hardware components can be divided into two groups, holder group and equipment group. The holder group contains rack, chassis, slot, sub-slot while the equipment group contains network-element, board and port.
 
-The relationship between typical inventory objects in a physical network element can be described by {{fig-hw-inventory-object-relationship}} below:
+{{fig-hw-inventory-object-relationship}} describes the relationship between typical inventory objects in a physical network element.
 
 ~~~~ ascii-art
                             +-----------------+
@@ -401,10 +407,10 @@ The "iana-hardware" module {{IANA_YANG}} defines YANG identities for
 the hardware component types in the IANA-maintained "IANA-ENTITY-MIB"
 registry.
 
-Some of the definitions taken from {{!RFC8348}} are actually based on the ENTITY-MIB {{!RFC6933}}.
+Some of the definitions taken from {{!RFC8348}} are based on the ENTITY-MIB {{!RFC6933}}.
 
-For the additional attributes of specific hardware, such as CPU,
-storage, port, power supply is defined in the hardware extension.
+Additional attributes of specific hardware, such as CPU,
+storage, port, or power supply are defined in the hardware extension.
 
 ### Software Components
 
@@ -421,24 +427,24 @@ classes, such as platform software, BIOS, bootloader, and software
 patch information, are outside the scope of this document and defined other documents such as
 {{?I-D.wzwb-ivy-network-inventory-software}}.
 
-## Changes with respect to RFC8348
+## Changes Since RFC 8348
 
-We re-defined some attributes listed in {{!RFC8348}}, based on some integration experience for network wide inventory data.
+This document re-defines some attributes listed in {{!RFC8348}}, based on some integration experience for network wide inventory data.
 
 ### New Parent Identifiers' Reference
 
-{{!RFC8348}} provided a "parent-ref" attribute, which was an identifier reference to its parent component. When the MDSC or OSS systems want to find this component's grandparent or higher level component in the hierarchy, they need to retrieve this parent-ref step by step. To reduce this iterative work, we decided to provide a list of hierarchical parent components' identifier references.
+{{!RFC8348}} provides a "parent-ref" attribute, which was an identifier reference to its parent component. When the MDSC or OSS systems want to find this component's grandparent or higher level component in the hierarchy, they need to retrieve this parent-ref step by step. To reduce this iterative work, this document provides a list of hierarchical parent components' identifier references.
 
 ~~~~ ascii-art
   +--ro components
      +--ro component* [component-id]
-        ...................................
+        ...
         +--ro parent-component-references
         |   +--ro component-reference* [index]
         |      +--ro index    uint8
         |      +--ro class?   -> ../../../class
         |      +--ro uuid?    -> ../../../uuid
-        ...................................
+        ...
 ~~~~
 
 The hierarchical components' identifier could be found by the "component-reference" list. The "index" attribute is used to order the list by the hierarchical relationship from topmost component (with the "index" set to 0) to bottom component.
@@ -451,12 +457,13 @@ According to the management requirements from operators, some important attribut
 ~~~~ ascii-art
 +--rw components
    +--rw component* [component-id]
-   |  +--rw component-id            string
-   |   .......................................
-   |  +--ro chassis-specific-info
-   |  +--ro slot-specific-info
-   |  +--ro board-specific-info
-   |  +--ro port-specific-info
+      +--rw component-id            string
+      ...
+      +--ro chassis-specific-info
+      +--ro slot-specific-info
+      +--ro board-specific-info
+      +--ro port-specific-info
+      ...
 ~~~~
 
 ### Part Number
@@ -466,9 +473,9 @@ According to the description in {{!RFC8348}}, the attribute named "model-name" u
 ~~~~ ascii-art
   +--ro components
      +--ro component* [component-id]
-        ...................................
+        ...
         +--ro part-number?           string
-        ...................................
+        ...
 ~~~~
 
 ### Component identifiers
