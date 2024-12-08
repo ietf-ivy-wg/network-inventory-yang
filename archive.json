@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-05T00:57:00.193923+00:00",
+  "timestamp": "2024-12-08T01:01:07.304588+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4070,24 +4070,26 @@
       "id": "PR_kwDOKiDYo86DVhIl",
       "title": "Some edits and fixes",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/71",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-11-27T13:08:36Z",
-      "updatedAt": "2024-11-29T10:26:23Z",
+      "updatedAt": "2024-12-06T09:51:48Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "069c9f7b97f81ad9fe901eaf8c88b1aaa86f1d57",
       "headRepository": "boucadair/network-inventory-yang",
       "headRefName": "patch-8",
       "headRefOid": "e82d438d3fa6dcd88d5e4fb2389e2e48bd01bf57",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-12-06T09:51:47Z",
+      "mergedAt": "2024-12-06T09:51:47Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "c3420b3aed15e763b78c817be91f424ad475f0e0"
+      },
       "comments": [
         {
           "author": "italobusi",
