@@ -164,55 +164,58 @@ The YANG data model defined in this document conforms to the Network Management 
 
 ## Terminology
 
-  The following terms are defined in {{!RFC7950}} and are not
-  redefined here:
+The following terms are defined in {{!RFC7950}} and are not redefined here:
+- client
+- server
+- augment
+- data model
+- data node
 
-  *  client
+The following terms are defined in {{!RFC6241}} and are not redefined here:
+- configuration data
+- state data
 
-  *  server
+The following terms are defined in {{IANA_YANG}} and are not redefined here:
+- backplane
+- battery
+- container
+- cpu
+- chassis
+- fan
+- module
+- port
+- power supply
+- sensor
+- stack
+- storage device
 
-  *  augment
+> Note that the definition of port component in {{IANA_YANG}} needs to be refined in future version of this document.
 
-  *  data model
+> TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
-  *  data node
+Also, the document makes use of the following terms:
 
-  The following terms are defined in {{!RFC6241}} and are not redefined
-  here:
+Network Inventory:
+: A collection of data for network elements and their components managed by a specific management system.
 
-  *  configuration data
+Physical Network Element:
+: An implementation or application specific groupings of components (e.g., hardware components).
 
-  *  state data
+Network Element:
+: The generalization of the physical network element definition to include other types of inventory objects which can be managed, from an inventory perspective, like physical network elements.
 
-  The terminology for describing YANG data models is found in {{!RFC7950}}.
+Hardware Component:
+: The generalization of the hardware components defined in {{IANA_YANG}} (e.g., backplane, battery, container, cpu, chassis, fan, module, port, power supply, sensor, stack and storage device components).
+: The list of hardware components can be extended in future versions of {{IANA_YANG}}.
 
-  > TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
+Component:
+: The generalization of the hardware component definition to include other inventory objects which can be managed, from an inventory perspective, like hardware components.
 
-  Also, the document makes use of the following terms:
+Slot:
+: A holder of the board.
 
-  Network Inventory:
-  : A collection of data for network devices and their components managed by a specific management system.
-
-  Network Element:
-  : A manageable network entity that contains hardware and software units (e.g., a network device installed on one or several chassis).
-
-  Chassis:
-  : A holder of the device installation.
-
-  Slot:
-  : A holder of the board.
-
-  Component:
-  : A unit of the network element, e.g., hardware components (chassis, card, port, etc.), software components (software-patch, bios, etc.), and boot-loader.
-
-  Board/Card:
-  : A pluggable equipment can be inserted into one or several slots (or sub-slots) and can afford a specific transmission function independently.
-
-  Port:
-  : An interface on a board.
-
-  Container:
-  : A hardware component class that is capable of containing one or more removable physical entities (e.g., a slot in a chassis is containing a board).
+Board/Card:
+: A pluggable equipment can be inserted into one or several slots (or sub-slots) and can afford a specific transmission function independently.
 
 ## Tree Diagrams
 
@@ -233,17 +236,25 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 # YANG Data Model for Network Inventory Overview
 
 The network element definition is generalized to support physical
-devices and other types of inventory objects (e.g., virtual network
-elements) that can be managed as physical network elements from an
-inventory perspective. The data model for Network Element presented
-in this document uses a flat list of network element.
+devices and other types of inventory objects that can be managed as physical network elements from an
+inventory perspective.
+
+The data model for network elements defined in this document uses a flat list of network elements.
 
 The "ne-type" is defined as a YANG identity to describe the type of the network element. This document defines only the "physical-network-element" identity.
 
-The component definition is also generalized to support any types of
-component, such as hardware, software, or firmware.
+Other types of network elements can be defined in other documents, together with the associated YANG identity and the rationale for managing them as network elements from an inventory perspective.
 
-Different types of components can be distinguished by the class of component. The component "class" is defined as a union between the hardware class identity, defined in "iana-hardware", and the "non-hardware" identity, defined in this document. Attributes related to specific class of component can be found in the component-specific-info structure.
+The component definition is also generalized to support any types of
+component inventory objects that can be managed as hardware components from an inventory perspective.
+
+The data model for components defined in this document uses a list of components within each network element.
+
+Different types of components can be distinguished by the class of component. The component "class" is defined as a union between the hardware class identity, defined in "iana-hardware", and the "non-hardware" identity, defined in this document.
+
+Other types of components can be defined in other documents, together with the associated YANG identity and the rationale for managing them as components from an inventory perspective.
+
+Attributes related to specific class of component can be found in the component-specific-info structure.
 
 The identity definition of additional types of "ne-type" and "non-
 hardware" identity of component are outside the scope of this
