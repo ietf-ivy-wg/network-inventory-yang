@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-08T01:01:07.304588+00:00",
+  "timestamp": "2024-12-10T00:57:59.667187+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -421,7 +421,7 @@
       ],
       "body": "> Some quick comments:\r\n> \r\n>   *   Please soften the various citations to ACTN. I would simply remove them.\r\n\r\n- [ ] For discussion (P1)\r\n\r\n>   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\\\r\n\r\n- [ ] #72\r\n\r\n>   *   Consider if some data nodes that are defined in other models can be added directly to the base model, e.g., the following ones from draft-li\r\n> \r\n> ```\r\n>       +--ro required-components*          -> ../uuid\r\n>       +--ro dependent-components*         -> ../uuid\r\n> \r\n> ```\r\n> \r\n\r\n- [ ] #70\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/\r\n",
       "createdAt": "2023-11-17T20:03:19Z",
-      "updatedAt": "2024-11-27T16:30:48Z",
+      "updatedAt": "2024-12-09T14:09:51Z",
       "closedAt": null,
       "comments": [
         {
@@ -430,6 +430,20 @@
           "body": "**[2024-11-27 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-11-27)**\r\n\r\nRegarding the first topic (ACTN citations), we can review the text to clarify that:\r\n- the applicability of the network inventory model includes, but it is not limited to, ACTN\r\n- acknowledge that the work on the model has been triggered by a gap identified in the ACTN POI applicability document\r\n\r\nThe second issue is tracked with issue #72 ",
           "createdAt": "2024-11-27T16:30:41Z",
           "updatedAt": "2024-11-27T16:30:41Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@boucadair : could you please check the latest version of the draft? It is just saying that a gap has been identified for the applicability of ACTN and acknowledging the authors of the ACTN POI applicability for the gap",
+          "createdAt": "2024-12-09T10:23:18Z",
+          "updatedAt": "2024-12-09T10:23:18Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@italobusi, Sure. I reviewed the text right now. I submitted https://github.com/ietf-ivy-wg/network-inventory-yang/pull/74 to better articulate the arguments and use \"actn\" as an example. \r\n\r\nSimplified the text as some claims are not required to make the argument.",
+          "createdAt": "2024-12-09T14:09:49Z",
+          "updatedAt": "2024-12-09T14:09:49Z"
         }
       ]
     },
@@ -4180,6 +4194,46 @@
       "mergeCommit": null,
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 74,
+      "id": "PR_kwDOKiDYo86Eiz64",
+      "title": "position ACTN as an example",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/74",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-12-09T14:07:00Z",
+      "updatedAt": "2024-12-09T16:46:41Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "c3420b3aed15e763b78c817be91f424ad475f0e0",
+      "headRepository": "boucadair/network-inventory-yang",
+      "headRefName": "patch-10",
+      "headRefOid": "93a594f20c3b8d27e17cd04c0043c29f14c70aaa",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86UYQzp",
+          "commit": {
+            "abbreviatedOid": "93a594f"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-12-09T16:46:41Z",
+          "updatedAt": "2024-12-09T16:46:41Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
