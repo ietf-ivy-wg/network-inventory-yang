@@ -208,11 +208,18 @@ The YANG data model defined in this document conforms to the Network Management 
   Board/Card:
   : A pluggable equipment can be inserted into one or several slots (or sub-slots) and can afford a specific transmission function independently.
 
-  Port:
-  : An interface on a board.
+> Editors' Note: The port definition below needs to be moved to iana-hardware update
+
+Port:
+: An holder for a transceivers module, representing the position of the port within the containing module.
+: In case of pluggable ports, the port may be empty when no transceivers module is plugged in.
 
   Container:
   : A hardware component class that is capable of containing one or more removable physical entities (e.g., a slot in a chassis is containing a board).
+
+Transceiver:
+: A transceiver represents a transmitter/receiver (Tx/Rx) pair which is transmitting and receiving a signal from the media.
+: This definition generalizes the transceiver definition in {{?I-D.ietf-ccamp-optical-impairment-topology-yang}} to model also non optical transceivers (e.g., electrical transceivers).
 
 ## Tree Diagrams
 

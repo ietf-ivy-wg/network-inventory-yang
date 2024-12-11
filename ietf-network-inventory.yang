@@ -68,7 +68,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2024-10-02 {
+  revision 2024-12-11 {
     description
       "Initial version";
     reference
@@ -97,8 +97,101 @@ module ietf-network-inventory {
     }
 
   /*
+   * Editors' Note: This identity may need to be moved to
+   *                iana-hardware update
+   */
+
+  identity transceivers-module {
+    base ianahw:hardware-class;
+    description
+      "This identity is applicable if the hardware class is some sort
+       of self-contained sub-system which contains one or more
+       transceivers (e.g., optical or electrical transceivers) which
+       are transmitting and receiving a signal from the media.
+       
+       A transceivers-module component can only be contained by a
+       port component.";
+  }
+
+  /*
+   * Types
+   */
+
+
+  typedef ne-ref {
+    type leafref {
+      path  "/nwi:network-inventory/nwi:network-elements"
+          + "/nwi:network-element/nwi:ne-id";
+    }
+    description
+      "This type is intended to be used by data models that need to
+      reference Network Element.";
+  }
+
+  /*
    * Groupings
    */
+
+  grouping port-ref {
+    description
+      "This grouping is intended to be used by data models that need
+      to reference a port component within a Network Element.";
+    leaf ne-ref {
+      type nwi:ne-ref;
+      description
+        "The reference to the Network Element which contains the
+        port to be referenced.";
+    }
+    leaf port-ref {
+      type leafref {
+        path  "/nwi:network-inventory/nwi:network-elements"
+            + "/nwi:network-element[nwi:ne-id=current()/../ne-ref]/"
+            + "nwi:components/nwi:component/nwi:component-id";
+      }
+      must  "derived-from-or-self (/nwi:network-inventory/"
+          + "nwi:network-elements/nwi:network-element[nwi:ne-id="
+          + "current()/../ne-ref]/nwi:components/"
+          + "nwi:component[nwi:component-id=current()]/nwi:/class,"
+          + "'ianahw:port')";
+      description
+        "The reference to the port component.";
+    }
+  }
+
+  grouping channel-ref {
+    description
+      "This grouping is intended to be used by data models that need
+      to reference one or more channels within a transceivers module
+      component.";
+    leaf ne-ref {
+      type nwi:ne-ref;
+      description
+        "The reference to the Network Element which contains the
+        port to be referenced.";
+    }
+    leaf transceivers-module-ref {
+      type leafref {
+        path  "/nwi:network-inventory/nwi:network-elements"
+            + "/nwi:network-element[nwi:ne-id=current()/../ne-ref]/"
+            + "nwi:components/nwi:component/nwi:component-id";
+      }
+      description
+        "The reference to the transceivers module component.";
+    }
+    leaf-list channel-number {
+      type leafref {
+        path  "/nwi:network-inventory/nwi:network-elements"
+            + "/nwi:network-element[nwi:ne-id=current()/../ne-ref]/"
+            + "nwi:components/"
+            + "nwi:component[nwi:component-id="
+            + "current()/../transceivers-module-ref]/"
+            + "nwi:transceivers-module-specific-info/nwi:channels/"
+            + "nwi:channel/nwi:channel-number";
+      }
+      description
+        "The references to the channels.";
+    }
+  }
 
   grouping common-entity-attributes {
     description
@@ -412,6 +505,34 @@ module ietf-network-inventory {
               description
                 "This container contains some attributes belong to
                 port only.";
+            }
+            container transceivers-module-specific-info {
+              when "derived-from-or-self(../class, 
+                    'nwi:transceivers-module')";
+              config false;
+              description
+                "This container contains some attributes belong to
+                transceivers modules only.";
+              container channels {
+                presence
+                  "When present it represents a multi-channel port
+                   which supports port breakouts.";
+                description
+                  "Top level container for the list of channels
+                   supported by the transceivers module.";
+                list channel {
+                  key channel-number;
+                  leaf channel-number {
+                    type uint8;
+                    description
+                      "The channel number uniquely identifying the
+                      channel within the port.";
+                  }
+                  description
+                    "The list of channels supported by the
+                     transceivers module.";
+                }
+              }
             }
           }
         }
