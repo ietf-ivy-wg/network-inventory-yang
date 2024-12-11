@@ -199,7 +199,7 @@ Network Inventory:
 : A collection of data for network elements and their components managed by a specific management system.
 
 Physical Network Element:
-: An implementation or application specific groupings of components (e.g., hardware components).
+: An implementation or application specific group of components (e.g., hardware components).
 
 Network Element:
 : The generalization of the physical network element definition to include other types of inventory objects which can be managed, from an inventory perspective, like physical network elements.
