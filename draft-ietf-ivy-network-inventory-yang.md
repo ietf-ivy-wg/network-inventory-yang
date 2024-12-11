@@ -115,10 +115,7 @@ part for ensuring that the network remains healthy (e.g., auditing to identify f
 management allows operators to keep track of which devices are deployed in their networks, including relevant embedded software and
 hardware versions.
 
-Exposing standards interfaces to retrieve and query network elements capabilities as recorded in an inventory are key enablers for many applications that consume network inventory data. From that standpoint and given the emergence of standard data models and their deployment by operators, the conventional function of inventory management is also required to be defined as a data model.
-
-For example, {{?I-D.ietf-teas-actn-poi-applicability}} identifies a gap about the lack of a YANG data model that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware
-inventory information available at domain controller level towards
+Exposing standard interfaces to retrieve network elements capabilities as maintained in an inventory are key enablers for many applications. For example, {{?I-D.ietf-teas-actn-poi-applicability}} identifies a gap about the lack of YANG data models that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware inventory information available at domain controller level towards
 upper layer systems (e.g., Multi-Domain Service Coordinator (MDSC) or Operations Support Systems (OSS) layers).
 
 It is key for operators to coordinate with the industry towards the use of a
@@ -132,7 +129,7 @@ their components managed by a specific management system.  Per the
 definition of {{?RFC8969}}, the network inventory model is a network
 model.
 
-This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
+This document defines a YANG module "ietf-network-inventory" in {{ni-yang}}.
 This base data model is technology-agnostic (that is, valid for IP/MPLS, optical, and
 microwave networks in particular) and can be augmented to
 include required technology-specific inventory details together with specific hardware or software component's attributes.
