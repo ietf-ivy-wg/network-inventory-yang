@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 9 June 2025                                               Nokia
+Expires: 14 June 2025                                              Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                         6 December 2024
+                                                        11 December 2024
 
 
               A Base YANG Data Model for Network Inventory
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 June 2025.
+   This Internet-Draft will expire on 14 June 2025.
 
 Copyright Notice
 
@@ -122,21 +122,16 @@ Table of Contents
    devices are deployed in their networks, including relevant embedded
    software and hardware versions.
 
-   Exposing standards interfaces to retrieve and query network elements
-   capabilities as recorded in an inventory are key enablers for many
-   applications that consume network inventory data.  From that
-   standpoint and given the emergence of standard data models and their
-   deployment by operators, the conventional function of inventory
-   management is also required to be defined as a data model.
-
-   For example, [I-D.ietf-teas-actn-poi-applicability] identifies a gap
-   about the lack of a YANG data model that could be used at Abstraction
-   and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-
-   Provisioning Network Controller Interface (MPI) level to report whole
-   or partial network hardware inventory information available at domain
-   controller level towards upper layer systems (e.g., Multi-Domain
-   Service Coordinator (MDSC) or Operations Support Systems (OSS)
-   layers).
+   Exposing standard interfaces to retrieve network elements
+   capabilities as maintained in an inventory are key enablers for many
+   applications.  For example, [I-D.ietf-teas-actn-poi-applicability]
+   identifies a gap about the lack of YANG data models that could be
+   used at Abstraction and Control of TE Networks (ACTN) Multi-Domain
+   Service Coordinator-Provisioning Network Controller Interface (MPI)
+   level to report whole or partial network hardware inventory
+   information available at domain controller level towards upper layer
+   systems (e.g., Multi-Domain Service Coordinator (MDSC) or Operations
+   Support Systems (OSS) layers).
 
    It is key for operators to coordinate with the industry towards the
    use of a standard YANG data model for Network Inventory data instead
@@ -156,7 +151,7 @@ Table of Contents
    definition of [RFC8969], the network inventory model is a network
    model.
 
-   This document defines one YANG module "ietf-network-inventory" in
+   This document defines a YANG module "ietf-network-inventory" in
    Section 6.  This base data model is technology-agnostic (that is,
    valid for IP/MPLS, optical, and microwave networks in particular) and
    can be augmented to include required technology-specific inventory
