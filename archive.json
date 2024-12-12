@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-10T00:57:59.667187+00:00",
+  "timestamp": "2024-12-12T00:56:32.127476+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -2437,6 +2437,22 @@
           "updatedAt": "2024-11-27T16:32:09Z"
         }
       ]
+    },
+    {
+      "number": 77,
+      "id": "I_kwDOKiDYo86i7O6V",
+      "title": "Need to report information about connector type",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/77",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "**[2024-12-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-11)**\r\n\r\nInvestigate whether the network inventory shall report information about the connector type of a port\r\n",
+      "createdAt": "2024-12-11T16:29:58Z",
+      "updatedAt": "2024-12-11T16:29:58Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -4181,7 +4197,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-11-28T13:14:03Z",
-      "updatedAt": "2024-11-28T13:18:24Z",
+      "updatedAt": "2024-12-11T16:22:36Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "069c9f7b97f81ad9fe901eaf8c88b1aaa86f1d57",
@@ -4192,7 +4208,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-12-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-11)**\r\n\r\nThe proposal to validate pyang validation in the github workflow seems reasonable but we need people who can check the PR before merging it\r\n\r\nThe proposal is also updating the Makefile from Martin Thomson github repository template. It is not clear how to keep this change when the Makefile in the repository template is updated. \r\n\r\n- [ ] @italobusi check offline with Med to understand the expected behavior\r\n- [ ] @lana-wu check offline with Qiufang if she can review the PR\r\n",
+          "createdAt": "2024-12-11T16:22:34Z",
+          "updatedAt": "2024-12-11T16:22:34Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -4200,25 +4224,35 @@
       "id": "PR_kwDOKiDYo86Eiz64",
       "title": "position ACTN as an example",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/74",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-12-09T14:07:00Z",
-      "updatedAt": "2024-12-09T16:46:41Z",
+      "updatedAt": "2024-12-11T16:23:32Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "c3420b3aed15e763b78c817be91f424ad475f0e0",
       "headRepository": "boucadair/network-inventory-yang",
       "headRefName": "patch-10",
       "headRefOid": "93a594f20c3b8d27e17cd04c0043c29f14c70aaa",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "closedAt": "2024-12-11T15:21:46Z",
+      "mergedAt": "2024-12-11T15:21:46Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "6be393d08f4c8fb5381acd8c4577d7b0306feec1"
+      },
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-12-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-11)**\r\n\r\nAgreed to merge the PR",
+          "createdAt": "2024-12-11T16:23:31Z",
+          "updatedAt": "2024-12-11T16:23:31Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOKiDYo86UYQzp",
@@ -4232,6 +4266,265 @@
           "createdAt": "2024-12-09T16:46:41Z",
           "updatedAt": "2024-12-09T16:46:41Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo86UxhEb",
+          "commit": {
+            "abbreviatedOid": "93a594f"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-12-11T15:20:47Z",
+          "updatedAt": "2024-12-11T15:20:47Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 75,
+      "id": "PR_kwDOKiDYo86E0oRE",
+      "title": "Proposal for terminology update",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/75",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Proposal for terminology update: fix #16 ",
+      "createdAt": "2024-12-11T08:58:35Z",
+      "updatedAt": "2024-12-11T16:26:57Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "c3420b3aed15e763b78c817be91f424ad475f0e0",
+      "headRepository": "italobusi/network-inventory-yang",
+      "headRefName": "terminology",
+      "headRefOid": "41af1ef65c7fd9e8f958411fcf60e49d140b50d4",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I've approved the changes but I've left comments that need at least to be clarified .",
+          "createdAt": "2024-12-11T09:47:01Z",
+          "updatedAt": "2024-12-11T09:47:42Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86UtMTa",
+          "commit": {
+            "abbreviatedOid": "1f6ba97"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-12-11T09:17:50Z",
+          "updatedAt": "2024-12-11T09:45:53Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "I think it would be better to create a related issue about that instead to have this note in the draft. Just a suggestion.",
+              "createdAt": "2024-12-11T09:17:51Z",
+              "updatedAt": "2024-12-11T09:45:53Z"
+            },
+            {
+              "originalPosition": 49,
+              "body": "Slight rewording: \"An implementation or application of specific groupings of components (e.g., hardware components)\"\r\nQuestion : the word groupings here is related to YANG statement or in the meaning of \"group\", bunch of components ?",
+              "createdAt": "2024-12-11T09:23:42Z",
+              "updatedAt": "2024-12-11T09:45:53Z"
+            },
+            {
+              "originalPosition": 53,
+              "body": "If you \"include other types of inventory objects\" you probably point to \"other components\".\r\nWhy do not say \"The generalization of the physical network element definition to include other types of inventory objects which can be managed, from an inventory perspective, like components of physical network elements.\"\r\n",
+              "createdAt": "2024-12-11T09:28:42Z",
+              "updatedAt": "2024-12-11T09:45:53Z"
+            },
+            {
+              "originalPosition": 92,
+              "body": "Shall we add also \"sub-slot\" definition if we mention \"sub-slots\" here or we consider that implicit in the slot definition?",
+              "createdAt": "2024-12-11T09:31:28Z",
+              "updatedAt": "2024-12-11T09:45:53Z"
+            },
+            {
+              "originalPosition": 105,
+              "body": "Also here \"...can be managed as physical network elements...\" or \"....can be managed as component (e.g. HW component) of physical network elements...\" ?",
+              "createdAt": "2024-12-11T09:38:09Z",
+              "updatedAt": "2024-12-11T09:45:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86Uxlci",
+          "commit": {
+            "abbreviatedOid": "1f6ba97"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-11T15:25:46Z",
+          "updatedAt": "2024-12-11T15:25:47Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "This should be resolved by the appendix which is work-in-progress in PR #66 ",
+              "createdAt": "2024-12-11T15:25:47Z",
+              "updatedAt": "2024-12-11T15:25:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86Uxl8T",
+          "commit": {
+            "abbreviatedOid": "1f6ba97"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-11T15:26:55Z",
+          "updatedAt": "2024-12-11T15:26:56Z",
+          "comments": [
+            {
+              "originalPosition": 49,
+              "body": "```suggestion\r\n: An implementation or application specific group of components (e.g., hardware components).\r\n```\r\n",
+              "createdAt": "2024-12-11T15:26:55Z",
+              "updatedAt": "2024-12-11T15:26:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86UxtbZ",
+          "commit": {
+            "abbreviatedOid": "41af1ef"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-11T15:36:31Z",
+          "updatedAt": "2024-12-11T15:36:31Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "**[2024-12-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-11)**\r\n\r\n```suggestion\r\n: The generalization of the physical network element definition.\r\n```\r\n",
+              "createdAt": "2024-12-11T15:36:31Z",
+              "updatedAt": "2024-12-11T16:25:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86Ux5J1",
+          "commit": {
+            "abbreviatedOid": "41af1ef"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-11T15:53:52Z",
+          "updatedAt": "2024-12-11T15:53:52Z",
+          "comments": [
+            {
+              "originalPosition": 105,
+              "body": "**[2024-12-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-11)**\r\n\r\n```suggestion\r\n network elements and other types of components' groups that can be managed as physical network elements from an\r\ninventory perspective.\r\n\r\nPhysical network elements are usually devices such as hosts, gateways, terminal servers, and the like, which have management agents responsible for performing the network management functions requested by the network management stations ({?RFC1157}).\r\n```\r\n",
+              "createdAt": "2024-12-11T15:53:52Z",
+              "updatedAt": "2024-12-11T16:26:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86UyP5M",
+          "commit": {
+            "abbreviatedOid": "41af1ef"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-11T16:26:26Z",
+          "updatedAt": "2024-12-11T16:26:27Z",
+          "comments": [
+            {
+              "originalPosition": 92,
+              "body": "**[2024-12-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-11)**\r\n\r\n- [ ] @italobusi @YuChaode : review the text to see how to define a sub-slot, avoiding circular definitions between slot/sub-slot and motherboard/daughterboard\r\n",
+              "createdAt": "2024-12-11T16:26:26Z",
+              "updatedAt": "2024-12-11T16:26:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86UyQWV",
+          "commit": {
+            "abbreviatedOid": "41af1ef"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-11T16:26:57Z",
+          "updatedAt": "2024-12-11T16:26:57Z",
+          "comments": [
+            {
+              "originalPosition": 105,
+              "body": "See: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/75/files#r1880458800",
+              "createdAt": "2024-12-11T16:26:57Z",
+              "updatedAt": "2024-12-11T16:26:57Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 76,
+      "id": "PR_kwDOKiDYo86E3428",
+      "title": "Proposal for ports and breakouts modelling",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Proposal for ports and breakouts modelling: fix #45 \r\n\r\n---\r\n\r\nCo-Authored-By: YuChaode <yuchaode@huawei.com>\r\n",
+      "createdAt": "2024-12-11T15:03:32Z",
+      "updatedAt": "2024-12-11T16:28:20Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "c3420b3aed15e763b78c817be91f424ad475f0e0",
+      "headRepository": "italobusi/network-inventory-yang",
+      "headRefName": "port-breakout",
+      "headRefOid": "5fd0229909b6b4437898f72051ea53e2766fb572",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86UyRRe",
+          "commit": {
+            "abbreviatedOid": "5fd0229"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-11T16:28:20Z",
+          "updatedAt": "2024-12-11T16:28:20Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "**[2024-12-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-11)**\r\n\r\nThe definition of the transceivers-module is very close to the definition of transponder in optical impairments I-D\r\n\r\n- [ ] @italobusi @sergiobelotti @YuChaode Check how an integrated transponder can be modelled in the network inventory model",
+              "createdAt": "2024-12-11T16:28:20Z",
+              "updatedAt": "2024-12-11T16:28:20Z"
+            }
+          ]
         }
       ]
     }
