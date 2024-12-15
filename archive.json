@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-12T00:56:32.127476+00:00",
+  "timestamp": "2024-12-15T01:01:13.183863+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4294,7 +4294,7 @@
       "labels": [],
       "body": "Proposal for terminology update: fix #16 ",
       "createdAt": "2024-12-11T08:58:35Z",
-      "updatedAt": "2024-12-11T16:26:57Z",
+      "updatedAt": "2024-12-13T11:51:55Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "c3420b3aed15e763b78c817be91f424ad475f0e0",
@@ -4476,6 +4476,62 @@
               "body": "See: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/75/files#r1880458800",
               "createdAt": "2024-12-11T16:26:57Z",
               "updatedAt": "2024-12-11T16:26:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86VIxa2",
+          "commit": {
+            "abbreviatedOid": "41af1ef"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2024-12-13T11:44:09Z",
+          "updatedAt": "2024-12-13T11:51:55Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "This is not used in the doc.",
+              "createdAt": "2024-12-13T11:44:09Z",
+              "updatedAt": "2024-12-13T11:51:55Z"
+            },
+            {
+              "originalPosition": 7,
+              "body": "Not used in the doc",
+              "createdAt": "2024-12-13T11:44:38Z",
+              "updatedAt": "2024-12-13T11:51:55Z"
+            },
+            {
+              "originalPosition": 11,
+              "body": "check if this is used.",
+              "createdAt": "2024-12-13T11:45:06Z",
+              "updatedAt": "2024-12-13T11:51:55Z"
+            },
+            {
+              "originalPosition": 19,
+              "body": "{{IANA_YANG}} does not have these terms!\r\n\r\nI guess you meant [RFC 8348](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwi4w_z21aSKAxU_UaQEHQuRC98QFnoECBYQAQ&url=https%3A%2F%2Fdatatracker.ietf.org%2Fdoc%2Fhtml%2Frfc8348&usg=AOvVaw37XEzeeG-tUB3JYKmiSmSS&opi=89978449)",
+              "createdAt": "2024-12-13T11:46:14Z",
+              "updatedAt": "2024-12-13T11:51:55Z"
+            },
+            {
+              "originalPosition": 20,
+              "body": "All these terms are not formally defined in 8348. Maybe change to \"used\" or \"introduced\". ",
+              "createdAt": "2024-12-13T11:47:33Z",
+              "updatedAt": "2024-12-13T11:51:55Z"
+            },
+            {
+              "originalPosition": 57,
+              "body": "```suggestion\r\n: The generalization of the hardware components defined in {{IANA_YANG}} (e.g., backplane, battery, container, cpu, chassis, fan, module, port, power supply, sensor, stack, and storage device components).\r\n```",
+              "createdAt": "2024-12-13T11:48:26Z",
+              "updatedAt": "2024-12-13T11:51:55Z"
+            },
+            {
+              "originalPosition": 58,
+              "body": "We can't formally add directly those to the IANA module. These should be added to IANA-ENTITY-MIB:\r\n\r\n```\r\n>    The \"iana-hardware\" YANG module is intended to reflect the\r\n>    \"IANA-ENTITY-MIB\" MIB module so that if a new enumeration is added to\r\n>    the \"IANAPhysicalClass\" textual convention, the same class is added\r\n>    as an identity derived from \"ianahw:hardware-class\".\r\n```\r\n",
+              "createdAt": "2024-12-13T11:51:17Z",
+              "updatedAt": "2024-12-13T11:52:49Z"
             }
           ]
         }
