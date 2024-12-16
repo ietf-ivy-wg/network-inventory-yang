@@ -114,8 +114,89 @@ module ietf-network-inventory {
   }
 
   /*
+   * Types
+   */
+
+  typedef ne-ref {
+    type leafref {
+      path  "/nwi:network-inventory/nwi:network-elements"
+          + "/nwi:network-element/nwi:ne-id";
+    }
+    description
+      "This type is intended to be used by data models that need to
+      reference Network Element.";
+  }
+
+  /*
    * Groupings
    */
+
+  grouping port-ref {
+    description
+      "This grouping is intended to be used by data models that need
+      to reference a port component within a Network Element.";
+    leaf ne-ref {
+      type nwi:ne-ref;
+      description
+        "The reference to the Network Element which contains the
+        port to be referenced.";
+    }
+    leaf port-ref {
+      type leafref {
+        path
+          "/nwi:network-inventory/nwi:network-elements/"
+        + "nwi:network-element[nwi:ne-id=current()/../nwi:ne-ref]"
+        + "/nwi:components/nwi:component/nwi:component-id";
+      }
+      must "derived-from-or-self (/nwi:network-inventory/
+            nwi:network-elements/nwi:network-element
+            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component
+            [nwi:component-id=current()]/nwi:class, 'ianahw:port')";
+      description
+        "The reference to the port component.";
+    }
+  }
+
+  grouping channel-ref {
+    description
+      "This grouping is intended to be used by data models that need
+      to reference one or more channels within a transceivers module
+      component.";
+    leaf ne-ref {
+      type nwi:ne-ref;
+      description
+        "The reference to the Network Element which contains the
+        port to be referenced.";
+    }
+    leaf transceivers-module-ref {
+      type leafref {
+        path
+          "/nwi:network-inventory/nwi:network-elements/"
+        + "nwi:network-element[nwi:ne-id=current()/../nwi:ne-ref]"
+        + "/nwi:components/nwi:component/nwi:component-id";
+      }
+      must "derived-from-or-self (/nwi:network-inventory/
+            nwi:network-elements/nwi:network-element
+            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component
+            [nwi:component-id=current()]/nwi:class,
+            'nwi:transceivers-module')";
+      description
+        "The reference to the transceivers module component.";
+    }
+    leaf-list channel-number {
+      type leafref {
+        path  "/nwi:network-inventory/nwi:network-elements"
+            + "/nwi:network-element[nwi:ne-id=current()/../ne-ref]/"
+            + "nwi:components/"
+            + "nwi:component[nwi:component-id="
+            + "current()/../transceivers-module-ref]/"
+            + "nwi:transceivers-module-specific-info/nwi:channels/"
+            + "nwi:channel/nwi:channel-number";
+      }
+      description
+        "The references to the channels.";
+    }
+  }
 
   grouping common-entity-attributes {
     description
