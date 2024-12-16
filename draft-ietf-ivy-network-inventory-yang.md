@@ -629,11 +629,11 @@ The example instantiates the "ietf-network-inventory" model to describe a single
 
 1. An integrated port (non pluggable). This port can be of any type (e.g., optical or electrical), single-channel or multi-channel but not supporting breakouts;
 1. An empty port;
-1. A single channel optical pluggable port;
-1. A Wavelength-Division Multiplexing (WDM) based multi-channel optical port () which does not support breakouts: the four WDM channels are not reported since not relevant from inventory management perspective;
-1. A Multi-Fiber Push-on (MPO) trunk-only port. This type of MPO port does not support breakouts: the four WDM channels are not reported since not relevant from inventory management perspective;
-1. An MPO trunk port. This type of MPO port can support either the trunk or the breakout configuration but in this example, it is configured to support the trunk configuration: the four WDM channels are reported to support breakouts configuration, when needed.
-1. An MPO breakout port: the four WDM channels are reported to support breakouts configuration.
+1. A single channel optical pluggable port ();
+1. A Wavelength-Division Multiplexing (WDM) based multi-channel optical port (e.g., a 400G-LR4 port configured as a single 400GE interface) which does not support breakouts: the four WDM channels are not reported since not relevant from inventory management perspective;
+1. A Multi-Fiber Push-on (MPO) trunk-only port (e.g., 400G-DR4 port configured as a single 400GE interface). This type of MPO port does not support breakouts: the four WDM channels are not reported since not relevant from inventory management perspective;
+1. An MPO trunk port (e.g., 400G-DR4 port configured as a single 400GE interface). This type of MPO port can support either the trunk or the breakout configuration but in this example, it is configured to support the trunk configuration: the four WDM channels are reported to support breakouts configuration, when needed.
+1. An MPO breakout port (e.g., 400G-DR4 port configured as 4 100GE interfaces): the four WDM channels are reported to support breakouts configuration.
 
 From a network inventory perspective, there is no need to distinguish between single-channel and MPO trunk-only ports.
 
