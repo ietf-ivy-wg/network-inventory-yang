@@ -90,11 +90,11 @@ module ietf-network-inventory {
       "Base identity for Network Element (NE) types.";
   }
 
-    identity ne-physical {
-      base nwi:ne-type;
-      description
-        "A physical network element (NE). ";
-    }
+  identity ne-physical {
+    base nwi:ne-type;
+    description
+      "A physical network element (NE). ";
+  }
 
   /*
    * Editors' Note: This identity may need to be moved to
@@ -108,7 +108,7 @@ module ietf-network-inventory {
        of self-contained sub-system which contains one or more
        transceivers (e.g., optical or electrical transceivers) which
        are transmitting and receiving a signal from the media.
-       
+
        A transceivers-module component can only be contained by a
        port component.";
   }
@@ -265,48 +265,48 @@ module ietf-network-inventory {
                 "The type of the component.";
             }
             uses common-entity-attributes {
-              refine hardware-rev {
+              refine "hardware-rev" {
                 description
                   "The vendor-specific hardware revision string for
-                  the component. The preferred value is the hardware
-                  revision identifier actually printed on the
-                  component itself (if present).";
+                   the component. The preferred value is the hardware
+                   revision identifier actually printed on the
+                   component itself (if present).";
                 reference
                   "RFC 6933: Entity MIB (Version 4) -
-                            entPhysicalHardwareRev";
+                             entPhysicalHardwareRev";
               }
-              refine software-rev {
+              refine "software-rev" {
                 reference
                   "RFC 6933: Entity MIB (Version 4) -
-                            entPhysicalSoftwareRev";
+                             entPhysicalSoftwareRev";
               }
-              refine mfg-name {
+              refine "mfg-name" {
                 description
                   "The name of the manufacturer of this physical
-                  component.
-                  The preferred value is the manufacturer name string
-                  actually printed on the component itself
-                  (if present).
+                   component.
+                   The preferred value is the manufacturer name
+                   string actually printed on the component itself
+                   (if present).
 
-                  Note that comparisons between instances of the
-                  'model-name', 'firmware-rev', 'software-rev', and
-                  'serial-number' nodes are only meaningful amongst
-                  components with the same value of 'mfg-name'.
+                   Note that comparisons between instances of the
+                   'model-name', 'firmware-rev', 'software-rev', and
+                   'serial-number' nodes are only meaningful amongst
+                   components with the same value of 'mfg-name'.
 
-                  If the manufacturer name string associated with the
-                  physical component is unknown to the server, then
-                  this node is not instantiated.";
+                   If the manufacturer name string associated with
+                   the physical component is unknown to the server,
+                   then this node is not instantiated.";
                 reference
                   "RFC 6933: Entity MIB (Version 4) -
-                  entPhysicalMfgName";
+                             entPhysicalMfgName";
               }
-              refine mfg-date {
+              refine "mfg-date" {
                 description
                   "The date of manufacturing of the managed
-                  component.";
+                   component.";
                 reference
                   "RFC 6933: Entity MIB (Version 4) -
-                  entPhysicalMfgDate";
+                             entPhysicalMfgDate";
               }
             }
             leaf firmware-rev {
@@ -340,7 +340,7 @@ module ietf-network-inventory {
                  implementation needs to use some mechanism to handle
                  the differences in size and characters allowed
                  between this leaf and entPhysicalAssetID.
-                 
+
                  The definition of such a mechanism is outside the
                  scope of this document.";
               reference
@@ -365,7 +365,7 @@ module ietf-network-inventory {
                  component among all the sibling components.";
               reference
                 "RFC 6933: Entity MIB (Version 4) -
-                          entPhysicalParentRelPos";
+                           entPhysicalParentRelPos";
             }
             container parent-component-ref {
               config false;
@@ -401,42 +401,48 @@ module ietf-network-inventory {
                 "RFC 6933: Entity MIB (Version 4) - entPhysicalUris";
             }
             container chassis-specific-info {
-              when "derived-from-or-self(../class, 
-                    'ianahw:chassis')";
+              when
+                "derived-from-or-self(../nwi:class,
+                'ianahw:chassis')";
               config false;
               description
                 "This container contains some attributes belong to
-                chassis only.";
+                 chassis only.";
             }
             container slot-specific-info {
-              when "derived-from-or-self(../class,
-                    'ianahw:container')";
+              when
+                "derived-from-or-self(../nwi:class,
+                'ianahw:container')";
               config false;
               description
                 "This container contains some attributes belong to
-                slot only.";
+                 slot only.";
             }
             container board-specific-info {
-              when "derived-from-or-self(../class, 'ianahw:module')";
+              when
+                "derived-from-or-self(../nwi:class,
+                'ianahw:module')";
               config false;
               description
                 "This container contains some attributes belong to
-                board only.";
+                 board only.";
             }
             container port-specific-info {
-              when "derived-from-or-self(../class, 'ianahw:port')";
+              when
+                "derived-from-or-self(../nwi:class, 'ianahw:port')";
               config false;
               description
                 "This container contains some attributes belong to
-                port only.";
+                 port only.";
             }
             container transceivers-module-specific-info {
-              when "derived-from-or-self(../class, 
-                    'nwi:transceivers-module')";
+              when
+                "derived-from-or-self(../nwi:class,
+                'nwi:transceivers-module')";
               config false;
               description
                 "This container contains some attributes belong to
-                transceivers modules only.";
+                 transceivers modules only.";
               container channels {
                 presence
                   "When present it represents a multi-channel port
@@ -445,12 +451,12 @@ module ietf-network-inventory {
                   "Top level container for the list of channels
                    supported by the transceivers module.";
                 list channel {
-                  key channel-number;
+                  key "channel-number";
                   leaf channel-number {
                     type uint8;
                     description
                       "The channel number uniquely identifying the
-                      channel within the port.";
+                       channel within the port.";
                   }
                   description
                     "The list of channels supported by the

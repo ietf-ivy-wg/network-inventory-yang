@@ -621,6 +621,28 @@ An alternative YANG model structure, which defines the inventory objects directl
 
 The model proposed by this draft is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this draft. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.
 
+# JSON Examples
+
+This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}.
+
+The example instantiates the "ietf-network-inventory" model to describe a single board with seven different types of ports, transceivers and breakouts configurations:
+
+1. An integrated port (non pluggable). This port can be of any type (e.g., optical or electrical), single-channel or multi-channel but not supporting breakouts;
+1. An empty port;
+1. A single channel optical pluggable port;
+1. A Wavelength-Division Multiplexing (WDM) based multi-channel optical port () which does not support breakouts: the four WDM channels are not reported since not relevant from inventory management perspective;
+1. A Multi-Fiber Push-on (MPO) trunk-only port. This type of MPO port does not support breakouts: the four WDM channels are not reported since not relevant from inventory management perspective;
+1. An MPO trunk port. This type of MPO port can support either the trunk or the breakout configuration but in this example, it is configured to support the trunk configuration: the four WDM channels are reported to support breakouts configuration, when needed.
+1. An MPO breakout port: the four WDM channels are reported to support breakouts configuration.
+
+From a network inventory perspective, there is no need to distinguish between single-channel and MPO trunk-only ports.
+
+Reporting whether an MPO port is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model: the inventory topology mapping should instead provide sufficient information to identify how the MPO port is configured and, in case of breakout configuration, which channel is associated with which Link Termination Point (LTP).
+
+~~~~ ascii-art
+{::include-fold JSON/ports-transceivers-breakouts-examples.json}
+~~~~
+
 {: numbered="false"}
 
 # Acknowledgments
