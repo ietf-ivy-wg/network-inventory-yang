@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-15T01:01:13.183863+00:00",
+  "timestamp": "2024-12-17T00:57:05.070894+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -419,9 +419,9 @@
         "priority-1",
         "priority-2"
       ],
-      "body": "> Some quick comments:\r\n> \r\n>   *   Please soften the various citations to ACTN. I would simply remove them.\r\n\r\n- [ ] For discussion (P1)\r\n\r\n>   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\\\r\n\r\n- [ ] #72\r\n\r\n>   *   Consider if some data nodes that are defined in other models can be added directly to the base model, e.g., the following ones from draft-li\r\n> \r\n> ```\r\n>       +--ro required-components*          -> ../uuid\r\n>       +--ro dependent-components*         -> ../uuid\r\n> \r\n> ```\r\n> \r\n\r\n- [ ] #70\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/\r\n",
+      "body": "> Some quick comments:\r\n> \r\n>   *   Please soften the various citations to ACTN. I would simply remove them.\r\n\r\n- [x] Closed with PR #74 \r\n>   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\\\r\n\r\n- [ ] #72\r\n\r\n>   *   Consider if some data nodes that are defined in other models can be added directly to the base model, e.g., the following ones from draft-li\r\n> \r\n> ```\r\n>       +--ro required-components*          -> ../uuid\r\n>       +--ro dependent-components*         -> ../uuid\r\n> \r\n> ```\r\n> \r\n\r\n- [ ] #70\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/\r\n",
       "createdAt": "2023-11-17T20:03:19Z",
-      "updatedAt": "2024-12-09T14:09:51Z",
+      "updatedAt": "2024-12-16T18:29:21Z",
       "closedAt": null,
       "comments": [
         {
@@ -2453,6 +2453,25 @@
       "updatedAt": "2024-12-11T16:29:58Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 78,
+      "id": "I_kwDOKiDYo86jfb20",
+      "title": "Yanglint validation issues with the union of identityref",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/78",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "bug",
+        "priority-1"
+      ],
+      "body": "When preparing JSON examples (see PR #76 ), the following when statement failed validation with yanglint:\r\n\r\n```\r\n                \"derived-from-or-self(../nwi:class,\r\n                'nwi:transceivers-module')\";\r\n\r\n```\r\n\r\nThe issue could have been fixed only by updating the component class definition as:\r\n\r\n```\r\n            leaf class {\r\n              type identityref {\r\n                base ianahw:hardware-class;\r\n              }\r\n              config false;\r\n              mandatory true;\r\n              description\r\n                \"The type of the component.\";\r\n            }\r\n```\r\n\r\nThis issue needs further investigation:\r\n- is it a yanglint implemenation issue or a bug in the current YANG model?\r\n- is there any alternative solution to avoid the use of the union type?",
+      "createdAt": "2024-12-16T17:03:20Z",
+      "updatedAt": "2024-12-16T17:03:26Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -4294,7 +4313,7 @@
       "labels": [],
       "body": "Proposal for terminology update: fix #16 ",
       "createdAt": "2024-12-11T08:58:35Z",
-      "updatedAt": "2024-12-13T11:51:55Z",
+      "updatedAt": "2024-12-16T10:24:06Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "c3420b3aed15e763b78c817be91f424ad475f0e0",
@@ -4433,9 +4452,9 @@
           "comments": [
             {
               "originalPosition": 105,
-              "body": "**[2024-12-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-11)**\r\n\r\n```suggestion\r\n network elements and other types of components' groups that can be managed as physical network elements from an\r\ninventory perspective.\r\n\r\nPhysical network elements are usually devices such as hosts, gateways, terminal servers, and the like, which have management agents responsible for performing the network management functions requested by the network management stations ({?RFC1157}).\r\n```\r\n",
+              "body": "**[2024-12-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-11)**\r\n\r\n```suggestion\r\nnetwork elements and other types of components' groups that can be managed as physical network elements from an\r\ninventory perspective.\r\n\r\nPhysical network elements are usually devices such as hosts, gateways, terminal servers, and the like, which have management agents responsible for performing the network management functions requested by the network management stations ({?RFC1157}).\r\n```\r\n",
               "createdAt": "2024-12-11T15:53:52Z",
-              "updatedAt": "2024-12-11T16:26:48Z"
+              "updatedAt": "2024-12-16T10:25:47Z"
             }
           ]
         },
@@ -4534,6 +4553,46 @@
               "updatedAt": "2024-12-13T11:52:49Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86VWtbN",
+          "commit": {
+            "abbreviatedOid": "41af1ef"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-16T10:23:51Z",
+          "updatedAt": "2024-12-16T10:23:52Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "My understanding is that these terms are defined in the description statements of the component classes identities within [IANA_YANG]\r\n\r\n```suggestion\r\nThe following terms are defined in the description statements of the corresponding YANG identities, defined in {{IANA_YANG}}, and are not redefined here:\r\n```",
+              "createdAt": "2024-12-16T10:23:52Z",
+              "updatedAt": "2024-12-16T10:23:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86VWtjf",
+          "commit": {
+            "abbreviatedOid": "41af1ef"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-16T10:24:06Z",
+          "updatedAt": "2024-12-16T10:24:06Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "See: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/75/files#r1886557028",
+              "createdAt": "2024-12-16T10:24:06Z",
+              "updatedAt": "2024-12-16T10:24:06Z"
+            }
+          ]
         }
       ]
     },
@@ -4547,15 +4606,15 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "Proposal for ports and breakouts modelling: fix #45 \r\n\r\n---\r\n\r\nCo-Authored-By: YuChaode <yuchaode@huawei.com>\r\n",
+      "body": "Proposal for ports and breakouts modelling: fix #45 \r\n\r\nAdded references to network-element, port component and channel: fix #69 \r\n\r\n---\r\n\r\nIn order to validate the JSON examples, some fixes are needed on the YANG file:\r\n\r\n1. the parent-component-ref should be defined as a leafref: see PR #66 \r\n2. the component class type should be an identityref and not a union of identityrefs: see issue #78\r\n\r\n---\r\n\r\nCo-Authored-By: YuChaode <yuchaode@huawei.com>\r\n",
       "createdAt": "2024-12-11T15:03:32Z",
-      "updatedAt": "2024-12-11T16:28:20Z",
+      "updatedAt": "2024-12-16T18:45:13Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "c3420b3aed15e763b78c817be91f424ad475f0e0",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "port-breakout",
-      "headRefOid": "5fd0229909b6b4437898f72051ea53e2766fb572",
+      "headRefOid": "6248590af23621a4fcbb2ede1fe6ffb8ca64df6b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -4579,6 +4638,38 @@
               "body": "**[2024-12-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-11)**\r\n\r\nThe definition of the transceivers-module is very close to the definition of transponder in optical impairments I-D\r\n\r\n- [ ] @italobusi @sergiobelotti @YuChaode Check how an integrated transponder can be modelled in the network inventory model",
               "createdAt": "2024-12-11T16:28:20Z",
               "updatedAt": "2024-12-11T16:28:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86VXswK",
+          "commit": {
+            "abbreviatedOid": "39f4a09"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-16T12:12:16Z",
+          "updatedAt": "2024-12-16T18:45:13Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "not very clear what you mean with \"position of the port in the containing module\". If we want to stay aligned to RFC8348 we should probably saying\" A container for a transceiver module\". Holder does not exist in RFC8348.",
+              "createdAt": "2024-12-16T12:12:16Z",
+              "updatedAt": "2024-12-16T18:45:13Z"
+            },
+            {
+              "originalPosition": 95,
+              "body": "What these channels are representing with respect OpenConfig ? physical-channels that are related to different logical-interface in which the port is broken ? ",
+              "createdAt": "2024-12-16T18:38:05Z",
+              "updatedAt": "2024-12-16T18:45:13Z"
+            },
+            {
+              "originalPosition": 131,
+              "body": "Same question as above : what are these channels? This is the OpenConfig extract to define the case a device is able to support \"breakout\": \"When a device has the capability to break a port into interfaces of different speeds and different number of physical channels,\".\r\nMy question is if the channles in your proposal is the same channel defined here.",
+              "createdAt": "2024-12-16T18:43:43Z",
+              "updatedAt": "2024-12-16T18:45:13Z"
             }
           ]
         }
