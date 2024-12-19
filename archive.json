@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-17T00:57:05.070894+00:00",
+  "timestamp": "2024-12-19T00:55:19.311544+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4661,9 +4661,9 @@
             },
             {
               "originalPosition": 95,
-              "body": "What these channels are representing with respect OpenConfig ? physical-channels that are related to different logical-interface in which the port is broken ? ",
+              "body": "What these channels are representing with respect OpenConfig ? physical-channels that are related to different logical-interface in which the port is broken ? This is what OpenConfig states: \" transceiver will always contain physical-channel(s), however when a line side optical-channel is present (i.e. ZR+ optics) the physical-channel will reference its optical-channel. In this case, the optical-channels components must be subcomponents of the transceiver. ",
               "createdAt": "2024-12-16T18:38:05Z",
-              "updatedAt": "2024-12-16T18:45:13Z"
+              "updatedAt": "2024-12-18T15:03:11Z"
             },
             {
               "originalPosition": 131,
