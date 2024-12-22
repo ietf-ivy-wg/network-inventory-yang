@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-19T00:55:19.311544+00:00",
+  "timestamp": "2024-12-22T00:56:44.267310+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4608,7 +4608,7 @@
       "labels": [],
       "body": "Proposal for ports and breakouts modelling: fix #45 \r\n\r\nAdded references to network-element, port component and channel: fix #69 \r\n\r\n---\r\n\r\nIn order to validate the JSON examples, some fixes are needed on the YANG file:\r\n\r\n1. the parent-component-ref should be defined as a leafref: see PR #66 \r\n2. the component class type should be an identityref and not a union of identityrefs: see issue #78\r\n\r\n---\r\n\r\nCo-Authored-By: YuChaode <yuchaode@huawei.com>\r\n",
       "createdAt": "2024-12-11T15:03:32Z",
-      "updatedAt": "2024-12-16T18:45:13Z",
+      "updatedAt": "2024-12-19T16:08:07Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "c3420b3aed15e763b78c817be91f424ad475f0e0",
@@ -4619,7 +4619,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2024-12-18 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-18)**\r\n\r\nDefinitions of transceiver, transceiver module and port:\r\n\r\nTransceiver: A transceiver represents a transmitter/receiver (Tx/Rx) pair which is transmitting and receiving a signal from the media.\r\nThis definition generalizes the transceiver definition in [I-D.ietf-ccamp-optical-impairment-topology-yang] to model also non optical transceivers (e.g., electrical transceivers).\r\n\r\nTransceiver Module: A module which contains one or more\r\ntransceivers (e.g., optical or electrical transceivers).\r\nA transceivers-module component can only be contained by a\r\nport component.\r\n\r\nNote: The last sentence (i.e., \"A transceivers module can only be contained within a port component.\") needs to be validated after having reviewed the inventory examples for modelling integrated ROADM add/drop modules\r\n\r\nPort: A component where networking traffic can be received and/or transmitted, e.g., by attaching transceiver modules and networking cables.\r\n\r\nNote: This definition needs to be validated after having reviewed the inventory examples for modelling OTS ports on ROADM degrees\r\n\r\n- [ ] @italobusi ask for feedbacks on these definitions on the IVY WG mailing list\r\n\r\n- [ ] @italobusi update the PR text\r\n",
+          "createdAt": "2024-12-19T16:07:31Z",
+          "updatedAt": "2024-12-19T16:08:07Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOKiDYo86UyRRe",
