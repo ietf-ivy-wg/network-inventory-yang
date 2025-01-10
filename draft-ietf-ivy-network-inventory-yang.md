@@ -202,7 +202,7 @@ Physical Network Element:
 : An implementation or application specific group of components (e.g., hardware components).
 
 Network Element:
-: The generalization of the physical network element definition to include other types of inventory objects which can be managed, from an inventory perspective, like physical network elements.
+: The generalization of the physical network element definition.
 
 Hardware Component:
 : The generalization of the hardware components defined in {{IANA_YANG}} (e.g., backplane, battery, container, cpu, chassis, fan, module, port, power supply, sensor, stack and storage device components).
