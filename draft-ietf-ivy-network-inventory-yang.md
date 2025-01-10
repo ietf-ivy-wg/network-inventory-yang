@@ -127,22 +127,22 @@ of using vendors proprietary APIs.
 
 {{!RFC8348}} defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller towards the network elements rather than at the northbound interface of a network controller (e.g., toward an application or another hierarchical network controller). However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model presented in this document.
 
-Network Inventory is a collection of data for network devices and
-their components managed by a specific management system.  Per the
-definition of {{?RFC8969}}, the network inventory model is a network
-model.
+Network Inventory is a collection of data for network devices and their components managed by a specific management system.
+Per the definition of {{?RFC8969}}, the network inventory model is a network model.
 
 This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
+
 This base data model is technology-agnostic (that is, valid for IP/MPLS, optical, and
 microwave networks in particular) and can be augmented to
 include required technology-specific inventory details together with specific hardware or software component's attributes.
 
 The YANG data model defined in the document is scoped to cover the common requirements for both hardware and software (but with base functions) use cases for Network Inventory.
 
-{{ni-augment}} provides a set of augmentation considerations for future extensions
-of hardware, software, entitlement, and inventory topology mapping.
+{{ni-augment}} provides a set of considerations for future extensions of hardware, software, entitlement, and inventory topology mapping.
 
 The YANG data model defined in this document conforms to the Network Management Datastore Architecture {{!RFC8342}}.
+
+The YANG data model defined in the document is intended to only report actual inventory data which includes both applied configuration data and state data of the network elements and components actually installed within the network.
 
 ## Editorial Note (To be removed by RFC Editor)
 
@@ -174,6 +174,9 @@ The following terms are defined in {{!RFC7950}} and are not redefined here:
 The following terms are defined in {{!RFC6241}} and are not redefined here:
 - configuration data
 - state data
+
+The following terms are defined in {{!RFC8342}} and are not redefined here:
+- applied configuration
 
 The following terms are defined in {{IANA_YANG}} and are not redefined here:
 - backplane
