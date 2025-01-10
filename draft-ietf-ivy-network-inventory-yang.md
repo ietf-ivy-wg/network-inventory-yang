@@ -236,8 +236,10 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 # YANG Data Model for Network Inventory Overview
 
 The network element definition is generalized to support physical
-devices and other types of inventory objects that can be managed as physical network elements from an
+network elements and other types of components' groups that can be managed as physical network elements from an
 inventory perspective.
+
+Physical network elements are usually devices such as hosts, gateways, terminal servers, and the like, which have management agents responsible for performing the network management functions requested by the network management stations ({?RFC1157}).
 
 The data model for network elements defined in this document uses a flat list of network elements.
 
