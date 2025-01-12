@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-09T00:52:25.965675+00:00",
+  "timestamp": "2025-01-12T00:57:45.271401+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -464,7 +464,7 @@
       ],
       "body": "> As discussed in the design team call which happened last week, I would like the authors to consider adding a requirement or use cases section to illustrate what we would like to cover in this draft. We had some discussion about what should and what should not be in the scope of this draft both in the IETF meeting and in the weekly calls. I think it would be helpful if the requirements or use cases could be discussed and agreed upon.\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/FrD6aIOfr8IKCM0-6uoi188gOgg/",
       "createdAt": "2023-12-01T12:53:10Z",
-      "updatedAt": "2025-01-08T16:16:08Z",
+      "updatedAt": "2025-01-10T10:31:34Z",
       "closedAt": null,
       "comments": [
         {
@@ -473,6 +473,13 @@
           "body": "**[2025-01-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-08)**\r\n\r\n- [ ] @prmanna : Review whether something is still open in this issue",
           "createdAt": "2025-01-08T16:16:07Z",
           "updatedAt": "2025-01-08T16:16:07Z"
+        },
+        {
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "body": "IMO, now, we already have clear and agreed boundary of work for IVY base draft. \r\nAlong with this issue, #29 (General considerations) is also raised. In the next call, we'll discuss on #29 and finalize the base ivy draft boundary.",
+          "createdAt": "2025-01-10T10:31:32Z",
+          "updatedAt": "2025-01-10T10:31:32Z"
         }
       ]
     },
@@ -1283,7 +1290,7 @@
       ],
       "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#L18\r\n\r\nThis model deals with physical things (solids and spaces). The model does not yet cover some physical aspects such as connectors, cables, strands and physical spans. We have some work that may be helpful in TAPI. We should avoid broad physical modeling such as geographic structures etc.\r\n\r\nthe ability to hot-swap and to deal with other dynamics should be considered in this model.\r\n\r\nOther characteristics such as height, length, width, weight etc. may be best handled in a spec layer. This needs to be discussed in some details. This also applies to the humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics.\r\n\r\nThe model intentionally does not cover functional aspects. We should work on the relationship between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really functional protections. ONF have some work that may help here.\r\n\r\nThere are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed could be a valid augment to a module that has a fan.\r\n\r\nThe model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should be considered carefully.\r\n\r\nThe model of power is unusual in that it is narrow functional. There is a flow etc. The relationship between this model and power  needs to be considered carefully. Power is not physical but from the perspective of the other functions it is essentially the motive force. There is no detailed model of power. In other bodies, power is \"smunged\" into the physical model.  This needs to be considered very carefully.\r\n\r\nThe model of software is complex and should be separate from the model of the physical solution.\r\n\r\nState machines associated with the power-up cycle, admin state etc. really related to the functional model and should be considered carefully.",
       "createdAt": "2023-06-14T14:32:04Z",
-      "updatedAt": "2025-01-08T16:18:54Z",
+      "updatedAt": "2025-01-10T09:52:15Z",
       "closedAt": null,
       "comments": [
         {
@@ -1292,6 +1299,13 @@
           "body": "**[2025-01-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-08)**\r\n\r\n- [ ] @prmanna : Check which observation is out of scope, which one has been already addressed, which one has to be addressed as priority 1 and which one has to be addressed as priority 3\r\n",
           "createdAt": "2025-01-08T16:18:53Z",
           "updatedAt": "2025-01-08T16:18:53Z"
+        },
+        {
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "body": "Though some of the topics are already covered in the current version, but some need discussions.\r\n\r\n- connectors, cables, strands and physical spans -- under topology model.\r\n- broad physical modeling such as geographic structures etc -- IVY is not ideal here, instead it comes under MDSC functions.  \r\n- The ability to hot-swap and to deal with other dynamics - IMO, operation should not be part of Inventory.\r\n- Other characteristics such as height, length, width, weight etc. -- some are already there in inventory-location.\r\n- humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics - Power already covered in IVY, remaining operational data can be added, but not necessarily in the base draft. \r\n- \"equipment protections\" --- The model intentionally does not cover functional aspects. We should work on the relationship between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really functional protections. ONF have some work that may help here. -- Can have a section for equipment protection guidelines.\r\n- There are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed could be a valid augment to a module that has a fan. -- This is like comp specific ask for operation. In general, FAN and Temperature has close relation. Based on the current temperature, FAN speed will vary.  \r\n- The model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should be considered carefully. - This is an operational aspect. This can be an extension draft.\r\n- State machines associated with the power-up cycle, admin state etc. really related to the functional model and should be considered carefully. - Again, this is an operational aspect. ",
+          "createdAt": "2025-01-10T09:52:12Z",
+          "updatedAt": "2025-01-10T09:52:12Z"
         }
       ]
     },
@@ -4395,13 +4409,13 @@
       "labels": [],
       "body": "Proposal for terminology update: fix #16 , fix #25 and fix #35",
       "createdAt": "2024-12-11T08:58:35Z",
-      "updatedAt": "2025-01-08T16:04:32Z",
+      "updatedAt": "2025-01-10T20:27:01Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "c3420b3aed15e763b78c817be91f424ad475f0e0",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "terminology",
-      "headRefOid": "41af1ef65c7fd9e8f958411fcf60e49d140b50d4",
+      "headRefOid": "d493a0e77dd8f728bd0e69f3e5ed40c4ea11aa7a",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -4680,6 +4694,46 @@
               "body": "See: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/75/files#r1886557028",
               "createdAt": "2024-12-16T10:24:06Z",
               "updatedAt": "2024-12-16T10:24:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86XdpnF",
+          "commit": {
+            "abbreviatedOid": "1f6ba97"
+          },
+          "author": "samans",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-09T23:15:44Z",
+          "updatedAt": "2025-01-09T23:15:44Z",
+          "comments": [
+            {
+              "originalPosition": 92,
+              "body": "My thoughts and Sergio's comments labeled with [SB]\r\n\r\nThe issue is finding terminology that will be agreeable to network equipment vendors, data center people, and computer hardware people.  The idea is simple, but can be mapped onto different terminology.\r\n\r\nFor example.\r\n\r\nA rack is a metal frame that may or may not contain electrical components that holds a chassis.\r\n\r\nA standard rack holding something like a Cisco 8804 chassis looks like this.\r\n\r\n![download](https://github.com/user-attachments/assets/f52983c7-d6dd-4e5a-8da5-716a02daa1aa)\r\n\r\n\r\nThe big holes you see in the picture above are slots.  There are slots on the back as well.  A slot can accept various modules, trays, or cards.  Some modules and/or cards can have daughter cards can be connected to the module or card.\r\n\r\n \r\n\r\nLooking at the Network Inventory YANG terminology.\r\n\r\nThe rack, chassis and slots above are (as TMF puts them) holders. \r\n\r\n[SB>] YES the TMF separation between \u201cholders\u201d and \u201cequipment\u201d groups  is also in our document\r\n\r\nAn example of a sub-chassis could be a tray that holds other components (like fans).  In the Network Inventory YANG the term Board is (I think) a module or a card. \r\n\r\n[SB>] In our model a board is defined as\u201d ianahw:module\u201d , there is no distinction unfortunately from module to card/board.\r\n\r\nUsually, modules are things like fans or power, so if we are modeling that we will need to differentiate a module from a card (so calling both of those board is probably wrong). \r\n\r\n[SB>]  Fan is considered as a specific card, it has a definition specific, not as ianahw:module .\r\n\r\nThere is a differentiation between cards as well (at least in Cisco-land).  There are \u201cline cards\u201d and \u201cfabric cards\u201d.  A line card has ports on it and in the case of optical pluggables a line card may have slots to accept pluggables. I don\u2019t know if that is what is intended by the \u201csub-slot\u201d terminology, but it could work since a pluggable would be considered a module that fits into a cards' sub-slot.  At least that is one interpretation. \r\n\r\n[SB>] In this case we would have a definition for sub-slot that should be \u201ca slot of a line-card hosting an optical pluggable\u201d\r\n\r\nA \u201cfabric card\u201d is a card that \u201cline cards\u201d and sometimes modules plug into.  But here the \"sub-slot\" terminology doesn't really work very well, because the \"sub-slot\" on the \"fabric card\" is not inline with the slot the \"fabric card\" is in.  \r\n\r\nWhat needs to be made clear is whether or not a \u201csub-slot\u201d is simply a holder or if a \u201csub-slot\u201d can be used for something like an optical pluggable.\r\n\r\n[SB>] It can be used as a holder for an optical pluggable in my view.\r\n\r\nI think a couple of examples to see what the instance data would look would help.\r\n\r\nLooking at M.3100.  I would say recursive not circular.\r\n\r\n \r\n\r\nA rack is made up of bays\r\n\r\nA chassis is held in some number of bays of a rack depending on the size of the chassis.\r\n\r\nA chassis has slots (or physical places to put things)\r\n\r\nA chassis slot holds a \"circuit pack\" (which can be a line card, fabric card, computer, power, fans etc.)\r\n\r\nA line card can also accept pluggables\r\n\r\n \r\n\r\nI think leveraging M.3100 and mapping the terminology is a good exercise.  Things will get more interesting when the data center people show up and want to start talking about blades.",
+              "createdAt": "2025-01-09T23:15:44Z",
+              "updatedAt": "2025-01-09T23:15:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86XniT_",
+          "commit": {
+            "abbreviatedOid": "41af1ef"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-10T20:27:01Z",
+          "updatedAt": "2025-01-10T20:27:01Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "Now used by the text added in https://github.com/ietf-ivy-wg/network-inventory-yang/pull/75/commits/d493a0e77dd8f728bd0e69f3e5ed40c4ea11aa7a to clarify that the scope is only to report actual inventory data and not to configure planned/intended inventory data, as per mailing list discussion:\r\n\r\nhttps://mailarchive.ietf.org/arch/msg/inventory-yang/-9MNndP4ykQSPIMSCgup0VI9wTo/\r\n",
+              "createdAt": "2025-01-10T20:27:01Z",
+              "updatedAt": "2025-01-10T20:27:01Z"
             }
           ]
         }
