@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 14 June 2025                                              Nokia
+Expires: 19 July 2025                                              Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                        11 December 2024
+                                                         15 January 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -54,11 +54,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 June 2025.
+   This Internet-Draft will expire on 19 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1153,9 +1153,9 @@ Table of Contents
               Ceccarelli, "Applicability of Abstraction and Control of
               Traffic Engineered Networks (ACTN) to Packet Optical
               Integration (POI)", Work in Progress, Internet-Draft,
-              draft-ietf-teas-actn-poi-applicability-12, 5 July 2024,
+              draft-ietf-teas-actn-poi-applicability-13, 3 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              actn-poi-applicability-12>.
+              actn-poi-applicability-13>.
 
    [I-D.wzwb-ivy-network-inventory-software]
               Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
