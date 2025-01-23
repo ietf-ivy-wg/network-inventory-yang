@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-21T00:50:50.834658+00:00",
+  "timestamp": "2025-01-23T00:51:10.364329+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -460,11 +460,12 @@
       ],
       "labels": [
         "wga",
+        "agreed",
         "priority-1"
       ],
       "body": "> As discussed in the design team call which happened last week, I would like the authors to consider adding a requirement or use cases section to illustrate what we would like to cover in this draft. We had some discussion about what should and what should not be in the scope of this draft both in the IETF meeting and in the weekly calls. I think it would be helpful if the requirements or use cases could be discussed and agreed upon.\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/FrD6aIOfr8IKCM0-6uoi188gOgg/",
       "createdAt": "2023-12-01T12:53:10Z",
-      "updatedAt": "2025-01-10T10:31:34Z",
+      "updatedAt": "2025-01-22T16:31:30Z",
       "closedAt": null,
       "comments": [
         {
@@ -480,6 +481,13 @@
           "body": "IMO, now, we already have clear and agreed boundary of work for IVY base draft. \r\nAlong with this issue, #29 (General considerations) is also raised. In the next call, we'll discuss on #29 and finalize the base ivy draft boundary.",
           "createdAt": "2025-01-10T10:31:32Z",
           "updatedAt": "2025-01-10T10:31:32Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-01-22 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-22)**\n\nIt could be closed together with issue #29\n",
+          "createdAt": "2025-01-22T16:30:59Z",
+          "updatedAt": "2025-01-22T16:30:59Z"
         }
       ]
     },
@@ -1290,7 +1298,7 @@
       ],
       "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#L18\r\n\r\nThis model deals with physical things (solids and spaces). The model does not yet cover some physical aspects such as connectors, cables, strands and physical spans. We have some work that may be helpful in TAPI. We should avoid broad physical modeling such as geographic structures etc.\r\n\r\nthe ability to hot-swap and to deal with other dynamics should be considered in this model.\r\n\r\nOther characteristics such as height, length, width, weight etc. may be best handled in a spec layer. This needs to be discussed in some details. This also applies to the humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics.\r\n\r\nThe model intentionally does not cover functional aspects. We should work on the relationship between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really functional protections. ONF have some work that may help here.\r\n\r\nThere are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed could be a valid augment to a module that has a fan.\r\n\r\nThe model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should be considered carefully.\r\n\r\nThe model of power is unusual in that it is narrow functional. There is a flow etc. The relationship between this model and power  needs to be considered carefully. Power is not physical but from the perspective of the other functions it is essentially the motive force. There is no detailed model of power. In other bodies, power is \"smunged\" into the physical model.  This needs to be considered very carefully.\r\n\r\nThe model of software is complex and should be separate from the model of the physical solution.\r\n\r\nState machines associated with the power-up cycle, admin state etc. really related to the functional model and should be considered carefully.",
       "createdAt": "2023-06-14T14:32:04Z",
-      "updatedAt": "2025-01-10T09:52:15Z",
+      "updatedAt": "2025-01-22T16:40:35Z",
       "closedAt": null,
       "comments": [
         {
@@ -1306,6 +1314,13 @@
           "body": "Though some of the topics are already covered in the current version, but some need discussions.\r\n\r\n- connectors, cables, strands and physical spans -- under topology model.\r\n- broad physical modeling such as geographic structures etc -- IVY is not ideal here, instead it comes under MDSC functions.  \r\n- The ability to hot-swap and to deal with other dynamics - IMO, operation should not be part of Inventory.\r\n- Other characteristics such as height, length, width, weight etc. -- some are already there in inventory-location.\r\n- humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics - Power already covered in IVY, remaining operational data can be added, but not necessarily in the base draft. \r\n- \"equipment protections\" --- The model intentionally does not cover functional aspects. We should work on the relationship between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really functional protections. ONF have some work that may help here. -- Can have a section for equipment protection guidelines.\r\n- There are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed could be a valid augment to a module that has a fan. -- This is like comp specific ask for operation. In general, FAN and Temperature has close relation. Based on the current temperature, FAN speed will vary.  \r\n- The model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should be considered carefully. - This is an operational aspect. This can be an extension draft.\r\n- State machines associated with the power-up cycle, admin state etc. really related to the functional model and should be considered carefully. - Again, this is an operational aspect. ",
           "createdAt": "2025-01-10T09:52:12Z",
           "updatedAt": "2025-01-10T09:52:12Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-01-22 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-22)**\n\n> Though some of the topics are already covered in the current version, but some need discussions.\n> \n> * connectors, cables, strands and physical spans -- under topology model.\n\n* cables, strands and physical spans: outside the scope of the base inventory model. It could be in the scope of the passive inventory model or of the topology model: to be discussed in the context of the passive inventory model ([issue #7](https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/7#issuecomment-2607734276))\n\nNote: The need to report a connector in the base inventory is tracked as issue #77\n\n> * broad physical modeling such as geographic structures etc -- IVY is not ideal here, instead it comes under MDSC functions.\n> * The ability to hot-swap and to deal with other dynamics - IMO, operation should not be part of Inventory.\n> * Other characteristics such as height, length, width, weight etc. -- some are already there in inventory-location.\n> * humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics - Power already covered in IVY, remaining operational data can be added, but not necessarily in the base draft.\n> * \"equipment protections\" --- The model intentionally does not cover functional aspects. We should work on the relationship between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really functional protections. ONF have some work that may help here. -- Can have a section for equipment protection guidelines.\n> * There are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed could be a valid augment to a module that has a fan. -- This is like comp specific ask for operation. In general, FAN and Temperature has close relation. Based on the current temperature, FAN speed will vary.\n> * The model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should be considered carefully. - This is an operational aspect. This can be an extension draft.\n> * State machines associated with the power-up cycle, admin state etc. really related to the functional model and should be considered carefully. - Again, this is an operational aspect.\n\n",
+          "createdAt": "2025-01-22T16:33:11Z",
+          "updatedAt": "2025-01-22T16:40:35Z"
         }
       ]
     },
@@ -4409,7 +4424,7 @@
       "labels": [],
       "body": "Proposal for terminology update: fix #16 , fix #25 and fix #35",
       "createdAt": "2024-12-11T08:58:35Z",
-      "updatedAt": "2025-01-10T20:27:01Z",
+      "updatedAt": "2025-01-22T16:06:52Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "c3420b3aed15e763b78c817be91f424ad475f0e0",
@@ -4736,6 +4751,26 @@
               "updatedAt": "2025-01-10T20:27:01Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86ZC0U4",
+          "commit": {
+            "abbreviatedOid": "1f6ba97"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-22T16:06:51Z",
+          "updatedAt": "2025-01-22T16:06:52Z",
+          "comments": [
+            {
+              "originalPosition": 92,
+              "body": "**[2025-01-22 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-22)**\r\n\r\n- [ ] @nigel-r-davis to check TMF supporting documents as well as the comments above from Scott and Sergio\r\n",
+              "createdAt": "2025-01-22T16:06:51Z",
+              "updatedAt": "2025-01-22T16:07:09Z"
+            }
+          ]
         }
       ]
     },
@@ -4747,11 +4782,13 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "italobusi"
+      ],
       "labels": [],
       "body": "Proposal for ports and breakouts modelling: fix #45 , fix #12 and fix #19\r\n\r\nAdded references to network-element, port component and channel: fix #69 \r\n\r\n---\r\n\r\nIn order to validate the JSON examples, some fixes are needed on the YANG file:\r\n\r\n1. the parent-component-ref should be defined as a leafref: see PR #66 \r\n2. the component class type should be an identityref and not a union of identityrefs: see issue #78\r\n\r\n---\r\n\r\nCo-Authored-By: YuChaode <yuchaode@huawei.com>\r\n",
       "createdAt": "2024-12-11T15:03:32Z",
-      "updatedAt": "2025-01-08T16:06:57Z",
+      "updatedAt": "2025-01-22T16:25:43Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "c3420b3aed15e763b78c817be91f424ad475f0e0",
@@ -4776,6 +4813,13 @@
           "body": "**[2025-01-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-08)**\r\n\r\nAgreed that this PR, once merged, will also close issues #12 and #19\r\n",
           "createdAt": "2025-01-08T16:06:56Z",
           "updatedAt": "2025-01-08T16:06:56Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-01-22 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-22)**\r\n\r\n> **[2024-12-18 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-18)**\r\n> \r\n> Definitions of transceiver, transceiver module and port:\r\n> \r\n> Transceiver: A transceiver represents a transmitter/receiver (Tx/Rx) pair which is transmitting and receiving a signal from the media. This definition generalizes the transceiver definition in [I-D.ietf-ccamp-optical-impairment-topology-yang] to model also non optical transceivers (e.g., electrical transceivers).\r\n> \r\n> Transceiver Module: A module which contains one or more transceivers (e.g., optical or electrical transceivers). A transceivers-module component can only be contained by a port component.\r\n> \r\n> Note: The last sentence (i.e., \"A transceivers module can only be contained within a port component.\") needs to be validated after having reviewed the inventory examples for modelling integrated ROADM add/drop modules\r\n\r\nSlides on modelling transponder/muxponder cards integrated within a ROADM NE reviewed during the call: [transponder-inventory-03.pptx](https://github.com/user-attachments/files/18508470/transponder-inventory-03.pptx)\r\n\r\n**Conclusion: the proposed definition for the Transceiver Module is able to support the modelling of the trunk ports on transponder/muxponder cards integrated within a ROADM NE.**\r\n\r\nJulien: I think it is useful to report the trunk ports in the network inventory. Need more time to think about the internal link.\r\n\r\n- [ ] @italobusi : check with other operators the requirements to model the trunk ports on a transponder/muxponder card integrated within a ROADM NE\r\n\r\n> \r\n> Port: A component where networking traffic can be received and/or transmitted, e.g., by attaching transceiver modules and networking cables.\r\n> \r\n> Note: This definition needs to be validated after having reviewed the inventory examples for modelling OTS ports on ROADM degrees\r\n\r\nIn case of OTS ports (as well as ports on WSS cards), the networking cables are attached to the ports but no transceiver module is associated with the port.\r\n\r\nIt is proposed to refine the port definition as:\r\n\r\nPort: A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables.\r\n\r\n> \r\n> * [ ]  @italobusi ask for feedbacks on these definitions on the IVY WG mailing list\r\n> * [ ]  @italobusi update the PR text\r\n",
+          "createdAt": "2025-01-22T16:24:35Z",
+          "updatedAt": "2025-01-22T16:24:57Z"
         }
       ],
       "reviews": [
@@ -4793,9 +4837,9 @@
           "comments": [
             {
               "originalPosition": 28,
-              "body": "**[2024-12-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-11)**\r\n\r\nThe definition of the transceivers-module is very close to the definition of transponder in optical impairments I-D\r\n\r\n- [ ] @italobusi @sergiobelotti @YuChaode Check how an integrated transponder can be modelled in the network inventory model",
+              "body": "\r\n[transponder-inventory-02.pptx](https://github.com/user-attachments/files/18508031/transponder-inventory-02.pptx)\r\n**[2024-12-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-11)**\r\n\r\nThe definition of the transceivers-module is very close to the definition of transponder in optical impairments I-D\r\n\r\n- [x] @italobusi @sergiobelotti @YuChaode Check how an integrated transponder can be modelled in the network inventory model",
               "createdAt": "2024-12-11T16:28:20Z",
-              "updatedAt": "2024-12-11T16:28:20Z"
+              "updatedAt": "2025-01-22T16:25:21Z"
             }
           ]
         },
@@ -4828,6 +4872,26 @@
               "body": "Same question as above : what are these channels? This is the OpenConfig extract to define the case a device is able to support \"breakout\": \"When a device has the capability to break a port into interfaces of different speeds and different number of physical channels,\".\r\nMy question is if the channles in your proposal is the same channel defined here.",
               "createdAt": "2024-12-16T18:43:43Z",
               "updatedAt": "2024-12-16T18:45:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86ZDAOr",
+          "commit": {
+            "abbreviatedOid": "5fd0229"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-22T16:25:33Z",
+          "updatedAt": "2025-01-22T16:25:33Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "See: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76#issuecomment-2607696292",
+              "createdAt": "2025-01-22T16:25:33Z",
+              "updatedAt": "2025-01-22T16:25:33Z"
             }
           ]
         }
