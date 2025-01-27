@@ -211,8 +211,8 @@ The YANG data model defined in this document conforms to the Network Management 
 > Editors' Note: The port definition below needs to be moved to iana-hardware update
 
 Port:
-: An holder for a transceivers module, representing the position of the port within the containing module.
-: In case of pluggable ports, the port may be empty when no transceivers module is plugged in.
+: A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables.
+: In case of pluggable ports, the port may be empty when no transceiver module is plugged in.
 
   Container:
   : A hardware component class that is capable of containing one or more removable physical entities (e.g., a slot in a chassis is containing a board).
@@ -527,7 +527,7 @@ and other models is illustrated in Figure 4.
 {{fig-ni-tree}} below shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
 
 ~~~~ ascii-art
-{::include ./ietf-network-inventory.tree}
+{::include-fold ./ietf-network-inventory.tree}
 ~~~~
 {: #fig-ni-tree title="Network inventory tree diagram"
 artwork-name="ietf-network-inventory.tree"}

@@ -46,7 +46,7 @@ module ietf-network-inventory {
      The model fully conforms to the Network Management
      Datastore Architecture (NMDA).
 
-     Copyright (c) 2024 IETF Trust and the persons
+     Copyright (c) 2025 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -68,7 +68,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2024-12-16 {
+  revision 2025-01-27 {
     description
       "Initial version";
     reference
@@ -101,15 +101,14 @@ module ietf-network-inventory {
    *                iana-hardware update
    */
 
-  identity transceivers-module {
+  identity transceiver-module {
     base ianahw:hardware-class;
     description
       "This identity is applicable if the hardware class is some sort
        of self-contained sub-system which contains one or more
-       transceivers (e.g., optical or electrical transceivers) which
-       are transmitting and receiving a signal from the media.
+       transceivers (e.g., optical or electrical transceivers).
 
-       A transceivers-module component can only be contained by a
+       A transceiver-module component can only be contained by a
        port component.";
   }
 
@@ -168,7 +167,7 @@ module ietf-network-inventory {
         "The reference to the Network Element which contains the
         port to be referenced.";
     }
-    leaf transceivers-module-ref {
+    leaf transceiver-module-ref {
       type leafref {
         path
           "/nwi:network-inventory/nwi:network-elements/"
@@ -179,7 +178,7 @@ module ietf-network-inventory {
             nwi:network-elements/nwi:network-element
             [nwi:ne-id=../ne-ref]/nwi:components/nwi:component
             [nwi:component-id=current()]/nwi:class,
-            'nwi:transceivers-module')";
+            'nwi:transceiver-module')";
       description
         "The reference to the transceivers module component.";
     }
@@ -189,8 +188,8 @@ module ietf-network-inventory {
             + "/nwi:network-element[nwi:ne-id=current()/../ne-ref]/"
             + "nwi:components/"
             + "nwi:component[nwi:component-id="
-            + "current()/../transceivers-module-ref]/"
-            + "nwi:transceivers-module-specific-info/nwi:channels/"
+            + "current()/../transceiver-module-ref]/"
+            + "nwi:transceiver-module-specific-info/nwi:channels/"
             + "nwi:channel/nwi:channel-number";
       }
       description
@@ -516,10 +515,10 @@ module ietf-network-inventory {
                 "This container contains some attributes belong to
                  port only.";
             }
-            container transceivers-module-specific-info {
+            container transceiver-module-specific-info {
               when
                 "derived-from-or-self(../nwi:class,
-                'nwi:transceivers-module')";
+                'nwi:transceiver-module')";
               config false;
               description
                 "This container contains some attributes belong to
