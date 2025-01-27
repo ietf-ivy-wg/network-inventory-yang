@@ -640,7 +640,7 @@ From a network inventory perspective, there is no need to distinguish between si
 Reporting whether an MPO port is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model: the inventory topology mapping should instead provide sufficient information to identify how the MPO port is configured and, in case of breakout configuration, which channel is associated with which Link Termination Point (LTP).
 
 ~~~~ ascii-art
-{::include-fold JSON/ports-transceivers-breakouts-examples.json}
+{::include-fold json/ports-transceivers-breakouts-examples.json}
 ~~~~
 
 {: numbered="false"}
