@@ -359,9 +359,16 @@ module ietf-network-inventory {
               description
                 "The identifier of the component that physically
                 contains this component.
+
                 If this leaf is not instantiated, it indicates that 
                 this component is not contained in any other 
-                component.";
+                component.
+
+                In the event that a physical component is contained by
+                more than one physical component (e.g., double-wide
+                modules), this node contains the identifier of one of these
+                components.  An implementation MUST use the same name
+                every time this node is instantiated.";
               reference
                 "RFC 6933: Entity MIB (Version 4) - 
                 entPhysicalContainedIn";
