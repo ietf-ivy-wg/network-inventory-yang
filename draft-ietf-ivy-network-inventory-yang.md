@@ -86,7 +86,13 @@ normative:
     seriesinfo: TMF MTOSI 4.0, Network Resource Fulfilment (NRF), SD2-20
     target: https://www.tmforum.org/resources/suite/mtosi-4-0/
 
-  IANA_YANG:
+  IANA_ENTITY_MIB:
+    title: IANA-ENTITY-MIB
+    author:
+      org: IANA
+    target: https://www.iana.org/assignments/ianaentity-mib/ianaentity-mib.xhtml
+
+  IANA_HW_YANG:
     title: iana-hardware YANG Module
     author:
       org: IANA
@@ -175,7 +181,7 @@ The following terms are defined in {{!RFC6241}} and are not redefined here:
 The following terms are defined in {{!RFC8342}} and are not redefined here:
 - applied configuration
 
-The following terms are defined in the description statements of the corresponding YANG identities, defined in {{IANA_YANG}}, and are not redefined here:
+The following terms are defined in the description statements of the corresponding YANG identities, defined in {{IANA_HW_YANG}}, and are not redefined here:
 - backplane
 - battery
 - container
@@ -189,7 +195,7 @@ The following terms are defined in the description statements of the correspondi
 - stack
 - storage device
 
-> Note that the definition of port component in {{IANA_YANG}} needs to be refined in future version of this document.
+> Note that the definition of port component in {{IANA_HW_YANG}} needs to be refined in future version of this document.
 
 > TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
@@ -205,8 +211,8 @@ Network Element:
 : The generalization of the physical network element definition.
 
 Hardware Component:
-: The generalization of the hardware components defined in {{IANA_YANG}} (e.g., backplane, battery, container, cpu, chassis, fan, module, port, power supply, sensor, stack, and storage device components).
-: The list of hardware components can be extended in future versions of {{IANA_ENTITY_MIB}} (and, consequently, of ({{IANA_YANG}}).
+: The generalization of the hardware components defined in {{IANA_HW_YANG}} (e.g., backplane, battery, container, cpu, chassis, fan, module, port, power supply, sensor, stack, and storage device components).
+: The list of hardware components can be extended in future versions of {{IANA_ENTITY_MIB}} (and, consequently, of ({{IANA_HW_YANG}}).
 
 Component:
 : The generalization of the hardware component definition to include other inventory objects which can be managed, from an inventory perspective, like hardware components.
@@ -229,7 +235,7 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 | ------ | ------------------------------- | ------------- |
 | inet   | ietf-inet-types                 | {{Section 4 of !RFC6991}}  |
 | yang   | ietf-yang-types                 | {{Section 3 of !RFC6991}}  |
-| ianahw | iana-hardware                   | {{IANA_YANG}} |
+| ianahw | iana-hardware                   | {{IANA_HW_YANG}} |
 | nwi    | ietf-network-inventory          | RFC XXXX      |
 {: #tab-prefixes title="Prefixes and corresponding YANG modules"}
 
@@ -416,7 +422,7 @@ Based on TMF classification in {{TMF_SD2-20}}, hardware components can be divide
 ~~~~
 {: #fig-hw-inventory-object-relationship title="Relationship between typical inventory objects in physical network elements"}
 
-The "iana-hardware" module {{IANA_YANG}} defines YANG identities for
+The "iana-hardware" module {{IANA_HW_YANG}} defines YANG identities for
 the hardware component types in the IANA-maintained "IANA-ENTITY-MIB"
 registry.
 
