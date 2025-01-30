@@ -163,7 +163,6 @@ The YANG data model defined in the document is intended to only report actual in
 ## Terminology
 
 The following terms are defined in {{!RFC7950}} and are not redefined here:
-- client
 - server
 - augment
 - data model
@@ -176,7 +175,7 @@ The following terms are defined in {{!RFC6241}} and are not redefined here:
 The following terms are defined in {{!RFC8342}} and are not redefined here:
 - applied configuration
 
-The following terms are defined in {{IANA_YANG}} and are not redefined here:
+The following terms are defined in the description statements of the corresponding YANG identities, defined in {{IANA_YANG}}, and are not redefined here:
 - backplane
 - battery
 - container
@@ -206,8 +205,8 @@ Network Element:
 : The generalization of the physical network element definition.
 
 Hardware Component:
-: The generalization of the hardware components defined in {{IANA_YANG}} (e.g., backplane, battery, container, cpu, chassis, fan, module, port, power supply, sensor, stack and storage device components).
-: The list of hardware components can be extended in future versions of {{IANA_YANG}}.
+: The generalization of the hardware components defined in {{IANA_YANG}} (e.g., backplane, battery, container, cpu, chassis, fan, module, port, power supply, sensor, stack, and storage device components).
+: The list of hardware components can be extended in future versions of {{IANA_ENTITY_MIB}} (and, consequently, of ({{IANA_YANG}}).
 
 Component:
 : The generalization of the hardware component definition to include other inventory objects which can be managed, from an inventory perspective, like hardware components.
