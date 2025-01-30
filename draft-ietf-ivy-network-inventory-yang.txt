@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 19 July 2025                                              Nokia
+Expires: 3 August 2025                                             Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                         15 January 2025
+                                                         30 January 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 July 2025.
+   This Internet-Draft will expire on 3 August 2025.
 
 Copyright Notice
 
@@ -86,10 +86,9 @@ Table of Contents
        3.3.1.  Hardware Components
        3.3.2.  Software Components
      3.4.  Changes Since RFC 8348
-       3.4.1.  New Parent Identifiers' Reference
-       3.4.2.  Component-Specific Info Design
-       3.4.3.  Part Number
-       3.4.4.  Component identifiers
+       3.4.1.  Component-Specific Info Design
+       3.4.2.  Part Number
+       3.4.3.  Component identifiers
    4.  Extending Network Inventory
    5.  Network Inventory Tree Diagram
    6.  YANG Data Model for Network Inventory
@@ -100,7 +99,8 @@ Table of Contents
      10.1.  Normative References
      10.2.  Informative References
    Appendix A.  Comparison With Openconfig-platform Data Model
-   Appendix B.  Efficiency Issue
+   Appendix B.  Terminology of Container
+   Appendix C.  Efficiency Issue
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -506,31 +506,7 @@ Table of Contents
    This document re-defines some attributes listed in [RFC8348], based
    on some integration experience for network wide inventory data.
 
-3.4.1.  New Parent Identifiers' Reference
-
-   [RFC8348] provides a "parent-ref" attribute, which was an identifier
-   reference to its parent component.  When the MDSC or OSS systems want
-   to find this component's grandparent or higher level component in the
-   hierarchy, they need to retrieve this parent-ref step by step.  To
-   reduce this iterative work, this document provides a list of
-   hierarchical parent components' identifier references.
-
-     +--ro components
-        +--ro component* [component-id]
-           ...
-           +--ro parent-component-references
-           |   +--ro component-reference* [index]
-           |      +--ro index    uint8
-           |      +--ro class?   -> ../../../class
-           |      +--ro uuid?    -> ../../../uuid
-           ...
-
-   The hierarchical components' identifier could be found by the
-   "component-reference" list.  The "index" attribute is used to order
-   the list by the hierarchical relationship from topmost component
-   (with the "index" set to 0) to bottom component.
-
-3.4.2.  Component-Specific Info Design
+3.4.1.  Component-Specific Info Design
 
    According to the management requirements from operators, some
    important attributes are not defined in [RFC8348].  These attributes
@@ -553,7 +529,7 @@ Table of Contents
          +--ro port-specific-info
          ...
 
-3.4.3.  Part Number
+3.4.2.  Part Number
 
    According to the description in [RFC8348], the attribute named
    "model-name" under the component, is preferred to have a customer-
@@ -566,7 +542,7 @@ Table of Contents
            +--ro part-number?           string
            ...
 
-3.4.4.  Component identifiers
+3.4.3.  Component identifiers
 
    There are some use cases where the name of the components are
    assigned and changed by the operator.  In these cases, the assigned
@@ -645,7 +621,8 @@ Table of Contents
                     +--ro asset-id?                string
                     +--ro child-component-ref
                     +--ro parent-rel-pos?          int32
-                    +--ro parent-component-ref
+                    +--ro parent?
+                    |       -> ../../component/component-id
                     +--ro is-fru?                  boolean
                     +--ro uri*                     inet:uri
                     +--ro chassis-specific-info
@@ -706,7 +683,7 @@ Table of Contents
         The model fully conforms to the Network Management
         Datastore Architecture (NMDA).
 
-        Copyright (c) 2024 IETF Trust and the persons
+        Copyright (c) 2025 IETF Trust and the persons
         identified as authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -728,7 +705,7 @@ Table of Contents
      // RFC Ed.: update the date below with the date of RFC publication
      // and remove this note.
 
-     revision 2024-10-02 {
+     revision 2025-01-30 {
        description
          "Initial version";
        reference
@@ -1008,16 +985,32 @@ Table of Contents
                     component among all the sibling components.";
                  reference
                    "RFC 6933: Entity MIB (Version 4) -
-                             entPhysicalParentRelPos";
+                              entPhysicalParentRelPos";
                }
-               container parent-component-ref {
+               leaf parent {
+                 type leafref {
+                   path "../../component/component-id";
+                   require-instance false;
+                 }
                  config false;
                  description
-                   "A placeholder for adding the reference to parent
-                    component(s): to further discuss whether to define
-                    a parent attribute as RFC 8348 or a
-                    parent-component-references container as in
-                    draft-ietf-ccamp-network-inventory-yang-02.";
+                   "The identifier of the component that physically
+                   contains this component.
+
+                   If this leaf is not instantiated, it indicates that
+                   this component is not contained in any other
+                   component.
+
+                   In the event that a physical component is contained
+                   by more than one physical component
+                   (e.g., double-wide modules), this node contains the
+                   identifier of one of these components.
+                   An implementation MUST use the same name every time
+                   this node is instantiated.";
+                 reference
+                   "RFC 6933: Entity MIB (Version 4) -
+                              entPhysicalContainedIn";
+
                }
                leaf is-fru {
                  type boolean;
@@ -1324,7 +1317,21 @@ Appendix A.  Comparison With Openconfig-platform Data Model
    Mostly, our inventory data model can cover the attributes from
    OpenConfig.
 
-Appendix B.  Efficiency Issue
+Appendix B.  Terminology of Container
+
+   Within this document , with the term "container" we consider an
+   hardware component class capable of containing one or more removable
+   physical entities, e.g. a slot in a chassis is containing a board.
+
+      +===============================+============================+
+      | terminology of IVY base model | terminology in other model |
+      +===============================+============================+
+      | container                     | holder                     |
+      +-------------------------------+----------------------------+
+
+                       Table 3: terminology mapping
+
+Appendix C.  Efficiency Issue
 
    During the integration with OSS in some operators, some efficiency/
    scalability concerns have been discovered when synchronizing network
