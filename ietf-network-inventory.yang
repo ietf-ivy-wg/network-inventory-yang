@@ -46,7 +46,7 @@ module ietf-network-inventory {
      The model fully conforms to the Network Management
      Datastore Architecture (NMDA).
 
-     Copyright (c) 2024 IETF Trust and the persons
+     Copyright (c) 2025 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -68,7 +68,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2024-10-02 {
+  revision 2025-01-30 {
     description
       "Initial version";
     reference
@@ -348,16 +348,32 @@ module ietf-network-inventory {
                  component among all the sibling components.";
               reference
                 "RFC 6933: Entity MIB (Version 4) -
-                          entPhysicalParentRelPos";
+                           entPhysicalParentRelPos";
             }
-            container parent-component-ref {
+            leaf parent {
+              type leafref {
+                path "../../component/component-id";
+                require-instance false;
+              }
               config false;
               description
-                "A placeholder for adding the reference to parent
-                 component(s): to further discuss whether to define
-                 a parent attribute as RFC 8348 or a
-                 parent-component-references container as in
-                 draft-ietf-ccamp-network-inventory-yang-02.";
+                "The identifier of the component that physically
+                contains this component.
+
+                If this leaf is not instantiated, it indicates that 
+                this component is not contained in any other 
+                component.
+
+                In the event that a physical component is contained
+                by more than one physical component
+                (e.g., double-wide modules), this node contains the
+                identifier of one of these components.
+                An implementation MUST use the same name every time
+                this node is instantiated.";
+              reference
+                "RFC 6933: Entity MIB (Version 4) - 
+                           entPhysicalContainedIn";
+              
             }
             leaf is-fru {
               type boolean;

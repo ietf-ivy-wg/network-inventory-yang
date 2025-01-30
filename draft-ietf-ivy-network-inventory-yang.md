@@ -428,24 +428,6 @@ patch information, are outside the scope of this document and defined other docu
 
 This document re-defines some attributes listed in {{!RFC8348}}, based on some integration experience for network wide inventory data.
 
-### New Parent Identifiers' Reference
-
-{{!RFC8348}} provides a "parent-ref" attribute, which was an identifier reference to its parent component. When the MDSC or OSS systems want to find this component's grandparent or higher level component in the hierarchy, they need to retrieve this parent-ref step by step. To reduce this iterative work, this document provides a list of hierarchical parent components' identifier references.
-
-~~~~ ascii-art
-  +--ro components
-     +--ro component* [component-id]
-        ...
-        +--ro parent-component-references
-        |   +--ro component-reference* [index]
-        |      +--ro index    uint8
-        |      +--ro class?   -> ../../../class
-        |      +--ro uuid?    -> ../../../uuid
-        ...
-~~~~
-
-The hierarchical components' identifier could be found by the "component-reference" list. The "index" attribute is used to order the list by the hierarchical relationship from topmost component (with the "index" set to 0) to bottom component.
-
 ### Component-Specific Info Design
 
 According to the management requirements from operators, some important attributes are not defined in {{!RFC8348}}. These attributes could be component-specific and are not suitable to be defined under the component list node. Instead, they can be defined by augmenting the component-specific info container for the attributes applicable to HW e.g. boards/slot components only. Other component-specific attributes, such as SW-specific-info, may be defined in companion augmentation data models, such as
@@ -517,7 +499,7 @@ and other models is illustrated in Figure 4.
 {{fig-ni-tree}} below shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
 
 ~~~~ ascii-art
-{::include ./ietf-network-inventory.tree}
+{::include-fold ./ietf-network-inventory.tree}
 ~~~~
 {: #fig-ni-tree title="Network inventory tree diagram"
 artwork-name="ietf-network-inventory.tree"}
@@ -600,6 +582,15 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 As it mentioned in {{ne-component}} that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. And for some component specific structures in "openconfig-platform", we consider some of them can be contained by our existing structure, such as fan, backplane, and controller-card, while some others do not need to be included in this network inventory model like storage and cpu.
 
 Mostly, our inventory data model can cover the attributes from OpenConfig.
+
+# Terminology of Container
+
+Within this document , with the term "container" we consider an hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.
+
+| terminology of IVY base model  |terminology in other model  |
+| ------------------------------ | -------------------------- |
+| container                      | holder                     |
+{: #tab-term title="terminology mapping"}
 
 # Efficiency Issue
 
