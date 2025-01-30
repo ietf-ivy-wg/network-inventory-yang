@@ -499,7 +499,7 @@ and other models is illustrated in Figure 4.
 {{fig-ni-tree}} below shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
 
 ~~~~ ascii-art
-{::include ./ietf-network-inventory.tree}
+{::include-fold ./ietf-network-inventory.tree}
 ~~~~
 {: #fig-ni-tree title="Network inventory tree diagram"
 artwork-name="ietf-network-inventory.tree"}
@@ -586,8 +586,9 @@ Mostly, our inventory data model can cover the attributes from OpenConfig.
 # Terminology of Container
 
 Within this document , with the term "container" we consider an hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.
+
 | terminology of IVY base model  |terminology in other model  |
-| ------------------------------ | -------------------------- | 
+| ------------------------------ | -------------------------- |
 | container                      | holder                     |
 {: #tab-term title="terminology mapping"}
 
