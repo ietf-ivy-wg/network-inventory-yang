@@ -586,6 +586,7 @@ Mostly, our inventory data model can cover the attributes from OpenConfig.
 # Terminology of Container
 
 Within this document , with the term "container" we consider an hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.
+
 | terminology of IVY base model  |terminology in other model  |
 | ------------------------------ | -------------------------- | 
 | container                      | holder                     |
