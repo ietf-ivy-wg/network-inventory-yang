@@ -86,7 +86,13 @@ normative:
     seriesinfo: TMF MTOSI 4.0, Network Resource Fulfilment (NRF), SD2-20
     target: https://www.tmforum.org/resources/suite/mtosi-4-0/
 
-  IANA_YANG:
+  IANA_ENTITY_MIB:
+    title: IANA-ENTITY-MIB
+    author:
+      org: IANA
+    target: https://www.iana.org/assignments/ianaentity-mib/ianaentity-mib.xhtml
+
+  IANA_HW_YANG:
     title: iana-hardware YANG Module
     author:
       org: IANA
@@ -124,22 +130,23 @@ of using vendors proprietary APIs.
 
 {{!RFC8348}} defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller towards the network elements rather than at the northbound interface of a network controller (e.g., toward an application or another hierarchical network controller). However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model presented in this document.
 
-Network Inventory is a collection of data for network devices and
-their components managed by a specific management system.  Per the
-definition of {{?RFC8969}}, the network inventory model is a network
-model.
+Network Inventory is a collection of data for network devices and their components managed by a specific management system.
+Per the definition of {{?RFC8969}}, the network inventory model is a network model.
 
-This document defines a YANG module "ietf-network-inventory" in {{ni-yang}}.
+
+This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
+
 This base data model is technology-agnostic (that is, valid for IP/MPLS, optical, and
 microwave networks in particular) and can be augmented to
 include required technology-specific inventory details together with specific hardware or software component's attributes.
 
 The YANG data model defined in the document is scoped to cover the common requirements for both hardware and software (but with base functions) use cases for Network Inventory.
 
-{{ni-augment}} provides a set of augmentation considerations for future extensions
-of hardware, software, entitlement, and inventory topology mapping.
+{{ni-augment}} provides a set of considerations for future extensions of hardware, software, entitlement, and inventory topology mapping.
 
 The YANG data model defined in this document conforms to the Network Management Datastore Architecture {{!RFC8342}}.
+
+The YANG data model defined in the document is intended to only report actual inventory data which includes both applied configuration data and state data of the network elements and components actually installed within the network.
 
 ## Editorial Note (To be removed by RFC Editor)
 
@@ -161,55 +168,60 @@ The YANG data model defined in this document conforms to the Network Management 
 
 ## Terminology
 
-  The following terms are defined in {{!RFC7950}} and are not
-  redefined here:
+The following terms are defined in {{!RFC7950}} and are not redefined here:
+- server
+- augment
+- data model
+- data node
 
-  *  client
+The following terms are defined in {{!RFC6241}} and are not redefined here:
+- configuration data
+- state data
 
-  *  server
+The following terms are defined in {{!RFC8342}} and are not redefined here:
+- applied configuration
 
-  *  augment
+The following terms are defined in the description statements of the corresponding YANG identities, defined in {{IANA_HW_YANG}}, and are not redefined here:
+- backplane
+- battery
+- container
+- cpu
+- chassis
+- fan
+- module
+- port
+- power supply
+- sensor
+- stack
+- storage device
 
-  *  data model
+> Note that the definition of port component in {{IANA_HW_YANG}} needs to be refined in future version of this document.
 
-  *  data node
+> TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
-  The following terms are defined in {{!RFC6241}} and are not redefined
-  here:
+Also, the document makes use of the following terms:
 
-  *  configuration data
+Network Inventory:
+: A collection of data for network elements and their components managed by a specific management system.
 
-  *  state data
+Physical Network Element:
+: An implementation or application specific group of components (e.g., hardware components).
 
-  The terminology for describing YANG data models is found in {{!RFC7950}}.
+Network Element:
+: The generalization of the physical network element definition.
 
-  > TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
+Hardware Component:
+: The generalization of the hardware components defined in {{IANA_HW_YANG}} (e.g., backplane, battery, container, cpu, chassis, fan, module, port, power supply, sensor, stack, and storage device components).
+: The list of hardware components can be extended in future versions of {{IANA_ENTITY_MIB}} (and, consequently, of ({{IANA_HW_YANG}}).
 
-  Also, the document makes use of the following terms:
+Component:
+: The generalization of the hardware component definition to include other inventory objects which can be managed, from an inventory perspective, like hardware components.
 
-  Network Inventory:
-  : A collection of data for network devices and their components managed by a specific management system.
+Slot:
+: A holder of the board.
 
-  Network Element:
-  : A manageable network entity that contains hardware and software units (e.g., a network device installed on one or several chassis).
-
-  Chassis:
-  : A holder of the device installation.
-
-  Slot:
-  : A holder of the board.
-
-  Component:
-  : A unit of the network element, e.g., hardware components (chassis, card, port, etc.), software components (software-patch, bios, etc.), and boot-loader.
-
-  Board/Card:
-  : A pluggable equipment can be inserted into one or several slots (or sub-slots) and can afford a specific transmission function independently.
-
-  Port:
-  : An interface on a board.
-
-  Container:
-  : A hardware component class that is capable of containing one or more removable physical entities (e.g., a slot in a chassis is containing a board).
+Board/Card:
+: A pluggable equipment can be inserted into one or several slots (or sub-slots) and can afford a specific transmission function independently.
 
 ## Tree Diagrams
 
@@ -223,24 +235,34 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 | ------ | ------------------------------- | ------------- |
 | inet   | ietf-inet-types                 | {{Section 4 of !RFC6991}}  |
 | yang   | ietf-yang-types                 | {{Section 3 of !RFC6991}}  |
-| ianahw | iana-hardware                   | {{IANA_YANG}} |
+| ianahw | iana-hardware                   | {{IANA_HW_YANG}} |
 | nwi    | ietf-network-inventory          | RFC XXXX      |
 {: #tab-prefixes title="Prefixes and corresponding YANG modules"}
 
 # YANG Data Model for Network Inventory Overview
 
 The network element definition is generalized to support physical
-devices and other types of inventory objects (e.g., virtual network
-elements) that can be managed as physical network elements from an
-inventory perspective. The data model for Network Element presented
-in this document uses a flat list of network element.
+network elements and other types of components' groups that can be managed as physical network elements from an
+inventory perspective.
+
+Physical network elements are usually devices such as hosts, gateways, terminal servers, and the like, which have management agents responsible for performing the network management functions requested by the network management stations ({?RFC1157}).
+
+The data model for network elements defined in this document uses a flat list of network elements.
 
 The "ne-type" is defined as a YANG identity to describe the type of the network element. This document defines only the "physical-network-element" identity.
 
-The component definition is also generalized to support any types of
-component, such as hardware, software, or firmware.
+Other types of network elements can be defined in other documents, together with the associated YANG identity and the rationale for managing them as network elements from an inventory perspective.
 
-Different types of components can be distinguished by the class of component. The component "class" is defined as a union between the hardware class identity, defined in "iana-hardware", and the "non-hardware" identity, defined in this document. Attributes related to specific class of component can be found in the component-specific-info structure.
+The component definition is also generalized to support any types of
+component inventory objects that can be managed as hardware components from an inventory perspective.
+
+The data model for components defined in this document uses a list of components within each network element.
+
+Different types of components can be distinguished by the class of component. The component "class" is defined as a union between the hardware class identity, defined in "iana-hardware", and the "non-hardware" identity, defined in this document.
+
+Other types of components can be defined in other documents, together with the associated YANG identity and the rationale for managing them as components from an inventory perspective.
+
+Attributes related to specific class of component can be found in the component-specific-info structure.
 
 The identity definition of additional types of "ne-type" and "non-
 hardware" identity of component are outside the scope of this
@@ -400,7 +422,7 @@ Based on TMF classification in {{TMF_SD2-20}}, hardware components can be divide
 ~~~~
 {: #fig-hw-inventory-object-relationship title="Relationship between typical inventory objects in physical network elements"}
 
-The "iana-hardware" module {{IANA_YANG}} defines YANG identities for
+The "iana-hardware" module {{IANA_HW_YANG}} defines YANG identities for
 the hardware component types in the IANA-maintained "IANA-ENTITY-MIB"
 registry.
 
