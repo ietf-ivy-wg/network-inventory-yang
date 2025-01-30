@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-28T00:51:18.683597+00:00",
+  "timestamp": "2025-01-30T00:50:15.746503+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -135,17 +135,15 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [
-        "YuChaode"
-      ],
+      "assignees": [],
       "labels": [
         "wga",
-        "agreed",
+        "needs discussion",
         "priority-1"
       ],
       "body": "Need to discuss if to use parent-component-ref as in the original CCAMP WG draft or to define a parent attribute as in RFC8348",
       "createdAt": "2023-10-23T08:32:56Z",
-      "updatedAt": "2024-10-16T07:48:57Z",
+      "updatedAt": "2025-01-29T18:21:00Z",
       "closedAt": null,
       "comments": [
         {
@@ -182,6 +180,13 @@
           "body": "Please check the PR #66",
           "createdAt": "2024-10-16T07:48:55Z",
           "updatedAt": "2024-10-16T07:48:55Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\n\nPR #66 adds support for navigation from child component to parent component.\n\nThe navigation from parent component to children components (child-component-ref), needs further discussion:\n  - possible issue to consider is the circular references between child and parent components\n  - without this information not clear how to model cases where one card can occupy two or more slots\n  - evaluate the pros&cons of re-using the current solution in RFC8348 (which introduces circular references) versus defining a different solution\n",
+          "createdAt": "2025-01-29T18:20:54Z",
+          "updatedAt": "2025-01-29T18:20:54Z"
         }
       ]
     },
@@ -1200,7 +1205,7 @@
       ],
       "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#LL574C1-L574C1\r\n\r\nIn TAPI we have kept the issue of software/firmware modelling separate from Equipment. I suggest we look more deeply at the software/firmware modelling.",
       "createdAt": "2023-06-14T12:57:52Z",
-      "updatedAt": "2025-01-27T13:13:50Z",
+      "updatedAt": "2025-01-29T15:56:34Z",
       "closedAt": null,
       "comments": [
         {
@@ -1237,6 +1242,13 @@
           "body": "> * [x]  [@italobusi](https://github.com/italobusi) : prepare a proposal for discussion in the next weekly call\n\nI think that the current text provides sufficient information to clarify the scope of the base inventory model for modelling SW:\n\n> The YANG data model defined in the document is scoped to cover the common requirements for both hardware and software (but with base functions) use cases for Network Inventory.\n\nI would suggest closing this issue with no further actions/changes to the draft",
           "createdAt": "2025-01-27T13:13:11Z",
           "updatedAt": "2025-01-27T13:13:50Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**2025-01-29**\n\n- [ ] @italobusi : Rephrase as:\n\nThe YANG data model defined in the document is scoped to cover the common use cases for Network Inventory covering both hardware and base software information.\n\n",
+          "createdAt": "2025-01-29T15:56:32Z",
+          "updatedAt": "2025-01-29T15:56:32Z"
         }
       ]
     },
@@ -2595,6 +2607,141 @@
           "body": "**[2025-01-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-08)**\r\n\r\nAgreed to mark it as priority 1 (changing the data type will be an NBC change)\r\n\r\n- [ ] @prmanna ask Netmod WG for some feedbacks about whether is an a yanglint implementation issue or a YANG modelling issue\r\n",
           "createdAt": "2025-01-08T16:13:16Z",
           "updatedAt": "2025-01-08T16:13:16Z"
+        }
+      ]
+    },
+    {
+      "number": 79,
+      "id": "I_kwDOKiDYo86oBWbE",
+      "title": "Definition of slot/sub-slot",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/79",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "My thoughts and Sergio's comments labeled with [SB]\r\n\r\nThe issue is finding terminology that will be agreeable to network equipment vendors, data center people, and computer hardware people.  The idea is simple, but can be mapped onto different terminology.\r\n\r\nFor example.\r\n\r\nA rack is a metal frame that may or may not contain electrical components that holds a chassis.\r\n\r\nA standard rack holding something like a Cisco 8804 chassis looks like this.\r\n\r\n![download](https://github.com/user-attachments/assets/f52983c7-d6dd-4e5a-8da5-716a02daa1aa)\r\n\r\n\r\nThe big holes you see in the picture above are slots.  There are slots on the back as well.  A slot can accept various modules, trays, or cards.  Some modules and/or cards can have daughter cards can be connected to the module or card.\r\n\r\n \r\n\r\nLooking at the Network Inventory YANG terminology.\r\n\r\nThe rack, chassis and slots above are (as TMF puts them) holders. \r\n\r\n[SB>] YES the TMF separation between \u201cholders\u201d and \u201cequipment\u201d groups  is also in our document\r\n\r\nAn example of a sub-chassis could be a tray that holds other components (like fans).  In the Network Inventory YANG the term Board is (I think) a module or a card. \r\n\r\n[SB>] In our model a board is defined as\u201d ianahw:module\u201d , there is no distinction unfortunately from module to card/board.\r\n\r\nUsually, modules are things like fans or power, so if we are modeling that we will need to differentiate a module from a card (so calling both of those board is probably wrong). \r\n\r\n[SB>]  Fan is considered as a specific card, it has a definition specific, not as ianahw:module .\r\n\r\nThere is a differentiation between cards as well (at least in Cisco-land).  There are \u201cline cards\u201d and \u201cfabric cards\u201d.  A line card has ports on it and in the case of optical pluggables a line card may have slots to accept pluggables. I don\u2019t know if that is what is intended by the \u201csub-slot\u201d terminology, but it could work since a pluggable would be considered a module that fits into a cards' sub-slot.  At least that is one interpretation. \r\n\r\n[SB>] In this case we would have a definition for sub-slot that should be \u201ca slot of a line-card hosting an optical pluggable\u201d\r\n\r\nA \u201cfabric card\u201d is a card that \u201cline cards\u201d and sometimes modules plug into.  But here the \"sub-slot\" terminology doesn't really work very well, because the \"sub-slot\" on the \"fabric card\" is not inline with the slot the \"fabric card\" is in.  \r\n\r\nWhat needs to be made clear is whether or not a \u201csub-slot\u201d is simply a holder or if a \u201csub-slot\u201d can be used for something like an optical pluggable.\r\n\r\n[SB>] It can be used as a holder for an optical pluggable in my view.\r\n\r\nI think a couple of examples to see what the instance data would look would help.\r\n\r\nLooking at M.3100.  I would say recursive not circular.\r\n\r\n \r\n\r\nA rack is made up of bays\r\n\r\nA chassis is held in some number of bays of a rack depending on the size of the chassis.\r\n\r\nA chassis has slots (or physical places to put things)\r\n\r\nA chassis slot holds a \"circuit pack\" (which can be a line card, fabric card, computer, power, fans etc.)\r\n\r\nA line card can also accept pluggables\r\n\r\n \r\n\r\nI think leveraging M.3100 and mapping the terminology is a good exercise.  Things will get more interesting when the data center people show up and want to start talking about blades.\r\n\r\n_Originally posted by @samans in https://github.com/ietf-ivy-wg/network-inventory-yang/pull/75#discussion_r1909574652_\r\n            ",
+      "createdAt": "2025-01-29T18:23:55Z",
+      "updatedAt": "2025-01-29T18:27:36Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-01-22 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-22)**\n\n- [ ] @nigel-r-davis to check TMF supporting documents as well as the comments above from Scott and Sergio\n\n_Originally posted by @italobusi in https://github.com/ietf-ivy-wg/network-inventory-yang/pull/75#discussion_r1925585517_\n            ",
+          "createdAt": "2025-01-29T18:24:58Z",
+          "updatedAt": "2025-01-29T18:24:58Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\n\n> * [ ]  @nigel-r-davis to check TMF supporting documents as well as the comments above from Scott and Sergio\n\nNot good definition found so far: investigation is continuing\n            ",
+          "createdAt": "2025-01-29T18:27:02Z",
+          "updatedAt": "2025-01-29T18:27:36Z"
+        }
+      ]
+    },
+    {
+      "number": 80,
+      "id": "I_kwDOKiDYo86oBiew",
+      "title": "Modelling of trunk ports for integrated OTs",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/80",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "needs discussion",
+        "priority-3"
+      ],
+      "body": "Slides on modelling transponder/muxponder cards integrated within a ROADM NE reviewed during the call: [transponder-inventory-03.pptx](https://github.com/user-attachments/files/18508470/transponder-inventory-03.pptx)\n\n**Conclusion: the proposed definition for the Transceiver Module is able to support the modelling of the trunk ports on transponder/muxponder cards integrated within a ROADM NE.**\n\n- [ ] Check operators' requirements to model the trunk ports on a transponder/muxponder card integrated within a ROADM NE\n- [ ] Define the scope of this open issue: IVY WG or CCAMP WG (e.g., TNBI DT)?\n\n_Originally posted by @italobusi in https://github.com/ietf-ivy-wg/network-inventory-yang/issues/76#issuecomment-2607696292_\n            ",
+      "createdAt": "2025-01-29T18:47:36Z",
+      "updatedAt": "2025-01-29T18:55:42Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-01-22 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-22)**\n\nJulien: I think it is useful to report the trunk ports in the network inventory. Need more time to think about the internal link.\n\n- [x] @italobusi : check with other operators the requirements to model the trunk ports on a transponder/muxponder card integrated within a ROADM NE\n\n_Originally posted by @italobusi in https://github.com/ietf-ivy-wg/network-inventory-yang/issues/76#issuecomment-2607696292_\n",
+          "createdAt": "2025-01-29T18:53:28Z",
+          "updatedAt": "2025-01-29T18:53:28Z"
+        }
+      ]
+    },
+    {
+      "number": 81,
+      "id": "I_kwDOKiDYo86oBlY9",
+      "title": "Check operators' requirements to model the trunk ports on a transponder/muxponder card integrated within a ROADM NE",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/81",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-01-29T18:53:50Z",
+      "updatedAt": "2025-01-29T18:54:50Z",
+      "closedAt": "2025-01-29T18:54:50Z",
+      "comments": []
+    },
+    {
+      "number": 82,
+      "id": "I_kwDOKiDYo86oBlbm",
+      "title": "Define the scope of this open issue: IVY WG or CCAMP WG (e.g., TNBI DT)?",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/82",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-01-29T18:53:56Z",
+      "updatedAt": "2025-01-29T18:56:01Z",
+      "closedAt": "2025-01-29T18:55:18Z",
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Opened by mistake",
+          "createdAt": "2025-01-29T18:55:18Z",
+          "updatedAt": "2025-01-29T18:55:18Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Opened by mistake",
+          "createdAt": "2025-01-29T18:55:59Z",
+          "updatedAt": "2025-01-29T18:55:59Z"
+        }
+      ]
+    },
+    {
+      "number": 83,
+      "id": "I_kwDOKiDYo86oBr69",
+      "title": "Integrate pyang validation",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/83",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "prmanna"
+      ],
+      "labels": [
+        "priority-2"
+      ],
+      "body": "PR #73 has proposed to integrate pyang validation in your ci/cd chain and make sure that changes are clean and do not break the validation and automatically generate the YANG trees (the level, etc. can be controlled)\r\n\r\nPR #73 has been close due to conflicts but it would be useful to integrate pyang validation in the github CI/CD chain",
+      "createdAt": "2025-01-29T19:03:47Z",
+      "updatedAt": "2025-01-29T19:04:55Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Few comments/questions:\n- Do we need to keep the .tree file in the repository or move them in the gh-pages (like the txt and html files which are generated by the Makefile)?\n- How to synch-up the updates you have made on the Makefile with the changes that can be done later in the template repository (I guess this was the source of the conflicts)?\n",
+          "createdAt": "2025-01-29T19:04:53Z",
+          "updatedAt": "2025-01-29T19:04:53Z"
         }
       ]
     }
@@ -4144,7 +4291,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-10-09T13:42:57Z",
-      "updatedAt": "2025-01-27T17:03:26Z",
+      "updatedAt": "2025-01-29T18:22:32Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "5a7a756f3d6fcf36c1a98be35aff65b4b22a145b",
@@ -4166,9 +4313,16 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2024-10-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-10-16)**\r\n\r\nAgreed to have an appendix with a table providing a mapping between the terminology in [TMF_SD2-20] and the definitions in our model: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/66#discussion_r1802987532\r\n\r\n- [ ] @YuChaode update the PR based on review comments\r\n\r\nThe PR can be merged offline after the review comments are addressed",
+          "body": "**[2024-10-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-10-16)**\r\n\r\nAgreed to have an appendix with a table providing a mapping between the terminology in [TMF_SD2-20] and the definitions in our model: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/66#discussion_r1802987532\r\n\r\n- [x] @YuChaode update the PR based on review comments\r\n\r\nThe PR can be merged offline after the review comments are addressed",
           "createdAt": "2024-10-16T15:20:49Z",
-          "updatedAt": "2024-10-16T15:20:49Z"
+          "updatedAt": "2025-01-29T18:17:20Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\r\n\r\nThe issue is partially addressing #3 : see https://github.com/ietf-ivy-wg/network-inventory-yang/issues/3#issuecomment-2622500990\r\n\r\n- [ ] @italobusi @YuChaode : fix the issues with the checks and merge the PR",
+          "createdAt": "2025-01-29T18:21:21Z",
+          "updatedAt": "2025-01-29T18:22:32Z"
         }
       ],
       "reviews": [
@@ -4373,21 +4527,21 @@
       "id": "PR_kwDOKiDYo86DeNXB",
       "title": "integrate pyang validation",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/73",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-11-28T13:14:03Z",
-      "updatedAt": "2024-12-11T16:22:36Z",
+      "updatedAt": "2025-01-28T08:08:12Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "069c9f7b97f81ad9fe901eaf8c88b1aaa86f1d57",
       "headRepository": "boucadair/network-inventory-yang",
       "headRefName": "patch-9",
       "headRefOid": "3d12d9349ee1f22a1eabd7f9b35150e238e4af9f",
-      "closedAt": null,
+      "closedAt": "2025-01-28T08:08:12Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -4475,9 +4629,9 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "Proposal for terminology update: fix #16 , fix #25 and fix #35",
+      "body": "Terminology updated: fix #16 , fix #25 and fix #35\r\n\r\nAdded clarification about the the scope of actual versus intended/planned inventory (mailing list discussion)\r\n",
       "createdAt": "2024-12-11T08:58:35Z",
-      "updatedAt": "2025-01-27T18:50:06Z",
+      "updatedAt": "2025-01-29T18:40:17Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "5a7a756f3d6fcf36c1a98be35aff65b4b22a145b",
@@ -4502,6 +4656,13 @@
           "body": "**[2025-01-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-08)**\r\n\r\nAgreed that this PR, once merged, will also close the issues #25 and #35\r\n",
           "createdAt": "2025-01-08T16:03:42Z",
           "updatedAt": "2025-01-08T16:03:42Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\r\n\r\nThe {{IANA_ENTITY_MIB}} should reference the following URL:\r\n\r\nhttps://www.iana.org/assignments/ianaentity-mib/ianaentity-mib.xhtml\r\n\r\nThe {{IANA_YANG}} should be changed to {{IANA_HW_YANG}} and reference the following URL:\r\n\r\nhttps://www.iana.org/assignments/iana-hardware/iana-hardware.xhtml\r\n\r\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/75#discussion_r1930349864",
+          "createdAt": "2025-01-29T18:39:55Z",
+          "updatedAt": "2025-01-29T18:39:55Z"
         }
       ],
       "reviews": [
@@ -4839,9 +5000,9 @@
           "comments": [
             {
               "originalPosition": 11,
-              "body": "- server is used\r\n- augment is used in derivate forms (to augment, augmentation)\r\n- data model\r\n- data node is used in the comments within YANG model and it will be used in the Security Considerations (based on RFC 8407-bis template)",
+              "body": "- server is used\r\n- augment is used in derivate forms (to augment, augmentation)\r\n- data model is used\r\n- data node is used in the comments within YANG model and it will be used in the Security Considerations (based on RFC 8407-bis template)",
               "createdAt": "2025-01-27T10:44:46Z",
-              "updatedAt": "2025-01-27T10:44:46Z"
+              "updatedAt": "2025-01-29T15:32:44Z"
             }
           ]
         },
@@ -4864,6 +5025,66 @@
               "updatedAt": "2025-01-27T11:06:15Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86Z3YFh",
+          "commit": {
+            "abbreviatedOid": "41af1ef"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-29T15:31:43Z",
+          "updatedAt": "2025-01-29T15:31:44Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\r\n\r\nAgreed\r\n\r\n```suggestion\r\n```",
+              "createdAt": "2025-01-29T15:31:44Z",
+              "updatedAt": "2025-01-29T18:31:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86Z3bVX",
+          "commit": {
+            "abbreviatedOid": "41af1ef"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-29T15:36:35Z",
+          "updatedAt": "2025-01-29T15:36:35Z",
+          "comments": [
+            {
+              "originalPosition": 58,
+              "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\r\n\r\n```suggestion\r\n: The list of hardware components can be extended in future versions of {{IANA_ENTITY_MIB}} (and, as a consequence, of ({{IANA_YANG}}).\r\n```",
+              "createdAt": "2025-01-29T15:36:35Z",
+              "updatedAt": "2025-01-29T18:36:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86Z5Ff6",
+          "commit": {
+            "abbreviatedOid": "1f6ba97"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-29T18:26:35Z",
+          "updatedAt": "2025-01-29T18:26:35Z",
+          "comments": [
+            {
+              "originalPosition": 92,
+              "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\r\n\r\nNew issue #79 has been created to track this open issue.\r\n",
+              "createdAt": "2025-01-29T18:26:35Z",
+              "updatedAt": "2025-01-29T18:27:50Z"
+            }
+          ]
         }
       ]
     },
@@ -4881,7 +5102,7 @@
       "labels": [],
       "body": "Proposal for ports and breakouts modelling: fix #45 , fix #12 and fix #19\r\n\r\nAdded references to network-element, port component and channel: fix #69 \r\n\r\n---\r\n\r\nIn order to validate the JSON examples, some fixes are needed on the YANG file:\r\n\r\n1. the parent-component-ref should be defined as a leafref: see PR #66 \r\n2. the component class type should be an identityref and not a union of identityrefs: see issue #78\r\n\r\n---\r\n\r\nCo-Authored-By: YuChaode <yuchaode@huawei.com>\r\n",
       "createdAt": "2024-12-11T15:03:32Z",
-      "updatedAt": "2025-01-27T18:56:34Z",
+      "updatedAt": "2025-01-29T18:59:19Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "c3420b3aed15e763b78c817be91f424ad475f0e0",
@@ -4910,9 +5131,9 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-01-22 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-22)**\r\n\r\n> **[2024-12-18 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-18)**\r\n> \r\n> Definitions of transceiver, transceiver module and port:\r\n> \r\n> Transceiver: A transceiver represents a transmitter/receiver (Tx/Rx) pair which is transmitting and receiving a signal from the media. This definition generalizes the transceiver definition in [I-D.ietf-ccamp-optical-impairment-topology-yang] to model also non optical transceivers (e.g., electrical transceivers).\r\n> \r\n> Transceiver Module: A module which contains one or more transceivers (e.g., optical or electrical transceivers). A transceivers-module component can only be contained by a port component.\r\n> \r\n> Note: The last sentence (i.e., \"A transceivers module can only be contained within a port component.\") needs to be validated after having reviewed the inventory examples for modelling integrated ROADM add/drop modules\r\n\r\nSlides on modelling transponder/muxponder cards integrated within a ROADM NE reviewed during the call: [transponder-inventory-03.pptx](https://github.com/user-attachments/files/18508470/transponder-inventory-03.pptx)\r\n\r\n**Conclusion: the proposed definition for the Transceiver Module is able to support the modelling of the trunk ports on transponder/muxponder cards integrated within a ROADM NE.**\r\n\r\nJulien: I think it is useful to report the trunk ports in the network inventory. Need more time to think about the internal link.\r\n\r\n- [ ] @italobusi : check with other operators the requirements to model the trunk ports on a transponder/muxponder card integrated within a ROADM NE\r\n\r\n> \r\n> Port: A component where networking traffic can be received and/or transmitted, e.g., by attaching transceiver modules and networking cables.\r\n> \r\n> Note: This definition needs to be validated after having reviewed the inventory examples for modelling OTS ports on ROADM degrees\r\n\r\nIn case of OTS ports (as well as ports on WSS cards), the networking cables are attached to the ports but no transceiver module is associated with the port.\r\n\r\nIt is proposed to refine the port definition as:\r\n\r\nPort: A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables.\r\n\r\n> \r\n> * [x]  @italobusi ask for feedbacks on these definitions on the IVY WG mailing list\r\n> * [x]  @italobusi update the PR text\r\n",
+          "body": "**[2025-01-22 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-22)**\r\n\r\n> **[2024-12-18 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-18)**\r\n> \r\n> Definitions of transceiver, transceiver module and port:\r\n> \r\n> Transceiver: A transceiver represents a transmitter/receiver (Tx/Rx) pair which is transmitting and receiving a signal from the media. This definition generalizes the transceiver definition in [I-D.ietf-ccamp-optical-impairment-topology-yang] to model also non optical transceivers (e.g., electrical transceivers).\r\n> \r\n> Transceiver Module: A module which contains one or more transceivers (e.g., optical or electrical transceivers). A transceivers-module component can only be contained by a port component.\r\n> \r\n> Note: The last sentence (i.e., \"A transceivers module can only be contained within a port component.\") needs to be validated after having reviewed the inventory examples for modelling integrated ROADM add/drop modules\r\n\r\nSlides on modelling transponder/muxponder cards integrated within a ROADM NE reviewed during the call: [transponder-inventory-03.pptx](https://github.com/user-attachments/files/18508470/transponder-inventory-03.pptx)\r\n\r\n**Conclusion: the proposed definition for the Transceiver Module is able to support the modelling of the trunk ports on transponder/muxponder cards integrated within a ROADM NE.**\r\n\r\nJulien: I think it is useful to report the trunk ports in the network inventory. Need more time to think about the internal link.\r\n\r\n- [x] @italobusi : check with other operators the requirements to model the trunk ports on a transponder/muxponder card integrated within a ROADM NE\r\n\r\n> \r\n> Port: A component where networking traffic can be received and/or transmitted, e.g., by attaching transceiver modules and networking cables.\r\n> \r\n> Note: This definition needs to be validated after having reviewed the inventory examples for modelling OTS ports on ROADM degrees\r\n\r\nIn case of OTS ports (as well as ports on WSS cards), the networking cables are attached to the ports but no transceiver module is associated with the port.\r\n\r\nIt is proposed to refine the port definition as:\r\n\r\nPort: A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables.\r\n\r\n> \r\n> * [x]  @italobusi ask for feedbacks on these definitions on the IVY WG mailing list\r\n> * [x]  @italobusi update the PR text\r\n",
           "createdAt": "2025-01-22T16:24:35Z",
-          "updatedAt": "2025-01-27T13:08:23Z"
+          "updatedAt": "2025-01-29T18:44:04Z"
         },
         {
           "author": "italobusi",
@@ -4920,6 +5141,13 @@
           "body": "> * [x]   @italobusi ask for feedbacks on these definitions on the IVY WG mailing list\r\n> *\r\n\r\nDone: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76#issuecomment-2607696292",
           "createdAt": "2025-01-27T12:31:28Z",
           "updatedAt": "2025-01-27T12:31:28Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\r\n\r\nAgreed on the following terminology:\r\n- host channels (outside the scope of the inventory model)\r\n- line channels (in the scope of the inventory model)\r\n\r\nAdd an appendix describing the differences between the host and line channels and that only line channels are considered in the scope of the inventory model\r\n\r\n- [ ] @italobusi : update the PR text\r\n\r\n> * [x]  @italobusi : check with other operators the requirements to model the trunk ports on a transponder/muxponder card integrated within a ROADM NE\r\n\r\nTracked as issue #80 \r\n\r\nNote: The issue is tracked as priority-3 because it has no impact on the model but on the guidelines on how the model shall be implemented (which may also be developed in another document)\r\n\r\n> > * [x]   @italobusi ask for feedbacks on these definitions on the IVY WG mailing list\r\n\r\nDone: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76#issuecomment-2615636638\r\n\r\n- [ ] @italobusi add a proposed definition for breakouts\r\n\r\n> > * [x]   @italobusi update the PR text\r\n\r\nDone: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76/commits/06d546603dbd58f1d6dccb371aa58204bf8a6399\r\n\r\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76#issuecomment-2607696292\r\n",
+          "createdAt": "2025-01-29T18:58:52Z",
+          "updatedAt": "2025-01-29T18:59:19Z"
         }
       ],
       "reviews": [
