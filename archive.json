@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-30T00:50:15.746503+00:00",
+  "timestamp": "2025-02-02T00:54:09.847751+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -583,7 +583,7 @@
       "id": "I_kwDOKiDYo854xQ5b",
       "title": "Clarify RFC8348 container terminology",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/13",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -596,8 +596,8 @@
       ],
       "body": "The comment is not related specifically to this sentence, but it is related in general to \"container\". I've noticed this term is never defined in the document. Shouldn't we add that?\r\n\r\n_Originally posted by @sergiobelotti in https://github.com/ietf-ccamp-wg/ietf-network-inventory/pull/51#discussion_r1001641252_\r\n\r\ncould we change this sentence to \"Openconfig-platform data model is NE-level and uses a generic component concept to describe its inner equipment and holders, which is similar to ietf-hardware model...\"? In the terminology of component at the beginning, component is also refer to equipment and holders.\r\n\r\n_Originally posted by @YuChaode in https://github.com/ietf-ccamp-wg/ietf-network-inventory/pull/51#discussion_r1003263854_\r\n      ",
       "createdAt": "2022-10-24T12:59:13Z",
-      "updatedAt": "2024-10-09T13:43:29Z",
-      "closedAt": null,
+      "updatedAt": "2025-01-30T15:54:39Z",
+      "closedAt": "2025-01-30T15:54:39Z",
       "comments": [
         {
           "author": "italobusi",
@@ -775,7 +775,7 @@
       "id": "I_kwDOKiDYo854xRl2",
       "title": "Terminology and use cases clarification",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/16",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "YuChaode",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -788,8 +788,8 @@
       ],
       "body": "This is the slide we discussed in last week\r\n[Meeting Material_02.08.pptx](https://github.com/ietf-ccamp-wg/ietf-network-inventory/files/10733238/Meeting.Material_02.08.pptx)\r\n",
       "createdAt": "2023-02-14T14:17:39Z",
-      "updatedAt": "2024-11-20T16:08:33Z",
-      "closedAt": null,
+      "updatedAt": "2025-01-30T16:15:27Z",
+      "closedAt": "2025-01-30T16:15:26Z",
       "comments": [
         {
           "author": "italobusi",
@@ -1104,7 +1104,7 @@
       ],
       "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#LL29C20-L29C20\r\n\r\nThe text \"can be augmented, when required, with technology-specific (e.g., optical) inventory data\" appears to blur an important boundary. The functional data should not augment the physical model.",
       "createdAt": "2023-06-07T12:45:48Z",
-      "updatedAt": "2025-01-27T13:35:35Z",
+      "updatedAt": "2025-01-30T11:43:40Z",
       "closedAt": null,
       "comments": [
         {
@@ -1127,6 +1127,13 @@
           "body": "When the draft says that the base model is \"technology-agnostic (that is, valid for IP/MPLS, optical, and microwave networks in particular)\"  there is some blurred definition of whether IP/MPLS, optical and microwave are technologies or applications or administrative domains\n\nI am not sure there is a need to clean-up this ambiguity. In the draft, we can consistently use the terms \"application- and technology-agnostic\" and \"application- and technology-specific\"",
           "createdAt": "2025-01-27T13:35:34Z",
           "updatedAt": "2025-01-27T13:35:34Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\n\nAgreed not to distinguish between application and technology specific issues as proposed in https://github.com/ietf-ivy-wg/network-inventory-yang/issues/24#issuecomment-2615781352\n\n- [ ] @italobusi : Update the text as agreed\n",
+          "createdAt": "2025-01-30T11:43:39Z",
+          "updatedAt": "2025-01-30T11:43:39Z"
         }
       ]
     },
@@ -1135,7 +1142,7 @@
       "id": "I_kwDOKiDYo854xThn",
       "title": "Clarification of Scope",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/25",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "nigel-r-davis",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -1144,8 +1151,8 @@
       ],
       "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#L422\r\n\r\nFrom the structure of the YANG the model is for inventory in an NE and not for spares holding etc. Please confirm.",
       "createdAt": "2023-06-14T12:24:30Z",
-      "updatedAt": "2024-10-01T16:01:17Z",
-      "closedAt": null,
+      "updatedAt": "2025-01-30T16:15:27Z",
+      "closedAt": "2025-01-30T16:15:27Z",
       "comments": [
         {
           "author": "nigel-r-davis",
@@ -1201,11 +1208,12 @@
         "italobusi"
       ],
       "labels": [
+        "agreed",
         "priority-1"
       ],
       "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#LL574C1-L574C1\r\n\r\nIn TAPI we have kept the issue of software/firmware modelling separate from Equipment. I suggest we look more deeply at the software/firmware modelling.",
       "createdAt": "2023-06-14T12:57:52Z",
-      "updatedAt": "2025-01-29T15:56:34Z",
+      "updatedAt": "2025-01-30T11:41:35Z",
       "closedAt": null,
       "comments": [
         {
@@ -1246,9 +1254,9 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**2025-01-29**\n\n- [ ] @italobusi : Rephrase as:\n\nThe YANG data model defined in the document is scoped to cover the common use cases for Network Inventory covering both hardware and base software information.\n\n",
+          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\n\nAgreed to rephrase the sentence as:\n\nThe YANG data model defined in the document is scoped to cover the common use cases for Network Inventory covering both hardware and base software information.\n\n- [ ] @italobusi : Update the text as agreed\n",
           "createdAt": "2025-01-29T15:56:32Z",
-          "updatedAt": "2025-01-29T15:56:32Z"
+          "updatedAt": "2025-01-30T11:41:30Z"
         }
       ]
     },
@@ -1548,7 +1556,7 @@
       "id": "I_kwDOKiDYo85-DPze",
       "title": "Unclear boundary for Ivy work",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/35",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "nigel-r-davis",
       "authorAssociation": "NONE",
       "assignees": [
@@ -1561,8 +1569,8 @@
       ],
       "body": "It is clear that we do not have a tight enough definition of the boundary on the Ivy work. We need to understand what is in scope and what not. It is not practical to list all things in scope, so instead we need rules against which we can evaluate whether something is in scope or out of scope.\r\n\r\nClearly, there are some things we would all agree are in scope and other things we would agree are out of scope. Identifying the inherent properties of those things will help. \r\n\r\nBut there are things that we do not agree about and even if we had a complete definition, there are things on the boundary or that straddle the boundary.\r\n\r\nI emailed the list with some thoughts on how to organize things on a  \"map\" to help us define the boundary.\r\n\r\nI have attempted to sketch a map of things (over simplified in many places) that includes some questions and some sketch definitions. I would be happy to discuss this on our next call.\r\n[IvyBoundary.pptx](https://github.com/ietf-ivy-wg/network-inventory-yang/files/14139708/IvyBoundary.pptx)\r\n",
       "createdAt": "2024-02-02T12:03:16Z",
-      "updatedAt": "2024-10-18T05:41:36Z",
-      "closedAt": null,
+      "updatedAt": "2025-01-30T16:15:28Z",
+      "closedAt": "2025-01-30T16:15:28Z",
       "comments": [
         {
           "author": "nigel-r-davis",
@@ -2598,7 +2606,7 @@
       ],
       "body": "When preparing JSON examples (see PR #76 ), the following when statement failed validation with yanglint:\r\n\r\n```\r\n                \"derived-from-or-self(../nwi:class,\r\n                'nwi:transceivers-module')\";\r\n\r\n```\r\n\r\nThe issue could have been fixed only by updating the component class definition as:\r\n\r\n```\r\n            leaf class {\r\n              type identityref {\r\n                base ianahw:hardware-class;\r\n              }\r\n              config false;\r\n              mandatory true;\r\n              description\r\n                \"The type of the component.\";\r\n            }\r\n```\r\n\r\nThis issue needs further investigation:\r\n- is it a yanglint implemenation issue or a bug in the current YANG model?\r\n- is there any alternative solution to avoid the use of the union type?",
       "createdAt": "2024-12-16T17:03:20Z",
-      "updatedAt": "2025-01-08T16:13:29Z",
+      "updatedAt": "2025-01-30T11:45:11Z",
       "closedAt": null,
       "comments": [
         {
@@ -2607,6 +2615,20 @@
           "body": "**[2025-01-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-08)**\r\n\r\nAgreed to mark it as priority 1 (changing the data type will be an NBC change)\r\n\r\n- [ ] @prmanna ask Netmod WG for some feedbacks about whether is an a yanglint implementation issue or a YANG modelling issue\r\n",
           "createdAt": "2025-01-08T16:13:16Z",
           "updatedAt": "2025-01-08T16:13:16Z"
+        },
+        {
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "body": "Raised an [issue](https://github.com/CESNET/libyang/issues/2342) in [libyang](https://github.com/CESNET/libyang) for their input.",
+          "createdAt": "2025-01-30T05:07:24Z",
+          "updatedAt": "2025-01-30T05:07:54Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\n\nIt seems a tooling issue: if the transceiver-module identity is moved to iana-hardware module the error message no longer appears\n\n- [x] Prasenjit: check with the yanglint developers\n\nPost Meeting Note: already done in https://github.com/ietf-ivy-wg/network-inventory-yang/issues/78#issuecomment-2623529826\n",
+          "createdAt": "2025-01-30T11:45:09Z",
+          "updatedAt": "2025-01-30T11:45:09Z"
         }
       ]
     },
@@ -4284,24 +4306,26 @@
       "id": "PR_kwDOKiDYo85-FZaT",
       "title": "update the terminology of container in appendix",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/66",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "YuChaode",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-10-09T13:42:57Z",
-      "updatedAt": "2025-01-29T18:22:32Z",
+      "updatedAt": "2025-01-30T15:54:38Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "5a7a756f3d6fcf36c1a98be35aff65b4b22a145b",
       "headRepository": "YuChaode/network-inventory-yang",
       "headRefName": "main",
-      "headRefOid": "b331ab4aa7fd84c2b69e35e6560769926f855bfc",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "a6e3dd974b38bc9ebc217278f9277762247ea168",
+      "closedAt": "2025-01-30T15:54:38Z",
+      "mergedAt": "2025-01-30T15:54:38Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "2f9ec3d5ef1a5094b44e7d8c6f1b39f5b9f6fe73"
+      },
       "comments": [
         {
           "author": "italobusi",
@@ -4320,9 +4344,9 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\r\n\r\nThe issue is partially addressing #3 : see https://github.com/ietf-ivy-wg/network-inventory-yang/issues/3#issuecomment-2622500990\r\n\r\n- [ ] @italobusi @YuChaode : fix the issues with the checks and merge the PR",
+          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\r\n\r\nThe issue is partially addressing #3 : see https://github.com/ietf-ivy-wg/network-inventory-yang/issues/3#issuecomment-2622500990\r\n\r\n- [x] @italobusi @YuChaode : fix the issues with the checks and merge the PR",
           "createdAt": "2025-01-29T18:21:21Z",
-          "updatedAt": "2025-01-29T18:22:32Z"
+          "updatedAt": "2025-01-30T15:53:19Z"
         }
       ],
       "reviews": [
@@ -4429,6 +4453,26 @@
           "createdAt": "2025-01-27T17:03:26Z",
           "updatedAt": "2025-01-27T17:03:26Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo86aBQks",
+          "commit": {
+            "abbreviatedOid": "b331ab4"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-30T14:11:29Z",
+          "updatedAt": "2025-01-30T14:11:29Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "```suggestion\r\nWithin this document , with the term \"container\" we consider an hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.\r\n\r\n| terminology of IVY base model  |terminology in other model  |\r\n```",
+              "createdAt": "2025-01-30T14:11:29Z",
+              "updatedAt": "2025-01-30T14:11:29Z"
+            }
+          ]
         }
       ]
     },
@@ -4624,24 +4668,26 @@
       "id": "PR_kwDOKiDYo86E0oRE",
       "title": "Proposal for terminology update",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/75",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Terminology updated: fix #16 , fix #25 and fix #35\r\n\r\nAdded clarification about the the scope of actual versus intended/planned inventory (mailing list discussion)\r\n",
       "createdAt": "2024-12-11T08:58:35Z",
-      "updatedAt": "2025-01-29T18:40:17Z",
+      "updatedAt": "2025-01-30T16:15:26Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "5a7a756f3d6fcf36c1a98be35aff65b4b22a145b",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "terminology",
-      "headRefOid": "5364d38bbdd77e103b450567ab3d26f34ed9864c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "f31fcaeaedbcc623053145955be2e2e17312d44f",
+      "closedAt": "2025-01-30T16:15:25Z",
+      "mergedAt": "2025-01-30T16:15:25Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "9dbe1ff5ad1a9ac1bc9e1f5c5b50a6b09f0e98af"
+      },
       "comments": [
         {
           "author": "sergiobelotti",
