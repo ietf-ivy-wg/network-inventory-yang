@@ -104,7 +104,7 @@ informative:
 
 This document defines a base YANG data model for network inventory. The scope of this base model is set to
 be application- and technology-agnostic. However, the data model is designed with appropriate provisions to ease
-future augmentations with application-specific and technology-specific details.
+future augmentations with application- and technology-specific details.
 
 --- middle
 
@@ -112,8 +112,7 @@ future augmentations with application-specific and technology-specific details.
 
 This document defines a base network inventory
 YANG data model that is application- and technology-agnostic.  The
-base data model can be augmented to describe application-specific or
-technology-specific information.
+base data model can be augmented to describe application- and technology-specific information.
 
 Network inventory is a fundamental functional block in the overall network
 management which was specified many years ago. Network inventory management is a critical
@@ -136,9 +135,9 @@ Per the definition of {{?RFC8969}}, the network inventory model is a network mod
 
 This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
 
-This base data model is technology-agnostic (that is, valid for IP/MPLS, optical, and
+This base data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
 microwave networks in particular) and can be augmented to
-include required technology-specific inventory details together with specific hardware or software component's attributes.
+include required application- and technology-specific inventory details together with specific hardware or software component's attributes.
 
 The YANG data model defined in the document is scoped to cover the common requirements for both hardware and software (but with base functions) use cases for Network Inventory.
 
@@ -266,8 +265,7 @@ Attributes related to specific class of component can be found in the component-
 
 The identity definition of additional types of "ne-type" and "non-
 hardware" identity of component are outside the scope of this
-document and could be defined in application-specific or technology-
-specific companion augmentation data models, such as
+document and could be defined in application- and technology-specific companion augmentation data models, such as
 {{?I-D.wzwb-ivy-network-inventory-software}}.
 
 In {{!RFC8348}}, rack, chassis, slot, sub-slot, board and port are defined as components of network elements with generic attributes.
