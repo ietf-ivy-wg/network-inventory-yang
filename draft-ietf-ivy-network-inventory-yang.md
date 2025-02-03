@@ -139,7 +139,7 @@ This base data model is application- and technology-agnostic (that is, valid for
 microwave networks in particular) and can be augmented to
 include required application- and technology-specific inventory details together with specific hardware or software component's attributes.
 
-The YANG data model defined in the document is scoped to cover the common requirements for both hardware and software (but with base functions) use cases for Network Inventory.
+The YANG data model defined in the document is scoped to cover the common use cases for Network Inventory covering both hardware and base software information.
 
 {{ni-augment}} provides a set of considerations for future extensions of hardware, software, entitlement, and inventory topology mapping.
 
