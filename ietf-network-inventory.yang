@@ -68,7 +68,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2025-01-27 {
+  revision 2025-02-03 {
     description
       "Initial version";
     reference
@@ -159,13 +159,13 @@ module ietf-network-inventory {
   grouping channel-ref {
     description
       "This grouping is intended to be used by data models that need
-      to reference one or more channels within a transceivers module
-      component.";
+       to reference one or more breakout channels within a
+       transceivers module component.";
     leaf ne-ref {
       type nwi:ne-ref;
       description
         "The reference to the Network Element which contains the
-        port to be referenced.";
+         transceiver module to be referenced.";
     }
     leaf transceiver-module-ref {
       type leafref {
@@ -182,18 +182,19 @@ module ietf-network-inventory {
       description
         "The reference to the transceivers module component.";
     }
-    leaf-list channel-number {
+    leaf-list channel-ref {
       type leafref {
         path  "/nwi:network-inventory/nwi:network-elements"
             + "/nwi:network-element[nwi:ne-id=current()/../ne-ref]/"
             + "nwi:components/"
             + "nwi:component[nwi:component-id="
             + "current()/../transceiver-module-ref]/"
-            + "nwi:transceiver-module-specific-info/nwi:channels/"
-            + "nwi:channel/nwi:channel-number";
+            + "nwi:transceiver-module-specific-info/"
+            + "nwi:breakout-channels/nwi:breakout-channel/"
+            + "nwi:channel-id";
       }
       description
-        "The references to the channels.";
+        "The references to the breakout channels.";
     }
   }
 
@@ -523,23 +524,24 @@ module ietf-network-inventory {
               description
                 "This container contains some attributes belong to
                  transceivers modules only.";
-              container channels {
+              container breakout-channels {
                 presence
-                  "When present it represents a multi-channel port
-                   which supports port breakouts.";
+                  "When present it indicates that the multi-channel
+                   port supports port breakouts.";
                 description
-                  "Top level container for the list of channels
-                   supported by the transceivers module.";
-                list channel {
-                  key "channel-number";
-                  leaf channel-number {
+                  "Top level container for the list of breakout
+                   channels supported by the transceivers module.";
+                list breakout-channel {
+                  key "channel-id";
+                  leaf channel-id {
                     type uint8;
                     description
-                      "The channel number uniquely identifying the
-                       channel within the port.";
+                      "An identifier that uniquely identifies the
+                       breakout channel within the transceiver
+                       module.";
                   }
                   description
-                    "The list of channels supported by the
+                    "The list of breakout channels supported by the
                      transceivers module.";
                 }
               }

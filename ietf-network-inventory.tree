@@ -44,6 +44,6 @@ module: ietf-network-inventory
                  +--ro board-specific-info
                  +--ro port-specific-info
                  +--ro transceiver-module-specific-info
-                    +--ro channels!
-                       +--ro channel* [channel-number]
-                          +--ro channel-number    uint8
+                    +--ro breakout-channels!
+                       +--ro breakout-channel* [channel-id]
+                          +--ro channel-id    uint8

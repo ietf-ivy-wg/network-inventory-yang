@@ -186,6 +186,11 @@ The YANG data model defined in this document conforms to the Network Management 
 
   The terminology for describing YANG data models is found in {{!RFC7950}}.
 
+  The following terms are defined in {{!RFC8343}} and are not redefined
+  here:
+
+  * physical interface
+
   > TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
   Also, the document makes use of the following terms:
@@ -214,8 +219,16 @@ Port:
 : A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables.
 : In case of pluggable ports, the port may be empty when no transceiver module is plugged in.
 
-  Container:
-  : A hardware component class that is capable of containing one or more removable physical entities (e.g., a slot in a chassis is containing a board).
+Breakout Port:
+: A port is usually associated with a single physical interface. A breakout port is a port which is broken down and associated into multiple interfaces.
+
+Breakout channel:
+: An abstraction of the atomic elements into which a breakout port can be broken down: an interface can be associated with one or more breakout channels but no more than one interface can be associated with one breakout channel.
+: The physical elements abstracted as breakout channels are implementation specific.
+{{ports-transceivers-breakouts-examples}} provides some examples of breakout ports configurations and implementations.
+
+Container:
+: A hardware component class that is capable of containing one or more removable physical entities (e.g., a slot in a chassis is containing a board).
 
 Transceiver:
 : A transceiver represents a transmitter/receiver (Tx/Rx) pair which is transmitting and receiving a signal from the media.
@@ -621,6 +634,14 @@ An alternative YANG model structure, which defines the inventory objects directl
 
 The model proposed by this draft is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this draft. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.
 
+# Examples of ports, transceivers and port breakouts {#ports-transceivers-breakouts-examples}
+
+> \[Editors' Note]: Need to provide some examples based on [IETF 121 Slides](https://datatracker.ietf.org/doc/slides-120-ivy-2-a-yang-data-model-for-network-inventory/), and in particular:
+> - slide 8 (100G-LR single-channel port)
+> - slide 9 (400G-LR4 multi-channel WDM port)
+> - slide 10 (400G-DR4 MPO port)
+> Describe the concept of host and line channels and the mapping to breakout channels
+
 # JSON Examples
 
 This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}.
@@ -629,11 +650,11 @@ The example instantiates the "ietf-network-inventory" model to describe a single
 
 1. An integrated port (non pluggable). This port can be of any type (e.g., optical or electrical), single-channel or multi-channel but not supporting breakouts;
 1. An empty port;
-1. A single channel optical pluggable port ();
+1. A single channel optical pluggable port (e.g., a 100G-LR port configured as a single 100GE interface);
 1. A Wavelength-Division Multiplexing (WDM) based multi-channel optical port (e.g., a 400G-LR4 port configured as a single 400GE interface) which does not support breakouts: the four WDM channels are not reported since not relevant from inventory management perspective;
-1. A Multi-Fiber Push-on (MPO) trunk-only port (e.g., 400G-DR4 port configured as a single 400GE interface). This type of MPO port does not support breakouts: the four WDM channels are not reported since not relevant from inventory management perspective;
-1. An MPO trunk port (e.g., 400G-DR4 port configured as a single 400GE interface). This type of MPO port can support either the trunk or the breakout configuration but in this example, it is configured to support the trunk configuration: the four WDM channels are reported to support breakouts configuration, when needed.
-1. An MPO breakout port (e.g., 400G-DR4 port configured as 4 100GE interfaces): the four WDM channels are reported to support breakouts configuration.
+1. A Multi-Fiber Push-on (MPO) trunk-only port (e.g., 400G-DR4 port configured as a single 400GE interface). This type of MPO port does not support breakouts: the four channels are not reported since not relevant from inventory management perspective;
+1. An MPO trunk port (e.g., 400G-DR4 port configured as a single 400GE interface). This type of MPO port can support either the trunk or the breakout configuration but in this example, it is configured to support the trunk configuration: the four channels are reported to support breakouts configuration, when needed.
+1. An MPO breakout port (e.g., 400G-DR4 port configured as 4x100GE interfaces): the four channels are reported to support breakouts configuration.
 
 From a network inventory perspective, there is no need to distinguish between single-channel and MPO trunk-only ports.
 
