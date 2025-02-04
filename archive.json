@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-02T00:54:09.847751+00:00",
+  "timestamp": "2025-02-04T00:51:36.331589+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1104,7 +1104,7 @@
       ],
       "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#LL29C20-L29C20\r\n\r\nThe text \"can be augmented, when required, with technology-specific (e.g., optical) inventory data\" appears to blur an important boundary. The functional data should not augment the physical model.",
       "createdAt": "2023-06-07T12:45:48Z",
-      "updatedAt": "2025-01-30T11:43:40Z",
+      "updatedAt": "2025-02-03T09:59:38Z",
       "closedAt": null,
       "comments": [
         {
@@ -1131,9 +1131,9 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\n\nAgreed not to distinguish between application and technology specific issues as proposed in https://github.com/ietf-ivy-wg/network-inventory-yang/issues/24#issuecomment-2615781352\n\n- [ ] @italobusi : Update the text as agreed\n",
+          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\n\nAgreed not to distinguish between application and technology specific issues as proposed in https://github.com/ietf-ivy-wg/network-inventory-yang/issues/24#issuecomment-2615781352\n\n- [x] @italobusi : Update the text as agreed\n",
           "createdAt": "2025-01-30T11:43:39Z",
-          "updatedAt": "2025-01-30T11:43:39Z"
+          "updatedAt": "2025-02-03T09:59:38Z"
         }
       ]
     },
@@ -1213,7 +1213,7 @@
       ],
       "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#LL574C1-L574C1\r\n\r\nIn TAPI we have kept the issue of software/firmware modelling separate from Equipment. I suggest we look more deeply at the software/firmware modelling.",
       "createdAt": "2023-06-14T12:57:52Z",
-      "updatedAt": "2025-01-30T11:41:35Z",
+      "updatedAt": "2025-02-03T09:59:32Z",
       "closedAt": null,
       "comments": [
         {
@@ -1254,9 +1254,9 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\n\nAgreed to rephrase the sentence as:\n\nThe YANG data model defined in the document is scoped to cover the common use cases for Network Inventory covering both hardware and base software information.\n\n- [ ] @italobusi : Update the text as agreed\n",
+          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\n\nAgreed to rephrase the sentence as:\n\nThe YANG data model defined in the document is scoped to cover the common use cases for Network Inventory covering both hardware and base software information.\n\n- [x] @italobusi : Update the text as agreed\n",
           "createdAt": "2025-01-29T15:56:32Z",
-          "updatedAt": "2025-01-30T11:41:30Z"
+          "updatedAt": "2025-02-03T09:59:32Z"
         }
       ]
     },
@@ -2568,24 +2568,29 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [
-        "italobusi"
-      ],
+      "assignees": [],
       "labels": [
         "enhancement",
         "priority-2"
       ],
       "body": "**[2024-12-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-11)**\r\n\r\nInvestigate whether the network inventory shall report information about the connector type of a port\r\n",
       "createdAt": "2024-12-11T16:29:58Z",
-      "updatedAt": "2025-01-08T16:12:16Z",
+      "updatedAt": "2025-02-03T16:38:58Z",
       "closedAt": null,
       "comments": [
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-01-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-08)**\r\n\r\nAgreed to mark it as priority 2 (nice to have but can added later)\r\n\r\n- [ ] @italobusi  trigger some discussion on the mailing list\r\n",
+          "body": "**[2025-01-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-08)**\n\nAgreed to mark it as priority 2 (nice to have but can added later)\n\n- [x] @italobusi  trigger some discussion on the mailing list\n",
           "createdAt": "2025-01-08T16:12:15Z",
-          "updatedAt": "2025-01-08T16:12:15Z"
+          "updatedAt": "2025-02-03T16:38:41Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x]  [@italobusi](https://github.com/italobusi)  trigger some discussion on the mailing list\n\nDone: https://mailarchive.ietf.org/arch/msg/inventory-yang/Rx_leFongk4ioHzgZH9u8rQNWac/\n",
+          "createdAt": "2025-02-03T16:38:52Z",
+          "updatedAt": "2025-02-03T16:38:52Z"
         }
       ]
     },
@@ -5148,13 +5153,13 @@
       "labels": [],
       "body": "Proposal for ports and breakouts modelling: fix #45 , fix #12 and fix #19\r\n\r\nAdded references to network-element, port component and channel: fix #69 \r\n\r\n---\r\n\r\nIn order to validate the JSON examples, some fixes are needed on the YANG file:\r\n\r\n1. the parent-component-ref should be defined as a leafref: see PR #66 \r\n2. the component class type should be an identityref and not a union of identityrefs: see issue #78\r\n\r\n---\r\n\r\nCo-Authored-By: YuChaode <yuchaode@huawei.com>\r\n",
       "createdAt": "2024-12-11T15:03:32Z",
-      "updatedAt": "2025-01-29T18:59:19Z",
+      "updatedAt": "2025-02-03T15:32:14Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "c3420b3aed15e763b78c817be91f424ad475f0e0",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "port-breakout",
-      "headRefOid": "06d546603dbd58f1d6dccb371aa58204bf8a6399",
+      "headRefOid": "76281762856661f31aeeaa7a65c22f128360a797",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -5191,9 +5196,16 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\r\n\r\nAgreed on the following terminology:\r\n- host channels (outside the scope of the inventory model)\r\n- line channels (in the scope of the inventory model)\r\n\r\nAdd an appendix describing the differences between the host and line channels and that only line channels are considered in the scope of the inventory model\r\n\r\n- [ ] @italobusi : update the PR text\r\n\r\n> * [x]  @italobusi : check with other operators the requirements to model the trunk ports on a transponder/muxponder card integrated within a ROADM NE\r\n\r\nTracked as issue #80 \r\n\r\nNote: The issue is tracked as priority-3 because it has no impact on the model but on the guidelines on how the model shall be implemented (which may also be developed in another document)\r\n\r\n> > * [x]   @italobusi ask for feedbacks on these definitions on the IVY WG mailing list\r\n\r\nDone: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76#issuecomment-2615636638\r\n\r\n- [ ] @italobusi add a proposed definition for breakouts\r\n\r\n> > * [x]   @italobusi update the PR text\r\n\r\nDone: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76/commits/06d546603dbd58f1d6dccb371aa58204bf8a6399\r\n\r\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76#issuecomment-2607696292\r\n",
+          "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\r\n\r\nAgreed on the following terminology:\r\n- host channels (outside the scope of the inventory model)\r\n- line channels (in the scope of the inventory model)\r\n\r\nAdd an appendix describing the differences between the host and line channels and that only line channels are considered in the scope of the inventory model\r\n\r\n- [x] @italobusi : update the PR text\r\n\r\n> * [x]  @italobusi : check with other operators the requirements to model the trunk ports on a transponder/muxponder card integrated within a ROADM NE\r\n\r\nTracked as issue #80 \r\n\r\nNote: The issue is tracked as priority-3 because it has no impact on the model but on the guidelines on how the model shall be implemented (which may also be developed in another document)\r\n\r\n> > * [x]   @italobusi ask for feedbacks on these definitions on the IVY WG mailing list\r\n\r\nDone: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76#issuecomment-2615636638\r\n\r\n- [x] @italobusi add a proposed definition for breakouts\r\n\r\n> > * [x]   @italobusi update the PR text\r\n\r\nDone: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76/commits/06d546603dbd58f1d6dccb371aa58204bf8a6399\r\n\r\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76#issuecomment-2607696292\r\n",
           "createdAt": "2025-01-29T18:58:52Z",
-          "updatedAt": "2025-01-29T18:59:19Z"
+          "updatedAt": "2025-02-03T15:30:09Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Agreed on the following terminology:\r\n> \r\n> * host channels (outside the scope of the inventory model)\r\n> * line channels (in the scope of the inventory model)\r\n> \r\n> Add an appendix describing the differences between the host and line channels and that only line channels are considered in the scope of the inventory model\r\n> \r\n> * [x]  @italobusi : update the PR text\r\n> \r\n\r\n...\r\n\r\n> * [x]  @italobusi add a proposed definition for breakouts\r\n\r\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76/commits/76281762856661f31aeeaa7a65c22f128360a797\r\n\r\nNeed to discuss the proposed definitions and how to structure the appendix",
+          "createdAt": "2025-02-03T15:32:12Z",
+          "updatedAt": "2025-02-03T15:32:12Z"
         }
       ],
       "reviews": [
@@ -5268,6 +5280,46 @@
               "updatedAt": "2025-01-22T16:25:33Z"
             }
           ]
+        }
+      ]
+    },
+    {
+      "number": 84,
+      "id": "PR_kwDOKiDYo86J0xk-",
+      "title": "Clean up Scope",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/84",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Cleaned up application and technology specific text not to distinguish between application and technology specific issues: fix #24 \r\n\r\nCleaned up text on scope for HW and base SW inventory: fix #27 \r\n",
+      "createdAt": "2025-02-03T10:03:11Z",
+      "updatedAt": "2025-02-03T11:04:56Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "9dbe1ff5ad1a9ac1bc9e1f5c5b50a6b09f0e98af",
+      "headRepository": "italobusi/network-inventory-yang",
+      "headRefName": "scope",
+      "headRefOid": "1ba8f5df34a48900e9007c6543abe21df646cdba",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86aWd_d",
+          "commit": {
+            "abbreviatedOid": "1ba8f5d"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-03T11:04:56Z",
+          "updatedAt": "2025-02-03T11:04:56Z",
+          "comments": []
         }
       ]
     }
