@@ -534,7 +534,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include ./ietf-network-inventory.yang}
 ~~~~
 {: #fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2024-10-02.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-01-30.yang"}
 
 # Manageability Considerations
 
