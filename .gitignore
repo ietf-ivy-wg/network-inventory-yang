@@ -1,4 +1,4 @@
-# *.txt
+*.bash
 *.html
 *.pdf
 *.redxml
@@ -14,13 +14,13 @@
 /.venv/
 /.vscode/
 /lib
+/lib
 /node_modules/
 /versioned/
 Gemfile.lock
 archive.json
-draft-y3bp-ivy-network-inventory-yang.xml
-draft-y3bp-network-inventory-yang.xml
+draft-ietf-ivy-network-inventory-yang.xml
+draft-ietf-ivy-network-inventory-yang.xml
 package-lock.json
 report.xml
 !requirements.txt
-*.bash

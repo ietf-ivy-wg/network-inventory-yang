@@ -39,6 +39,11 @@ module: ietf-network-inventory
                  +--ro parent-component-ref
                  +--ro is-fru?                             boolean
                  +--ro uri*                                inet:uri
+                 +--ro parent-rel-pos?          int32
+                 +--ro parent?
+                 |       -> ../../component/component-id
+                 +--ro is-fru?                  boolean
+                 +--ro uri*                     inet:uri
                  +--ro chassis-specific-info
                  +--ro slot-specific-info
                  +--ro board-specific-info
