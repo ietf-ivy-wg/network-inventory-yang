@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 9 August 2025                                             Nokia
+Expires: 11 August 2025                                            Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                         5 February 2025
+                                                         7 February 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -24,7 +24,7 @@ Abstract
    The scope of this base model is set to be application- and
    technology-agnostic.  However, the data model is designed with
    appropriate provisions to ease future augmentations with application-
-   specific and technology-specific details.
+   and technology-specific details.
 
 About This Document
 
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 August 2025.
+   This Internet-Draft will expire on 11 August 2025.
 
 Copyright Notice
 
@@ -109,7 +109,7 @@ Table of Contents
 
    This document defines a base network inventory YANG data model that
    is application- and technology-agnostic.  The base data model can be
-   augmented to describe application-specific or technology-specific
+   augmented to describe application- and technology-specific
    information.
 
    Network inventory is a fundamental functional block in the overall
@@ -154,14 +154,15 @@ Table of Contents
    This document defines one YANG module "ietf-network-inventory" in
    Section 6.
 
-   This base data model is technology-agnostic (that is, valid for IP/
-   MPLS, optical, and microwave networks in particular) and can be
-   augmented to include required technology-specific inventory details
-   together with specific hardware or software component's attributes.
+   This base data model is application- and technology-agnostic (that
+   is, valid for IP/MPLS, optical, and microwave networks in particular)
+   and can be augmented to include required application- and technology-
+   specific inventory details together with specific hardware or
+   software component's attributes.
 
    The YANG data model defined in the document is scoped to cover the
-   common requirements for both hardware and software (but with base
-   functions) use cases for Network Inventory.
+   common use cases for Network Inventory covering both hardware and
+   base software information.
 
    Section 4 provides a set of considerations for future extensions of
    hardware, software, entitlement, and inventory topology mapping.
@@ -315,8 +316,8 @@ Table of Contents
 
    The identity definition of additional types of "ne-type" and "non-
    hardware" identity of component are outside the scope of this
-   document and could be defined in application-specific or technology-
-   specific companion augmentation data models, such as
+   document and could be defined in application- and technology-specific
+   companion augmentation data models, such as
    [I-D.wzwb-ivy-network-inventory-software].
 
    In [RFC8348], rack, chassis, slot, sub-slot, board and port are
