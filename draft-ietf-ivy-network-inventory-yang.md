@@ -223,7 +223,7 @@ Breakout Port:
 : A port is usually associated with a single physical interface. A breakout port is a port which is broken down and associated into multiple interfaces.
 
 Breakout channel:
-: An abstraction of the atomic elements into which a breakout port can be broken down: an interface can be associated with one or more breakout channels but no more than one interface can be associated with one breakout channel.
+: An abstraction of the atomic resource elements into which a breakout port can be broken down: an interface can be associated with one or more breakout channels but no more than one interface can be associated with one breakout channel.
 : The physical elements abstracted as breakout channels are implementation specific.
 {{ports-transceivers-breakouts-examples}} provides some examples of breakout ports configurations and implementations.
 
