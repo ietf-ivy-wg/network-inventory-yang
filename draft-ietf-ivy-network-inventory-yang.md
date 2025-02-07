@@ -194,24 +194,28 @@ The following terms are defined in the description statements of the correspondi
 - stack
 - storage device
 
-> Note that the definition of port component in {{IANA_HW_YANG}} needs to be refined in future version of this document.
+> Editors' Note: The port definition below needs to be moved to iana-hardware update
+
+Port:
+: A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables.
+: In case of pluggable ports, the port may be empty when no transceiver module is plugged in.
 
 > TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
 Also, the document makes use of the following terms:
+
+The following terms are defined in {{!RFC8343}} and are not redefined
+here:
+
+* physical interface
+
+> TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
 Network Inventory:
 : A collection of data for network elements and their components managed by a specific management system.
 
 Physical Network Element:
 : An implementation or application specific group of components (e.g., hardware components).
-
-  The following terms are defined in {{!RFC8343}} and are not redefined
-  here:
-
-  * physical interface
-
-  > TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
 Network Element:
 : The generalization of the physical network element definition.
@@ -226,15 +230,8 @@ Component:
 Slot:
 : A holder of the board.
 
-
 Board/Card:
 : A pluggable equipment can be inserted into one or several slots (or sub-slots) and can afford a specific transmission function independently.
-
-> Editors' Note: The port definition below needs to be moved to iana-hardware update
-
-Port:
-: A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables.
-: In case of pluggable ports, the port may be empty when no transceiver module is plugged in.
 
 Breakout Port:
 : A port is usually associated with a single physical interface. A breakout port is a port which is broken down and associated into multiple interfaces.
@@ -561,7 +558,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include ./ietf-network-inventory.yang}
 ~~~~
 {: #fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-01-30.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-02-03.yang"}
 
 # Manageability Considerations
 
