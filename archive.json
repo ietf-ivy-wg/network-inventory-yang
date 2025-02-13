@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-11T00:52:00.541003+00:00",
+  "timestamp": "2025-02-13T00:52:27.141815+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1051,7 +1051,7 @@
       "id": "I_kwDOKiDYo854xTRq",
       "title": "Use of term \"network\" is confusing",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/23",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "nigel-r-davis",
       "authorAssociation": "NONE",
       "assignees": [
@@ -1062,8 +1062,8 @@
       ],
       "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#LL23C48-L23C48\r\n\r\nIn the text referenced and throughout the document \"network hardware inventory\" should simply be \"hardware inventory\".",
       "createdAt": "2023-06-07T12:41:23Z",
-      "updatedAt": "2025-01-08T16:16:47Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-12T15:10:01Z",
+      "closedAt": "2025-02-12T15:10:01Z",
       "comments": [
         {
           "author": "sergiobelotti",
@@ -1085,6 +1085,20 @@
           "body": "**[2025-01-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-08)**\r\n\r\n- [ ] @sergiobelotti : Review whether something is still open in this issue",
           "createdAt": "2025-01-08T16:16:39Z",
           "updatedAt": "2025-01-08T16:16:39Z"
+        },
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Intention makes sense.\n> \n> Perhaps \"network wide\" and \"physical inventory\".\n> \n> We can consider this when we move into Ivy.\n\n@nigel-r-davis : Both the suggestions can be fine for me, maybe, since the intention is to distinguish wrt single server device scope, network wide it's my preference. ",
+          "createdAt": "2025-02-12T13:05:34Z",
+          "updatedAt": "2025-02-12T13:05:34Z"
+        },
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We will use the term \" network wide\". Close",
+          "createdAt": "2025-02-12T15:09:57Z",
+          "updatedAt": "2025-02-12T15:09:57Z"
         }
       ]
     },
