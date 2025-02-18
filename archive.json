@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-16T00:56:36.126415+00:00",
+  "timestamp": "2025-02-18T00:52:01.417525+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -420,13 +420,13 @@
       ],
       "labels": [
         "wga",
-        "agreed",
+        "needs discussion",
         "priority-1",
         "priority-2"
       ],
       "body": "> Some quick comments:\r\n> \r\n>   *   Please soften the various citations to ACTN. I would simply remove them.\r\n\r\n- [x] Closed with PR #74 \r\n>   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\\\r\n\r\n- [ ] #72\r\n\r\n>   *   Consider if some data nodes that are defined in other models can be added directly to the base model, e.g., the following ones from draft-li\r\n> \r\n> ```\r\n>       +--ro required-components*          -> ../uuid\r\n>       +--ro dependent-components*         -> ../uuid\r\n> \r\n> ```\r\n> \r\n\r\n- [ ] #70\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/\r\n",
       "createdAt": "2023-11-17T20:03:19Z",
-      "updatedAt": "2024-12-16T18:29:21Z",
+      "updatedAt": "2025-02-17T11:41:49Z",
       "closedAt": null,
       "comments": [
         {
@@ -1355,7 +1355,7 @@
       ],
       "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#L18\r\n\r\nThis model deals with physical things (solids and spaces). The model does not yet cover some physical aspects such as connectors, cables, strands and physical spans. We have some work that may be helpful in TAPI. We should avoid broad physical modeling such as geographic structures etc.\r\n\r\nthe ability to hot-swap and to deal with other dynamics should be considered in this model.\r\n\r\nOther characteristics such as height, length, width, weight etc. may be best handled in a spec layer. This needs to be discussed in some details. This also applies to the humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics.\r\n\r\nThe model intentionally does not cover functional aspects. We should work on the relationship between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really functional protections. ONF have some work that may help here.\r\n\r\nThere are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed could be a valid augment to a module that has a fan.\r\n\r\nThe model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should be considered carefully.\r\n\r\nThe model of power is unusual in that it is narrow functional. There is a flow etc. The relationship between this model and power  needs to be considered carefully. Power is not physical but from the perspective of the other functions it is essentially the motive force. There is no detailed model of power. In other bodies, power is \"smunged\" into the physical model.  This needs to be considered very carefully.\r\n\r\nThe model of software is complex and should be separate from the model of the physical solution.\r\n\r\nState machines associated with the power-up cycle, admin state etc. really related to the functional model and should be considered carefully.",
       "createdAt": "2023-06-14T14:32:04Z",
-      "updatedAt": "2025-02-14T14:37:24Z",
+      "updatedAt": "2025-02-17T05:06:53Z",
       "closedAt": null,
       "comments": [
         {
@@ -1382,16 +1382,9 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-02-12 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-12)**\n\n> - broad physical modeling such as geographic structures etc -- IVY is not ideal here, instead it comes under MDSC functions.\n\n This can be elaborated in passive model. Reference Architecture: GIS system.  Will Raise a case in Passive.\n\n> - The ability to hot-swap and to deal with other dynamics - IMO, operation should not be part of Inventory.\n\nThis is an operation aspect. NOT part of Base IVY.\nNeed to dig further to define capability model for IVY. \nWill raise a case to track this.\n\n\n> - Other characteristics such as height, length, width, weight etc. -- some are already there in inventory-location.\n\nSome are already there in inventory-location, but weight is **NOT** there. Need to raise an issue. Not needed in base IVY model.  Ideally all these can be added in specification model (this can be used in planning phase).\n\n> - humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics - Power already covered in IVY, remaining operational data can be added, but not necessarily in the base draft.\n\nShould be part of specification model.\nReference: ITUT G7711 (Ref Equipment Physical Model Annex-F )\n\n> - \"equipment protections\" --- The model intentionally does not cover functional aspects. We should work on the relationship > between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really > functional protections. ONF have some work that may help here. -- Can have a section for equipment protection guidelines.\n\nNot needed in base IVY model. Will raise a case for future tracking.\n\n> - There are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed > could be a valid augment to a module that has a fan. -- This is like comp specific ask for operation. In general, FAN and Temperature has close relation. Based on the current temperature, FAN speed will vary.\n> - The model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should > be considered carefully. - This is an operational aspect. This can be an extension draft.\n> - State machines associated with the power-up cycle, admin state etc. really related to the functional model and should be > considered carefully. - Again, this is an operational aspect.\n\nThese are operational aspect of components. Ideally these should be covered under a separate draft. Definitely, this is not part of base draft. Will raise an issue and track it for future.\n\n",
+          "body": "**[2025-02-12 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-12)**\n\n> - broad physical modeling such as geographic structures etc -- IVY is not ideal here, instead it comes under MDSC functions.\n\n This can be elaborated in passive model. Reference Architecture: GIS system.  Raised a case in Passive.\n[Handling of broad physical modeling such as geographic structures etc](https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/8)\n\n> - The ability to hot-swap and to deal with other dynamics - IMO, operation should not be part of Inventory.\n\nThis is an operation aspect. NOT part of Base IVY.\nNeed to dig further to define capability model for IVY. \nRaised a case to track this.\n[The ability to hot-swap and to deal with other dynamics](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/89)\n\n\n> - Other characteristics such as height, length, width, weight etc. -- some are already there in inventory-location.\n\nSome are already there in inventory-location, but weight is **NOT** there. Need to raise an issue. Not needed in base IVY model.  Ideally all these can be added in specification model (this can be used in planning phase).\n[Requirement for specification model](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/90)\n\n> - humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics - Power already covered in IVY, remaining operational data can be added, but not necessarily in the base draft.\n\nShould be part of specification model.\nReference: ITUT G7711 (Ref Equipment Physical Model Annex-F )\n[Requirement for specification model](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/90)\n\n> - \"equipment protections\" --- The model intentionally does not cover functional aspects. We should work on the relationship > between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really > functional protections. ONF have some work that may help here. -- Can have a section for equipment protection guidelines.\n\nNot needed in base IVY model. Raised a case for future tracking.\n[Future: equipment protections](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/91)\n\n> - There are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed > could be a valid augment to a module that has a fan. -- This is like comp specific ask for operation. In general, FAN and Temperature has close relation. Based on the current temperature, FAN speed will vary.\n> - The model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should > be considered carefully. - This is an operational aspect. This can be an extension draft.\n> - State machines associated with the power-up cycle, admin state etc. really related to the functional model and should be > considered carefully. - Again, this is an operational aspect.\n\nThese are operational aspect of components. Ideally these should be covered under a separate draft. Definitely, this is not part of base draft. Raised an issue and track it for future.\n[Future: Operational aspect of components](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/92)\n\n",
           "createdAt": "2025-02-13T19:06:43Z",
-          "updatedAt": "2025-02-14T14:37:24Z"
-        },
-        {
-          "author": "prmanna",
-          "authorAssociation": "NONE",
-          "body": "\n> - broad physical modeling such as geographic structures etc -- IVY is not ideal here, instead it comes under MDSC functions.\n\n This can be elaborated in passive model. Reference Architecture: GIS system.  Will Raise a case in Passive.\n\n> - The ability to hot-swap and to deal with other dynamics - IMO, operation should not be part of Inventory.\n\nThis is an operation aspect. NOT part of Base IVY.\nNeed to dig further to define capability model for IVY. \nWill raise a case to track this.\n\n\n> - Other characteristics such as height, length, width, weight etc. -- some are already there in inventory-location.\n\nSome are already there in inventory-location, but weight is **NOT** there. Need to raise an issue. Not needed in base IVY model.  Ideally all these can be added in specification model (this can be used in planning phase).\n\n> - humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics - Power already covered in IVY, remaining operational data can be added, but not necessarily in the base draft.\n\nShould be part of specification model.\nReference: ITUT G7711 (Ref Equipment Physical Model Annex-F )\n\n> - \"equipment protections\" --- The model intentionally does not cover functional aspects. We should work on the relationship > between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really > functional protections. ONF have some work that may help here. -- Can have a section for equipment protection guidelines.\n\nNot needed in base IVY model. Will raise a case for future tracking.\n\n> - There are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed > could be a valid augment to a module that has a fan. -- This is like comp specific ask for operation. In general, FAN and Temperature has close relation. Based on the current temperature, FAN speed will vary.\n> - The model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should > be considered carefully. - This is an operational aspect. This can be an extension draft.\n> - State machines associated with the power-up cycle, admin state etc. really related to the functional model and should be > considered carefully. - Again, this is an operational aspect.\n\nThese are operational aspect of components. Ideally these should be covered under a separate draft. Definitely, this is not part of base draft. Will raise an issue and track it for future.\n\n",
-          "createdAt": "2025-02-14T13:08:38Z",
-          "updatedAt": "2025-02-14T13:08:38Z"
+          "updatedAt": "2025-02-17T05:05:30Z"
         }
       ]
     },
@@ -2890,6 +2883,70 @@
       "body": "I have received an offline comment to further clarify that the base model can be applicable also to optical local loops, access networks, core networks, data center, etc.\n",
       "createdAt": "2025-02-07T17:00:30Z",
       "updatedAt": "2025-02-07T17:00:52Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 89,
+      "id": "I_kwDOKiDYo86qRqZj",
+      "title": "The ability to hot-swap and to deal with other dynamics",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/89",
+      "state": "OPEN",
+      "author": "prmanna",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "> - The ability to hot-swap and to deal with other dynamics - IMO, operation should not be part of Inventory.\n\nThis is an operation aspect. NOT part of Base IVY.\nNeed to dig further to define capability model for IVY. \n\nhttps://github.com/ietf-ivy-wg/network-inventory-yang/issues/29#issuecomment-2657488515",
+      "createdAt": "2025-02-17T04:57:39Z",
+      "updatedAt": "2025-02-17T04:57:39Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 90,
+      "id": "I_kwDOKiDYo86qRsGm",
+      "title": "Requirement for specification model",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/90",
+      "state": "OPEN",
+      "author": "prmanna",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "\n> - Other characteristics such as height, length, width, weight etc. -- some are already there in inventory-location.\n\nSome are already there in inventory-location, but weight is **NOT** there. Need to raise an issue. Not needed in base IVY model.  Ideally all these can be added in specification model (this can be used in planning phase).\n\n> - humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics - Power already covered in IVY, remaining operational data can be added, but not necessarily in the base draft.\n\nShould be part of specification model.\nReference: ITUT G7711 (Ref Equipment Physical Model Annex-F )\n\nhttps://github.com/ietf-ivy-wg/network-inventory-yang/issues/29#issuecomment-2657488515",
+      "createdAt": "2025-02-17T05:01:24Z",
+      "updatedAt": "2025-02-17T05:01:24Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 91,
+      "id": "I_kwDOKiDYo86qRspM",
+      "title": "Future: equipment protections",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/91",
+      "state": "OPEN",
+      "author": "prmanna",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "> - \"equipment protections\" --- The model intentionally does not cover functional aspects. We should work on the relationship > between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really > functional protections. ONF have some work that may help here. -- Can have a section for equipment protection guidelines.\n\nNot needed in base IVY model. Will raise a case for future tracking.\n\nhttps://github.com/ietf-ivy-wg/network-inventory-yang/issues/29#issuecomment-2657488515",
+      "createdAt": "2025-02-17T05:03:04Z",
+      "updatedAt": "2025-02-17T05:03:04Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 92,
+      "id": "I_kwDOKiDYo86qRtbt",
+      "title": "Future: Operational aspect of components",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/92",
+      "state": "OPEN",
+      "author": "prmanna",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "> - There are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed > could be a valid augment to a module that has a fan. -- This is like comp specific ask for operation. In general, FAN and Temperature has close relation. Based on the current temperature, FAN speed will vary.\n> - The model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should > be considered carefully. - This is an operational aspect. This can be an extension draft.\n> - State machines associated with the power-up cycle, admin state etc. really related to the functional model and should be > considered carefully. - Again, this is an operational aspect.\n\nThese are operational aspect of components. Ideally these should be covered under a separate draft. Definitely, this is not part of base draft. Will raise an issue and track it for future.\n\n\nhttps://github.com/ietf-ivy-wg/network-inventory-yang/issues/29#issuecomment-2657488515",
+      "createdAt": "2025-02-17T05:04:50Z",
+      "updatedAt": "2025-02-17T05:05:44Z",
       "closedAt": null,
       "comments": []
     }
