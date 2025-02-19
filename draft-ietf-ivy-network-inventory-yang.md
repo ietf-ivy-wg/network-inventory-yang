@@ -136,7 +136,7 @@ Per the definition of {{?RFC8969}}, the network inventory model is a network mod
 This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
 
 This base data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
-microwave networks in particular) and can be augmented to
+microwave networks as well as optical local loops, access networks, core networks, data centers, etc.) and can be augmented to
 include required application- and technology-specific inventory details together with specific hardware or software component's attributes.
 
 The YANG data model defined in the document is scoped to cover the common use cases for Network Inventory covering both hardware and base software information.
