@@ -204,12 +204,15 @@ Port:
 
 Also, the document makes use of the following terms:
 
-The following terms are defined in {{!RFC8343}} and are not redefined
-here:
+Physical interface:
+: An interface associated to a physical port. A physical interface is always in the lowest layer of the interface stack.
 
-* physical interface
+Logical interface:
+: An interface which is not associated to a physical port.
 
-> TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
+> Editors' Note: check whether the definitions of physical and logical interfaces can be replaced by a normative reference to {{!RFC8343}}
+
+> Editors' Note: Add recap for the concepts of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
 Network Inventory:
 : A collection of data for network elements and their components managed by a specific management system.
@@ -234,10 +237,15 @@ Board/Card:
 : A pluggable equipment can be inserted into one or several slots (or sub-slots) and can afford a specific transmission function independently.
 
 Breakout Port:
-: A port is usually associated with a single physical interface. A breakout port is a port which is broken down and associated into multiple interfaces.
+: A port is usually associated with a single physical interface. A breakout port is a port which is broken down and associated into multiple physical interfaces.
+
+Port Breakout:
+: The configuration of a breakout port.
+
+> Note that interface channelization, when an interface (e.g., an Ethernet interface) is configured to support multiple logical sub-interfaces (e.g., VLAN interfaces), is different than port breakout and outside the scope of inventory models.
 
 Breakout channel:
-: An abstraction of the atomic resource elements into which a breakout port can be broken down: an interface can be associated with one or more breakout channels but no more than one interface can be associated with one breakout channel.
+: An abstraction of the atomic resource elements into which a breakout port can be broken down: a physical interface can be associated with one or more breakout channels but no more than one physical interface can be associated with one breakout channel.
 : The physical elements abstracted as breakout channels are implementation specific.
 {{ports-transceivers-breakouts-examples}} provides some examples of breakout ports configurations and implementations.
 
@@ -650,7 +658,7 @@ The model proposed by this draft is designed to be as generic as possible so to 
 
 # Examples of ports, transceivers and port breakouts {#ports-transceivers-breakouts-examples}
 
-> \[Editors' Note]: Need to provide some examples based on [IETF 121 Slides](https://datatracker.ietf.org/doc/slides-120-ivy-2-a-yang-data-model-for-network-inventory/), and in particular:
+> Editors' Note: Need to provide some examples based on [IETF 121 Slides](https://datatracker.ietf.org/doc/slides-120-ivy-2-a-yang-data-model-for-network-inventory/), and in particular:
 > - slide 8 (100G-LR single-channel port)
 > - slide 9 (400G-LR4 multi-channel WDM port)
 > - slide 10 (400G-DR4 MPO port)
