@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-18T00:52:01.417525+00:00",
+  "timestamp": "2025-02-20T00:52:50.522832+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -559,7 +559,7 @@
       ],
       "body": "Check how it is possible to manage MPO ports\r\n\r\nSee: https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/32#issuecomment-1041621665\r\n",
       "createdAt": "2022-02-16T15:25:22Z",
-      "updatedAt": "2024-10-01T16:00:51Z",
+      "updatedAt": "2025-02-19T17:13:37Z",
       "closedAt": null,
       "comments": [
         {
@@ -575,6 +575,13 @@
           "body": "Some background material about MPO ports:\r\n\r\nhttps://www.sanspot.com/5m-mpo-lc-om3-12-core-mpo-fiber-pmlc-fm312nxp05\r\n\r\nhttps://community.fs.com/article/mtp-mpo-cables-what-are-they-and-how-to-use-them.html\r\n\r\nhttps://community.fs.com/article/mtp-mpo-cables-what-are-they-and-how-to-use-them.html\r\n\r\nThe latter reference describes two types of MPO cables:\r\n- MPO Trunk Cables\r\n- MPO Breakout Cables\r\n\r\nIt might be worthwhile analyzing whether the modelling of MPO trunk and breakout cables should be the same or different\r\n\r\nOther examples of multi-lane Ethernet interfaces (with MPO or CWDM multiplexing):\r\n\r\nhttps://www.servethehome.com/differences-behind-100gbase-sr4-and-100gbase-lr4-optics/\r\n",
           "createdAt": "2024-04-10T18:36:10Z",
           "updatedAt": "2024-04-10T18:38:54Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "To be closed with #45 ",
+          "createdAt": "2025-02-19T17:13:35Z",
+          "updatedAt": "2025-02-19T17:13:35Z"
         }
       ]
     },
@@ -939,11 +946,12 @@
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [
+        "agreed",
         "priority-1"
       ],
       "body": "Currently, the model does not support port breakouts. Today it is a very common functionality that should be modeled.",
       "createdAt": "2023-03-15T14:44:05Z",
-      "updatedAt": "2024-10-01T16:00:52Z",
+      "updatedAt": "2025-02-19T17:13:12Z",
       "closedAt": null,
       "comments": [
         {
@@ -2355,12 +2363,12 @@
         "YuChaode"
       ],
       "labels": [
-        "agreed",
+        "wait",
         "priority-1"
       ],
       "body": "Network elements could be grouped into a single \"virtual\" element that manages all resources of the  encompassing different hardware chassis. \r\n\r\nIn simple words, two chassis, like two or more switches, can be connected and behave as a single one. \r\n\r\nThis is tackled in rfc8348 with the stack component.  It would be nice to have guidelines on how this should be modeled in this new model.\r\n\r\nFor reference, in one specific implementation of openconfig in this type of system, all interfaces of the child chassis are listed as orphans under /components. There is no reference  of the child chassis, or its line cards. For an inventory solution, we do need the actual hardware list.\r\n\r\nSee also https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/6",
       "createdAt": "2024-09-16T14:27:01Z",
-      "updatedAt": "2024-11-20T16:11:24Z",
+      "updatedAt": "2025-02-19T16:58:43Z",
       "closedAt": null,
       "comments": [
         {
@@ -2418,6 +2426,13 @@
           "body": "**[2024-11-20 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-11-20)**\r\n\r\nDiscussed in the IVY WG meeting during IETF 121:\r\n- [Slides](https://datatracker.ietf.org/doc/slides-121-ivy-a-yang-data-model-for-network-inventory/)\r\n- [Minutes](https://datatracker.ietf.org/doc/minutes-121-ivy-202411071300/)\r\n- [Follow-up discussion on IVY mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/eFvEskV926bjO4QzyNdxf4IMqWc/)\r\n\r\n- [ ] @YuChaode Revise and clarify, if needed, the terminology in RFC 8348 and provide some JSON examples for stacked switch and multi-shelf optical NEs (target: December 11 call)\r\n\r\nIt has been highglighted that the intra-NE link may not always be an fiber cable: in principle it can be fiber, waveguide, eletrical, ...\r\n\r\nThis is an issue to discuss further in the context of the passive inventory draft\r\n\r\n- [ ] @italobusi  Pass this information and note to the authors of the passive inventory draft\r\n",
           "createdAt": "2024-11-20T16:10:57Z",
           "updatedAt": "2024-11-20T16:11:24Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-02-19 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-19)**\n\nNeed to wait until the definition of sub-shelf is clarified: see IVY WG mailing list discussion\n\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/LT9AMNqPEuu4EUMgE57lw33qXtE/\n",
+          "createdAt": "2025-02-19T16:58:41Z",
+          "updatedAt": "2025-02-19T16:58:41Z"
         }
       ]
     },
@@ -2878,13 +2893,22 @@
         "italobusi"
       ],
       "labels": [
+        "agreed",
         "priority-1"
       ],
       "body": "I have received an offline comment to further clarify that the base model can be applicable also to optical local loops, access networks, core networks, data center, etc.\n",
       "createdAt": "2025-02-07T17:00:30Z",
-      "updatedAt": "2025-02-07T17:00:52Z",
+      "updatedAt": "2025-02-19T18:07:38Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-02-19 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-19)**\n\nAgreed\n\n- [x] @italobusi : Update the text in PR #76\n",
+          "createdAt": "2025-02-19T16:59:46Z",
+          "updatedAt": "2025-02-19T18:07:38Z"
+        }
+      ]
     },
     {
       "number": 89,
@@ -2947,6 +2971,25 @@
       "body": "> - There are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed > could be a valid augment to a module that has a fan. -- This is like comp specific ask for operation. In general, FAN and Temperature has close relation. Based on the current temperature, FAN speed will vary.\n> - The model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should > be considered carefully. - This is an operational aspect. This can be an extension draft.\n> - State machines associated with the power-up cycle, admin state etc. really related to the functional model and should be > considered carefully. - Again, this is an operational aspect.\n\nThese are operational aspect of components. Ideally these should be covered under a separate draft. Definitely, this is not part of base draft. Will raise an issue and track it for future.\n\n\nhttps://github.com/ietf-ivy-wg/network-inventory-yang/issues/29#issuecomment-2657488515",
       "createdAt": "2025-02-17T05:04:50Z",
       "updatedAt": "2025-02-17T05:05:44Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 93,
+      "id": "I_kwDOKiDYo86qs537",
+      "title": "Examples of breakout configurations",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/93",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "agreed",
+        "priority-1"
+      ],
+      "body": "**[2025-02-19 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-19)**\n\nComplete the text on the Appendix on \"Examples of ports, transceivers and port breakouts\", providing some examples based on [IETF 121 Slides](https://datatracker.ietf.org/doc/slides-120-ivy-2-a-yang-data-model-for-network-inventory/), and in particular:\n- slide 8 (100G-LR single-channel port)\n- slide 9 (400G-LR4 multi-channel WDM port)\n- slide 10 (400G-DR4 MPO port)\n\nDescribe the concept of host and line channels and the mapping to breakout channels\n\nComplement the slides from [IETF 121 Slides](https://datatracker.ietf.org/doc/slides-120-ivy-2-a-yang-data-model-for-network-inventory/) with [openconfig-breakout-groups.pptx](https://github.com/user-attachments/files/15991133/openconfig-breakout-groups.pptx) to show also the physical interfaces\n\nConsider also some clarifications provided in https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76#issuecomment-2669201642",
+      "createdAt": "2025-02-19T16:52:37Z",
+      "updatedAt": "2025-02-19T17:15:38Z",
       "closedAt": null,
       "comments": []
     }
@@ -5329,15 +5372,15 @@
         "italobusi"
       ],
       "labels": [],
-      "body": "Proposal for ports and breakouts modelling: fix #45 , fix #12 and fix #19\r\n\r\nAdded references to network-element, port component and channel: fix #69 \r\n\r\n---\r\n\r\nIn order to validate the JSON examples, some fixes are needed on the YANG file:\r\n\r\n1. the parent-component-ref should be defined as a leafref: see PR #66 \r\n2. the component class type should be an identityref and not a union of identityrefs: see issue #78\r\n\r\n---\r\n\r\nCo-Authored-By: YuChaode <yuchaode@huawei.com>\r\n",
+      "body": "Proposal for ports and breakouts modelling: fix #45 , fix #12 and fix #19\r\n\r\nAdded references to network-element, port component and channel: fix #69 \r\n\r\nClarified further the applicability of the base model: fix #88\r\n\r\n---\r\n\r\nIn order to validate the JSON examples, some fixes are needed on the YANG file:\r\n\r\n1. the parent-component-ref should be defined as a leafref: see PR #66 \r\n2. the component class type should be an identityref and not a union of identityrefs: see issue #78\r\n\r\n---\r\n\r\nCo-Authored-By: YuChaode <yuchaode@huawei.com>\r\n",
       "createdAt": "2024-12-11T15:03:32Z",
-      "updatedAt": "2025-02-07T20:48:35Z",
+      "updatedAt": "2025-02-19T18:08:39Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "58aad16e8ff458026a6ab56919955086b593621a",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "port-breakout",
-      "headRefOid": "4fefb4f6d548fa831158398b050e6f16170d3f5c",
+      "headRefOid": "f7a69cd9540e85856f501007783fa00ca7559700",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -5391,6 +5434,13 @@
           "body": "**[2025-02-05 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-05)**\r\n\r\nc/atomic elements/atomic resource elements/\r\n\r\nNeed to continue the discussion about:\r\n- relationship between breakout channels and line channels (and the need to define breakout channels)\r\n- clarify that port breakout is different than channelizing an interface into multiple (logical) sub-interfaces (e.g., VLAN sub-interfaces)\r\n- whether the multiple interfaces associated with a breakout port are physical or logical interfaces (and whether there is a need to disambiguate the definition of physical and logical interfaces)\r\n\r\nNigel: The term \"physical\" is used in our work to cover both the genuinely physical thing (i.e., a thing that can be measured with a ruler (has spatial dimensions) and sometimes by scales (has mass)) and some functional things that are closely associated with the physical thing. Whilst a pure definition of physical, with no functional aspects, would be preferable, the word is misused extensively across the industry and hence we have to align with that misuse.\r\n",
           "createdAt": "2025-02-07T17:02:30Z",
           "updatedAt": "2025-02-07T17:07:22Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-02-19 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-19)**\r\n\r\nInterfaces are by definition logical concept. The physical interface term can be used to represent the interface in the lowest layer of the interface stack associated a physical port.\r\n\r\n- [x] @italobusi add some note to the draft clarifying that channelizing an interface (e.g., an Ethernet interface) into multiple logical sub-interfaces (e.g., VLAN interfaces) is not port breakout and outside the scope of the inventory models.\r\n\r\nIt has been clarified that the intention for defining the concept of breakout channels is to make the model more flexible and independent from the technology (e.g., optical) and the specific implementations. In case of 400G-DR4 implementations, the breakout channels map 1:1 with the line channels: the intention is to describe this mapping in an appendix (text still to be developed).\r\n\r\nIn the 400G-DR4 examples, there are two host channels associated with a single line channel. However, it is not possible to associate two different interfaces with two different host channels if they are associated with the same line channel.\r\n\r\nWhile the association between the physical interfaces, host channels and line channels is relevant for device configuration (and supported by OpenConfig), from network inventory perspective, only the associations between the physical interfaces (abstracted as physical LTPs) and the line channels is relevant. Therefore the line channels can be reported in the network inventory model as breakout channels.\r\n\r\nThe appendix with the examples of breakout configuration can be completed in the next update: issue #93  has been created to complete the example\r\n\r\nAgreed to review the PR before the next call (February 26, 2025) with the objective to be able to merge it before IETF 122 cut-off deadline\r\n",
+          "createdAt": "2025-02-19T16:47:44Z",
+          "updatedAt": "2025-02-19T17:38:25Z"
         }
       ],
       "reviews": [
