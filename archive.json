@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-20T00:52:50.522832+00:00",
+  "timestamp": "2025-02-23T00:56:50.394977+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -5374,7 +5374,7 @@
       "labels": [],
       "body": "Proposal for ports and breakouts modelling: fix #45 , fix #12 and fix #19\r\n\r\nAdded references to network-element, port component and channel: fix #69 \r\n\r\nClarified further the applicability of the base model: fix #88\r\n\r\n---\r\n\r\nIn order to validate the JSON examples, some fixes are needed on the YANG file:\r\n\r\n1. the parent-component-ref should be defined as a leafref: see PR #66 \r\n2. the component class type should be an identityref and not a union of identityrefs: see issue #78\r\n\r\n---\r\n\r\nCo-Authored-By: YuChaode <yuchaode@huawei.com>\r\n",
       "createdAt": "2024-12-11T15:03:32Z",
-      "updatedAt": "2025-02-19T18:08:39Z",
+      "updatedAt": "2025-02-20T09:27:39Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "58aad16e8ff458026a6ab56919955086b593621a",
@@ -5513,6 +5513,38 @@
               "body": "See: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76#issuecomment-2607696292",
               "createdAt": "2025-01-22T16:25:33Z",
               "updatedAt": "2025-01-22T16:25:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86VtChw",
+          "commit": {
+            "abbreviatedOid": "f7a69cd"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-12-18T11:51:08Z",
+          "updatedAt": "2025-02-20T09:27:39Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "Resolve with https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76#issuecomment-2554831564 new \"port\" definition.",
+              "createdAt": "2025-02-20T09:21:14Z",
+              "updatedAt": "2025-02-20T09:27:39Z"
+            },
+            {
+              "originalPosition": 95,
+              "body": "We have introduced a new definition of breakout channels that supersede this comment  ",
+              "createdAt": "2025-02-20T09:23:41Z",
+              "updatedAt": "2025-02-20T09:27:39Z"
+            },
+            {
+              "originalPosition": 131,
+              "body": "already solved as above .",
+              "createdAt": "2025-02-20T09:26:48Z",
+              "updatedAt": "2025-02-20T09:27:39Z"
             }
           ]
         }
