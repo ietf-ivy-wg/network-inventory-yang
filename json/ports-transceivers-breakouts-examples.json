@@ -16,92 +16,92 @@
                 "component-id": "port-1",
                 "class": "iana-hardware:port",
                 "description": "Example of an integrated (non-pluggable) port.",
-                "parent-component-ref": "board-1",
+                "parent": "board-1",
                 "parent-rel-pos": 1
               },
               {
-                "component-id": "transceivers-module-1",
-                "class": "ietf-network-inventory:transceivers-module",
+                "component-id": "transceiver-module-1",
+                "class": "ietf-network-inventory:transceiver-module",
                 "description": "Example of an integrated (non-pluggable) port.",
-                "parent-component-ref": "port-1",
+                "parent": "port-1",
                 "is-fru": false
               },
               {
                 "component-id": "port-2",
                 "class": "iana-hardware:port",
                 "description": "Example of an empty port.",
-                "parent-component-ref": "board-1",
+                "parent": "board-1",
                 "parent-rel-pos": 2
               },
               {
                 "component-id": "port-3",
                 "class": "iana-hardware:port",
                 "description": "Example of a single channel optical pluggable port.",
-                "parent-component-ref": "board-1",
+                "parent": "board-1",
                 "parent-rel-pos": 3
               },
               {
-                "component-id": "transceivers-module-3",
-                "class": "ietf-network-inventory:transceivers-module",
+                "component-id": "transceiver-module-3",
+                "class": "ietf-network-inventory:transceiver-module",
                 "description": "Example of a single channel optical pluggable port.",
-                "parent-component-ref": "port-3",
+                "parent": "port-3",
                 "is-fru": true
               },
               {
                 "component-id": "port-4",
                 "class": "iana-hardware:port",
                 "description": "Example of a WDM multi-channel pluggable port.",
-                "parent-component-ref": "board-1",
+                "parent": "board-1",
                 "parent-rel-pos": 4
               },
               {
-                "component-id": "transceivers-module-4",
-                "class": "ietf-network-inventory:transceivers-module",
+                "component-id": "transceiver-module-4",
+                "class": "ietf-network-inventory:transceiver-module",
                 "description": "Example of a WDM multi-channel pluggable port.",
-                "parent-component-ref": "port-4",
+                "parent": "port-4",
                 "is-fru": true
               },
               {
                 "component-id": "port-5",
                 "class": "iana-hardware:port",
                 "description": "Example of an optical MPO pluggable trunk port (not supporting breakouts).",
-                "parent-component-ref": "board-1",
+                "parent": "board-1",
                 "parent-rel-pos": 5
               },
               {
-                "component-id": "transceivers-module-5",
-                "class": "ietf-network-inventory:transceivers-module",
+                "component-id": "transceiver-module-5",
+                "class": "ietf-network-inventory:transceiver-module",
                 "description": "Example of an optical MPO pluggable trunk port (not supporting breakouts).",
-                "parent-component-ref": "port-5",
+                "parent": "port-5",
                 "is-fru": true
               },
               {
                 "component-id": "port-6",
                 "class": "iana-hardware:port",
                 "description": "Example of an optical MPO pluggable trunk port (supporting breakouts).",
-                "parent-component-ref": "board-1",
+                "parent": "board-1",
                 "parent-rel-pos": 6
               },
               {
-                "component-id": "transceivers-module-6",
-                "class": "ietf-network-inventory:transceivers-module",
+                "component-id": "transceiver-module-6",
+                "class": "ietf-network-inventory:transceiver-module",
                 "description": "Example of an optical MPO pluggable trunk port (supporting breakouts).",
-                "parent-component-ref": "port-6",
+                "parent": "port-6",
                 "is-fru": true,
-                "transceivers-module-specific-info": {
-                  "channels": {
-                    "channel": [
+                "transceiver-module-specific-info": {
+                  "breakout-channels": {
+                    "breakout-channel": [
                       {
-                        "channel-number": 1
+                        "channel-id": 1
                       },
                       {
-                        "channel-number": 2
+                        "channel-id": 2
                       },
                       {
-                        "channel-number": 3
+                        "channel-id": 3
                       },
                       {
-                        "channel-number": 4
+                        "channel-id": 4
                       }
                     ]
                   }
@@ -111,29 +111,29 @@
                 "component-id": "port-7",
                 "class": "iana-hardware:port",
                 "description": "Example of an optical MPO pluggable breakout port.",
-                "parent-component-ref": "board-1",
+                "parent": "board-1",
                 "parent-rel-pos": 7
               },
               {
-                "component-id": "transceivers-module-7",
-                "class": "ietf-network-inventory:transceivers-module",
+                "component-id": "transceiver-module-7",
+                "class": "ietf-network-inventory:transceiver-module",
                 "description": "Example of an optical MPO pluggable breakout port.",
-                "parent-component-ref": "port-7",
+                "parent": "port-7",
                 "is-fru": true,
-                "transceivers-module-specific-info": {
-                  "channels": {
-                    "channel": [
+                "transceiver-module-specific-info": {
+                  "breakout-channels": {
+                    "breakout-channel": [
                       {
-                        "channel-number": 1
+                        "channel-id": 1
                       },
                       {
-                        "channel-number": 2
+                        "channel-id": 2
                       },
                       {
-                        "channel-number": 3
+                        "channel-id": 3
                       },
                       {
-                        "channel-number": 4
+                        "channel-id": 4
                       }
                     ]
                   }
