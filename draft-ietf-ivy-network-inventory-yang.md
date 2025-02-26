@@ -168,19 +168,23 @@ The YANG data model defined in the document is intended to only report actual in
 ## Terminology
 
 The following terms are defined in {{!RFC7950}} and are not redefined here:
+
 - server
 - augment
 - data model
 - data node
 
 The following terms are defined in {{!RFC6241}} and are not redefined here:
+
 - configuration data
 - state data
 
 The following terms are defined in {{!RFC8342}} and are not redefined here:
+
 - applied configuration
 
 The following terms are defined in the description statements of the corresponding YANG identities, defined in {{IANA_HW_YANG}}, and are not redefined here:
+
 - backplane
 - battery
 - container
