@@ -542,8 +542,8 @@ module ietf-network-inventory {
                  transceivers modules only.";
               container breakout-channels {
                 presence
-                  "When present it indicates that the multi-channel
-                   port supports port breakouts.";
+                  "When present, it indicates that port breakout is
+                   supported.";
                 description
                   "Top level container for the list of breakout
                    channels supported by the transceivers module.";

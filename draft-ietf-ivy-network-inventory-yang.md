@@ -237,7 +237,10 @@ Board/Card:
 : A pluggable equipment can be inserted into one or several slots (or sub-slots) and can afford a specific transmission function independently.
 
 Breakout Port:
-: A port is usually associated with a single physical interface. A breakout port is a port which is broken down and associated into multiple physical interfaces.
+: A port is usually associated with a single physical interface. A breakout port is a port which is broken down and associated into multiple physical interfaces. Those physical interfaces can have the same or different speeds and the same or different number of breakout channels.
+
+Trunk Port:
+: A trunk port is a port which is associated with one and only physical interface.
 
 Port Breakout:
 : The configuration of a breakout port.
@@ -484,7 +487,7 @@ The model defines the 'breakout-channels' presence container to indicate whether
 
 It is assumed that a port which supports port breakout can be configured either as a trunk port or as a breakout port.
 
-Reporting whether a port, which supports port breakout, is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model: the model providing the mapping between the topology and the inventory models should instead provide sufficient information to identify how the port is configured and, in case of breakout configuration, which breakout channel is associated with which Link Termination Point (LTP), abstracting a device physical interface within the topology model.
+Reporting whether a port, which supports port breakout, is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model. The model providing the mapping between the topology and the inventory models should provide sufficient information to identify how the port is configured and, in case of breakout configuration, which breakout channel is associated with which Link Termination Point (LTP), abstracting a device physical interface within the topology model.
 
 ## Changes Since RFC 8348
 
