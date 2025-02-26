@@ -136,7 +136,7 @@ Per the definition of {{?RFC8969}}, the network inventory model is a network mod
 This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
 
 This base data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
-microwave networks in particular) and can be augmented to
+microwave networks as well as optical local loops, access networks, core networks, data centers, etc.) and can be augmented to
 include required application- and technology-specific inventory details together with specific hardware or software component's attributes.
 
 The YANG data model defined in the document is scoped to cover the common use cases for Network Inventory covering both hardware and base software information.
@@ -194,11 +194,25 @@ The following terms are defined in the description statements of the correspondi
 - stack
 - storage device
 
-> Note that the definition of port component in {{IANA_HW_YANG}} needs to be refined in future version of this document.
+> Editors' Note: The port definition below needs to be moved to iana-hardware update
+
+Port:
+: A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables.
+: In case of pluggable ports, the port may be empty when no transceiver module is plugged in.
 
 > TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
 Also, the document makes use of the following terms:
+
+Physical interface:
+: An interface associated to a physical port. A physical interface is always in the lowest layer of the interface stack.
+
+Logical interface:
+: An interface which is not associated to a physical port.
+
+> Editors' Note: check whether the definitions of physical and logical interfaces can be replaced by a normative reference to {{!RFC8343}}
+
+> Editors' Note: Add recap for the concepts of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
 Network Inventory:
 : A collection of data for network elements and their components managed by a specific management system.
@@ -222,6 +236,29 @@ Slot:
 Board/Card:
 : A pluggable equipment can be inserted into one or several slots (or sub-slots) and can afford a specific transmission function independently.
 
+Breakout Port:
+: A port is usually associated with a single physical interface. A breakout port is a port which is broken down and associated into multiple physical interfaces. Those physical interfaces can have the same or different speeds and the same or different number of breakout channels.
+
+Trunk Port:
+: A trunk port is a port which is associated with one and only physical interface.
+
+Port Breakout:
+: The configuration of a breakout port.
+
+> Note that interface channelization, when an interface (e.g., an Ethernet interface) is configured to support multiple logical sub-interfaces (e.g., VLAN interfaces), is different than port breakout and outside the scope of inventory models.
+
+Breakout channel:
+: An abstraction of the atomic resource elements into which a breakout port can be broken down: a physical interface can be associated with one or more breakout channels but no more than one physical interface can be associated with one breakout channel.
+: The physical elements abstracted as breakout channels are implementation specific.
+{{port-examples}} provides some examples of breakout ports configurations and implementations.
+
+Container:
+: A hardware component class that is capable of containing one or more removable physical entities (e.g., a slot in a chassis is containing a board).
+
+Transceiver:
+: A transceiver represents a transmitter/receiver (Tx/Rx) pair which is transmitting and receiving a signal from the media.
+: This definition generalizes the transceiver definition in {{?I-D.ietf-ccamp-optical-impairment-topology-yang}} to model also non optical transceivers (e.g., electrical transceivers).
+
 ## Tree Diagrams
 
 The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}}.
@@ -236,7 +273,7 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 | yang   | ietf-yang-types                 | {{Section 3 of !RFC6991}}  |
 | ianahw | iana-hardware                   | {{IANA_HW_YANG}} |
 | nwi    | ietf-network-inventory          | RFC XXXX      |
-{: #tab-prefixes title="Prefixes and corresponding YANG modules"}
+{:#tab-prefixes title="Prefixes and corresponding YANG modules"}
 
 # YANG Data Model for Network Inventory Overview
 
@@ -284,7 +321,7 @@ However, the YANG data model defined in {{!RFC8348}} has been used as a referenc
               +--rw component-id            string
               ...
 ~~~~
-{: #fig-overall title="Overall Tree Structure"}
+{:#fig-overall title="Overall Tree Structure"}
 
 ## Common Design for All Inventory Objects {#common-attributes}
 
@@ -322,7 +359,7 @@ Description:
               +--rw class                   union
               ...
 ~~~~
-{: #fig-nec-tree title="Common Attributes Between Network Elements and Components Subtree"}
+{:#fig-nec-tree title="Common Attributes Between Network Elements and Components Subtree"}
 
 ## Network Element
 
@@ -343,7 +380,7 @@ elements as shown in {{fig-ne-tree}}.
         +--rw product-name?    string
         ...
 ~~~~
-{: #fig-ne-tree title="Network Elements Subtree"}
+{:#fig-ne-tree title="Network Elements Subtree"}
 
 > Not all the attributes defined in {{?RFC8348}} are applicable for network element. And there could also be some missing attributes which are not recognized by {{?RFC8348}}. More extensions could be introduced in later revisions after the missing attributes are fully discussed.
 
@@ -377,7 +414,7 @@ and non-hardware components (e.g., software components).
         +--rw mfg-date?               yang:date-and-time
         +--rw uri*                    inet:uri
 ~~~~
-{: #fig-comp-tree title="Components Subtree"}
+{:#fig-comp-tree title="Components Subtree"}
 
 For state data like "admin-state", "oper-state", and so on, this document considers that they are related to device hardware management, not network inventory. Therefore, they are outside of the scope of this document. Same for the sensor-data, they should be defined in some other performance monitoring data models instead of the inventory data model.
 
@@ -418,7 +455,7 @@ Based on TMF classification in {{TMF_SD2-20}}, hardware components can be divide
                                              |    port   |
                                              +-----------+
 ~~~~
-{: #fig-hw-inventory-object-relationship title="Relationship between typical inventory objects in physical network elements"}
+{:#fig-hw-inventory-object-relationship title="Relationship between typical inventory objects in physical network elements"}
 
 The "iana-hardware" module {{IANA_HW_YANG}} defines YANG identities for
 the hardware component types in the IANA-maintained "IANA-ENTITY-MIB"
@@ -443,6 +480,14 @@ The software components of other
 classes, such as platform software, BIOS, bootloader, and software
 patch information, are outside the scope of this document and defined other documents such as
 {{?I-D.wzwb-ivy-network-inventory-software}}.
+
+### Breakout ports {#ports}
+
+The model defines the 'breakout-channels' presence container to indicate whether the port, which contains the transceiver module, can be configured as a breakout port or not.
+
+It is assumed that a port which supports port breakout can be configured either as a trunk port or as a breakout port.
+
+Reporting whether a port, which supports port breakout, is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model. The model providing the mapping between the topology and the inventory models should provide sufficient information to identify how the port is configured and, in case of breakout configuration, which breakout channel is associated with which Link Termination Point (LTP), abstracting a device physical interface within the topology model.
 
 ## Changes Since RFC 8348
 
@@ -485,7 +530,7 @@ In order to support these use cases, this model is not aligned with {{!RFC8348}}
 
 Instead the name is defined as an optional attribute and the component-id is defined as the key for the component list (in alignment with the approach followed for the network-element list).
 
-{: #ni-augment}
+{:#ni-augment}
 
 # Extending Network Inventory
 
@@ -512,7 +557,7 @@ and other models is illustrated in Figure 4.
 +-------------+    +-------------+     +-------------+   +-------------+
 ~~~~
 
-{: #ni-tree}
+{:#ni-tree}
 
 # Network Inventory Tree Diagram
 
@@ -521,18 +566,18 @@ and other models is illustrated in Figure 4.
 ~~~~ ascii-art
 {::include-fold ./ietf-network-inventory.tree}
 ~~~~
-{: #fig-ni-tree title="Network inventory tree diagram"
+{:#fig-ni-tree title="Network inventory tree diagram"
 artwork-name="ietf-network-inventory.tree"}
 
-{: #ni-yang}
+{:#ni-yang}
 
 # YANG Data Model for Network Inventory
 
 ~~~~ yang
 {::include ./ietf-network-inventory.yang}
 ~~~~
-{: #fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-01-30.yang"}
+{:#fig-ni-yang title="Network inventory YANG module"
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-02-03.yang"}
 
 # Manageability Considerations
 
@@ -597,7 +642,7 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | backplane                  |                          | Backplane is considered as a part of board. And no need to define as a single component  |
 | software-module            |                          | TBD                      |
 | controller-card            |                          | Controller card is considered as a specific functional board. And no need to define as a single component  |
-{: #tab-oc title="Comparison between openconfig platform and inventory data models"}
+{:#tab-oc title="Comparison between openconfig platform and inventory data models"}
 
 As it mentioned in {{ne-component}} that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. And for some component specific structures in "openconfig-platform", we consider some of them can be contained by our existing structure, such as fan, backplane, and controller-card, while some others do not need to be included in this network inventory model like storage and cpu.
 
@@ -610,7 +655,7 @@ Within this document , with the term "container" we consider an hardware compone
 | terminology of IVY base model  |terminology in other model  |
 | ------------------------------ | -------------------------- |
 | container                      | holder                     |
-{: #tab-term title="terminology mapping"}
+{:#tab-term title="terminology mapping"}
 
 # Efficiency Issue
 
@@ -621,6 +666,36 @@ Considering that relational databases are widely used by traditional OSS systems
 An alternative YANG model structure, which defines the inventory objects directly, instead of defining generic components, has also been analyzed. However, also with this model, there still could be some scalability limitations when synchronizing full inventory resources in large scale of networks. This scalability limitation is caused by the limited transmission capabilities of HTTP protocol. We think that this scalability limitation should be solved at protocol level rather than data model level.
 
 The model proposed by this draft is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this draft. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.
+
+# Examples of ports, transceivers and port breakouts {#port-examples}
+
+> Editors' Note: Need to provide some examples based on [IETF 121 Slides](https://datatracker.ietf.org/doc/slides-120-ivy-2-a-yang-data-model-for-network-inventory/), and in particular:
+> - slide 8 (100G-LR single-channel port)
+> - slide 9 (400G-LR4 multi-channel WDM port)
+> - slide 10 (400G-DR4 MPO port)
+> Describe the concept of host and line channels and the mapping to breakout channels
+
+# JSON Examples
+
+This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}.
+
+The example instantiates the "ietf-network-inventory" model to describe a single board with seven different types of ports, transceivers and breakouts configurations:
+
+1. An integrated port (non pluggable). This port can be of any type (e.g., optical or electrical), single-channel or multi-channel but not supporting breakouts;
+1. An empty port;
+1. A single channel optical pluggable port (e.g., a 100G-LR port configured as a single 100GE interface);
+1. A Wavelength-Division Multiplexing (WDM) based multi-channel optical port (e.g., a 400G-LR4 port configured as a single 400GE interface) which does not support breakouts: the four WDM channels are not reported since not relevant from inventory management perspective;
+1. A Multi-Fiber Push-on (MPO) trunk-only port (e.g., 400G-DR4 port configured as a single 400GE interface). This type of MPO port does not support breakouts: the four channels are not reported since not relevant from inventory management perspective;
+1. An MPO trunk port (e.g., 400G-DR4 port configured as a single 400GE interface). This type of MPO port can support either the trunk or the breakout configuration but in this example, it is configured to support the trunk configuration: the four channels are reported to support breakouts configuration, when needed.
+1. An MPO breakout port (e.g., 400G-DR4 port configured as 4x100GE interfaces): the four channels are reported to support breakouts configuration.
+
+From a network inventory perspective, there is no need to distinguish between single-channel and MPO trunk-only ports.
+
+Note: as described in {{ports}}, reporting whether an MPO port is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model.
+
+~~~~ ascii-art
+{::include-fold json/ports-transceivers-breakouts-examples.json}
+~~~~
 
 {: numbered="false"}
 
