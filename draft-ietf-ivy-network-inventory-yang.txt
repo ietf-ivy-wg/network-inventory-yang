@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 11 August 2025                                            Nokia
+Expires: 30 August 2025                                            Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                         7 February 2025
+                                                        26 February 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 August 2025.
+   This Internet-Draft will expire on 30 August 2025.
 
 Copyright Notice
 
@@ -85,6 +85,7 @@ Table of Contents
      3.3.  Components
        3.3.1.  Hardware Components
        3.3.2.  Software Components
+       3.3.3.  Breakout ports
      3.4.  Changes Since RFC 8348
        3.4.1.  Component-Specific Info Design
        3.4.2.  Part Number
@@ -101,6 +102,8 @@ Table of Contents
    Appendix A.  Comparison With Openconfig-platform Data Model
    Appendix B.  Terminology of Container
    Appendix C.  Efficiency Issue
+   Appendix D.  Examples of ports, transceivers and port breakouts
+   Appendix E.  JSON Examples
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -155,10 +158,11 @@ Table of Contents
    Section 6.
 
    This base data model is application- and technology-agnostic (that
-   is, valid for IP/MPLS, optical, and microwave networks in particular)
-   and can be augmented to include required application- and technology-
-   specific inventory details together with specific hardware or
-   software component's attributes.
+   is, valid for IP/MPLS, optical, and microwave networks as well as
+   optical local loops, access networks, core networks, data centers,
+   etc.) and can be augmented to include required application- and
+   technology-specific inventory details together with specific hardware
+   or software component's attributes.
 
    The YANG data model defined in the document is scoped to cover the
    common use cases for Network Inventory covering both hardware and
@@ -214,13 +218,33 @@ Table of Contents
    redefined here: - backplane - battery - container - cpu - chassis -
    fan - module - port - power supply - sensor - stack - storage device
 
-      Note that the definition of port component in [IANA_HW_YANG] needs
-      to be refined in future version of this document.
+      Editors' Note: The port definition below needs to be moved to
+      iana-hardware update
+
+   Port:  A component where networking traffic can be received and/or
+      transmitted, e.g., by attaching networking cables.
+
+      In case of pluggable ports, the port may be empty when no
+      transceiver module is plugged in.
 
       TBD: Recap the concept of chassis/slot/component/board/... in
       [TMF_SD2-20].
 
    Also, the document makes use of the following terms:
+
+   Physical interface:  An interface associated to a physical port.  A
+      physical interface is always in the lowest layer of the interface
+      stack.
+
+   Logical interface:  An interface which is not associated to a
+      physical port.
+
+      Editors' Note: check whether the definitions of physical and
+      logical interfaces can be replaced by a normative reference to
+      [RFC8343]
+
+      Editors' Note: Add recap for the concepts of
+      chassis/slot/component/board/... in [TMF_SD2-20].
 
    Network Inventory:  A collection of data for network elements and
       their components managed by a specific management system.
@@ -248,6 +272,43 @@ Table of Contents
    Board/Card:  A pluggable equipment can be inserted into one or
       several slots (or sub-slots) and can afford a specific
       transmission function independently.
+
+   Breakout Port:  A port is usually associated with a single physical
+      interface.  A breakout port is a port which is broken down and
+      associated into multiple physical interfaces.  Those physical
+      interfaces can have the same or different speeds and the same or
+      different number of breakout channels.
+
+   Trunk Port:  A trunk port is a port which is associated with one and
+      only physical interface.
+
+   Port Breakout:  The configuration of a breakout port.
+
+      Note that interface channelization, when an interface (e.g., an
+      Ethernet interface) is configured to support multiple logical sub-
+      interfaces (e.g., VLAN interfaces), is different than port
+      breakout and outside the scope of inventory models.
+
+   Breakout channel:  An abstraction of the atomic resource elements
+      into which a breakout port can be broken down: a physical
+      interface can be associated with one or more breakout channels but
+      no more than one physical interface can be associated with one
+      breakout channel.
+
+      The physical elements abstracted as breakout channels are
+      implementation specific.  Appendix D provides some examples of
+      breakout ports configurations and implementations.
+
+   Container:  A hardware component class that is capable of containing
+      one or more removable physical entities (e.g., a slot in a chassis
+      is containing a board).
+
+   Transceiver:  A transceiver represents a transmitter/receiver (Tx/Rx)
+      pair which is transmitting and receiving a signal from the media.
+
+      This definition generalizes the transceiver definition in
+      [I-D.ietf-ccamp-optical-impairment-topology-yang] to model also
+      non optical transceivers (e.g., electrical transceivers).
 
 2.3.  Tree Diagrams
 
@@ -522,6 +583,24 @@ Table of Contents
    scope of this document and defined other documents such as
    [I-D.wzwb-ivy-network-inventory-software].
 
+3.3.3.  Breakout ports
+
+   The model defines the 'breakout-channels' presence container to
+   indicate whether the port, which contains the transceiver module, can
+   be configured as a breakout port or not.
+
+   It is assumed that a port which supports port breakout can be
+   configured either as a trunk port or as a breakout port.
+
+   Reporting whether a port, which supports port breakout, is configured
+   as a trunk or as a breakout port, is outside the scope of the base
+   network inventory model.  The model providing the mapping between the
+   topology and the inventory models should provide sufficient
+   information to identify how the port is configured and, in case of
+   breakout configuration, which breakout channel is associated with
+   which Link Termination Point (LTP), abstracting a device physical
+   interface within the topology model.
+
 3.4.  Changes Since RFC 8348
 
    This document re-defines some attributes listed in [RFC8348], based
@@ -624,38 +703,43 @@ Table of Contents
               +--ro product-name?         string
               +--rw components
                  +--rw component* [component-id]
-                    +--rw component-id             string
-                    +--ro class                    union
-                    +--ro uuid?                    yang:uuid
-                    +--rw name?                    string
-                    +--rw description?             string
-                    +--rw alias?                   string
-                    +--ro hardware-rev?            string
-                    +--ro software-rev?            string
-                    +--ro software-patch-rev*      string
-                    +--ro mfg-name?                string
-                    +--ro mfg-date?                yang:date-and-time
-                    +--ro serial-number?           string
-                    +--ro product-name?            string
-                    +--ro firmware-rev?            string
-                    +--ro part-number?             string
-                    +--ro asset-id?                string
+                    +--rw component-id                        string
+                    +--ro class                               union
+                    +--ro uuid?                               yang:uuid
+                    +--rw name?                               string
+                    +--rw description?                        string
+                    +--rw alias?                              string
+                    +--ro hardware-rev?                       string
+                    +--ro software-rev?                       string
+                    +--ro software-patch-rev*                 string
+                    +--ro mfg-name?                           string
+                    +--ro mfg-date?
+                    |       yang:date-and-time
+                    +--ro serial-number?                      string
+                    +--ro product-name?                       string
+                    +--ro firmware-rev?                       string
+                    +--ro part-number?                        string
+                    +--ro asset-id?                           string
                     +--ro child-component-ref
-                    +--ro parent-rel-pos?          int32
+                    +--ro parent-rel-pos?                     int32
                     +--ro parent?
                     |       -> ../../component/component-id
-                    +--ro is-fru?                  boolean
-                    +--ro uri*                     inet:uri
+                    +--ro is-fru?                             boolean
+                    +--ro uri*                                inet:uri
                     +--ro chassis-specific-info
                     +--ro slot-specific-info
                     +--ro board-specific-info
                     +--ro port-specific-info
+                    +--ro transceiver-module-specific-info
+                       +--ro breakout-channels!
+                          +--ro breakout-channel* [channel-id]
+                             +--ro channel-id    uint8
 
                   Figure 6: Network inventory tree diagram
 
 6.  YANG Data Model for Network Inventory
 
-   <CODE BEGINS> file "ietf-network-inventory@2025-01-30.yang"
+   <CODE BEGINS> file "ietf-network-inventory@2025-02-03.yang"
    module ietf-network-inventory {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-network-inventory";
@@ -726,7 +810,7 @@ Table of Contents
      // RFC Ed.: update the date below with the date of RFC publication
      // and remove this note.
 
-     revision 2025-01-30 {
+     revision 2025-02-03 {
        description
          "Initial version";
        reference
@@ -748,15 +832,113 @@ Table of Contents
          "Base identity for Network Element (NE) types.";
      }
 
-       identity ne-physical {
-         base nwi:ne-type;
-         description
-           "A physical network element (NE). ";
+     identity ne-physical {
+       base nwi:ne-type;
+       description
+         "A physical network element (NE). ";
+     }
+
+     /*
+      * Editors' Note: This identity may need to be moved to
+      *                iana-hardware update
+      */
+
+     identity transceiver-module {
+       base ianahw:hardware-class;
+       description
+         "This identity is applicable if the hardware class is some sort
+          of self-contained sub-system which contains one or more
+          transceivers (e.g., optical or electrical transceivers).
+
+          A transceiver-module component can only be contained by a
+          port component.";
+     }
+
+     /*
+      * Types
+      */
+
+     typedef ne-ref {
+       type leafref {
+         path  "/nwi:network-inventory/nwi:network-elements"
+             + "/nwi:network-element/nwi:ne-id";
        }
+       description
+         "This type is intended to be used by data models that need to
+         reference Network Element.";
+     }
 
      /*
       * Groupings
       */
+
+     grouping port-ref {
+       description
+         "This grouping is intended to be used by data models that need
+         to reference a port component within a Network Element.";
+       leaf ne-ref {
+         type nwi:ne-ref;
+         description
+           "The reference to the Network Element which contains the
+           port to be referenced.";
+       }
+       leaf port-ref {
+         type leafref {
+           path
+             "/nwi:network-inventory/nwi:network-elements/"
+           + "nwi:network-element[nwi:ne-id=current()/../nwi:ne-ref]"
+           + "/nwi:components/nwi:component/nwi:component-id";
+         }
+         must "derived-from-or-self (/nwi:network-inventory/
+               nwi:network-elements/nwi:network-element
+               [nwi:ne-id=../ne-ref]/nwi:components/nwi:component
+               [nwi:component-id=current()]/nwi:class, 'ianahw:port')";
+         description
+           "The reference to the port component.";
+       }
+     }
+
+     grouping channel-ref {
+       description
+         "This grouping is intended to be used by data models that need
+          to reference one or more breakout channels within a
+          transceivers module component.";
+       leaf ne-ref {
+         type nwi:ne-ref;
+         description
+           "The reference to the Network Element which contains the
+            transceiver module to be referenced.";
+       }
+       leaf transceiver-module-ref {
+         type leafref {
+           path
+             "/nwi:network-inventory/nwi:network-elements/"
+           + "nwi:network-element[nwi:ne-id=current()/../nwi:ne-ref]"
+           + "/nwi:components/nwi:component/nwi:component-id";
+         }
+         must "derived-from-or-self (/nwi:network-inventory/
+               nwi:network-elements/nwi:network-element
+               [nwi:ne-id=../ne-ref]/nwi:components/nwi:component
+               [nwi:component-id=current()]/nwi:class,
+               'nwi:transceiver-module')";
+         description
+           "The reference to the transceivers module component.";
+       }
+       leaf-list channel-ref {
+         type leafref {
+           path  "/nwi:network-inventory/nwi:network-elements"
+               + "/nwi:network-element[nwi:ne-id=current()/../ne-ref]/"
+               + "nwi:components/"
+               + "nwi:component[nwi:component-id="
+               + "current()/../transceiver-module-ref]/"
+               + "nwi:transceiver-module-specific-info/"
+               + "nwi:breakout-channels/nwi:breakout-channel/"
+               + "nwi:channel-id";
+         }
+         description
+           "The references to the breakout channels.";
+       }
+     }
 
      grouping common-entity-attributes {
        description
@@ -906,48 +1088,48 @@ Table of Contents
                    "The type of the component.";
                }
                uses common-entity-attributes {
-                 refine hardware-rev {
+                 refine "hardware-rev" {
                    description
                      "The vendor-specific hardware revision string for
-                     the component. The preferred value is the hardware
-                     revision identifier actually printed on the
-                     component itself (if present).";
+                      the component. The preferred value is the hardware
+                      revision identifier actually printed on the
+                      component itself (if present).";
                    reference
                      "RFC 6933: Entity MIB (Version 4) -
-                               entPhysicalHardwareRev";
+                                entPhysicalHardwareRev";
                  }
-                 refine software-rev {
+                 refine "software-rev" {
                    reference
                      "RFC 6933: Entity MIB (Version 4) -
-                               entPhysicalSoftwareRev";
+                                entPhysicalSoftwareRev";
                  }
-                 refine mfg-name {
+                 refine "mfg-name" {
                    description
                      "The name of the manufacturer of this physical
-                     component.
-                     The preferred value is the manufacturer name string
-                     actually printed on the component itself
-                     (if present).
+                      component.
+                      The preferred value is the manufacturer name
+                      string actually printed on the component itself
+                      (if present).
 
-                     Note that comparisons between instances of the
-                     'model-name', 'firmware-rev', 'software-rev', and
-                     'serial-number' nodes are only meaningful amongst
-                     components with the same value of 'mfg-name'.
+                      Note that comparisons between instances of the
+                      'model-name', 'firmware-rev', 'software-rev', and
+                      'serial-number' nodes are only meaningful amongst
+                      components with the same value of 'mfg-name'.
 
-                     If the manufacturer name string associated with the
-                     physical component is unknown to the server, then
-                     this node is not instantiated.";
+                      If the manufacturer name string associated with
+                      the physical component is unknown to the server,
+                      then this node is not instantiated.";
                    reference
                      "RFC 6933: Entity MIB (Version 4) -
-                     entPhysicalMfgName";
+                                entPhysicalMfgName";
                  }
-                 refine mfg-date {
+                 refine "mfg-date" {
                    description
                      "The date of manufacturing of the managed
-                     component.";
+                      component.";
                    reference
                      "RFC 6933: Entity MIB (Version 4) -
-                     entPhysicalMfgDate";
+                                entPhysicalMfgDate";
                  }
                }
                leaf firmware-rev {
@@ -1058,34 +1240,69 @@ Table of Contents
                    "RFC 6933: Entity MIB (Version 4) - entPhysicalUris";
                }
                container chassis-specific-info {
-                 when "derived-from-or-self(../class,
-                       'ianahw:chassis')";
+                 when
+                   "derived-from-or-self(../nwi:class,
+                   'ianahw:chassis')";
                  config false;
                  description
                    "This container contains some attributes belong to
-                   chassis only.";
+                    chassis only.";
                }
                container slot-specific-info {
-                 when "derived-from-or-self(../class,
-                       'ianahw:container')";
+                 when
+                   "derived-from-or-self(../nwi:class,
+                   'ianahw:container')";
                  config false;
                  description
                    "This container contains some attributes belong to
-                   slot only.";
+                    slot only.";
                }
                container board-specific-info {
-                 when "derived-from-or-self(../class, 'ianahw:module')";
+                 when
+                   "derived-from-or-self(../nwi:class,
+                   'ianahw:module')";
                  config false;
                  description
                    "This container contains some attributes belong to
-                   board only.";
+                    board only.";
                }
                container port-specific-info {
-                 when "derived-from-or-self(../class, 'ianahw:port')";
+                 when
+                   "derived-from-or-self(../nwi:class, 'ianahw:port')";
                  config false;
                  description
                    "This container contains some attributes belong to
-                   port only.";
+                    port only.";
+               }
+               container transceiver-module-specific-info {
+                 when
+                   "derived-from-or-self(../nwi:class,
+                   'nwi:transceiver-module')";
+                 config false;
+                 description
+                   "This container contains some attributes belong to
+                    transceivers modules only.";
+                 container breakout-channels {
+                   presence
+                     "When present, it indicates that port breakout is
+                      supported.";
+                   description
+                     "Top level container for the list of breakout
+                      channels supported by the transceivers module.";
+                   list breakout-channel {
+                     key "channel-id";
+                     leaf channel-id {
+                       type uint8;
+                       description
+                         "An identifier that uniquely identifies the
+                          breakout channel within the transceiver
+                          module.";
+                     }
+                     description
+                       "The list of breakout channels supported by the
+                        transceivers module.";
+                   }
+                 }
                }
              }
            }
@@ -1155,6 +1372,10 @@ Table of Contents
               (NMDA)", RFC 8342, DOI 10.17487/RFC8342, March 2018,
               <https://www.rfc-editor.org/rfc/rfc8342>.
 
+   [RFC8343]  Bjorklund, M., "A YANG Data Model for Interface
+              Management", RFC 8343, DOI 10.17487/RFC8343, March 2018,
+              <https://www.rfc-editor.org/rfc/rfc8343>.
+
    [RFC8348]  Bierman, A., Bjorklund, M., Dong, J., and D. Romascanu, "A
               YANG Data Model for Hardware Management", RFC 8348,
               DOI 10.17487/RFC8348, March 2018,
@@ -1167,14 +1388,22 @@ Table of Contents
 
 10.2.  Informative References
 
+   [I-D.ietf-ccamp-optical-impairment-topology-yang]
+              Beller, D., Le Rouzic, E., Belotti, S., Galimberti, G.,
+              and I. Busi, "A YANG Data Model for Optical Impairment-
+              aware Topology", Work in Progress, Internet-Draft, draft-
+              ietf-ccamp-optical-impairment-topology-yang-17, 21 October
+              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              ccamp-optical-impairment-topology-yang-17>.
+
    [I-D.ietf-teas-actn-poi-applicability]
               Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
               Ceccarelli, "Applicability of Abstraction and Control of
               Traffic Engineered Networks (ACTN) to Packet Optical
               Integration (POI)", Work in Progress, Internet-Draft,
-              draft-ietf-teas-actn-poi-applicability-13, 3 January 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              actn-poi-applicability-13>.
+              draft-ietf-teas-actn-poi-applicability-14, 25 February
+              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              teas-actn-poi-applicability-14>.
 
    [I-D.wzwb-ivy-network-inventory-software]
               Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
@@ -1183,6 +1412,10 @@ Table of Contents
               ivy-network-inventory-software-03, 17 October 2024,
               <https://datatracker.ietf.org/doc/html/draft-wzwb-ivy-
               network-inventory-software-03>.
+
+   [RFC7951]  Lhotka, L., "JSON Encoding of Data Modeled with YANG",
+              RFC 7951, DOI 10.17487/RFC7951, August 2016,
+              <https://www.rfc-editor.org/rfc/rfc7951>.
 
    [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
               BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
@@ -1400,6 +1633,232 @@ Appendix C.  Efficiency Issue
    approach for other technologies, represents the main scope of this
    draft.  Solution description to efficiency/scalability limitations
    mentioned above is considered as out-of-scope.
+
+Appendix D.  Examples of ports, transceivers and port breakouts
+
+      Editors' Note: Need to provide some examples based on IETF 121
+      Slides (https://datatracker.ietf.org/doc/slides-120-ivy-2-a-yang-
+      data-model-for-network-inventory/), and in particular: - slide 8
+      (100G-LR single-channel port) - slide 9 (400G-LR4 multi-channel
+      WDM port) - slide 10 (400G-DR4 MPO port) Describe the concept of
+      host and line channels and the mapping to breakout channels
+
+Appendix E.  JSON Examples
+
+   This appendix contains an example of an instance data tree in JSON
+   encoding [RFC7951].
+
+   The example instantiates the "ietf-network-inventory" model to
+   describe a single board with seven different types of ports,
+   transceivers and breakouts configurations:
+
+   1.  An integrated port (non pluggable).  This port can be of any type
+       (e.g., optical or electrical), single-channel or multi-channel
+       but not supporting breakouts;
+
+   2.  An empty port;
+
+   3.  A single channel optical pluggable port (e.g., a 100G-LR port
+       configured as a single 100GE interface);
+
+   4.  A Wavelength-Division Multiplexing (WDM) based multi-channel
+       optical port (e.g., a 400G-LR4 port configured as a single 400GE
+       interface) which does not support breakouts: the four WDM
+       channels are not reported since not relevant from inventory
+       management perspective;
+
+   5.  A Multi-Fiber Push-on (MPO) trunk-only port (e.g., 400G-DR4 port
+       configured as a single 400GE interface).  This type of MPO port
+       does not support breakouts: the four channels are not reported
+       since not relevant from inventory management perspective;
+
+   6.  An MPO trunk port (e.g., 400G-DR4 port configured as a single
+       400GE interface).  This type of MPO port can support either the
+       trunk or the breakout configuration but in this example, it is
+       configured to support the trunk configuration: the four channels
+       are reported to support breakouts configuration, when needed.
+
+   7.  An MPO breakout port (e.g., 400G-DR4 port configured as 4x100GE
+       interfaces): the four channels are reported to support breakouts
+       configuration.
+
+   From a network inventory perspective, there is no need to distinguish
+   between single-channel and MPO trunk-only ports.
+
+   Note: as described in Section 3.3.3, reporting whether an MPO port is
+   configured as a trunk or as a breakout port, is outside the scope of
+   the base network inventory model.
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
+   {
+     "ietf-network-inventory:network-inventory": {
+       "network-elements": {
+         "network-element" : [
+           {
+             "ne-id": "NE-1",
+             "description": "Network element example with ports and \
+                                                            breakouts.",
+             "components": {
+               "component": [
+                 {
+                   "component-id": "board-1",
+                   "class": "iana-hardware:module",
+                   "description": "Network element example with ports \
+                                                         and breakouts."
+                 },
+                 {
+                   "component-id": "port-1",
+                   "class": "iana-hardware:port",
+                   "description": "Example of an integrated (non-\
+                                                      pluggable) port.",
+                   "parent-component-ref": "board-1",
+                   "parent-rel-pos": 1
+                 },
+                 {
+                   "component-id": "transceivers-module-1",
+                   "class": "ietf-network-inventory:transceivers-module\
+                                                                      ",
+                   "description": "Example of an integrated (non-\
+                                                      pluggable) port.",
+                   "parent-component-ref": "port-1",
+                   "is-fru": false
+                 },
+                 {
+                   "component-id": "port-2",
+                   "class": "iana-hardware:port",
+                   "description": "Example of an empty port.",
+                   "parent-component-ref": "board-1",
+                   "parent-rel-pos": 2
+                 },
+                 {
+                   "component-id": "port-3",
+                   "class": "iana-hardware:port",
+                   "description": "Example of a single channel optical \
+                                                       pluggable port.",
+                   "parent-component-ref": "board-1",
+                   "parent-rel-pos": 3
+                 },
+                 {
+                   "component-id": "transceivers-module-3",
+                   "class": "ietf-network-inventory:transceivers-module\
+                                                                      ",
+                   "description": "Example of a single channel optical \
+                                                       pluggable port.",
+                   "parent-component-ref": "port-3",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "port-4",
+                   "class": "iana-hardware:port",
+                   "description": "Example of a WDM multi-channel \
+                                                       pluggable port.",
+                   "parent-component-ref": "board-1",
+                   "parent-rel-pos": 4
+                 },
+                 {
+                   "component-id": "transceivers-module-4",
+                   "class": "ietf-network-inventory:transceivers-module\
+                                                                      ",
+                   "description": "Example of a WDM multi-channel \
+                                                       pluggable port.",
+                   "parent-component-ref": "port-4",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "port-5",
+                   "class": "iana-hardware:port",
+                   "description": "Example of an optical MPO pluggable \
+                                trunk port (not supporting breakouts).",
+                   "parent-component-ref": "board-1",
+                   "parent-rel-pos": 5
+                 },
+                 {
+                   "component-id": "transceivers-module-5",
+                   "class": "ietf-network-inventory:transceivers-module\
+                                                                      ",
+                   "description": "Example of an optical MPO pluggable \
+                                trunk port (not supporting breakouts).",
+                   "parent-component-ref": "port-5",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "port-6",
+                   "class": "iana-hardware:port",
+                   "description": "Example of an optical MPO pluggable \
+                                    trunk port (supporting breakouts).",
+                   "parent-component-ref": "board-1",
+                   "parent-rel-pos": 6
+                 },
+                 {
+                   "component-id": "transceivers-module-6",
+                   "class": "ietf-network-inventory:transceivers-module\
+                                                                      ",
+                   "description": "Example of an optical MPO pluggable \
+                                    trunk port (supporting breakouts).",
+                   "parent-component-ref": "port-6",
+                   "is-fru": true,
+                   "transceivers-module-specific-info": {
+                     "channels": {
+                       "channel": [
+                         {
+                           "channel-number": 1
+                         },
+                         {
+                           "channel-number": 2
+                         },
+                         {
+                           "channel-number": 3
+                         },
+                         {
+                           "channel-number": 4
+                         }
+                       ]
+                     }
+                   }
+                 },
+                 {
+                   "component-id": "port-7",
+                   "class": "iana-hardware:port",
+                   "description": "Example of an optical MPO pluggable \
+                                                        breakout port.",
+                   "parent-component-ref": "board-1",
+                   "parent-rel-pos": 7
+                 },
+                 {
+                   "component-id": "transceivers-module-7",
+                   "class": "ietf-network-inventory:transceivers-module\
+                                                                      ",
+                   "description": "Example of an optical MPO pluggable \
+                                                        breakout port.",
+                   "parent-component-ref": "port-7",
+                   "is-fru": true,
+                   "transceivers-module-specific-info": {
+                     "channels": {
+                       "channel": [
+                         {
+                           "channel-number": 1
+                         },
+                         {
+                           "channel-number": 2
+                         },
+                         {
+                           "channel-number": 3
+                         },
+                         {
+                           "channel-number": 4
+                         }
+                       ]
+                     }
+                   }
+                 }
+               ]
+             }
+           }
+         ]
+       }
+     }
+   }
 
 Acknowledgments
 
