@@ -307,7 +307,7 @@ Attributes related to specific class of component can be found in the component-
 The identity definition of additional types of "ne-type" and "non-
 hardware" identity of component are outside the scope of this
 document and could be defined in application- and technology-specific companion augmentation data models, such as
-{{?I-D.wzwb-ivy-network-inventory-software}}.
+{{?I-D.ietf-ivy-network-inventory-software}}.
 
 In {{!RFC8348}}, rack, chassis, slot, sub-slot, board and port are defined as components of network elements with generic attributes.
 
@@ -483,7 +483,7 @@ software patch information.
 The software components of other
 classes, such as platform software, BIOS, bootloader, and software
 patch information, are outside the scope of this document and defined other documents such as
-{{?I-D.wzwb-ivy-network-inventory-software}}.
+{{?I-D.ietf-ivy-network-inventory-software}}.
 
 ### Breakout ports {#ports}
 
@@ -500,7 +500,7 @@ This document re-defines some attributes listed in {{!RFC8348}}, based on some i
 ### Component-Specific Info Design
 
 According to the management requirements from operators, some important attributes are not defined in {{!RFC8348}}. These attributes could be component-specific and are not suitable to be defined under the component list node. Instead, they can be defined by augmenting the component-specific info container for the attributes applicable to HW e.g. boards/slot components only. Other component-specific attributes, such as SW-specific-info, may be defined in companion augmentation data models, such as
-{{?I-D.wzwb-ivy-network-inventory-software}} and are out of the scope of this model.
+{{?I-D.ietf-ivy-network-inventory-software}} and are out of the scope of this model.
 
 ~~~~ ascii-art
 +--rw components
