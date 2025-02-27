@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-25T00:54:07.263842+00:00",
+  "timestamp": "2025-02-27T00:53:38.648998+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -111,11 +111,11 @@
       "assignees": [],
       "labels": [
         "wga",
-        "priority-2"
+        "priority-1"
       ],
       "body": "Some of the hardware and software attributes defined in Section 3.1 of [RFC7317] can be borrowed, such as platform-os version and machine.\r\n",
       "createdAt": "2023-10-23T08:32:25Z",
-      "updatedAt": "2024-10-01T16:05:06Z",
+      "updatedAt": "2025-02-26T17:18:10Z",
       "closedAt": null,
       "comments": [
         {
@@ -419,14 +419,13 @@
         "YuChaode"
       ],
       "labels": [
-        "wga",
-        "needs discussion",
+        "wait",
         "priority-1",
         "priority-2"
       ],
       "body": "> Some quick comments:\r\n> \r\n>   *   Please soften the various citations to ACTN. I would simply remove them.\r\n\r\n- [x] Closed with PR #74 \r\n>   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\\\r\n\r\n- [ ] #72\r\n\r\n>   *   Consider if some data nodes that are defined in other models can be added directly to the base model, e.g., the following ones from draft-li\r\n> \r\n> ```\r\n>       +--ro required-components*          -> ../uuid\r\n>       +--ro dependent-components*         -> ../uuid\r\n> \r\n> ```\r\n> \r\n\r\n- [ ] #70\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/\r\n",
       "createdAt": "2023-11-17T20:03:19Z",
-      "updatedAt": "2025-02-17T11:41:49Z",
+      "updatedAt": "2025-02-25T16:22:02Z",
       "closedAt": null,
       "comments": [
         {
@@ -550,7 +549,7 @@
       "id": "I_kwDOKiDYo854xQgI",
       "title": "Management of MPO ports",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/12",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -559,8 +558,8 @@
       ],
       "body": "Check how it is possible to manage MPO ports\r\n\r\nSee: https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/32#issuecomment-1041621665\r\n",
       "createdAt": "2022-02-16T15:25:22Z",
-      "updatedAt": "2025-02-19T17:13:37Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-26T16:44:46Z",
+      "closedAt": "2025-02-26T16:44:46Z",
       "comments": [
         {
           "author": "italobusi",
@@ -941,7 +940,7 @@
       "id": "I_kwDOKiDYo854xSH2",
       "title": "Model port breakouts",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/19",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "oscargdd",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -951,8 +950,8 @@
       ],
       "body": "Currently, the model does not support port breakouts. Today it is a very common functionality that should be modeled.",
       "createdAt": "2023-03-15T14:44:05Z",
-      "updatedAt": "2025-02-19T17:13:12Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-26T16:44:46Z",
+      "closedAt": "2025-02-26T16:44:46Z",
       "comments": [
         {
           "author": "italobusi",
@@ -1854,20 +1853,28 @@
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [
-        "priority-2"
+        "priority-1"
       ],
       "body": "At device level we have the model name and the software rev. The software rev I believe is the version number (e.g. for Cisco IOS would be 7.11.2 , 7.8.2, etc, for Nokia 23.10, 24.4, etc....). The O.S. name itself could be (or not) included in the software rev.... So... would it be  more clear \"decoupling\" the software name and the software version/revision? This would requiring adding a field for the operating system name or software name. Another possibility, instead of just one leaf, would be to have a specific operating system container hanging from device... Thoughts?",
       "createdAt": "2024-04-11T08:38:17Z",
-      "updatedAt": "2024-10-01T16:03:42Z",
+      "updatedAt": "2025-02-26T17:18:58Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "What is the difference with #2 ",
+          "createdAt": "2025-02-26T17:18:56Z",
+          "updatedAt": "2025-02-26T17:18:56Z"
+        }
+      ]
     },
     {
       "number": 45,
       "id": "I_kwDOKiDYo86IUU-0",
       "title": "Modeling of Ports, Transceivers and Breakouts",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/45",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "YuChaode",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -1881,8 +1888,8 @@
       ],
       "body": "This issue was raised when we were considering how to introduce transceiver into the base model.\r\nWe found the understandings of port  were not aligned, so we collected four scenarios of port & transceiver installation and run this discussion with several proposals.\r\nThe slide we discussed on the weekly call of 8th May, 2024 is attached below:\r\n[Discussion of Port Modeling-20240508.pptx](https://github.com/ietf-ivy-wg/network-inventory-yang/files/15258754/Discussion.of.Port.Modeling-20240508.pptx)  ",
       "createdAt": "2024-05-09T06:57:12Z",
-      "updatedAt": "2024-11-20T16:10:05Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-26T16:44:46Z",
+      "closedAt": "2025-02-26T16:44:45Z",
       "comments": [
         {
           "author": "YuChaode",
@@ -2304,7 +2311,7 @@
       "id": "I_kwDOKiDYo86WPSu9",
       "title": "Open Issue prioritization",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/62",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2317,8 +2324,8 @@
       ],
       "body": "From the IVY WG discussion at IETF 120, there was some push to move the work a bit faster, considering some use cases in a future update:\r\n\r\nhttps://datatracker.ietf.org/doc/minutes-120-ivy-202407241630/\r\n\r\nIn order to try to move forward a bit faster, it has been proposed to review and prioritize the current list of open issues:\r\n* P1: must be addressed before WG LC of the base model\r\n* P2: preferred to be addressed before WG LC of the base model but can be postponed in case of timing issues\r\n* P3: can be addressed in the context of an augmentation model (which can be developed in parallel) or RFC-bis of the base model\r\n",
       "createdAt": "2024-09-11T19:24:36Z",
-      "updatedAt": "2024-11-21T21:40:53Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-26T17:20:45Z",
+      "closedAt": "2025-02-26T17:20:45Z",
       "comments": [
         {
           "author": "italobusi",
@@ -2347,6 +2354,13 @@
           "body": "See: https://mailarchive.ietf.org/arch/msg/inventory-yang/a6TqL3NsOKT_Wi-xe04XUVNQ-7w/",
           "createdAt": "2024-11-21T21:40:45Z",
           "updatedAt": "2024-11-21T21:40:45Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-02-26 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-26)**\n\nAgreed to:\n- Move #2 as P1\n- Move  #44 as P1\n- Move  #77 as candidate for future revision or augmentation (mailing list discussion)\n- \nAgreed to classify the new issues created from previous discussions as:\n - #89: candidate for future revision or augmentation\n -  #90: candidate for future revision\n -  #91: candidate for future revision or augmentation (and remove 'Future' form the title)\n -  #92: candidate for future revision or augmentation (and remove 'Future' form the title)\n",
+          "createdAt": "2025-02-26T16:35:14Z",
+          "updatedAt": "2025-02-26T16:35:14Z"
         }
       ]
     },
@@ -2518,7 +2532,7 @@
       "id": "I_kwDOKiDYo86fpTCy",
       "title": "Expose references ",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/69",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -2530,8 +2544,8 @@
       ],
       "body": "The mapping draft has this type:\r\n\r\n>   typedef ne-ref {\r\n>     type leafref {\r\n>       path \"/nwi:network-inventory/nwi:network-elements\"\r\n>          + \"/nwi:network-element/nwi:ne-id\";\r\n>     }\r\n>     description\r\n>       \"This type is used by data models that need to reference\r\n>        Network Element.\";\r\n>   }\r\n\r\nI suggest we move that type to the base model to ease reuse by other models.",
       "createdAt": "2024-11-21T07:34:52Z",
-      "updatedAt": "2024-11-28T13:11:26Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-26T16:44:47Z",
+      "closedAt": "2025-02-26T16:44:47Z",
       "comments": [
         {
           "author": "italobusi",
@@ -2593,15 +2607,22 @@
       ],
       "body": ">   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\\\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/",
       "createdAt": "2024-11-27T16:29:14Z",
-      "updatedAt": "2024-11-27T16:32:22Z",
+      "updatedAt": "2025-02-25T16:19:14Z",
       "closedAt": null,
       "comments": [
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2024-11-27 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-11-27)**\r\n\r\nIt is possible to provide guidelines for defining new ne-types or component classes. However, it is hard to predict the need for other augmentations (e.g., equipment sites, SW inventory or passive inventory) unless the work has been already started\r\n\r\n- [ ] @italobusi : trigger some discussion on the IVY WG mailing list to get more feedbacks from Med",
+          "body": "**[2024-11-27 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-11-27)**\n\nIt is possible to provide guidelines for defining new ne-types or component classes. However, it is hard to predict the need for other augmentations (e.g., equipment sites, SW inventory or passive inventory) unless the work has been already started\n\n- [x] @italobusi : trigger some discussion on the IVY WG mailing list to get more feedbacks from Med",
           "createdAt": "2024-11-27T16:32:09Z",
-          "updatedAt": "2024-11-27T16:32:09Z"
+          "updatedAt": "2025-02-25T16:18:36Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x]  [@italobusi](https://github.com/italobusi) : trigger some discussion on the IVY WG mailing list to get more feedbacks from Med\n\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/iAm4E-hNTv9F5tACq_uqqAIE6YI/\n",
+          "createdAt": "2025-02-25T16:19:12Z",
+          "updatedAt": "2025-02-25T16:19:12Z"
         }
       ]
     },
@@ -2616,11 +2637,11 @@
       "assignees": [],
       "labels": [
         "enhancement",
-        "priority-2"
+        "candidate-future-rev-augment"
       ],
       "body": "**[2024-12-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-11)**\r\n\r\nInvestigate whether the network inventory shall report information about the connector type of a port\r\n",
       "createdAt": "2024-12-11T16:29:58Z",
-      "updatedAt": "2025-02-03T16:38:58Z",
+      "updatedAt": "2025-02-26T17:19:33Z",
       "closedAt": null,
       "comments": [
         {
@@ -2656,7 +2677,7 @@
       ],
       "body": "When preparing JSON examples (see PR #76 ), the following when statement failed validation with yanglint:\r\n\r\n```\r\n                \"derived-from-or-self(../nwi:class,\r\n                'nwi:transceivers-module')\";\r\n\r\n```\r\n\r\nThe issue could have been fixed only by updating the component class definition as:\r\n\r\n```\r\n            leaf class {\r\n              type identityref {\r\n                base ianahw:hardware-class;\r\n              }\r\n              config false;\r\n              mandatory true;\r\n              description\r\n                \"The type of the component.\";\r\n            }\r\n```\r\n\r\nThis issue needs further investigation:\r\n- is it a yanglint implemenation issue or a bug in the current YANG model?\r\n- is there any alternative solution to avoid the use of the union type?",
       "createdAt": "2024-12-16T17:03:20Z",
-      "updatedAt": "2025-01-30T11:45:11Z",
+      "updatedAt": "2025-02-26T17:16:23Z",
       "closedAt": null,
       "comments": [
         {
@@ -2679,6 +2700,20 @@
           "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\n\nIt seems a tooling issue: if the transceiver-module identity is moved to iana-hardware module the error message no longer appears\n\n- [x] Prasenjit: check with the yanglint developers\n\nPost Meeting Note: already done in https://github.com/ietf-ivy-wg/network-inventory-yang/issues/78#issuecomment-2623529826\n",
           "createdAt": "2025-01-30T11:45:09Z",
           "updatedAt": "2025-01-30T11:45:09Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-02-26 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-26)**\n\n- [x] https://github.com/ietf-ivy-wg/network-inventory-yang/issues/78#issuecomment-2685689144",
+          "createdAt": "2025-02-26T16:36:40Z",
+          "updatedAt": "2025-02-26T17:16:23Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x]  [@italobusi](https://github.com/italobusi) : align the JSON code examples with the updated YANG model\n\nDone in fcdc9ec244a7a6e72f04754b81f3333e39274e71, but the issue still applies\n\nThe command I am using to validate the JSON example is:\n\n```\nyanglint -f json ../ietf-network-inventory.yang ~/yang/modules/iana/iana-hardware@2018-03-13.yang ports-transceivers-breakouts-examples.json\n```\n\nWhen I try to validate the JSON code, I get this error message:\n\n```\nlibyang err : When condition \"derived-from-or-self(../nwi:class,\n'nwi:transceiver-module')\" not satisfied. (/ietf-network-inventory:network-inventory/network-elements/network-element[ne-id='NE-1']/components/component[component-id='transceiver-module-7']/transceiver-module-specific-info)\nlibyang err : When condition \"derived-from-or-self(../nwi:class,\n'nwi:transceiver-module')\" not satisfied. (/ietf-network-inventory:network-inventory/network-elements/network-element[ne-id='NE-1']/components/component[component-id='transceiver-module-6']/transceiver-module-specific-info)\nYANGLINT[E]: Failed to parse input data file \"ports-transceivers-breakouts-examples.json\".\n```\n\nThe validation is successful, if the YANG model is changed as:\n\nOLD\n```\n            leaf class {\n              type union {\n                type identityref {\n                  base ianahw:hardware-class;\n                }\n                type identityref {\n                  base non-hardware-component-class;\n                }\n              }\n              ...\n            }\n```\nNEW\n```\n            leaf class {\n              type identityref {\n                base ianahw:hardware-class;\n              }\n              ...\n            }\n```\n",
+          "createdAt": "2025-02-26T17:10:33Z",
+          "updatedAt": "2025-02-26T17:10:33Z"
         }
       ]
     },
@@ -2814,7 +2849,7 @@
       ],
       "body": "PR #73 has proposed to integrate pyang validation in your ci/cd chain and make sure that changes are clean and do not break the validation and automatically generate the YANG trees (the level, etc. can be controlled)\r\n\r\nPR #73 has been close due to conflicts but it would be useful to integrate pyang validation in the github CI/CD chain",
       "createdAt": "2025-01-29T19:03:47Z",
-      "updatedAt": "2025-01-29T19:04:55Z",
+      "updatedAt": "2025-02-26T17:14:52Z",
       "closedAt": null,
       "comments": [
         {
@@ -2823,6 +2858,27 @@
           "body": "Few comments/questions:\n- Do we need to keep the .tree file in the repository or move them in the gh-pages (like the txt and html files which are generated by the Makefile)?\n- How to synch-up the updates you have made on the Makefile with the changes that can be done later in the template repository (I guess this was the source of the conflicts)?\n",
           "createdAt": "2025-01-29T19:04:53Z",
           "updatedAt": "2025-01-29T19:04:53Z"
+        },
+        {
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "body": "@italobusi ,\n\nCouple of questions:\n \nHow are these produce now?\nietf-network-inventory.tree\nietf-network-inventory.yang\n \nHow are these automatic updates happening (check the commit from 15 Jan 2025) ? from template?\nAre you triggering it ?\nhttps://github.com/ietf-ivy-wg/network-inventory-yang/commits/main/",
+          "createdAt": "2025-02-26T15:35:06Z",
+          "updatedAt": "2025-02-26T15:35:37Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-02-26 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-26)**\n\n- [ ] @prmanna : indicate which file has to be created in this repository and which file should be added to the template repository\n- [ ] @italobusi : send a mail to Med asking him to contact with Martin Thomson to update the template repository accordingly (after knowing which file should be added to the template repository)\n",
+          "createdAt": "2025-02-26T16:38:37Z",
+          "updatedAt": "2025-02-26T16:39:13Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> [@italobusi](https://github.com/italobusi) ,\n> \n> Couple of questions:\n> \n> How are these produce now? ietf-network-inventory.tree ietf-network-inventory.yang\n> \n\nNow, I am running pyang on my local repository and synch the .tree file between the local and remote repositories\n\n> How are these automatic updates happening (check the commit from 15 Jan 2025) ? from template? Are you triggering it ? https://github.com/ietf-ivy-wg/network-inventory-yang/commits/main/\n\nI have triggered them with the `make update` command\n",
+          "createdAt": "2025-02-26T17:14:37Z",
+          "updatedAt": "2025-02-26T17:14:52Z"
         }
       ]
     },
@@ -2838,10 +2894,12 @@
         "italobusi",
         "aguoietf"
       ],
-      "labels": [],
+      "labels": [
+        "admin"
+      ],
       "body": "The target is to upload and present an updated draft and discuss some of priority 1 (or, time permitting, priority 2) issues\n",
       "createdAt": "2025-02-05T21:15:43Z",
-      "updatedAt": "2025-02-05T21:17:06Z",
+      "updatedAt": "2025-02-25T15:55:19Z",
       "closedAt": null,
       "comments": []
     },
@@ -2854,12 +2912,15 @@
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
-        "italobusi"
+        "italobusi",
+        "YuChaode"
       ],
-      "labels": [],
+      "labels": [
+        "admin"
+      ],
       "body": "",
       "createdAt": "2025-02-05T21:16:23Z",
-      "updatedAt": "2025-02-05T21:16:46Z",
+      "updatedAt": "2025-02-25T15:55:20Z",
       "closedAt": null,
       "comments": []
     },
@@ -2874,10 +2935,12 @@
       "assignees": [
         "aguoietf"
       ],
-      "labels": [],
+      "labels": [
+        "admin"
+      ],
       "body": "",
       "createdAt": "2025-02-05T21:16:29Z",
-      "updatedAt": "2025-02-05T21:17:30Z",
+      "updatedAt": "2025-02-25T15:55:21Z",
       "closedAt": null,
       "comments": []
     },
@@ -2886,7 +2949,7 @@
       "id": "I_kwDOKiDYo86pMmt1",
       "title": "Further clarify applicability of the base model",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/88",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2898,8 +2961,8 @@
       ],
       "body": "I have received an offline comment to further clarify that the base model can be applicable also to optical local loops, access networks, core networks, data center, etc.\n",
       "createdAt": "2025-02-07T17:00:30Z",
-      "updatedAt": "2025-02-19T18:07:38Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-26T16:44:47Z",
+      "closedAt": "2025-02-26T16:44:47Z",
       "comments": [
         {
           "author": "italobusi",
@@ -2919,10 +2982,12 @@
       "author": "prmanna",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "candidate-future-rev-augment"
+      ],
       "body": "> - The ability to hot-swap and to deal with other dynamics - IMO, operation should not be part of Inventory.\n\nThis is an operation aspect. NOT part of Base IVY.\nNeed to dig further to define capability model for IVY. \n\nhttps://github.com/ietf-ivy-wg/network-inventory-yang/issues/29#issuecomment-2657488515",
       "createdAt": "2025-02-17T04:57:39Z",
-      "updatedAt": "2025-02-17T04:57:39Z",
+      "updatedAt": "2025-02-26T17:19:46Z",
       "closedAt": null,
       "comments": []
     },
@@ -2935,42 +3000,48 @@
       "author": "prmanna",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "candidate-future-rev-augment"
+      ],
       "body": "\n> - Other characteristics such as height, length, width, weight etc. -- some are already there in inventory-location.\n\nSome are already there in inventory-location, but weight is **NOT** there. Need to raise an issue. Not needed in base IVY model.  Ideally all these can be added in specification model (this can be used in planning phase).\n\n> - humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics - Power already covered in IVY, remaining operational data can be added, but not necessarily in the base draft.\n\nShould be part of specification model.\nReference: ITUT G7711 (Ref Equipment Physical Model Annex-F )\n\nhttps://github.com/ietf-ivy-wg/network-inventory-yang/issues/29#issuecomment-2657488515",
       "createdAt": "2025-02-17T05:01:24Z",
-      "updatedAt": "2025-02-17T05:01:24Z",
+      "updatedAt": "2025-02-26T17:19:57Z",
       "closedAt": null,
       "comments": []
     },
     {
       "number": 91,
       "id": "I_kwDOKiDYo86qRspM",
-      "title": "Future: equipment protections",
+      "title": "Equipment protections",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/91",
       "state": "OPEN",
       "author": "prmanna",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "candidate-future-rev-augment"
+      ],
       "body": "> - \"equipment protections\" --- The model intentionally does not cover functional aspects. We should work on the relationship > between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really > functional protections. ONF have some work that may help here. -- Can have a section for equipment protection guidelines.\n\nNot needed in base IVY model. Will raise a case for future tracking.\n\nhttps://github.com/ietf-ivy-wg/network-inventory-yang/issues/29#issuecomment-2657488515",
       "createdAt": "2025-02-17T05:03:04Z",
-      "updatedAt": "2025-02-17T05:03:04Z",
+      "updatedAt": "2025-02-26T17:20:14Z",
       "closedAt": null,
       "comments": []
     },
     {
       "number": 92,
       "id": "I_kwDOKiDYo86qRtbt",
-      "title": "Future: Operational aspect of components",
+      "title": "Operational aspect of components",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/92",
       "state": "OPEN",
       "author": "prmanna",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "candidate-future-rev-augment"
+      ],
       "body": "> - There are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed > could be a valid augment to a module that has a fan. -- This is like comp specific ask for operation. In general, FAN and Temperature has close relation. Based on the current temperature, FAN speed will vary.\n> - The model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should > be considered carefully. - This is an operational aspect. This can be an extension draft.\n> - State machines associated with the power-up cycle, admin state etc. really related to the functional model and should be > considered carefully. - Again, this is an operational aspect.\n\nThese are operational aspect of components. Ideally these should be covered under a separate draft. Definitely, this is not part of base draft. Will raise an issue and track it for future.\n\n\nhttps://github.com/ietf-ivy-wg/network-inventory-yang/issues/29#issuecomment-2657488515",
       "createdAt": "2025-02-17T05:04:50Z",
-      "updatedAt": "2025-02-17T05:05:44Z",
+      "updatedAt": "2025-02-26T17:20:32Z",
       "closedAt": null,
       "comments": []
     },
@@ -5365,7 +5436,7 @@
       "id": "PR_kwDOKiDYo86E3428",
       "title": "Proposal for ports and breakouts modelling",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -5374,24 +5445,26 @@
       "labels": [],
       "body": "Proposal for ports and breakouts modelling: fix #45 , fix #12 and fix #19\r\n\r\nAdded references to network-element, port component and channel: fix #69 \r\n\r\nClarified further the applicability of the base model: fix #88\r\n\r\n---\r\n\r\nIn order to validate the JSON examples, some fixes are needed on the YANG file:\r\n\r\n1. the parent-component-ref should be defined as a leafref: see PR #66 \r\n2. the component class type should be an identityref and not a union of identityrefs: see issue #78\r\n\r\n---\r\n\r\nCo-Authored-By: YuChaode <yuchaode@huawei.com>\r\n",
       "createdAt": "2024-12-11T15:03:32Z",
-      "updatedAt": "2025-02-20T09:27:39Z",
+      "updatedAt": "2025-02-26T16:44:45Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "58aad16e8ff458026a6ab56919955086b593621a",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "port-breakout",
-      "headRefOid": "f7a69cd9540e85856f501007783fa00ca7559700",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "6ff7e8198e760cc4c572d26ee903b01503da7aa5",
+      "closedAt": "2025-02-26T16:44:45Z",
+      "mergedAt": "2025-02-26T16:44:45Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "26230819042350b6806ce0a6a3cedb1455e4e292"
+      },
       "comments": [
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2024-12-18 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-18)**\r\n\r\nDefinitions of transceiver, transceiver module and port:\r\n\r\nTransceiver: A transceiver represents a transmitter/receiver (Tx/Rx) pair which is transmitting and receiving a signal from the media.\r\nThis definition generalizes the transceiver definition in [I-D.ietf-ccamp-optical-impairment-topology-yang] to model also non optical transceivers (e.g., electrical transceivers).\r\n\r\nTransceiver Module: A module which contains one or more\r\ntransceivers (e.g., optical or electrical transceivers).\r\nA transceivers-module component can only be contained by a\r\nport component.\r\n\r\nNote: The last sentence (i.e., \"A transceivers module can only be contained within a port component.\") needs to be validated after having reviewed the inventory examples for modelling integrated ROADM add/drop modules\r\n\r\nPort: A component where networking traffic can be received and/or transmitted, e.g., by attaching transceiver modules and networking cables.\r\n\r\nNote: This definition needs to be validated after having reviewed the inventory examples for modelling OTS ports on ROADM degrees\r\n\r\n- [ ] @italobusi ask for feedbacks on these definitions on the IVY WG mailing list\r\n\r\n- [ ] @italobusi update the PR text\r\n",
+          "body": "**[2024-12-18 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-12-18)**\r\n\r\nDefinitions of transceiver, transceiver module and port:\r\n\r\nTransceiver: A transceiver represents a transmitter/receiver (Tx/Rx) pair which is transmitting and receiving a signal from the media.\r\nThis definition generalizes the transceiver definition in [I-D.ietf-ccamp-optical-impairment-topology-yang] to model also non optical transceivers (e.g., electrical transceivers).\r\n\r\nTransceiver Module: A module which contains one or more\r\ntransceivers (e.g., optical or electrical transceivers).\r\nA transceivers-module component can only be contained by a\r\nport component.\r\n\r\nNote: The last sentence (i.e., \"A transceivers module can only be contained within a port component.\") needs to be validated after having reviewed the inventory examples for modelling integrated ROADM add/drop modules\r\n\r\nPort: A component where networking traffic can be received and/or transmitted, e.g., by attaching transceiver modules and networking cables.\r\n\r\nNote: This definition needs to be validated after having reviewed the inventory examples for modelling OTS ports on ROADM degrees\r\n\r\n- [x] @italobusi ask for feedbacks on these definitions on the IVY WG mailing list\r\n\r\n- [ ] @italobusi update the PR text\r\n",
           "createdAt": "2024-12-19T16:07:31Z",
-          "updatedAt": "2024-12-19T16:08:07Z"
+          "updatedAt": "2025-02-26T16:42:44Z"
         },
         {
           "author": "italobusi",
@@ -5441,6 +5514,13 @@
           "body": "**[2025-02-19 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-19)**\r\n\r\nInterfaces are by definition logical concept. The physical interface term can be used to represent the interface in the lowest layer of the interface stack associated a physical port.\r\n\r\n- [x] @italobusi add some note to the draft clarifying that channelizing an interface (e.g., an Ethernet interface) into multiple logical sub-interfaces (e.g., VLAN interfaces) is not port breakout and outside the scope of the inventory models.\r\n\r\nIt has been clarified that the intention for defining the concept of breakout channels is to make the model more flexible and independent from the technology (e.g., optical) and the specific implementations. In case of 400G-DR4 implementations, the breakout channels map 1:1 with the line channels: the intention is to describe this mapping in an appendix (text still to be developed).\r\n\r\nIn the 400G-DR4 examples, there are two host channels associated with a single line channel. However, it is not possible to associate two different interfaces with two different host channels if they are associated with the same line channel.\r\n\r\nWhile the association between the physical interfaces, host channels and line channels is relevant for device configuration (and supported by OpenConfig), from network inventory perspective, only the associations between the physical interfaces (abstracted as physical LTPs) and the line channels is relevant. Therefore the line channels can be reported in the network inventory model as breakout channels.\r\n\r\nThe appendix with the examples of breakout configuration can be completed in the next update: issue #93  has been created to complete the example\r\n\r\nAgreed to review the PR before the next call (February 26, 2025) with the objective to be able to merge it before IETF 122 cut-off deadline\r\n",
           "createdAt": "2025-02-19T16:47:44Z",
           "updatedAt": "2025-02-19T17:38:25Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-02-26 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-26)**\r\n\r\nAgreed to merge as updated during the call",
+          "createdAt": "2025-02-26T16:30:13Z",
+          "updatedAt": "2025-02-26T16:30:13Z"
         }
       ],
       "reviews": [
@@ -5545,6 +5625,197 @@
               "body": "already solved as above .",
               "createdAt": "2025-02-20T09:26:48Z",
               "updatedAt": "2025-02-20T09:27:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86djoqi",
+          "commit": {
+            "abbreviatedOid": "f7a69cd"
+          },
+          "author": "YuChaode",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-26T07:15:52Z",
+          "updatedAt": "2025-02-26T07:15:52Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo86dl6n-",
+          "commit": {
+            "abbreviatedOid": "f7a69cd"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-26T10:28:15Z",
+          "updatedAt": "2025-02-26T11:04:53Z",
+          "comments": [
+            {
+              "originalPosition": 43,
+              "body": "Maybe I would suggeste to complete the definition mentioning the relation with speed and number of channels. \r\n\"...physical interfaces that can be of different speed and associated with different number of breakout channels.\" ",
+              "createdAt": "2025-02-26T10:28:15Z",
+              "updatedAt": "2025-02-26T11:04:53Z"
+            },
+            {
+              "originalPosition": 31,
+              "body": "as clarification in the definition: the self-contained sub-system is related to the port containing one or more transceivers? Not totally clear the wording.",
+              "createdAt": "2025-02-26T10:41:34Z",
+              "updatedAt": "2025-02-26T11:04:53Z"
+            },
+            {
+              "originalPosition": 285,
+              "body": "For clarification:\r\nIf the port has the breakout capability, where is represented the relationship with interfaces into which the port is broken? Here we have the relationship with transceiver related to the port. ",
+              "createdAt": "2025-02-26T10:55:02Z",
+              "updatedAt": "2025-02-26T11:04:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86dmiRs",
+          "commit": {
+            "abbreviatedOid": "f7a69cd"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T11:23:00Z",
+          "updatedAt": "2025-02-26T13:08:56Z",
+          "comments": [
+            {
+              "originalPosition": 270,
+              "body": "```suggestion\r\n                  \"When present, it indicates that port breakout is\r\n                   supported.\";\r\n```",
+              "createdAt": "2025-02-26T11:23:00Z",
+              "updatedAt": "2025-02-26T13:08:56Z"
+            },
+            {
+              "originalPosition": 285,
+              "body": "Maybe we can move this text from the appendix to the model overview:\r\n\r\nhttps://github.com/italobusi/network-inventory-yang/blob/f7a69cd9540e85856f501007783fa00ca7559700/draft-ietf-ivy-network-inventory-yang.md?plain=1#L683",
+              "createdAt": "2025-02-26T11:46:40Z",
+              "updatedAt": "2025-02-26T13:08:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86dpKYR",
+          "commit": {
+            "abbreviatedOid": "ee178b6"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T14:55:35Z",
+          "updatedAt": "2025-02-26T14:55:35Z",
+          "comments": [
+            {
+              "originalPosition": 285,
+              "body": "See: ee178b6bea74e118dc2e240e6b4abce8c24f2922",
+              "createdAt": "2025-02-26T14:55:35Z",
+              "updatedAt": "2025-02-26T16:16:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86dovw1",
+          "commit": {
+            "abbreviatedOid": "f7a69cd"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T14:26:23Z",
+          "updatedAt": "2025-02-26T15:00:50Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "**[2025-02-26 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-26)**\r\n\r\n```suggestion\r\n: A port is usually associated with a single physical interface. A breakout port is a port which is broken down and associated into multiple physical interfaces. Those physical interfaces can have the same or different speeds and the same or different number of breakout channels.\r\n\r\nTrunk Port:\r\n: A trunk port is a port which is associated with one and only physical interface.\r\n```",
+              "createdAt": "2025-02-26T14:26:23Z",
+              "updatedAt": "2025-02-26T16:13:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86dphzn",
+          "commit": {
+            "abbreviatedOid": "ee178b6"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T15:20:49Z",
+          "updatedAt": "2025-02-26T15:20:49Z",
+          "comments": [
+            {
+              "originalPosition": 43,
+              "body": "**[2025-02-26 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-26)**\r\n\r\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76/files#r1971688032",
+              "createdAt": "2025-02-26T15:20:49Z",
+              "updatedAt": "2025-02-26T16:13:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86dp3Ny",
+          "commit": {
+            "abbreviatedOid": "ee178b6"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T15:48:59Z",
+          "updatedAt": "2025-02-26T15:48:59Z",
+          "comments": [
+            {
+              "originalPosition": 128,
+              "body": "**[2025-02-26 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-26)**\r\n\r\n```suggestion\r\nReporting whether a port, which supports port breakout, is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model. The model providing the mapping between the topology and the inventory models should provide sufficient information to identify how the port is configured and, in case of breakout configuration, which breakout channel is associated with which Link Termination Point (LTP), abstracting a device physical interface within the topology model.\r\n```",
+              "createdAt": "2025-02-26T15:48:59Z",
+              "updatedAt": "2025-02-26T16:14:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86dqKbu",
+          "commit": {
+            "abbreviatedOid": "ee178b6"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T16:15:14Z",
+          "updatedAt": "2025-02-26T16:15:14Z",
+          "comments": [
+            {
+              "originalPosition": 270,
+              "body": "**[2025-02-26 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-26)**\r\n\r\nAccepted the proposal in https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76/files#r1971415237",
+              "createdAt": "2025-02-26T16:15:14Z",
+              "updatedAt": "2025-02-26T16:15:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86dqPZw",
+          "commit": {
+            "abbreviatedOid": "f7a69cd"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T16:20:41Z",
+          "updatedAt": "2025-02-26T16:20:41Z",
+          "comments": [
+            {
+              "originalPosition": 285,
+              "body": "**[2025-02-26 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-26)**\r\n\r\nAccepted proposal in ee178b6bea74e118dc2e240e6b4abce8c24f2922 with a couple of amendments:\r\n- [Trunk port definition](https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76/files#r1971688032)\r\n- [Remove \"instead\"](https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76/files#r1971861947)",
+              "createdAt": "2025-02-26T16:20:41Z",
+              "updatedAt": "2025-02-26T16:20:41Z"
             }
           ]
         }
