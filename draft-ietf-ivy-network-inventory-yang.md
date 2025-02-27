@@ -4,7 +4,7 @@ abbrev: "Network Inventory YANG"
 category: std
 
 docname: draft-ietf-ivy-network-inventory-yang-latest
-submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
+submissiontype: IETF
 number:
 date:
 consensus: true
