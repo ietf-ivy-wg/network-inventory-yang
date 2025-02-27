@@ -428,7 +428,7 @@ Based on TMF classification in {{TMF_SD2-20}}, hardware components can be divide
 
 {{fig-hw-inventory-object-relationship}} describes the relationship between typical inventory objects in a physical network element.
 
-~~~~ ascii-art
+~~~~ aasvg
                             +-----------------+
                             | network element |
                             +-----------------+
@@ -543,7 +543,7 @@ applicable to typical network scenarios.  For finer-grained and
 specific management scenarios, the relationship between this model
 and other models is illustrated in Figure 4.
 
-~~~~ ascii-art
+~~~~ aasvg
              +-------------------------+
              |                         |
              | Base Network Inventory  |
@@ -552,7 +552,7 @@ and other models is illustrated in Figure 4.
                           |
        +------------------+-------------------+
        |                  |                   |
-+------V------+    +------V------      +------V------    +-------------+
++------V------+    +------V------+     +------V------+   +-------------+
 |             |    |             |     |             |   |             |
 | Hardware    |    |  Software   |     |             |   |  Inventory  |
 | Extensions  |    |  Extensions |     | Entitlement |   |  Topology   |
