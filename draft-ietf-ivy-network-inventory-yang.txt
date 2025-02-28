@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 30 August 2025                                            Nokia
+Expires: 1 September 2025                                          Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                        26 February 2025
+                                                        28 February 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 August 2025.
+   This Internet-Draft will expire on 1 September 2025.
 
 Copyright Notice
 
@@ -416,7 +416,7 @@ Table of Contents
    hardware" identity of component are outside the scope of this
    document and could be defined in application- and technology-specific
    companion augmentation data models, such as
-   [I-D.wzwb-ivy-network-inventory-software].
+   [I-D.ietf-ivy-network-inventory-software].
 
    In [RFC8348], rack, chassis, slot, sub-slot, board and port are
    defined as components of network elements with generic attributes.
@@ -618,7 +618,7 @@ Table of Contents
    The software components of other classes, such as platform software,
    BIOS, bootloader, and software patch information, are outside the
    scope of this document and defined other documents such as
-   [I-D.wzwb-ivy-network-inventory-software].
+   [I-D.ietf-ivy-network-inventory-software].
 
 3.3.3.  Breakout ports
 
@@ -653,7 +653,7 @@ Table of Contents
    to HW e.g. boards/slot components only.  Other component-specific
    attributes, such as SW-specific-info, may be defined in companion
    augmentation data models, such as
-   [I-D.wzwb-ivy-network-inventory-software] and are out of the scope of
+   [I-D.ietf-ivy-network-inventory-software] and are out of the scope of
    this model.
 
    +--rw components
@@ -1433,6 +1433,14 @@ Table of Contents
               2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
               ccamp-optical-impairment-topology-yang-17>.
 
+   [I-D.ietf-ivy-network-inventory-software]
+              Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
+              Network Data Model of Network Inventory Software
+              Extensions", Work in Progress, Internet-Draft, draft-ietf-
+              ivy-network-inventory-software-00, 9 December 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
+              network-inventory-software-00>.
+
    [I-D.ietf-teas-actn-poi-applicability]
               Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
               Ceccarelli, "Applicability of Abstraction and Control of
@@ -1441,14 +1449,6 @@ Table of Contents
               draft-ietf-teas-actn-poi-applicability-14, 25 February
               2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
               teas-actn-poi-applicability-14>.
-
-   [I-D.wzwb-ivy-network-inventory-software]
-              Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
-              Network Data Model of Network Inventory Software
-              Extensions", Work in Progress, Internet-Draft, draft-wzwb-
-              ivy-network-inventory-software-03, 17 October 2024,
-              <https://datatracker.ietf.org/doc/html/draft-wzwb-ivy-
-              network-inventory-software-03>.
 
    [RFC7951]  Lhotka, L., "JSON Encoding of Data Modeled with YANG",
               RFC 7951, DOI 10.17487/RFC7951, August 2016,
