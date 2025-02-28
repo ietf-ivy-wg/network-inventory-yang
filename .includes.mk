@@ -1,1 +1,1 @@
-draft-ietf-ivy-network-inventory-yang.xml: ./ietf-network-inventory.yang
+draft-ietf-ivy-network-inventory-yang.xml: yang/ietf-network-inventory.yang
