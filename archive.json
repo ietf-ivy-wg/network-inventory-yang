@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-27T00:53:38.648998+00:00",
+  "timestamp": "2025-03-02T00:57:07.304169+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -5867,6 +5867,171 @@
           "body": "",
           "createdAt": "2025-02-03T11:04:56Z",
           "updatedAt": "2025-02-03T11:04:56Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 94,
+      "id": "PR_kwDOKiDYo86MxsAu",
+      "title": "fix draft-wzwb-ivy-network-inventory-software citations",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/94",
+      "state": "CLOSED",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-27T10:35:39Z",
+      "updatedAt": "2025-02-27T14:22:14Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "ee29a6d7cf76c553bbac5893c9cb3c0ca073b747",
+      "headRepository": "boucadair/network-inventory-yang",
+      "headRefName": "patch-11",
+      "headRefOid": "7a8d3d9cefc2a35c85bcd8721647ca8a73c19023",
+      "closedAt": "2025-02-27T14:21:51Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I don't see any error in the changes.",
+          "createdAt": "2025-02-27T14:19:12Z",
+          "updatedAt": "2025-02-27T14:19:12Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Created a new PR with the same changes but its has no error! Please see https://github.com/ietf-ivy-wg/network-inventory-yang/pull/96. Will close this one.",
+          "createdAt": "2025-02-27T14:21:51Z",
+          "updatedAt": "2025-02-27T14:21:51Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86dzJpp",
+          "commit": {
+            "abbreviatedOid": "cab5cf8"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "The proposed changes are fine but the checks are failing\r\n\r\nCould you please double check and fix the issue?\r\n",
+          "createdAt": "2025-02-27T11:11:32Z",
+          "updatedAt": "2025-02-27T11:11:32Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 95,
+      "id": "PR_kwDOKiDYo86MxtDX",
+      "title": "better rendering of some figures",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/95",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-27T10:37:27Z",
+      "updatedAt": "2025-02-28T09:10:40Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "ee29a6d7cf76c553bbac5893c9cb3c0ca073b747",
+      "headRepository": "boucadair/network-inventory-yang",
+      "headRefName": "patch-12",
+      "headRefOid": "5326665229e2043e2a5957a929a913fb39d22069",
+      "closedAt": "2025-02-28T09:10:40Z",
+      "mergedAt": "2025-02-28T09:10:40Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "e89c93126ee9b32811087cf79afe0a98143bc5bb"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86dzHvu",
+          "commit": {
+            "abbreviatedOid": "5326665"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-27T11:08:03Z",
+          "updatedAt": "2025-02-27T11:08:03Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo86d9cqQ",
+          "commit": {
+            "abbreviatedOid": "5326665"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-28T08:53:31Z",
+          "updatedAt": "2025-02-28T08:53:31Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 96,
+      "id": "PR_kwDOKiDYo86MzmlE",
+      "title": "Update to draft-ietf-ivy-network-inventory-software",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/96",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-27T14:20:35Z",
+      "updatedAt": "2025-02-28T09:10:27Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "ee29a6d7cf76c553bbac5893c9cb3c0ca073b747",
+      "headRepository": "boucadair/network-inventory-yang",
+      "headRefName": "patch-13",
+      "headRefOid": "3adb7db3c51b8d9611d5a34ac80db635b498250d",
+      "closedAt": "2025-02-28T09:10:27Z",
+      "mergedAt": "2025-02-28T09:10:27Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "0b56ee4250abe2bff9568dca83279d438c423902"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86d1IA8",
+          "commit": {
+            "abbreviatedOid": "3adb7db"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-27T14:23:14Z",
+          "updatedAt": "2025-02-27T14:23:14Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo86d9dWX",
+          "commit": {
+            "abbreviatedOid": "3adb7db"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-28T08:54:23Z",
+          "updatedAt": "2025-02-28T08:54:23Z",
           "comments": []
         }
       ]
