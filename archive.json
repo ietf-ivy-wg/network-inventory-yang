@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-02T00:57:07.304169+00:00",
+  "timestamp": "2025-03-04T00:54:40.972166+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -3061,6 +3061,22 @@
       "body": "**[2025-02-19 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-19)**\n\nComplete the text on the Appendix on \"Examples of ports, transceivers and port breakouts\", providing some examples based on [IETF 121 Slides](https://datatracker.ietf.org/doc/slides-120-ivy-2-a-yang-data-model-for-network-inventory/), and in particular:\n- slide 8 (100G-LR single-channel port)\n- slide 9 (400G-LR4 multi-channel WDM port)\n- slide 10 (400G-DR4 MPO port)\n\nDescribe the concept of host and line channels and the mapping to breakout channels\n\nComplement the slides from [IETF 121 Slides](https://datatracker.ietf.org/doc/slides-120-ivy-2-a-yang-data-model-for-network-inventory/) with [openconfig-breakout-groups.pptx](https://github.com/user-attachments/files/15991133/openconfig-breakout-groups.pptx) to show also the physical interfaces\n\nConsider also some clarifications provided in https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76#issuecomment-2669201642",
       "createdAt": "2025-02-19T16:52:37Z",
       "updatedAt": "2025-02-19T17:15:38Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 97,
+      "id": "I_kwDOKiDYo86sSjee",
+      "title": "Path error for \u201cne-ref\u201d of port-ref at ietf-network-inventory.yang:143 is not found",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/97",
+      "state": "OPEN",
+      "author": "lana-wu",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The suggested new path:\n`    leaf port-ref {\n      type leafref {\n        path\n          \"/nwi:network-inventory/nwi:network-elements/\"\n        + \"nwi:network-element[nwi:ne-id=current()/../ne-ref]\"\n        + \"/nwi:components/nwi:component/nwi:component-id\";\n      }\n      must \"derived-from-or-self (/nwi:network-inventory/\n            nwi:network-elements/nwi:network-element\n            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component\n            [nwi:component-id=current()]/nwi:class, 'ianahw:port')\";\n      description\n        \"The reference to the port component.\";\n    }`\n\nThe old one:\n    leaf port-ref {\n      type leafref {\n        path\n          \"/nwi:network-inventory/nwi:network-elements/\"\n        + \"nwi:network-element[nwi:ne-id=current()/../nwi:ne-ref]\"\n        + \"/nwi:components/nwi:component/nwi:component-id\";\n      }\n      must \"derived-from-or-self (/nwi:network-inventory/\n            nwi:network-elements/nwi:network-element\n            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component\n            [nwi:component-id=current()]/nwi:class, 'ianahw:port')\";\n      description\n        \"The reference to the port component.\";\n    }",
+      "createdAt": "2025-03-03T08:41:39Z",
+      "updatedAt": "2025-03-03T08:41:39Z",
       "closedAt": null,
       "comments": []
     }
