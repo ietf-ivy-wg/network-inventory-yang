@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-04T00:54:40.972166+00:00",
+  "timestamp": "2025-03-06T00:54:40.399579+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1350,7 +1350,7 @@
       "id": "I_kwDOKiDYo854xUKL",
       "title": "General considerations",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/29",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "nigel-r-davis",
       "authorAssociation": "NONE",
       "assignees": [
@@ -1362,8 +1362,8 @@
       ],
       "body": "https://github.com/ietf-ccamp-wg/ietf-network-inventory/blob/e633109c5dff36ea26e1844c6abd32e664eb9f0a/draft-ietf-ccamp-network-inventory-yang.txt#L18\r\n\r\nThis model deals with physical things (solids and spaces). The model does not yet cover some physical aspects such as connectors, cables, strands and physical spans. We have some work that may be helpful in TAPI. We should avoid broad physical modeling such as geographic structures etc.\r\n\r\nthe ability to hot-swap and to deal with other dynamics should be considered in this model.\r\n\r\nOther characteristics such as height, length, width, weight etc. may be best handled in a spec layer. This needs to be discussed in some details. This also applies to the humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics.\r\n\r\nThe model intentionally does not cover functional aspects. We should work on the relationship between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really functional protections. ONF have some work that may help here.\r\n\r\nThere are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed could be a valid augment to a module that has a fan.\r\n\r\nThe model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should be considered carefully.\r\n\r\nThe model of power is unusual in that it is narrow functional. There is a flow etc. The relationship between this model and power  needs to be considered carefully. Power is not physical but from the perspective of the other functions it is essentially the motive force. There is no detailed model of power. In other bodies, power is \"smunged\" into the physical model.  This needs to be considered very carefully.\r\n\r\nThe model of software is complex and should be separate from the model of the physical solution.\r\n\r\nState machines associated with the power-up cycle, admin state etc. really related to the functional model and should be considered carefully.",
       "createdAt": "2023-06-14T14:32:04Z",
-      "updatedAt": "2025-02-17T05:06:53Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-05T16:30:43Z",
+      "closedAt": "2025-03-05T16:30:42Z",
       "comments": [
         {
           "author": "italobusi",
@@ -1392,6 +1392,13 @@
           "body": "**[2025-02-12 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-12)**\n\n> - broad physical modeling such as geographic structures etc -- IVY is not ideal here, instead it comes under MDSC functions.\n\n This can be elaborated in passive model. Reference Architecture: GIS system.  Raised a case in Passive.\n[Handling of broad physical modeling such as geographic structures etc](https://github.com/aguoietf/draft-ygb-ivy-passive-network-inventory/issues/8)\n\n> - The ability to hot-swap and to deal with other dynamics - IMO, operation should not be part of Inventory.\n\nThis is an operation aspect. NOT part of Base IVY.\nNeed to dig further to define capability model for IVY. \nRaised a case to track this.\n[The ability to hot-swap and to deal with other dynamics](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/89)\n\n\n> - Other characteristics such as height, length, width, weight etc. -- some are already there in inventory-location.\n\nSome are already there in inventory-location, but weight is **NOT** there. Need to raise an issue. Not needed in base IVY model.  Ideally all these can be added in specification model (this can be used in planning phase).\n[Requirement for specification model](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/90)\n\n> - humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics - Power already covered in IVY, remaining operational data can be added, but not necessarily in the base draft.\n\nShould be part of specification model.\nReference: ITUT G7711 (Ref Equipment Physical Model Annex-F )\n[Requirement for specification model](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/90)\n\n> - \"equipment protections\" --- The model intentionally does not cover functional aspects. We should work on the relationship > between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really > functional protections. ONF have some work that may help here. -- Can have a section for equipment protection guidelines.\n\nNot needed in base IVY model. Raised a case for future tracking.\n[Future: equipment protections](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/91)\n\n> - There are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed > could be a valid augment to a module that has a fan. -- This is like comp specific ask for operation. In general, FAN and Temperature has close relation. Based on the current temperature, FAN speed will vary.\n> - The model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should > be considered carefully. - This is an operational aspect. This can be an extension draft.\n> - State machines associated with the power-up cycle, admin state etc. really related to the functional model and should be > considered carefully. - Again, this is an operational aspect.\n\nThese are operational aspect of components. Ideally these should be covered under a separate draft. Definitely, this is not part of base draft. Raised an issue and track it for future.\n[Future: Operational aspect of components](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/92)\n\n",
           "createdAt": "2025-02-13T19:06:43Z",
           "updatedAt": "2025-02-17T05:05:30Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-03-05 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-03-05)**\n\nAgreed to close the issue since since all the actions needed have been identified and ad-hoc issues have been created to track them.",
+          "createdAt": "2025-03-05T16:30:42Z",
+          "updatedAt": "2025-03-05T16:30:42Z"
         }
       ]
     },
@@ -2733,7 +2740,7 @@
       ],
       "body": "My thoughts and Sergio's comments labeled with [SB]\r\n\r\nThe issue is finding terminology that will be agreeable to network equipment vendors, data center people, and computer hardware people.  The idea is simple, but can be mapped onto different terminology.\r\n\r\nFor example.\r\n\r\nA rack is a metal frame that may or may not contain electrical components that holds a chassis.\r\n\r\nA standard rack holding something like a Cisco 8804 chassis looks like this.\r\n\r\n![download](https://github.com/user-attachments/assets/f52983c7-d6dd-4e5a-8da5-716a02daa1aa)\r\n\r\n\r\nThe big holes you see in the picture above are slots.  There are slots on the back as well.  A slot can accept various modules, trays, or cards.  Some modules and/or cards can have daughter cards can be connected to the module or card.\r\n\r\n \r\n\r\nLooking at the Network Inventory YANG terminology.\r\n\r\nThe rack, chassis and slots above are (as TMF puts them) holders. \r\n\r\n[SB>] YES the TMF separation between \u201cholders\u201d and \u201cequipment\u201d groups  is also in our document\r\n\r\nAn example of a sub-chassis could be a tray that holds other components (like fans).  In the Network Inventory YANG the term Board is (I think) a module or a card. \r\n\r\n[SB>] In our model a board is defined as\u201d ianahw:module\u201d , there is no distinction unfortunately from module to card/board.\r\n\r\nUsually, modules are things like fans or power, so if we are modeling that we will need to differentiate a module from a card (so calling both of those board is probably wrong). \r\n\r\n[SB>]  Fan is considered as a specific card, it has a definition specific, not as ianahw:module .\r\n\r\nThere is a differentiation between cards as well (at least in Cisco-land).  There are \u201cline cards\u201d and \u201cfabric cards\u201d.  A line card has ports on it and in the case of optical pluggables a line card may have slots to accept pluggables. I don\u2019t know if that is what is intended by the \u201csub-slot\u201d terminology, but it could work since a pluggable would be considered a module that fits into a cards' sub-slot.  At least that is one interpretation. \r\n\r\n[SB>] In this case we would have a definition for sub-slot that should be \u201ca slot of a line-card hosting an optical pluggable\u201d\r\n\r\nA \u201cfabric card\u201d is a card that \u201cline cards\u201d and sometimes modules plug into.  But here the \"sub-slot\" terminology doesn't really work very well, because the \"sub-slot\" on the \"fabric card\" is not inline with the slot the \"fabric card\" is in.  \r\n\r\nWhat needs to be made clear is whether or not a \u201csub-slot\u201d is simply a holder or if a \u201csub-slot\u201d can be used for something like an optical pluggable.\r\n\r\n[SB>] It can be used as a holder for an optical pluggable in my view.\r\n\r\nI think a couple of examples to see what the instance data would look would help.\r\n\r\nLooking at M.3100.  I would say recursive not circular.\r\n\r\n \r\n\r\nA rack is made up of bays\r\n\r\nA chassis is held in some number of bays of a rack depending on the size of the chassis.\r\n\r\nA chassis has slots (or physical places to put things)\r\n\r\nA chassis slot holds a \"circuit pack\" (which can be a line card, fabric card, computer, power, fans etc.)\r\n\r\nA line card can also accept pluggables\r\n\r\n \r\n\r\nI think leveraging M.3100 and mapping the terminology is a good exercise.  Things will get more interesting when the data center people show up and want to start talking about blades.\r\n\r\n_Originally posted by @samans in https://github.com/ietf-ivy-wg/network-inventory-yang/pull/75#discussion_r1909574652_\r\n            ",
       "createdAt": "2025-01-29T18:23:55Z",
-      "updatedAt": "2025-02-05T10:37:26Z",
+      "updatedAt": "2025-03-05T16:32:37Z",
       "closedAt": null,
       "comments": [
         {
@@ -2749,6 +2756,13 @@
           "body": "**[2025-01-29 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-29)**\n\n> * [ ]  @nigel-r-davis to check TMF supporting documents as well as the comments above from Scott and Sergio\n\nNot good definition found so far: investigation is continuing\n            ",
           "createdAt": "2025-01-29T18:27:02Z",
           "updatedAt": "2025-01-29T18:27:36Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-03-05 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-03-05)**\n\nDiscussion triggered on the mailing list: https://mailarchive.ietf.org/arch/msg/inventory-yang/TtcoNgG4VP2Vj8qvSB7f3k8NS0Q/\n\n- [ ] @All: review the current proposal on the mailing list for further discussion in the call next week\n\nThe discussion on the list has pointed out that there are multiple interpretations of what a sub-shelf is: https://mailarchive.ietf.org/arch/msg/inventory-yang/LT9AMNqPEuu4EUMgE57lw33qXtE/\n\nOne possible definition for sub-shelf is to represent a shelf, within a multi-shelf NE, which has a hierarchical association with another shelf.\n\nAnother possible definition for sub-shelf is to represent the logical partitioning of the slots within a single shelf.\n\nNigel: the first interpretation is more associated with the functionality of the shelf rather than with the physical/inventory representation\n\nJeff: in the IP world we have the concept of satellite shelves\n\nNigel: Satellite is better term, than sub-shelf, to reference a shelf which has a hierarchical relationship with a main shelf\n\n- [ ] @All: check the current implementations (if known)\n\n- [ ] @nigel-r-davis check the existing definitions in ONF and TMF\n",
+          "createdAt": "2025-03-05T16:32:35Z",
+          "updatedAt": "2025-03-05T16:32:35Z"
         }
       ]
     },
@@ -2849,7 +2863,7 @@
       ],
       "body": "PR #73 has proposed to integrate pyang validation in your ci/cd chain and make sure that changes are clean and do not break the validation and automatically generate the YANG trees (the level, etc. can be controlled)\r\n\r\nPR #73 has been close due to conflicts but it would be useful to integrate pyang validation in the github CI/CD chain",
       "createdAt": "2025-01-29T19:03:47Z",
-      "updatedAt": "2025-02-26T17:14:52Z",
+      "updatedAt": "2025-03-05T07:58:49Z",
       "closedAt": null,
       "comments": [
         {
@@ -2879,6 +2893,27 @@
           "body": "> [@italobusi](https://github.com/italobusi) ,\n> \n> Couple of questions:\n> \n> How are these produce now? ietf-network-inventory.tree ietf-network-inventory.yang\n> \n\nNow, I am running pyang on my local repository and synch the .tree file between the local and remote repositories\n\n> How are these automatic updates happening (check the commit from 15 Jan 2025) ? from template? Are you triggering it ? https://github.com/ietf-ivy-wg/network-inventory-yang/commits/main/\n\nI have triggered them with the `make update` command\n",
           "createdAt": "2025-02-26T17:14:37Z",
           "updatedAt": "2025-02-26T17:14:52Z"
+        },
+        {
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "body": "Dropped a mail to @boucadair; like to hear from him.",
+          "createdAt": "2025-03-05T07:00:55Z",
+          "updatedAt": "2025-03-05T07:00:55Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "This was considered in the past but not integrated: Please see [Be able to run pyang \u00b7 Issue #186 \u00b7 martinthomson/i-d-template](https://github.com/martinthomson/i-d-template/issues/186) or [add yanglint feature by GrumpyOldTroll \u00b7 Pull Request #193 \u00b7 martinthomson/i-d-template](https://github.com/martinthomson/i-d-template/pull/193)\n\nThis is why I prefer to handle it in a local repo that going through that path. You can reuse what we are doing in https://github.com/ietf-ivy-wg/network-inventory-topology, among others.",
+          "createdAt": "2025-03-05T07:22:34Z",
+          "updatedAt": "2025-03-05T07:22:34Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Looking at the thread, it seems that the conclusion was that there was a good alternative proposal to address the issue but the suggestion was to do that in another PR since https://github.com/martinthomson/i-d-template/pull/193  was quite old: https://github.com/martinthomson/i-d-template/pull/193#issuecomment-2169133156\n\nThe drawback of the approach in https://github.com/ietf-ivy-wg/network-inventory-topology are that:\n- we need to copy the same changes in multiple repositories\n- if we need to change, all these repositories need to be changed\n- we will face difficulties when the template is update to keep the repositories aligned any time the template from Martin Thomson is updated\n\nFor example, recently, github actions v3 support has been discontinued and the template from Martin Thomson has been updated to use github actions v4. Updating all the repositories to use the updated version of the template from Martin Thomson was quite straightforward because no changes were done on the files defined there. I am afraid that if we make changes to the core files, that work would have been more painful.\n\nMy preference is therefore to have an updated template which will make these enhancements available to all the repositories.\n\nAlternative, if possible, we can create a new template forking from Martin Thomson's template and adding pyang validation checks. Then we just need to synch this fork with any update of Martin Thomson's template and not all the github repositories.",
+          "createdAt": "2025-03-05T07:44:17Z",
+          "updatedAt": "2025-03-05T07:58:49Z"
         }
       ]
     },
@@ -2899,7 +2934,7 @@
       ],
       "body": "The target is to upload and present an updated draft and discuss some of priority 1 (or, time permitting, priority 2) issues\n",
       "createdAt": "2025-02-05T21:15:43Z",
-      "updatedAt": "2025-02-25T15:55:19Z",
+      "updatedAt": "2025-03-05T12:48:27Z",
       "closedAt": null,
       "comments": []
     },
@@ -2908,7 +2943,7 @@
       "id": "I_kwDOKiDYo86o6xBG",
       "title": "Submit an updated I-D for IETF 122",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/86",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2920,9 +2955,17 @@
       ],
       "body": "",
       "createdAt": "2025-02-05T21:16:23Z",
-      "updatedAt": "2025-02-25T15:55:20Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2025-03-05T12:48:46Z",
+      "closedAt": "2025-03-05T12:48:45Z",
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "[draft-ietf-ivy-network-inventory-yang-05](https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-05)",
+          "createdAt": "2025-03-05T12:48:45Z",
+          "updatedAt": "2025-03-05T12:48:45Z"
+        }
+      ]
     },
     {
       "number": 87,
@@ -3053,16 +3096,28 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "nigel-r-davis",
+        "italobusi",
+        "sergiobelotti"
+      ],
       "labels": [
         "agreed",
         "priority-1"
       ],
       "body": "**[2025-02-19 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-19)**\n\nComplete the text on the Appendix on \"Examples of ports, transceivers and port breakouts\", providing some examples based on [IETF 121 Slides](https://datatracker.ietf.org/doc/slides-120-ivy-2-a-yang-data-model-for-network-inventory/), and in particular:\n- slide 8 (100G-LR single-channel port)\n- slide 9 (400G-LR4 multi-channel WDM port)\n- slide 10 (400G-DR4 MPO port)\n\nDescribe the concept of host and line channels and the mapping to breakout channels\n\nComplement the slides from [IETF 121 Slides](https://datatracker.ietf.org/doc/slides-120-ivy-2-a-yang-data-model-for-network-inventory/) with [openconfig-breakout-groups.pptx](https://github.com/user-attachments/files/15991133/openconfig-breakout-groups.pptx) to show also the physical interfaces\n\nConsider also some clarifications provided in https://github.com/ietf-ivy-wg/network-inventory-yang/pull/76#issuecomment-2669201642",
       "createdAt": "2025-02-19T16:52:37Z",
-      "updatedAt": "2025-02-19T17:15:38Z",
+      "updatedAt": "2025-03-05T16:29:55Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-03-05 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-03-05)**\n\n- [ ] @italobusi @sergiobelotti @nigel-r-davis Update the slides and provide an input for the IETF 122 presentation (#87)",
+          "createdAt": "2025-03-05T16:29:36Z",
+          "updatedAt": "2025-03-05T16:29:36Z"
+        }
+      ]
     },
     {
       "number": 97,
@@ -3072,13 +3127,29 @@
       "state": "OPEN",
       "author": "lana-wu",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
-      "labels": [],
-      "body": "The suggested new path:\n`    leaf port-ref {\n      type leafref {\n        path\n          \"/nwi:network-inventory/nwi:network-elements/\"\n        + \"nwi:network-element[nwi:ne-id=current()/../ne-ref]\"\n        + \"/nwi:components/nwi:component/nwi:component-id\";\n      }\n      must \"derived-from-or-self (/nwi:network-inventory/\n            nwi:network-elements/nwi:network-element\n            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component\n            [nwi:component-id=current()]/nwi:class, 'ianahw:port')\";\n      description\n        \"The reference to the port component.\";\n    }`\n\nThe old one:\n    leaf port-ref {\n      type leafref {\n        path\n          \"/nwi:network-inventory/nwi:network-elements/\"\n        + \"nwi:network-element[nwi:ne-id=current()/../nwi:ne-ref]\"\n        + \"/nwi:components/nwi:component/nwi:component-id\";\n      }\n      must \"derived-from-or-self (/nwi:network-inventory/\n            nwi:network-elements/nwi:network-element\n            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component\n            [nwi:component-id=current()]/nwi:class, 'ianahw:port')\";\n      description\n        \"The reference to the port component.\";\n    }",
+      "assignees": [
+        "italobusi",
+        "sergiobelotti",
+        "prmanna",
+        "lana-wu"
+      ],
+      "labels": [
+        "bug",
+        "priority-1"
+      ],
+      "body": "The suggested new path:\n```\n    leaf port-ref {\n      type leafref {\n        path\n          \"/nwi:network-inventory/nwi:network-elements/\"\n        + \"nwi:network-element[nwi:ne-id=current()/../ne-ref]\"\n        + \"/nwi:components/nwi:component/nwi:component-id\";\n      }\n      must \"derived-from-or-self (/nwi:network-inventory/\n            nwi:network-elements/nwi:network-element\n            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component\n            [nwi:component-id=current()]/nwi:class, 'ianahw:port')\";\n      description\n        \"The reference to the port component.\";\n    }\n\n```\nThe old one:\n```\n    leaf port-ref {\n      type leafref {\n        path\n          \"/nwi:network-inventory/nwi:network-elements/\"\n        + \"nwi:network-element[nwi:ne-id=current()/../nwi:ne-ref]\"\n        + \"/nwi:components/nwi:component/nwi:component-id\";\n      }\n      must \"derived-from-or-self (/nwi:network-inventory/\n            nwi:network-elements/nwi:network-element\n            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component\n            [nwi:component-id=current()]/nwi:class, 'ianahw:port')\";\n      description\n        \"The reference to the port component.\";\n    }\n```",
       "createdAt": "2025-03-03T08:41:39Z",
-      "updatedAt": "2025-03-03T08:41:39Z",
+      "updatedAt": "2025-03-05T16:50:49Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-03-05 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-03-05)**\n\nThis is a bug which needs to be fixed: this can be fixed offline before the next call\n\n- [ ] @prmanna  Submit a PR to fix it\n- [ ] @italobusi @sergiobelotti @lana-wu Review the PR when ready\n",
+          "createdAt": "2025-03-05T16:27:16Z",
+          "updatedAt": "2025-03-05T16:27:16Z"
+        }
+      ]
     }
   ],
   "pulls": [
