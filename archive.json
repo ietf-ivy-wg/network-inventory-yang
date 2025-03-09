@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-06T00:54:40.399579+00:00",
+  "timestamp": "2025-03-09T00:47:07.487654+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -423,9 +423,9 @@
         "priority-1",
         "priority-2"
       ],
-      "body": "> Some quick comments:\r\n> \r\n>   *   Please soften the various citations to ACTN. I would simply remove them.\r\n\r\n- [x] Closed with PR #74 \r\n>   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\\\r\n\r\n- [ ] #72\r\n\r\n>   *   Consider if some data nodes that are defined in other models can be added directly to the base model, e.g., the following ones from draft-li\r\n> \r\n> ```\r\n>       +--ro required-components*          -> ../uuid\r\n>       +--ro dependent-components*         -> ../uuid\r\n> \r\n> ```\r\n> \r\n\r\n- [ ] #70\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/\r\n",
+      "body": "> Some quick comments:\n> \n>   *   Please soften the various citations to ACTN. I would simply remove them.\n\n- [x] Closed with PR #74 \n>   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\\\n\nSee: #72\n\n>   *   Consider if some data nodes that are defined in other models can be added directly to the base model, e.g., the following ones from draft-li\n> \n> ```\n>       +--ro required-components*          -> ../uuid\n>       +--ro dependent-components*         -> ../uuid\n> \n> ```\n> \n\nSee: #70\n\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/\n",
       "createdAt": "2023-11-17T20:03:19Z",
-      "updatedAt": "2025-02-25T16:22:02Z",
+      "updatedAt": "2025-03-06T16:51:38Z",
       "closedAt": null,
       "comments": [
         {
@@ -3139,15 +3139,42 @@
       ],
       "body": "The suggested new path:\n```\n    leaf port-ref {\n      type leafref {\n        path\n          \"/nwi:network-inventory/nwi:network-elements/\"\n        + \"nwi:network-element[nwi:ne-id=current()/../ne-ref]\"\n        + \"/nwi:components/nwi:component/nwi:component-id\";\n      }\n      must \"derived-from-or-self (/nwi:network-inventory/\n            nwi:network-elements/nwi:network-element\n            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component\n            [nwi:component-id=current()]/nwi:class, 'ianahw:port')\";\n      description\n        \"The reference to the port component.\";\n    }\n\n```\nThe old one:\n```\n    leaf port-ref {\n      type leafref {\n        path\n          \"/nwi:network-inventory/nwi:network-elements/\"\n        + \"nwi:network-element[nwi:ne-id=current()/../nwi:ne-ref]\"\n        + \"/nwi:components/nwi:component/nwi:component-id\";\n      }\n      must \"derived-from-or-self (/nwi:network-inventory/\n            nwi:network-elements/nwi:network-element\n            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component\n            [nwi:component-id=current()]/nwi:class, 'ianahw:port')\";\n      description\n        \"The reference to the port component.\";\n    }\n```",
       "createdAt": "2025-03-03T08:41:39Z",
-      "updatedAt": "2025-03-05T16:50:49Z",
+      "updatedAt": "2025-03-06T08:38:46Z",
       "closedAt": null,
       "comments": [
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-03-05 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-03-05)**\n\nThis is a bug which needs to be fixed: this can be fixed offline before the next call\n\n- [ ] @prmanna  Submit a PR to fix it\n- [ ] @italobusi @sergiobelotti @lana-wu Review the PR when ready\n",
+          "body": "**[2025-03-05 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-03-05)**\n\nThis is a bug which needs to be fixed: this can be fixed offline before the next call\n\n- [x] @prmanna  Submit a PR to fix it\n- [ ] @italobusi @sergiobelotti @lana-wu Review the PR when ready\n",
           "createdAt": "2025-03-05T16:27:16Z",
-          "updatedAt": "2025-03-05T16:27:16Z"
+          "updatedAt": "2025-03-06T08:38:45Z"
+        }
+      ]
+    },
+    {
+      "number": 99,
+      "id": "I_kwDOKiDYo86s6M67",
+      "title": "Clarify what are the provisions in the abstract",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/99",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "documentation",
+        "priority-1"
+      ],
+      "body": "> The abstract of the document (-05) says:\n> \n> > However, the data model is designed with appropriate provisions to ease future augmentations with application- and technology-specific details.\n> \n> What are those provisions? \n> \n\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/SWhtPRsiSj7oS4gT9svSWWhqQmM/",
+      "createdAt": "2025-03-06T16:54:29Z",
+      "updatedAt": "2025-03-06T16:56:23Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I would propose:\n\nOLD\n\n> However, the data model is designed with appropriate provisions to ease future augmentations with application- and technology-specific details.\n\n\nNEW\n\n> The base data model can be augmented with application- and technology-specific details.\n\nPending also from discussion in #72 \n\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/k9LLQJUl2Uh3LZQQYuIhvn6OTyw/",
+          "createdAt": "2025-03-06T16:56:10Z",
+          "updatedAt": "2025-03-06T16:56:10Z"
         }
       ]
     }
@@ -6119,6 +6146,87 @@
           "body": "",
           "createdAt": "2025-02-28T08:54:23Z",
           "updatedAt": "2025-02-28T08:54:23Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 98,
+      "id": "PR_kwDOKiDYo86Nmpd2",
+      "title": "Fixed path error: \u201cne-ref\u201d of port-ref ",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/98",
+      "state": "OPEN",
+      "author": "prmanna",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "#97  - Committed Proposed change. \r\n\r\nPath error for \u201cne-ref\u201d of port-ref at ietf-network-inventory.yang:143 is not found",
+      "createdAt": "2025-03-06T08:36:32Z",
+      "updatedAt": "2025-03-06T12:15:57Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "c3a9cd69bce8b5ce23888e1c9b82db9f4e0c994f",
+      "headRepository": "ietf-ivy-wg/network-inventory-yang",
+      "headRefName": "issue-97",
+      "headRefOid": "48e17b015eb31ec475413ae79774a85f63e2779e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "lana-wu",
+          "authorAssociation": "COLLABORATOR",
+          "body": "There is one more path error in tranceiver-module-ref.\r\n```\r\n    leaf transceiver-module-ref {\r\n      type leafref {\r\n        path\r\n          \"/nwi:network-inventory/nwi:network-elements/\"\r\n        + \"nwi:network-element[nwi:ne-id=current()/../**nwi**:ne-ref]\"\r\n        + \"/nwi:components/nwi:component/nwi:component-id\";\r\n      }\r\n      must \"derived-from-or-self (/nwi:network-inventory/\r\n```",
+          "createdAt": "2025-03-06T08:54:02Z",
+          "updatedAt": "2025-03-06T12:12:44Z"
+        },
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> There is one more path error in tranceiver-module-ref.\r\n> \r\n> ```\r\n>     leaf transceiver-module-ref {\r\n>       type leafref {\r\n>         path\r\n>           \"/nwi:network-inventory/nwi:network-elements/\"\r\n>         + \"nwi:network-element[nwi:ne-id=current()/../**nwi**:ne-ref]\"\r\n>         + \"/nwi:components/nwi:component/nwi:component-id\";\r\n>       }\r\n>       must \"derived-from-or-self (/nwi:network-inventory/\r\n> ```\r\n\r\n@lana-wu : Thanks Bo, I also noticed that but you were faster than me ...",
+          "createdAt": "2025-03-06T10:18:50Z",
+          "updatedAt": "2025-03-06T12:13:26Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86exquQ",
+          "commit": {
+            "abbreviatedOid": "19c21e7"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-06T09:15:43Z",
+          "updatedAt": "2025-03-06T09:15:43Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo86ezXCE",
+          "commit": {
+            "abbreviatedOid": "48e17b0"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-06T12:15:12Z",
+          "updatedAt": "2025-03-06T12:15:12Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo86ezXcS",
+          "commit": {
+            "abbreviatedOid": "48e17b0"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-06T12:15:57Z",
+          "updatedAt": "2025-03-06T12:15:57Z",
           "comments": []
         }
       ]
