@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-09T00:47:07.487654+00:00",
+  "timestamp": "2025-03-11T00:55:16.134096+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -2684,7 +2684,7 @@
       ],
       "body": "When preparing JSON examples (see PR #76 ), the following when statement failed validation with yanglint:\r\n\r\n```\r\n                \"derived-from-or-self(../nwi:class,\r\n                'nwi:transceivers-module')\";\r\n\r\n```\r\n\r\nThe issue could have been fixed only by updating the component class definition as:\r\n\r\n```\r\n            leaf class {\r\n              type identityref {\r\n                base ianahw:hardware-class;\r\n              }\r\n              config false;\r\n              mandatory true;\r\n              description\r\n                \"The type of the component.\";\r\n            }\r\n```\r\n\r\nThis issue needs further investigation:\r\n- is it a yanglint implemenation issue or a bug in the current YANG model?\r\n- is there any alternative solution to avoid the use of the union type?",
       "createdAt": "2024-12-16T17:03:20Z",
-      "updatedAt": "2025-02-26T17:16:23Z",
+      "updatedAt": "2025-03-10T13:08:12Z",
       "closedAt": null,
       "comments": [
         {
@@ -2721,6 +2721,13 @@
           "body": "> * [x]  [@italobusi](https://github.com/italobusi) : align the JSON code examples with the updated YANG model\n\nDone in fcdc9ec244a7a6e72f04754b81f3333e39274e71, but the issue still applies\n\nThe command I am using to validate the JSON example is:\n\n```\nyanglint -f json ../ietf-network-inventory.yang ~/yang/modules/iana/iana-hardware@2018-03-13.yang ports-transceivers-breakouts-examples.json\n```\n\nWhen I try to validate the JSON code, I get this error message:\n\n```\nlibyang err : When condition \"derived-from-or-self(../nwi:class,\n'nwi:transceiver-module')\" not satisfied. (/ietf-network-inventory:network-inventory/network-elements/network-element[ne-id='NE-1']/components/component[component-id='transceiver-module-7']/transceiver-module-specific-info)\nlibyang err : When condition \"derived-from-or-self(../nwi:class,\n'nwi:transceiver-module')\" not satisfied. (/ietf-network-inventory:network-inventory/network-elements/network-element[ne-id='NE-1']/components/component[component-id='transceiver-module-6']/transceiver-module-specific-info)\nYANGLINT[E]: Failed to parse input data file \"ports-transceivers-breakouts-examples.json\".\n```\n\nThe validation is successful, if the YANG model is changed as:\n\nOLD\n```\n            leaf class {\n              type union {\n                type identityref {\n                  base ianahw:hardware-class;\n                }\n                type identityref {\n                  base non-hardware-component-class;\n                }\n              }\n              ...\n            }\n```\nNEW\n```\n            leaf class {\n              type identityref {\n                base ianahw:hardware-class;\n              }\n              ...\n            }\n```\n",
           "createdAt": "2025-02-26T17:10:33Z",
           "updatedAt": "2025-02-26T17:10:33Z"
+        },
+        {
+          "author": "prmanna",
+          "authorAssociation": "NONE",
+          "body": "It was a bug in [libyang](https://github.com/CESNET/libyang). Fixed now in their 'devel' branch.",
+          "createdAt": "2025-03-10T13:08:11Z",
+          "updatedAt": "2025-03-10T13:08:11Z"
         }
       ]
     },
@@ -3175,6 +3182,30 @@
           "body": "I would propose:\n\nOLD\n\n> However, the data model is designed with appropriate provisions to ease future augmentations with application- and technology-specific details.\n\n\nNEW\n\n> The base data model can be augmented with application- and technology-specific details.\n\nPending also from discussion in #72 \n\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/k9LLQJUl2Uh3LZQQYuIhvn6OTyw/",
           "createdAt": "2025-03-06T16:56:10Z",
           "updatedAt": "2025-03-06T16:56:10Z"
+        }
+      ]
+    },
+    {
+      "number": 100,
+      "id": "I_kwDOKiDYo86tRekq",
+      "title": "Rationale behind containers with a single list",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/100",
+      "state": "OPEN",
+      "author": "tokarenko",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Please advise for what purpose are there containers with a single list in the model?\n\n```\ncontainer network-elements {\n      description\n        \"The top-level container for the list of network elements\n         within the network.\";\n      list network-element { ... }\n}\n```\n\nand\n\n```\n        ...\n        container components {\n          description\n            \"The top-level container for the list of components\n             within a network element.\";\n          list component { ... }\n        }\n```\n\nIETF interfaces model did not introduce such containers and it looks more consice, especially when translated to object model of some programming language:\n\n```\ncontainer interfaces {\n    description\n      \"Interface parameters.\";\n\n    list interface { ... }\n}\n```",
+      "createdAt": "2025-03-10T12:01:23Z",
+      "updatedAt": "2025-03-10T12:22:11Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "It is common practice to define a list with a singular name within a container with the corresponding plural name\n\nSee section 4.3.1 of [draft-ietf-netmod-rfc8407bis-22](https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-22)\n\nThe rationale is mainly described in section 4.14.1 of [draft-ietf-netmod-rfc8407bis-22](https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-22) and [RFC 8407](https://datatracker.ietf.org/doc/html/rfc8407):\n\n> The NETCONF and RESTCONF protocols do not currently support the ability to delete all list (or leaf-list) entries at once. This deficiency is sometimes avoided by use of a parent container (i.e., deleting the container also removes all child entries).\n\nThe interface model has only one list (with one \"surrounding container\") but follows the same approach",
+          "createdAt": "2025-03-10T12:22:10Z",
+          "updatedAt": "2025-03-10T12:22:10Z"
         }
       ]
     }
