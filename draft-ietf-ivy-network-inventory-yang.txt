@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 1 September 2025                                          Nokia
+Expires: 12 September 2025                                         Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                        28 February 2025
+                                                           11 March 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 September 2025.
+   This Internet-Draft will expire on 12 September 2025.
 
 Copyright Notice
 
@@ -923,7 +923,7 @@ Table of Contents
          type leafref {
            path
              "/nwi:network-inventory/nwi:network-elements/"
-           + "nwi:network-element[nwi:ne-id=current()/../nwi:ne-ref]"
+           + "nwi:network-element[nwi:ne-id=current()/../ne-ref]"
            + "/nwi:components/nwi:component/nwi:component-id";
          }
          must "derived-from-or-self (/nwi:network-inventory/
@@ -950,7 +950,7 @@ Table of Contents
          type leafref {
            path
              "/nwi:network-inventory/nwi:network-elements/"
-           + "nwi:network-element[nwi:ne-id=current()/../nwi:ne-ref]"
+           + "nwi:network-element[nwi:ne-id=current()/../ne-ref]"
            + "/nwi:components/nwi:component/nwi:component-id";
          }
          must "derived-from-or-self (/nwi:network-inventory/
