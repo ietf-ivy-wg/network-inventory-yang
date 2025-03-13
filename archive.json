@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-11T00:55:16.134096+00:00",
+  "timestamp": "2025-03-13T00:55:15.101778+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -456,7 +456,7 @@
       "id": "I_kwDOKiDYo854c18r",
       "title": "WG adoption comments from Qiufang",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/10",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -469,8 +469,8 @@
       ],
       "body": "> As discussed in the design team call which happened last week, I would like the authors to consider adding a requirement or use cases section to illustrate what we would like to cover in this draft. We had some discussion about what should and what should not be in the scope of this draft both in the IETF meeting and in the weekly calls. I think it would be helpful if the requirements or use cases could be discussed and agreed upon.\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/FrD6aIOfr8IKCM0-6uoi188gOgg/",
       "createdAt": "2023-12-01T12:53:10Z",
-      "updatedAt": "2025-01-22T16:31:30Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-11T17:21:04Z",
+      "closedAt": "2025-03-11T17:21:04Z",
       "comments": [
         {
           "author": "italobusi",
@@ -481,7 +481,7 @@
         },
         {
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "IMO, now, we already have clear and agreed boundary of work for IVY base draft. \r\nAlong with this issue, #29 (General considerations) is also raised. In the next call, we'll discuss on #29 and finalize the base ivy draft boundary.",
           "createdAt": "2025-01-10T10:31:32Z",
           "updatedAt": "2025-01-10T10:31:32Z"
@@ -492,6 +492,13 @@
           "body": "**[2025-01-22 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-22)**\n\nIt could be closed together with issue #29\n",
           "createdAt": "2025-01-22T16:30:59Z",
           "updatedAt": "2025-01-22T16:30:59Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> **[2025-01-22 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-22)**\n> \n> It could be closed together with issue [#29](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/29)\n\nClosed with #29 : https://github.com/ietf-ivy-wg/network-inventory-yang/issues/29#issuecomment-2701462222\n",
+          "createdAt": "2025-03-11T17:21:03Z",
+          "updatedAt": "2025-03-11T17:21:03Z"
         }
       ]
     },
@@ -1374,7 +1381,7 @@
         },
         {
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "Though some of the topics are already covered in the current version, but some need discussions.\r\n\r\n- connectors, cables, strands and physical spans -- under topology model.\r\n- broad physical modeling such as geographic structures etc -- IVY is not ideal here, instead it comes under MDSC functions.  \r\n- The ability to hot-swap and to deal with other dynamics - IMO, operation should not be part of Inventory.\r\n- Other characteristics such as height, length, width, weight etc. -- some are already there in inventory-location.\r\n- humidity characteristics, fire characteristics, power rating, thermal ratings, physical stress and mechanical vibration characteristics - Power already covered in IVY, remaining operational data can be added, but not necessarily in the base draft. \r\n- \"equipment protections\" --- The model intentionally does not cover functional aspects. We should work on the relationship between functional and physical. The functional model relationship needs to deal with \"equipment protections\" which is really functional protections. ONF have some work that may help here. -- Can have a section for equipment protection guidelines.\r\n- There are a few cases of mechanical functionality (such as a fan). This could be covered here (e.g., the property fan-speed could be a valid augment to a module that has a fan. -- This is like comp specific ask for operation. In general, FAN and Temperature has close relation. Based on the current temperature, FAN speed will vary.  \r\n- The model of temperature, humidity and other environmental aspects (especially when measured) relate closely and should be considered carefully. - This is an operational aspect. This can be an extension draft.\r\n- State machines associated with the power-up cycle, admin state etc. really related to the functional model and should be considered carefully. - Again, this is an operational aspect. ",
           "createdAt": "2025-01-10T09:52:12Z",
           "updatedAt": "2025-01-10T09:52:12Z"
@@ -1639,7 +1646,7 @@
         },
         {
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "Base Inventory should include\r\n1. RFC8348: chassis, backplane, container (slot, ...), power supply, fan, sensor, module (board, ...), cpu, battery, storage device etc\r\n     a. virtual NE -- Needs to deep dive little more to understand if any field required in base inventory draft.\r\n     b. Logical Separation - it should be automatically covered Base Inventory. This separation does not create any new entity, instead it needs some association management. \r\n     c. SAP attachment - \r\n2. Topology - Separate draft\r\n3. Software - Separate draft\r\n4. Location - Separate draft\r\n5. Entitlement/License - Separate draft\r\n6. Power - Separate draft (ie. used power, etc). It has a relation with GREEN.\r\n\r\nNot in IVY Scope (but has relation) \r\n\t1. Access Control - This is operation. Can be separate draft. It will have a relation with policy, user-management. also with Virtual NE management.\r\n\t2. Logical/Virtual Operation Control on IVY - Need more deep dive.\r\n\t",
           "createdAt": "2024-09-18T13:56:09Z",
           "updatedAt": "2024-09-25T14:26:00Z"
@@ -1653,7 +1660,7 @@
         },
         {
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "[Virtual NE vs. Logical NE.pptx](https://github.com/user-attachments/files/17230571/Virtual.NE.vs.Logical.NE.pptx)\r\n",
           "createdAt": "2024-10-02T14:07:39Z",
           "updatedAt": "2024-10-02T14:07:39Z"
@@ -1667,7 +1674,7 @@
         },
         {
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "[Virtual NE vs. Logical NE.pptx](https://github.com/user-attachments/files/17428688/Virtual.NE.vs.Logical.NE.pptx)\r\nUpdated with example for Cisco Virtual NE and stacked switch case.",
           "createdAt": "2024-10-18T05:39:34Z",
           "updatedAt": "2024-10-18T05:41:36Z"
@@ -1820,7 +1827,7 @@
         },
         {
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "This is agreed that Inventory base model must contain the versions for its SW/FW.  The question arises how to manage its versions, its upgradation.  As of now, the management of SW upgrade and/or its procedures - it's not part of both Inventory and ALMO.  Again, Inventory model should be overloaded with SW management. At the same time, ALMO is a license/entitlement management architecture for all - SW/HW/NE/Solution/etc. It's different than SW upgrades/version management. \r\nIMO, We need to have a deep dive on overall SW/FW version management architecture, along with its recommendations. ",
           "createdAt": "2024-03-08T16:47:39Z",
           "updatedAt": "2024-03-08T16:47:39Z"
@@ -1991,7 +1998,7 @@
         },
         {
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "OpenConfig Model introduced breakout-mode config for Grey Optics. It does not consider complicated config to pin specific lanes. \r\nUnder pluggable comp - it should have list of breakout groups also.  \r\n\r\n```\r\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro groups\r\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro group* [index].   // list of group\r\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro index\u00a0\u00a0\u00a0\u00a0\r\n\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 +--ro breakout-speed?\u00a0\u00a0\u00a0\u00a0\u00a0 \u00a0\u00a0\u00a0// optional speed\r\n             + --ro component-ref           // the reference component of this group. \r\n             +--ro channels*?                  // list of lanes/pins for this group \r\n```\r\nthoughts ?",
           "createdAt": "2024-06-22T12:24:20Z",
           "updatedAt": "2024-06-24T10:15:02Z"
@@ -2614,7 +2621,7 @@
       ],
       "body": ">   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\\\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/",
       "createdAt": "2024-11-27T16:29:14Z",
-      "updatedAt": "2025-02-25T16:19:14Z",
+      "updatedAt": "2025-03-12T20:19:45Z",
       "closedAt": null,
       "comments": [
         {
@@ -2630,6 +2637,13 @@
           "body": "> * [x]  [@italobusi](https://github.com/italobusi) : trigger some discussion on the IVY WG mailing list to get more feedbacks from Med\n\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/iAm4E-hNTv9F5tACq_uqqAIE6YI/\n",
           "createdAt": "2025-02-25T16:19:12Z",
           "updatedAt": "2025-02-25T16:19:12Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-03-12 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-03-12)**\n\nDiscussion on-going on the [IVY WG mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/IUdtFHKD8_OqLVFUJQ_W0bqo5x0//)\n\nGuidelines can be too restrictive or too liberal since it is hard to predict the future needs for augmentations.\n\nA guideline can also be defining an empty container as a placeholder for augmentation (providing already a suggestion where to put possible augmentation of the model)\n\n- [ ] @ALL provide feedbacks to the on-going IVY WG mailing list discussion\n\n- [ ] @italobusi : review the text and submit a PR with some proposed text changes, following the on-going discussion on the [IVY WG mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/IUdtFHKD8_OqLVFUJQ_W0bqo5x0//)\n",
+          "createdAt": "2025-03-12T20:19:20Z",
+          "updatedAt": "2025-03-12T20:19:45Z"
         }
       ]
     },
@@ -2672,7 +2686,7 @@
       "id": "I_kwDOKiDYo86jfb20",
       "title": "Yanglint validation issues with the union of identityref",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/78",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2684,19 +2698,19 @@
       ],
       "body": "When preparing JSON examples (see PR #76 ), the following when statement failed validation with yanglint:\r\n\r\n```\r\n                \"derived-from-or-self(../nwi:class,\r\n                'nwi:transceivers-module')\";\r\n\r\n```\r\n\r\nThe issue could have been fixed only by updating the component class definition as:\r\n\r\n```\r\n            leaf class {\r\n              type identityref {\r\n                base ianahw:hardware-class;\r\n              }\r\n              config false;\r\n              mandatory true;\r\n              description\r\n                \"The type of the component.\";\r\n            }\r\n```\r\n\r\nThis issue needs further investigation:\r\n- is it a yanglint implemenation issue or a bug in the current YANG model?\r\n- is there any alternative solution to avoid the use of the union type?",
       "createdAt": "2024-12-16T17:03:20Z",
-      "updatedAt": "2025-03-10T13:08:12Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-12T20:21:23Z",
+      "closedAt": "2025-03-12T20:21:23Z",
       "comments": [
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-01-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-08)**\r\n\r\nAgreed to mark it as priority 1 (changing the data type will be an NBC change)\r\n\r\n- [ ] @prmanna ask Netmod WG for some feedbacks about whether is an a yanglint implementation issue or a YANG modelling issue\r\n",
+          "body": "**[2025-01-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-01-08)**\n\nAgreed to mark it as priority 1 (changing the data type will be an NBC change)\n\n- [x] @prmanna ask Netmod WG for some feedbacks about whether is an a yanglint implementation issue or a YANG modelling issue\n",
           "createdAt": "2025-01-08T16:13:16Z",
-          "updatedAt": "2025-01-08T16:13:16Z"
+          "updatedAt": "2025-03-12T12:06:09Z"
         },
         {
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "Raised an [issue](https://github.com/CESNET/libyang/issues/2342) in [libyang](https://github.com/CESNET/libyang) for their input.",
           "createdAt": "2025-01-30T05:07:24Z",
           "updatedAt": "2025-01-30T05:07:54Z"
@@ -2724,10 +2738,24 @@
         },
         {
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "It was a bug in [libyang](https://github.com/CESNET/libyang). Fixed now in their 'devel' branch.",
           "createdAt": "2025-03-10T13:08:11Z",
           "updatedAt": "2025-03-10T13:08:11Z"
+        },
+        {
+          "author": "prmanna",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "To build the yanglint binary:\n\n$ git clone https://github.com/CESNET/libyang.git\n$ cd libyang\n$ git checkout devel\n\nBuild:\nhttps://github.com/CESNET/libyang/blob/master/README.md#building",
+          "createdAt": "2025-03-12T16:07:36Z",
+          "updatedAt": "2025-03-12T16:07:36Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-03-12 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-03-12)**\n\nIssue closed with the latest updates of yanglint: https://github.com/CESNET/libyang/issues/2342\n\nInstructions to upgrade yanglint installation provided by @prmanna : https://github.com/ietf-ivy-wg/network-inventory-yang/issues/78#issuecomment-2718394539\n",
+          "createdAt": "2025-03-12T20:21:19Z",
+          "updatedAt": "2025-03-12T20:21:19Z"
         }
       ]
     },
@@ -2882,7 +2910,7 @@
         },
         {
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "@italobusi ,\n\nCouple of questions:\n \nHow are these produce now?\nietf-network-inventory.tree\nietf-network-inventory.yang\n \nHow are these automatic updates happening (check the commit from 15 Jan 2025) ? from template?\nAre you triggering it ?\nhttps://github.com/ietf-ivy-wg/network-inventory-yang/commits/main/",
           "createdAt": "2025-02-26T15:35:06Z",
           "updatedAt": "2025-02-26T15:35:37Z"
@@ -2903,7 +2931,7 @@
         },
         {
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "Dropped a mail to @boucadair; like to hear from him.",
           "createdAt": "2025-03-05T07:00:55Z",
           "updatedAt": "2025-03-05T07:00:55Z"
@@ -2990,9 +3018,24 @@
       ],
       "body": "",
       "createdAt": "2025-02-05T21:16:29Z",
-      "updatedAt": "2025-02-25T15:55:21Z",
+      "updatedAt": "2025-03-13T00:50:13Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-03-12 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-03-12)**\n\nSlides reviewed and updated during the call\n\n- [ ] @aguoietf upload the updated slides on github",
+          "createdAt": "2025-03-12T20:22:18Z",
+          "updatedAt": "2025-03-12T20:22:18Z"
+        },
+        {
+          "author": "aguoietf",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Final draft of the presentation slides:\n[draft-ietf-ivy-network-inventory-yang-05.pptx](https://github.com/user-attachments/files/19219719/draft-ietf-ivy-network-inventory-yang-05.pptx)",
+          "createdAt": "2025-03-13T00:49:40Z",
+          "updatedAt": "2025-03-13T00:50:11Z"
+        }
+      ]
     },
     {
       "number": 88,
@@ -3030,7 +3073,7 @@
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/89",
       "state": "OPEN",
       "author": "prmanna",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [
         "candidate-future-rev-augment"
@@ -3048,7 +3091,7 @@
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/90",
       "state": "OPEN",
       "author": "prmanna",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [
         "candidate-future-rev-augment"
@@ -3066,7 +3109,7 @@
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/91",
       "state": "OPEN",
       "author": "prmanna",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [
         "candidate-future-rev-augment"
@@ -3084,7 +3127,7 @@
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/92",
       "state": "OPEN",
       "author": "prmanna",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [
         "candidate-future-rev-augment"
@@ -3131,7 +3174,7 @@
       "id": "I_kwDOKiDYo86sSjee",
       "title": "Path error for \u201cne-ref\u201d of port-ref at ietf-network-inventory.yang:143 is not found",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/97",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "lana-wu",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -3146,8 +3189,8 @@
       ],
       "body": "The suggested new path:\n```\n    leaf port-ref {\n      type leafref {\n        path\n          \"/nwi:network-inventory/nwi:network-elements/\"\n        + \"nwi:network-element[nwi:ne-id=current()/../ne-ref]\"\n        + \"/nwi:components/nwi:component/nwi:component-id\";\n      }\n      must \"derived-from-or-self (/nwi:network-inventory/\n            nwi:network-elements/nwi:network-element\n            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component\n            [nwi:component-id=current()]/nwi:class, 'ianahw:port')\";\n      description\n        \"The reference to the port component.\";\n    }\n\n```\nThe old one:\n```\n    leaf port-ref {\n      type leafref {\n        path\n          \"/nwi:network-inventory/nwi:network-elements/\"\n        + \"nwi:network-element[nwi:ne-id=current()/../nwi:ne-ref]\"\n        + \"/nwi:components/nwi:component/nwi:component-id\";\n      }\n      must \"derived-from-or-self (/nwi:network-inventory/\n            nwi:network-elements/nwi:network-element\n            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component\n            [nwi:component-id=current()]/nwi:class, 'ianahw:port')\";\n      description\n        \"The reference to the port component.\";\n    }\n```",
       "createdAt": "2025-03-03T08:41:39Z",
-      "updatedAt": "2025-03-06T08:38:46Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-11T17:13:38Z",
+      "closedAt": "2025-03-11T17:13:38Z",
       "comments": [
         {
           "author": "italobusi",
@@ -3166,14 +3209,17 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "italobusi"
+      ],
       "labels": [
         "documentation",
+        "agreed",
         "priority-1"
       ],
       "body": "> The abstract of the document (-05) says:\n> \n> > However, the data model is designed with appropriate provisions to ease future augmentations with application- and technology-specific details.\n> \n> What are those provisions? \n> \n\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/SWhtPRsiSj7oS4gT9svSWWhqQmM/",
       "createdAt": "2025-03-06T16:54:29Z",
-      "updatedAt": "2025-03-06T16:56:23Z",
+      "updatedAt": "2025-03-12T20:27:56Z",
       "closedAt": null,
       "comments": [
         {
@@ -3182,6 +3228,13 @@
           "body": "I would propose:\n\nOLD\n\n> However, the data model is designed with appropriate provisions to ease future augmentations with application- and technology-specific details.\n\n\nNEW\n\n> The base data model can be augmented with application- and technology-specific details.\n\nPending also from discussion in #72 \n\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/k9LLQJUl2Uh3LZQQYuIhvn6OTyw/",
           "createdAt": "2025-03-06T16:56:10Z",
           "updatedAt": "2025-03-06T16:56:10Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-03-12 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-03-12)**\n\nAgreed the text change for the I-D Abstract as discussed on the [IVY WG mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/koA-X-6aMID4Zk5VRqcPERaWO48/) between Italo and Mahesh (as contributor)\n\n- [ ] @italobusi submit a PR with the text changes discussed on the [IVY WG mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/koA-X-6aMID4Zk5VRqcPERaWO48/)\n",
+          "createdAt": "2025-03-12T20:16:00Z",
+          "updatedAt": "2025-03-12T20:27:56Z"
         }
       ]
     },
@@ -3190,15 +3243,17 @@
       "id": "I_kwDOKiDYo86tRekq",
       "title": "Rationale behind containers with a single list",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/100",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "tokarenko",
       "authorAssociation": "NONE",
-      "assignees": [],
+      "assignees": [
+        "tokarenko"
+      ],
       "labels": [],
       "body": "Please advise for what purpose are there containers with a single list in the model?\n\n```\ncontainer network-elements {\n      description\n        \"The top-level container for the list of network elements\n         within the network.\";\n      list network-element { ... }\n}\n```\n\nand\n\n```\n        ...\n        container components {\n          description\n            \"The top-level container for the list of components\n             within a network element.\";\n          list component { ... }\n        }\n```\n\nIETF interfaces model did not introduce such containers and it looks more consice, especially when translated to object model of some programming language:\n\n```\ncontainer interfaces {\n    description\n      \"Interface parameters.\";\n\n    list interface { ... }\n}\n```",
       "createdAt": "2025-03-10T12:01:23Z",
-      "updatedAt": "2025-03-10T12:22:11Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-12T08:53:34Z",
+      "closedAt": "2025-03-12T08:53:33Z",
       "comments": [
         {
           "author": "italobusi",
@@ -3206,6 +3261,20 @@
           "body": "It is common practice to define a list with a singular name within a container with the corresponding plural name\n\nSee section 4.3.1 of [draft-ietf-netmod-rfc8407bis-22](https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-22)\n\nThe rationale is mainly described in section 4.14.1 of [draft-ietf-netmod-rfc8407bis-22](https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-22) and [RFC 8407](https://datatracker.ietf.org/doc/html/rfc8407):\n\n> The NETCONF and RESTCONF protocols do not currently support the ability to delete all list (or leaf-list) entries at once. This deficiency is sometimes avoided by use of a parent container (i.e., deleting the container also removes all child entries).\n\nThe interface model has only one list (with one \"surrounding container\") but follows the same approach",
           "createdAt": "2025-03-10T12:22:10Z",
           "updatedAt": "2025-03-10T12:22:10Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> It is common practice to define a list with a singular name within a container with the corresponding plural name\n> \n> See section 4.3.1 of [draft-ietf-netmod-rfc8407bis-22](https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-22)\n> \n> The rationale is mainly described in section 4.14.1 of [draft-ietf-netmod-rfc8407bis-22](https://datatracker.ietf.org/doc/html/draft-ietf-netmod-rfc8407bis-22) and [RFC 8407](https://datatracker.ietf.org/doc/html/rfc8407):\n> \n> > The NETCONF and RESTCONF protocols do not currently support the ability to delete all list (or leaf-list) entries at once. This deficiency is sometimes avoided by use of a parent container (i.e., deleting the container also removes all child entries).\n> \n> The interface model has only one list (with one \"surrounding container\") but follows the same approach\n\n@tokarenko : are you ok with the explanation above?",
+          "createdAt": "2025-03-12T07:48:11Z",
+          "updatedAt": "2025-03-12T07:48:11Z"
+        },
+        {
+          "author": "tokarenko",
+          "authorAssociation": "NONE",
+          "body": "Yes. Thank you. Indeed, this deficiency leads to excessive objects present even in the interfaces model. For example, in this JSON serialization:\n\n```json\n{\n    \"ietf-interfaces:interfaces\": {\n        \"interface\": [\n            { \"name\": \"...\" }\n        ]\n    }\n}\n```",
+          "createdAt": "2025-03-12T08:53:33Z",
+          "updatedAt": "2025-03-12T08:53:33Z"
         }
       ]
     }
@@ -3804,7 +3873,7 @@
             "abbreviatedOid": "1597780"
           },
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2024-07-05T15:59:43Z",
@@ -3869,7 +3938,7 @@
             "abbreviatedOid": "2adfa5e"
           },
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2024-07-05T15:49:21Z",
@@ -3924,7 +3993,7 @@
             "abbreviatedOid": "e810348"
           },
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2024-09-23T15:11:45Z",
@@ -3979,7 +4048,7 @@
             "abbreviatedOid": "061f1aa"
           },
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2024-09-23T15:13:14Z",
@@ -4047,7 +4116,7 @@
             "abbreviatedOid": "619065b"
           },
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-09-23T15:29:50Z",
@@ -4107,7 +4176,7 @@
             "abbreviatedOid": "2dcb907"
           },
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2024-09-24T10:14:38Z",
@@ -4307,7 +4376,7 @@
             "abbreviatedOid": "e2b9418"
           },
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2024-09-23T16:00:38Z",
@@ -4415,7 +4484,7 @@
             "abbreviatedOid": "a3baae0"
           },
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2024-09-20T09:32:18Z",
@@ -4734,7 +4803,7 @@
             "abbreviatedOid": "1967f80"
           },
           "author": "prmanna",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2024-10-06T05:48:23Z",
@@ -6186,24 +6255,26 @@
       "id": "PR_kwDOKiDYo86Nmpd2",
       "title": "Fixed path error: \u201cne-ref\u201d of port-ref ",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/98",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "prmanna",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "#97  - Committed Proposed change. \r\n\r\nPath error for \u201cne-ref\u201d of port-ref at ietf-network-inventory.yang:143 is not found",
       "createdAt": "2025-03-06T08:36:32Z",
-      "updatedAt": "2025-03-06T12:15:57Z",
+      "updatedAt": "2025-03-11T17:13:37Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "c3a9cd69bce8b5ce23888e1c9b82db9f4e0c994f",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "issue-97",
       "headRefOid": "48e17b015eb31ec475413ae79774a85f63e2779e",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-03-11T17:13:37Z",
+      "mergedAt": "2025-03-11T17:13:37Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "cb6d35823b44b6b1b2e504913888ed8ea596987c"
+      },
       "comments": [
         {
           "author": "lana-wu",
@@ -6258,6 +6329,19 @@
           "body": "",
           "createdAt": "2025-03-06T12:15:57Z",
           "updatedAt": "2025-03-06T12:15:57Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo86fa7a2",
+          "commit": {
+            "abbreviatedOid": "48e17b0"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-11T13:56:10Z",
+          "updatedAt": "2025-03-11T13:56:10Z",
           "comments": []
         }
       ]
