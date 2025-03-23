@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-20T00:54:40.959018+00:00",
+  "timestamp": "2025-03-23T00:59:31.583269+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -2957,7 +2957,7 @@
       "id": "I_kwDOKiDYo86o6wxN",
       "title": "IETF 122 Preparation",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/85",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -2969,8 +2969,8 @@
       ],
       "body": "The target is to upload and present an updated draft and discuss some of priority 1 (or, time permitting, priority 2) issues\n",
       "createdAt": "2025-02-05T21:15:43Z",
-      "updatedAt": "2025-03-05T12:48:27Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-22T19:06:27Z",
+      "closedAt": "2025-03-22T19:06:27Z",
       "comments": []
     },
     {
@@ -3007,7 +3007,7 @@
       "id": "I_kwDOKiDYo86o6xDJ",
       "title": "Request a presentation slot and present the draft at IETF 122",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/87",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -3018,15 +3018,15 @@
       ],
       "body": "",
       "createdAt": "2025-02-05T21:16:29Z",
-      "updatedAt": "2025-03-13T00:50:13Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-22T19:06:05Z",
+      "closedAt": "2025-03-22T19:06:04Z",
       "comments": [
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-03-12 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-03-12)**\n\nSlides reviewed and updated during the call\n\n- [ ] @aguoietf upload the updated slides on github",
+          "body": "**[2025-03-12 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-03-12)**\n\nSlides reviewed and updated during the call\n\n- [x] @aguoietf upload the updated slides on github",
           "createdAt": "2025-03-12T20:22:18Z",
-          "updatedAt": "2025-03-12T20:22:18Z"
+          "updatedAt": "2025-03-22T19:05:56Z"
         },
         {
           "author": "aguoietf",
@@ -3034,6 +3034,13 @@
           "body": "Final draft of the presentation slides:\n[draft-ietf-ivy-network-inventory-yang-05.pptx](https://github.com/user-attachments/files/19219719/draft-ietf-ivy-network-inventory-yang-05.pptx)",
           "createdAt": "2025-03-13T00:49:40Z",
           "updatedAt": "2025-03-13T00:50:11Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Done: https://datatracker.ietf.org/doc/slides-122-ivy-02-base-network-inventory-yang/",
+          "createdAt": "2025-03-22T19:06:04Z",
+          "updatedAt": "2025-03-22T19:06:04Z"
         }
       ]
     },
