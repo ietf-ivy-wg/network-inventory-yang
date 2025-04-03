@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-01T01:03:21.526741+00:00",
+  "timestamp": "2025-04-03T00:56:26.201957+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -111,11 +111,12 @@
       "assignees": [],
       "labels": [
         "wga",
+        "needs discussion",
         "priority-1"
       ],
       "body": "Some of the hardware and software attributes defined in Section 3.1 of [RFC7317] can be borrowed, such as platform-os version and machine.\r\n",
       "createdAt": "2023-10-23T08:32:25Z",
-      "updatedAt": "2025-02-26T17:18:10Z",
+      "updatedAt": "2025-04-01T14:35:45Z",
       "closedAt": null,
       "comments": [
         {
@@ -1016,12 +1017,12 @@
         "YuChaode"
       ],
       "labels": [
-        "agreed",
+        "wait",
         "priority-1"
       ],
       "body": "Currently \r\nNetwork Element is a device installed on one or several chassis and can afford some specific transmission function independently.\r\n\r\nBut the hierarchy is element->component (and component can be chassis).\r\n\r\nWhat happens with multichassis?\r\n\r\nI think a network element can have multiple chassis...",
       "createdAt": "2023-03-15T17:08:40Z",
-      "updatedAt": "2025-01-08T16:29:38Z",
+      "updatedAt": "2025-04-01T14:39:15Z",
       "closedAt": null,
       "comments": [
         {
@@ -2514,15 +2515,13 @@
       "state": "OPEN",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
-      "assignees": [
-        "boucadair"
-      ],
+      "assignees": [],
       "labels": [
-        "agreed"
+        "needs discussion"
       ],
       "body": "Refer to the thread: https://mailarchive.ietf.org/arch/msg/nmop/P2-lPJvx2l7vnqOYlGJYWKJr5xM/",
       "createdAt": "2024-11-20T08:53:15Z",
-      "updatedAt": "2024-11-28T13:10:27Z",
+      "updatedAt": "2025-04-01T14:37:01Z",
       "closedAt": null,
       "comments": [
         {
@@ -2616,12 +2615,12 @@
         "italobusi"
       ],
       "labels": [
-        "wait",
+        "needs discussion",
         "priority-1"
       ],
       "body": ">   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\\\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/",
       "createdAt": "2024-11-27T16:29:14Z",
-      "updatedAt": "2025-03-12T20:19:45Z",
+      "updatedAt": "2025-04-01T14:27:43Z",
       "closedAt": null,
       "comments": [
         {
@@ -2771,11 +2770,12 @@
         "nigel-r-davis"
       ],
       "labels": [
+        "needs discussion",
         "priority-1"
       ],
       "body": "My thoughts and Sergio's comments labeled with [SB]\r\n\r\nThe issue is finding terminology that will be agreeable to network equipment vendors, data center people, and computer hardware people.  The idea is simple, but can be mapped onto different terminology.\r\n\r\nFor example.\r\n\r\nA rack is a metal frame that may or may not contain electrical components that holds a chassis.\r\n\r\nA standard rack holding something like a Cisco 8804 chassis looks like this.\r\n\r\n![download](https://github.com/user-attachments/assets/f52983c7-d6dd-4e5a-8da5-716a02daa1aa)\r\n\r\n\r\nThe big holes you see in the picture above are slots.  There are slots on the back as well.  A slot can accept various modules, trays, or cards.  Some modules and/or cards can have daughter cards can be connected to the module or card.\r\n\r\n \r\n\r\nLooking at the Network Inventory YANG terminology.\r\n\r\nThe rack, chassis and slots above are (as TMF puts them) holders. \r\n\r\n[SB>] YES the TMF separation between \u201cholders\u201d and \u201cequipment\u201d groups  is also in our document\r\n\r\nAn example of a sub-chassis could be a tray that holds other components (like fans).  In the Network Inventory YANG the term Board is (I think) a module or a card. \r\n\r\n[SB>] In our model a board is defined as\u201d ianahw:module\u201d , there is no distinction unfortunately from module to card/board.\r\n\r\nUsually, modules are things like fans or power, so if we are modeling that we will need to differentiate a module from a card (so calling both of those board is probably wrong). \r\n\r\n[SB>]  Fan is considered as a specific card, it has a definition specific, not as ianahw:module .\r\n\r\nThere is a differentiation between cards as well (at least in Cisco-land).  There are \u201cline cards\u201d and \u201cfabric cards\u201d.  A line card has ports on it and in the case of optical pluggables a line card may have slots to accept pluggables. I don\u2019t know if that is what is intended by the \u201csub-slot\u201d terminology, but it could work since a pluggable would be considered a module that fits into a cards' sub-slot.  At least that is one interpretation. \r\n\r\n[SB>] In this case we would have a definition for sub-slot that should be \u201ca slot of a line-card hosting an optical pluggable\u201d\r\n\r\nA \u201cfabric card\u201d is a card that \u201cline cards\u201d and sometimes modules plug into.  But here the \"sub-slot\" terminology doesn't really work very well, because the \"sub-slot\" on the \"fabric card\" is not inline with the slot the \"fabric card\" is in.  \r\n\r\nWhat needs to be made clear is whether or not a \u201csub-slot\u201d is simply a holder or if a \u201csub-slot\u201d can be used for something like an optical pluggable.\r\n\r\n[SB>] It can be used as a holder for an optical pluggable in my view.\r\n\r\nI think a couple of examples to see what the instance data would look would help.\r\n\r\nLooking at M.3100.  I would say recursive not circular.\r\n\r\n \r\n\r\nA rack is made up of bays\r\n\r\nA chassis is held in some number of bays of a rack depending on the size of the chassis.\r\n\r\nA chassis has slots (or physical places to put things)\r\n\r\nA chassis slot holds a \"circuit pack\" (which can be a line card, fabric card, computer, power, fans etc.)\r\n\r\nA line card can also accept pluggables\r\n\r\n \r\n\r\nI think leveraging M.3100 and mapping the terminology is a good exercise.  Things will get more interesting when the data center people show up and want to start talking about blades.\r\n\r\n_Originally posted by @samans in https://github.com/ietf-ivy-wg/network-inventory-yang/pull/75#discussion_r1909574652_\r\n            ",
       "createdAt": "2025-01-29T18:23:55Z",
-      "updatedAt": "2025-03-05T16:32:37Z",
+      "updatedAt": "2025-04-01T14:32:06Z",
       "closedAt": null,
       "comments": [
         {
@@ -3282,6 +3282,33 @@
           "body": "Yes. Thank you. Indeed, this deficiency leads to excessive objects present even in the interfaces model. For example, in this JSON serialization:\n\n```json\n{\n    \"ietf-interfaces:interfaces\": {\n        \"interface\": [\n            { \"name\": \"...\" }\n        ]\n    }\n}\n```",
           "createdAt": "2025-03-12T08:53:33Z",
           "updatedAt": "2025-03-12T08:53:33Z"
+        }
+      ]
+    },
+    {
+      "number": 101,
+      "id": "I_kwDOKiDYo86wpVst",
+      "title": "Definition of shelf/sub-shelf",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/101",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "needs discussion",
+        "priority-1"
+      ],
+      "body": "The discussion on issue #79 has pointed out that there are two possible interpretations for the definition of sub-shelf:\n\nhttps://mailarchive.ietf.org/arch/msg/inventory-yang/LT9AMNqPEuu4EUMgE57lw33qXtE/\n\n> \n> One possible definition for sub-shelf is to represent a shelf, within a multi-shelf NE, which has a hierarchical association with another shelf.\n> \n> Another possible definition for sub-shelf is to represent the logical partitioning of the slots within a single shelf.\n> \n> Nigel: the first interpretation is more associated with the functionality of the shelf rather than with the physical/inventory representation\n> \n> Jeff: in the IP world we have the concept of satellite shelves\n> \n> Nigel: Satellite is better term, than sub-shelf, to reference a shelf which has a hierarchical relationship with a main shelf\n> \n> * [ ] \n>   [ ]  [@ALL](https://github.com/ALL): check the current implementations (if known)\n>   [ ] \n>   [ ]  [@nigel-r-davis](https://github.com/nigel-r-davis) check the existing definitions in ONF and TMF\n\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/79#issuecomment-2701467344",
+      "createdAt": "2025-04-01T14:24:33Z",
+      "updatedAt": "2025-04-01T14:25:24Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See also slides presented at IETF 122: https://datatracker.ietf.org/doc/slides-122-ivy-02-base-network-inventory-yang/",
+          "createdAt": "2025-04-01T14:25:13Z",
+          "updatedAt": "2025-04-01T14:25:13Z"
         }
       ]
     }
@@ -6352,6 +6379,34 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 102,
+      "id": "PR_kwDOKiDYo86RGih_",
+      "title": "Update draft-ietf-ivy-network-inventory-yang.md",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/102",
+      "state": "OPEN",
+      "author": "sergiobelotti",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [],
+      "body": "The text in the I-D has been updated with network-wide word on behalf of network",
+      "createdAt": "2025-04-02T14:46:38Z",
+      "updatedAt": "2025-04-02T14:59:30Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
+      "headRepository": "ietf-ivy-wg/network-inventory-yang",
+      "headRefName": "issue-23",
+      "headRefOid": "8b1e1883358d71a2655bab0cecabfd576b838b52",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
