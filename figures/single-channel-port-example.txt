@@ -1,0 +1,4 @@
+Editors' Note: add the port example in slide 8
+
+See: https://datatracker.ietf.org/meeting/122/materials
+           /slides-122-ivy-02-base-network-inventory-yang-01.pdf

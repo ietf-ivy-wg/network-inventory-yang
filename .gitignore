@@ -3,7 +3,8 @@
 *.pdf
 *.redxml
 *.swp
-./*.txt
+*.txt
+!figures/*.txt
 *.upload
 *~
 .tags
