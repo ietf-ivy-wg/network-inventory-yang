@@ -684,21 +684,21 @@ This appendix provides some examples of ports, transceivers and port breakouts i
 1. A pluggable port
 
 ~~~~ aasvg
-Editors' Note: add the board example in slide 4 (with only the first three ports)
+{::include figures/board-example.txt}
 ~~~~
 {:#fig-board title="Example of a board with different types of ports"}
 
 {{fig-single-channel}} describes an implementation of a single channel optical pluggable trunk port (e.g., a 100G-LR port configured as a single 100GE interface)
 
 ~~~~ aasvg
-Editors' Note: add the port example in slide 8
+{::include figures/single-channel-port-example.txt}
 ~~~~
 {:#fig-single-channel title="Example of a single channel optical pluggable port"}
 
 {{fig-wdm-multi-channel}} describes an implementation of a Wavelength-Division Multiplexing (WDM) based multi-channel optical pluggable trunk port (e.g., a 400G-LR4 port configured as a single 400GE interface).
 
 ~~~~ aasvg
-Editors' Note: add the port example in slide 11
+{::include figures/wdm-multi-channel-port-example.txt}
 ~~~~
 {:#fig-wdm-multi-channel title="Example of a WDM multi-channel optical pluggable port"}
 
@@ -707,7 +707,7 @@ In this example, since breakout is not supported, the four WDM channels cannot b
 {{fig-mpo-trunk}} describes an implementation of a Multi-Fiber Push-on (MPO) trunk port (e.g., 400G-DR4 port configured as a single 400GE interface).
 
 ~~~~ aasvg
-Editors' Note: add the port example in slide 11
+{::include figures/mpo-trunk-port-example.txt}
 ~~~~
 {:#fig-mpo-trunk title="Example of a MPO trunk port"}
 
@@ -718,7 +718,7 @@ Instead, the MPO port can support breakouts, the four line channels are reported
 {{fig-mpo-breakout}} describes an implementation of a MPO breakout port (e.g., 400G-DR4 port configured as 4x100GE interfaces).
 
 ~~~~ aasvg
-Editors' Note: add the port example in slide 11
+{::include figures/mpo-breakout-port-example.txt}
 ~~~~
 {:#fig-mpo-breakout title="Example of a MPO breakout port"}
 
@@ -730,11 +730,11 @@ This appendix contains an example of an instance data tree in JSON encoding {{?R
 
 1. An integrated port (non pluggable), as shown in {{fig-board}};
 1. An empty port, as shown in {{fig-board}};
-   a. A single channel optical pluggable port, as shown in {{fig-board}} and {{fig-single-channel}};
-   a. A WDM based multi-channel optical pluggable port, as shown in {{fig-board}} and {{fig-wdm-multi-channel}};
-   a. An MPO trunk port, as shown in {{fig-board}} and {{fig-mpo-trunk}}, which does not support port breakouts;
-   a. An MPO trunk port, as shown in {{fig-board}} and {{fig-mpo-trunk}}, which can not support port breakouts but it has been configured as a trunk port,
-   a. An MPO breakout port, as shown in {{fig-board}} and {{fig-mpo-breakout}}.
+1. A single channel optical pluggable port, as shown in {{fig-board}} and {{fig-single-channel}};
+1. A WDM based multi-channel optical pluggable port, as shown in {{fig-board}} and {{fig-wdm-multi-channel}};
+1. An MPO trunk port, as shown in {{fig-board}} and {{fig-mpo-trunk}}, which does not support port breakouts;
+1. An MPO trunk port, as shown in {{fig-board}} and {{fig-mpo-trunk}}, which can not support port breakouts but it has been configured as a trunk port,
+1. An MPO breakout port, as shown in {{fig-board}} and {{fig-mpo-breakout}}.
 
 Note: as described in {{ports}}, reporting whether an MPO port is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model.
 
