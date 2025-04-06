@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-03T00:56:26.201957+00:00",
+  "timestamp": "2025-04-06T01:00:19.348609+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -6388,19 +6388,57 @@
       "state": "OPEN",
       "author": "sergiobelotti",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [
-        "italobusi"
-      ],
+      "assignees": [],
       "labels": [],
       "body": "The text in the I-D has been updated with network-wide word on behalf of network",
       "createdAt": "2025-04-02T14:46:38Z",
-      "updatedAt": "2025-04-02T14:59:30Z",
+      "updatedAt": "2025-04-04T17:13:45Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "issue-23",
       "headRefOid": "8b1e1883358d71a2655bab0cecabfd576b838b52",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86jiRZ5",
+          "commit": {
+            "abbreviatedOid": "8b1e188"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "I have a doubt about a global replacement of network inventory with network-wide inventory\r\n\r\nThe terms 'network inventory model' and 'base network inventory model' are already of common use and I am not sure about the feedbacks from IVY WG if we replace then wit 'network-wide inventory model' and 'base network-wide inventory model'\r\n\r\nIt is also worth noting that in Section 1 it is clarified that this model is a 'network model' as per definition in [RFC8969]\r\n\r\nI am wondering whether we can keep the terms 'network inventory model' and 'base network inventory model' and use network-wide when discussing its content (e.g., the network inventory model provides network-wide inventory information\")\r\n\r\n@nigel-r-davis what do you think?",
+          "createdAt": "2025-04-04T17:13:45Z",
+          "updatedAt": "2025-04-04T17:13:45Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 103,
+      "id": "PR_kwDOKiDYo86Rbfo7",
+      "title": "Complete Appendix with examples of ports configurations",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/103",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Complete Appendix with examples of ports, transceivers and port breakouts configurations: fix #93 \r\n\r\n---\r\n\r\nCo-Authored-By: sergiobelotti <sergio.belotti@nokia.com>\r\n",
+      "createdAt": "2025-04-04T15:46:11Z",
+      "updatedAt": "2025-04-04T17:00:57Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
+      "headRepository": "ietf-ivy-wg/network-inventory-yang",
+      "headRefName": "breakout-examples",
+      "headRefOid": "b8d13a3f63a25b5705a2b136a3cde831dcbc6cf5",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
