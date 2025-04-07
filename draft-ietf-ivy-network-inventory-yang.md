@@ -103,8 +103,7 @@ informative:
 --- abstract
 
 This document defines a base YANG data model for network inventory. The scope of this base model is set to
-be application- and technology-agnostic. However, the data model is designed with appropriate provisions to ease
-future augmentations with application- and technology-specific details.
+be application- and technology-agnostic. The base data model can be augmented with application- and technology-specific details.
 
 --- middle
 
