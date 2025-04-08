@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-06T01:00:19.348609+00:00",
+  "timestamp": "2025-04-08T00:56:35.104312+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -2515,13 +2515,15 @@
       "state": "OPEN",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
-      "assignees": [],
+      "assignees": [
+        "boucadair"
+      ],
       "labels": [
         "needs discussion"
       ],
       "body": "Refer to the thread: https://mailarchive.ietf.org/arch/msg/nmop/P2-lPJvx2l7vnqOYlGJYWKJr5xM/",
       "createdAt": "2024-11-20T08:53:15Z",
-      "updatedAt": "2025-04-01T14:37:01Z",
+      "updatedAt": "2025-04-07T19:49:27Z",
       "closedAt": null,
       "comments": [
         {
@@ -2537,6 +2539,13 @@
           "body": "@italobusi, we can add it to the mapping doc. However, the reason why I though the base doc might be better is that you have this section (which is almost empty) and think some generic guidance about ensuring that the modular approach is not only followed in the base but should be followed in the extensions, etc. \r\n\r\n```\r\n> [4. ](https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-04#section-4)[Extending Network Inventory](https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-04#name-extending-network-inventory)\r\n> This document defines the basic network inventory attributes applicable to typical network scenarios. For finer-grained and specific management scenarios, the relationship between this model and other models is illustrated in Figure 4.\r\n> \r\n>              +-------------------------+\r\n>              |                         |\r\n>              | Base Network Inventory  |\r\n>              |                         |\r\n>              +------------+------------+\r\n>                           |\r\n>        +------------------+-------------------+\r\n>        |                  |                   |\r\n> +------V------+    +------V------      +------V------    +-------------+\r\n> |             |    |             |     |             |   |             |\r\n> | Hardware    |    |  Software   |     |             |   |  Inventory  |\r\n> | Extensions  |    |  Extensions |     | Entitlement |   |  Topology   |\r\n> | e.g. Power  |    |  e.g.       |     |             |   |  Mapping    |\r\n> | supply unit |    |  SW patch   |     |             |   |             |\r\n> +-------------+    +-------------+     +-------------+   +-------------+\r\n```",
           "createdAt": "2024-11-28T13:10:26Z",
           "updatedAt": "2024-11-28T13:10:26Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@boucadair I am wondering whether to remove this section from the draft\n\nAs discussed in #72 and on the IVY WG mailing list: guidelines can be too restrictive or too liberal since it is hard to predict the future needs for augmentations\n\nThis figure is also outdated: there is no work planned on hardware inventory; it is not yet clear whether Entitlement augments or references network inventory and me and you have different opinions about how network inventory and topology should be associated, network inventory location and passive inventory is missing ...\n\nIf we fix it, the new version will be quickly outdated as well\n\nMy 2 cents",
+          "createdAt": "2025-04-07T19:49:19Z",
+          "updatedAt": "2025-04-07T19:49:19Z"
         }
       ]
     },
@@ -3226,7 +3235,7 @@
       ],
       "body": "> The abstract of the document (-05) says:\n> \n> > However, the data model is designed with appropriate provisions to ease future augmentations with application- and technology-specific details.\n> \n> What are those provisions? \n> \n\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/SWhtPRsiSj7oS4gT9svSWWhqQmM/",
       "createdAt": "2025-03-06T16:54:29Z",
-      "updatedAt": "2025-03-12T20:27:56Z",
+      "updatedAt": "2025-04-07T13:54:19Z",
       "closedAt": null,
       "comments": [
         {
@@ -3239,9 +3248,16 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-03-12 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-03-12)**\n\nAgreed the text change for the I-D Abstract as discussed on the [IVY WG mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/koA-X-6aMID4Zk5VRqcPERaWO48/) between Italo and Mahesh (as contributor)\n\n- [ ] @italobusi submit a PR with the text changes discussed on the [IVY WG mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/koA-X-6aMID4Zk5VRqcPERaWO48/)\n",
+          "body": "**[2025-03-12 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-03-12)**\n\nAgreed the text change for the I-D Abstract as discussed on the [IVY WG mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/koA-X-6aMID4Zk5VRqcPERaWO48/) between Italo and Mahesh (as contributor)\n\n- [x] @italobusi submit a PR with the text changes discussed on the [IVY WG mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/koA-X-6aMID4Zk5VRqcPERaWO48/)\n",
           "createdAt": "2025-03-12T20:16:00Z",
-          "updatedAt": "2025-03-12T20:27:56Z"
+          "updatedAt": "2025-04-07T13:54:00Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x]  [@italobusi](https://github.com/italobusi) submit a PR with the text changes discussed on the [IVY WG mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/koA-X-6aMID4Zk5VRqcPERaWO48/)\n\nSee draft PR #104 ",
+          "createdAt": "2025-04-07T13:54:18Z",
+          "updatedAt": "2025-04-07T13:54:18Z"
         }
       ]
     },
@@ -6383,7 +6399,7 @@
     {
       "number": 102,
       "id": "PR_kwDOKiDYo86RGih_",
-      "title": "Update draft-ietf-ivy-network-inventory-yang.md",
+      "title": "Terminology update: network versus network-wide",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/102",
       "state": "OPEN",
       "author": "sergiobelotti",
@@ -6392,7 +6408,7 @@
       "labels": [],
       "body": "The text in the I-D has been updated with network-wide word on behalf of network",
       "createdAt": "2025-04-02T14:46:38Z",
-      "updatedAt": "2025-04-04T17:13:45Z",
+      "updatedAt": "2025-04-07T09:38:42Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
@@ -6445,6 +6461,46 @@
       "mergeCommit": null,
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 104,
+      "id": "PR_kwDOKiDYo86Ro2RH",
+      "title": "Base Inventory Model Augmentations",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/104",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Updated abstract as discussed on the mailing list: https://mailarchive.ietf.org/arch/msg/inventory-yang/koA-X-6aMID4Zk5VRqcPERaWO48/: fix #99 ",
+      "createdAt": "2025-04-07T13:53:40Z",
+      "updatedAt": "2025-04-07T16:03:21Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
+      "headRepository": "italobusi/network-inventory-yang",
+      "headRefName": "augment",
+      "headRefOid": "81a7af84b0ca9075540b5e9e30c0b8a750f43822",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86jwXuY",
+          "commit": {
+            "abbreviatedOid": "81a7af8"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-04-07T16:03:21Z",
+          "updatedAt": "2025-04-07T16:03:21Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
