@@ -1730,7 +1730,7 @@ Appendix D.  Examples of ports, transceivers and port breakouts
    trunk port (e.g., 400G-DR4 port configured as a single 400GE
    interface).
 
-   Editors' Note: add the port example in slide 11
+   Editors' Note: add the port example in slide 10
 
    See: https://datatracker.ietf.org/meeting/122/materials
               /slides-122-ivy-02-base-network-inventory-yang-01.pdf
