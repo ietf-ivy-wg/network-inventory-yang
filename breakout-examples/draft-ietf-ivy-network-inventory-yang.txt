@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 6 October 2025                                            Nokia
+Expires: 17 October 2025                                           Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                            4 April 2025
+                                                           15 April 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 October 2025.
+   This Internet-Draft will expire on 17 October 2025.
 
 Copyright Notice
 
@@ -1433,9 +1433,9 @@ Table of Contents
               Beller, D., Le Rouzic, E., Belotti, S., Galimberti, G.,
               and I. Busi, "A YANG Data Model for Optical Impairment-
               aware Topology", Work in Progress, Internet-Draft, draft-
-              ietf-ccamp-optical-impairment-topology-yang-17, 21 October
-              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              ccamp-optical-impairment-topology-yang-17>.
+              ietf-ccamp-optical-impairment-topology-yang-18, 11 April
+              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              ccamp-optical-impairment-topology-yang-18>.
 
    [I-D.ietf-ivy-network-inventory-software]
               Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
@@ -1752,10 +1752,10 @@ Appendix D.  Examples of ports, transceivers and port breakouts
    Figure 12 describes an implementation of a MPO breakout port (e.g.,
    400G-DR4 port configured as 4x100GE interfaces).
 
-   Editors' Note: add the port example in slide 11
+   Editors' Note: add the port example in slide 9
 
    See: https://datatracker.ietf.org/meeting/122/materials
-              /slides-122-ivy-02-base-network-inventory-yang-01.pd
+              /slides-122-ivy-02-base-network-inventory-yang-01.pdf
 
                  Figure 12: Example of a MPO breakout port
 
