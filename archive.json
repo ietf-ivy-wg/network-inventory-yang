@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-13T02:26:25.301579+00:00",
+  "timestamp": "2025-04-15T00:58:20.565080+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -159,17 +159,15 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [
-        "italobusi"
-      ],
+      "assignees": [],
       "labels": [
         "wga",
-        "wait",
+        "needs discussion",
         "priority-1"
       ],
       "body": "Need to discuss if to use parent-component-ref as in the original CCAMP WG draft or to define a parent attribute as in RFC8348",
       "createdAt": "2023-10-23T08:32:56Z",
-      "updatedAt": "2025-04-09T16:24:31Z",
+      "updatedAt": "2025-04-14T20:28:13Z",
       "closedAt": null,
       "comments": [
         {
@@ -217,9 +215,16 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-04-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-09)**\n\nIt was suggested to try to get some input/suggestions from YANG doctors on how to address this open issue\n\nIt may be worthwhile describing the issue we are trying to address\n\n- [ ] @italobusi prepare some description of the issue for discussion with YANG doctors\n",
+          "body": "**[2025-04-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-09)**\n\nIt was suggested to try to get some input/suggestions from YANG doctors on how to address this open issue\n\nIt may be worthwhile describing the issue we are trying to address\n\n- [x] @italobusi prepare some description of the issue for discussion with YANG doctors\n",
           "createdAt": "2025-04-09T16:09:24Z",
-          "updatedAt": "2025-04-09T16:09:24Z"
+          "updatedAt": "2025-04-14T20:20:35Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x]  [@italobusi](https://github.com/italobusi) prepare some description of the issue for discussion with YANG doctors\n\nThe issue is about the need to report contains-child, as defined in RFC 8348, in addition to the parent and parent-rel-pos information.\n\nLet's consider for example a chassis with four slots. This is the way it will be represented with the current YANG model:\n\n```\n- chassis-A\n- slot-1\n  - parent: chassis-A\n  - parent-rel-pos: 1\n- slot-2\n  - parent: chassis-A\n  - parent-rel-pos: 2\n- slot-3\n  - parent: chassis-A\n  - parent-rel-pos: 3\n- slot-4\n  - parent: chassis-A\n  - parent-rel-pos: 4\n```\n\nIn this case, the list of children component contained by chassis-A is duplicated information:\n\n```\n- module-A\n  - contains-child: [\n    - slot-1\n    - slot-2\n    - slot-3\n    - slot-4\n  ]\n```\n\nThis also looks a circular relationship between client and parent components.\n\nHowever, without the contained children information it seems difficult to model a board which occupies two slots (e.g., slot 2 and slot 3). According to RFC8348, one parent is selected:\n\n```\n- module-B\n  - parent: slot-2\n```\n\nThis information is not sufficient to understand that module-B is occupying two slots nor whether the two slots are slot 2 and slot 3 or slot 1 and  slot 2\n\nIn this case, reporting the contained children would resolve the ambiguity:\n\n```\n- chassis-A\n  - contains-child: [\n    - slot-1\n    - slot-2\n    - slot-3\n    - slot-4\n  ]\n- slot-1\n  - parent: module-A\n  - parent-rel-pos: 1\n- slot-2\n  - parent: module-A\n  - parent-rel-pos: 2\n  - contains-child: [ module-B ]\n- slot-3\n  - parent: module-A\n  - parent-rel-pos: 3\n  - contains-child: [ module-B ]\n- slot-4\n  - parent: module-A\n  - parent-rel-pos: 4\n- module-B\n  - parent: slot-2\n```\n\nThe doubt is whether there is an alternative solution which would allow modelling these scenarios avoiding duplication of information when not needed\n",
+          "createdAt": "2025-04-14T20:25:10Z",
+          "updatedAt": "2025-04-14T20:25:10Z"
         }
       ]
     },
@@ -2677,16 +2682,14 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [
-        "italobusi"
-      ],
+      "assignees": [],
       "labels": [
-        "wait",
+        "needs discussion",
         "priority-1"
       ],
       "body": ">   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\\\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/",
       "createdAt": "2024-11-27T16:29:14Z",
-      "updatedAt": "2025-04-09T16:48:16Z",
+      "updatedAt": "2025-04-14T20:31:15Z",
       "closedAt": null,
       "comments": [
         {
@@ -2720,9 +2723,23 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-04-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-09)**\n\n> * [x]  [@italobusi](https://github.com/italobusi) : review the text and submit a PR with some proposed text changes, following the on-going discussion on the [IVY WG mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/IUdtFHKD8_OqLVFUJQ_W0bqo5x0//)\n\nSome input for discussion: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/72#issuecomment-2789782815\n\n> Section 3 is describing that the ne-type and component class are defined as identities to allow other documents to define additional types of NEs and components.\n> \n> The current text in section 3 provides sufficient guidance on how new NE and component types can be defined. An alternative option is to restructure a bit the sentences and move the guidelines to Section 4.\n\nThe preference expressed during the call is to delete Section 4 and leave as it is the text in Section 3 describing how new NE and component types can be defined in other documents.\n\n> The current model defines also some empty containers that can be used as target for augmentations providing component-specific attributes. This is common practice in other YANG models (especially from Med). Section 3 provides sufficient guidance on this but it seems that Mahesh would prefer not to have this empty containers.\n\nSlight preference expressed during the call to keep the empty containers as placeholders for component-specific attributes. The advantage is to have a single container for all the standard and vendor specific component specific attributes defined in augmentation models.\n\nDuring the call it was noted that, for consistency, empty containers can also be defined for NE type specific attributes.\n\nIn previous updates, we have also defined a network-inventory top-level container which allows adding new inventory objects (e.g., locations/sites, passive inventory objects), if deemed needed. It is to the other documents to define these new inventory objects and why they need to be part of the network inventory. We can add this description in Section 3.\n\n- [ ] @italobusi send a mail to the IVY WG mailing list to get feedbacks",
+          "body": "**[2025-04-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-09)**\n\n> * [x]  [@italobusi](https://github.com/italobusi) : review the text and submit a PR with some proposed text changes, following the on-going discussion on the [IVY WG mailing list](https://mailarchive.ietf.org/arch/msg/inventory-yang/IUdtFHKD8_OqLVFUJQ_W0bqo5x0//)\n\nSome input for discussion: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/72#issuecomment-2789782815\n\n> Section 3 is describing that the ne-type and component class are defined as identities to allow other documents to define additional types of NEs and components.\n> \n> The current text in section 3 provides sufficient guidance on how new NE and component types can be defined. An alternative option is to restructure a bit the sentences and move the guidelines to Section 4.\n\nThe preference expressed during the call is to delete Section 4 and leave as it is the text in Section 3 describing how new NE and component types can be defined in other documents.\n\n> The current model defines also some empty containers that can be used as target for augmentations providing component-specific attributes. This is common practice in other YANG models (especially from Med). Section 3 provides sufficient guidance on this but it seems that Mahesh would prefer not to have this empty containers.\n\nSlight preference expressed during the call to keep the empty containers as placeholders for component-specific attributes. The advantage is to have a single container for all the standard and vendor specific component specific attributes defined in augmentation models.\n\nDuring the call it was noted that, for consistency, empty containers can also be defined for NE type specific attributes.\n\nIn previous updates, we have also defined a network-inventory top-level container which allows adding new inventory objects (e.g., locations/sites, passive inventory objects), if deemed needed. It is to the other documents to define these new inventory objects and why they need to be part of the network inventory. We can add this description in Section 3.\n\n- [x] @italobusi send a mail to the IVY WG mailing list to get feedbacks",
           "createdAt": "2025-04-09T16:04:55Z",
-          "updatedAt": "2025-04-09T16:48:15Z"
+          "updatedAt": "2025-04-14T20:30:00Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x]  [@italobusi](https://github.com/italobusi) send a mail to the IVY WG mailing list to get feedbacks\n\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/bmQ6ycih5c94cTQJxTfPeXhV-UI/\n\n\n",
+          "createdAt": "2025-04-14T20:30:18Z",
+          "updatedAt": "2025-04-14T20:30:18Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See also additional comments in https://mailarchive.ietf.org/arch/msg/inventory-yang/DWP6vCfHjCWCkODG930OKR1udzw/",
+          "createdAt": "2025-04-14T20:31:02Z",
+          "updatedAt": "2025-04-14T20:31:02Z"
         }
       ]
     },
