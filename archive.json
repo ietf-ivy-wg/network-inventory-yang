@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-15T00:58:20.565080+00:00",
+  "timestamp": "2025-04-17T00:57:21.188677+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -108,17 +108,15 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [
-        "aguoietf"
-      ],
+      "assignees": [],
       "labels": [
         "wga",
-        "wait",
+        "needs discussion",
         "priority-1"
       ],
       "body": "Some of the hardware and software attributes defined in Section 3.1 of [RFC7317] can be borrowed, such as platform-os version and machine.\r\n",
       "createdAt": "2023-10-23T08:32:25Z",
-      "updatedAt": "2025-04-10T17:13:39Z",
+      "updatedAt": "2025-04-16T10:30:32Z",
       "closedAt": null,
       "comments": [
         {
@@ -159,15 +157,16 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "sergiobelotti"
+      ],
       "labels": [
         "wga",
-        "needs discussion",
         "priority-1"
       ],
       "body": "Need to discuss if to use parent-component-ref as in the original CCAMP WG draft or to define a parent attribute as in RFC8348",
       "createdAt": "2023-10-23T08:32:56Z",
-      "updatedAt": "2025-04-14T20:28:13Z",
+      "updatedAt": "2025-04-16T19:02:18Z",
       "closedAt": null,
       "comments": [
         {
@@ -222,9 +221,16 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "> * [x]  [@italobusi](https://github.com/italobusi) prepare some description of the issue for discussion with YANG doctors\n\nThe issue is about the need to report contains-child, as defined in RFC 8348, in addition to the parent and parent-rel-pos information.\n\nLet's consider for example a chassis with four slots. This is the way it will be represented with the current YANG model:\n\n```\n- chassis-A\n- slot-1\n  - parent: chassis-A\n  - parent-rel-pos: 1\n- slot-2\n  - parent: chassis-A\n  - parent-rel-pos: 2\n- slot-3\n  - parent: chassis-A\n  - parent-rel-pos: 3\n- slot-4\n  - parent: chassis-A\n  - parent-rel-pos: 4\n```\n\nIn this case, the list of children component contained by chassis-A is duplicated information:\n\n```\n- module-A\n  - contains-child: [\n    - slot-1\n    - slot-2\n    - slot-3\n    - slot-4\n  ]\n```\n\nThis also looks a circular relationship between client and parent components.\n\nHowever, without the contained children information it seems difficult to model a board which occupies two slots (e.g., slot 2 and slot 3). According to RFC8348, one parent is selected:\n\n```\n- module-B\n  - parent: slot-2\n```\n\nThis information is not sufficient to understand that module-B is occupying two slots nor whether the two slots are slot 2 and slot 3 or slot 1 and  slot 2\n\nIn this case, reporting the contained children would resolve the ambiguity:\n\n```\n- chassis-A\n  - contains-child: [\n    - slot-1\n    - slot-2\n    - slot-3\n    - slot-4\n  ]\n- slot-1\n  - parent: module-A\n  - parent-rel-pos: 1\n- slot-2\n  - parent: module-A\n  - parent-rel-pos: 2\n  - contains-child: [ module-B ]\n- slot-3\n  - parent: module-A\n  - parent-rel-pos: 3\n  - contains-child: [ module-B ]\n- slot-4\n  - parent: module-A\n  - parent-rel-pos: 4\n- module-B\n  - parent: slot-2\n```\n\nThe doubt is whether there is an alternative solution which would allow modelling these scenarios avoiding duplication of information when not needed\n",
+          "body": "> * [x]  [@italobusi](https://github.com/italobusi) prepare some description of the issue for discussion with YANG doctors\n\nThe issue is about the need to report contains-child, as defined in RFC 8348, in addition to the parent and parent-rel-pos information.\n\nLet's consider for example a chassis with four slots. This is the way it will be represented with the current YANG model:\n\n```\n- chassis-A\n- slot-1\n  - parent: chassis-A\n  - parent-rel-pos: 1\n- slot-2\n  - parent: chassis-A\n  - parent-rel-pos: 2\n- slot-3\n  - parent: chassis-A\n  - parent-rel-pos: 3\n- slot-4\n  - parent: chassis-A\n  - parent-rel-pos: 4\n```\n\nIn this case, the list of children component contained by chassis-A is duplicated information:\n\n```\n- module-A\n  - contains-child: [\n    - slot-1\n    - slot-2\n    - slot-3\n    - slot-4\n  ]\n```\n\nThis also looks a circular relationship between client and parent components.\n\nHowever, without the contained children information it seems difficult to model a board which occupies two slots (e.g., slot 2 and slot 3). According to RFC8348, one parent is selected:\n\n```\n- module-B\n  - parent: slot-2\n```\n\nThis information is not sufficient to understand that module-B is occupying two slots nor whether the two slots are slot 2 and slot 3 or slot 1 and  slot 2\n\nIn this case, reporting the contained children would resolve the ambiguity:\n\n```\n- chassis-A\n  - contains-child: [\n    - slot-1\n    - slot-2\n    - slot-3\n    - slot-4\n  ]\n- slot-1\n  - parent: chassis-A\n  - parent-rel-pos: 1\n- slot-2\n  - parent: chassis-A\n  - parent-rel-pos: 2\n  - contains-child: [ module-B ]\n- slot-3\n  - parent: chassis-A\n  - parent-rel-pos: 3\n  - contains-child: [ module-B ]\n- slot-4\n  - parent: chassis-A\n  - parent-rel-pos: 4\n- module-B\n  - parent: slot-2\n```\n\nThe doubt is whether there is an alternative solution which would allow modelling these scenarios avoiding duplication of information when not needed\n",
           "createdAt": "2025-04-14T20:25:10Z",
-          "updatedAt": "2025-04-14T20:25:10Z"
+          "updatedAt": "2025-04-16T14:47:28Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-04-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-16)**\n\nThe problem statement described in https://github.com/ietf-ivy-wg/network-inventory-yang/issues/3#issuecomment-2802902938 is clear\n\nThe alternative solution proposed during the call is to make the parent a list:\n\n```\n- module-B\n  - parent: [ slot-2, slot-3 ]\n```\n\nNeed more time to investigate on this alternative solution and whether there are other scenarios which requires reporting the children component in addition to the one identified in this open issue\n\nIt has been agreed to trigger some discussion on the IVY WG mailing list to get more feedbacks\n\n- [ ] @sergiobelotti  trigger some discussion about this issue and the proposed resolution in the IVY WG mailing list\n",
+          "createdAt": "2025-04-16T19:02:05Z",
+          "updatedAt": "2025-04-16T19:02:05Z"
         }
       ]
     },
@@ -1911,16 +1917,14 @@
       "state": "OPEN",
       "author": "oscargdd",
       "authorAssociation": "NONE",
-      "assignees": [
-        "aguoietf"
-      ],
+      "assignees": [],
       "labels": [
-        "wait",
+        "needs discussion",
         "priority-1"
       ],
       "body": "At device level we have the model name and the software rev. The software rev I believe is the version number (e.g. for Cisco IOS would be 7.11.2 , 7.8.2, etc, for Nokia 23.10, 24.4, etc....). The O.S. name itself could be (or not) included in the software rev.... So... would it be  more clear \"decoupling\" the software name and the software version/revision? This would requiring adding a field for the operating system name or software name. Another possibility, instead of just one leaf, would be to have a specific operating system container hanging from device... Thoughts?",
       "createdAt": "2024-04-11T08:38:17Z",
-      "updatedAt": "2025-04-09T16:11:40Z",
+      "updatedAt": "2025-04-16T10:30:50Z",
       "closedAt": null,
       "comments": [
         {
@@ -2995,14 +2999,16 @@
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
+        "italobusi",
         "prmanna"
       ],
       "labels": [
+        "wait",
         "priority-2"
       ],
       "body": "PR #73 has proposed to integrate pyang validation in your ci/cd chain and make sure that changes are clean and do not break the validation and automatically generate the YANG trees (the level, etc. can be controlled)\r\n\r\nPR #73 has been close due to conflicts but it would be useful to integrate pyang validation in the github CI/CD chain",
       "createdAt": "2025-01-29T19:03:47Z",
-      "updatedAt": "2025-03-05T07:58:49Z",
+      "updatedAt": "2025-04-16T18:55:33Z",
       "closedAt": null,
       "comments": [
         {
@@ -3022,9 +3028,9 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-02-26 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-26)**\n\n- [ ] @prmanna : indicate which file has to be created in this repository and which file should be added to the template repository\n- [ ] @italobusi : send a mail to Med asking him to contact with Martin Thomson to update the template repository accordingly (after knowing which file should be added to the template repository)\n",
+          "body": "**[2025-02-26 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-02-26)**\n\n- [x] @prmanna : indicate which file has to be created in this repository and which file should be added to the template repository\n- [x] @italobusi : send a mail to Med asking him to contact with Martin Thomson to update the template repository accordingly (after knowing which file should be added to the template repository)\n",
           "createdAt": "2025-02-26T16:38:37Z",
-          "updatedAt": "2025-02-26T16:39:13Z"
+          "updatedAt": "2025-04-16T18:54:17Z"
         },
         {
           "author": "italobusi",
@@ -3053,6 +3059,13 @@
           "body": "Looking at the thread, it seems that the conclusion was that there was a good alternative proposal to address the issue but the suggestion was to do that in another PR since https://github.com/martinthomson/i-d-template/pull/193  was quite old: https://github.com/martinthomson/i-d-template/pull/193#issuecomment-2169133156\n\nThe drawback of the approach in https://github.com/ietf-ivy-wg/network-inventory-topology are that:\n- we need to copy the same changes in multiple repositories\n- if we need to change, all these repositories need to be changed\n- we will face difficulties when the template is update to keep the repositories aligned any time the template from Martin Thomson is updated\n\nFor example, recently, github actions v3 support has been discontinued and the template from Martin Thomson has been updated to use github actions v4. Updating all the repositories to use the updated version of the template from Martin Thomson was quite straightforward because no changes were done on the files defined there. I am afraid that if we make changes to the core files, that work would have been more painful.\n\nMy preference is therefore to have an updated template which will make these enhancements available to all the repositories.\n\nAlternative, if possible, we can create a new template forking from Martin Thomson's template and adding pyang validation checks. Then we just need to synch this fork with any update of Martin Thomson's template and not all the github repositories.",
           "createdAt": "2025-03-05T07:44:17Z",
           "updatedAt": "2025-03-05T07:58:49Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-04-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-16)**\n\nA call has been organized on April 28 and a call for volunteers to work on this topic has been sent to Netmod WG mailing list: https://mailarchive.ietf.org/arch/msg/netmod/2Orsi3aCtZKcjSZLFIYkcWqFAOc/\n\nAnybody who is interested to contribution can reply to the call for volunteers\n\n- [ ] @prmanna @italobusi report when there is any progress which can be adopted in our GitHub for better CI/CD integration\n",
+          "createdAt": "2025-04-16T18:55:32Z",
+          "updatedAt": "2025-04-16T18:55:32Z"
         }
       ]
     },
@@ -3412,19 +3425,14 @@
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
-        "nigel-r-davis",
-        "italobusi",
-        "sergiobelotti",
-        "YuChaode",
-        "aguoietf"
+        "italobusi"
       ],
       "labels": [
-        "wait",
         "priority-1"
       ],
       "body": "The discussion on issue #79 has pointed out that there are two possible interpretations for the definition of sub-shelf:\n\nhttps://mailarchive.ietf.org/arch/msg/inventory-yang/LT9AMNqPEuu4EUMgE57lw33qXtE/\n\n> \n> One possible definition for sub-shelf is to represent a shelf, within a multi-shelf NE, which has a hierarchical association with another shelf.\n> \n> Another possible definition for sub-shelf is to represent the logical partitioning of the slots within a single shelf.\n> \n> Nigel: the first interpretation is more associated with the functionality of the shelf rather than with the physical/inventory representation\n> \n> Jeff: in the IP world we have the concept of satellite shelves\n> \n> Nigel: Satellite is better term, than sub-shelf, to reference a shelf which has a hierarchical relationship with a main shelf\n> \n> * [ ] [@ALL](https://github.com/ALL): check the current implementations (if known)\n> \n> * [ ] [@nigel-r-davis](https://github.com/nigel-r-davis) check the existing definitions in ONF and TMF\n\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/79#issuecomment-2701467344",
       "createdAt": "2025-04-01T14:24:33Z",
-      "updatedAt": "2025-04-09T15:57:14Z",
+      "updatedAt": "2025-04-16T18:59:17Z",
       "closedAt": null,
       "comments": [
         {
@@ -3437,9 +3445,23 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-04-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-09)**\n\n> * [ ] [@ALL](https://github.com/ALL): check the current implementations (if known)\n\n> * [ ] [@nigel-r-davis](https://github.com/nigel-r-davis) check the existing definitions in ONF and TMF\n\nBased on the discussion in previous calls and on the IVY WG mailing list discussion after the meeting, it seems that the modelling of multi-chassis NEs used in IP networks is quite clear.\n\nThe pending issue is about the modelling of multi-chassis NEs used in Optical networks.\n\n- [ ] @aguoietf @YuChaode @italobusi @nigel-r-davis @sergiobelotti check impact on existing optical NE implementations if the same approach discussed for multi-chassis NEs in IP networks is adopted\n",
+          "body": "**[2025-04-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-09)**\n\n> * [ ] [@ALL](https://github.com/ALL): check the current implementations (if known)\n\n> * [ ] [@nigel-r-davis](https://github.com/nigel-r-davis) check the existing definitions in ONF and TMF\n\nBased on the discussion in previous calls and on the IVY WG mailing list discussion after the meeting, it seems that the modelling of multi-chassis NEs used in IP networks is quite clear.\n\nThe pending issue is about the modelling of multi-chassis NEs used in Optical networks.\n\n- [x] @aguoietf @YuChaode @italobusi @nigel-r-davis @sergiobelotti check impact on existing optical NE implementations if the same approach discussed for multi-chassis NEs in IP networks is adopted\n",
           "createdAt": "2025-04-09T15:57:14Z",
-          "updatedAt": "2025-04-09T15:57:14Z"
+          "updatedAt": "2025-04-16T10:18:43Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x]  [@aguoietf](https://github.com/aguoietf) [@YuChaode](https://github.com/YuChaode) [@italobusi](https://github.com/italobusi) [@nigel-r-davis](https://github.com/nigel-r-davis) [@sergiobelotti](https://github.com/sergiobelotti) check impact on existing optical NE implementations if the same approach discussed for multi-chassis NEs in IP networks is adopted\n\n**Outcome of the joint discussion**\n\nThe term sub-shelf seems more applicable to the scenario in slide 13 of the IETF 122 since in this case it represents a part of the entire shelf.\n\nInstead, in slide 14, there are different shelves with different hierarchical role (e.g., main shelf and subtended shelves).\n\nConsidering the concerns raised during the IETF 122 meeting on the scenario in slide 13 and that modelling this scenario does not seem a blocking issue for the WG LC of the base inventory model, we would suggest to create a new issue to address this scenario and mark it as an issue candidate for future revision or augmentation.\n\nInstead, the scenario in slide 14 of the IETF 122 presentation can be modelled as a flat list of chassis (numbered as 1, 2, 3, \u2026) as already discussed for the stacked chassis in IP NEs. The cables between them can be reported in the passive inventory model.\n\nIn the optical NEs, the different chassis have different role in the hierarchy where the main shelf is the chassis/shelf providing access to the management system. We can check with the IVY WG mailing list whether this information is relevant for the base inventory model.\n",
+          "createdAt": "2025-04-16T10:19:16Z",
+          "updatedAt": "2025-04-16T10:19:16Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-04-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-16)**\n\nReviewed https://github.com/ietf-ivy-wg/network-inventory-yang/issues/101#issuecomment-2809110378\n\nIt has been noted that in the optical networks, the main chassis is usually configured by the operator while, from previous discussion, it seems that in the Ethernet switched networks the main chassis is usually automatically selected by some process within the NE. However, this different is not inherently technology-specific but just common implementation options and the models should support both regardless of the technology domain.\n\nNote that this difference will be modelled in the first version of the base inventory model since everything is RO (the configuration of the main shelf can only be performed at device level and at the network level). However, this difference may become relevant in a future RFC updating the first version of the base inventory model.\n\nThe questions for discussion are:\n- is there a need to report, within the network inventory, which the role of each chassis (main or subtended)\n- if yes, how to represent this information: as a flag indicating the main chassis or as a role enumeration (main, subtended) indicating the role\n\n- [ ] @italobusi : check with the IVY WG mailing list for feedbacks",
+          "createdAt": "2025-04-16T14:31:49Z",
+          "updatedAt": "2025-04-16T18:59:09Z"
         }
       ]
     }
@@ -6563,13 +6585,13 @@
       "labels": [],
       "body": "Complete Appendix with examples of ports, transceivers and port breakouts configurations: fix #93 \r\n\r\n---\r\n\r\nCo-Authored-By: sergiobelotti <sergio.belotti@nokia.com>\r\n",
       "createdAt": "2025-04-04T15:46:11Z",
-      "updatedAt": "2025-04-09T16:20:13Z",
+      "updatedAt": "2025-04-15T15:47:25Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "breakout-examples",
-      "headRefOid": "b8d13a3f63a25b5705a2b136a3cde831dcbc6cf5",
+      "headRefOid": "e52360d41c43efac42dda4faf13882713bff76ae",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
