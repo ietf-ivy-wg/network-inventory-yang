@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-17T00:57:21.188677+00:00",
+  "timestamp": "2025-04-20T01:01:44.364903+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -3464,6 +3464,22 @@
           "updatedAt": "2025-04-16T18:59:09Z"
         }
       ]
+    },
+    {
+      "number": 105,
+      "id": "I_kwDOKiDYo86y-BXR",
+      "title": "\"common-entity-attributes\" grouping splitting into two groupings.",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/105",
+      "state": "OPEN",
+      "author": "sergiobelotti",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The grouping \"common-entity-attributes\" is used also in other inventory modules like Network inventory Location , ietf-ni-location module. Some of these common attributes are in fact not useful for location since more specific for NE/component , like hardware-rev, software-rev, and software-patch-rev.\nFor this reason it is needed to separate the grouping \"common-entity-attributes\" in two groupings one with minimal common entities (e.g. name, id, description etc..)   and the other with more specific NE/component attributes.",
+      "createdAt": "2025-04-17T14:03:07Z",
+      "updatedAt": "2025-04-17T14:03:07Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
