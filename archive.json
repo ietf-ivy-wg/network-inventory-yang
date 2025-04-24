@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-20T01:01:44.364903+00:00",
+  "timestamp": "2025-04-24T00:58:10.933396+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -157,16 +157,15 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [
-        "sergiobelotti"
-      ],
+      "assignees": [],
       "labels": [
         "wga",
+        "needs discussion",
         "priority-1"
       ],
       "body": "Need to discuss if to use parent-component-ref as in the original CCAMP WG draft or to define a parent attribute as in RFC8348",
       "createdAt": "2023-10-23T08:32:56Z",
-      "updatedAt": "2025-04-16T19:02:18Z",
+      "updatedAt": "2025-04-23T17:19:59Z",
       "closedAt": null,
       "comments": [
         {
@@ -228,9 +227,16 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-04-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-16)**\n\nThe problem statement described in https://github.com/ietf-ivy-wg/network-inventory-yang/issues/3#issuecomment-2802902938 is clear\n\nThe alternative solution proposed during the call is to make the parent a list:\n\n```\n- module-B\n  - parent: [ slot-2, slot-3 ]\n```\n\nNeed more time to investigate on this alternative solution and whether there are other scenarios which requires reporting the children component in addition to the one identified in this open issue\n\nIt has been agreed to trigger some discussion on the IVY WG mailing list to get more feedbacks\n\n- [ ] @sergiobelotti  trigger some discussion about this issue and the proposed resolution in the IVY WG mailing list\n",
+          "body": "**[2025-04-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-16)**\n\nThe problem statement described in https://github.com/ietf-ivy-wg/network-inventory-yang/issues/3#issuecomment-2802902938 is clear\n\nThe alternative solution proposed during the call is to make the parent a list:\n\n```\n- module-B\n  - parent: [ slot-2, slot-3 ]\n```\n\nNeed more time to investigate on this alternative solution and whether there are other scenarios which requires reporting the children component in addition to the one identified in this open issue\n\nIt has been agreed to trigger some discussion on the IVY WG mailing list to get more feedbacks\n\n- [x] @sergiobelotti  trigger some discussion about this issue and the proposed resolution in the IVY WG mailing list\n",
           "createdAt": "2025-04-16T19:02:05Z",
-          "updatedAt": "2025-04-16T19:02:05Z"
+          "updatedAt": "2025-04-23T17:19:35Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x]  [@sergiobelotti](https://github.com/sergiobelotti)  trigger some discussion about this issue and the proposed resolution in the IVY WG mailing list\n\nDone: https://mailarchive.ietf.org/arch/msg/inventory-yang/4KOiMHHlzPBIWMw_XHpqcSzYxBE/",
+          "createdAt": "2025-04-23T17:19:58Z",
+          "updatedAt": "2025-04-23T17:19:58Z"
         }
       ]
     },
