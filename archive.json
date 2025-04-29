@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-24T00:58:10.933396+00:00",
+  "timestamp": "2025-04-29T00:58:24.557808+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -3438,7 +3438,7 @@
       ],
       "body": "The discussion on issue #79 has pointed out that there are two possible interpretations for the definition of sub-shelf:\n\nhttps://mailarchive.ietf.org/arch/msg/inventory-yang/LT9AMNqPEuu4EUMgE57lw33qXtE/\n\n> \n> One possible definition for sub-shelf is to represent a shelf, within a multi-shelf NE, which has a hierarchical association with another shelf.\n> \n> Another possible definition for sub-shelf is to represent the logical partitioning of the slots within a single shelf.\n> \n> Nigel: the first interpretation is more associated with the functionality of the shelf rather than with the physical/inventory representation\n> \n> Jeff: in the IP world we have the concept of satellite shelves\n> \n> Nigel: Satellite is better term, than sub-shelf, to reference a shelf which has a hierarchical relationship with a main shelf\n> \n> * [ ] [@ALL](https://github.com/ALL): check the current implementations (if known)\n> \n> * [ ] [@nigel-r-davis](https://github.com/nigel-r-davis) check the existing definitions in ONF and TMF\n\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/79#issuecomment-2701467344",
       "createdAt": "2025-04-01T14:24:33Z",
-      "updatedAt": "2025-04-16T18:59:17Z",
+      "updatedAt": "2025-04-28T16:13:50Z",
       "closedAt": null,
       "comments": [
         {
@@ -3465,9 +3465,16 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-04-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-16)**\n\nReviewed https://github.com/ietf-ivy-wg/network-inventory-yang/issues/101#issuecomment-2809110378\n\nIt has been noted that in the optical networks, the main chassis is usually configured by the operator while, from previous discussion, it seems that in the Ethernet switched networks the main chassis is usually automatically selected by some process within the NE. However, this different is not inherently technology-specific but just common implementation options and the models should support both regardless of the technology domain.\n\nNote that this difference will be modelled in the first version of the base inventory model since everything is RO (the configuration of the main shelf can only be performed at device level and at the network level). However, this difference may become relevant in a future RFC updating the first version of the base inventory model.\n\nThe questions for discussion are:\n- is there a need to report, within the network inventory, which the role of each chassis (main or subtended)\n- if yes, how to represent this information: as a flag indicating the main chassis or as a role enumeration (main, subtended) indicating the role\n\n- [ ] @italobusi : check with the IVY WG mailing list for feedbacks",
+          "body": "**[2025-04-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-16)**\n\nReviewed https://github.com/ietf-ivy-wg/network-inventory-yang/issues/101#issuecomment-2809110378\n\nIt has been noted that in the optical networks, the main chassis is usually configured by the operator while, from previous discussion, it seems that in the Ethernet switched networks the main chassis is usually automatically selected by some process within the NE. However, this different is not inherently technology-specific but just common implementation options and the models should support both regardless of the technology domain.\n\nNote that this difference will be modelled in the first version of the base inventory model since everything is RO (the configuration of the main shelf can only be performed at device level and at the network level). However, this difference may become relevant in a future RFC updating the first version of the base inventory model.\n\nThe questions for discussion are:\n- is there a need to report, within the network inventory, which the role of each chassis (main or subtended)\n- if yes, how to represent this information: as a flag indicating the main chassis or as a role enumeration (main, subtended) indicating the role\n\n- [x] @italobusi : check with the IVY WG mailing list for feedbacks",
           "createdAt": "2025-04-16T14:31:49Z",
-          "updatedAt": "2025-04-16T18:59:09Z"
+          "updatedAt": "2025-04-28T16:13:22Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> - [x]  [@italobusi](https://github.com/italobusi) : check with the IVY WG mailing list for feedbacks\n\nDone: https://mailarchive.ietf.org/arch/msg/inventory-yang/2TG0pnaecvJThXLWM4pIy8micVs/\n",
+          "createdAt": "2025-04-28T16:13:36Z",
+          "updatedAt": "2025-04-28T16:13:49Z"
         }
       ]
     },
