@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 17 October 2025                                           Nokia
+Expires: 31 October 2025                                           Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                           15 April 2025
+                                                           29 April 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 October 2025.
+   This Internet-Draft will expire on 31 October 2025.
 
 Copyright Notice
 
@@ -1698,6 +1698,31 @@ Appendix D.  Examples of ports, transceivers and port breakouts
    See: https://datatracker.ietf.org/meeting/122/materials
               /slides-122-ivy-02-base-network-inventory-yang-01.pdf
 
+
+             +-------------------+
+             |    _______________|
+             |   |           | O |     1) Non-Pluggable Port
+             |   |           |   |      (integrated transceiver)
+             |   |           | O |
+             |   |_______________|
+             |                   |
+             |    _______________|
+             |   |               |     2) Emply hole (port)
+     Hole #1 |   |               |
+             |   |               |
+             |   |               |
+             |   |_______________|
+             |                   |
+             |    _______________|
+             |   |   _______________
+     Hole #2 |   |  |           | O |  3) Pluggable port
+             |   |  |           | O |
+             |   |  |_______________|
+             |   |_______________|
+             |                   |
+             |     (SLOT # 10)   |
+             +-------------------+
+
          Figure 8: Example of a board with different types of ports
 
    Figure 9 describes an implementation of a single channel optical
@@ -1709,6 +1734,32 @@ Appendix D.  Examples of ports, transceivers and port breakouts
    See: https://datatracker.ietf.org/meeting/122/materials
               /slides-122-ivy-02-base-network-inventory-yang-01.pdf
 
+
+            Host                     Transceiver Module
+    _________/\_________   ___________________/\___________________
+   /                    \ /                                        \
+
+   +---------------+              +------------+
+   |               |<--RX1  RX1<--|            |                +--+
+   |               |<--RX2  RX2<--|     DSP    |   +--------+   |L |
+   |               |-->RX3  RX3<--|            |<--|Opt.Rec.|<--|C |
+   | 100G Ethernet |-->RX4  RX4<--| 4 X 25G NRZ|   +--------+   |  |
+   | Physical I/F  |              |            |                |c |
+   |               |  25G NRZ     |    <-->    | 100G PAM       |o |
+   |               |              |            |                |n |
+   |  (breakout    |-->TX1  TX1-->| 1X100G PAM4|   +--------+   |n |
+   | configuration)|-->TX2  TX2-->|            |<--|Opt.Tras|<--|e |
+   |               |-->TX3  TX3-->|  Gearbox   |   +--------+   |c |
+   |               |-->TX4  TX4-->|            |                +--+
+   +---------------+              +------------+
+                          ^                      ^
+                          |                      |
+                   Host Interface         Line Interface
+                 (4X host channels)    (1 X line channels)
+
+   Note: no breakout channels are reported (the port cannot
+         support breakout)
+
         Figure 9: Example of a single channel optical pluggable port
 
    Figure 10 describes an implementation of a Wavelength-Division
@@ -1719,6 +1770,48 @@ Appendix D.  Examples of ports, transceivers and port breakouts
 
    See: https://datatracker.ietf.org/meeting/122/materials
               /slides-122-ivy-02-base-network-inventory-yang-01.pdf
+
+
+           Host                     Transceiver Module
+    ________/\________   ____________________/\____________________
+   /                  \ /                                          \
+
+   +-------------+             +--------+
+   |             |             |        |   +-------+   |\
+   |             |<--RX1 RX1<--|        |<--|Opt.RX1|<--| \
+   |             |<--RX2 RX2<--|        |   +-------+   |D |   +---+
+   |             |<--RX3 RX3<--|        |   +-------+   |E |   | d |
+   |             |<--RX4 RX4<--|        |<--|Opt.RX2|<--|M |   | u |
+   |             |<--RX5 RX5<--|        |   +-------+   |U |<--| p |
+   |             |<--RX6 RX6<--| 8 X 50 |   +-------+   |X |   | l |
+   |             |<--RX7 RX7<--| PAM4   |<--|Opt.RX3|<--|  |   | e |
+   |             |<--RX8 RX8<--|  to    |   +-------+   |C |   | x |
+   |400G Ethernet|             |        |   +-------+   |  |   |   |
+   |  Physical   |             |4 X 100G|<--|Opt.RX4|<--| /    | L |
+   | Interfece   |             | PAM4   |   +-------+   |/     | C |
+   |(no breakout |             |        |                      |   |
+   | config.)    |             |        |   +-------+   |\     | c |
+   |             |             |Gearbox |-->|Opt.TX1|-->| \    | o |
+   |             |             |        |   +-------+   |M |   | n |
+   |             |-->TX1 TX1-->|        |   +-------+   |U |   | n |
+   |             |-->TX2 TX2-->|        |-->|Opt.TX2|-->|X |   | e |
+   |             |-->TX3 TX3-->|        |   +-------+   |  |   | c |
+   |             |-->TX4 TX4-->|        |   +-------+   |C |   | t |
+   |             |-->TX5 TX5-->|        |-->|Opt.TX3|-->|W |   | o |
+   |             |-->TX6 TX6-->|        |   +-------+   |D |   | r |
+   |             |-->TX7 TX7-->|        |   +-------+   |M |   +---+
+   |             |-->TX8 TX8-->|        |-->|Opt.TX4|-->| /
+   |             |             |        |   +-------+   |/
+   +-------------+             +--------+
+                        ^                 ^
+                        |                 |
+                Host Interface        Line Interface
+              (8X host channels)   (4 X line channels)
+
+   Note:  even if the port breakout is not configured, 4x breakout
+          channels (one for each line channel) are reported if the
+          port can support breakouts. No breakout channel are
+          reported if and only if the port cannot support breakouts.
 
       Figure 10: Example of a WDM multi-channel optical pluggable port
 
@@ -1734,6 +1827,48 @@ Appendix D.  Examples of ports, transceivers and port breakouts
 
    See: https://datatracker.ietf.org/meeting/122/materials
               /slides-122-ivy-02-base-network-inventory-yang-01.pdf
+
+
+            Host                     Transceiver Module
+    _________/\_________   ___________________/\___________________
+   /                    \ /                                        \
+
+   +---------------+              +------------+                +--+
+   |               |              |            |   +--------+   |  |
+   |               |<--RX1  RX1<--|            |<--|Opt.RX.1|<--|  |
+   |               |<--RX2  RX2<--|            |   +--------+   |  |
+   |               |<--RX3  RX3<--|            |   +--------+   |  |
+   |               |<--RX4  RX4<--|            |<--|Opt.RX.2|<--|  |
+   |               |<--RX5  RX5<--|            |   +--------+   |  |
+   |               |<--RX6  RX6<--| 8 X 50 PAM4|   +--------+   |  |
+   |               |<--RX7  RX7<--|            |<--|Opt.RX.3|<--|  |
+   |               |<--RX8  RX8<--|     to     |   +--------+   |M |
+   | 400G Ethernet |              |            |   +--------+   |  |
+   |Physical Interf|              |4 X 100 PAM4|<--|Opt.RX.4|<--|P |
+   |               |              |            |   +--------+   |  |
+   | (no breakout  |              |            |                |O |
+   | configuration)|              |            |   +--------+   |  |
+   |               |              |  Gearbox   |-->|Opt.TX.1|-->|1 |
+   |               |              |            |   +--------+   |  |
+   |               |-->TX1  TX1-->|            |   +--------+   |2 |
+   |               |-->TX2  TX2-->|            |-->|Opt.TX.2|-->|  |
+   |               |-->TX3  TX3-->|            |   +--------+   |  |
+   |               |-->TX4  TX4-->|            |   +--------+   |  |
+   |               |-->TX5  TX5-->|            |-->|Opt.TX.3|-->|  |
+   |               |-->TX6  TX6-->|            |   +--------+   |  |
+   |               |-->TX7  TX7-->|            |   +--------+   |  |
+   |               |-->TX8  TX8-->|            |-->|Opt.TX.4|-->|  |
+   |               |              |            |   +--------+   |  |
+   +---------------+              +------------+                +--+
+                          ^                      ^
+                          |                      |
+                   Host Interface         Line Interface
+                 (8X host channels)    (4 X line channels)
+
+   Note: even if the port breakout is not configured, 4x breakout
+         channels (one for each line channel) are reported if the
+         port can support breakouts. No breakout channel are
+         reported if and only if the port cannot support breakouts.
 
                    Figure 11: Example of a MPO trunk port
 
@@ -1756,6 +1891,46 @@ Appendix D.  Examples of ports, transceivers and port breakouts
 
    See: https://datatracker.ietf.org/meeting/122/materials
               /slides-122-ivy-02-base-network-inventory-yang-01.pdf
+
+
+            Host                     Transceiver Module
+    _________/\_________   ___________________/\___________________
+   /                    \ /                                        \
+
+   +---------------+              +------------+                +--+
+   |  100G Eth.    |<--RX1  RX1<--|            |   +--------+   |  |
+   |Physical I/F #1|<--RX2  RX2<--|            |<--|Opt.RX.1|<--|  |
+   | (breakout     |-->TX1        |            |   +--------+   |  |
+   | configuration)|-->TX2  RX3<--|            |   +--------+   |  |
+   +---------------+        RX4<--|            |<--|Opt.RX.2|<--|  |
+                                  |            |   +--------+   |  |
+   +---------------+        RX5<--| 8 X 50 PAM4|   +--------+   |  |
+   |  100G Eth.    |<--RX3  RX6<--|            |<--|Opt.RX.3|<--|  |
+   |Physical I/F #2|<--RX4        |     to     |   +--------+   |M |
+   | (breakout     |-->TX3  RX7<--|            |   +--------+   |  |
+   | configuration)|-->TX4  RX8<--|4 X 100 PAM4|<--|Opt.RX.4|<--|P |
+   +---------------+              |            |   +--------+   |  |
+                                  |            |                |O |
+   +---------------+        TX1-->|            |   +--------+   |  |
+   |  100G Eth.    |<--RX5  TX2-->|  Gearbox   |-->|Opt.TX.1|-->|1 |
+   |Physical I/F #3|<--RX6        |            |   +--------+   |  |
+   | (breakout     |-->TX5  TX3-->|            |   +--------+   |2 |
+   | configuration)|-->TX6  TX4-->|            |-->|Opt.TX.2|-->|  |
+   +---------------+              |            |   +--------+   |  |
+                            TX5-->|            |   +--------+   |  |
+   +---------------+        TX6-->|            |-->|Opt.TX.3|-->|  |
+   |  100G Eth.    |<--RX7        |            |   +--------+   |  |
+   |Physical I/F #4|<--RX8  TX7-->|            |   +--------+   |  |
+   | (breakout     |-->TX7  TX8-->|            |-->|Opt.TX.4|-->|  |
+   | configuration)|-->TX8        |            |   +--------+   |  |
+   +---------------+              +------------+                +--+
+                          ^                      ^
+                          |                      |
+                   Host Interface         Line Interface
+                 (8X host channels)    (4 X line channels)
+
+   Note: 4 X breakout channels (one for each line channel) are
+         reported (the port shall support breakout)
 
                  Figure 12: Example of a MPO breakout port
 
