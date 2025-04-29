@@ -2,3 +2,30 @@ Editors' Note: add the port example in slide 8
 
 See: https://datatracker.ietf.org/meeting/122/materials
            /slides-122-ivy-02-base-network-inventory-yang-01.pdf
+
+
+         Host                     Transceiver Module
+ _________/\_________   ___________________/\___________________
+/                    \ /                                        \
+
++---------------+              +------------+               
+|               |<--RX1  RX1<--|            |                +--+
+|               |<--RX2  RX2<--|     DSP    |   +--------+   |L |
+|               |-->RX3  RX3<--|            |<--|Opt.Rec.|<--|C |
+| 100G Ethernet |-->RX4  RX4<--| 4 X 25G NRZ|   +--------+   |  |
+| Physical I/F  |              |            |                |c |
+|               |  25G NRZ     |    <-->    | 100G PAM       |o |
+|               |              |            |                |n |
+|  (breakout    |-->TX1  TX1-->| 1X100G PAM4|   +--------+   |n |
+| configuration)|-->TX2  TX2-->|            |<--|Opt.Tras|<--|e |
+|               |-->TX3  TX3-->|  Gearbox   |   +--------+   |c |
+|               |-->TX4  TX4-->|            |                +--+
++---------------+              +------------+     
+                       ^                      ^
+                       |                      |
+                Host Interface         Line Interface
+              (4X host channels)    (1 X line channels)
+
+Note: no breakout channels are reported (the port cannot 
+      support breakout)
+ 

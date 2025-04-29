@@ -2,3 +2,45 @@ Editors' Note: add the port example in slide 10
 
 See: https://datatracker.ietf.org/meeting/122/materials
            /slides-122-ivy-02-base-network-inventory-yang-01.pdf
+
+
+         Host                     Transceiver Module
+ _________/\_________   ___________________/\___________________
+/                    \ /                                        \
+
++---------------+              +------------+                +--+
+|               |              |            |   +--------+   |  |
+|               |<--RX1  RX1<--|            |<--|Opt.RX.1|<--|  |
+|               |<--RX2  RX2<--|            |   +--------+   |  |
+|               |<--RX3  RX3<--|            |   +--------+   |  |
+|               |<--RX4  RX4<--|            |<--|Opt.RX.2|<--|  |
+|               |<--RX5  RX5<--|            |   +--------+   |  |
+|               |<--RX6  RX6<--| 8 X 50 PAM4|   +--------+   |  |
+|               |<--RX7  RX7<--|            |<--|Opt.RX.3|<--|  |
+|               |<--RX8  RX8<--|     to     |   +--------+   |M |
+| 400G Ethernet |              |            |   +--------+   |  |
+|Physical Interf|              |4 X 100 PAM4|<--|Opt.RX.4|<--|P |
+|               |              |            |   +--------+   |  |
+| (no breakout  |              |            |                |O |
+| configuration)|              |            |   +--------+   |  |
+|               |              |  Gearbox   |-->|Opt.TX.1|-->|1 |
+|               |              |            |   +--------+   |  |
+|               |-->TX1  TX1-->|            |   +--------+   |2 |
+|               |-->TX2  TX2-->|            |-->|Opt.TX.2|-->|  |
+|               |-->TX3  TX3-->|            |   +--------+   |  |
+|               |-->TX4  TX4-->|            |   +--------+   |  |
+|               |-->TX5  TX5-->|            |-->|Opt.TX.3|-->|  |
+|               |-->TX6  TX6-->|            |   +--------+   |  |
+|               |-->TX7  TX7-->|            |   +--------+   |  |
+|               |-->TX8  TX8-->|            |-->|Opt.TX.4|-->|  |
+|               |              |            |   +--------+   |  |
++---------------+              +------------+                +--+
+                       ^                      ^
+                       |                      |
+                Host Interface         Line Interface
+              (8X host channels)    (4 X line channels)
+
+Note: even if the port breakout is not configured, 4x breakout
+      channels (one for each line channel) are reported if the 
+      port can support breakouts. No breakout channel are 
+      reported if and only if the port cannot support breakouts.

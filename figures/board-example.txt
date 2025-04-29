@@ -3,3 +3,28 @@ Editors' Note: add the board example in slide 4
 
 See: https://datatracker.ietf.org/meeting/122/materials
            /slides-122-ivy-02-base-network-inventory-yang-01.pdf
+
+
+          +-------------------+
+          |    _______________|
+          |   |           | O |     1) Non-Pluggable Port 
+          |   |           |   |      (integrated transceiver)
+          |   |           | O |
+          |   |_______________|
+          |                   |
+          |    _______________|
+          |   |               |     2) Emply hole (port)
+  Hole #1 |   |               |
+          |   |               |     
+          |   |               |
+          |   |_______________|
+          |                   |
+          |    _______________|
+          |   |   _______________
+  Hole #2 |   |  |           | O |  3) Pluggable port
+          |   |  |           | O |     
+          |   |  |_______________|
+          |   |_______________|
+          |                   |
+          |     (SLOT # 10)   |
+          +-------------------+
