@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-29T00:58:24.557808+00:00",
+  "timestamp": "2025-05-01T01:04:23.286013+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -160,12 +160,12 @@
       "assignees": [],
       "labels": [
         "wga",
-        "needs discussion",
+        "wait",
         "priority-1"
       ],
       "body": "Need to discuss if to use parent-component-ref as in the original CCAMP WG draft or to define a parent attribute as in RFC8348",
       "createdAt": "2023-10-23T08:32:56Z",
-      "updatedAt": "2025-04-23T17:19:59Z",
+      "updatedAt": "2025-04-30T16:51:34Z",
       "closedAt": null,
       "comments": [
         {
@@ -237,6 +237,13 @@
           "body": "> * [x]  [@sergiobelotti](https://github.com/sergiobelotti)  trigger some discussion about this issue and the proposed resolution in the IVY WG mailing list\n\nDone: https://mailarchive.ietf.org/arch/msg/inventory-yang/4KOiMHHlzPBIWMw_XHpqcSzYxBE/",
           "createdAt": "2025-04-23T17:19:58Z",
           "updatedAt": "2025-04-23T17:19:58Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-04-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-30)**\n\n> > * [x]   [@sergiobelotti](https://github.com/sergiobelotti)  trigger some discussion about this issue and the proposed resolution in the IVY WG mailing list\n> \n> Done: https://mailarchive.ietf.org/arch/msg/inventory-yang/4KOiMHHlzPBIWMw_XHpqcSzYxBE/\n\n- [ ] @all : send feedbacks to the IVY WG mailing list discussion",
+          "createdAt": "2025-04-30T16:14:01Z",
+          "updatedAt": "2025-04-30T16:14:01Z"
         }
       ]
     },
@@ -2581,14 +2588,14 @@
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
-        "boucadair"
+        "italobusi"
       ],
       "labels": [
-        "wait"
+        "needs discussion"
       ],
       "body": "Refer to the thread: https://mailarchive.ietf.org/arch/msg/nmop/P2-lPJvx2l7vnqOYlGJYWKJr5xM/",
       "createdAt": "2024-11-20T08:53:15Z",
-      "updatedAt": "2025-04-09T16:28:17Z",
+      "updatedAt": "2025-04-30T16:49:32Z",
       "closedAt": null,
       "comments": [
         {
@@ -2618,6 +2625,27 @@
           "body": "**[2025-04-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-09)**\n\nThis issue is addressed by the proposed resolution in https://github.com/ietf-ivy-wg/network-inventory-yang/issues/72#issuecomment-2790217062",
           "createdAt": "2025-04-09T16:07:31Z",
           "updatedAt": "2025-04-09T16:07:31Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "OK to remove the section if that is you favorite approach. My concern is to ensure some consistency in how we anchor new extensions. So, if you maintain empty containers for future augmentations, then please say somewhere in document how these are intended to be used. \n\nHope we can close this issue and move forward. Thanks.",
+          "createdAt": "2025-04-29T11:42:14Z",
+          "updatedAt": "2025-04-29T11:42:14Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-04-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-30)**\n\nAgreed to remove section 4: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/72#issuecomment-2842506442\n\nThis issue is still open to track the discussion on whether it is needed or not to define empty containers as augmentation\n\nThere are different opinions about the value and drawbacks with this approach to be discussed on the mailing lits\n\n- [ ] @italobusi trigger discussion on the IVY WG mailing list\n\nIf there is WG consensus to define empty containers as augmentation targets, some text will be added to section 3 as per Med's comment: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/68#issuecomment-2838496594\n\nOtherwise, the existing empty containers will be removed\n",
+          "createdAt": "2025-04-30T16:12:08Z",
+          "updatedAt": "2025-04-30T16:12:08Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Note: text related to issue #68 commented in kramdown (will not appear in the draft). To be updated or removed based on the resolution of issue #68\n\nSee: PR #104 ",
+          "createdAt": "2025-04-30T16:48:58Z",
+          "updatedAt": "2025-04-30T16:48:58Z"
         }
       ]
     },
@@ -2694,12 +2722,12 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
-        "needs discussion",
+        "agreed",
         "priority-1"
       ],
       "body": ">   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\\\r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/",
       "createdAt": "2024-11-27T16:29:14Z",
-      "updatedAt": "2025-04-14T20:31:15Z",
+      "updatedAt": "2025-04-30T16:46:10Z",
       "closedAt": null,
       "comments": [
         {
@@ -2750,6 +2778,20 @@
           "body": "See also additional comments in https://mailarchive.ietf.org/arch/msg/inventory-yang/DWP6vCfHjCWCkODG930OKR1udzw/",
           "createdAt": "2025-04-14T20:31:02Z",
           "updatedAt": "2025-04-14T20:31:02Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-04-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-30)**\n\nAgreed to update PR #104 to resolve this issue in line with the proposal discussed on the mailing list: https://mailarchive.ietf.org/arch/msg/inventory-yang/DWP6vCfHjCWCkODG930OKR1udzw/\n\nThe only difference is that it has been agreed not to mention anything about the empty containers as augmentation targets and to discuss the need for them as part of issue #68\n\n- [x] @italobusi : update the text proposal in PR #104 to resolve also this issue",
+          "createdAt": "2025-04-30T16:08:52Z",
+          "updatedAt": "2025-04-30T16:45:39Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x]  [@italobusi](https://github.com/italobusi) : update the text proposal in PR [Base Inventory Model Augmentations\u00a0#104](https://github.com/ietf-ivy-wg/network-inventory-yang/pull/104) to resolve also this issue\n\nDone: 81a7af84b0ca9075540b5e9e30c0b8a750f43822\n\nPR #104 now ready for review\n\n",
+          "createdAt": "2025-04-30T16:46:02Z",
+          "updatedAt": "2025-04-30T16:46:02Z"
         }
       ]
     },
@@ -3430,15 +3472,14 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [
-        "italobusi"
-      ],
+      "assignees": [],
       "labels": [
+        "wait",
         "priority-1"
       ],
-      "body": "The discussion on issue #79 has pointed out that there are two possible interpretations for the definition of sub-shelf:\n\nhttps://mailarchive.ietf.org/arch/msg/inventory-yang/LT9AMNqPEuu4EUMgE57lw33qXtE/\n\n> \n> One possible definition for sub-shelf is to represent a shelf, within a multi-shelf NE, which has a hierarchical association with another shelf.\n> \n> Another possible definition for sub-shelf is to represent the logical partitioning of the slots within a single shelf.\n> \n> Nigel: the first interpretation is more associated with the functionality of the shelf rather than with the physical/inventory representation\n> \n> Jeff: in the IP world we have the concept of satellite shelves\n> \n> Nigel: Satellite is better term, than sub-shelf, to reference a shelf which has a hierarchical relationship with a main shelf\n> \n> * [ ] [@ALL](https://github.com/ALL): check the current implementations (if known)\n> \n> * [ ] [@nigel-r-davis](https://github.com/nigel-r-davis) check the existing definitions in ONF and TMF\n\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/79#issuecomment-2701467344",
+      "body": "The discussion on issue #79 has pointed out that there are two possible interpretations for the definition of sub-shelf:\n\nhttps://mailarchive.ietf.org/arch/msg/inventory-yang/LT9AMNqPEuu4EUMgE57lw33qXtE/\n\n> \n> One possible definition for sub-shelf is to represent a shelf, within a multi-shelf NE, which has a hierarchical association with another shelf.\n> \n> Another possible definition for sub-shelf is to represent the logical partitioning of the slots within a single shelf.\n> \n> Nigel: the first interpretation is more associated with the functionality of the shelf rather than with the physical/inventory representation\n> \n> Jeff: in the IP world we have the concept of satellite shelves\n> \n> Nigel: Satellite is better term, than sub-shelf, to reference a shelf which has a hierarchical relationship with a main shelf\n> \n\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/79#issuecomment-2701467344",
       "createdAt": "2025-04-01T14:24:33Z",
-      "updatedAt": "2025-04-28T16:13:50Z",
+      "updatedAt": "2025-04-30T16:16:42Z",
       "closedAt": null,
       "comments": [
         {
@@ -3475,24 +3516,44 @@
           "body": "> - [x]  [@italobusi](https://github.com/italobusi) : check with the IVY WG mailing list for feedbacks\n\nDone: https://mailarchive.ietf.org/arch/msg/inventory-yang/2TG0pnaecvJThXLWM4pIy8micVs/\n",
           "createdAt": "2025-04-28T16:13:36Z",
           "updatedAt": "2025-04-28T16:13:49Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-04-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-30)**\n\n> > * [x]   [@italobusi](https://github.com/italobusi) : check with the IVY WG mailing list for feedbacks\n> \n> Done: https://mailarchive.ietf.org/arch/msg/inventory-yang/2TG0pnaecvJThXLWM4pIy8micVs/\n\n- [ ] @all : send feedbacks to the IVY WG mailing list discussion",
+          "createdAt": "2025-04-30T16:16:41Z",
+          "updatedAt": "2025-04-30T16:16:41Z"
         }
       ]
     },
     {
       "number": 105,
       "id": "I_kwDOKiDYo86y-BXR",
-      "title": "\"common-entity-attributes\" grouping splitting into two groupings.",
+      "title": "Splitting \"common-entity-attributes\" grouping into two groupings",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/105",
       "state": "OPEN",
       "author": "sergiobelotti",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
-      "labels": [],
+      "assignees": [
+        "sergiobelotti"
+      ],
+      "labels": [
+        "agreed",
+        "priority-1"
+      ],
       "body": "The grouping \"common-entity-attributes\" is used also in other inventory modules like Network inventory Location , ietf-ni-location module. Some of these common attributes are in fact not useful for location since more specific for NE/component , like hardware-rev, software-rev, and software-patch-rev.\nFor this reason it is needed to separate the grouping \"common-entity-attributes\" in two groupings one with minimal common entities (e.g. name, id, description etc..)   and the other with more specific NE/component attributes.",
       "createdAt": "2025-04-17T14:03:07Z",
-      "updatedAt": "2025-04-17T14:03:07Z",
+      "updatedAt": "2025-04-30T16:06:29Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-04-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-30)**\n\nThe proposal has been agreed as a priority 1 issue\n\n- [ ] @sergiobelotti submit a PR with proposed YANG changes\n",
+          "createdAt": "2025-04-30T16:06:17Z",
+          "updatedAt": "2025-04-30T16:06:17Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -6570,11 +6631,13 @@
       "state": "OPEN",
       "author": "sergiobelotti",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "sergiobelotti"
+      ],
       "labels": [],
       "body": "The text in the I-D has been updated with network-wide word on behalf of network",
       "createdAt": "2025-04-02T14:46:38Z",
-      "updatedAt": "2025-04-07T09:38:42Z",
+      "updatedAt": "2025-04-30T16:50:26Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
@@ -6585,7 +6648,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-04-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-30)**\r\n\r\nWe can address the issue by adding a definition for \"network inventory\" used in the context of our I-D, to indicate that it is describing network-wide inventory information and keep using the term \"network inventory\" consistently through the document\r\n\r\n- [ ] @sergiobelotti update the PR text accordingly\r\n",
+          "createdAt": "2025-04-30T16:02:05Z",
+          "updatedAt": "2025-04-30T16:02:05Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOKiDYo86jiRZ5",
@@ -6612,15 +6683,15 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "Complete Appendix with examples of ports, transceivers and port breakouts configurations: fix #93 \r\n\r\n---\r\n\r\nCo-Authored-By: sergiobelotti <sergio.belotti@nokia.com>\r\n",
+      "body": "Complete Appendix with examples of ports, transceivers and port breakouts configurations: fix #93 \r\n\r\n---\r\n\r\nCo-Authored-By: sergiobelotti <sergio.belotti@nokia.com>\r\nCo-Authored-By: ggalimba56 <ggalimbe56@gmail.com>\r\n",
       "createdAt": "2025-04-04T15:46:11Z",
-      "updatedAt": "2025-04-15T15:47:25Z",
+      "updatedAt": "2025-04-30T16:05:01Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "breakout-examples",
-      "headRefOid": "e52360d41c43efac42dda4faf13882713bff76ae",
+      "headRefOid": "46fbf7bfb7619bd3cbab4df71802816f33448b59",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -6629,9 +6700,16 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-04-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-09)**\r\n\r\nThe updated model and examples have been presented at IETF 122: https://datatracker.ietf.org/doc/slides-122-ivy-02-base-network-inventory-yang/\r\n\r\nThere were some questions about the need for breakout configuration which have been answered. It may be worthwhile adding some text in the description of the examples.\r\n\r\n- [ ] @italobusi @sergiobelotti : add ASCII art and then request PR review\r\n\r\n- [ ] @aguoietf @manzoro review the PR when ready and check if there is some additional text to address the questions raised at IETF 122 on the need to model breakouts",
+          "body": "**[2025-04-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-09)**\r\n\r\nThe updated model and examples have been presented at IETF 122: https://datatracker.ietf.org/doc/slides-122-ivy-02-base-network-inventory-yang/\r\n\r\nThere were some questions about the need for breakout configuration which have been answered. It may be worthwhile adding some text in the description of the examples.\r\n\r\n- [x] @italobusi @sergiobelotti : add ASCII art and then request PR review\r\n\r\n- [ ] @aguoietf @manzoro review the PR when ready and check if there is some additional text to address the questions raised at IETF 122 on the need to model breakouts",
           "createdAt": "2025-04-09T15:49:58Z",
-          "updatedAt": "2025-04-09T16:20:12Z"
+          "updatedAt": "2025-04-30T15:59:02Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-04-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-30)**\r\n\r\nThe PR is now ready for review:\r\n\r\n> * [ ]  @aguoietf @manzoro review the PR when ready and check if there is some additional text to address the questions raised at IETF 122 on the need to model breakouts\r\n\r\n- [ ] @prmanna @philbedard review the PR ",
+          "createdAt": "2025-04-30T16:05:00Z",
+          "updatedAt": "2025-04-30T16:05:00Z"
         }
       ],
       "reviews": []
@@ -6646,15 +6724,15 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "Updated abstract as discussed on the mailing list: https://mailarchive.ietf.org/arch/msg/inventory-yang/koA-X-6aMID4Zk5VRqcPERaWO48/: fix #99 ",
+      "body": "Updated abstract as discussed on the mailing list: https://mailarchive.ietf.org/arch/msg/inventory-yang/koA-X-6aMID4Zk5VRqcPERaWO48/: fix #99 \r\n\r\nUpdated text to fix #72 \r\n\r\nNote: text related to issue #68 commented in kramdown (will not appear in the draft). To be updated or removed based on the resolution of issue #68",
       "createdAt": "2025-04-07T13:53:40Z",
-      "updatedAt": "2025-04-09T16:02:14Z",
+      "updatedAt": "2025-04-30T16:48:15Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "augment",
-      "headRefOid": "81a7af84b0ca9075540b5e9e30c0b8a750f43822",
+      "headRefOid": "56fddf9021a0d4c287cc78b7d647d2518b91f1c2",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -6683,6 +6761,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 106,
+      "id": "PR_kwDOKiDYo86UVLDk",
+      "title": "fix a reference problem",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/106",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-04-29T11:43:49Z",
+      "updatedAt": "2025-04-29T11:43:50Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
+      "headRepository": "boucadair/network-inventory-yang",
+      "headRefName": "patch-14",
+      "headRefOid": "12ebc04be33f3eb8c4a0b938e5ba93c0e099d61e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
