@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-01T01:04:23.286013+00:00",
+  "timestamp": "2025-05-04T01:04:44.973864+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -6685,7 +6685,7 @@
       "labels": [],
       "body": "Complete Appendix with examples of ports, transceivers and port breakouts configurations: fix #93 \r\n\r\n---\r\n\r\nCo-Authored-By: sergiobelotti <sergio.belotti@nokia.com>\r\nCo-Authored-By: ggalimba56 <ggalimbe56@gmail.com>\r\n",
       "createdAt": "2025-04-04T15:46:11Z",
-      "updatedAt": "2025-04-30T16:05:01Z",
+      "updatedAt": "2025-05-01T14:06:38Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
@@ -6712,7 +6712,121 @@
           "updatedAt": "2025-04-30T16:05:00Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86nevKe",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-01T14:05:59Z",
+          "updatedAt": "2025-05-01T14:05:59Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "remove the notes here. Only the pictures are needed.",
+              "createdAt": "2025-05-01T14:05:59Z",
+              "updatedAt": "2025-05-01T14:05:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86nevPj",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-01T14:06:10Z",
+          "updatedAt": "2025-05-01T14:06:10Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "remove the notes here. Only the pictures are needed.",
+              "createdAt": "2025-05-01T14:06:10Z",
+              "updatedAt": "2025-05-01T14:06:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86nevSN",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-01T14:06:16Z",
+          "updatedAt": "2025-05-01T14:06:17Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "remove the notes here. Only the pictures are needed.",
+              "createdAt": "2025-05-01T14:06:16Z",
+              "updatedAt": "2025-05-01T14:06:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86nevVw",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-01T14:06:24Z",
+          "updatedAt": "2025-05-01T14:06:24Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "remove the notes here. Only the pictures are needed.",
+              "createdAt": "2025-05-01T14:06:24Z",
+              "updatedAt": "2025-05-01T14:06:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86nevYG",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-01T14:06:30Z",
+          "updatedAt": "2025-05-01T14:06:30Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "remove the notes here. Only the pictures are needed.",
+              "createdAt": "2025-05-01T14:06:30Z",
+              "updatedAt": "2025-05-01T14:06:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86nevcT",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-05-01T14:06:38Z",
+          "updatedAt": "2025-05-01T14:06:38Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 104,
