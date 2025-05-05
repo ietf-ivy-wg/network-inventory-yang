@@ -1,6 +1,6 @@
 ---
-title: "A Base YANG Data Model for Network-wide Inventory"
-abbrev: "Network-wide Inventory YANG"
+title: "A Base YANG Data Model for Network Inventory"
+abbrev: "Network Inventory YANG"
 category: std
 
 docname: draft-ietf-ivy-network-inventory-yang-latest
@@ -102,7 +102,7 @@ informative:
 
 --- abstract
 
-This document defines a base YANG data model for network-wide inventory. The scope of this base model is set to
+This document defines a base YANG data model for network inventory. The scope of this base model is set to
 be application- and technology-agnostic. However, the data model is designed with appropriate provisions to ease
 future augmentations with application- and technology-specific details.
 
@@ -110,13 +110,15 @@ future augmentations with application- and technology-specific details.
 
 # Introduction
 
-This document defines a base network-wide inventory
+This document defines a base network inventory
 YANG data model that is application- and technology-agnostic.  The
 base data model can be augmented to describe application- and technology-specific information.
+Please note that the usage of term "network inventory",in the context of this I-D, is to indicate that it is 
+describing "network-wide" scope inventory information.  
 
-Network-wide inventory is a fundamental functional block in the overall network
-management which was specified many years ago. Network-wide inventory management is a critical
-part for ensuring that the network remains healthy (e.g., auditing to identify faulty elements), well-planned (e.g., identify assets to upgrade or to decommission), and maintained appropriately to meet the performance objectives. Also, network-wide inventory
+Network inventory is a fundamental functional block in the overall network
+management which was specified many years ago. Network inventory management is a critical
+part for ensuring that the network remains healthy (e.g., auditing to identify faulty elements), well-planned (e.g., identify assets to upgrade or to decommission), and maintained appropriately to meet the performance objectives. Also, network inventory
 management allows operators to keep track of which devices are deployed in their networks, including relevant embedded software and
 hardware versions.
 
@@ -124,13 +126,13 @@ Exposing standard interfaces to retrieve network elements capabilities as mainta
 upper layer systems (e.g., Multi-Domain Service Coordinator (MDSC) or Operations Support Systems (OSS) layers).
 
 It is key for operators to coordinate with the industry towards the use of a
-standard YANG data model for Network-wide Inventory data instead
+standard YANG data model for Network Inventory data instead
 of using vendors proprietary APIs.
 
-{{!RFC8348}} defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller towards the network elements rather than at the northbound interface of a network controller (e.g., toward an application or another hierarchical network controller). However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network-wide inventory data model presented in this document.
+{{!RFC8348}} defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller towards the network elements rather than at the northbound interface of a network controller (e.g., toward an application or another hierarchical network controller). However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model presented in this document.
 
-Network-wide Inventory is a collection of data for network devices and their components managed by a specific management system.
-Per the definition of {{?RFC8969}}, the network-wide inventory model is a network model.
+Network Inventory is a collection of data for network devices and their components managed by a specific management system.
+Per the definition of {{?RFC8969}}, the network inventory model is a network model.
 
 
 This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
@@ -139,7 +141,7 @@ This base data model is application- and technology-agnostic (that is, valid for
 microwave networks as well as optical local loops, access networks, core networks, data centers, etc.) and can be augmented to
 include required application- and technology-specific inventory details together with specific hardware or software component's attributes.
 
-The YANG data model defined in the document is scoped to cover the common use cases for Inventory but at network-wide scope, covering both hardware and base software information.
+The YANG data model defined in the document is scoped to cover the common use cases for Inventory but at network-wide level, covering both hardware and base software information.
 
 {{ni-augment}} provides a set of considerations for future extensions of hardware, software, entitlement, and inventory topology mapping.
 
@@ -218,8 +220,8 @@ Logical interface:
 
 > Editors' Note: Add recap for the concepts of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
-Network-wide Inventory:
-: A collection of data for network elements and their components managed by a specific management system.
+Network Inventory:
+: A collection of data for network elements and their components with network-wide scope, managed by a specific management system.
 
 Physical Network Element:
 : An implementation or application specific group of components (e.g., hardware components).
@@ -279,7 +281,7 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 | nwi    | ietf-network-inventory          | RFC XXXX      |
 {:#tab-prefixes title="Prefixes and corresponding YANG modules"}
 
-# YANG Data Model for Network-wide Inventory Overview
+# YANG Data Model for Network Inventory Overview
 
 The network element definition is generalized to support physical
 network elements and other types of components' groups that can be managed as physical network elements from an
@@ -311,9 +313,9 @@ document and could be defined in application- and technology-specific companion 
 
 In {{!RFC8348}}, rack, chassis, slot, sub-slot, board and port are defined as components of network elements with generic attributes.
 
-While {{!RFC8348}} is used to manage the hardware of a single server (e.g., a network element), the Network-wide Inventory YANG data model is used to retrieve the base inventory information that a controller discovers from all the network elements under its control.
+While {{!RFC8348}} is used to manage the hardware of a single server (e.g., a network element), the Network Inventory YANG data model is used to retrieve the base inventory information that a controller discovers from all the network elements with network-wide scope under its control.
 
-However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network-wide inventory data model. This approach can simplify the implementation of this inventory model when the controller uses the YANG data model defined in {{!RFC8348}} to retrieve the hardware  from the network elements under its control.
+However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model. This approach can simplify the implementation of this inventory model when the controller uses the YANG data model defined in {{!RFC8348}} to retrieve the hardware  from the network elements under its control.
 
 ~~~~ ascii-art
   +--rw network-elements
@@ -390,7 +392,7 @@ elements as shown in {{fig-ne-tree}}.
 
 ## Components {#ne-component}
 
-The YANG data model for network-wide inventory mainly follows the same approach of {{!RFC8348}} and reports the network hardware inventory as a list of components with different types (e.g., chassis, module, and port).
+The YANG data model for network inventory mainly follows the same approach of {{!RFC8348}} and reports the network hardware inventory as a list of components with different types (e.g., chassis, module, and port).
 
 The component definition ({{fig-comp-tree}}) is generalized to both hardware components
 and non-hardware components (e.g., software components).
@@ -420,7 +422,7 @@ and non-hardware components (e.g., software components).
 ~~~~
 {:#fig-comp-tree title="Components Subtree"}
 
-For state data like "admin-state", "oper-state", and so on, this document considers that they are related to device hardware management, not network-wide inventory. Therefore, they are outside of the scope of this document. Same for the sensor-data, they should be defined in some other performance monitoring data models instead of the inventory data model.
+For state data like "admin-state", "oper-state", and so on, this document considers that they are related to device hardware management, not network inventory. Therefore, they are outside of the scope of this document. Same for the sensor-data, they should be defined in some other performance monitoring data models instead of the inventory data model.
 
 ### Hardware Components
 
@@ -491,11 +493,11 @@ The model defines the 'breakout-channels' presence container to indicate whether
 
 It is assumed that a port which supports port breakout can be configured either as a trunk port or as a breakout port.
 
-Reporting whether a port, which supports port breakout, is configured as a trunk or as a breakout port, is outside the scope of the base network-wide inventory model. The model providing the mapping between the topology and the inventory models should provide sufficient information to identify how the port is configured and, in case of breakout configuration, which breakout channel is associated with which Link Termination Point (LTP), abstracting a device physical interface within the topology model.
+Reporting whether a port, which supports port breakout, is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model. The model providing the mapping between the topology and the inventory models should provide sufficient information to identify how the port is configured and, in case of breakout configuration, which breakout channel is associated with which Link Termination Point (LTP), abstracting a device physical interface within the topology model.
 
 ## Changes Since RFC 8348
 
-This document re-defines some attributes listed in {{!RFC8348}}, based on some integration experience for network wide inventory data.
+This document re-defines some attributes listed in {{!RFC8348}}, based on some integration experience for network inventory data.
 
 ### Component-Specific Info Design
 
@@ -536,9 +538,9 @@ Instead the name is defined as an optional attribute and the component-id is def
 
 {:#ni-augment}
 
-# Extending Network-wide Inventory
+# Extending Network Inventory
 
-This document defines the basic network-wide inventory attributes
+This document defines the basic network inventory attributes
 applicable to typical network scenarios.  For finer-grained and
 specific management scenarios, the relationship between this model
 and other models is illustrated in Figure 4.
@@ -546,7 +548,7 @@ and other models is illustrated in Figure 4.
 ~~~~ aasvg
              +-------------------------+
              |         Base            |
-             | Network-wide Inventory  |
+             |  Network Inventory      |
              |                         |
              +------------+------------+
                           |
@@ -563,24 +565,24 @@ and other models is illustrated in Figure 4.
 
 {:#ni-tree}
 
-# Network-wide Inventory Tree Diagram
+# Network Inventory Tree Diagram
 
 {{fig-ni-tree}} below shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
 
 ~~~~ ascii-art
 {::include-fold yang/ietf-network-inventory.tree}
 ~~~~
-{:#fig-ni-tree title="Network-wide inventory tree diagram"
+{:#fig-ni-tree title="Network inventory tree diagram"
 artwork-name="ietf-network-inventory.tree"}
 
 {:#ni-yang}
 
-# YANG Data Model for Network-wide Inventory
+# YANG Data Model for Network Inventory
 
 ~~~~ yang
 {::include yang/ietf-network-inventory.yang}
 ~~~~
-{:#fig-ni-yang title="Network-wide inventory YANG module"
+{:#fig-ni-yang title="Network inventory YANG module"
 sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-02-03.yang"}
 
 # Manageability Considerations
@@ -648,7 +650,7 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | controller-card            |                          | Controller card is considered as a specific functional board. And no need to define as a single component  |
 {:#tab-oc title="Comparison between openconfig platform and inventory data models"}
 
-As it mentioned in {{ne-component}} that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. And for some component specific structures in "openconfig-platform", we consider some of them can be contained by our existing structure, such as fan, backplane, and controller-card, while some others do not need to be included in this network-wide inventory model like storage and cpu.
+As it mentioned in {{ne-component}} that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. And for some component specific structures in "openconfig-platform", we consider some of them can be contained by our existing structure, such as fan, backplane, and controller-card, while some others do not need to be included in this network inventory model like storage and cpu.
 
 Mostly, our inventory data model can cover the attributes from OpenConfig.
 
@@ -663,7 +665,7 @@ Within this document , with the term "container" we consider an hardware compone
 
 # Efficiency Issue
 
-During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network-wide inventory data for big networks.  More discussions are needed to address these concerns.
+During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks.  More discussions are needed to address these concerns.
 
 Considering that relational databases are widely used by traditional OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in current draft, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller & OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.
 
@@ -693,9 +695,9 @@ The example instantiates the "ietf-network-inventory" model to describe a single
 1. An MPO trunk port (e.g., 400G-DR4 port configured as a single 400GE interface). This type of MPO port can support either the trunk or the breakout configuration but in this example, it is configured to support the trunk configuration: the four channels are reported to support breakouts configuration, when needed.
 1. An MPO breakout port (e.g., 400G-DR4 port configured as 4x100GE interfaces): the four channels are reported to support breakouts configuration.
 
-From a network-wide inventory perspective, there is no need to distinguish between single-channel and MPO trunk-only ports.
+From a network inventory perspective, there is no need to distinguish between single-channel and MPO trunk-only ports.
 
-Note: as described in {{ports}}, reporting whether an MPO port is configured as a trunk or as a breakout port, is outside the scope of the base network-wide inventory model.
+Note: as described in {{ports}}, reporting whether an MPO port is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model.
 
 ~~~~ ascii-art
 {::include-fold json/ports-transceivers-breakouts-examples.json}
