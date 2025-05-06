@@ -113,8 +113,8 @@ future augmentations with application- and technology-specific details.
 This document defines a base network inventory
 YANG data model that is application- and technology-agnostic.  The
 base data model can be augmented to describe application- and technology-specific information.
-Please note that the usage of term "network inventory",in the context of this I-D, is to indicate that it is 
-describing "network-wide" scope inventory information.  
+Please note that the usage of term "network inventory", in the context of this I-D, is to indicate that it is
+describing "network-wide" scope inventory information.
 
 Network inventory is a fundamental functional block in the overall network
 management which was specified many years ago. Network inventory management is a critical
