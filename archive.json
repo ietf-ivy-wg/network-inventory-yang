@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-04T01:04:44.973864+00:00",
+  "timestamp": "2025-05-06T00:59:19.499474+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -6637,13 +6637,13 @@
       "labels": [],
       "body": "The text in the I-D has been updated with network-wide word on behalf of network",
       "createdAt": "2025-04-02T14:46:38Z",
-      "updatedAt": "2025-04-30T16:50:26Z",
+      "updatedAt": "2025-05-05T11:41:51Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "issue-23",
-      "headRefOid": "8b1e1883358d71a2655bab0cecabfd576b838b52",
+      "headRefOid": "67bb1575ee79e537a4ca352790e63a73f863b9e5",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -6670,6 +6670,26 @@
           "createdAt": "2025-04-04T17:13:45Z",
           "updatedAt": "2025-04-04T17:13:45Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo86nwmi9",
+          "commit": {
+            "abbreviatedOid": "67bb157"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-05-05T11:41:10Z",
+          "updatedAt": "2025-05-05T11:41:51Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nPlease note that the usage of term \"network inventory\", in the context of this I-D, is to indicate that it is\r\ndescribing \"network-wide\" scope inventory information.\r\n```",
+              "createdAt": "2025-05-05T11:41:10Z",
+              "updatedAt": "2025-05-05T11:41:52Z"
+            }
+          ]
         }
       ]
     },
@@ -6685,7 +6705,7 @@
       "labels": [],
       "body": "Complete Appendix with examples of ports, transceivers and port breakouts configurations: fix #93 \r\n\r\n---\r\n\r\nCo-Authored-By: sergiobelotti <sergio.belotti@nokia.com>\r\nCo-Authored-By: ggalimba56 <ggalimbe56@gmail.com>\r\n",
       "createdAt": "2025-04-04T15:46:11Z",
-      "updatedAt": "2025-05-01T14:06:38Z",
+      "updatedAt": "2025-05-04T19:51:09Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
@@ -6825,6 +6845,26 @@
           "createdAt": "2025-05-01T14:06:38Z",
           "updatedAt": "2025-05-01T14:06:38Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo86ns2CA",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-04T19:51:09Z",
+          "updatedAt": "2025-05-04T19:51:09Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "just kept to simplify the review: to be removed before merging the PR",
+              "createdAt": "2025-05-04T19:51:09Z",
+              "updatedAt": "2025-05-04T19:51:09Z"
+            }
+          ]
         }
       ]
     },
