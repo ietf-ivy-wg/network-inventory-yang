@@ -198,10 +198,11 @@ module ietf-network-inventory {
     }
   }
 
-  grouping common-entity-attributes {
+  grouping minimal-common-entity-attributes {
     description
-      "The set of attributes which are common to all the entities
-       (e.g., component, network elements) defined in this module.";
+      "The set of basic attributes which are common to all the entities
+       (e.g., component, network elements, location, passive entities) 
+       defined in this module and in other inventory modules.";
     leaf uuid {
       type yang:uuid;
       config false;
@@ -232,6 +233,13 @@ module ietf-network-inventory {
         "The alias name of the entity (e.g., component). This alias
          name can be specified by network manager.";
     }
+  }
+
+  grouping ne-component-common-entity-attributes {
+    description
+      "The set of attributes which are common to all the entities
+       (e.g., component, network elements) defined in this module.";
+ 
     leaf hardware-rev {
       type string;
       config false;
@@ -316,7 +324,8 @@ module ietf-network-inventory {
           description
             "The NE type.";
         }
-        uses common-entity-attributes;
+        uses minimal-common-entity-attributes;
+        uses ne-component-common-entity-attributes;
         container components {
           description
             "The top-level container for the list of components
@@ -345,7 +354,8 @@ module ietf-network-inventory {
               description
                 "The type of the component.";
             }
-            uses common-entity-attributes {
+            uses minimal-common-entity-attributes;
+            uses ne-component-common-entity-attributes {
               refine "hardware-rev" {
                 description
                   "The vendor-specific hardware revision string for
