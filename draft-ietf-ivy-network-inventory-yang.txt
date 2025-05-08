@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 12 September 2025                                         Nokia
+Expires: 9 November 2025                                           Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                           11 March 2025
+                                                              8 May 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 September 2025.
+   This Internet-Draft will expire on 9 November 2025.
 
 Copyright Notice
 
@@ -380,7 +380,7 @@ Table of Contents
    Physical network elements are usually devices such as hosts,
    gateways, terminal servers, and the like, which have management
    agents responsible for performing the network management functions
-   requested by the network management stations ({?RFC1157}).
+   requested by the network management stations ([RFC1157]).
 
    The data model for network elements defined in this document uses a
    flat list of network elements.
@@ -1429,9 +1429,9 @@ Table of Contents
               Beller, D., Le Rouzic, E., Belotti, S., Galimberti, G.,
               and I. Busi, "A YANG Data Model for Optical Impairment-
               aware Topology", Work in Progress, Internet-Draft, draft-
-              ietf-ccamp-optical-impairment-topology-yang-17, 21 October
-              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              ccamp-optical-impairment-topology-yang-17>.
+              ietf-ccamp-optical-impairment-topology-yang-18, 11 April
+              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              ccamp-optical-impairment-topology-yang-18>.
 
    [I-D.ietf-ivy-network-inventory-software]
               Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
@@ -1449,6 +1449,11 @@ Table of Contents
               draft-ietf-teas-actn-poi-applicability-14, 25 February
               2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
               teas-actn-poi-applicability-14>.
+
+   [RFC1157]  Case, J., Fedor, M., Schoffstall, M., and J. Davin,
+              "Simple Network Management Protocol (SNMP)", RFC 1157,
+              DOI 10.17487/RFC1157, May 1990,
+              <https://www.rfc-editor.org/rfc/rfc1157>.
 
    [RFC7951]  Lhotka, L., "JSON Encoding of Data Modeled with YANG",
               RFC 7951, DOI 10.17487/RFC7951, August 2016,
