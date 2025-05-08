@@ -113,6 +113,8 @@ future augmentations with application- and technology-specific details.
 This document defines a base network inventory
 YANG data model that is application- and technology-agnostic.  The
 base data model can be augmented to describe application- and technology-specific information.
+Please note that the usage of term "network inventory", in the context of this I-D, is to indicate that it is
+describing "network-wide" scope inventory information.
 
 Network inventory is a fundamental functional block in the overall network
 management which was specified many years ago. Network inventory management is a critical
@@ -139,7 +141,7 @@ This base data model is application- and technology-agnostic (that is, valid for
 microwave networks as well as optical local loops, access networks, core networks, data centers, etc.) and can be augmented to
 include required application- and technology-specific inventory details together with specific hardware or software component's attributes.
 
-The YANG data model defined in the document is scoped to cover the common use cases for Network Inventory covering both hardware and base software information.
+The YANG data model defined in the document is scoped to cover the common use cases for Inventory but at network-wide level, covering both hardware and base software information.
 
 {{ni-augment}} provides a set of considerations for future extensions of hardware, software, entitlement, and inventory topology mapping.
 
@@ -219,7 +221,7 @@ Logical interface:
 > Editors' Note: Add recap for the concepts of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
 Network Inventory:
-: A collection of data for network elements and their components managed by a specific management system.
+: A collection of data for network elements and their components with network-wide scope, managed by a specific management system.
 
 Physical Network Element:
 : An implementation or application specific group of components (e.g., hardware components).
@@ -311,9 +313,9 @@ document and could be defined in application- and technology-specific companion 
 
 In {{!RFC8348}}, rack, chassis, slot, sub-slot, board and port are defined as components of network elements with generic attributes.
 
-While {{!RFC8348}} is used to manage the hardware of a single server (e.g., a network element), the Network Inventory YANG data model is used to retrieve the base network inventory information that a controller discovers from all the network elements under its control.
+While {{!RFC8348}} is used to manage the hardware of a single server (e.g., a network element), the Network Inventory YANG data model is used to retrieve the base inventory information that a controller discovers from all the network elements with network-wide scope under its control.
 
-However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model. This approach can simplify the implementation of this network inventory model when the controller uses the YANG data model defined in {{!RFC8348}} to retrieve the hardware  from the network elements under its control.
+However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model. This approach can simplify the implementation of this inventory model when the controller uses the YANG data model defined in {{!RFC8348}} to retrieve the hardware  from the network elements under its control.
 
 ~~~~ ascii-art
   +--rw network-elements
@@ -495,7 +497,7 @@ Reporting whether a port, which supports port breakout, is configured as a trunk
 
 ## Changes Since RFC 8348
 
-This document re-defines some attributes listed in {{!RFC8348}}, based on some integration experience for network wide inventory data.
+This document re-defines some attributes listed in {{!RFC8348}}, based on some integration experience for network inventory data.
 
 ### Component-Specific Info Design
 
@@ -545,8 +547,8 @@ and other models is illustrated in Figure 4.
 
 ~~~~ aasvg
              +-------------------------+
-             |                         |
-             | Base Network Inventory  |
+             |         Base            |
+             |  Network Inventory      |
              |                         |
              +------------+------------+
                           |
