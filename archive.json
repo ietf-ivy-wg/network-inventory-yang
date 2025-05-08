@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-06T00:59:19.499474+00:00",
+  "timestamp": "2025-05-08T01:00:03.057231+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -6637,13 +6637,13 @@
       "labels": [],
       "body": "The text in the I-D has been updated with network-wide word on behalf of network",
       "createdAt": "2025-04-02T14:46:38Z",
-      "updatedAt": "2025-05-05T11:41:51Z",
+      "updatedAt": "2025-05-07T14:17:53Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "issue-23",
-      "headRefOid": "67bb1575ee79e537a4ca352790e63a73f863b9e5",
+      "headRefOid": "c2c0ccbd95dc2a3940e7f2015877456389ab0996",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -6690,6 +6690,19 @@
               "updatedAt": "2025-05-05T11:41:52Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86oM3vd",
+          "commit": {
+            "abbreviatedOid": "c2c0ccb"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-05-07T14:17:53Z",
+          "updatedAt": "2025-05-07T14:17:53Z",
+          "comments": []
         }
       ]
     },
@@ -6705,7 +6718,7 @@
       "labels": [],
       "body": "Complete Appendix with examples of ports, transceivers and port breakouts configurations: fix #93 \r\n\r\n---\r\n\r\nCo-Authored-By: sergiobelotti <sergio.belotti@nokia.com>\r\nCo-Authored-By: ggalimba56 <ggalimbe56@gmail.com>\r\n",
       "createdAt": "2025-04-04T15:46:11Z",
-      "updatedAt": "2025-05-04T19:51:09Z",
+      "updatedAt": "2025-05-07T13:46:35Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
@@ -6865,6 +6878,44 @@
               "updatedAt": "2025-05-04T19:51:09Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86oMFPy",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-07T13:23:33Z",
+          "updatedAt": "2025-05-07T13:46:35Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "Editorial: I would keep the non pluggable port short like in the slides, changing the picture in something like this:\r\n```\r\n          +-------------------+\r\n          |                ___|\r\n          |               | O |     1) Non-Pluggable Port \r\n          |               | O |      (integrated transceiver)\r\n          |               |___|\r\n          |                   |\r\n          |    _______________|\r\n          |   |               | \r\n  Hole #1 |   |               |     2) Emply hole (port)\r\n          |   |               |     \r\n          |   |               |\r\n          |   |_______________|\r\n          |                   |\r\n          |    _______________|\r\n          |   |   ____________|__\r\n  Hole #2 |   |  |           | O |  3) Pluggable port\r\n          |   |  |           | O |     \r\n          |   |  |___________|___|\r\n          |   |_______________|\r\n          |                   |\r\n          |     (SLOT # 10)   |\r\n          +-------------------+\r\n```",
+              "createdAt": "2025-05-07T13:23:34Z",
+              "updatedAt": "2025-05-07T13:46:35Z"
+            },
+            {
+              "originalPosition": 42,
+              "body": "is \"trunk\" correct here, should not be just a generic \"single channel optical pluggable port\" ",
+              "createdAt": "2025-05-07T13:28:14Z",
+              "updatedAt": "2025-05-07T13:46:35Z"
+            },
+            {
+              "originalPosition": 31,
+              "body": "Two RX arrows in the Host Interface are pointing in the wrong direction.\r\nThe TX arrows on the Line side are pointing in the wrong direction.\r\n\r\nIs it correct to have the text \"(breakout configuration) on the Host side in this picture that is showing a single channel interface? It is my understanding that this picture should show an interface w/o Breakout config.",
+              "createdAt": "2025-05-07T13:30:05Z",
+              "updatedAt": "2025-05-07T13:46:35Z"
+            },
+            {
+              "originalPosition": 46,
+              "body": "On the DEMUX box it may be better to shorten it as DMX CWDM",
+              "createdAt": "2025-05-07T13:46:02Z",
+              "updatedAt": "2025-05-07T13:46:35Z"
+            }
+          ]
         }
       ]
     },
@@ -6880,7 +6931,7 @@
       "labels": [],
       "body": "Updated abstract as discussed on the mailing list: https://mailarchive.ietf.org/arch/msg/inventory-yang/koA-X-6aMID4Zk5VRqcPERaWO48/: fix #99 \r\n\r\nUpdated text to fix #72 \r\n\r\nNote: text related to issue #68 commented in kramdown (will not appear in the draft). To be updated or removed based on the resolution of issue #68",
       "createdAt": "2025-04-07T13:53:40Z",
-      "updatedAt": "2025-04-30T16:48:15Z",
+      "updatedAt": "2025-05-07T14:15:23Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
@@ -6941,6 +6992,71 @@
       "mergeCommit": null,
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 107,
+      "id": "PR_kwDOKiDYo86VQ8Eg",
+      "title": "Splitting \"common-entity-attributes\" grouping into two groupings",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/107",
+      "state": "OPEN",
+      "author": "sergiobelotti",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "We have separated the grouping \"common-entity-attributes\" in two groupings one with minimal common entities (e.g. name, id, description etc..) and the other with more specific NE/component attributes. Some leaves contained in the original Some of these common attributes are in fact not useful for location since more specific for NE/component , like hardware-rev, software-rev, and software-patch-rev.",
+      "createdAt": "2025-05-07T12:28:18Z",
+      "updatedAt": "2025-05-07T13:41:10Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
+      "headRepository": "ietf-ivy-wg/network-inventory-yang",
+      "headRefName": "issue-105",
+      "headRefOid": "2210f2111f9842eef9ee69eaf8e23e82d1ef6fcf",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86oMSXb",
+          "commit": {
+            "abbreviatedOid": "2210f21"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-07T13:34:33Z",
+          "updatedAt": "2025-05-07T13:41:10Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "What about a name which aligns with the description?\r\n\r\n```suggestion\r\n  grouping basic-common-entity-attributes {\r\n```",
+              "createdAt": "2025-05-07T13:34:33Z",
+              "updatedAt": "2025-05-07T13:41:10Z"
+            },
+            {
+              "originalPosition": 25,
+              "body": "I would define this as a super-set of the common attributes which includes also the basic common attributes:\r\n\r\n```suggestion\r\n \r\n uses basic-common-entity-attributes;\r\n \r\n```",
+              "createdAt": "2025-05-07T13:38:20Z",
+              "updatedAt": "2025-05-07T13:41:10Z"
+            },
+            {
+              "originalPosition": 35,
+              "body": "See previous comment (defining the ne-component-common-entity-attributes as a super-set of the common attributes which includes also the basic common attributes)\r\n\r\n```suggestion\r\n        uses ne-component-common-entity-attributes;\r\n```",
+              "createdAt": "2025-05-07T13:39:34Z",
+              "updatedAt": "2025-05-07T13:41:10Z"
+            },
+            {
+              "originalPosition": 45,
+              "body": "See previous comments:\r\n\r\n```suggestion\r\n            uses ne-component-common-entity-attributes {\r\n```",
+              "createdAt": "2025-05-07T13:40:28Z",
+              "updatedAt": "2025-05-07T13:41:10Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
