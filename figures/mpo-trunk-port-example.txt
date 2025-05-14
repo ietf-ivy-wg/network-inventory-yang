@@ -1,9 +1,3 @@
-Editors' Note: add the port example in slide 10
-
-See: https://datatracker.ietf.org/meeting/122/materials
-           /slides-122-ivy-02-base-network-inventory-yang-01.pdf
-
-
          Host                     Transceiver Module
  _________/\_________   ___________________/\___________________
 /                    \ /                                        \
@@ -39,8 +33,3 @@ See: https://datatracker.ietf.org/meeting/122/materials
                        |                      |
                 Host Interface         Line Interface
               (8X host channels)    (4 X line channels)
-
-Note: even if the port breakout is not configured, 4x breakout
-      channels (one for each line channel) are reported if the 
-      port can support breakouts. No breakout channel are 
-      reported if and only if the port cannot support breakouts.

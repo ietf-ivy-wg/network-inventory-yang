@@ -1,46 +1,37 @@
-Editors' Note: add the port example in slide 11
-
-See: https://datatracker.ietf.org/meeting/122/materials
-           /slides-122-ivy-02-base-network-inventory-yang-01.pdf
-
-
         Host                     Transceiver Module
  ________/\________   ____________________/\____________________
 /                  \ /                                          \
 
-+-------------+             +--------+               
-|             |             |        |   +-------+   |\
-|             |<--RX1 RX1<--|        |<--|Opt.RX1|<--| \
-|             |<--RX2 RX2<--|        |   +-------+   |D |   +---+
-|             |<--RX3 RX3<--|        |   +-------+   |E |   | d |
-|             |<--RX4 RX4<--|        |<--|Opt.RX2|<--|M |   | u |
-|             |<--RX5 RX5<--|        |   +-------+   |U |<--| p |
-|             |<--RX6 RX6<--| 8 X 50 |   +-------+   |X |   | l |
-|             |<--RX7 RX7<--| PAM4   |<--|Opt.RX3|<--|  |   | e |
-|             |<--RX8 RX8<--|  to    |   +-------+   |C |   | x |
-|400G Ethernet|             |        |   +-------+   |  |   |   |
-|  Physical   |             |4 X 100G|<--|Opt.RX4|<--| /    | L |
-| Interfece   |             | PAM4   |   +-------+   |/     | C |
++-------------+             +--------+               |\
+|             |             |        |   +-------+   | \
+|             |<--RX1 RX1<--|        |<--|Opt.RX1|<--|D |
+|             |<--RX2 RX2<--|        |   +-------+   |E |
+|             |<--RX3 RX3<--|        |   +-------+   |M |   +---+
+|             |<--RX4 RX4<--|        |<--|Opt.RX2|<--|U |   | d |
+|             |<--RX5 RX5<--|        |   +-------+   |X |   | u |
+|             |<--RX6 RX6<--| 8 X 50 |   +-------+   |  |<--| p |
+|             |<--RX7 RX7<--| PAM4   |<--|Opt.RX3|<--|C |   | l |
+|             |<--RX8 RX8<--|  to    |   +-------+   |W |   | e |
+|             |             |        |   +-------+   |D |   | x |
+|400G Ethernet|             |4 X 100G|<--|Opt.RX4|<--|M |   |   |
+|  Physical   |             | PAM4   |   +-------+   | /    | L |
+| Interfece   |             |        |               |/     | C |
 |(no breakout |             |        |                      |   |
-| config.)    |             |        |   +-------+   |\     | c |
-|             |             |Gearbox |-->|Opt.TX1|-->| \    | o |
+| config.)    |             |        |               |\     | c |
+|             |             |        |   +-------+   | \    | o |
+|             |             |Gearbox |-->|Opt.TX1|-->|  |   | n |
 |             |             |        |   +-------+   |M |   | n |
-|             |-->TX1 TX1-->|        |   +-------+   |U |   | n |
-|             |-->TX2 TX2-->|        |-->|Opt.TX2|-->|X |   | e |
-|             |-->TX3 TX3-->|        |   +-------+   |  |   | c |
-|             |-->TX4 TX4-->|        |   +-------+   |C |   | t |
-|             |-->TX5 TX5-->|        |-->|Opt.TX3|-->|W |   | o |
-|             |-->TX6 TX6-->|        |   +-------+   |D |   | r |
-|             |-->TX7 TX7-->|        |   +-------+   |M |   +---+
-|             |-->TX8 TX8-->|        |-->|Opt.TX4|-->| /
-|             |             |        |   +-------+   |/
-+-------------+             +--------+               
+|             |-->TX1 TX1-->|        |   +-------+   |U |   | e |
+|             |-->TX2 TX2-->|        |-->|Opt.TX2|-->|X |   | c |
+|             |-->TX3 TX3-->|        |   +-------+   |  |-->| t |
+|             |-->TX4 TX4-->|        |   +-------+   |C |   | o |
+|             |-->TX5 TX5-->|        |-->|Opt.TX3|-->|W |   | r |
+|             |-->TX6 TX6-->|        |   +-------+   |D |   +---+
+|             |-->TX7 TX7-->|        |   +-------+   |M |   
+|             |-->TX8 TX8-->|        |-->|Opt.TX4|-->|  |
+|             |             |        |   +-------+   | /
++-------------+             +--------+               |/
                      ^                 ^
                      |                 |
              Host Interface        Line Interface
            (8X host channels)   (4 X line channels)
-
-Note:  even if the port breakout is not configured, 4x breakout
-       channels (one for each line channel) are reported if the
-       port can support breakouts. No breakout channel are
-       reported if and only if the port cannot support breakouts.
