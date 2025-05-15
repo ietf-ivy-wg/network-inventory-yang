@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-11T01:03:30.339156+00:00",
+  "timestamp": "2025-05-15T00:57:40.528464+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -6759,13 +6759,13 @@
       "labels": [],
       "body": "Complete Appendix with examples of ports, transceivers and port breakouts configurations: fix #93 \r\n\r\n---\r\n\r\nCo-Authored-By: sergiobelotti <sergio.belotti@nokia.com>\r\nCo-Authored-By: ggalimba56 <ggalimbe56@gmail.com>\r\n",
       "createdAt": "2025-04-04T15:46:11Z",
-      "updatedAt": "2025-05-07T13:46:35Z",
+      "updatedAt": "2025-05-14T14:21:10Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "breakout-examples",
-      "headRefOid": "46fbf7bfb7619bd3cbab4df71802816f33448b59",
+      "headRefOid": "77c6449bb96fc1fcdc3e975e1ee17d0a5bc07a34",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -6955,6 +6955,186 @@
               "body": "On the DEMUX box it may be better to shorten it as DMX CWDM",
               "createdAt": "2025-05-07T13:46:02Z",
               "updatedAt": "2025-05-07T13:46:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86pRcdn",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-14T12:05:35Z",
+          "updatedAt": "2025-05-14T12:05:35Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "@manzoro my doubt with removing the non-pluggable transceiver module from the figure is how to explain the transceiver-module in the JSON example. What about showing it using dotted lines instead of solid lines?",
+              "createdAt": "2025-05-14T12:05:35Z",
+              "updatedAt": "2025-05-14T12:05:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86pRisY",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-14T12:13:37Z",
+          "updatedAt": "2025-05-14T12:13:37Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "With the current definition of trunk port (i.e., \"a port which is associated with one and only physical interface\"), I think the term \"trunk\" is correct here\r\n\r\nHowever, I would agreed that there is no strong need to keep this adjective since there are no known examples of single channel breakout ports\r\n\r\nTherefore, I do not have any strong opinion on whether to keep or remove the term \"trunk\"\r\n\r\n@manzoro any preference from you?",
+              "createdAt": "2025-05-14T12:13:37Z",
+              "updatedAt": "2025-05-14T12:13:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86pTTlM",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-14T14:20:10Z",
+          "updatedAt": "2025-05-14T14:20:10Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "Should be fixed with 77c6449bb96fc1fcdc3e975e1ee17d0a5bc07a34",
+              "createdAt": "2025-05-14T14:20:10Z",
+              "updatedAt": "2025-05-14T14:20:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86pTTq6",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-14T14:20:16Z",
+          "updatedAt": "2025-05-14T14:20:17Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "Should be fixed with 77c6449bb96fc1fcdc3e975e1ee17d0a5bc07a34",
+              "createdAt": "2025-05-14T14:20:17Z",
+              "updatedAt": "2025-05-14T14:20:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86pTTvR",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-14T14:20:21Z",
+          "updatedAt": "2025-05-14T14:20:22Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "Should be fixed with 77c6449bb96fc1fcdc3e975e1ee17d0a5bc07a34",
+              "createdAt": "2025-05-14T14:20:21Z",
+              "updatedAt": "2025-05-14T14:20:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86pTT06",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-14T14:20:27Z",
+          "updatedAt": "2025-05-14T14:20:27Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "Should be fixed with 77c6449bb96fc1fcdc3e975e1ee17d0a5bc07a34",
+              "createdAt": "2025-05-14T14:20:27Z",
+              "updatedAt": "2025-05-14T14:20:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86pTT-k",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-14T14:20:38Z",
+          "updatedAt": "2025-05-14T14:20:38Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "Should be fixed with 77c6449bb96fc1fcdc3e975e1ee17d0a5bc07a34",
+              "createdAt": "2025-05-14T14:20:38Z",
+              "updatedAt": "2025-05-14T14:20:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86pTUVF",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-14T14:21:02Z",
+          "updatedAt": "2025-05-14T14:21:02Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "Should be fixed with 77c6449bb96fc1fcdc3e975e1ee17d0a5bc07a34",
+              "createdAt": "2025-05-14T14:21:02Z",
+              "updatedAt": "2025-05-14T14:21:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86pTUcT",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-14T14:21:10Z",
+          "updatedAt": "2025-05-14T14:21:10Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "Should be fixed with 77c6449bb96fc1fcdc3e975e1ee17d0a5bc07a34",
+              "createdAt": "2025-05-14T14:21:10Z",
+              "updatedAt": "2025-05-14T14:21:11Z"
             }
           ]
         }
