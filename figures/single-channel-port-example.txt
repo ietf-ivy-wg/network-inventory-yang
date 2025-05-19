@@ -11,7 +11,7 @@
 |               |  25G NRZ     |    <-->    | 100G PAM       |o |
 |               |              |            |                |n |
 |  (breakout    |-->TX1  TX1-->| 1X100G PAM4|   +--------+   |n |
-| configuration)|-->TX2  TX2-->|            |<--|Opt.Tras|<--|e |
+| configuration)|-->TX2  TX2-->|            |-->|Opt.Tras|-->|e |
 |               |-->TX3  TX3-->|  Gearbox   |   +--------+   |c |
 |               |-->TX4  TX4-->|            |                +--+
 +---------------+              +------------+     
