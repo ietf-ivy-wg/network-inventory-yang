@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 15 November 2025                                          Nokia
+Expires: 20 November 2025                                          Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                             14 May 2025
+                                                             19 May 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 November 2025.
+   This Internet-Draft will expire on 20 November 2025.
 
 Copyright Notice
 
@@ -1693,25 +1693,24 @@ Appendix D.  Examples of ports, transceivers and port breakouts
    3.  A pluggable port
 
              +-------------------+
-             |    _______________|
-             |   |           | O |     1) Non-Pluggable Port
-             |   |           |   |      (integrated transceiver)
-             |   |           | O |
-             |   |_______________|
+             |   ............+---+
+             |   :           | O |     1) Non-Pluggable Port
+             |   :           | O |      (integrated transceiver)
+             |   :...........+---+
              |                   |
-             |    _______________|
-             |   |               |     2) Emply hole (port)
-     Hole #1 |   |               |
-             |   |               |
-             |   |               |
-             |   |_______________|
+             |   +---------------+
+             |   |                     2) Emply hole (port)
+     Hole #1 |   |
+             |   |
+             |   |
+             |   +---------------+
              |                   |
-             |    _______________|
-             |   |   _______________
+             |   +---------------+
+             |   |  +---------------+
      Hole #2 |   |  |           | O |  3) Pluggable port
              |   |  |           | O |
-             |   |  |_______________|
-             |   |_______________|
+             |   |  +---------------+
+             |   +---------------+
              |                   |
              |     (SLOT # 10)   |
              +-------------------+
@@ -1735,7 +1734,7 @@ Appendix D.  Examples of ports, transceivers and port breakouts
    |               |  25G NRZ     |    <-->    | 100G PAM       |o |
    |               |              |            |                |n |
    |  (breakout    |-->TX1  TX1-->| 1X100G PAM4|   +--------+   |n |
-   | configuration)|-->TX2  TX2-->|            |<--|Opt.Tras|<--|e |
+   | configuration)|-->TX2  TX2-->|            |-->|Opt.Tras|-->|e |
    |               |-->TX3  TX3-->|  Gearbox   |   +--------+   |c |
    |               |-->TX4  TX4-->|            |                +--+
    +---------------+              +------------+
