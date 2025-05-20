@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-15T00:57:40.528464+00:00",
+  "timestamp": "2025-05-20T01:01:18.362250+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -3504,7 +3504,7 @@
       ],
       "body": "The discussion on issue #79 has pointed out that there are two possible interpretations for the definition of sub-shelf:\n\nhttps://mailarchive.ietf.org/arch/msg/inventory-yang/LT9AMNqPEuu4EUMgE57lw33qXtE/\n\n> \n> One possible definition for sub-shelf is to represent a shelf, within a multi-shelf NE, which has a hierarchical association with another shelf.\n> \n> Another possible definition for sub-shelf is to represent the logical partitioning of the slots within a single shelf.\n> \n> Nigel: the first interpretation is more associated with the functionality of the shelf rather than with the physical/inventory representation\n> \n> Jeff: in the IP world we have the concept of satellite shelves\n> \n> Nigel: Satellite is better term, than sub-shelf, to reference a shelf which has a hierarchical relationship with a main shelf\n> \n\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/79#issuecomment-2701467344",
       "createdAt": "2025-04-01T14:24:33Z",
-      "updatedAt": "2025-05-08T08:08:50Z",
+      "updatedAt": "2025-05-19T13:47:29Z",
       "closedAt": null,
       "comments": [
         {
@@ -3552,9 +3552,9 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-05-07 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-05-07)**\n\n> * [x]  [@ALL](https://github.com/ALL) : send feedbacks to the IVY WG mailing list discussion\n\nAgreed to add a new optional boolean flag to indicated which chassis is the main chassis based on the feedbacks received from IVY WG list discussion\n\n- [ ] @prmanna : submit a PR with the proposed addition of the boolean flag indicating the main chassis\n",
+          "body": "**[2025-05-07 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-05-07)**\n\n> * [x]  [@ALL](https://github.com/ALL) : send feedbacks to the IVY WG mailing list discussion\n\nAgreed to add a new optional boolean flag to indicated which chassis is the main chassis based on the feedbacks received from IVY WG list discussion\n\n- [x] @prmanna : submit a PR with the proposed addition of the boolean flag indicating the main chassis\n",
           "createdAt": "2025-05-08T07:01:07Z",
-          "updatedAt": "2025-05-08T08:08:49Z"
+          "updatedAt": "2025-05-19T13:47:28Z"
         }
       ]
     },
@@ -6759,13 +6759,13 @@
       "labels": [],
       "body": "Complete Appendix with examples of ports, transceivers and port breakouts configurations: fix #93 \r\n\r\n---\r\n\r\nCo-Authored-By: sergiobelotti <sergio.belotti@nokia.com>\r\nCo-Authored-By: ggalimba56 <ggalimbe56@gmail.com>\r\n",
       "createdAt": "2025-04-04T15:46:11Z",
-      "updatedAt": "2025-05-14T14:21:10Z",
+      "updatedAt": "2025-05-19T17:59:51Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
-      "baseRefOid": "cb6d35823b44b6b1b2e504913888ed8ea596987c",
+      "baseRefOid": "edf028cf4a4ee9862b84dfaae6d1af85d93e997b",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "breakout-examples",
-      "headRefOid": "77c6449bb96fc1fcdc3e975e1ee17d0a5bc07a34",
+      "headRefOid": "3c46bd56947a6215f6d84fad9f9b61776a82a6f3",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -7137,6 +7137,99 @@
               "updatedAt": "2025-05-14T14:21:11Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86p9ZfW",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-19T16:51:03Z",
+          "updatedAt": "2025-05-19T16:51:03Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "@italobusi got your point, your proposal to use dotted lines may be fine. ",
+              "createdAt": "2025-05-19T16:51:03Z",
+              "updatedAt": "2025-05-19T16:51:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86p9prZ",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-19T17:15:25Z",
+          "updatedAt": "2025-05-19T17:15:25Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "@italobusi honestly I also do not have a strong opinion, if anyone else have complain we can leave it as it is. ",
+              "createdAt": "2025-05-19T17:15:25Z",
+              "updatedAt": "2025-05-19T17:15:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86p9vWy",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-19T17:23:15Z",
+          "updatedAt": "2025-05-19T17:23:15Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "The two TX arrow on the Line side are still not pointing in the TX direction",
+              "createdAt": "2025-05-19T17:23:15Z",
+              "updatedAt": "2025-05-19T17:23:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86p95EO",
+          "commit": {
+            "abbreviatedOid": "46fbf7b"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-19T17:41:28Z",
+          "updatedAt": "2025-05-19T17:41:28Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "Should be fixed with 3c46bd56947a6215f6d84fad9f9b61776a82a6f3",
+              "createdAt": "2025-05-19T17:41:28Z",
+              "updatedAt": "2025-05-19T17:41:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86p-CLu",
+          "commit": {
+            "abbreviatedOid": "3c46bd5"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-05-19T17:59:51Z",
+          "updatedAt": "2025-05-19T17:59:51Z",
+          "comments": []
         }
       ]
     },
@@ -7315,6 +7408,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 108,
+      "id": "PR_kwDOKiDYo86Wulvs",
+      "title": "added boolean is-main-shelf",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/108",
+      "state": "OPEN",
+      "author": "prmanna",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Raised PR for #101 ",
+      "createdAt": "2025-05-19T13:46:13Z",
+      "updatedAt": "2025-05-19T13:47:06Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "edf028cf4a4ee9862b84dfaae6d1af85d93e997b",
+      "headRepository": "ietf-ivy-wg/network-inventory-yang",
+      "headRefName": "issue-101",
+      "headRefOid": "0eaeff2bbf3a708e49fe7023a0cd98f63a022315",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
