@@ -1289,7 +1289,9 @@ be application- and technology-agnostic. The base data model can be augmented wi
       </h2>
 <p id="section-1-1">This document defines a base network inventory
 YANG data model that is application- and technology-agnostic.  The
-base data model can be augmented to describe application- and technology-specific information.<a href="#section-1-1" class="pilcrow">¶</a></p>
+base data model can be augmented to describe application- and technology-specific information.
+Please note that the usage of term "network inventory", in the context of this I-D, is to indicate that it is
+describing "network-wide" scope inventory information.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">Network inventory is a fundamental functional block in the overall network
 management which was specified many years ago. Network inventory management is a critical
 part for ensuring that the network remains healthy (e.g., auditing to identify faulty elements), well-planned (e.g., identify assets to upgrade or to decommission), and maintained appropriately to meet the performance objectives. Also, network inventory
@@ -1307,7 +1309,7 @@ Per the definition of <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</
 <p id="section-1-8">This base data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
 microwave networks as well as optical local loops, access networks, core networks, data centers, etc.) and can be augmented to
 include required application- and technology-specific inventory details together with specific hardware or software component's attributes.<a href="#section-1-8" class="pilcrow">¶</a></p>
-<p id="section-1-9">The YANG data model defined in the document is scoped to cover the common use cases for Network Inventory covering both hardware and base software information.<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-9">The YANG data model defined in the document is scoped to cover the common use cases for Inventory but at network-wide level, covering both hardware and base software information.<a href="#section-1-9" class="pilcrow">¶</a></p>
 <p id="section-1-10">The YANG data model defined in this document conforms to the Network Management Datastore Architecture <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-10" class="pilcrow">¶</a></p>
 <p id="section-1-11">The YANG data model defined in the document is intended to only report actual inventory data which includes both applied configuration data and state data of the network elements and components actually installed within the network.<a href="#section-1-11" class="pilcrow">¶</a></p>
 <div id="editorial-note-to-be-removed-by-rfc-editor">
@@ -1472,7 +1474,7 @@ appear in all capitals, as shown here.<a href="#section-2.1-1" class="pilcrow">�
 <span class="break"></span><dl class="dlParallel" id="section-2.2-16">
           <dt id="section-2.2-16.1">Network Inventory:</dt>
           <dd style="margin-left: 1.5em" id="section-2.2-16.2">
-            <p id="section-2.2-16.2.1">A collection of data for network elements and their components managed by a specific management system.<a href="#section-2.2-16.2.1" class="pilcrow">¶</a></p>
+            <p id="section-2.2-16.2.1">A collection of data for network elements and their components with network-wide scope, managed by a specific management system.<a href="#section-2.2-16.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-16.3">Physical Network Element:</dt>
@@ -1666,8 +1668,8 @@ hardware" identity of component are outside the scope of this
 document and could be defined in application- and technology-specific companion augmentation data models, such as
 <span>[<a href="#I-D.ietf-ivy-network-inventory-software" class="cite xref">I-D.ietf-ivy-network-inventory-software</a>]</span>.<a href="#section-3-13" class="pilcrow">¶</a></p>
 <p id="section-3-14">In <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, rack, chassis, slot, sub-slot, board and port are defined as components of network elements with generic attributes.<a href="#section-3-14" class="pilcrow">¶</a></p>
-<p id="section-3-15">While <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> is used to manage the hardware of a single server (e.g., a network element), the Network Inventory YANG data model is used to retrieve the base network inventory information that a controller discovers from all the network elements under its control.<a href="#section-3-15" class="pilcrow">¶</a></p>
-<p id="section-3-16">However, the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> has been used as a reference for defining the YANG network inventory data model. This approach can simplify the implementation of this network inventory model when the controller uses the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> to retrieve the hardware  from the network elements under its control.<a href="#section-3-16" class="pilcrow">¶</a></p>
+<p id="section-3-15">While <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> is used to manage the hardware of a single server (e.g., a network element), the Network Inventory YANG data model is used to retrieve the base inventory information that a controller discovers from all the network elements with network-wide scope under its control.<a href="#section-3-15" class="pilcrow">¶</a></p>
+<p id="section-3-16">However, the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> has been used as a reference for defining the YANG network inventory data model. This approach can simplify the implementation of this inventory model when the controller uses the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> to retrieve the hardware  from the network elements under its control.<a href="#section-3-16" class="pilcrow">¶</a></p>
 <div id="common-attributes">
 <section id="section-3.1">
         <h3 id="name-common-design-for-all-inven">
@@ -1925,7 +1927,7 @@ patch information, are outside the scope of this document and defined other docu
         <h3 id="name-changes-since-rfc-8348">
 <a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-changes-since-rfc-8348" class="section-name selfRef">Changes Since RFC 8348</a>
         </h3>
-<p id="section-3.4-1">This document re-defines some attributes listed in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, based on some integration experience for network wide inventory data.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-1">This document re-defines some attributes listed in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, based on some integration experience for network inventory data.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
 <div id="component-specific-info-design">
 <section id="section-3.4.1">
           <h4 id="name-component-specific-info-des">
