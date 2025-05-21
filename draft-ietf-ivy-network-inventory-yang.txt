@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 9 November 2025                                           Nokia
+Expires: 22 November 2025                                          Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                              8 May 2025
+                                                             21 May 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -22,9 +22,8 @@ Abstract
 
    This document defines a base YANG data model for network inventory.
    The scope of this base model is set to be application- and
-   technology-agnostic.  However, the data model is designed with
-   appropriate provisions to ease future augmentations with application-
-   and technology-specific details.
+   technology-agnostic.  The base data model can be augmented with
+   application- and technology-specific details.
 
 About This Document
 
@@ -54,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 November 2025.
+   This Internet-Draft will expire on 22 November 2025.
 
 Copyright Notice
 
@@ -90,15 +89,14 @@ Table of Contents
        3.4.1.  Component-Specific Info Design
        3.4.2.  Part Number
        3.4.3.  Component identifiers
-   4.  Extending Network Inventory
-   5.  Network Inventory Tree Diagram
-   6.  YANG Data Model for Network Inventory
-   7.  Manageability Considerations
-   8.  Security Considerations
-   9.  IANA Considerations
-   10. References
-     10.1.  Normative References
-     10.2.  Informative References
+   4.  Network Inventory Tree Diagram
+   5.  YANG Data Model for Network Inventory
+   6.  Manageability Considerations
+   7.  Security Considerations
+   8.  IANA Considerations
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
    Appendix A.  Comparison With Openconfig-platform Data Model
    Appendix B.  Terminology of Container
    Appendix C.  Efficiency Issue
@@ -155,7 +153,7 @@ Table of Contents
    model.
 
    This document defines one YANG module "ietf-network-inventory" in
-   Section 6.
+   Section 5.
 
    This base data model is application- and technology-agnostic (that
    is, valid for IP/MPLS, optical, and microwave networks as well as
@@ -167,9 +165,6 @@ Table of Contents
    The YANG data model defined in the document is scoped to cover the
    common use cases for Network Inventory covering both hardware and
    base software information.
-
-   Section 4 provides a set of considerations for future extensions of
-   hardware, software, entitlement, and inventory topology mapping.
 
    The YANG data model defined in this document conforms to the Network
    Management Datastore Architecture [RFC8342].
@@ -373,6 +368,31 @@ Table of Contents
 
 3.  YANG Data Model for Network Inventory Overview
 
+   The base network inventory model, defined in this document, provides
+   a list of network elements and of network element components:
+
+     +--rw network-inventory
+        +--rw network-elements
+           +--rw network-element* [ne-id]
+              +--rw ne-id                 string
+              ...
+              +--rw components
+                 +--rw component* [component-id]
+                    +--rw component-id                        string
+                    ...
+
+                      Figure 1: Overall Tree Structure
+
+   The network-inventory top level container has been defined to support
+   reporting other types of network inventory objects, besides the
+   network elements and network element components.
+
+   These additional types of network inventory objects can be defined,
+   together with the associated YANG data model and the rationale for
+   managing them as part of the network inventory, in other documents
+   providing application- and technology-specific companion augmentation
+   data models, such as [I-D.ietf-ivy-network-inventory-location]
+
    The network element definition is generalized to support physical
    network elements and other types of components' groups that can be
    managed as physical network elements from an inventory perspective.
@@ -381,9 +401,6 @@ Table of Contents
    gateways, terminal servers, and the like, which have management
    agents responsible for performing the network management functions
    requested by the network management stations ([RFC1157]).
-
-   The data model for network elements defined in this document uses a
-   flat list of network elements.
 
    The "ne-type" is defined as a YANG identity to describe the type of
    the network element.  This document defines only the "physical-
@@ -409,9 +426,6 @@ Table of Contents
    with the associated YANG identity and the rationale for managing them
    as components from an inventory perspective.
 
-   Attributes related to specific class of component can be found in the
-   component-specific-info structure.
-
    The identity definition of additional types of "ne-type" and "non-
    hardware" identity of component are outside the scope of this
    document and could be defined in application- and technology-specific
@@ -432,17 +446,6 @@ Table of Contents
    model when the controller uses the YANG data model defined in
    [RFC8348] to retrieve the hardware from the network elements under
    its control.
-
-     +--rw network-elements
-        +--rw network-element* [ne-id]
-           +--rw ne-id            string
-           ...
-           +--rw components
-              +--rw component* [component-id]
-                 +--rw component-id            string
-                 ...
-
-                      Figure 1: Overall Tree Structure
 
 3.1.  Common Design for All Inventory Objects
 
@@ -693,33 +696,10 @@ Table of Contents
    component-id is defined as the key for the component list (in
    alignment with the approach followed for the network-element list).
 
-4.  Extending Network Inventory
-
-   This document defines the basic network inventory attributes
-   applicable to typical network scenarios.  For finer-grained and
-   specific management scenarios, the relationship between this model
-   and other models is illustrated in Figure 4.
-
-             +-------------------------+
-             |                         |
-             | Base Network Inventory  |
-             |                         |
-             +------------+------------+
-                          |
-       +------------------+-------------------+
-       |                  |                   |
-+------V------+    +------V------+     +------V------+   +-------------+
-|             |    |             |     |             |   |             |
-| Hardware    |    |  Software   |     |             |   |  Inventory  |
-| Extensions  |    |  Extensions |     | Entitlement |   |  Topology   |
-| e.g. Power  |    |  e.g.       |     |             |   |  Mapping    |
-| supply unit |    |  SW patch   |     |             |   |             |
-+-------------+    +-------------+     +-------------+   +-------------+
-
-5.  Network Inventory Tree Diagram
+4.  Network Inventory Tree Diagram
 
    Figure 6 below shows the tree diagram of the YANG data model defined
-   in module "ietf-network-inventory" (Section 6).
+   in module "ietf-network-inventory" (Section 5).
 
    module: ietf-network-inventory
      +--rw network-inventory
@@ -774,7 +754,7 @@ Table of Contents
 
                   Figure 6: Network inventory tree diagram
 
-6.  YANG Data Model for Network Inventory
+5.  YANG Data Model for Network Inventory
 
    <CODE BEGINS> file "ietf-network-inventory@2025-02-03.yang"
    module ietf-network-inventory {
@@ -1351,21 +1331,21 @@ Table of Contents
 
                   Figure 7: Network inventory YANG module
 
-7.  Manageability Considerations
+6.  Manageability Considerations
 
    <Add any manageability considerations>
 
-8.  Security Considerations
+7.  Security Considerations
 
    <Add any security considerations>
 
-9.  IANA Considerations
+8.  IANA Considerations
 
    <Add any IANA considerations>
 
-10.  References
+9.  References
 
-10.1.  Normative References
+9.1.  Normative References
 
    [IANA_ENTITY_MIB]
               IANA, "IANA-ENTITY-MIB", n.d.,
@@ -1423,7 +1403,7 @@ Table of Contents
               Resource Fulfilment (NRF), SD2-20 , May 2008,
               <https://www.tmforum.org/resources/suite/mtosi-4-0/>.
 
-10.2.  Informative References
+9.2.  Informative References
 
    [I-D.ietf-ccamp-optical-impairment-topology-yang]
               Beller, D., Le Rouzic, E., Belotti, S., Galimberti, G.,
@@ -1432,6 +1412,14 @@ Table of Contents
               ietf-ccamp-optical-impairment-topology-yang-18, 11 April
               2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
               ccamp-optical-impairment-topology-yang-18>.
+
+   [I-D.ietf-ivy-network-inventory-location]
+              Wu, B., Belotti, S., Bouquier, J., Peruzzini, F., and P.
+              Bedard, "A YANG Data Model for Network Inventory
+              Location", Work in Progress, Internet-Draft, draft-ietf-
+              ivy-network-inventory-location-01, 17 April 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
+              network-inventory-location-01>.
 
    [I-D.ietf-ivy-network-inventory-software]
               Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
