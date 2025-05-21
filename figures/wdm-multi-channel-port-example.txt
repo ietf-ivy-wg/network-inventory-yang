@@ -34,4 +34,4 @@
                      ^                 ^
                      |                 |
              Host Interface        Line Interface
-           (8X host channels)   (4 X line channels)
+         (8x50G host channels)  (4x100G ine channels)
