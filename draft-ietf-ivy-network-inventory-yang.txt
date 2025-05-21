@@ -101,7 +101,7 @@ Table of Contents
    Appendix B.  Terminology of Container
    Appendix C.  Efficiency Issue
    Appendix D.  Examples of ports, transceivers and port breakouts
-   Appendix E.  JSON Examples
+     D.1.  JSON Examples
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -631,6 +631,10 @@ Table of Contents
    The model defines the 'breakout-channels' presence container to
    indicate whether the port, which contains the transceiver module, can
    be configured as a breakout port or not.
+
+   The breakout channels represent the capability of the port to support
+   port breakout, independently on how the port is configured (trunk or
+   breakout).
 
    It is assumed that a port which supports port breakout can be
    configured either as a trunk port or as a breakout port.
@@ -1669,21 +1673,12 @@ Appendix C.  Efficiency Issue
 
 Appendix D.  Examples of ports, transceivers and port breakouts
 
-      Editors' Note: Need to provide some examples based on IETF 121
-      Slides (https://datatracker.ietf.org/doc/slides-120-ivy-2-a-yang-
-      data-model-for-network-inventory/), and in particular: - slide 8
-      (100G-LR single-channel port) - slide 9 (400G-LR4 multi-channel
-      WDM port) - slide 10 (400G-DR4 MPO port) Describe the concept of
-      host and line channels and the mapping to breakout channels
+   This appendix provides some examples of ports, transceivers and port
+   breakouts implementations and how they can be modelled using the
+   "ietf-network-inventory" model defined in Section 5.
 
-Appendix E.  JSON Examples
-
-   This appendix contains an example of an instance data tree in JSON
-   encoding [RFC7951].
-
-   The example instantiates the "ietf-network-inventory" model to
-   describe a single board with seven different types of ports,
-   transceivers and breakouts configurations:
+   Figure 8 shows an example of a single board which contains three type
+   of ports:
 
    1.  An integrated port (non pluggable).  This port can be of any type
        (e.g., optical or electrical), single-channel or multi-channel
@@ -1691,32 +1686,233 @@ Appendix E.  JSON Examples
 
    2.  An empty port;
 
-   3.  A single channel optical pluggable port (e.g., a 100G-LR port
-       configured as a single 100GE interface);
+   3.  A pluggable port
 
-   4.  A Wavelength-Division Multiplexing (WDM) based multi-channel
-       optical port (e.g., a 400G-LR4 port configured as a single 400GE
-       interface) which does not support breakouts: the four WDM
-       channels are not reported since not relevant from inventory
-       management perspective;
+             +-------------------+
+             |   ............+---+
+             |   :           | O |     1) Non-Pluggable Port
+             |   :           | O |      (integrated transceiver)
+             |   :...........+---+
+             |                   |
+             |   +---------------+
+             |   |                     2) Emply hole (port)
+     Hole #1 |   |
+             |   |
+             |   |
+             |   +---------------+
+             |                   |
+             |   +---------------+
+             |   |  +---------------+
+     Hole #2 |   |  |           | O |  3) Pluggable port
+             |   |  |           | O |
+             |   |  +---------------+
+             |   +---------------+
+             |                   |
+             |     (SLOT # 10)   |
+             +-------------------+
 
-   5.  A Multi-Fiber Push-on (MPO) trunk-only port (e.g., 400G-DR4 port
-       configured as a single 400GE interface).  This type of MPO port
-       does not support breakouts: the four channels are not reported
-       since not relevant from inventory management perspective;
+         Figure 8: Example of a board with different types of ports
 
-   6.  An MPO trunk port (e.g., 400G-DR4 port configured as a single
-       400GE interface).  This type of MPO port can support either the
-       trunk or the breakout configuration but in this example, it is
-       configured to support the trunk configuration: the four channels
-       are reported to support breakouts configuration, when needed.
+   Figure 9 describes an implementation of a single channel optical
+   pluggable trunk port (e.g., a 100G-LR port configured as a single
+   100GE interface)
 
-   7.  An MPO breakout port (e.g., 400G-DR4 port configured as 4x100GE
-       interfaces): the four channels are reported to support breakouts
-       configuration.
+            Host                     Transceiver Module
+    _________/\_________   ___________________/\___________________
+   /                    \ /                                        \
 
-   From a network inventory perspective, there is no need to distinguish
-   between single-channel and MPO trunk-only ports.
+   +---------------+              +------------+
+   |               |<--RX1  RX1<--|            |                +--+
+   |               |<--RX2  RX2<--|     DSP    |   +--------+   |L |
+   |               |<--RX3  RX3<--|            |<--|Opt.Rec.|<--|C |
+   | 100G Ethernet |<--RX4  RX4<--| 4 X 25G NRZ|   +--------+   |  |
+   | Physical I/F  |              |            |                |c |
+   |               |  25G NRZ     |    <-->    | 100G PAM       |o |
+   |               |              |            |                |n |
+   |  (breakout    |-->TX1  TX1-->| 1X100G PAM4|   +--------+   |n |
+   | configuration)|-->TX2  TX2-->|            |-->|Opt.Tras|-->|e |
+   |               |-->TX3  TX3-->|  Gearbox   |   +--------+   |c |
+   |               |-->TX4  TX4-->|            |                +--+
+   +---------------+              +------------+
+                          ^                      ^
+                          |                      |
+                   Host Interface         Line Interface
+               (4x25G host channels)   (1x100G line channel)
+
+        Figure 9: Example of a single channel optical pluggable port
+
+   Figure 10 describes an implementation of a Wavelength-Division
+   Multiplexing (WDM) based multi-channel optical pluggable trunk port
+   (e.g., a 400G-LR4 port configured as a single 400GE interface).
+
+           Host                     Transceiver Module
+    ________/\________   ____________________/\____________________
+   /                  \ /                                          \
+
+   +-------------+             +--------+               |\
+   |             |             |        |   +-------+   | \
+   |             |<--RX1 RX1<--|        |<--|Opt.RX1|<--|D |
+   |             |<--RX2 RX2<--|        |   +-------+   |E |
+   |             |<--RX3 RX3<--|        |   +-------+   |M |   +---+
+   |             |<--RX4 RX4<--|        |<--|Opt.RX2|<--|U |   | d |
+   |             |<--RX5 RX5<--|        |   +-------+   |X |   | u |
+   |             |<--RX6 RX6<--| 8 X 50 |   +-------+   |  |<--| p |
+   |             |<--RX7 RX7<--| PAM4   |<--|Opt.RX3|<--|C |   | l |
+   |             |<--RX8 RX8<--|  to    |   +-------+   |W |   | e |
+   |             |             |        |   +-------+   |D |   | x |
+   |400G Ethernet|             |4 X 100G|<--|Opt.RX4|<--|M |   |   |
+   |  Physical   |             | PAM4   |   +-------+   | /    | L |
+   | Interfece   |             |        |               |/     | C |
+   |(no breakout |             |        |                      |   |
+   | config.)    |             |        |               |\     | c |
+   |             |             |        |   +-------+   | \    | o |
+   |             |             |Gearbox |-->|Opt.TX1|-->|  |   | n |
+   |             |             |        |   +-------+   |M |   | n |
+   |             |-->TX1 TX1-->|        |   +-------+   |U |   | e |
+   |             |-->TX2 TX2-->|        |-->|Opt.TX2|-->|X |   | c |
+   |             |-->TX3 TX3-->|        |   +-------+   |  |-->| t |
+   |             |-->TX4 TX4-->|        |   +-------+   |C |   | o |
+   |             |-->TX5 TX5-->|        |-->|Opt.TX3|-->|W |   | r |
+   |             |-->TX6 TX6-->|        |   +-------+   |D |   +---+
+   |             |-->TX7 TX7-->|        |   +-------+   |M |
+   |             |-->TX8 TX8-->|        |-->|Opt.TX4|-->|  |
+   |             |             |        |   +-------+   | /
+   +-------------+             +--------+               |/
+                        ^                 ^
+                        |                 |
+                Host Interface        Line Interface
+            (8x50G host channels)  (4x100G ine channels)
+
+      Figure 10: Example of a WDM multi-channel optical pluggable port
+
+   In this example, since breakout is not supported, the four WDM
+   channels cannot be modelled as breakout channels and are not relevant
+   from inventory management perspective.
+
+   Figure 11 describes an implementation of a Multi-Fiber Push-on (MPO)
+   trunk port (e.g., 400G-DR4 port configured as a single 400GE
+   interface).
+
+            Host                     Transceiver Module
+    _________/\_________   ___________________/\___________________
+   /                    \ /                                        \
+
+   +---------------+              +------------+                +--+
+   |               |              |            |   +--------+   |  |
+   |               |<--RX1  RX1<--|            |<--|Opt.RX.1|<--|  |
+   |               |<--RX2  RX2<--|            |   +--------+   |  |
+   |               |<--RX3  RX3<--|            |   +--------+   |  |
+   |               |<--RX4  RX4<--|            |<--|Opt.RX.2|<--|  |
+   |               |<--RX5  RX5<--|            |   +--------+   |  |
+   |               |<--RX6  RX6<--| 8 X 50 PAM4|   +--------+   |  |
+   |               |<--RX7  RX7<--|            |<--|Opt.RX.3|<--|  |
+   |               |<--RX8  RX8<--|     to     |   +--------+   |M |
+   | 400G Ethernet |              |            |   +--------+   |  |
+   |Physical Interf|              |4 X 100 PAM4|<--|Opt.RX.4|<--|P |
+   |               |              |            |   +--------+   |  |
+   | (no breakout  |              |            |                |O |
+   | configuration)|              |            |   +--------+   |  |
+   |               |              |  Gearbox   |-->|Opt.TX.1|-->|1 |
+   |               |              |            |   +--------+   |  |
+   |               |-->TX1  TX1-->|            |   +--------+   |2 |
+   |               |-->TX2  TX2-->|            |-->|Opt.TX.2|-->|  |
+   |               |-->TX3  TX3-->|            |   +--------+   |  |
+   |               |-->TX4  TX4-->|            |   +--------+   |  |
+   |               |-->TX5  TX5-->|            |-->|Opt.TX.3|-->|  |
+   |               |-->TX6  TX6-->|            |   +--------+   |  |
+   |               |-->TX7  TX7-->|            |   +--------+   |  |
+   |               |-->TX8  TX8-->|            |-->|Opt.TX.4|-->|  |
+   |               |              |            |   +--------+   |  |
+   +---------------+              +------------+                +--+
+                          ^                      ^
+                          |                      |
+                   Host Interface         Line Interface
+               (8x50G host channels)   (4x100G line channels)
+
+                   Figure 11: Example of a MPO trunk port
+
+   If this MPO port cannot support breakouts, the four line channels
+   cannot be modelled as breakout channels and are not relevant from
+   inventory management perspective.  From a network inventory
+   perspective, there is no difference between single-channel ports and
+   MPO trunk ports which do not support port breakouts.
+
+   Instead, the MPO port can support breakouts, the four line channels
+   are reported as breakout channels because, as describe in
+   Section 3.3.3, the breakout channels represent the capability of the
+   port to support breakout, independently on how the port is configured
+   (trunk or breakout).
+
+   Figure 12 describes an implementation of a MPO breakout port (e.g.,
+   400G-DR4 port configured as 4x100GE interfaces).
+
+            Host                     Transceiver Module
+    _________/\_________   ___________________/\___________________
+   /                    \ /                                        \
+
+   +---------------+              +------------+                +--+
+   |  100G Eth.    |<--RX1  RX1<--|            |   +--------+   |  |
+   |Physical I/F #1|<--RX2  RX2<--|            |<--|Opt.RX.1|<--|  |
+   | (breakout     |-->TX1        |            |   +--------+   |  |
+   | configuration)|-->TX2  RX3<--|            |   +--------+   |  |
+   +---------------+        RX4<--|            |<--|Opt.RX.2|<--|  |
+                                  |            |   +--------+   |  |
+   +---------------+        RX5<--| 8 X 50 PAM4|   +--------+   |  |
+   |  100G Eth.    |<--RX3  RX6<--|            |<--|Opt.RX.3|<--|  |
+   |Physical I/F #2|<--RX4        |     to     |   +--------+   |M |
+   | (breakout     |-->TX3  RX7<--|            |   +--------+   |  |
+   | configuration)|-->TX4  RX8<--|4 X 100 PAM4|<--|Opt.RX.4|<--|P |
+   +---------------+              |            |   +--------+   |  |
+                                  |            |                |O |
+   +---------------+        TX1-->|            |   +--------+   |  |
+   |  100G Eth.    |<--RX5  TX2-->|  Gearbox   |-->|Opt.TX.1|-->|1 |
+   |Physical I/F #3|<--RX6        |            |   +--------+   |  |
+   | (breakout     |-->TX5  TX3-->|            |   +--------+   |2 |
+   | configuration)|-->TX6  TX4-->|            |-->|Opt.TX.2|-->|  |
+   +---------------+              |            |   +--------+   |  |
+                            TX5-->|            |   +--------+   |  |
+   +---------------+        TX6-->|            |-->|Opt.TX.3|-->|  |
+   |  100G Eth.    |<--RX7        |            |   +--------+   |  |
+   |Physical I/F #4|<--RX8  TX7-->|            |   +--------+   |  |
+   | (breakout     |-->TX7  TX8-->|            |-->|Opt.TX.4|-->|  |
+   | configuration)|-->TX8        |            |   +--------+   |  |
+   +---------------+              +------------+                +--+
+                          ^                      ^
+                          |                      |
+                   Host Interface         Line Interface
+               (8x50G host channels)   (4x100G line channels)
+
+                 Figure 12: Example of a MPO breakout port
+
+   In this example, the four line channels are reported as breakout
+   channels because the port shall support breakout in order to be
+   configured as a breakout port.
+
+D.1.  JSON Examples
+
+   This appendix contains an example of an instance data tree in JSON
+   encoding [RFC7951], instantiating the "ietf-network-inventory" model
+   to describe a single board, as shown in Figure 8, with seven
+   different types of ports, transceivers and breakouts configurations:
+
+   1.  An integrated port (non pluggable), as shown in Figure 8;
+
+   2.  An empty port, as shown in Figure 8;
+
+   3.  A single channel optical pluggable port, as shown in Figure 8 and
+       Figure 9;
+
+   4.  A WDM based multi-channel optical pluggable port, as shown in
+       Figure 8 and Figure 10;
+
+   5.  An MPO trunk port, as shown in Figure 8 and Figure 11, which does
+       not support port breakouts;
+
+   6.  An MPO trunk port, as shown in Figure 8 and Figure 11, which can
+       not support port breakouts but it has been configured as a trunk
+       port,
+
+   7.  An MPO breakout port, as shown in Figure 8 and Figure 12.
 
    Note: as described in Section 3.3.3, reporting whether an MPO port is
    configured as a trunk or as a breakout port, is outside the scope of
