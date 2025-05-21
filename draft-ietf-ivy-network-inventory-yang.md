@@ -493,6 +493,8 @@ patch information, are outside the scope of this document and defined other docu
 
 The model defines the 'breakout-channels' presence container to indicate whether the port, which contains the transceiver module, can be configured as a breakout port or not.
 
+The breakout channels represent the capability of the port to support port breakout, independently on how the port is configured (trunk or breakout).
+
 It is assumed that a port which supports port breakout can be configured either as a trunk port or as a breakout port.
 
 Reporting whether a port, which supports port breakout, is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model. The model providing the mapping between the topology and the inventory models should provide sufficient information to identify how the port is configured and, in case of breakout configuration, which breakout channel is associated with which Link Termination Point (LTP), abstracting a device physical interface within the topology model.
@@ -646,27 +648,66 @@ The model proposed by this draft is designed to be as generic as possible so to 
 
 # Examples of ports, transceivers and port breakouts {#port-examples}
 
-> Editors' Note: Need to provide some examples based on [IETF 121 Slides](https://datatracker.ietf.org/doc/slides-120-ivy-2-a-yang-data-model-for-network-inventory/), and in particular:
-> - slide 8 (100G-LR single-channel port)
-> - slide 9 (400G-LR4 multi-channel WDM port)
-> - slide 10 (400G-DR4 MPO port)
-> Describe the concept of host and line channels and the mapping to breakout channels
+This appendix provides some examples of ports, transceivers and port breakouts implementations and how they can be modelled using the "ietf-network-inventory" model defined in {{ni-yang}}.
 
-# JSON Examples
-
-This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}.
-
-The example instantiates the "ietf-network-inventory" model to describe a single board with seven different types of ports, transceivers and breakouts configurations:
+{{fig-board}} shows an example of a single board which contains three type of ports:
 
 1. An integrated port (non pluggable). This port can be of any type (e.g., optical or electrical), single-channel or multi-channel but not supporting breakouts;
 1. An empty port;
-1. A single channel optical pluggable port (e.g., a 100G-LR port configured as a single 100GE interface);
-1. A Wavelength-Division Multiplexing (WDM) based multi-channel optical port (e.g., a 400G-LR4 port configured as a single 400GE interface) which does not support breakouts: the four WDM channels are not reported since not relevant from inventory management perspective;
-1. A Multi-Fiber Push-on (MPO) trunk-only port (e.g., 400G-DR4 port configured as a single 400GE interface). This type of MPO port does not support breakouts: the four channels are not reported since not relevant from inventory management perspective;
-1. An MPO trunk port (e.g., 400G-DR4 port configured as a single 400GE interface). This type of MPO port can support either the trunk or the breakout configuration but in this example, it is configured to support the trunk configuration: the four channels are reported to support breakouts configuration, when needed.
-1. An MPO breakout port (e.g., 400G-DR4 port configured as 4x100GE interfaces): the four channels are reported to support breakouts configuration.
+1. A pluggable port
 
-From a network inventory perspective, there is no need to distinguish between single-channel and MPO trunk-only ports.
+~~~~ aasvg
+{::include figures/board-example.txt}
+~~~~
+{:#fig-board title="Example of a board with different types of ports"}
+
+{{fig-single-channel}} describes an implementation of a single channel optical pluggable trunk port (e.g., a 100G-LR port configured as a single 100GE interface)
+
+~~~~ aasvg
+{::include figures/single-channel-port-example.txt}
+~~~~
+{:#fig-single-channel title="Example of a single channel optical pluggable port"}
+
+{{fig-wdm-multi-channel}} describes an implementation of a Wavelength-Division Multiplexing (WDM) based multi-channel optical pluggable trunk port (e.g., a 400G-LR4 port configured as a single 400GE interface).
+
+~~~~ aasvg
+{::include figures/wdm-multi-channel-port-example.txt}
+~~~~
+{:#fig-wdm-multi-channel title="Example of a WDM multi-channel optical pluggable port"}
+
+In this example, since breakout is not supported, the four WDM channels cannot be modelled as breakout channels and are not relevant from inventory management perspective.
+
+{{fig-mpo-trunk}} describes an implementation of a Multi-Fiber Push-on (MPO) trunk port (e.g., 400G-DR4 port configured as a single 400GE interface).
+
+~~~~ aasvg
+{::include figures/mpo-trunk-port-example.txt}
+~~~~
+{:#fig-mpo-trunk title="Example of a MPO trunk port"}
+
+If this MPO port cannot support breakouts, the four line channels cannot be modelled as breakout channels and are not relevant from inventory management perspective. From a network inventory perspective, there is no difference between single-channel ports and MPO trunk ports which do not support port breakouts.
+
+Instead, the MPO port can support breakouts, the four line channels are reported as breakout channels because, as describe in {{ports}}, the breakout channels represent the capability of the port to support breakout, independently on how the port is configured (trunk or breakout).
+
+{{fig-mpo-breakout}} describes an implementation of a MPO breakout port (e.g., 400G-DR4 port configured as 4x100GE interfaces).
+
+~~~~ aasvg
+{::include figures/mpo-breakout-port-example.txt}
+~~~~
+{:#fig-mpo-breakout title="Example of a MPO breakout port"}
+
+In this example, the four line channels are reported as breakout channels because the port shall support breakout in order to be configured as a breakout port.
+
+## JSON Examples
+
+This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}, instantiating the "ietf-network-inventory" model to describe a single board, as shown in {{fig-board}}, with seven different types of ports, transceivers and breakouts configurations:
+
+1. An integrated port (non pluggable), as shown in {{fig-board}};
+1. An empty port, as shown in {{fig-board}};
+1. A single channel optical pluggable port, as shown in {{fig-board}} and {{fig-single-channel}};
+1. A WDM based multi-channel optical pluggable port, as shown in {{fig-board}} and {{fig-wdm-multi-channel}};
+1. An MPO trunk port, as shown in {{fig-board}} and {{fig-mpo-trunk}}, which does not support port breakouts;
+1. An MPO trunk port, as shown in {{fig-board}} and {{fig-mpo-trunk}}, which can not support port breakouts but it has been configured as a trunk port,
+1. An MPO breakout port, as shown in {{fig-board}} and {{fig-mpo-breakout}}.
 
 Note: as described in {{ports}}, reporting whether an MPO port is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model.
 
