@@ -103,8 +103,7 @@ informative:
 --- abstract
 
 This document defines a base YANG data model for network inventory. The scope of this base model is set to
-be application- and technology-agnostic. However, the data model is designed with appropriate provisions to ease
-future augmentations with application- and technology-specific details.
+be application- and technology-agnostic. The base data model can be augmented with application- and technology-specific details.
 
 --- middle
 
@@ -132,7 +131,6 @@ of using vendors proprietary APIs.
 Network Inventory is a collection of data for network devices and their components managed by a specific management system.
 Per the definition of {{?RFC8969}}, the network inventory model is a network model.
 
-
 This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
 
 This base data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
@@ -140,8 +138,6 @@ microwave networks as well as optical local loops, access networks, core network
 include required application- and technology-specific inventory details together with specific hardware or software component's attributes.
 
 The YANG data model defined in the document is scoped to cover the common use cases for Network Inventory covering both hardware and base software information.
-
-{{ni-augment}} provides a set of considerations for future extensions of hardware, software, entitlement, and inventory topology mapping.
 
 The YANG data model defined in this document conforms to the Network Management Datastore Architecture {{!RFC8342}}.
 
@@ -281,13 +277,31 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 
 # YANG Data Model for Network Inventory Overview
 
+The base network inventory model, defined in this document, provides a list of network elements and of network element components:
+
+~~~~ ascii-art
+  +--rw network-inventory
+     +--rw network-elements
+        +--rw network-element* [ne-id]
+           +--rw ne-id                 string
+           ...
+           +--rw components
+              +--rw component* [component-id]
+                 +--rw component-id                        string
+                 ...
+~~~~
+{:#fig-overall title="Overall Tree Structure"}
+
+The network-inventory top level container has been defined to support reporting other types of network inventory objects, besides the network elements and network element components.
+
+These additional types of network inventory objects can be defined, together with the associated YANG data model and the rationale for managing them as part of the network inventory, in other documents providing application- and technology-specific companion augmentation data models, such as
+{{?I-D.ietf-ivy-network-inventory-location}}
+
 The network element definition is generalized to support physical
 network elements and other types of components' groups that can be managed as physical network elements from an
 inventory perspective.
 
 Physical network elements are usually devices such as hosts, gateways, terminal servers, and the like, which have management agents responsible for performing the network management functions requested by the network management stations ({{?RFC1157}}).
-
-The data model for network elements defined in this document uses a flat list of network elements.
 
 The "ne-type" is defined as a YANG identity to describe the type of the network element. This document defines only the "physical-network-element" identity.
 
@@ -302,30 +316,18 @@ Different types of components can be distinguished by the class of component. Th
 
 Other types of components can be defined in other documents, together with the associated YANG identity and the rationale for managing them as components from an inventory perspective.
 
-Attributes related to specific class of component can be found in the component-specific-info structure.
-
 The identity definition of additional types of "ne-type" and "non-
 hardware" identity of component are outside the scope of this
 document and could be defined in application- and technology-specific companion augmentation data models, such as
 {{?I-D.ietf-ivy-network-inventory-software}}.
+
+[comment]: # The ne-specific-info and component-specific-info containers are defined as augmentation targets for the attributes related to specific network element types or component classes to be defined in this or in other application- and technology-specific companion augmentation data models.
 
 In {{!RFC8348}}, rack, chassis, slot, sub-slot, board and port are defined as components of network elements with generic attributes.
 
 While {{!RFC8348}} is used to manage the hardware of a single server (e.g., a network element), the Network Inventory YANG data model is used to retrieve the base network inventory information that a controller discovers from all the network elements under its control.
 
 However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model. This approach can simplify the implementation of this network inventory model when the controller uses the YANG data model defined in {{!RFC8348}} to retrieve the hardware  from the network elements under its control.
-
-~~~~ ascii-art
-  +--rw network-elements
-     +--rw network-element* [ne-id]
-        +--rw ne-id            string
-        ...
-        +--rw components
-           +--rw component* [component-id]
-              +--rw component-id            string
-              ...
-~~~~
-{:#fig-overall title="Overall Tree Structure"}
 
 ## Common Design for All Inventory Objects {#common-attributes}
 
@@ -534,36 +536,7 @@ In order to support these use cases, this model is not aligned with {{!RFC8348}}
 
 Instead the name is defined as an optional attribute and the component-id is defined as the key for the component list (in alignment with the approach followed for the network-element list).
 
-{:#ni-augment}
-
-# Extending Network Inventory
-
-This document defines the basic network inventory attributes
-applicable to typical network scenarios.  For finer-grained and
-specific management scenarios, the relationship between this model
-and other models is illustrated in Figure 4.
-
-~~~~ aasvg
-             +-------------------------+
-             |                         |
-             | Base Network Inventory  |
-             |                         |
-             +------------+------------+
-                          |
-       +------------------+-------------------+
-       |                  |                   |
-+------V------+    +------V------+     +------V------+   +-------------+
-|             |    |             |     |             |   |             |
-| Hardware    |    |  Software   |     |             |   |  Inventory  |
-| Extensions  |    |  Extensions |     | Entitlement |   |  Topology   |
-| e.g. Power  |    |  e.g.       |     |             |   |  Mapping    |
-| supply unit |    |  SW patch   |     |             |   |             |
-+-------------+    +-------------+     +-------------+   +-------------+
-~~~~
-
-{:#ni-tree}
-
-# Network Inventory Tree Diagram
+# Network Inventory Tree Diagram {#ni-tree}
 
 {{fig-ni-tree}} below shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
 
@@ -573,9 +546,7 @@ and other models is illustrated in Figure 4.
 {:#fig-ni-tree title="Network inventory tree diagram"
 artwork-name="ietf-network-inventory.tree"}
 
-{:#ni-yang}
-
-# YANG Data Model for Network Inventory
+# YANG Data Model for Network Inventory {#ni-yang}
 
 ~~~~ yang
 {::include yang/ietf-network-inventory.yang}
