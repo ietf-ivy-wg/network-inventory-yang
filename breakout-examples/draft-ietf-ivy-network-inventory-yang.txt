@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 20 November 2025                                          Nokia
+Expires: 22 November 2025                                          Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                             19 May 2025
+                                                             21 May 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 November 2025.
+   This Internet-Draft will expire on 22 November 2025.
 
 Copyright Notice
 
@@ -1741,7 +1741,7 @@ Appendix D.  Examples of ports, transceivers and port breakouts
                           ^                      ^
                           |                      |
                    Host Interface         Line Interface
-                 (4X host channels)    (1 X line channels)
+               (4x25G host channels)   (1x100G line channel)
 
         Figure 9: Example of a single channel optical pluggable port
 
@@ -1785,7 +1785,7 @@ Appendix D.  Examples of ports, transceivers and port breakouts
                         ^                 ^
                         |                 |
                 Host Interface        Line Interface
-              (8X host channels)   (4 X line channels)
+            (8x50G host channels)  (4x100G ine channels)
 
       Figure 10: Example of a WDM multi-channel optical pluggable port
 
@@ -1831,7 +1831,7 @@ Appendix D.  Examples of ports, transceivers and port breakouts
                           ^                      ^
                           |                      |
                    Host Interface         Line Interface
-                 (8X host channels)    (4 X line channels)
+               (8x50G host channels)   (4x100G line channels)
 
                    Figure 11: Example of a MPO trunk port
 
@@ -1884,7 +1884,7 @@ Appendix D.  Examples of ports, transceivers and port breakouts
                           ^                      ^
                           |                      |
                    Host Interface         Line Interface
-                 (8X host channels)    (4 X line channels)
+               (8x50G host channels)   (4x100G line channels)
 
                  Figure 12: Example of a MPO breakout port
 
