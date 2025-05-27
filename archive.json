@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-25T01:05:52.189597+00:00",
+  "timestamp": "2025-05-27T00:59:18.767931+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -116,7 +116,7 @@
       ],
       "body": "Some of the hardware and software attributes defined in Section 3.1 of [RFC7317] can be borrowed, such as platform-os version and machine.\r\n",
       "createdAt": "2023-10-23T08:32:25Z",
-      "updatedAt": "2025-05-22T16:11:38Z",
+      "updatedAt": "2025-05-26T12:15:01Z",
       "closedAt": null,
       "comments": [
         {
@@ -153,6 +153,13 @@
           "body": "**[2025-05-21 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-05-21)**\n\nIt has been agreed that:\n- The contact attribute is considered outside the scope of the base inventory model. It can be added by augmentation models when needed.\n- The hostname attribute is already covered by the existing name attribute so no need to add another attribute.\n\nMore discussion is needed regarding the need to add a software-name attribute or to embed the SW name within the software-rev.\n\nThe major concern is on the real need to report the following attributes for the network-element:\n\n```\n           +--ro hardware-rev?         string\n           +--ro software-rev?         string\n           +--ro software-patch-rev*   string\n```\n\nThe alternative approach is to report the OS name and software version within an OS SW component which is defined in [draft-ietf-ivy-network-inventory-software](https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-software)\n\nMore discussion is needed since the original intention was to split the base and the SW inventory models to allow implementing only the base inventory model\n",
           "createdAt": "2025-05-21T18:02:53Z",
           "updatedAt": "2025-05-22T16:11:37Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Regarding the components' software-rev data node, my understanding of the previous discussion is that in most of the cases, the relationship between an HW component and a SW module is 1 HW component contains 0 or 1 SW module (and 0 or 1 FW module) and the base inventory model can manage these cases with the three optional attributes:\n\n```\n                 +--ro hardware-rev?                       string\n                 +--ro software-rev?                       string\n                 ...\n                 +--ro firmware-rev?                       string\n```\n\nAn HW component not associated with any SW or FW module, will instantiate only the hardware-rev data node.\n\nIf the HW component is associated with one (and only one) SW component, the software-rev data node will report the revision of that SW component.\n\nThe base inventory model is not able to cover the cases where the HW component is associated with more than one SW components. In this case, the SW inventory augmentation shall be implemented: the HW component does not instantiate the software-rev data node but it will contain multiple child SW components (one for each contained SW module). The revision of each SW component is reported in the software-rev of that SW component instance.\n\nThe alternative solution is to manage the cases where the HW component is associated with one (and only one) SW component like the other use cases with the HW component having one and only one child SW components.\n\nRegarding the NE's software-rev data node, the issue seems somehow related with #40. My understanding is that the software-rev data node of the NE reports the revision of the NE OS but it would be worthwhile checking if this is a common understanding or just my personal understanding.\n\nAgain one possibility is to report the OS revision as a NE attribute within the base inventory model to cover the scenarios where the NE contains one and only one OS.\n\nAn alternative solution is not to report any OS revision information within the NE but to report a OS SW module component under the NE, using the SW inventory augmentation.\n\nIf the alternative solution is adopted (either for the NE or the component or both), de facto, implementing the SW inventory model together with the base inventory model would become mandatory in almost (if not all) scenarios.\n",
+          "createdAt": "2025-05-26T12:15:00Z",
+          "updatedAt": "2025-05-26T12:15:00Z"
         }
       ]
     },
@@ -7646,7 +7653,7 @@
       "labels": [],
       "body": "Raised PR for #101 ",
       "createdAt": "2025-05-19T13:46:13Z",
-      "updatedAt": "2025-05-22T16:11:00Z",
+      "updatedAt": "2025-05-26T12:30:22Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "edf028cf4a4ee9862b84dfaae6d1af85d93e997b",
@@ -7666,7 +7673,34 @@
           "updatedAt": "2025-05-22T16:10:59Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86q9ksL",
+          "commit": {
+            "abbreviatedOid": "0eaeff2"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2025-05-26T12:24:54Z",
+          "updatedAt": "2025-05-26T12:30:22Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I am wondering whether to constrain this data node to be applicable only to chassis:\r\n\r\n```suggestion\r\n            leaf is-main-shelf {\r\n              when\r\n                \"derived-from-or-self(../nwi:class,\r\n                'ianahw:chassis')\";\r\n              type boolean;\r\n```\r\n\r\nAlternatively, this data node can be moved under the chassis-specific-info container, depending also on the resolution of issue #68 ",
+              "createdAt": "2025-05-26T12:24:55Z",
+              "updatedAt": "2025-05-26T12:30:22Z"
+            },
+            {
+              "originalPosition": 10,
+              "body": "I would generalize the description to cover also the non-stacked chassis as well as cases where the main shelf is configured.\r\n\r\nI am also wondering whether to have some text indicating the possibility to omit this information. See for example https://mailarchive.ietf.org/arch/msg/inventory-yang/HFLlmpQeLTLaSpMC-Pg6gHiDFTM/\r\n\r\n ```suggestion\r\n                \"This node indicates whether is taking or not the\r\n                 'main shelf' role.\r\n                \r\n                 This node is applicable only to scenarios where\r\n                 there are chassis components which can take the\r\n                 'main shelf' role (e.g., multi-chassis network\r\n                  elements), otherwise it is omitted.\";\r\n```",
+              "createdAt": "2025-05-26T12:29:48Z",
+              "updatedAt": "2025-05-26T12:30:22Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
