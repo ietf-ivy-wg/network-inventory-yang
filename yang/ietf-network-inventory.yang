@@ -488,6 +488,21 @@ module ietf-network-inventory {
                 "RFC 6933: Entity MIB (Version 4) -
                            entPhysicalIsFRU";
             }
+            leaf is-main-shelf {
+              when
+                "derived-from-or-self(../nwi:class,
+                'ianahw:chassis')";
+              type boolean;
+              config false;
+              description
+               "This node indicates whether is taking or not the
+                'main shelf' role.
+               
+                This node is applicable only to scenarios where
+                there are chassis components which can take the
+                'main shelf' role (e.g., multi-chassis network
+                 elements), otherwise it is omitted.";
+            }
             leaf-list uri {
               type inet:uri;
               config false;
