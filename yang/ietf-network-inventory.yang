@@ -489,6 +489,9 @@ module ietf-network-inventory {
                            entPhysicalIsFRU";
             }
             leaf is-main-shelf {
+              when
+                "derived-from-or-self(../nwi:class,
+                'ianahw:chassis')";
               type boolean;
               config false;
               description
