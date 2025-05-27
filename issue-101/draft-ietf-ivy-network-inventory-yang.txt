@@ -1275,9 +1275,13 @@ Table of Contents
                  type boolean;
                  config false;
                  description
-                   "This node indicates whether or not this component is
-                    considered a 'main shelf' by the vendor among multiple
-                    shelves in a stacked chassis environment.";
+                  "This node indicates whether is taking or not the
+                   'main shelf' role.
+
+                   This node is applicable only to scenarios where
+                   there are chassis components which can take the
+                   'main shelf' role (e.g., multi-chassis network
+                    elements), otherwise it is omitted.";
                }
                leaf-list uri {
                  type inet:uri;
