@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 20 November 2025                                          Nokia
+Expires: 28 November 2025                                          Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                             19 May 2025
+                                                             27 May 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 November 2025.
+   This Internet-Draft will expire on 28 November 2025.
 
 Copyright Notice
 
@@ -1269,6 +1269,9 @@ Table of Contents
                               entPhysicalIsFRU";
                }
                leaf is-main-shelf {
+                 when
+                   "derived-from-or-self(../nwi:class,
+                   'ianahw:chassis')";
                  type boolean;
                  config false;
                  description
