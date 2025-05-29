@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-27T00:59:18.767931+00:00",
+  "timestamp": "2025-05-29T01:00:49.268794+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -112,11 +112,12 @@
       "labels": [
         "wga",
         "needs discussion",
+        "wait",
         "priority-1"
       ],
       "body": "Some of the hardware and software attributes defined in Section 3.1 of [RFC7317] can be borrowed, such as platform-os version and machine.\r\n",
       "createdAt": "2023-10-23T08:32:25Z",
-      "updatedAt": "2025-05-26T12:15:01Z",
+      "updatedAt": "2025-05-28T16:57:39Z",
       "closedAt": null,
       "comments": [
         {
@@ -160,6 +161,13 @@
           "body": "Regarding the components' software-rev data node, my understanding of the previous discussion is that in most of the cases, the relationship between an HW component and a SW module is 1 HW component contains 0 or 1 SW module (and 0 or 1 FW module) and the base inventory model can manage these cases with the three optional attributes:\n\n```\n                 +--ro hardware-rev?                       string\n                 +--ro software-rev?                       string\n                 ...\n                 +--ro firmware-rev?                       string\n```\n\nAn HW component not associated with any SW or FW module, will instantiate only the hardware-rev data node.\n\nIf the HW component is associated with one (and only one) SW component, the software-rev data node will report the revision of that SW component.\n\nThe base inventory model is not able to cover the cases where the HW component is associated with more than one SW components. In this case, the SW inventory augmentation shall be implemented: the HW component does not instantiate the software-rev data node but it will contain multiple child SW components (one for each contained SW module). The revision of each SW component is reported in the software-rev of that SW component instance.\n\nThe alternative solution is to manage the cases where the HW component is associated with one (and only one) SW component like the other use cases with the HW component having one and only one child SW components.\n\nRegarding the NE's software-rev data node, the issue seems somehow related with #40. My understanding is that the software-rev data node of the NE reports the revision of the NE OS but it would be worthwhile checking if this is a common understanding or just my personal understanding.\n\nAgain one possibility is to report the OS revision as a NE attribute within the base inventory model to cover the scenarios where the NE contains one and only one OS.\n\nAn alternative solution is not to report any OS revision information within the NE but to report a OS SW module component under the NE, using the SW inventory augmentation.\n\nIf the alternative solution is adopted (either for the NE or the component or both), de facto, implementing the SW inventory model together with the base inventory model would become mandatory in almost (if not all) scenarios.\n",
           "createdAt": "2025-05-26T12:15:00Z",
           "updatedAt": "2025-05-26T12:15:00Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-05-28 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-05-28)**\n\nConclusion: every attribute in RFC7317 (with the exception of os-name, os-release and os-version) is not needed in the base network inventory model.\n\nThe discussion on the os-name, os-release and os-version is pending resolution of issue #112\n\n",
+          "createdAt": "2025-05-28T16:57:30Z",
+          "updatedAt": "2025-05-28T16:57:30Z"
         }
       ]
     },
@@ -3652,7 +3660,7 @@
       ],
       "body": "Currently, the component is directly in line in the tree of the network-element. There may be future uses of component that require it to be in other groupings or be standalone. \n\nIt is proposed to extract the component structure from the tree of the network-element and make it an independent grouping. This grouping may then be used in the network-element, resulting in the same tree as is currently described in the document and the same JSON structures etc. Hence, this proposal does not change the current capability in any way.\n\nNote that this also aligns reasonably with the TAPI structure matching the composition of equipment in device, where equipment is a grouping.\n\nBelow is a rough summary of the change. The YANG fragment shown below has had irrelevant bits chopped out to avoid clutter. Some YANG is kept to help understanding of the position and structure.\n\nI have truncated the component to remove clutter, the intention is that the component stays as is.\nI wanted to use this \"versatile\" editor to highlight the \"uses\" statement in fabulous bold, but of course, you can't even use bold in a code segment:(\n< RANT > why have we moved from wysiwyg editor back to the dark ages!! < /RANT >\n\n\n    /*\n     *Groupings\n     */\n    \u2026\n    grouping component {\n      description\n        \"This grouping provides all relevant properties of a component.\";\n      leaf \n        description\n          \".\";\n      leaf component-id {\n        type string;\n        description\n          \"An identifier that uniquely identifies the component\n           in a node.\";\n      }\n      leaf class {\n        type union {\n          type identityref {\n            base ianahw:hardware-class;\n          }\n          type identityref {\n           base non-hardware-component-class;\n          }\n        }\n       config false;\n        mandatory true;\n        description\n          \"The type of the component.\";\n      }\n      uses common-entity-attributes {\n        refine \"hardware-rev\" {\n          description\n            \"The vendor-specific hardware revision string for\n             the component. The preferred value is the hardware\n             revision identifier actually printed on the\n             component itself (if present).\";\n           reference\n            \"RFC 6933: Entity MIB (Version 4) -\n                       entPhysicalHardwareRev\";\n        }\n    ...\n\n    /*\n     * Data Nodes\n     */\n\n    container network-inventory {\n      description\n        \"Top-level container for network inventory.\";\n      container network-elements {\n        description\n          \"The top-level container for the list of network elements\n           within the network.\";\n        list network-element {\n          key \"ne-id\";\n          description\n            \"The list of network elements within the network.\";\n          leaf ne-id {\n            type string;\n            description\n              \"An identifier that uniquely identifies the NE in\n               a network.\";\n          }\n          leaf ne-type {\n            type identityref {\n              base nwi:ne-type;\n            }\n            default \"nwi:ne-physical\";\n            config false;\n            description\n              \"The NE type.\";\n          }\n          uses common-entity-attributes;\n          container components {\n            description\n              \"The top-level container for the list of components\n               within a network element.\";\n            list component {\n              key \"component-id\";\n              description\n                \"The list of components within a network element.\";\n              **uses component;**\n            }\n          }\n        }\n      }\n\n\nIn future we will be able to use the component grouping in other structures. \n\n\n    container components {\n      description\n        \"The top-level container for the list of components\n         directly within an inventory.\"\n      list component {\n        key \"component-id\";\n        description\n          \"The list of components within a network element.\";\n        uses component;\n      }\n    }\n    container component-assembly {\n      description\n        \"The top-level container for the list of components\n         In an inventory assembly such as complex FRU that has\n         multiple non-FRU sub-components. All components\n         are in a flat list, one is an FRU, the structure is explained \n         using the parent relationship. The FRU has no parent.\"\n      leaf component-assembly-details \u2026\n      ...\n      list component {\n        key \"component-id\";\n        description\n          \"The list of components within a network element.\";\n        uses component;\n        leaf component-role {\n          type string;\n          description\n            \"The purpose of the component in the assembly.\";\n        }\n        leaf parent {\n          type leafref {\n            path \"../../component/component-id\";\n            require-instance false;\n          }\n          description\n                \"The identifier of the component that physically\n                contains this component (non-FRU).\n\n                If this leaf is not instantiated, it indicates that\n                this component is not contained in any other\n                component.\";\n            }\n\n\nIncidentally, the component-assembly may be the solution to the FRU with multiple non-FRUs in a hierarchy. The component-assembly would then become the key structure for the inventory. An NE would contain component-assembly list. One or more assemblies may be completely non-FRU in the case where the whole NE is a single unit (e.g. the Pizza box).",
       "createdAt": "2025-05-21T23:06:08Z",
-      "updatedAt": "2025-05-22T16:12:18Z",
+      "updatedAt": "2025-05-28T11:02:39Z",
       "closedAt": null,
       "comments": [
         {
@@ -3661,6 +3669,13 @@
           "body": "**[2025-05-21 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-05-21)**\n\nNigel has clarified that his proposal is to move the component attributes into a grouping which is used only once in the base inventory model but which can be re-used in other modules, if needed.\n\nThe proposed changes would have no impact on the base model YANG data tree and implementation.\n\nYANG doctors usually comment when groupings used only once are defined: a note should be added to the grouping description indicating that component grouping has been defined as a common grouping to be re-used in other YANG modules.\n",
           "createdAt": "2025-05-22T06:13:23Z",
           "updatedAt": "2025-05-22T16:12:17Z"
+        },
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "We may want to explore my comment on component-assembly as it appears now that perhaps that is what an FRU is as opposed to a raw component. The assembly would allow the collection of non-FRU components to be collected together under the assembly and then to not have to have independent life. It would also allow software/firmware to be collected. \n\nThis would be a further minor but powerful enhancement to the model.\n\nIf we think that this is worth while I could raise a separate issue.",
+          "createdAt": "2025-05-28T11:02:38Z",
+          "updatedAt": "2025-05-28T11:02:38Z"
         }
       ]
     },
@@ -3672,13 +3687,55 @@
       "state": "OPEN",
       "author": "nigel-r-davis",
       "authorAssociation": "NONE",
-      "assignees": [],
+      "assignees": [
+        "nigel-r-davis"
+      ],
       "labels": [
         "priority-1"
       ],
       "body": "Slot is not a component. It has no independent life (it is not separable from the equipment (chassis etc.)), It does not have a serial number and must have the same manufacturer as the thing it is a slot in. It does not have software or firmware and does not have any substance (as I have explained on several occasions before). I have not come across a model that treats slot as an equal to a board before. In TM Forum, we did originally mix up holder and equipment where a holder was a type of equipment, but we subsequently corrected that (as per ITU-T G.7711).\n\nI propose the addition of an optional slot list to the component structure with the few properties that a slot actually has. I propose that this is the only approach to representation of slots and the slot as a component is not allowed in the standard usage.\n\nThis then means that a component is in a slot (or slots) of a component and hence references the slot leaf  (leaves) of the component. This can be a direct reference or an implicit list relationship. (better to cover the multi-slot occupancy challenge).\n\nLooking at component, the lines marked <<<<<<< below is not relevant for a slot (i.e., most of them!).\n\n           +--rw components\n              +--rw component* [component-id]\n                 +--rw component-id                        string\n                 +--ro class                               union\n                 +--ro uuid?                               yang:uuid <<<<<<<<<<<<<\n                 +--rw name?                               string\n                 +--rw description?                        string\n                 +--rw alias?                              string\n                 +--ro hardware-rev?                       string <<<<<<<<<<<<<\n                 +--ro software-rev?                       string <<<<<<<<<<<<<\n                 +--ro software-patch-rev*                 string <<<<<<<<<<<<<\n                 +--ro mfg-name?                           string <<<<<<<<<<<<<\n                 +--ro mfg-date?                                  <<<<<<<<<<<<<\n                 |       yang:date-and-time\n                 +--ro serial-number?                      string <<<<<<<<<<<<<\n                 +--ro product-name?                       string <<<<<<<<<<<<<\n                 +--ro firmware-rev?                       string <<<<<<<<<<<<<\n                 +--ro part-number?                        string <<<<<<<<<<<<<\n                 +--ro asset-id?                           string <<<<<<<<<<<<<\n                 +--ro child-component-ref\n                 +--ro parent-rel-pos?                     int32\n                 +--ro parent?\n                 |       -> ../../component/component-id\n                 +--ro is-fru?                             boolean <<<<<<<<<<<<<\n                 +--ro uri*                                inet:uri <<<<<<<<<<<<<\n                 +--ro chassis-specific-info <<<<<<<<<<<<<\n                 +--ro slot-specific-info\n                 +--ro board-specific-info <<<<<<<<<<<<<\n                 +--ro port-specific-info <<<<<<<<<<<<<\n                 +--ro transceiver-module-specific-info <<<<<<<<<<<<<\n                    +--ro breakout-channels!\n                       +--ro breakout-channel* [channel-id]\n                          +--ro channel-id    uint8\n\nTaking the relevant attributes some are then no longer relevant if this is to be converted to a dedicated slot structure.\n\n           +--rw components\n              +--rw component* [component-id]\n                 +--rw component-id                        string\n                 +--ro class                               union <<<<<<<<<<<<<\n                 +--rw name?                               string\n                 +--rw description?                        string\n                 +--rw alias?                              string\n                 +--ro child-component-ref\n                 +--ro parent-rel-pos?                     int32\n                 +--ro parent?                            <<<<<<<<<<<<<\n                 |       -> ../../component/component-id\n                 +--ro slot-specific-info\n\nThe slot structure then becomes\u2026 (some properties still look rather an overkill for slot)\u2026\n\n           +--rw slots?\n              +--rw slot* [component-id]\n                 +--rw slot-id                        string\n                 +--rw name?                               string\n                 +--rw description?                        string \n                 +--rw alias?                              string\n                 +--ro child-component-ref\n                 +--ro parent-rel-pos?                     int32\n                 +--ro slot-specific-info\n\nThe above structure then becomes an optional part of the component. Where a component has slots, the structure appears.\n\nTo cover alternative slot usage we can have several slot maps and some equivalence, much like alternative channelization of a signal.\n\nNote that LF TAPI equipment model covers actual and expected. This allows for preplanning. In a planning application the inventory has a time dimension and requires multiple things in a slot over time. We will need to add that later.\n\n",
       "createdAt": "2025-05-21T23:17:56Z",
-      "updatedAt": "2025-05-22T13:47:04Z",
+      "updatedAt": "2025-05-28T16:59:15Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-05-28 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-05-28)**\n\nIssue: how to use this model together with the iana-hardware component class definitions where the slot is a container component class.\n\nA detailed solution can be investigated after the change is agreed. At the first glance this does not appear a blocking issue.\n\nThe description of the proposal needs to be improved to clarify how it is possible to navigate from the component which contains the slot to the component contained within the slot. This could be a detail to be investigate further after the change is agreed.\n\nMore explanation of the issues with the current model and of the advantages with the proposed alternative would help to get more consensus on the proposed change.\n\n- [ ] @nigel-r-davis  trigger some discussion on the IVY WG mailing list\n",
+          "createdAt": "2025-05-28T16:59:09Z",
+          "updatedAt": "2025-05-28T16:59:09Z"
+        }
+      ]
+    },
+    {
+      "number": 112,
+      "id": "I_kwDOKiDYo864nun3",
+      "title": "The Network Element",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/112",
+      "state": "OPEN",
+      "author": "nigel-r-davis",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "The NE is not a piece of hardware. The hardware is represented by a component. The NE is some kind of grouping/assembly statement for management-control or commercial purposes:\n- It may be considered as an asset, although this is challenging.\n- It may be in some form of inventory, but only as an assembly.\n- It does not have a hardware rev, although it could have an assembly revision.\n- It does not hold or run software directly, but may summarise the allowed/installed software on its various parts. \n- There will certainly be more than one instance of software in some cases and potentially multiple revs of each.\n- It is assembled and this could be considered as a manufacture, but the date may be difficult to define (un-like for an atomic FRU).\n- It does not have a proper serial number like a piece of hardware, although it may have an equivalent. (this may be on a label attached to one of the pieces of hardware it is assembled from).\n\n\n           +--ro hardware-rev?         string\n           +--ro software-rev?         string\n           +--ro software-patch-rev*   string\n           +--ro mfg-name?             string\n           +--ro mfg-date?             yang:date-and-time\n           +--ro serial-number?        string\n           +--ro product-name?         string\n\nFor an NE that has a single piece of hardware (e.g., a pizza box), this would be an NE with one component representing the actual hardware.\nNote that once we deal with expected/actual in the device, then the controller view of an NE that is a pizza box where there is an expectation and the actual hardware reported is inconsistent, the NE could have two \"components\", one expected and one actual, etc.\n",
+      "createdAt": "2025-05-28T13:33:14Z",
+      "updatedAt": "2025-05-28T13:33:14Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 113,
+      "id": "I_kwDOKiDYo864oGNN",
+      "title": "Specific Infos",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/113",
+      "state": "OPEN",
+      "author": "nigel-r-davis",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Whilst it seems like a good idea to have the specific info fields for extension, I cannot imagine anything that should be there. I can imagine it being abused though (i.e., things that should not be there are dumped in there, instead of proper modelling \u2013 seen that all too often). I would much prefer it be removed and if we really find something then we add it in by augmentation or some other means.\n\n                 +--ro chassis-specific-info\n                 +--ro slot-specific-info\n                 +--ro board-specific-info\n                 +--ro port-specific-info\n",
+      "createdAt": "2025-05-28T14:04:28Z",
+      "updatedAt": "2025-05-28T14:04:28Z",
       "closedAt": null,
       "comments": []
     }
@@ -7653,13 +7710,13 @@
       "labels": [],
       "body": "Raised PR for #101 ",
       "createdAt": "2025-05-19T13:46:13Z",
-      "updatedAt": "2025-05-26T12:30:22Z",
+      "updatedAt": "2025-05-28T07:31:36Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "edf028cf4a4ee9862b84dfaae6d1af85d93e997b",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "issue-101",
-      "headRefOid": "0eaeff2bbf3a708e49fe7023a0cd98f63a022315",
+      "headRefOid": "f89ce14a4f118a5a357b2dc4c86177b9b830269c",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -7699,6 +7756,59 @@
               "updatedAt": "2025-05-26T12:30:22Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86rDwGC",
+          "commit": {
+            "abbreviatedOid": "0eaeff2"
+          },
+          "author": "prmanna",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-27T07:14:06Z",
+          "updatedAt": "2025-05-27T07:14:07Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "ack.",
+              "createdAt": "2025-05-27T07:14:07Z",
+              "updatedAt": "2025-05-27T07:14:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86rDwag",
+          "commit": {
+            "abbreviatedOid": "0eaeff2"
+          },
+          "author": "prmanna",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-27T07:14:26Z",
+          "updatedAt": "2025-05-27T07:14:26Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "ack.",
+              "createdAt": "2025-05-27T07:14:26Z",
+              "updatedAt": "2025-05-27T07:14:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86rTKxX",
+          "commit": {
+            "abbreviatedOid": "f89ce14"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-05-28T07:31:36Z",
+          "updatedAt": "2025-05-28T07:31:36Z",
+          "comments": []
         }
       ]
     }
