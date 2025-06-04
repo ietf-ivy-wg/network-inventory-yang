@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 22 November 2025                                          Nokia
+Expires: 6 December 2025                                           Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                             21 May 2025
+                                                             4 June 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 November 2025.
+   This Internet-Draft will expire on 6 December 2025.
 
 Copyright Notice
 
@@ -749,6 +749,7 @@ Table of Contents
                     +--ro parent?
                     |       -> ../../component/component-id
                     +--ro is-fru?                             boolean
+                    +--ro is-main-shelf?                      boolean
                     +--ro uri*                                inet:uri
                     +--ro chassis-specific-info
                     +--ro slot-specific-info
@@ -1253,6 +1254,21 @@ Table of Contents
                  reference
                    "RFC 6933: Entity MIB (Version 4) -
                               entPhysicalIsFRU";
+               }
+               leaf is-main-shelf {
+                 when
+                   "derived-from-or-self(../nwi:class,
+                   'ianahw:chassis')";
+                 type boolean;
+                 config false;
+                 description
+                  "This node indicates whether is taking or not the
+                   'main shelf' role.
+
+                   This node is applicable only to scenarios where
+                   there are chassis components which can take the
+                   'main shelf' role (e.g., multi-chassis network
+                    elements), otherwise it is omitted.";
                }
                leaf-list uri {
                  type inet:uri;
