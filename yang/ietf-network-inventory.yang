@@ -198,7 +198,7 @@ module ietf-network-inventory {
     }
   }
 
-  grouping minimal-common-entity-attributes {
+  grouping basic-common-entity-attributes {
     description
       "The set of basic attributes which are common to all the entities
        (e.g., component, network elements, location, passive entities) 
