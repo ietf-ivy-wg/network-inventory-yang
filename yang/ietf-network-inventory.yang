@@ -240,6 +240,8 @@ module ietf-network-inventory {
       "The set of attributes which are common to all the entities
        (e.g., component, network elements) defined in this module.";
  
+ uses basic-common-entity-attributes;
+ 
     leaf hardware-rev {
       type string;
       config false;
