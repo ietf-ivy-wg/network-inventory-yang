@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 8 November 2025                                           Nokia
+Expires: 6 December 2025                                           Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                              7 May 2025
+                                                             4 June 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 November 2025.
+   This Internet-Draft will expire on 6 December 2025.
 
 Copyright Notice
 
@@ -977,7 +977,7 @@ Table of Contents
        }
      }
 
-     grouping minimal-common-entity-attributes {
+     grouping basic-common-entity-attributes {
        description
          "The set of basic attributes which are common to all the entities
           (e.g., component, network elements, location, passive entities)
