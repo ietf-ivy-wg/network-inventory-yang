@@ -1134,7 +1134,6 @@ Table of Contents
                  description
                    "The type of the component.";
                }
-               uses minimal-common-entity-attributes;
                uses ne-component-common-entity-attributes {
                  refine "hardware-rev" {
                    description
