@@ -103,8 +103,7 @@ informative:
 --- abstract
 
 This document defines a base YANG data model for network inventory. The scope of this base model is set to
-be application- and technology-agnostic. However, the data model is designed with appropriate provisions to ease
-future augmentations with application- and technology-specific details.
+be application- and technology-agnostic. The base data model can be augmented with application- and technology-specific details.
 
 --- middle
 
@@ -113,6 +112,8 @@ future augmentations with application- and technology-specific details.
 This document defines a base network inventory
 YANG data model that is application- and technology-agnostic.  The
 base data model can be augmented to describe application- and technology-specific information.
+Please note that the usage of term "network inventory", in the context of this I-D, is to indicate that it is
+describing "network-wide" scope inventory information.
 
 Network inventory is a fundamental functional block in the overall network
 management which was specified many years ago. Network inventory management is a critical
@@ -132,16 +133,13 @@ of using vendors proprietary APIs.
 Network Inventory is a collection of data for network devices and their components managed by a specific management system.
 Per the definition of {{?RFC8969}}, the network inventory model is a network model.
 
-
 This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
 
 This base data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
 microwave networks as well as optical local loops, access networks, core networks, data centers, etc.) and can be augmented to
 include required application- and technology-specific inventory details together with specific hardware or software component's attributes.
 
-The YANG data model defined in the document is scoped to cover the common use cases for Network Inventory covering both hardware and base software information.
-
-{{ni-augment}} provides a set of considerations for future extensions of hardware, software, entitlement, and inventory topology mapping.
+The YANG data model defined in the document is scoped to cover the common use cases for Inventory but at network-wide level, covering both hardware and base software information.
 
 The YANG data model defined in this document conforms to the Network Management Datastore Architecture {{!RFC8342}}.
 
@@ -219,7 +217,7 @@ Logical interface:
 > Editors' Note: Add recap for the concepts of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
 Network Inventory:
-: A collection of data for network elements and their components managed by a specific management system.
+: A collection of data for network elements and their components with network-wide scope, managed by a specific management system.
 
 Physical Network Element:
 : An implementation or application specific group of components (e.g., hardware components).
@@ -281,13 +279,31 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 
 # YANG Data Model for Network Inventory Overview
 
+The base network inventory model, defined in this document, provides a list of network elements and of network element components:
+
+~~~~ ascii-art
+  +--rw network-inventory
+     +--rw network-elements
+        +--rw network-element* [ne-id]
+           +--rw ne-id                 string
+           ...
+           +--rw components
+              +--rw component* [component-id]
+                 +--rw component-id                        string
+                 ...
+~~~~
+{:#fig-overall title="Overall Tree Structure"}
+
+The network-inventory top level container has been defined to support reporting other types of network inventory objects, besides the network elements and network element components.
+
+These additional types of network inventory objects can be defined, together with the associated YANG data model and the rationale for managing them as part of the network inventory, in other documents providing application- and technology-specific companion augmentation data models, such as
+{{?I-D.ietf-ivy-network-inventory-location}}
+
 The network element definition is generalized to support physical
 network elements and other types of components' groups that can be managed as physical network elements from an
 inventory perspective.
 
 Physical network elements are usually devices such as hosts, gateways, terminal servers, and the like, which have management agents responsible for performing the network management functions requested by the network management stations ({{?RFC1157}}).
-
-The data model for network elements defined in this document uses a flat list of network elements.
 
 The "ne-type" is defined as a YANG identity to describe the type of the network element. This document defines only the "physical-network-element" identity.
 
@@ -302,30 +318,18 @@ Different types of components can be distinguished by the class of component. Th
 
 Other types of components can be defined in other documents, together with the associated YANG identity and the rationale for managing them as components from an inventory perspective.
 
-Attributes related to specific class of component can be found in the component-specific-info structure.
-
 The identity definition of additional types of "ne-type" and "non-
 hardware" identity of component are outside the scope of this
 document and could be defined in application- and technology-specific companion augmentation data models, such as
 {{?I-D.ietf-ivy-network-inventory-software}}.
 
+[comment]: # The ne-specific-info and component-specific-info containers are defined as augmentation targets for the attributes related to specific network element types or component classes to be defined in this or in other application- and technology-specific companion augmentation data models.
+
 In {{!RFC8348}}, rack, chassis, slot, sub-slot, board and port are defined as components of network elements with generic attributes.
 
-While {{!RFC8348}} is used to manage the hardware of a single server (e.g., a network element), the Network Inventory YANG data model is used to retrieve the base network inventory information that a controller discovers from all the network elements under its control.
+While {{!RFC8348}} is used to manage the hardware of a single server (e.g., a network element), the Network Inventory YANG data model is used to retrieve the base inventory information that a controller discovers from all the network elements with network-wide scope under its control.
 
-However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model. This approach can simplify the implementation of this network inventory model when the controller uses the YANG data model defined in {{!RFC8348}} to retrieve the hardware  from the network elements under its control.
-
-~~~~ ascii-art
-  +--rw network-elements
-     +--rw network-element* [ne-id]
-        +--rw ne-id            string
-        ...
-        +--rw components
-           +--rw component* [component-id]
-              +--rw component-id            string
-              ...
-~~~~
-{:#fig-overall title="Overall Tree Structure"}
+However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model. This approach can simplify the implementation of this inventory model when the controller uses the YANG data model defined in {{!RFC8348}} to retrieve the hardware  from the network elements under its control.
 
 ## Common Design for All Inventory Objects {#common-attributes}
 
@@ -489,13 +493,15 @@ patch information, are outside the scope of this document and defined other docu
 
 The model defines the 'breakout-channels' presence container to indicate whether the port, which contains the transceiver module, can be configured as a breakout port or not.
 
+The breakout channels represent the capability of the port to support port breakout, independently on how the port is configured (trunk or breakout).
+
 It is assumed that a port which supports port breakout can be configured either as a trunk port or as a breakout port.
 
 Reporting whether a port, which supports port breakout, is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model. The model providing the mapping between the topology and the inventory models should provide sufficient information to identify how the port is configured and, in case of breakout configuration, which breakout channel is associated with which Link Termination Point (LTP), abstracting a device physical interface within the topology model.
 
 ## Changes Since RFC 8348
 
-This document re-defines some attributes listed in {{!RFC8348}}, based on some integration experience for network wide inventory data.
+This document re-defines some attributes listed in {{!RFC8348}}, based on some integration experience for network inventory data.
 
 ### Component-Specific Info Design
 
@@ -534,36 +540,7 @@ In order to support these use cases, this model is not aligned with {{!RFC8348}}
 
 Instead the name is defined as an optional attribute and the component-id is defined as the key for the component list (in alignment with the approach followed for the network-element list).
 
-{:#ni-augment}
-
-# Extending Network Inventory
-
-This document defines the basic network inventory attributes
-applicable to typical network scenarios.  For finer-grained and
-specific management scenarios, the relationship between this model
-and other models is illustrated in Figure 4.
-
-~~~~ aasvg
-             +-------------------------+
-             |                         |
-             | Base Network Inventory  |
-             |                         |
-             +------------+------------+
-                          |
-       +------------------+-------------------+
-       |                  |                   |
-+------V------+    +------V------+     +------V------+   +-------------+
-|             |    |             |     |             |   |             |
-| Hardware    |    |  Software   |     |             |   |  Inventory  |
-| Extensions  |    |  Extensions |     | Entitlement |   |  Topology   |
-| e.g. Power  |    |  e.g.       |     |             |   |  Mapping    |
-| supply unit |    |  SW patch   |     |             |   |             |
-+-------------+    +-------------+     +-------------+   +-------------+
-~~~~
-
-{:#ni-tree}
-
-# Network Inventory Tree Diagram
+# Network Inventory Tree Diagram {#ni-tree}
 
 {{fig-ni-tree}} below shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
 
@@ -573,9 +550,7 @@ and other models is illustrated in Figure 4.
 {:#fig-ni-tree title="Network inventory tree diagram"
 artwork-name="ietf-network-inventory.tree"}
 
-{:#ni-yang}
-
-# YANG Data Model for Network Inventory
+# YANG Data Model for Network Inventory {#ni-yang}
 
 ~~~~ yang
 {::include yang/ietf-network-inventory.yang}
@@ -673,27 +648,66 @@ The model proposed by this draft is designed to be as generic as possible so to 
 
 # Examples of ports, transceivers and port breakouts {#port-examples}
 
-> Editors' Note: Need to provide some examples based on [IETF 121 Slides](https://datatracker.ietf.org/doc/slides-120-ivy-2-a-yang-data-model-for-network-inventory/), and in particular:
-> - slide 8 (100G-LR single-channel port)
-> - slide 9 (400G-LR4 multi-channel WDM port)
-> - slide 10 (400G-DR4 MPO port)
-> Describe the concept of host and line channels and the mapping to breakout channels
+This appendix provides some examples of ports, transceivers and port breakouts implementations and how they can be modelled using the "ietf-network-inventory" model defined in {{ni-yang}}.
 
-# JSON Examples
-
-This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}.
-
-The example instantiates the "ietf-network-inventory" model to describe a single board with seven different types of ports, transceivers and breakouts configurations:
+{{fig-board}} shows an example of a single board which contains three type of ports:
 
 1. An integrated port (non pluggable). This port can be of any type (e.g., optical or electrical), single-channel or multi-channel but not supporting breakouts;
 1. An empty port;
-1. A single channel optical pluggable port (e.g., a 100G-LR port configured as a single 100GE interface);
-1. A Wavelength-Division Multiplexing (WDM) based multi-channel optical port (e.g., a 400G-LR4 port configured as a single 400GE interface) which does not support breakouts: the four WDM channels are not reported since not relevant from inventory management perspective;
-1. A Multi-Fiber Push-on (MPO) trunk-only port (e.g., 400G-DR4 port configured as a single 400GE interface). This type of MPO port does not support breakouts: the four channels are not reported since not relevant from inventory management perspective;
-1. An MPO trunk port (e.g., 400G-DR4 port configured as a single 400GE interface). This type of MPO port can support either the trunk or the breakout configuration but in this example, it is configured to support the trunk configuration: the four channels are reported to support breakouts configuration, when needed.
-1. An MPO breakout port (e.g., 400G-DR4 port configured as 4x100GE interfaces): the four channels are reported to support breakouts configuration.
+1. A pluggable port
 
-From a network inventory perspective, there is no need to distinguish between single-channel and MPO trunk-only ports.
+~~~~ aasvg
+{::include figures/board-example.txt}
+~~~~
+{:#fig-board title="Example of a board with different types of ports"}
+
+{{fig-single-channel}} describes an implementation of a single channel optical pluggable trunk port (e.g., a 100G-LR port configured as a single 100GE interface)
+
+~~~~ aasvg
+{::include figures/single-channel-port-example.txt}
+~~~~
+{:#fig-single-channel title="Example of a single channel optical pluggable port"}
+
+{{fig-wdm-multi-channel}} describes an implementation of a Wavelength-Division Multiplexing (WDM) based multi-channel optical pluggable trunk port (e.g., a 400G-LR4 port configured as a single 400GE interface).
+
+~~~~ aasvg
+{::include figures/wdm-multi-channel-port-example.txt}
+~~~~
+{:#fig-wdm-multi-channel title="Example of a WDM multi-channel optical pluggable port"}
+
+In this example, since breakout is not supported, the four WDM channels cannot be modelled as breakout channels and are not relevant from inventory management perspective.
+
+{{fig-mpo-trunk}} describes an implementation of a Multi-Fiber Push-on (MPO) trunk port (e.g., 400G-DR4 port configured as a single 400GE interface).
+
+~~~~ aasvg
+{::include figures/mpo-trunk-port-example.txt}
+~~~~
+{:#fig-mpo-trunk title="Example of a MPO trunk port"}
+
+If this MPO port cannot support breakouts, the four line channels cannot be modelled as breakout channels and are not relevant from inventory management perspective. From a network inventory perspective, there is no difference between single-channel ports and MPO trunk ports which do not support port breakouts.
+
+Instead, the MPO port can support breakouts, the four line channels are reported as breakout channels because, as describe in {{ports}}, the breakout channels represent the capability of the port to support breakout, independently on how the port is configured (trunk or breakout).
+
+{{fig-mpo-breakout}} describes an implementation of a MPO breakout port (e.g., 400G-DR4 port configured as 4x100GE interfaces).
+
+~~~~ aasvg
+{::include figures/mpo-breakout-port-example.txt}
+~~~~
+{:#fig-mpo-breakout title="Example of a MPO breakout port"}
+
+In this example, the four line channels are reported as breakout channels because the port shall support breakout in order to be configured as a breakout port.
+
+## JSON Examples
+
+This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}, instantiating the "ietf-network-inventory" model to describe a single board, as shown in {{fig-board}}, with seven different types of ports, transceivers and breakouts configurations:
+
+1. An integrated port (non pluggable), as shown in {{fig-board}};
+1. An empty port, as shown in {{fig-board}};
+1. A single channel optical pluggable port, as shown in {{fig-board}} and {{fig-single-channel}};
+1. A WDM based multi-channel optical pluggable port, as shown in {{fig-board}} and {{fig-wdm-multi-channel}};
+1. An MPO trunk port, as shown in {{fig-board}} and {{fig-mpo-trunk}}, which does not support port breakouts;
+1. An MPO trunk port, as shown in {{fig-board}} and {{fig-mpo-trunk}}, which can not support port breakouts but it has been configured as a trunk port,
+1. An MPO breakout port, as shown in {{fig-board}} and {{fig-mpo-breakout}}.
 
 Note: as described in {{ports}}, reporting whether an MPO port is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model.
 
