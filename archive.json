@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-06-26T01:02:11.451698+00:00",
+  "timestamp": "2025-06-29T01:09:23.209662+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -7991,9 +7991,9 @@
         "ggalimba56"
       ],
       "labels": [],
-      "body": "Added JSON examples of multi-chassis NEs: fix #64 and fix #21\r\n\r\nNote: the reference figures are in [multi-chassis-examples.pptx](https://github.com/user-attachments/files/20884615/multi-chassis-examples.pptx). The ASCII art will be added later\r\n",
+      "body": "added three examples in ascii reflecting the Italo .ppt\r\n[IVY-multichassis-drawings-ring.txt](https://github.com/user-attachments/files/20923545/IVY-multichassis-drawings-ring.txt)\r\n[IVY-multichassis-drawings-daisy.txt](https://github.com/user-attachments/files/20923546/IVY-multichassis-drawings-daisy.txt)\r\n[IVY-multichassis-drawings-hyerarchical.txt](https://github.com/user-attachments/files/20923547/IVY-multichassis-drawings-hyerarchical.txt)\r\n\r\n\r\n\r\nAdded JSON examples of multi-chassis NEs: fix #64 and fix #21\r\n\r\nNote: the reference figures are in [multi-chassis-examples.pptx](https://github.com/user-attachments/files/20884615/multi-chassis-examples.pptx). The ASCII art will be added later\r\n",
       "createdAt": "2025-06-24T13:23:17Z",
-      "updatedAt": "2025-06-24T14:12:10Z",
+      "updatedAt": "2025-06-26T09:41:38Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "7405333adc6d764eb8a732640ce0217d0383d544",
