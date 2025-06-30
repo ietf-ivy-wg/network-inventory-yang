@@ -730,12 +730,12 @@ Stacked switches are an example of multi-chassis which consist of multiple stand
 {{fig-daisy-chain-stacked}} and {{fig-ring-stacked}} describe two examples of stacked switch with three stacked switches (pizza boxes) connected in a daisy-chain or ring topology.
 
 ~~~~ aasvg
-TO BE ADDED
+{::include figures/multichassis-daisy-example.txt}
 ~~~~
 {:#fig-daisy-chain-stacked title="Example of a stacked switch in a daisy chain topology"}
 
 ~~~~ aasvg
-TO BE ADDED
+{::include figures/multichassis-ring-example.txt}
 ~~~~
 {:#fig-ring-stacked title="Example of a stacked switch in a ring topology"}
 
@@ -749,7 +749,7 @@ Cascaded switches are another example of multi-chassis which consist of multiple
 {{fig-tree-cascaded}} describe an example of cascaded switch with three chassis connected in a tree topology.
 
 ~~~~ aasvg
-TO BE ADDED
+{::include figures/multichassis-hierarchical-example.txt}
 ~~~~
 {:#fig-tree-cascaded title="Example of a cascaded switch in a tree topology"}
 
