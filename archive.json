@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-06-29T01:09:23.209662+00:00",
+  "timestamp": "2025-07-01T01:09:31.218089+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -2516,18 +2516,14 @@
       "state": "OPEN",
       "author": "jccardonar",
       "authorAssociation": "NONE",
-      "assignees": [
-        "nigel-r-davis",
-        "italobusi",
-        "prmanna"
-      ],
+      "assignees": [],
       "labels": [
         "agreed",
         "priority-1"
       ],
       "body": "Network elements could be grouped into a single \"virtual\" element that manages all resources of the  encompassing different hardware chassis. \r\n\r\nIn simple words, two chassis, like two or more switches, can be connected and behave as a single one. \r\n\r\nThis is tackled in rfc8348 with the stack component.  It would be nice to have guidelines on how this should be modeled in this new model.\r\n\r\nFor reference, in one specific implementation of openconfig in this type of system, all interfaces of the child chassis are listed as orphans under /components. There is no reference  of the child chassis, or its line cards. For an inventory solution, we do need the actual hardware list.\r\n\r\nSee also https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/6",
       "createdAt": "2024-09-16T14:27:01Z",
-      "updatedAt": "2025-06-24T14:20:14Z",
+      "updatedAt": "2025-06-30T14:52:44Z",
       "closedAt": null,
       "comments": [
         {
@@ -3696,14 +3692,16 @@
       "state": "OPEN",
       "author": "nigel-r-davis",
       "authorAssociation": "NONE",
-      "assignees": [],
+      "assignees": [
+        "italobusi"
+      ],
       "labels": [
-        "priority-1",
-        "wait-WG"
+        "agreed",
+        "priority-1"
       ],
       "body": "Currently, the component is directly in line in the tree of the network-element. There may be future uses of component that require it to be in other groupings or be standalone. \n\nIt is proposed to extract the component structure from the tree of the network-element and make it an independent grouping. This grouping may then be used in the network-element, resulting in the same tree as is currently described in the document and the same JSON structures etc. Hence, this proposal does not change the current capability in any way.\n\nNote that this also aligns reasonably with the TAPI structure matching the composition of equipment in device, where equipment is a grouping.\n\nBelow is a rough summary of the change. The YANG fragment shown below has had irrelevant bits chopped out to avoid clutter. Some YANG is kept to help understanding of the position and structure.\n\nI have truncated the component to remove clutter, the intention is that the component stays as is.\nI wanted to use this \"versatile\" editor to highlight the \"uses\" statement in fabulous bold, but of course, you can't even use bold in a code segment:(\n< RANT > why have we moved from wysiwyg editor back to the dark ages!! < /RANT >\n\n\n    /*\n     *Groupings\n     */\n    \u2026\n    grouping component {\n      description\n        \"This grouping provides all relevant properties of a component.\";\n      leaf \n        description\n          \".\";\n      leaf component-id {\n        type string;\n        description\n          \"An identifier that uniquely identifies the component\n           in a node.\";\n      }\n      leaf class {\n        type union {\n          type identityref {\n            base ianahw:hardware-class;\n          }\n          type identityref {\n           base non-hardware-component-class;\n          }\n        }\n       config false;\n        mandatory true;\n        description\n          \"The type of the component.\";\n      }\n      uses common-entity-attributes {\n        refine \"hardware-rev\" {\n          description\n            \"The vendor-specific hardware revision string for\n             the component. The preferred value is the hardware\n             revision identifier actually printed on the\n             component itself (if present).\";\n           reference\n            \"RFC 6933: Entity MIB (Version 4) -\n                       entPhysicalHardwareRev\";\n        }\n    ...\n\n    /*\n     * Data Nodes\n     */\n\n    container network-inventory {\n      description\n        \"Top-level container for network inventory.\";\n      container network-elements {\n        description\n          \"The top-level container for the list of network elements\n           within the network.\";\n        list network-element {\n          key \"ne-id\";\n          description\n            \"The list of network elements within the network.\";\n          leaf ne-id {\n            type string;\n            description\n              \"An identifier that uniquely identifies the NE in\n               a network.\";\n          }\n          leaf ne-type {\n            type identityref {\n              base nwi:ne-type;\n            }\n            default \"nwi:ne-physical\";\n            config false;\n            description\n              \"The NE type.\";\n          }\n          uses common-entity-attributes;\n          container components {\n            description\n              \"The top-level container for the list of components\n               within a network element.\";\n            list component {\n              key \"component-id\";\n              description\n                \"The list of components within a network element.\";\n              **uses component;**\n            }\n          }\n        }\n      }\n\n\nIn future we will be able to use the component grouping in other structures. \n\n\n    container components {\n      description\n        \"The top-level container for the list of components\n         directly within an inventory.\"\n      list component {\n        key \"component-id\";\n        description\n          \"The list of components within a network element.\";\n        uses component;\n      }\n    }\n    container component-assembly {\n      description\n        \"The top-level container for the list of components\n         In an inventory assembly such as complex FRU that has\n         multiple non-FRU sub-components. All components\n         are in a flat list, one is an FRU, the structure is explained \n         using the parent relationship. The FRU has no parent.\"\n      leaf component-assembly-details \u2026\n      ...\n      list component {\n        key \"component-id\";\n        description\n          \"The list of components within a network element.\";\n        uses component;\n        leaf component-role {\n          type string;\n          description\n            \"The purpose of the component in the assembly.\";\n        }\n        leaf parent {\n          type leafref {\n            path \"../../component/component-id\";\n            require-instance false;\n          }\n          description\n                \"The identifier of the component that physically\n                contains this component (non-FRU).\n\n                If this leaf is not instantiated, it indicates that\n                this component is not contained in any other\n                component.\";\n            }\n\n\nIncidentally, the component-assembly may be the solution to the FRU with multiple non-FRUs in a hierarchy. The component-assembly would then become the key structure for the inventory. An NE would contain component-assembly list. One or more assemblies may be completely non-FRU in the case where the whole NE is a single unit (e.g. the Pizza box).",
       "createdAt": "2025-05-21T23:06:08Z",
-      "updatedAt": "2025-06-24T14:05:14Z",
+      "updatedAt": "2025-06-30T14:51:40Z",
       "closedAt": null,
       "comments": [
         {
@@ -7991,15 +7989,15 @@
         "ggalimba56"
       ],
       "labels": [],
-      "body": "added three examples in ascii reflecting the Italo .ppt\r\n[IVY-multichassis-drawings-ring.txt](https://github.com/user-attachments/files/20923545/IVY-multichassis-drawings-ring.txt)\r\n[IVY-multichassis-drawings-daisy.txt](https://github.com/user-attachments/files/20923546/IVY-multichassis-drawings-daisy.txt)\r\n[IVY-multichassis-drawings-hyerarchical.txt](https://github.com/user-attachments/files/20923547/IVY-multichassis-drawings-hyerarchical.txt)\r\n\r\n\r\n\r\nAdded JSON examples of multi-chassis NEs: fix #64 and fix #21\r\n\r\nNote: the reference figures are in [multi-chassis-examples.pptx](https://github.com/user-attachments/files/20884615/multi-chassis-examples.pptx). The ASCII art will be added later\r\n",
+      "body": "Added JSON examples of multi-chassis NEs: fix #64 and fix #21\r\n\r\n---\r\n\r\nCo-Authored-By: ggalimba56 <ggalimbe56@gmail.com>\r\n\r\n---\r\n\r\nNote: the reference figures are in [multi-chassis-examples.pptx](https://github.com/user-attachments/files/20884615/multi-chassis-examples.pptx). The ASCII art have been added later:\r\n[IVY-multichassis-drawings-ring.txt](https://github.com/user-attachments/files/20923545/IVY-multichassis-drawings-ring.txt)\r\n[IVY-multichassis-drawings-daisy.txt](https://github.com/user-attachments/files/20923546/IVY-multichassis-drawings-daisy.txt)\r\n[IVY-multichassis-drawings-hyerarchical.txt](https://github.com/user-attachments/files/20923547/IVY-multichassis-drawings-hyerarchical.txt)\r\n",
       "createdAt": "2025-06-24T13:23:17Z",
-      "updatedAt": "2025-06-26T09:41:38Z",
+      "updatedAt": "2025-06-30T15:01:07Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "7405333adc6d764eb8a732640ce0217d0383d544",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "multi-chassis-examples",
-      "headRefOid": "a727ccdf4f5c4a19673a469ec90be4c28bb95118",
+      "headRefOid": "f1e893c16cc4d6e3f2d7b251d495030667b9691b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
