@@ -68,7 +68,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2025-02-03 {
+  revision 2025-07-02 {
     description
       "Initial version";
     reference
@@ -200,9 +200,10 @@ module ietf-network-inventory {
 
   grouping basic-common-entity-attributes {
     description
-      "The set of basic attributes which are common to all the entities
-       (e.g., component, network elements, location, passive entities) 
-       defined in this module and in other inventory modules.";
+      "The set of basic attributes which are common to all the
+       entities (e.g., component, network elements, location, passive
+       entities) defined in this module and in other inventory
+       modules.";
     leaf uuid {
       type yang:uuid;
       config false;
@@ -497,20 +498,20 @@ module ietf-network-inventory {
                 "RFC 6933: Entity MIB (Version 4) -
                            entPhysicalIsFRU";
             }
-            leaf is-main-shelf {
+            leaf is-main {
               when
                 "derived-from-or-self(../nwi:class,
                 'ianahw:chassis')";
               type boolean;
               config false;
               description
-               "This node indicates whether is taking or not the
-                'main shelf' role.
+               "This node indicates whether the chassis is taking or
+                not the 'main' role.
                
-                This node is applicable only to scenarios where
-                there are chassis components which can take the
-                'main shelf' role (e.g., multi-chassis network
-                 elements), otherwise it is omitted.";
+                This node is applicable only to scenarios where there
+                are chassis components which can take the 'main' role
+                (e.g., multi-chassis network elements), otherwise it
+                is omitted.";
             }
             leaf-list uri {
               type inet:uri;

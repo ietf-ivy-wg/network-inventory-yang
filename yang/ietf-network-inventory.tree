@@ -39,7 +39,7 @@ module: ietf-network-inventory
                  +--ro parent?
                  |       -> ../../component/component-id
                  +--ro is-fru?                             boolean
-                 +--ro is-main-shelf?                      boolean
+                 +--ro is-main?                            boolean
                  +--ro uri*                                inet:uri
                  +--ro chassis-specific-info
                  +--ro slot-specific-info
