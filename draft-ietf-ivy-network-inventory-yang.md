@@ -724,8 +724,8 @@ Multi-chassis network elements are network elements composed by two or more chas
 Stacked switches are an example of multi-chassis which consist of multiple standalone switches that are interconnected through dedicated stack ports and cables and managed as a single logical unit. Stacked switch:
 - are connected using a daisy-chain or a ring topology
 - are managed using a single IP Address
-- synchronized software upgraded
-- use MAC-Addr(s)/Prio to decide Master/Members selection and communication.
+- synchronized software-upgrade
+- use Priority/MAC-Addr(s) decide Master/Members selection and communication.
 
 {{fig-daisy-chain-stacked}} and {{fig-ring-stacked}} describe two examples of stacked switch with three stacked switches (pizza boxes) connected in a daisy-chain or ring topology.
 
@@ -739,7 +739,7 @@ Stacked switches are an example of multi-chassis which consist of multiple stand
 ~~~~
 {:#fig-ring-stacked title="Example of a stacked switch in a ring topology"}
 
-Using the base network inventory model each stackable switch can be modelled as a chassis within the same network element, which models the stacked switch. The stack ports are modelled like other ports. The stack cables are not reported using the base network inventory model but can be reported using the passive network inventory model under definition in {{?I-D.ygb-ivy-passive-network-inventory}}.
+Using the base network inventory model, each stackable switch can be modelled as a chassis within the same network element, which models the stacked switch. The stack ports are modelled like other ports. The stack cables are not reported using the base network inventory model but can be reported using the passive network inventory model under definition in {{?I-D.ygb-ivy-passive-network-inventory}}.
 
 Cascaded switches are another example of multi-chassis which consist of multiple standalone switches that are interconnected and managed as a single logical unit. Cascaded switch:
 - are usually connected in a tree topology
