@@ -33,13 +33,13 @@ module: ietf-network-inventory
                  +--ro firmware-rev?          string
                  +--ro part-number?           string
                  +--ro asset-id?              string
+                 +--ro is-fru?                boolean
+                 +--ro uri*                   inet:uri
                  +--ro child-component-ref
                  +--ro parent-rel-pos?        int32
                  +--ro parent?
                  |       -> ../../component/component-id
-                 +--ro is-fru?                boolean
                  +--ro is-main?               boolean
-                 +--ro uri*                   inet:uri
                  +--ro breakout-channels!
                     +--ro breakout-channel* [channel-id]
                        +--ro channel-id    uint8

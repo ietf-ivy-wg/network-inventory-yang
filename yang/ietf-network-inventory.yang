@@ -195,6 +195,141 @@ module ietf-network-inventory {
     }
   }
 
+  grouping component-attributes {
+    description
+      "The set of common attributes of a component.
+
+       This grouping is intended also to be re-used by data models
+       that need to report the common attributes of a component.";
+    leaf component-id {
+      type string;
+      description
+        "An identifier that uniquely identifies the component
+         in a node.";
+    }
+    leaf class {
+      type union {
+        type identityref {
+          base ianahw:hardware-class;
+        }
+        type identityref {
+          base non-hardware-component-class;
+        }
+      }
+      config false;
+      mandatory true;
+      description
+        "The type of the component.";
+    }
+    uses ne-component-common-entity-attributes {
+      refine "hardware-rev" {
+        description
+          "The vendor-specific hardware revision string for
+           the component. The preferred value is the hardware
+           revision identifier actually printed on the
+           component itself (if present).";
+        reference
+          "RFC 6933: Entity MIB (Version 4) -
+                     entPhysicalHardwareRev";
+      }
+      refine "software-rev" {
+        reference
+          "RFC 6933: Entity MIB (Version 4) -
+                     entPhysicalSoftwareRev";
+      }
+      refine "mfg-name" {
+        description
+          "The name of the manufacturer of this physical
+           component.
+           The preferred value is the manufacturer name
+           string actually printed on the component itself
+           (if present).
+
+           Note that comparisons between instances of the
+           'model-name', 'firmware-rev', 'software-rev', and
+           'serial-number' nodes are only meaningful amongst
+           components with the same value of 'mfg-name'.
+
+           If the manufacturer name string associated with
+           the physical component is unknown to the server,
+           then this node is not instantiated.";
+        reference
+          "RFC 6933: Entity MIB (Version 4) -
+                     entPhysicalMfgName";
+      }
+      refine "mfg-date" {
+        description
+          "The date of manufacturing of the managed
+           component.";
+        reference
+          "RFC 6933: Entity MIB (Version 4) -
+                     entPhysicalMfgDate";
+      }
+    }
+    leaf firmware-rev {
+      type string;
+      config false;
+      description
+        "The vendor-specific firmware revision string for the
+         component.";
+      reference
+        "RFC 6933: Entity MIB (Version 4) -
+                   entPhysicalFirmwareRev";
+    }
+    leaf part-number {
+      type string;
+      config false;
+      description
+        "The vendor-specific part number of the component
+         type. It is expected that vendors assign unique part
+         numbers to different component types within the
+         scope of the vendor.";
+    }
+    leaf asset-id {
+      type string;
+      config false;
+      description
+        "This node is a user-assigned asset tracking
+         identifier for the component.
+
+         A server implementation MAY map this leaf to the
+         entPhysicalAssetID MIB object.  Such an
+         implementation needs to use some mechanism to handle
+         the differences in size and characters allowed
+         between this leaf and entPhysicalAssetID.
+
+         The definition of such a mechanism is outside the
+         scope of this document.";
+      reference
+        "RFC 6933: Entity MIB (Version 4) -
+                   entPhysicalAssetID";
+    }
+    leaf is-fru {
+      type boolean;
+      config false;
+      description
+        "This node indicates whether or not this component is
+         considered a 'field-replaceable unit' by the vendor.
+         If this node contains the value 'true', then this
+         component identifies a field-replaceable unit.
+         For all components that are permanently contained
+         within a field-replaceable unit, the value 'false'
+         should be returned for this node.";
+      reference
+        "RFC 6933: Entity MIB (Version 4) -
+                   entPhysicalIsFRU";
+    }
+    leaf-list uri {
+      type inet:uri;
+      config false;
+      description
+        "This node contains identification information about
+         the component.";
+      reference
+        "RFC 6933: Entity MIB (Version 4) - entPhysicalUris";
+    }
+  }
+
   grouping basic-common-entity-attributes {
     description
       "The set of basic attributes which are common to all the
@@ -331,109 +466,7 @@ module ietf-network-inventory {
             key "component-id";
             description
               "The list of components within a network element.";
-            leaf component-id {
-              type string;
-              description
-                "An identifier that uniquely identifies the component
-                 in a node.";
-            }
-            leaf class {
-              type union {
-                type identityref {
-                  base ianahw:hardware-class;
-                }
-                type identityref {
-                  base non-hardware-component-class;
-                }
-              }
-              config false;
-              mandatory true;
-              description
-                "The type of the component.";
-            }
-            uses ne-component-common-entity-attributes {
-              refine "hardware-rev" {
-                description
-                  "The vendor-specific hardware revision string for
-                   the component. The preferred value is the hardware
-                   revision identifier actually printed on the
-                   component itself (if present).";
-                reference
-                  "RFC 6933: Entity MIB (Version 4) -
-                             entPhysicalHardwareRev";
-              }
-              refine "software-rev" {
-                reference
-                  "RFC 6933: Entity MIB (Version 4) -
-                             entPhysicalSoftwareRev";
-              }
-              refine "mfg-name" {
-                description
-                  "The name of the manufacturer of this physical
-                   component.
-                   The preferred value is the manufacturer name
-                   string actually printed on the component itself
-                   (if present).
-
-                   Note that comparisons between instances of the
-                   'model-name', 'firmware-rev', 'software-rev', and
-                   'serial-number' nodes are only meaningful amongst
-                   components with the same value of 'mfg-name'.
-
-                   If the manufacturer name string associated with
-                   the physical component is unknown to the server,
-                   then this node is not instantiated.";
-                reference
-                  "RFC 6933: Entity MIB (Version 4) -
-                             entPhysicalMfgName";
-              }
-              refine "mfg-date" {
-                description
-                  "The date of manufacturing of the managed
-                   component.";
-                reference
-                  "RFC 6933: Entity MIB (Version 4) -
-                             entPhysicalMfgDate";
-              }
-            }
-            leaf firmware-rev {
-              type string;
-              config false;
-              description
-                "The vendor-specific firmware revision string for the
-                 component.";
-              reference
-                "RFC 6933: Entity MIB (Version 4) -
-                           entPhysicalFirmwareRev";
-            }
-            leaf part-number {
-              type string;
-              config false;
-              description
-                "The vendor-specific part number of the component
-                 type. It is expected that vendors assign unique part
-                 numbers to different component types within the
-                 scope of the vendor.";
-            }
-            leaf asset-id {
-              type string;
-              config false;
-              description
-                "This node is a user-assigned asset tracking
-                 identifier for the component.
-
-                 A server implementation MAY map this leaf to the
-                 entPhysicalAssetID MIB object.  Such an
-                 implementation needs to use some mechanism to handle
-                 the differences in size and characters allowed
-                 between this leaf and entPhysicalAssetID.
-
-                 The definition of such a mechanism is outside the
-                 scope of this document.";
-              reference
-                "RFC 6933: Entity MIB (Version 4) -
-                           entPhysicalAssetID";
-            }
+            uses component-attributes;
             container child-component-ref {
               config false;
               description
@@ -478,21 +511,6 @@ module ietf-network-inventory {
                 "RFC 6933: Entity MIB (Version 4) -
                            entPhysicalContainedIn";
             }
-            leaf is-fru {
-              type boolean;
-              config false;
-              description
-                "This node indicates whether or not this component is
-                 considered a 'field-replaceable unit' by the vendor.
-                 If this node contains the value 'true', then this
-                 component identifies a field-replaceable unit.
-                 For all components that are permanently contained
-                 within a field-replaceable unit, the value 'false'
-                 should be returned for this node.";
-              reference
-                "RFC 6933: Entity MIB (Version 4) -
-                           entPhysicalIsFRU";
-            }
             leaf is-main {
               when "derived-from-or-self(../nwi:class, "
                  + "'ianahw:chassis')";
@@ -506,15 +524,6 @@ module ietf-network-inventory {
                  there are chassis components which can take the
                  'main' role (e.g., multi-chassis network elements),
                  otherwise it is omitted.";
-            }
-            leaf-list uri {
-              type inet:uri;
-              config false;
-              description
-                "This node contains identification information about
-                 the component.";
-              reference
-                "RFC 6933: Entity MIB (Version 4) - entPhysicalUris";
             }
             container breakout-channels {
               when "derived-from-or-self(../nwi:class, "
