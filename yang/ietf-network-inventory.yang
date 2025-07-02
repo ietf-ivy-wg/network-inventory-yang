@@ -522,68 +522,27 @@ module ietf-network-inventory {
               reference
                 "RFC 6933: Entity MIB (Version 4) - entPhysicalUris";
             }
-            container chassis-specific-info {
-              when
-                "derived-from-or-self(../nwi:class,
-                'ianahw:chassis')";
+            container breakout-channels {
+              when "derived-from-or-self(../nwi:class, "
+                 + "'nwi:transceiver-module')";
+              presence
+                "When present, it indicates that port breakout is
+                 supported.";
               config false;
               description
-                "This container contains some attributes belong to
-                 chassis only.";
-            }
-            container slot-specific-info {
-              when
-                "derived-from-or-self(../nwi:class,
-                'ianahw:container')";
-              config false;
-              description
-                "This container contains some attributes belong to
-                 slot only.";
-            }
-            container board-specific-info {
-              when
-                "derived-from-or-self(../nwi:class,
-                'ianahw:module')";
-              config false;
-              description
-                "This container contains some attributes belong to
-                 board only.";
-            }
-            container port-specific-info {
-              when
-                "derived-from-or-self(../nwi:class, 'ianahw:port')";
-              config false;
-              description
-                "This container contains some attributes belong to
-                 port only.";
-            }
-            container transceiver-module-specific-info {
-              when
-                "derived-from-or-self(../nwi:class,
-                'nwi:transceiver-module')";
-              config false;
-              description
-                "This container contains some attributes belong to
-                 transceivers modules only.";
-              container breakout-channels {
-                presence
-                  "When present, it indicates that port breakout is
-                   supported.";
+                "Top level container for the list of breakout
+                 channels supported by the transceivers module.";
+              list breakout-channel {
+                key "channel-id";
                 description
-                  "Top level container for the list of breakout
-                   channels supported by the transceivers module.";
-                list breakout-channel {
-                  key "channel-id";
-                  leaf channel-id {
-                    type uint8;
-                    description
-                      "An identifier that uniquely identifies the
-                       breakout channel within the transceiver
-                       module.";
-                  }
+                  "The list of breakout channels supported by the
+                   transceivers module.";
+                leaf channel-id {
+                  type uint8;
                   description
-                    "The list of breakout channels supported by the
-                     transceivers module.";
+                    "An identifier that uniquely identifies the
+                     breakout channel within the transceiver
+                     module.";
                 }
               }
             }

@@ -323,8 +323,6 @@ hardware" identity of component are outside the scope of this
 document and could be defined in application- and technology-specific companion augmentation data models, such as
 {{?I-D.ietf-ivy-network-inventory-software}}.
 
-[comment]: # The ne-specific-info and component-specific-info containers are defined as augmentation targets for the attributes related to specific network element types or component classes to be defined in this or in other application- and technology-specific companion augmentation data models.
-
 In {{!RFC8348}}, rack, chassis, slot, sub-slot, board and port are defined as components of network elements with generic attributes.
 
 While {{!RFC8348}} is used to manage the hardware of a single server (e.g., a network element), the Network Inventory YANG data model is used to retrieve the base inventory information that a controller discovers from all the network elements with network-wide scope under its control.
@@ -503,23 +501,6 @@ Reporting whether a port, which supports port breakout, is configured as a trunk
 
 This document re-defines some attributes listed in {{!RFC8348}}, based on some integration experience for network inventory data.
 
-### Component-Specific Info Design
-
-According to the management requirements from operators, some important attributes are not defined in {{!RFC8348}}. These attributes could be component-specific and are not suitable to be defined under the component list node. Instead, they can be defined by augmenting the component-specific info container for the attributes applicable to HW e.g. boards/slot components only. Other component-specific attributes, such as SW-specific-info, may be defined in companion augmentation data models, such as
-{{?I-D.ietf-ivy-network-inventory-software}} and are out of the scope of this model.
-
-~~~~ ascii-art
-+--rw components
-   +--rw component* [component-id]
-      +--rw component-id            string
-      ...
-      +--ro chassis-specific-info
-      +--ro slot-specific-info
-      +--ro board-specific-info
-      +--ro port-specific-info
-      ...
-~~~~
-
 ### Part Number
 
 According to the description in {{!RFC8348}}, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. "Model-name" is not straightforward to understand and we suggest to rename it as "part-number" directly.
@@ -609,15 +590,15 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | used-power                 |                          | TBD                      |
 | pcie                       |                          | alarm  data              |
 | properties                 |                          | TBD                      |
-| subcomponents              | contained-child          |                          |
-| chassis                    | chassis-specific-info    |                          |
-| port                       | port-specific-info       |                          |
+| subcomponents              |                          |                          |
+| chassis                    |                          |                          |
+| port                       |                          |                          |
 | power-supply               |                          | TBD                      |
 | fan                        |                          | Fan is considered as a specific board. And no need to define as a single component  |
 | fabric                     |                          | TBD                      |
 | storage                    |                          | For Optical and IP technology, no need to manage storage on network element |
 | cpu                        |                          | For Optical and IP technology, no need to manage CPU on network element  |
-| integrated-circuit         | board-specific-info      |                          |
+| integrated-circuit         |                          |                          |
 | backplane                  |                          | Backplane is considered as a part of board. And no need to define as a single component  |
 | software-module            |                          | TBD                      |
 | controller-card            |                          | Controller card is considered as a specific functional board. And no need to define as a single component  |
