@@ -715,6 +715,56 @@ Note: as described in {{ports}}, reporting whether an MPO port is configured as 
 {::include-fold json/ports-transceivers-breakouts-examples.json}
 ~~~~
 
+# Example of multi-chassis network elements {#multi-chassis-examples}
+
+This appendix provides some examples of multi-chassis network elements and how they can be modelled using the "ietf-network-inventory" model defined in {{ni-yang}}.
+
+Multi-chassis network elements are network elements composed by two or more chassis interconnected, in principle, with any topology.
+
+Stacked switches are an example of multi-chassis which consist of multiple standalone switches that are interconnected through dedicated stack ports and cables and managed as a single logical unit. Stacked switch:
+- are connected using a daisy-chain or a ring topology
+- are managed using a single IP Address
+- synchronized software-upgrade
+- use Priority/MAC-Addr(s) decide Master/Members selection and communication.
+
+{{fig-daisy-chain-stacked}} and {{fig-ring-stacked}} describe two examples of stacked switch with three stacked switches (pizza boxes) connected in a daisy-chain or ring topology.
+
+~~~~ aasvg
+{::include figures/multichassis-daisy-example.txt}
+~~~~
+{:#fig-daisy-chain-stacked title="Example of a stacked switch in a daisy chain topology"}
+
+~~~~ aasvg
+{::include figures/multichassis-ring-example.txt}
+~~~~
+{:#fig-ring-stacked title="Example of a stacked switch in a ring topology"}
+
+Using the base network inventory model, each stackable switch can be modelled as a chassis within the same network element, which models the stacked switch. The stack ports are modelled like other ports. The stack cables are not reported using the base network inventory model but can be reported using the passive network inventory model under definition in {{?I-D.ygb-ivy-passive-network-inventory}}.
+
+Cascaded switches are another example of multi-chassis which consist of multiple standalone switches that are interconnected and managed as a single logical unit. Cascaded switch:
+- are usually connected in a tree topology
+- are managed using a single IP Address
+- the root of the tree is configured as Master.
+
+{{fig-tree-cascaded}} describe an example of cascaded switch with three chassis connected in a tree topology.
+
+~~~~ aasvg
+{::include figures/multichassis-hierarchical-example.txt}
+~~~~
+{:#fig-tree-cascaded title="Example of a cascaded switch in a tree topology"}
+
+Using the base network inventory model each interconnected switch can be modelled as a chassis within the same network element, which models the cascaded switch. The ports used to interconnect the different chassis are normal (traffic) ports and modelled like other ports. The interconnecting cables are not reported using the base network inventory model but can be reported using the passive network inventory model under definition in {{?I-D.ygb-ivy-passive-network-inventory}}.
+
+## JSON Examples
+
+This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}, instantiating the "ietf-network-inventory" model to describe the three examples of multi-chassis NEs, as shown in xxx, yyy and zzz.
+
+> Note: the base inventory model allows reporting only the chassis and ports configuration. Reporting the link between the chassis of the same NE is outside the scope of the base inventory model. The YANG data model under definition in {{?I-D.ygb-ivy-passive-network-inventory}} as an augmentation of the base inventory model can be used to provide this additional information.
+
+~~~~ ascii-art
+{::include-fold json/multi-chassis-examples.json}
+~~~~
+
 {: numbered="false"}
 
 # Acknowledgments
