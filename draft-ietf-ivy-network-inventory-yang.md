@@ -39,8 +39,8 @@ author:
     email: jeff.bouquier@vodafone.com
   -
     name: Fabio Peruzzini
-    org: TIM
-    email: fabio.peruzzini@telecomitalia.it
+    org: FiberCop
+    email: fabio.peruzzini@fibercop.com
   -
     name: Phil Bedard
     org: Cisco
