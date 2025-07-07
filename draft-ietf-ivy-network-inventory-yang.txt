@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 6 December 2025                                           Nokia
+Expires: 8 January 2026                                            Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                                P. Bedard
                                                                    Cisco
-                                                             4 June 2025
+                                                             7 July 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 December 2025.
+   This Internet-Draft will expire on 8 January 2026.
 
 Copyright Notice
 
@@ -102,6 +102,8 @@ Table of Contents
    Appendix C.  Efficiency Issue
    Appendix D.  Examples of ports, transceivers and port breakouts
      D.1.  JSON Examples
+   Appendix E.  Example of multi-chassis network elements
+     E.1.  JSON Examples
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -1457,18 +1459,25 @@ Table of Contents
               Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
               Network Data Model of Network Inventory Software
               Extensions", Work in Progress, Internet-Draft, draft-ietf-
-              ivy-network-inventory-software-00, 9 December 2024,
+              ivy-network-inventory-software-01, 10 June 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-software-00>.
+              network-inventory-software-01>.
 
    [I-D.ietf-teas-actn-poi-applicability]
               Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
               Ceccarelli, "Applicability of Abstraction and Control of
               Traffic Engineered Networks (ACTN) to Packet Optical
               Integration (POI)", Work in Progress, Internet-Draft,
-              draft-ietf-teas-actn-poi-applicability-14, 25 February
-              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              teas-actn-poi-applicability-14>.
+              draft-ietf-teas-actn-poi-applicability-15, 4 July 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
+              actn-poi-applicability-15>.
+
+   [I-D.ygb-ivy-passive-network-inventory]
+              Yu, C., Guo, A., and I. Busi, "A YANG Data Model for
+              Passive Network Inventory", Work in Progress, Internet-
+              Draft, draft-ygb-ivy-passive-network-inventory-00, 21
+              October 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ygb-ivy-passive-network-inventory-00>.
 
    [RFC1157]  Case, J., Fedor, M., Schoffstall, M., and J. Davin,
               "Simple Network Management Protocol (SNMP)", RFC 1157,
@@ -2099,6 +2108,618 @@ D.1.  JSON Examples
                        ]
                      }
                    }
+                 }
+               ]
+             }
+           }
+         ]
+       }
+     }
+   }
+
+Appendix E.  Example of multi-chassis network elements
+
+   This appendix provides some examples of multi-chassis network
+   elements and how they can be modelled using the "ietf-network-
+   inventory" model defined in Section 5.
+
+   Multi-chassis network elements are network elements composed by two
+   or more chassis interconnected, in principle, with any topology.
+
+   Stacked switches are an example of multi-chassis which consist of
+   multiple standalone switches that are interconnected through
+   dedicated stack ports and cables and managed as a single logical
+   unit.  Stacked switch: - are connected using a daisy-chain or a ring
+   topology - are managed using a single IP Address - synchronized
+   software-upgrade - use Priority/MAC-Addr(s) decide Master/Members
+   selection and communication.
+
+   Figure 13 and Figure 14 describe two examples of stacked switch with
+   three stacked switches (pizza boxes) connected in a daisy-chain or
+   ring topology.
+
+       +--------------------------------------+
+       |                                +---+ |
+       |                                | 1 | |
+       |        Chassis 1               +---+ |
+       |                                +---+ |
+       |                                | 2 |<----+
+       |                                +---+ |   |
+       +--------------------------------------+   |
+                                                  |
+                                                  |
+       +--------------------------------------+   |
+       |                                +---+ |   |
+       |                                | 1 |<----+
+       |        Chassis 2               +---+ |
+       |                                +---+ |
+       |                                | 2 |<----+
+       |                                +---+ |   |
+       +--------------------------------------+   |
+                                                  |
+                                                  |
+       +--------------------------------------+   |
+       |                                +---+ |   |
+       |                                | 1 |<----+
+       |        Chassis 3               +---+ |
+       |                                +---+ |
+       |                                | 2 | |
+       |                                +---+ |
+       +--------------------------------------+
+
+      Figure 13: Example of a stacked switch in a daisy chain topology
+
+       +--------------------------------------+
+       |                                +---+ |
+       |                                | 1 |<---------+
+       |        Chassis 1               +---+ |        |
+       |                                +---+ |        |
+       |                                | 2 |<----+    |
+       |                                +---+ |   |    |
+       +--------------------------------------+   |    |
+                                                  |    |
+                                                  |    |
+       +--------------------------------------+   |    |
+       |                                +---+ |   |    |
+       |                                | 1 |<----+    |
+       |        Chassis 2               +---+ |        |
+       |                                +---+ |        |
+       |                                | 2 |<----+    |
+       |                                +---+ |   |    |
+       +--------------------------------------+   |    |
+                                                  |    |
+                                                  |    |
+       +--------------------------------------+   |    |
+       |                                +---+ |   |    |
+       |                                | 1 |<----+    |
+       |        Chassis 3               +---+ |        |
+       |                                +---+ |        |
+       |                                | 2 |<---------+
+       |                                +---+ |
+       +--------------------------------------+
+
+         Figure 14: Example of a stacked switch in a ring topology
+
+   Using the base network inventory model, each stackable switch can be
+   modelled as a chassis within the same network element, which models
+   the stacked switch.  The stack ports are modelled like other ports.
+   The stack cables are not reported using the base network inventory
+   model but can be reported using the passive network inventory model
+   under definition in [I-D.ygb-ivy-passive-network-inventory].
+
+   Cascaded switches are another example of multi-chassis which consist
+   of multiple standalone switches that are interconnected and managed
+   as a single logical unit.  Cascaded switch: - are usually connected
+   in a tree topology - are managed using a single IP Address - the root
+   of the tree is configured as Master.
+
+   Figure 15 describe an example of cascaded switch with three chassis
+   connected in a tree topology.
+
+           +----------------------------------------------+
+           |  S1 |    Chassis 1      | S20 |        | S32 |
+           |+---+|                   |     |        |+---+|
+           || 1 ||                   |     |        || 1 ||
+           |+---+|                   |     |        |+---+|
+           | ... |                   |     |        |     |
+           |+---+|                   |     |        |     |
+     +----->| 4 ||                   |     |        | ... |
+     |     |+---+|                   |     |        |     |
+     |     |     |                   |     |        |     |
+     |     |     |                   |     |        |+---+|
+     |     |     |      ...          |     |   ...  || 6 |<-----+
+     |     | ... |                   |     |        |+---+|     |
+     |     |     |                   |     |        |     |     |
+     |     |     |                   |     |        | ... |     |
+     |     |     |                   |     |        |     |     |
+     |     |+---+|                   |     |        |+---+|     |
+     |     ||10 ||                   |     |        ||10 ||     |
+     |     |+---+|                   |     |        |+---+|     |
+     |     +----------------------------------------------+     |
+     |                                                          |
+     |                                                          |
+     |  +-------------------------------+                       |
+     |  |  S1 |     Chassis 2     | S16 |                       |
+     |  |     |                   |     |                       |
+     |  |     |                   |     |                       |
+     |  |+---+|                   |     |                       |
+     +---> 5 ||                   |     |                       |
+        |+---+|                   |     |                       |
+        |     |                   |     |                       |
+        |     |                   |     |                       |
+        +-------------------------------+                       |
+                                                                |
+                                                                |
+                             +-------------------------------+  |
+                             |  S1 |     Chassis 3     | S16 |  |
+                             |     |                   |     |  |
+                             |     |                   |     |  |
+                             |     |                   |     |  |
+                             |     |                   |+---+|  |
+                             |     |                   || 7 |<--+
+                             |     |                   |+---+|
+                             |     |                   |     |
+                             +-------------------------------+
+
+         Figure 15: Example of a cascaded switch in a tree topology
+
+   Using the base network inventory model each interconnected switch can
+   be modelled as a chassis within the same network element, which
+   models the cascaded switch.  The ports used to interconnect the
+   different chassis are normal (traffic) ports and modelled like other
+   ports.  The interconnecting cables are not reported using the base
+   network inventory model but can be reported using the passive network
+   inventory model under definition in
+   [I-D.ygb-ivy-passive-network-inventory].
+
+E.1.  JSON Examples
+
+   This appendix contains an example of an instance data tree in JSON
+   encoding [RFC7951], instantiating the "ietf-network-inventory" model
+   to describe the three examples of multi-chassis NEs, as shown in xxx,
+   yyy and zzz.
+
+      Note: the base inventory model allows reporting only the chassis
+      and ports configuration.  Reporting the link between the chassis
+      of the same NE is outside the scope of the base inventory model.
+      The YANG data model under definition in
+      [I-D.ygb-ivy-passive-network-inventory] as an augmentation of the
+      base inventory model can be used to provide this additional
+      information.
+
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
+   {
+     "ietf-network-inventory:network-inventory": {
+       "network-elements": {
+         "network-element" : [
+           {
+             "ne-id": "NE-1",
+             "description": "Stack Switch in a daisy chain topology.",
+             "components": {
+               "component": [
+                 {
+                   "component-id": "chassis-1",
+                   "class": "iana-hardware:chassis",
+                   "description": "First switch of the stack.",
+                   "parent-rel-pos": 1,
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "board-1",
+                   "class": "iana-hardware:module",
+                   "description": "Single board of the first switch of \
+                                                            the stack.",
+                   "parent": "chassis-1",
+                   "is-fru": false
+                 },
+                 {
+                   "component-id": "port-1-1",
+                   "class": "iana-hardware:port",
+                   "description": "First stack port of the first \
+                                                  switch in the stack.",
+                   "parent": "board-1",
+                   "parent-rel-pos": 1
+                 },
+                 {
+                   "component-id": "port-1-2",
+                   "class": "iana-hardware:port",
+                   "description": "Second stack port of the first \
+                                                  switch in the stack.",
+                   "parent": "board-1",
+                   "parent-rel-pos": 2
+                 },
+                 {
+                   "component-id": "transceiver-module-1-2",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                   second stack port of the first switch in the stack.",
+                   "parent": "port-1-2",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "chassis-2",
+                   "class": "iana-hardware:chassis",
+                   "description": "Second switch of the stack.",
+                   "parent-rel-pos": 1,
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "board-2",
+                   "class": "iana-hardware:module",
+                   "description": "Single board of the second switch \
+                                                         of the stack.",
+                   "parent": "chassis-2",
+                   "is-fru": false
+                 },
+                 {
+                   "component-id": "port-2-1",
+                   "class": "iana-hardware:port",
+                   "description": "First stack port of the second \
+                                                  switch in the stack.",
+                   "parent": "board-2",
+                   "parent-rel-pos": 1
+                 },
+                 {
+                   "component-id": "transceiver-module-2-1",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                    first stack port of the first switch in the stack.",
+                   "parent": "port-2-1",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "port-2-2",
+                   "class": "iana-hardware:port",
+                   "description": "Second stack port of the second \
+                                                  switch in the stack.",
+                   "parent": "board-2",
+                   "parent-rel-pos": 2
+                 },
+                 {
+                   "component-id": "transceiver-module-2-2",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                   second stack port of the first switch in the stack.",
+                   "parent": "port-2-2",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "chassis-3",
+                   "class": "iana-hardware:chassis",
+                   "description": "Third switch of the stack.",
+                   "parent-rel-pos": 1,
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "board-3",
+                   "class": "iana-hardware:module",
+                   "description": "Single board of the third switch of \
+                                                            the stack.",
+                   "parent": "chassis-3",
+                   "is-fru": false
+                 },
+                 {
+                   "component-id": "port-3-1",
+                   "class": "iana-hardware:port",
+                   "description": "First stack port of the third \
+                                                  switch in the stack.",
+                   "parent": "board-3",
+                   "parent-rel-pos": 1
+                 },
+                 {
+                   "component-id": "transceiver-module-3-1",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                    first stack port of the third switch in the stack.",
+                   "parent": "port-3-1",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "port-3-2",
+                   "class": "iana-hardware:port",
+                   "description": "Second stack port of the second \
+                                                  switch in the stack.",
+                   "parent": "board-3",
+                   "parent-rel-pos": 2
+                 }
+               ]
+             }
+           },
+           {
+             "ne-id": "NE-2",
+             "description": "Stack Switch in a ring topology.",
+             "components": {
+               "component": [
+                 {
+                   "component-id": "chassis-1",
+                   "class": "iana-hardware:chassis",
+                   "description": "First switch of the stack.",
+                   "parent-rel-pos": 1,
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "board-1",
+                   "class": "iana-hardware:module",
+                   "description": "Single board of the first switch of \
+                                                            the stack.",
+                   "parent": "chassis-1",
+                   "is-fru": false
+                 },
+                 {
+                   "component-id": "port-1-1",
+                   "class": "iana-hardware:port",
+                   "description": "First stack port of the first \
+                                                  switch in the stack.",
+                   "parent": "board-1",
+                   "parent-rel-pos": 1
+                 },
+                 {
+                   "component-id": "transceiver-module-1-1",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                    first stack port of the first switch in the stack.",
+                   "parent": "port-1-1",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "port-1-2",
+                   "class": "iana-hardware:port",
+                   "description": "Second stack port of the first \
+                                                  switch in the stack.",
+                   "parent": "board-1",
+                   "parent-rel-pos": 2
+                 },
+                 {
+                   "component-id": "transceiver-module-1-2",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                   second stack port of the first switch in the stack.",
+                   "parent": "port-1-2",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "chassis-2",
+                   "class": "iana-hardware:chassis",
+                   "description": "Second switch of the stack.",
+                   "parent-rel-pos": 1,
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "board-2",
+                   "class": "iana-hardware:module",
+                   "description": "Single board of the second switch \
+                                                         of the stack.",
+                   "parent": "chassis-2",
+                   "is-fru": false
+                 },
+                 {
+                   "component-id": "port-2-1",
+                   "class": "iana-hardware:port",
+                   "description": "First stack port of the second \
+                                                  switch in the stack.",
+                   "parent": "board-2",
+                   "parent-rel-pos": 1
+                 },
+                 {
+                   "component-id": "transceiver-module-2-1",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                    first stack port of the first switch in the stack.",
+                   "parent": "port-2-1",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "port-2-2",
+                   "class": "iana-hardware:port",
+                   "description": "Second stack port of the second \
+                                                  switch in the stack.",
+                   "parent": "board-2",
+                   "parent-rel-pos": 2
+                 },
+                 {
+                   "component-id": "transceiver-module-2-2",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                   second stack port of the first switch in the stack.",
+                   "parent": "port-2-2",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "chassis-3",
+                   "class": "iana-hardware:chassis",
+                   "description": "Third switch of the stack.",
+                   "parent-rel-pos": 1,
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "board-3",
+                   "class": "iana-hardware:module",
+                   "description": "Single board of the third switch of \
+                                                            the stack.",
+                   "parent": "chassis-3",
+                   "is-fru": false
+                 },
+                 {
+                   "component-id": "port-3-1",
+                   "class": "iana-hardware:port",
+                   "description": "First stack port of the third \
+                                                  switch in the stack.",
+                   "parent": "board-3",
+                   "parent-rel-pos": 1
+                 },
+                 {
+                   "component-id": "transceiver-module-3-1",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                    first stack port of the third switch in the stack.",
+                   "parent": "port-3-1",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "port-3-2",
+                   "class": "iana-hardware:port",
+                   "description": "Second stack port of the second \
+                                                  switch in the stack.",
+                   "parent": "board-3",
+                   "parent-rel-pos": 2
+                 },
+                 {
+                   "component-id": "transceiver-module-3-2",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                   second stack port of the third switch in the stack.",
+                   "parent": "port-3-2",
+                   "is-fru": true
+                 }
+               ]
+             }
+           },
+           {
+             "ne-id": "NE-3",
+             "description": "TBA.",
+             "components": {
+               "component": [
+                 {
+                   "component-id": "chassis-1",
+                   "class": "iana-hardware:chassis",
+                   "description": "First TBD.",
+                   "parent-rel-pos": 1,
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "board-1",
+                   "class": "iana-hardware:module",
+                   "description": "Single board of the first switch of \
+                                                            the stack.",
+                   "parent": "chassis-1",
+                   "is-fru": false
+                 },
+                 {
+                   "component-id": "port-1-1",
+                   "class": "iana-hardware:port",
+                   "description": "First stack port of the first \
+                                                  switch in the stack.",
+                   "parent": "board-1",
+                   "parent-rel-pos": 1
+                 },
+                 {
+                   "component-id": "transceiver-module-1-1",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                    first stack port of the first switch in the stack.",
+                   "parent": "port-1-1",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "port-1-2",
+                   "class": "iana-hardware:port",
+                   "description": "Second stack port of the first \
+                                                  switch in the stack.",
+                   "parent": "board-1",
+                   "parent-rel-pos": 2
+                 },
+                 {
+                   "component-id": "transceiver-module-1-2",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                   second stack port of the first switch in the stack.",
+                   "parent": "port-1-2",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "chassis-2",
+                   "class": "iana-hardware:chassis",
+                   "description": "Second switch of the stack.",
+                   "parent-rel-pos": 1,
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "board-2",
+                   "class": "iana-hardware:module",
+                   "description": "Single board of the second switch \
+                                                         of the stack.",
+                   "parent": "chassis-2",
+                   "is-fru": false
+                 },
+                 {
+                   "component-id": "port-2-1",
+                   "class": "iana-hardware:port",
+                   "description": "First stack port of the second \
+                                                  switch in the stack.",
+                   "parent": "board-2",
+                   "parent-rel-pos": 1
+                 },
+                 {
+                   "component-id": "transceiver-module-2-1",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                    first stack port of the first switch in the stack.",
+                   "parent": "port-2-1",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "port-2-2",
+                   "class": "iana-hardware:port",
+                   "description": "Second stack port of the second \
+                                                  switch in the stack.",
+                   "parent": "board-2",
+                   "parent-rel-pos": 2
+                 },
+                 {
+                   "component-id": "transceiver-module-2-2",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                   second stack port of the first switch in the stack.",
+                   "parent": "port-2-2",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "chassis-3",
+                   "class": "iana-hardware:chassis",
+                   "description": "Third switch of the stack.",
+                   "parent-rel-pos": 1,
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "board-3",
+                   "class": "iana-hardware:module",
+                   "description": "Single board of the third switch of \
+                                                            the stack.",
+                   "parent": "chassis-3",
+                   "is-fru": false
+                 },
+                 {
+                   "component-id": "port-3-1",
+                   "class": "iana-hardware:port",
+                   "description": "First stack port of the third \
+                                                  switch in the stack.",
+                   "parent": "board-3",
+                   "parent-rel-pos": 1
+                 },
+                 {
+                   "component-id": "transceiver-module-3-1",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                    first stack port of the third switch in the stack.",
+                   "parent": "port-3-1",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "port-3-2",
+                   "class": "iana-hardware:port",
+                   "description": "Second stack port of the second \
+                                                  switch in the stack.",
+                   "parent": "board-3",
+                   "parent-rel-pos": 2
+                 },
+                 {
+                   "component-id": "transceiver-module-3-2",
+                   "class": "ietf-network-inventory:transceiver-module",
+                   "description": "Transceiver module plugged in the \
+                   second stack port of the third switch in the stack.",
+                   "parent": "port-3-2",
+                   "is-fru": true
                  }
                ]
              }

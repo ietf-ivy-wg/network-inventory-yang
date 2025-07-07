@@ -14,14 +14,14 @@
        This document defines a base YANG data model for network inventory. The scope of this base model is set to
 be application- and technology-agnostic. The base data model can be augmented with application- and technology-specific details. 
     " name="description">
-<meta content="xml2rfc 3.28.1" name="generator">
+<meta content="xml2rfc 3.29.0" name="generator">
 <meta content="next generation" name="keyword">
 <meta content="unicorn" name="keyword">
 <meta content="sparkling distributed ledger" name="keyword">
 <meta content="draft-ietf-ivy-network-inventory-yang-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.28.1
-    Python 3.12.10
+  xml2rfc 3.29.0
+    Python 3.12.11
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
@@ -30,7 +30,7 @@ be application- and technology-agnostic. The base data model can be augmented wi
     platformdirs 4.3.8
     pycountry 24.6.1
     PyYAML 6.0.2
-    requests 2.32.3
+    requests 2.32.4
     setuptools 80.9.0
     wcwidth 0.2.13
 -->
@@ -1051,11 +1051,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Network Inventory YANG</td>
-<td class="right">June 2025</td>
+<td class="right">July 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Yu, et al.</td>
-<td class="center">Expires 6 December 2025</td>
+<td class="center">Expires 8 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ivy-network-inventory-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-06-04" class="published">4 June 2025</time>
+<time datetime="2025-07-07" class="published">7 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-12-06">6 December 2025</time></dd>
+<dd class="expires"><time datetime="2026-01-08">8 January 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1135,7 +1135,7 @@ be application- and technology-agnostic. The base data model can be augmented wi
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 6 December 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1272,13 +1272,21 @@ be application- and technology-agnostic. The base data model can be augmented wi
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
-            <p id="section-toc.1-1.14.1"><a href="#appendix-E" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.14.1"><a href="#appendix-E" class="auto internal xref">Appendix E</a>.  <a href="#name-example-of-multi-chassis-ne" class="internal xref">Example of multi-chassis network elements</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14.2.1">
+                <p id="section-toc.1-1.14.2.1.1"><a href="#appendix-E.1" class="auto internal xref">E.1</a>.  <a href="#name-json-examples-2" class="internal xref">JSON Examples</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15">
-            <p id="section-toc.1-1.15.1"><a href="#appendix-F" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+            <p id="section-toc.1-1.15.1"><a href="#appendix-F" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16">
-            <p id="section-toc.1-1.16.1"><a href="#appendix-G" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.16.1"><a href="#appendix-G" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.17">
+            <p id="section-toc.1-1.17.1"><a href="#appendix-H" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -2768,11 +2776,15 @@ module ietf-network-inventory {
 <dd class="break"></dd>
 <dt id="I-D.ietf-ivy-network-inventory-software">[I-D.ietf-ivy-network-inventory-software]</dt>
         <dd>
-<span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Zhou, C.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">M. Boucadair</span>, <span class="refTitle">"A YANG Network Data Model of Network Inventory Software Extensions"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-software-00</span>, <time datetime="2024-12-09" class="refDate">9 December 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-software-00">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-software-00</a>&gt;</span>. </dd>
+<span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Zhou, C.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">M. Boucadair</span>, <span class="refTitle">"A YANG Network Data Model of Network Inventory Software Extensions"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-software-01</span>, <time datetime="2025-06-10" class="refDate">10 June 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-software-01">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-software-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-teas-actn-poi-applicability">[I-D.ietf-teas-actn-poi-applicability]</dt>
         <dd>
-<span class="refAuthor">Peruzzini, F.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">King, D.</span>, and <span class="refAuthor">D. Ceccarelli</span>, <span class="refTitle">"Applicability of Abstraction and Control of Traffic Engineered Networks (ACTN) to Packet Optical Integration (POI)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-actn-poi-applicability-14</span>, <time datetime="2025-02-25" class="refDate">25 February 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-poi-applicability-14">https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-poi-applicability-14</a>&gt;</span>. </dd>
+<span class="refAuthor">Peruzzini, F.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">King, D.</span>, and <span class="refAuthor">D. Ceccarelli</span>, <span class="refTitle">"Applicability of Abstraction and Control of Traffic Engineered Networks (ACTN) to Packet Optical Integration (POI)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-actn-poi-applicability-15</span>, <time datetime="2025-07-04" class="refDate">4 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-poi-applicability-15">https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-poi-applicability-15</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ygb-ivy-passive-network-inventory">[I-D.ygb-ivy-passive-network-inventory]</dt>
+        <dd>
+<span class="refAuthor">Yu, C.</span>, <span class="refAuthor">Guo, A.</span>, and <span class="refAuthor">I. Busi</span>, <span class="refTitle">"A YANG Data Model for Passive Network Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ygb-ivy-passive-network-inventory-00</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ygb-ivy-passive-network-inventory-00">https://datatracker.ietf.org/doc/html/draft-ygb-ivy-passive-network-inventory-00</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC1157">[RFC1157]</dt>
         <dd>
@@ -4278,17 +4290,804 @@ module ietf-network-inventory {
 </div>
 </section>
 </div>
-<div id="acknowledgments">
+<div id="multi-chassis-examples">
 <section id="appendix-E">
+      <h2 id="name-example-of-multi-chassis-ne">
+<a href="#appendix-E" class="section-number selfRef">Appendix E. </a><a href="#name-example-of-multi-chassis-ne" class="section-name selfRef">Example of multi-chassis network elements</a>
+      </h2>
+<p id="appendix-E-1">This appendix provides some examples of multi-chassis network elements and how they can be modelled using the "ietf-network-inventory" model defined in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#appendix-E-1" class="pilcrow">¶</a></p>
+<p id="appendix-E-2">Multi-chassis network elements are network elements composed by two or more chassis interconnected, in principle, with any topology.<a href="#appendix-E-2" class="pilcrow">¶</a></p>
+<p id="appendix-E-3">Stacked switches are an example of multi-chassis which consist of multiple standalone switches that are interconnected through dedicated stack ports and cables and managed as a single logical unit. Stacked switch:
+- are connected using a daisy-chain or a ring topology
+- are managed using a single IP Address
+- synchronized software-upgrade
+- use Priority/MAC-Addr(s) decide Master/Members selection and communication.<a href="#appendix-E-3" class="pilcrow">¶</a></p>
+<p id="appendix-E-4"><a href="#fig-daisy-chain-stacked" class="auto internal xref">Figure 13</a> and <a href="#fig-ring-stacked" class="auto internal xref">Figure 14</a> describe two examples of stacked switch with three stacked switches (pizza boxes) connected in a daisy-chain or ring topology.<a href="#appendix-E-4" class="pilcrow">¶</a></p>
+<span id="name-example-of-a-stacked-switch"></span><div id="fig-daisy-chain-stacked">
+<figure id="figure-13">
+        <div id="appendix-E-5.1">
+          <div class="alignLeft art-svg artwork" id="appendix-E-5.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="528" width="360" viewBox="0 0 360 528" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,32 L 8,144" fill="none" stroke="black"></path>
+              <path d="M 8,192 L 8,304" fill="none" stroke="black"></path>
+              <path d="M 8,352 L 8,464" fill="none" stroke="black"></path>
+              <path d="M 272,48 L 272,128" fill="none" stroke="black"></path>
+              <path d="M 272,208 L 272,288" fill="none" stroke="black"></path>
+              <path d="M 272,368 L 272,448" fill="none" stroke="black"></path>
+              <path d="M 304,48 L 304,128" fill="none" stroke="black"></path>
+              <path d="M 304,208 L 304,288" fill="none" stroke="black"></path>
+              <path d="M 304,368 L 304,448" fill="none" stroke="black"></path>
+              <path d="M 320,32 L 320,104" fill="none" stroke="black"></path>
+              <path d="M 320,120 L 320,144" fill="none" stroke="black"></path>
+              <path d="M 320,192 L 320,216" fill="none" stroke="black"></path>
+              <path d="M 320,232 L 320,264" fill="none" stroke="black"></path>
+              <path d="M 320,280 L 320,304" fill="none" stroke="black"></path>
+              <path d="M 320,352 L 320,376" fill="none" stroke="black"></path>
+              <path d="M 320,392 L 320,464" fill="none" stroke="black"></path>
+              <path d="M 352,112 L 352,224" fill="none" stroke="black"></path>
+              <path d="M 352,272 L 352,384" fill="none" stroke="black"></path>
+              <path d="M 8,32 L 320,32" fill="none" stroke="black"></path>
+              <path d="M 272,48 L 304,48" fill="none" stroke="black"></path>
+              <path d="M 272,80 L 304,80" fill="none" stroke="black"></path>
+              <path d="M 272,96 L 304,96" fill="none" stroke="black"></path>
+              <path d="M 312,112 L 352,112" fill="none" stroke="black"></path>
+              <path d="M 272,128 L 304,128" fill="none" stroke="black"></path>
+              <path d="M 8,144 L 320,144" fill="none" stroke="black"></path>
+              <path d="M 8,192 L 320,192" fill="none" stroke="black"></path>
+              <path d="M 272,208 L 304,208" fill="none" stroke="black"></path>
+              <path d="M 312,224 L 352,224" fill="none" stroke="black"></path>
+              <path d="M 272,240 L 304,240" fill="none" stroke="black"></path>
+              <path d="M 272,256 L 304,256" fill="none" stroke="black"></path>
+              <path d="M 312,272 L 352,272" fill="none" stroke="black"></path>
+              <path d="M 272,288 L 304,288" fill="none" stroke="black"></path>
+              <path d="M 8,304 L 320,304" fill="none" stroke="black"></path>
+              <path d="M 8,352 L 320,352" fill="none" stroke="black"></path>
+              <path d="M 272,368 L 304,368" fill="none" stroke="black"></path>
+              <path d="M 312,384 L 352,384" fill="none" stroke="black"></path>
+              <path d="M 272,400 L 304,400" fill="none" stroke="black"></path>
+              <path d="M 272,416 L 304,416" fill="none" stroke="black"></path>
+              <path d="M 272,448 L 304,448" fill="none" stroke="black"></path>
+              <path d="M 8,464 L 320,464" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="320,384 308,378.4 308,389.6" fill="black" transform="rotate(180,312,384)"></polygon>
+              <polygon class="arrowhead" points="320,272 308,266.4 308,277.6" fill="black" transform="rotate(180,312,272)"></polygon>
+              <polygon class="arrowhead" points="320,224 308,218.4 308,229.6" fill="black" transform="rotate(180,312,224)"></polygon>
+              <polygon class="arrowhead" points="320,112 308,106.4 308,117.6" fill="black" transform="rotate(180,312,112)"></polygon>
+              <g class="text">
+                <text x="288" y="68">1</text>
+                <text x="104" y="84">Chassis</text>
+                <text x="144" y="84">1</text>
+                <text x="288" y="116">2</text>
+                <text x="288" y="228">1</text>
+                <text x="104" y="244">Chassis</text>
+                <text x="144" y="244">2</text>
+                <text x="288" y="276">2</text>
+                <text x="288" y="388">1</text>
+                <text x="104" y="404">Chassis</text>
+                <text x="144" y="404">3</text>
+                <text x="288" y="436">2</text>
+              </g>
+            </svg><a href="#appendix-E-5.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
+<a href="#name-example-of-a-stacked-switch" class="selfRef">Example of a stacked switch in a daisy chain topology</a>
+        </figcaption></figure>
+</div>
+<span id="name-example-of-a-stacked-switch-"></span><div id="fig-ring-stacked">
+<figure id="figure-14">
+        <div id="appendix-E-6.1">
+          <div class="alignLeft art-svg artwork" id="appendix-E-6.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="512" width="400" viewBox="0 0 400 512" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,48 L 8,160" fill="none" stroke="black"></path>
+              <path d="M 8,208 L 8,320" fill="none" stroke="black"></path>
+              <path d="M 8,368 L 8,480" fill="none" stroke="black"></path>
+              <path d="M 272,64 L 272,144" fill="none" stroke="black"></path>
+              <path d="M 272,224 L 272,304" fill="none" stroke="black"></path>
+              <path d="M 272,384 L 272,464" fill="none" stroke="black"></path>
+              <path d="M 304,64 L 304,144" fill="none" stroke="black"></path>
+              <path d="M 304,224 L 304,304" fill="none" stroke="black"></path>
+              <path d="M 304,384 L 304,464" fill="none" stroke="black"></path>
+              <path d="M 320,48 L 320,72" fill="none" stroke="black"></path>
+              <path d="M 320,88 L 320,120" fill="none" stroke="black"></path>
+              <path d="M 320,136 L 320,160" fill="none" stroke="black"></path>
+              <path d="M 320,208 L 320,232" fill="none" stroke="black"></path>
+              <path d="M 320,248 L 320,280" fill="none" stroke="black"></path>
+              <path d="M 320,296 L 320,320" fill="none" stroke="black"></path>
+              <path d="M 320,368 L 320,392" fill="none" stroke="black"></path>
+              <path d="M 320,408 L 320,440" fill="none" stroke="black"></path>
+              <path d="M 320,456 L 320,480" fill="none" stroke="black"></path>
+              <path d="M 352,128 L 352,240" fill="none" stroke="black"></path>
+              <path d="M 352,288 L 352,400" fill="none" stroke="black"></path>
+              <path d="M 392,80 L 392,448" fill="none" stroke="black"></path>
+              <path d="M 8,48 L 320,48" fill="none" stroke="black"></path>
+              <path d="M 272,64 L 304,64" fill="none" stroke="black"></path>
+              <path d="M 312,80 L 392,80" fill="none" stroke="black"></path>
+              <path d="M 272,96 L 304,96" fill="none" stroke="black"></path>
+              <path d="M 272,112 L 304,112" fill="none" stroke="black"></path>
+              <path d="M 312,128 L 352,128" fill="none" stroke="black"></path>
+              <path d="M 272,144 L 304,144" fill="none" stroke="black"></path>
+              <path d="M 8,160 L 320,160" fill="none" stroke="black"></path>
+              <path d="M 8,208 L 320,208" fill="none" stroke="black"></path>
+              <path d="M 272,224 L 304,224" fill="none" stroke="black"></path>
+              <path d="M 312,240 L 352,240" fill="none" stroke="black"></path>
+              <path d="M 272,256 L 304,256" fill="none" stroke="black"></path>
+              <path d="M 272,272 L 304,272" fill="none" stroke="black"></path>
+              <path d="M 312,288 L 352,288" fill="none" stroke="black"></path>
+              <path d="M 272,304 L 304,304" fill="none" stroke="black"></path>
+              <path d="M 8,320 L 320,320" fill="none" stroke="black"></path>
+              <path d="M 8,368 L 320,368" fill="none" stroke="black"></path>
+              <path d="M 272,384 L 304,384" fill="none" stroke="black"></path>
+              <path d="M 312,400 L 352,400" fill="none" stroke="black"></path>
+              <path d="M 272,416 L 304,416" fill="none" stroke="black"></path>
+              <path d="M 272,432 L 304,432" fill="none" stroke="black"></path>
+              <path d="M 312,448 L 392,448" fill="none" stroke="black"></path>
+              <path d="M 272,464 L 304,464" fill="none" stroke="black"></path>
+              <path d="M 8,480 L 320,480" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="320,448 308,442.4 308,453.6" fill="black" transform="rotate(180,312,448)"></polygon>
+              <polygon class="arrowhead" points="320,400 308,394.4 308,405.6" fill="black" transform="rotate(180,312,400)"></polygon>
+              <polygon class="arrowhead" points="320,288 308,282.4 308,293.6" fill="black" transform="rotate(180,312,288)"></polygon>
+              <polygon class="arrowhead" points="320,240 308,234.4 308,245.6" fill="black" transform="rotate(180,312,240)"></polygon>
+              <polygon class="arrowhead" points="320,128 308,122.4 308,133.6" fill="black" transform="rotate(180,312,128)"></polygon>
+              <polygon class="arrowhead" points="320,80 308,74.4 308,85.6" fill="black" transform="rotate(180,312,80)"></polygon>
+              <g class="text">
+                <text x="288" y="84">1</text>
+                <text x="104" y="100">Chassis</text>
+                <text x="144" y="100">1</text>
+                <text x="288" y="132">2</text>
+                <text x="288" y="244">1</text>
+                <text x="104" y="260">Chassis</text>
+                <text x="144" y="260">2</text>
+                <text x="288" y="292">2</text>
+                <text x="288" y="404">1</text>
+                <text x="104" y="420">Chassis</text>
+                <text x="144" y="420">3</text>
+                <text x="288" y="452">2</text>
+              </g>
+            </svg><a href="#appendix-E-6.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
+<a href="#name-example-of-a-stacked-switch-" class="selfRef">Example of a stacked switch in a ring topology</a>
+        </figcaption></figure>
+</div>
+<p id="appendix-E-7">Using the base network inventory model, each stackable switch can be modelled as a chassis within the same network element, which models the stacked switch. The stack ports are modelled like other ports. The stack cables are not reported using the base network inventory model but can be reported using the passive network inventory model under definition in <span>[<a href="#I-D.ygb-ivy-passive-network-inventory" class="cite xref">I-D.ygb-ivy-passive-network-inventory</a>]</span>.<a href="#appendix-E-7" class="pilcrow">¶</a></p>
+<p id="appendix-E-8">Cascaded switches are another example of multi-chassis which consist of multiple standalone switches that are interconnected and managed as a single logical unit. Cascaded switch:
+- are usually connected in a tree topology
+- are managed using a single IP Address
+- the root of the tree is configured as Master.<a href="#appendix-E-8" class="pilcrow">¶</a></p>
+<p id="appendix-E-9"><a href="#fig-tree-cascaded" class="auto internal xref">Figure 15</a> describe an example of cascaded switch with three chassis connected in a tree topology.<a href="#appendix-E-9" class="pilcrow">¶</a></p>
+<span id="name-example-of-a-cascaded-switc"></span><div id="fig-tree-cascaded">
+<figure id="figure-15">
+        <div id="appendix-E-10.1">
+          <div class="alignLeft art-svg artwork" id="appendix-E-10.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="752" width="488" viewBox="0 0 488 752" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,144 L 8,464" fill="none" stroke="black"></path>
+              <path d="M 32,384 L 32,456" fill="none" stroke="black"></path>
+              <path d="M 32,472 L 32,528" fill="none" stroke="black"></path>
+              <path d="M 56,32 L 56,128" fill="none" stroke="black"></path>
+              <path d="M 56,160 L 56,336" fill="none" stroke="black"></path>
+              <path d="M 64,64 L 64,96" fill="none" stroke="black"></path>
+              <path d="M 64,128 L 64,160" fill="none" stroke="black"></path>
+              <path d="M 64,288 L 64,320" fill="none" stroke="black"></path>
+              <path d="M 72,448 L 72,480" fill="none" stroke="black"></path>
+              <path d="M 80,392 L 80,520" fill="none" stroke="black"></path>
+              <path d="M 96,64 L 96,96" fill="none" stroke="black"></path>
+              <path d="M 96,128 L 96,160" fill="none" stroke="black"></path>
+              <path d="M 96,288 L 96,320" fill="none" stroke="black"></path>
+              <path d="M 104,40 L 104,328" fill="none" stroke="black"></path>
+              <path d="M 200,576 L 200,720" fill="none" stroke="black"></path>
+              <path d="M 240,392 L 240,520" fill="none" stroke="black"></path>
+              <path d="M 248,584 L 248,712" fill="none" stroke="black"></path>
+              <path d="M 264,40 L 264,328" fill="none" stroke="black"></path>
+              <path d="M 288,384 L 288,528" fill="none" stroke="black"></path>
+              <path d="M 312,40 L 312,328" fill="none" stroke="black"></path>
+              <path d="M 384,40 L 384,328" fill="none" stroke="black"></path>
+              <path d="M 392,64 L 392,96" fill="none" stroke="black"></path>
+              <path d="M 392,192 L 392,224" fill="none" stroke="black"></path>
+              <path d="M 392,288 L 392,320" fill="none" stroke="black"></path>
+              <path d="M 408,584 L 408,712" fill="none" stroke="black"></path>
+              <path d="M 416,656 L 416,688" fill="none" stroke="black"></path>
+              <path d="M 424,64 L 424,96" fill="none" stroke="black"></path>
+              <path d="M 424,192 L 424,224" fill="none" stroke="black"></path>
+              <path d="M 424,288 L 424,320" fill="none" stroke="black"></path>
+              <path d="M 432,32 L 432,192" fill="none" stroke="black"></path>
+              <path d="M 432,224 L 432,336" fill="none" stroke="black"></path>
+              <path d="M 448,656 L 448,688" fill="none" stroke="black"></path>
+              <path d="M 456,576 L 456,656" fill="none" stroke="black"></path>
+              <path d="M 456,688 L 456,720" fill="none" stroke="black"></path>
+              <path d="M 480,208 L 480,672" fill="none" stroke="black"></path>
+              <path d="M 56,32 L 432,32" fill="none" stroke="black"></path>
+              <path d="M 72,64 L 88,64" fill="none" stroke="black"></path>
+              <path d="M 400,64 L 416,64" fill="none" stroke="black"></path>
+              <path d="M 72,96 L 88,96" fill="none" stroke="black"></path>
+              <path d="M 400,96 L 416,96" fill="none" stroke="black"></path>
+              <path d="M 72,128 L 88,128" fill="none" stroke="black"></path>
+              <path d="M 8,144 L 56,144" fill="none" stroke="black"></path>
+              <path d="M 72,160 L 88,160" fill="none" stroke="black"></path>
+              <path d="M 400,192 L 416,192" fill="none" stroke="black"></path>
+              <path d="M 432,208 L 480,208" fill="none" stroke="black"></path>
+              <path d="M 400,224 L 416,224" fill="none" stroke="black"></path>
+              <path d="M 72,288 L 88,288" fill="none" stroke="black"></path>
+              <path d="M 400,288 L 416,288" fill="none" stroke="black"></path>
+              <path d="M 72,320 L 88,320" fill="none" stroke="black"></path>
+              <path d="M 400,320 L 416,320" fill="none" stroke="black"></path>
+              <path d="M 56,336 L 432,336" fill="none" stroke="black"></path>
+              <path d="M 32,384 L 288,384" fill="none" stroke="black"></path>
+              <path d="M 48,448 L 64,448" fill="none" stroke="black"></path>
+              <path d="M 8,464 L 40,464" fill="none" stroke="black"></path>
+              <path d="M 48,480 L 64,480" fill="none" stroke="black"></path>
+              <path d="M 32,528 L 288,528" fill="none" stroke="black"></path>
+              <path d="M 200,576 L 456,576" fill="none" stroke="black"></path>
+              <path d="M 424,656 L 440,656" fill="none" stroke="black"></path>
+              <path d="M 456,672 L 480,672" fill="none" stroke="black"></path>
+              <path d="M 424,688 L 440,688" fill="none" stroke="black"></path>
+              <path d="M 200,720 L 456,720" fill="none" stroke="black"></path>
+              <path d="M 72,64 C 63.16936,64 56,71.16936 56,80" fill="none" stroke="black"></path>
+              <path d="M 72,64 C 63.16936,64 56,56.83064 56,48" fill="none" stroke="black"></path>
+              <path d="M 88,64 C 96.83064,64 104,71.16936 104,80" fill="none" stroke="black"></path>
+              <path d="M 88,64 C 96.83064,64 104,56.83064 104,48" fill="none" stroke="black"></path>
+              <path d="M 400,64 C 391.16936,64 384,71.16936 384,80" fill="none" stroke="black"></path>
+              <path d="M 400,64 C 391.16936,64 384,56.83064 384,48" fill="none" stroke="black"></path>
+              <path d="M 416,64 C 424.83064,64 432,71.16936 432,80" fill="none" stroke="black"></path>
+              <path d="M 416,64 C 424.83064,64 432,56.83064 432,48" fill="none" stroke="black"></path>
+              <path d="M 72,96 C 63.16936,96 56,103.16936 56,112" fill="none" stroke="black"></path>
+              <path d="M 72,96 C 63.16936,96 56,88.83064 56,80" fill="none" stroke="black"></path>
+              <path d="M 88,96 C 96.83064,96 104,103.16936 104,112" fill="none" stroke="black"></path>
+              <path d="M 88,96 C 96.83064,96 104,88.83064 104,80" fill="none" stroke="black"></path>
+              <path d="M 400,96 C 391.16936,96 384,103.16936 384,112" fill="none" stroke="black"></path>
+              <path d="M 400,96 C 391.16936,96 384,88.83064 384,80" fill="none" stroke="black"></path>
+              <path d="M 416,96 C 424.83064,96 432,103.16936 432,112" fill="none" stroke="black"></path>
+              <path d="M 416,96 C 424.83064,96 432,88.83064 432,80" fill="none" stroke="black"></path>
+              <path d="M 72,128 C 63.16936,128 56,120.83064 56,112" fill="none" stroke="black"></path>
+              <path d="M 88,128 C 96.83064,128 104,135.16936 104,144" fill="none" stroke="black"></path>
+              <path d="M 88,128 C 96.83064,128 104,120.83064 104,112" fill="none" stroke="black"></path>
+              <path d="M 72,160 C 63.16936,160 56,167.16936 56,176" fill="none" stroke="black"></path>
+              <path d="M 88,160 C 96.83064,160 104,167.16936 104,176" fill="none" stroke="black"></path>
+              <path d="M 88,160 C 96.83064,160 104,152.83064 104,144" fill="none" stroke="black"></path>
+              <path d="M 400,192 C 391.16936,192 384,199.16936 384,208" fill="none" stroke="black"></path>
+              <path d="M 400,192 C 391.16936,192 384,184.83064 384,176" fill="none" stroke="black"></path>
+              <path d="M 416,192 C 424.83064,192 432,184.83064 432,176" fill="none" stroke="black"></path>
+              <path d="M 400,224 C 391.16936,224 384,231.16936 384,240" fill="none" stroke="black"></path>
+              <path d="M 400,224 C 391.16936,224 384,216.83064 384,208" fill="none" stroke="black"></path>
+              <path d="M 416,224 C 424.83064,224 432,231.16936 432,240" fill="none" stroke="black"></path>
+              <path d="M 72,288 C 63.16936,288 56,295.16936 56,304" fill="none" stroke="black"></path>
+              <path d="M 72,288 C 63.16936,288 56,280.83064 56,272" fill="none" stroke="black"></path>
+              <path d="M 88,288 C 96.83064,288 104,295.16936 104,304" fill="none" stroke="black"></path>
+              <path d="M 88,288 C 96.83064,288 104,280.83064 104,272" fill="none" stroke="black"></path>
+              <path d="M 400,288 C 391.16936,288 384,295.16936 384,304" fill="none" stroke="black"></path>
+              <path d="M 400,288 C 391.16936,288 384,280.83064 384,272" fill="none" stroke="black"></path>
+              <path d="M 416,288 C 424.83064,288 432,295.16936 432,304" fill="none" stroke="black"></path>
+              <path d="M 416,288 C 424.83064,288 432,280.83064 432,272" fill="none" stroke="black"></path>
+              <path d="M 72,320 C 63.16936,320 56,327.16936 56,336" fill="none" stroke="black"></path>
+              <path d="M 72,320 C 63.16936,320 56,312.83064 56,304" fill="none" stroke="black"></path>
+              <path d="M 88,320 C 96.83064,320 104,312.83064 104,304" fill="none" stroke="black"></path>
+              <path d="M 400,320 C 391.16936,320 384,312.83064 384,304" fill="none" stroke="black"></path>
+              <path d="M 416,320 C 424.83064,320 432,327.16936 432,336" fill="none" stroke="black"></path>
+              <path d="M 416,320 C 424.83064,320 432,312.83064 432,304" fill="none" stroke="black"></path>
+              <path d="M 48,448 C 39.16936,448 32,440.83064 32,432" fill="none" stroke="black"></path>
+              <path d="M 64,448 C 72.83064,448 80,455.16936 80,464" fill="none" stroke="black"></path>
+              <path d="M 64,448 C 72.83064,448 80,440.83064 80,432" fill="none" stroke="black"></path>
+              <path d="M 48,480 C 39.16936,480 32,487.16936 32,496" fill="none" stroke="black"></path>
+              <path d="M 64,480 C 72.83064,480 80,487.16936 80,496" fill="none" stroke="black"></path>
+              <path d="M 64,480 C 72.83064,480 80,472.83064 80,464" fill="none" stroke="black"></path>
+              <path d="M 424,656 C 415.16936,656 408,663.16936 408,672" fill="none" stroke="black"></path>
+              <path d="M 424,656 C 415.16936,656 408,648.83064 408,640" fill="none" stroke="black"></path>
+              <path d="M 440,656 C 448.83064,656 456,648.83064 456,640" fill="none" stroke="black"></path>
+              <path d="M 424,688 C 415.16936,688 408,695.16936 408,704" fill="none" stroke="black"></path>
+              <path d="M 424,688 C 415.16936,688 408,680.83064 408,672" fill="none" stroke="black"></path>
+              <path d="M 440,688 C 448.83064,688 456,695.16936 456,704" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="464,672 452,666.4 452,677.6" fill="black" transform="rotate(180,456,672)"></polygon>
+              <polygon class="arrowhead" points="440,208 428,202.4 428,213.6" fill="black" transform="rotate(180,432,208)"></polygon>
+              <polygon class="arrowhead" points="64,144 52,138.4 52,149.6" fill="black" transform="rotate(0,56,144)"></polygon>
+              <polygon class="arrowhead" points="48,464 36,458.4 36,469.6" fill="black" transform="rotate(0,40,464)"></polygon>
+              <g class="text">
+                <text x="84" y="52">S1</text>
+                <text x="168" y="52">Chassis</text>
+                <text x="208" y="52">1</text>
+                <text x="288" y="52">S20</text>
+                <text x="408" y="52">S32</text>
+                <text x="80" y="84">1</text>
+                <text x="408" y="84">1</text>
+                <text x="80" y="116">...</text>
+                <text x="80" y="148">4</text>
+                <text x="408" y="148">...</text>
+                <text x="168" y="212">...</text>
+                <text x="352" y="212">...</text>
+                <text x="408" y="212">6</text>
+                <text x="80" y="228">...</text>
+                <text x="408" y="260">...</text>
+                <text x="76" y="308">10</text>
+                <text x="404" y="308">10</text>
+                <text x="60" y="404">S1</text>
+                <text x="152" y="404">Chassis</text>
+                <text x="192" y="404">2</text>
+                <text x="264" y="404">S16</text>
+                <text x="56" y="468">5</text>
+                <text x="228" y="596">S1</text>
+                <text x="320" y="596">Chassis</text>
+                <text x="360" y="596">3</text>
+                <text x="432" y="596">S16</text>
+                <text x="432" y="676">7</text>
+              </g>
+            </svg><a href="#appendix-E-10.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-15" class="selfRef">Figure 15</a>:
+<a href="#name-example-of-a-cascaded-switc" class="selfRef">Example of a cascaded switch in a tree topology</a>
+        </figcaption></figure>
+</div>
+<p id="appendix-E-11">Using the base network inventory model each interconnected switch can be modelled as a chassis within the same network element, which models the cascaded switch. The ports used to interconnect the different chassis are normal (traffic) ports and modelled like other ports. The interconnecting cables are not reported using the base network inventory model but can be reported using the passive network inventory model under definition in <span>[<a href="#I-D.ygb-ivy-passive-network-inventory" class="cite xref">I-D.ygb-ivy-passive-network-inventory</a>]</span>.<a href="#appendix-E-11" class="pilcrow">¶</a></p>
+<div id="json-examples-1">
+<section id="appendix-E.1">
+        <h3 id="name-json-examples-2">
+<a href="#appendix-E.1" class="section-number selfRef">E.1. </a><a href="#name-json-examples-2" class="section-name selfRef">JSON Examples</a>
+        </h3>
+<p id="appendix-E.1-1">This appendix contains an example of an instance data tree in JSON encoding <span>[<a href="#RFC7951" class="cite xref">RFC7951</a>]</span>, instantiating the "ietf-network-inventory" model to describe the three examples of multi-chassis NEs, as shown in xxx, yyy and zzz.<a href="#appendix-E.1-1" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="appendix-E.1-2.1">
+            <p id="appendix-E.1-2.1.1">Note: the base inventory model allows reporting only the chassis and ports configuration. Reporting the link between the chassis of the same NE is outside the scope of the base inventory model. The YANG data model under definition in <span>[<a href="#I-D.ygb-ivy-passive-network-inventory" class="cite xref">I-D.ygb-ivy-passive-network-inventory</a>]</span> as an augmentation of the base inventory model can be used to provide this additional information.<a href="#appendix-E.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<div class="alignLeft art-ascii-art art-text artwork" id="appendix-E.1-3">
+<pre>
+=============== NOTE: '\' line wrapping per RFC 8792 ================
+
+{
+  "ietf-network-inventory:network-inventory": {
+    "network-elements": {
+      "network-element" : [
+        {
+          "ne-id": "NE-1",
+          "description": "Stack Switch in a daisy chain topology.",
+          "components": {
+            "component": [
+              {
+                "component-id": "chassis-1",
+                "class": "iana-hardware:chassis",
+                "description": "First switch of the stack.",
+                "parent-rel-pos": 1,
+                "is-fru": true
+              },
+              {
+                "component-id": "board-1",
+                "class": "iana-hardware:module",
+                "description": "Single board of the first switch of \
+                                                         the stack.",
+                "parent": "chassis-1",
+                "is-fru": false
+              },
+              {
+                "component-id": "port-1-1",
+                "class": "iana-hardware:port",
+                "description": "First stack port of the first \
+                                               switch in the stack.",
+                "parent": "board-1",
+                "parent-rel-pos": 1
+              },
+              {
+                "component-id": "port-1-2",
+                "class": "iana-hardware:port",
+                "description": "Second stack port of the first \
+                                               switch in the stack.",
+                "parent": "board-1",
+                "parent-rel-pos": 2
+              },
+              {
+                "component-id": "transceiver-module-1-2",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                second stack port of the first switch in the stack.",
+                "parent": "port-1-2",
+                "is-fru": true
+              },
+              {
+                "component-id": "chassis-2",
+                "class": "iana-hardware:chassis",
+                "description": "Second switch of the stack.",
+                "parent-rel-pos": 1,
+                "is-fru": true
+              },
+              {
+                "component-id": "board-2",
+                "class": "iana-hardware:module",
+                "description": "Single board of the second switch \
+                                                      of the stack.",
+                "parent": "chassis-2",
+                "is-fru": false
+              },
+              {
+                "component-id": "port-2-1",
+                "class": "iana-hardware:port",
+                "description": "First stack port of the second \
+                                               switch in the stack.",
+                "parent": "board-2",
+                "parent-rel-pos": 1
+              },
+              {
+                "component-id": "transceiver-module-2-1",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                 first stack port of the first switch in the stack.",
+                "parent": "port-2-1",
+                "is-fru": true
+              },
+              {
+                "component-id": "port-2-2",
+                "class": "iana-hardware:port",
+                "description": "Second stack port of the second \
+                                               switch in the stack.",
+                "parent": "board-2",
+                "parent-rel-pos": 2
+              },
+              {
+                "component-id": "transceiver-module-2-2",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                second stack port of the first switch in the stack.",
+                "parent": "port-2-2",
+                "is-fru": true
+              },
+              {
+                "component-id": "chassis-3",
+                "class": "iana-hardware:chassis",
+                "description": "Third switch of the stack.",
+                "parent-rel-pos": 1,
+                "is-fru": true
+              },
+              {
+                "component-id": "board-3",
+                "class": "iana-hardware:module",
+                "description": "Single board of the third switch of \
+                                                         the stack.",
+                "parent": "chassis-3",
+                "is-fru": false
+              },
+              {
+                "component-id": "port-3-1",
+                "class": "iana-hardware:port",
+                "description": "First stack port of the third \
+                                               switch in the stack.",
+                "parent": "board-3",
+                "parent-rel-pos": 1
+              },
+              {
+                "component-id": "transceiver-module-3-1",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                 first stack port of the third switch in the stack.",
+                "parent": "port-3-1",
+                "is-fru": true
+              },
+              {
+                "component-id": "port-3-2",
+                "class": "iana-hardware:port",
+                "description": "Second stack port of the second \
+                                               switch in the stack.",
+                "parent": "board-3",
+                "parent-rel-pos": 2
+              }
+            ]
+          }
+        },
+        {
+          "ne-id": "NE-2",
+          "description": "Stack Switch in a ring topology.",
+          "components": {
+            "component": [
+              {
+                "component-id": "chassis-1",
+                "class": "iana-hardware:chassis",
+                "description": "First switch of the stack.",
+                "parent-rel-pos": 1,
+                "is-fru": true
+              },
+              {
+                "component-id": "board-1",
+                "class": "iana-hardware:module",
+                "description": "Single board of the first switch of \
+                                                         the stack.",
+                "parent": "chassis-1",
+                "is-fru": false
+              },
+              {
+                "component-id": "port-1-1",
+                "class": "iana-hardware:port",
+                "description": "First stack port of the first \
+                                               switch in the stack.",
+                "parent": "board-1",
+                "parent-rel-pos": 1
+              },
+              {
+                "component-id": "transceiver-module-1-1",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                 first stack port of the first switch in the stack.",
+                "parent": "port-1-1",
+                "is-fru": true
+              },
+              {
+                "component-id": "port-1-2",
+                "class": "iana-hardware:port",
+                "description": "Second stack port of the first \
+                                               switch in the stack.",
+                "parent": "board-1",
+                "parent-rel-pos": 2
+              },
+              {
+                "component-id": "transceiver-module-1-2",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                second stack port of the first switch in the stack.",
+                "parent": "port-1-2",
+                "is-fru": true
+              },
+              {
+                "component-id": "chassis-2",
+                "class": "iana-hardware:chassis",
+                "description": "Second switch of the stack.",
+                "parent-rel-pos": 1,
+                "is-fru": true
+              },
+              {
+                "component-id": "board-2",
+                "class": "iana-hardware:module",
+                "description": "Single board of the second switch \
+                                                      of the stack.",
+                "parent": "chassis-2",
+                "is-fru": false
+              },
+              {
+                "component-id": "port-2-1",
+                "class": "iana-hardware:port",
+                "description": "First stack port of the second \
+                                               switch in the stack.",
+                "parent": "board-2",
+                "parent-rel-pos": 1
+              },
+              {
+                "component-id": "transceiver-module-2-1",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                 first stack port of the first switch in the stack.",
+                "parent": "port-2-1",
+                "is-fru": true
+              },
+              {
+                "component-id": "port-2-2",
+                "class": "iana-hardware:port",
+                "description": "Second stack port of the second \
+                                               switch in the stack.",
+                "parent": "board-2",
+                "parent-rel-pos": 2
+              },
+              {
+                "component-id": "transceiver-module-2-2",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                second stack port of the first switch in the stack.",
+                "parent": "port-2-2",
+                "is-fru": true
+              },
+              {
+                "component-id": "chassis-3",
+                "class": "iana-hardware:chassis",
+                "description": "Third switch of the stack.",
+                "parent-rel-pos": 1,
+                "is-fru": true
+              },
+              {
+                "component-id": "board-3",
+                "class": "iana-hardware:module",
+                "description": "Single board of the third switch of \
+                                                         the stack.",
+                "parent": "chassis-3",
+                "is-fru": false
+              },
+              {
+                "component-id": "port-3-1",
+                "class": "iana-hardware:port",
+                "description": "First stack port of the third \
+                                               switch in the stack.",
+                "parent": "board-3",
+                "parent-rel-pos": 1
+              },
+              {
+                "component-id": "transceiver-module-3-1",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                 first stack port of the third switch in the stack.",
+                "parent": "port-3-1",
+                "is-fru": true
+              },
+              {
+                "component-id": "port-3-2",
+                "class": "iana-hardware:port",
+                "description": "Second stack port of the second \
+                                               switch in the stack.",
+                "parent": "board-3",
+                "parent-rel-pos": 2
+              },
+              {
+                "component-id": "transceiver-module-3-2",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                second stack port of the third switch in the stack.",
+                "parent": "port-3-2",
+                "is-fru": true
+              }
+            ]
+          }
+        },
+        {
+          "ne-id": "NE-3",
+          "description": "TBA.",
+          "components": {
+            "component": [
+              {
+                "component-id": "chassis-1",
+                "class": "iana-hardware:chassis",
+                "description": "First TBD.",
+                "parent-rel-pos": 1,
+                "is-fru": true
+              },
+              {
+                "component-id": "board-1",
+                "class": "iana-hardware:module",
+                "description": "Single board of the first switch of \
+                                                         the stack.",
+                "parent": "chassis-1",
+                "is-fru": false
+              },
+              {
+                "component-id": "port-1-1",
+                "class": "iana-hardware:port",
+                "description": "First stack port of the first \
+                                               switch in the stack.",
+                "parent": "board-1",
+                "parent-rel-pos": 1
+              },
+              {
+                "component-id": "transceiver-module-1-1",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                 first stack port of the first switch in the stack.",
+                "parent": "port-1-1",
+                "is-fru": true
+              },
+              {
+                "component-id": "port-1-2",
+                "class": "iana-hardware:port",
+                "description": "Second stack port of the first \
+                                               switch in the stack.",
+                "parent": "board-1",
+                "parent-rel-pos": 2
+              },
+              {
+                "component-id": "transceiver-module-1-2",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                second stack port of the first switch in the stack.",
+                "parent": "port-1-2",
+                "is-fru": true
+              },
+              {
+                "component-id": "chassis-2",
+                "class": "iana-hardware:chassis",
+                "description": "Second switch of the stack.",
+                "parent-rel-pos": 1,
+                "is-fru": true
+              },
+              {
+                "component-id": "board-2",
+                "class": "iana-hardware:module",
+                "description": "Single board of the second switch \
+                                                      of the stack.",
+                "parent": "chassis-2",
+                "is-fru": false
+              },
+              {
+                "component-id": "port-2-1",
+                "class": "iana-hardware:port",
+                "description": "First stack port of the second \
+                                               switch in the stack.",
+                "parent": "board-2",
+                "parent-rel-pos": 1
+              },
+              {
+                "component-id": "transceiver-module-2-1",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                 first stack port of the first switch in the stack.",
+                "parent": "port-2-1",
+                "is-fru": true
+              },
+              {
+                "component-id": "port-2-2",
+                "class": "iana-hardware:port",
+                "description": "Second stack port of the second \
+                                               switch in the stack.",
+                "parent": "board-2",
+                "parent-rel-pos": 2
+              },
+              {
+                "component-id": "transceiver-module-2-2",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                second stack port of the first switch in the stack.",
+                "parent": "port-2-2",
+                "is-fru": true
+              },
+              {
+                "component-id": "chassis-3",
+                "class": "iana-hardware:chassis",
+                "description": "Third switch of the stack.",
+                "parent-rel-pos": 1,
+                "is-fru": true
+              },
+              {
+                "component-id": "board-3",
+                "class": "iana-hardware:module",
+                "description": "Single board of the third switch of \
+                                                         the stack.",
+                "parent": "chassis-3",
+                "is-fru": false
+              },
+              {
+                "component-id": "port-3-1",
+                "class": "iana-hardware:port",
+                "description": "First stack port of the third \
+                                               switch in the stack.",
+                "parent": "board-3",
+                "parent-rel-pos": 1
+              },
+              {
+                "component-id": "transceiver-module-3-1",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                 first stack port of the third switch in the stack.",
+                "parent": "port-3-1",
+                "is-fru": true
+              },
+              {
+                "component-id": "port-3-2",
+                "class": "iana-hardware:port",
+                "description": "Second stack port of the second \
+                                               switch in the stack.",
+                "parent": "board-3",
+                "parent-rel-pos": 2
+              },
+              {
+                "component-id": "transceiver-module-3-2",
+                "class": "ietf-network-inventory:transceiver-module",
+                "description": "Transceiver module plugged in the \
+                second stack port of the third switch in the stack.",
+                "parent": "port-3-2",
+                "is-fru": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
+</pre><a href="#appendix-E.1-3" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-F">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-E-1">The authors of this document would like to thank the authors of <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> for having identified the gap and requirements to trigger this work.<a href="#appendix-E-1" class="pilcrow">¶</a></p>
-<p id="appendix-E-2">This document was prepared using kramdown.<a href="#appendix-E-2" class="pilcrow">¶</a></p>
+<p id="appendix-F-1">The authors of this document would like to thank the authors of <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> for having identified the gap and requirements to trigger this work.<a href="#appendix-F-1" class="pilcrow">¶</a></p>
+<p id="appendix-F-2">This document was prepared using kramdown.<a href="#appendix-F-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="contributors">
-<section id="appendix-F">
+<section id="appendix-G">
       <h2 id="name-contributors">
 <a href="#name-contributors" class="section-name selfRef">Contributors</a>
       </h2>
@@ -4351,7 +5150,7 @@ module ietf-network-inventory {
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-G">
+<section id="appendix-H">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
