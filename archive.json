@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-08T01:02:55.118321+00:00",
+  "timestamp": "2025-07-10T01:03:38.459433+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1980,19 +1980,26 @@
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
-        "YuChaode",
-        "lana-wu"
+        "italobusi"
       ],
       "labels": [
         "enhancement",
-        "needs discussion",
-        "priority-2"
+        "priority-2",
+        "wait-WG"
       ],
       "body": "The location attribute defined in [draft-ietf-ccamp-network-inventory-yang-02](https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-network-inventory-yang-02) is missing from the base model:\r\n\r\n```\r\n        leaf location {\r\n          type string;\r\n          description\r\n            \"A relative location information of this component.\r\n            In optical transport network, the location string is\r\n            using the following pattern:\r\n              '/ne=<nw-ne-name>[/r=<r_index>][/sh=<sh_index>\r\n              [/s_sh=<s_sh_index> ...]][[/sl=<sl_index>\r\n              [/s_sl=<s_sl_index> ...]][/p=<p_index> \u2026]]'\r\n            \";\r\n        }\r\n\r\n```\r\n\r\nAs indicated in Appendix A.1 of [draft-ietf-ccamp-network-inventory-yang-02](https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-network-inventory-yang-02), a similar attribute exists also in OpenConfig:\r\n\r\nhttps://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform.yang\r\n\r\nIt is proposed to add this attribute also to the base network inventory model with a more generic description:\r\n\r\n```\r\n    leaf location {\r\n      type string;\r\n      description\r\n        \"A system-defined description of the location of the\r\n        component within the system.\";\r\n    }\r\n\r\n```\r\n",
       "createdAt": "2024-03-22T04:10:51Z",
-      "updatedAt": "2024-10-01T16:03:42Z",
+      "updatedAt": "2025-07-09T22:32:10Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-07-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-09)**\n\nLocation was deprecated in OpenConfig\n\nThe ONF TR-547 location string can be calculated by the client using the information already provided in the base inventory model\n\nAn alternative option is to have this information being calculated by the server and reported to the client. The drawbacks of this approach are:\n- duplicated information in the YANG data model\n- need to standardize one (or a limited set of) string patterns to ensure different servers provides the same pattern\n\nIf the string is computed by the client, it can use the same pattern regardless of the different server implementations\n\nA preference has also been expressed to avoid duplicating information in the YANG data model\n\nThe proposal is not to add this attribute to the base inventory model\n\n- [ ] Describe this proposal in the IETF 123 presentation to get confirmation by the IVY WG\n",
+          "createdAt": "2025-07-09T22:31:38Z",
+          "updatedAt": "2025-07-09T22:32:10Z"
+        }
+      ]
     },
     {
       "number": 44,
@@ -3041,14 +3048,17 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "italobusi"
+      ],
       "labels": [
-        "needs discussion",
-        "priority-1"
+        "agreed",
+        "priority-1",
+        "wait-WG"
       ],
       "body": "My thoughts and Sergio's comments labeled with [SB]\r\n\r\nThe issue is finding terminology that will be agreeable to network equipment vendors, data center people, and computer hardware people.  The idea is simple, but can be mapped onto different terminology.\r\n\r\nFor example.\r\n\r\nA rack is a metal frame that may or may not contain electrical components that holds a chassis.\r\n\r\nA standard rack holding something like a Cisco 8804 chassis looks like this.\r\n\r\n![download](https://github.com/user-attachments/assets/f52983c7-d6dd-4e5a-8da5-716a02daa1aa)\r\n\r\n\r\nThe big holes you see in the picture above are slots.  There are slots on the back as well.  A slot can accept various modules, trays, or cards.  Some modules and/or cards can have daughter cards can be connected to the module or card.\r\n\r\n \r\n\r\nLooking at the Network Inventory YANG terminology.\r\n\r\nThe rack, chassis and slots above are (as TMF puts them) holders. \r\n\r\n[SB>] YES the TMF separation between \u201cholders\u201d and \u201cequipment\u201d groups  is also in our document\r\n\r\nAn example of a sub-chassis could be a tray that holds other components (like fans).  In the Network Inventory YANG the term Board is (I think) a module or a card. \r\n\r\n[SB>] In our model a board is defined as\u201d ianahw:module\u201d , there is no distinction unfortunately from module to card/board.\r\n\r\nUsually, modules are things like fans or power, so if we are modeling that we will need to differentiate a module from a card (so calling both of those board is probably wrong). \r\n\r\n[SB>]  Fan is considered as a specific card, it has a definition specific, not as ianahw:module .\r\n\r\nThere is a differentiation between cards as well (at least in Cisco-land).  There are \u201cline cards\u201d and \u201cfabric cards\u201d.  A line card has ports on it and in the case of optical pluggables a line card may have slots to accept pluggables. I don\u2019t know if that is what is intended by the \u201csub-slot\u201d terminology, but it could work since a pluggable would be considered a module that fits into a cards' sub-slot.  At least that is one interpretation. \r\n\r\n[SB>] In this case we would have a definition for sub-slot that should be \u201ca slot of a line-card hosting an optical pluggable\u201d\r\n\r\nA \u201cfabric card\u201d is a card that \u201cline cards\u201d and sometimes modules plug into.  But here the \"sub-slot\" terminology doesn't really work very well, because the \"sub-slot\" on the \"fabric card\" is not inline with the slot the \"fabric card\" is in.  \r\n\r\nWhat needs to be made clear is whether or not a \u201csub-slot\u201d is simply a holder or if a \u201csub-slot\u201d can be used for something like an optical pluggable.\r\n\r\n[SB>] It can be used as a holder for an optical pluggable in my view.\r\n\r\nI think a couple of examples to see what the instance data would look would help.\r\n\r\nLooking at M.3100.  I would say recursive not circular.\r\n\r\n \r\n\r\nA rack is made up of bays\r\n\r\nA chassis is held in some number of bays of a rack depending on the size of the chassis.\r\n\r\nA chassis has slots (or physical places to put things)\r\n\r\nA chassis slot holds a \"circuit pack\" (which can be a line card, fabric card, computer, power, fans etc.)\r\n\r\nA line card can also accept pluggables\r\n\r\n \r\n\r\nI think leveraging M.3100 and mapping the terminology is a good exercise.  Things will get more interesting when the data center people show up and want to start talking about blades.\r\n\r\n_Originally posted by @samans in https://github.com/ietf-ivy-wg/network-inventory-yang/pull/75#discussion_r1909574652_\r\n            ",
       "createdAt": "2025-01-29T18:23:55Z",
-      "updatedAt": "2025-07-04T23:01:14Z",
+      "updatedAt": "2025-07-09T22:27:29Z",
       "closedAt": null,
       "comments": [
         {
@@ -3099,6 +3109,13 @@
           "body": "**[2025-07-02 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-02)**\n\n> > > * [x]    [@ALL](https://github.com/ALL): review the current proposal on the mailing list for further discussion in the call next week\n\nAgreed to use the term 'card' instead of 'board' consistently within the document.\n\nCard: A pluggable equipment with a particular structural format and dimensions which can be inserted into one or more slots (or sub-slots). A card can have spaces to take other cards (called sub-slots). Elsewhere, a card can be called board, module, circuit pack, etc.\n\nSlot: A space in a chassis that can be equipped with one card, which may be chosen from a limited range of types of cards. A slot can be subdivided into smaller spaces (called sub-slots).\n\n**To be further reviewed in the next call**\n",
           "createdAt": "2025-07-02T16:19:56Z",
           "updatedAt": "2025-07-02T16:19:56Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-07-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-09)**\n\nAgreed the definitions as discussed last week:\n\n> Agreed to use the term 'card' instead of 'board' consistently within the document.\n> \n> Card: A pluggable equipment with a particular structural format and dimensions which can be inserted into one or more slots (or sub-slots). A card can have spaces to take other cards (called sub-slots). Elsewhere, a card can be called board, module, circuit pack, etc.\n> \n> Slot: A space in a chassis that can be equipped with one card, which may be chosen from a limited range of types of cards. A slot can be subdivided into smaller spaces (called sub-slots).\n\n- [ ] Submit a PR with the agree definitions\n",
+          "createdAt": "2025-07-09T22:27:11Z",
+          "updatedAt": "2025-07-09T22:27:11Z"
         }
       ]
     },
@@ -4074,22 +4091,32 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "italobusi"
+      ],
       "labels": [
-        "needs discussion",
-        "priority-1"
+        "agreed",
+        "priority-1",
+        "wait-WG"
       ],
       "body": "**[2025-07-02 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-02)**\n\nClarify also in the chassis definition that Elsewhere, a chassis can be called shelf, sub-rack, etc.",
       "createdAt": "2025-07-02T16:44:29Z",
-      "updatedAt": "2025-07-02T16:49:14Z",
+      "updatedAt": "2025-07-09T22:29:55Z",
       "closedAt": null,
       "comments": [
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "Chassis is currently defined by reference to iana-hardware\n\nThe definition of the shelf proposed on the IVY mailing list was:\n\n```\nShelf: An equipment with a particular structural format.\n       A shelf includes slots.\n       A shelf is field replaceable.\n```\n\nWe can try to derive the following definition for chassis:\n\n```\nChassis: A field replaceable equipment with a particular structural format.\n         A shelf includes spaces to take cards (called slots).\n         Elsewhere, a card can be called shelf, sub-rack, etc.\n```\nFew doubts:\n\n1. Why the chassis has only a particular structural format while the card has particular structural format and dimensions?\n2. What about pizza boxes with no slots?\n",
+          "body": "Chassis is currently defined by reference to iana-hardware\n\nThe definition of the shelf proposed on the IVY mailing list was:\n\n```\nShelf: An equipment with a particular structural format.\n       A shelf includes slots.\n       A shelf is field replaceable.\n```\n\nWe can try to derive the following definition for chassis:\n\n```\nChassis: A field replaceable equipment with a particular structural format.\n         A shelf includes spaces to take cards (called slots).\n         Elsewhere, a chassis can be called shelf, sub-rack, etc.\n```\nFew doubts:\n\n1. Why the chassis has only a particular structural format while the card has particular structural format and dimensions?\n2. What about pizza boxes with no slots?\n",
           "createdAt": "2025-07-02T16:48:55Z",
-          "updatedAt": "2025-07-02T16:48:55Z"
+          "updatedAt": "2025-07-09T10:21:34Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-07-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-09)**\n\nAgreed definition:\n\nChassis: A field replaceable equipment with a particular structural format and dimensions.\nA shelf can include spaces to take cards (called slots). Elsewhere, a chassis can be called shelf, sub-rack, etc.\n\n- [ ] Submit a PR with the agree definitions\n",
+          "createdAt": "2025-07-09T22:29:38Z",
+          "updatedAt": "2025-07-09T22:29:38Z"
         }
       ]
     },
