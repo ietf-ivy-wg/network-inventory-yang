@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-10T01:03:38.459433+00:00",
+  "timestamp": "2025-07-13T01:10:29.990456+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4030,15 +4030,23 @@
         "italobusi"
       ],
       "labels": [
-        "needs discussion",
+        "wait",
         "admin",
         "priority-1"
       ],
       "body": "",
       "createdAt": "2025-07-02T15:57:40Z",
-      "updatedAt": "2025-07-02T17:51:26Z",
+      "updatedAt": "2025-07-11T17:25:12Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-07-09 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-09)**\n\nSide meeting requested for one of these two alternative slot (in order of preference):\n\n- July 23, 2025 at 5:30-7:30pm Madrid Time (Room El Escorial )\n- July 24, 2025 at 4:30-6:00pm Madrid Time (Room El Escorial )\n\nNote: the schedule of side meetings is  available at https://trello.com/b/6kmZPwOx/ietf-123-side-meeting-scheduling\n\n- [ ] Announce the side meeting on the IVY WG mailing list once the slot is assigned\n",
+          "createdAt": "2025-07-11T17:18:16Z",
+          "updatedAt": "2025-07-11T17:25:12Z"
+        }
+      ]
     },
     {
       "number": 119,
