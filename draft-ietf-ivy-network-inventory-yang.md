@@ -196,13 +196,16 @@ The following terms are defined in the description statements of the correspondi
 - stack
 - storage device
 
-> Editors' Note: The port definition below needs to be moved to iana-hardware update
+> Editors' Note: The chassis and port definition below needs to be moved to iana-hardware update
+
+Chassis:
+: A field replaceable equipment with a particular structural format and dimensions.
+A chassis can include spaces to take cards (called slots).
+: Elsewhere, a chassis can be called shelf, sub-rack, etc.
 
 Port:
 : A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables.
 : In case of pluggable ports, the port may be empty when no transceiver module is plugged in.
-
-> TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
 Also, the document makes use of the following terms:
 
