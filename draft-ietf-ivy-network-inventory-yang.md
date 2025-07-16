@@ -196,25 +196,18 @@ The following terms are defined in the description statements of the correspondi
 - stack
 - storage device
 
-> Editors' Note: The port definition below needs to be moved to iana-hardware update
+> Editors' Note: The chassis and port definition below needs to be moved to iana-hardware update
+
+Chassis:
+: A field replaceable equipment with a particular structural format and dimensions.
+A chassis can include spaces(called slots) to take cards.
+: Elsewhere, a chassis can be called shelf, sub-rack, etc.
 
 Port:
 : A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables.
 : In case of pluggable ports, the port may be empty when no transceiver module is plugged in.
 
-> TBD: Recap the concept of chassis/slot/component/board/... in {{TMF_SD2-20}}.
-
 Also, the document makes use of the following terms:
-
-Physical interface:
-: An interface associated to a physical port. A physical interface is always in the lowest layer of the interface stack.
-
-Logical interface:
-: An interface which is not associated to a physical port.
-
-> Editors' Note: check whether the definitions of physical and logical interfaces can be replaced by a normative reference to {{!RFC8343}}
-
-> Editors' Note: Add recap for the concepts of chassis/slot/component/board/... in {{TMF_SD2-20}}.
 
 Network Inventory:
 : A collection of data for network elements and their components with network-wide scope, managed by a specific management system.
@@ -232,11 +225,20 @@ Hardware Component:
 Component:
 : The generalization of the hardware component definition to include other inventory objects which can be managed, from an inventory perspective, like hardware components.
 
-Slot:
-: A holder of the board.
+Card:
+: A pluggable equipment with a particular structural format and dimensions which can be inserted into one or more slots (or sub-slots). A card can have spaces (called sub-slots) to take other cards.
+: Elsewhere, a card can be called board, module, circuit pack, etc..
 
-Board/Card:
-: A pluggable equipment can be inserted into one or several slots (or sub-slots) and can afford a specific transmission function independently.
+Slot:
+: A space in a chassis that can be equipped with one card, which may be chosen from a limited range of types of cards. A slot can be subdivided into smaller spaces (called sub-slots).
+
+Physical interface:
+: An interface associated to a port. A physical interface is always in the lowest layer of the interface stack.
+
+Logical interface:
+: An interface which is not associated to a port.
+
+> Editors' Note: check whether the definitions of physical and logical interfaces can be replaced by a normative reference to {{!RFC8343}}
 
 Breakout Port:
 : A port is usually associated with a single physical interface. A breakout port is a port which is broken down and associated into multiple physical interfaces. Those physical interfaces can have the same or different speeds and the same or different number of breakout channels.
