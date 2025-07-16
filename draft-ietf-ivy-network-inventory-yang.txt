@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 8 January 2026                                            Nokia
+Expires: 17 January 2026                                           Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                             7 July 2025
+                                                            16 July 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 January 2026.
+   This Internet-Draft will expire on 17 January 2026.
 
 Copyright Notice
 
@@ -253,8 +253,14 @@ Table of Contents
 
    *  storage device
 
-      Editors' Note: The port definition below needs to be moved to
-      iana-hardware update
+      Editors' Note: The chassis and port definition below needs to be
+      moved to iana-hardware update
+
+   Chassis:  A field replaceable equipment with a particular structural
+      format and dimensions.  A chassis can include spaces(called slots)
+      to take cards.
+
+      Elsewhere, a chassis can be called shelf, sub-rack, etc.
 
    Port:  A component where networking traffic can be received and/or
       transmitted, e.g., by attaching networking cables.
@@ -262,24 +268,7 @@ Table of Contents
       In case of pluggable ports, the port may be empty when no
       transceiver module is plugged in.
 
-      TBD: Recap the concept of chassis/slot/component/board/... in
-      [TMF_SD2-20].
-
    Also, the document makes use of the following terms:
-
-   Physical interface:  An interface associated to a physical port.  A
-      physical interface is always in the lowest layer of the interface
-      stack.
-
-   Logical interface:  An interface which is not associated to a
-      physical port.
-
-      Editors' Note: check whether the definitions of physical and
-      logical interfaces can be replaced by a normative reference to
-      [RFC8343]
-
-      Editors' Note: Add recap for the concepts of
-      chassis/slot/component/board/... in [TMF_SD2-20].
 
    Network Inventory:  A collection of data for network elements and
       their components with network-wide scope, managed by a specific
@@ -303,11 +292,25 @@ Table of Contents
       to include other inventory objects which can be managed, from an
       inventory perspective, like hardware components.
 
-   Slot:  A holder of the board.
+   Card:  A pluggable equipment with a particular structural format and
+      dimensions which can be inserted into one or more slots (or sub-
+      slots).  A card can have spaces (called sub-slots) to take other
+      cards.
 
-   Board/Card:  A pluggable equipment can be inserted into one or
-      several slots (or sub-slots) and can afford a specific
-      transmission function independently.
+      Elsewhere, a card can be called board, module, circuit pack, etc..
+
+   Slot:  A space in a chassis that can be equipped with one card, which
+      may be chosen from a limited range of types of cards.  A slot can
+      be subdivided into smaller spaces (called sub-slots).
+
+   Physical interface:  An interface associated to a port.  A physical
+      interface is always in the lowest layer of the interface stack.
+
+   Logical interface:  An interface which is not associated to a port.
+
+      Editors' Note: check whether the definitions of physical and
+      logical interfaces can be replaced by a normative reference to
+      [RFC8343]
 
    Breakout Port:  A port is usually associated with a single physical
       interface.  A breakout port is a port which is broken down and
@@ -1376,17 +1379,17 @@ Table of Contents
               Beller, D., Le Rouzic, E., Belotti, S., Galimberti, G.,
               and I. Busi, "A YANG Data Model for Optical Impairment-
               aware Topology", Work in Progress, Internet-Draft, draft-
-              ietf-ccamp-optical-impairment-topology-yang-18, 11 April
+              ietf-ccamp-optical-impairment-topology-yang-19, 7 July
               2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              ccamp-optical-impairment-topology-yang-18>.
+              ccamp-optical-impairment-topology-yang-19>.
 
    [I-D.ietf-ivy-network-inventory-location]
               Wu, B., Belotti, S., Bouquier, J., Peruzzini, F., and P.
               Bedard, "A YANG Data Model for Network Inventory
               Location", Work in Progress, Internet-Draft, draft-ietf-
-              ivy-network-inventory-location-01, 17 April 2025,
+              ivy-network-inventory-location-03, 7 July 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-location-01>.
+              network-inventory-location-03>.
 
    [I-D.ietf-ivy-network-inventory-software]
               Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
@@ -1406,11 +1409,14 @@ Table of Contents
               actn-poi-applicability-15>.
 
    [I-D.ygb-ivy-passive-network-inventory]
-              Yu, C., Guo, A., and I. Busi, "A YANG Data Model for
-              Passive Network Inventory", Work in Progress, Internet-
-              Draft, draft-ygb-ivy-passive-network-inventory-00, 21
-              October 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ygb-ivy-passive-network-inventory-00>.
+              Yu, C., Guo, A., Busi, I., Boroon, M., Belotti, S., van
+              caenegem, T., S., S. 1., B., S., Davis, N., Tilocca, M.,
+              Peters, B., Yoon, B. Y., LIUYUCONG, Zhao, Y., and A.
+              Sakalabhaktula, "A YANG Data Model for Passive Network
+              Inventory", Work in Progress, Internet-Draft, draft-ygb-
+              ivy-passive-network-inventory-02, 7 July 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ygb-ivy-
+              passive-network-inventory-02>.
 
    [RFC1157]  Case, J., Fedor, M., Schoffstall, M., and J. Davin,
               "Simple Network Management Protocol (SNMP)", RFC 1157,
