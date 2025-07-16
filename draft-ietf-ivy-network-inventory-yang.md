@@ -200,7 +200,7 @@ The following terms are defined in the description statements of the correspondi
 
 Chassis:
 : A field replaceable equipment with a particular structural format and dimensions.
-A chassis can include spaces to take cards (called slots).
+A chassis can include spaces(called slots) to take cards.
 : Elsewhere, a chassis can be called shelf, sub-rack, etc.
 
 Port:
@@ -226,17 +226,17 @@ Component:
 : The generalization of the hardware component definition to include other inventory objects which can be managed, from an inventory perspective, like hardware components.
 
 Card:
-: A pluggable equipment with a particular structural format and dimensions which can be inserted into one or more slots (or sub-slots). A card can have spaces to take other cards (called sub-slots).
+: A pluggable equipment with a particular structural format and dimensions which can be inserted into one or more slots (or sub-slots). A card can have spaces (called sub-slots) to take other cards.
 : Elsewhere, a card can be called board, module, circuit pack, etc..
 
 Slot:
 : A space in a chassis that can be equipped with one card, which may be chosen from a limited range of types of cards. A slot can be subdivided into smaller spaces (called sub-slots).
 
 Physical interface:
-: An interface associated to a physical port. A physical interface is always in the lowest layer of the interface stack.
+: An interface associated to a port. A physical interface is always in the lowest layer of the interface stack.
 
 Logical interface:
-: An interface which is not associated to a physical port.
+: An interface which is not associated to a port.
 
 > Editors' Note: check whether the definitions of physical and logical interfaces can be replaced by a normative reference to {{!RFC8343}}
 
