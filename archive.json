@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-17T01:06:02.818013+00:00",
+  "timestamp": "2025-07-20T01:12:12.627641+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4014,7 +4014,7 @@
       ],
       "body": "",
       "createdAt": "2025-07-02T15:55:50Z",
-      "updatedAt": "2025-07-16T17:47:52Z",
+      "updatedAt": "2025-07-18T12:54:43Z",
       "closedAt": null,
       "comments": [
         {
@@ -4027,9 +4027,23 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-07-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-16)**\n\n> Initial draft for discussion during the call today: [network-inventory-yang-00.pptx](https://github.com/user-attachments/files/21258080/network-inventory-yang-00.pptx)\n\nSlides reviewed and updated during the call: [network-inventory-yang-01.pptx](https://github.com/user-attachments/files/21262121/network-inventory-yang-01.pptx)\n\n- [x] @sergiobelotti proposed rephrasing for slide 7\n\n- [ ] @italobusi @nigel-r-davis update slide 9 and 10\n\n- [ ] @italobusi update slide 3 and slide 11",
+          "body": "**[2025-07-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-16)**\n\n> Initial draft for discussion during the call today: [network-inventory-yang-00.pptx](https://github.com/user-attachments/files/21258080/network-inventory-yang-00.pptx)\n\nSlides reviewed and updated during the call: [network-inventory-yang-01.pptx](https://github.com/user-attachments/files/21262121/network-inventory-yang-01.pptx)\n\n- [x] @sergiobelotti proposed rephrasing for slide 7\n\n- [x] @italobusi @nigel-r-davis update slide 9 and 10\n\n- [x] @italobusi update slide 3 and slide 11",
           "createdAt": "2025-07-16T16:26:49Z",
-          "updatedAt": "2025-07-16T17:47:52Z"
+          "updatedAt": "2025-07-17T10:26:24Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x] [@sergiobelotti](https://github.com/sergiobelotti) proposed rephrasing for slide 7\n> \n> * [x] [@italobusi](https://github.com/italobusi) [@nigel-r-davis](https://github.com/nigel-r-davis) update slide 9 and 10\n> \n> * [x] [@italobusi](https://github.com/italobusi) update slide 3 and slide 11\n\nUpdated slides: [network-inventory-yang-02.pptx](https://github.com/user-attachments/files/21293297/network-inventory-yang-02.pptx)\n\nI think that these slides are ready for initial submission. We can update slides 9 and 10 with an alternative proposal after offline/side meetings in Madrid",
+          "createdAt": "2025-07-17T10:28:33Z",
+          "updatedAt": "2025-07-17T10:28:33Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Initial version of the slides uploaded: [slides-123-ivy-base-network-inventory-yang](https://datatracker.ietf.org/doc/slides-123-ivy-base-network-inventory-yang/)\n\nTo be further reviewed and updated during the side meeting",
+          "createdAt": "2025-07-18T12:54:43Z",
+          "updatedAt": "2025-07-18T12:54:43Z"
         }
       ]
     },
@@ -4183,9 +4197,17 @@
       "labels": [],
       "body": "As we know, port is a somewhat ambiguous term. The definition needs further refinement.\n\nIn addition, the \"physical port\" is potentially actually a \"connector\" which may help clarify the port definition, but leads to the need to define connector.\n\nIn TAPI, AccessPort and Connector are defined. AccessPort is a logical abstraction of pins in a connector that support a single signal flow. I will provide definitions from TAPI.\n\nI will aim to provide an improved definition in ivy for port and a definition for connector.\n\nThe relevant current definition (where port is mentioned) are:\n\nPort: : A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables. : In case of pluggable ports, the port may be empty when no transceiver module is plugged in.\n\nPhysical interface: : An interface associated to a physical port. A physical interface is always in the lowest layer of the interface stack.\n\nLogical interface: : An interface which is not associated to a physical port.\n\nBreakout Port: : A port is usually associated with a single physical interface. A breakout port is a port which is broken down and associated into multiple physical interfaces. Those physical interfaces can have the same or different speeds and the same or different number of breakout channels.\n\nTrunk Port: : A trunk port is a port which is associated with one and only physical interface.\n\nPort Breakout: : The configuration of a breakout port.\n",
       "createdAt": "2025-07-16T14:38:15Z",
-      "updatedAt": "2025-07-16T14:43:21Z",
+      "updatedAt": "2025-07-17T10:30:34Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@nigel-r-davis I think it would be good to have an alternative proposal to present and discuss at IETF 123. Could you prepare an initial draft for discussion during IETF 123?",
+          "createdAt": "2025-07-17T10:30:23Z",
+          "updatedAt": "2025-07-17T10:30:34Z"
+        }
+      ]
     },
     {
       "number": 126,
@@ -4199,9 +4221,45 @@
       "labels": [],
       "body": "The breakout port model has been worked extensively to a point where it is well understood and is seen to represent the breakout structure very well.\n\nHowever, the breakout port model appears to be logical inventory and hence should potentially not be in the ivy model. \n\nThis issue relates to issue #125.  ",
       "createdAt": "2025-07-16T14:47:44Z",
-      "updatedAt": "2025-07-16T14:47:44Z",
+      "updatedAt": "2025-07-17T10:30:49Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@nigel-r-davis I think it would be good to have an alternative proposal to present and discuss at IETF 123. We can work on that during offline and side meetings in Madrid",
+          "createdAt": "2025-07-17T10:29:33Z",
+          "updatedAt": "2025-07-17T10:30:49Z"
+        }
+      ]
+    },
+    {
+      "number": 127,
+      "id": "I_kwDOKiDYo87BDyGH",
+      "title": "Impact on RFC8348 and IANA Hardware",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/127",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "question",
+        "needs discussion",
+        "priority-1"
+      ],
+      "body": "Some of the enhancement of the base inventory model, especially for managing ports and breakout ports, may have an impact on RFC8348 and IANA Hardware\n\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/HMV09tk8C3NRhv2VkGxJySdP1CA/",
+      "createdAt": "2025-07-17T10:15:30Z",
+      "updatedAt": "2025-07-17T10:16:49Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The impacts need to be further assessed based on the resolution of some priority 1 issues (e.g., #112 and #126)",
+          "createdAt": "2025-07-17T10:16:49Z",
+          "updatedAt": "2025-07-17T10:16:49Z"
+        }
+      ]
     }
   ],
   "pulls": [
