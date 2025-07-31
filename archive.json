@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-20T01:12:12.627641+00:00",
+  "timestamp": "2025-07-31T01:07:00.038644+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -130,13 +130,12 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
-        "wga",
-        "wait",
-        "priority-1"
+        "priority-1",
+        "wait-sub"
       ],
       "body": "Some of the hardware and software attributes defined in Section 3.1 of [RFC7317] can be borrowed, such as platform-os version and machine.\r\n",
       "createdAt": "2023-10-23T08:32:25Z",
-      "updatedAt": "2025-06-24T14:10:22Z",
+      "updatedAt": "2025-07-30T15:40:50Z",
       "closedAt": null,
       "comments": [
         {
@@ -187,6 +186,13 @@
           "body": "**[2025-05-28 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-05-28)**\n\nConclusion: every attribute in RFC7317 (with the exception of os-name, os-release and os-version) is not needed in the base network inventory model.\n\nThe discussion on the os-name, os-release and os-version is pending resolution of issue #112\n\n",
           "createdAt": "2025-05-28T16:57:30Z",
           "updatedAt": "2025-05-28T16:57:30Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nTo be closed together with #44 and #112",
+          "createdAt": "2025-07-30T15:40:10Z",
+          "updatedAt": "2025-07-30T15:40:10Z"
         }
       ]
     },
@@ -198,14 +204,16 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "italobusi"
+      ],
       "labels": [
-        "wait",
-        "priority-1"
+        "priority-1",
+        "wait-PR"
       ],
       "body": "Need to discuss if to use parent-component-ref as in the original CCAMP WG draft or to define a parent attribute as in RFC8348",
       "createdAt": "2023-10-23T08:32:56Z",
-      "updatedAt": "2025-06-24T14:09:55Z",
+      "updatedAt": "2025-07-30T15:34:21Z",
       "closedAt": null,
       "comments": [
         {
@@ -298,6 +306,13 @@
           "body": "**[2025-06-04 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-06-04)**\n\n> * [x]  [@nigel-r-davis](https://github.com/nigel-r-davis) : provide more details on the alternative solution(s) for modelling slots and components\n\nSee sub-issue #111 \n",
           "createdAt": "2025-06-04T15:40:28Z",
           "updatedAt": "2025-06-24T14:09:47Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nActions based on IETF 123 IVY WG feedbacks:\n\n- [ ] update the parent data node to be a list\n",
+          "createdAt": "2025-07-30T15:34:17Z",
+          "updatedAt": "2025-07-30T15:34:17Z"
         }
       ]
     },
@@ -470,12 +485,11 @@
         "italobusi"
       ],
       "labels": [
-        "wait",
         "priority-1"
       ],
       "body": "See section 7 of [draft-wzwb-opsawg-network-inventory-management-04](https://datatracker.ietf.org/doc/html/draft-wzwb-opsawg-network-inventory-management-04#name-security-considerations)",
       "createdAt": "2023-10-23T08:36:14Z",
-      "updatedAt": "2025-06-24T14:04:02Z",
+      "updatedAt": "2025-07-30T16:11:29Z",
       "closedAt": null,
       "comments": [
         {
@@ -2009,14 +2023,16 @@
       "state": "OPEN",
       "author": "oscargdd",
       "authorAssociation": "NONE",
-      "assignees": [],
+      "assignees": [
+        "italobusi"
+      ],
       "labels": [
-        "wait",
-        "priority-1"
+        "priority-1",
+        "wait-PR"
       ],
       "body": "At device level we have the model name and the software rev. The software rev I believe is the version number (e.g. for Cisco IOS would be 7.11.2 , 7.8.2, etc, for Nokia 23.10, 24.4, etc....). The O.S. name itself could be (or not) included in the software rev.... So... would it be  more clear \"decoupling\" the software name and the software version/revision? This would requiring adding a field for the operating system name or software name. Another possibility, instead of just one leaf, would be to have a specific operating system container hanging from device... Thoughts?",
       "createdAt": "2024-04-11T08:38:17Z",
-      "updatedAt": "2025-06-04T16:03:15Z",
+      "updatedAt": "2025-07-30T15:39:14Z",
       "closedAt": null,
       "comments": [
         {
@@ -2039,6 +2055,13 @@
           "body": "Pending resolution of #112 \n",
           "createdAt": "2025-06-04T16:03:14Z",
           "updatedAt": "2025-06-04T16:03:14Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nActions based on IETF 123 IVY WG feedbacks:\n\n- [ ] add a software-name attribute to the NE\n",
+          "createdAt": "2025-07-30T15:39:14Z",
+          "updatedAt": "2025-07-30T15:39:14Z"
         }
       ]
     },
@@ -3806,18 +3829,17 @@
       "id": "I_kwDOKiDYo863rdPw",
       "title": "Slot should not be a component",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/111",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "nigel-r-davis",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [
-        "priority-1",
-        "wait-WG"
+        "priority-1"
       ],
       "body": "Slot is not a component. It has no independent life (it is not separable from the equipment (chassis etc.)), It does not have a serial number and must have the same manufacturer as the thing it is a slot in. It does not have software or firmware and does not have any substance (as I have explained on several occasions before). I have not come across a model that treats slot as an equal to a board before. In TM Forum, we did originally mix up holder and equipment where a holder was a type of equipment, but we subsequently corrected that (as per ITU-T G.7711).\n\nI propose the addition of an optional slot list to the component structure with the few properties that a slot actually has. I propose that this is the only approach to representation of slots and the slot as a component is not allowed in the standard usage.\n\nThis then means that a component is in a slot (or slots) of a component and hence references the slot leaf  (leaves) of the component. This can be a direct reference or an implicit list relationship. (better to cover the multi-slot occupancy challenge).\n\nLooking at component, the lines marked <<<<<<< below is not relevant for a slot (i.e., most of them!).\n\n           +--rw components\n              +--rw component* [component-id]\n                 +--rw component-id                        string\n                 +--ro class                               union\n                 +--ro uuid?                               yang:uuid <<<<<<<<<<<<<\n                 +--rw name?                               string\n                 +--rw description?                        string\n                 +--rw alias?                              string\n                 +--ro hardware-rev?                       string <<<<<<<<<<<<<\n                 +--ro software-rev?                       string <<<<<<<<<<<<<\n                 +--ro software-patch-rev*                 string <<<<<<<<<<<<<\n                 +--ro mfg-name?                           string <<<<<<<<<<<<<\n                 +--ro mfg-date?                                  <<<<<<<<<<<<<\n                 |       yang:date-and-time\n                 +--ro serial-number?                      string <<<<<<<<<<<<<\n                 +--ro product-name?                       string <<<<<<<<<<<<<\n                 +--ro firmware-rev?                       string <<<<<<<<<<<<<\n                 +--ro part-number?                        string <<<<<<<<<<<<<\n                 +--ro asset-id?                           string <<<<<<<<<<<<<\n                 +--ro child-component-ref\n                 +--ro parent-rel-pos?                     int32\n                 +--ro parent?\n                 |       -> ../../component/component-id\n                 +--ro is-fru?                             boolean <<<<<<<<<<<<<\n                 +--ro uri*                                inet:uri <<<<<<<<<<<<<\n                 +--ro chassis-specific-info <<<<<<<<<<<<<\n                 +--ro slot-specific-info\n                 +--ro board-specific-info <<<<<<<<<<<<<\n                 +--ro port-specific-info <<<<<<<<<<<<<\n                 +--ro transceiver-module-specific-info <<<<<<<<<<<<<\n                    +--ro breakout-channels!\n                       +--ro breakout-channel* [channel-id]\n                          +--ro channel-id    uint8\n\nTaking the relevant attributes some are then no longer relevant if this is to be converted to a dedicated slot structure.\n\n           +--rw components\n              +--rw component* [component-id]\n                 +--rw component-id                        string\n                 +--ro class                               union <<<<<<<<<<<<<\n                 +--rw name?                               string\n                 +--rw description?                        string\n                 +--rw alias?                              string\n                 +--ro child-component-ref\n                 +--ro parent-rel-pos?                     int32\n                 +--ro parent?                            <<<<<<<<<<<<<\n                 |       -> ../../component/component-id\n                 +--ro slot-specific-info\n\nThe slot structure then becomes\u2026 (some properties still look rather an overkill for slot)\u2026\n\n           +--rw slots?\n              +--rw slot* [component-id]\n                 +--rw slot-id                        string\n                 +--rw name?                               string\n                 +--rw description?                        string \n                 +--rw alias?                              string\n                 +--ro child-component-ref\n                 +--ro parent-rel-pos?                     int32\n                 +--ro slot-specific-info\n\nThe above structure then becomes an optional part of the component. Where a component has slots, the structure appears.\n\nTo cover alternative slot usage we can have several slot maps and some equivalence, much like alternative channelization of a signal.\n\nNote that LF TAPI equipment model covers actual and expected. This allows for preplanning. In a planning application the inventory has a time dimension and requires multiple things in a slot over time. We will need to add that later.\n\n",
       "createdAt": "2025-05-21T23:17:56Z",
-      "updatedAt": "2025-06-24T14:07:48Z",
-      "closedAt": null,
+      "updatedAt": "2025-07-30T15:32:44Z",
+      "closedAt": "2025-07-30T15:32:43Z",
       "comments": [
         {
           "author": "italobusi",
@@ -3846,6 +3868,13 @@
           "body": "**[2025-06-18 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-06-18)**\n\n> > * [x]   [@nigel-r-davis](https://github.com/nigel-r-davis)  trigger some discussion on the IVY WG mailing list\n> \n> see https://mailarchive.ietf.org/arch/msg/ivy/oN5eYMjRksRpaIEUzVhbdxgK2qY/\n\nJeff: it would be cleaner if IETF models the slots as holders and not as equipments (like in TAPI)\n\nOpenConfig does not model the slot explicitly but only the equipment plugged within the slot. Therefore, empty slots are not always reported: some vendors report the empty slots as an \"empty\" equipment.\n\n- [ ] @all continue the discussion on the IVY WG mailing list\n",
           "createdAt": "2025-06-18T15:51:56Z",
           "updatedAt": "2025-06-18T15:51:56Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nClosed based on IETF 123 IVY WG feedbacks: keep the current modelling of slot as a component\n",
+          "createdAt": "2025-07-30T15:32:43Z",
+          "updatedAt": "2025-07-30T15:32:43Z"
         }
       ]
     },
@@ -3858,16 +3887,15 @@
       "author": "nigel-r-davis",
       "authorAssociation": "NONE",
       "assignees": [
-        "nigel-r-davis",
-        "prmanna"
+        "italobusi"
       ],
       "labels": [
-        "wait",
-        "priority-1"
+        "priority-1",
+        "wait-PR"
       ],
       "body": "The NE is not a piece of hardware. The hardware is represented by a component. The NE is some kind of grouping/assembly statement for management-control or commercial purposes:\n- It may be considered as an asset, although this is challenging.\n- It may be in some form of inventory, but only as an assembly.\n- It does not have a hardware rev, although it could have an assembly revision.\n- It does not hold or run software directly, but may summarise the allowed/installed software on its various parts. \n- There will certainly be more than one instance of software in some cases and potentially multiple revs of each.\n- It is assembled and this could be considered as a manufacture, but the date may be difficult to define (un-like for an atomic FRU).\n- It does not have a proper serial number like a piece of hardware, although it may have an equivalent. (this may be on a label attached to one of the pieces of hardware it is assembled from).\n\n\n           +--ro hardware-rev?         string\n           +--ro software-rev?         string\n           +--ro software-patch-rev*   string\n           +--ro mfg-name?             string\n           +--ro mfg-date?             yang:date-and-time\n           +--ro serial-number?        string\n           +--ro product-name?         string\n\nFor an NE that has a single piece of hardware (e.g., a pizza box), this would be an NE with one component representing the actual hardware.\nNote that once we deal with expected/actual in the device, then the controller view of an NE that is a pizza box where there is an expectation and the actual hardware reported is inconsistent, the NE could have two \"components\", one expected and one actual, etc.\n",
       "createdAt": "2025-05-28T13:33:14Z",
-      "updatedAt": "2025-06-24T13:49:00Z",
+      "updatedAt": "2025-07-30T15:37:18Z",
       "closedAt": null,
       "comments": [
         {
@@ -3883,6 +3911,13 @@
           "body": "**[2025-06-23 Base Network Inventory ad-hoc call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-06-23)**\n\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/112#issuecomment-2984801432\n\n> To discuss next week:\n> \n> * software-rev\n> * software-patch-rev\n\nThe base model cannot cover complex scenarios where for example multiple SW modules are associated with a single NE or single hardware component. The SW inventory model has been designed to cover these complex scenarios\n\nTwo concerns with removing the SW information from the base inventory model:\n- making mandatory to implement the SW inventory model also in simple scenarios where there is only one OS for the NE and one SW module running on the component\n- the SW inventory model is re-using the component list defined in the base inventory model to model SW modules\n\nModelling a NE/component with a single module using the SW inventory model would make the solution more uniform and consistent with little overhead\n\nIt was also pointed out the serial-number attribute is not applicable to SW modules\n\n- [ ] @nigel-r-davis @prmanna review the latest I-D on SW inventory model and evaluate the impact of removing the SW attributes from the base model\n",
           "createdAt": "2025-06-24T13:48:32Z",
           "updatedAt": "2025-06-24T13:48:32Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nActions based on IETF 123 IVY WG feedbacks:\n\n- [ ] implement only the changes already agreed: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/112#issuecomment-2984801432\n\n> Agreements:\n> \n> * mfg-date: remove it as meaningless for NE\n> * serial-number: remove it (management of the asset id for the NE is out of scope of base inventory model)\n> * product-name: keep it\n> * hardware-rev: rename is as product-rev\n",
+          "createdAt": "2025-07-30T15:37:18Z",
+          "updatedAt": "2025-07-30T15:37:18Z"
         }
       ]
     },
@@ -3942,12 +3977,11 @@
       ],
       "labels": [
         "admin",
-        "priority-1",
-        "wait-PR"
+        "priority-1"
       ],
       "body": "",
       "createdAt": "2025-07-02T15:53:33Z",
-      "updatedAt": "2025-07-07T11:12:05Z",
+      "updatedAt": "2025-07-30T13:15:04Z",
       "closedAt": "2025-07-07T11:12:05Z",
       "comments": [
         {
@@ -4001,7 +4035,7 @@
       "id": "I_kwDOKiDYo86-hR0n",
       "title": "Prepare slides for IETF 123",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/117",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4014,8 +4048,8 @@
       ],
       "body": "",
       "createdAt": "2025-07-02T15:55:50Z",
-      "updatedAt": "2025-07-18T12:54:43Z",
-      "closedAt": null,
+      "updatedAt": "2025-07-30T13:14:24Z",
+      "closedAt": "2025-07-30T13:14:24Z",
       "comments": [
         {
           "author": "italobusi",
@@ -4044,6 +4078,13 @@
           "body": "Initial version of the slides uploaded: [slides-123-ivy-base-network-inventory-yang](https://datatracker.ietf.org/doc/slides-123-ivy-base-network-inventory-yang/)\n\nTo be further reviewed and updated during the side meeting",
           "createdAt": "2025-07-18T12:54:43Z",
           "updatedAt": "2025-07-18T12:54:43Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Slides presented at the meeting available: https://datatracker.ietf.org/doc/slides-123-ivy-base-network-inventory-yang/",
+          "createdAt": "2025-07-30T13:14:23Z",
+          "updatedAt": "2025-07-30T13:14:23Z"
         }
       ]
     },
@@ -4052,7 +4093,7 @@
       "id": "I_kwDOKiDYo86-hTUS",
       "title": "Plan for side meetings at IETF 123",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/118",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4065,8 +4106,8 @@
       ],
       "body": "",
       "createdAt": "2025-07-02T15:57:40Z",
-      "updatedAt": "2025-07-16T16:51:10Z",
-      "closedAt": null,
+      "updatedAt": "2025-07-30T13:13:42Z",
+      "closedAt": "2025-07-30T13:13:42Z",
       "comments": [
         {
           "author": "italobusi",
@@ -4078,9 +4119,16 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-07-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-16)**\n\n> Side meeting requested for one of these two alternative slot (in order of preference):\n> \n> * July 23, 2025 at 5:30-7:30pm Madrid Time (Room El Escorial )\n> * July 24, 2025 at 4:30-6:00pm Madrid Time (Room El Escorial )\n> \n> Note: the schedule of side meetings is available at https://trello.com/b/6kmZPwOx/ietf-123-side-meeting-scheduling\n\nThe first slot is conflicting with the IETF plenary and it seems that the booking system does not allow booking side meetings during the plenary\n\nWe are still waiting for confirmation for the second slot\n\n> - [ ] Announce the side meeting on the IVY WG mailing list once the slot is assigned\n",
+          "body": "**[2025-07-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-16)**\n\n> Side meeting requested for one of these two alternative slot (in order of preference):\n> \n> * July 23, 2025 at 5:30-7:30pm Madrid Time (Room El Escorial )\n> * July 24, 2025 at 4:30-6:00pm Madrid Time (Room El Escorial )\n> \n> Note: the schedule of side meetings is available at https://trello.com/b/6kmZPwOx/ietf-123-side-meeting-scheduling\n\nThe first slot is conflicting with the IETF plenary and it seems that the booking system does not allow booking side meetings during the plenary\n\nWe are still waiting for confirmation for the second slot\n\n> - [x] Announce the side meeting on the IVY WG mailing list once the slot is assigned\n",
           "createdAt": "2025-07-16T16:24:35Z",
-          "updatedAt": "2025-07-16T16:51:10Z"
+          "updatedAt": "2025-07-30T13:13:08Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> > * [x]  Announce the side meeting on the IVY WG mailing list once the slot is assigned\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/7XSD5DFwiNU0gYsfE_jqtKy_-58/\n\n",
+          "createdAt": "2025-07-30T13:13:42Z",
+          "updatedAt": "2025-07-30T13:13:42Z"
         }
       ]
     },
@@ -4089,7 +4137,7 @@
       "id": "I_kwDOKiDYo86-hUfh",
       "title": "Plan for IETF 123",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/119",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4097,13 +4145,12 @@
       ],
       "labels": [
         "admin",
-        "priority-1",
-        "wait-sub"
+        "priority-1"
       ],
       "body": "",
       "createdAt": "2025-07-02T15:58:59Z",
-      "updatedAt": "2025-07-02T17:51:27Z",
-      "closedAt": null,
+      "updatedAt": "2025-07-30T13:14:40Z",
+      "closedAt": "2025-07-30T13:14:40Z",
       "comments": []
     },
     {
@@ -4111,20 +4158,19 @@
       "id": "I_kwDOKiDYo86-hkES",
       "title": "Consistent use of the terms chassis and shelf",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/120",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
         "italobusi"
       ],
       "labels": [
-        "priority-1",
-        "wait-sub"
+        "priority-1"
       ],
       "body": "**[2025-07-02 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-02)**\n\nAgreed to use the term chassis in the document instead of shelf:\n",
       "createdAt": "2025-07-02T16:22:22Z",
-      "updatedAt": "2025-07-02T16:46:43Z",
-      "closedAt": null,
+      "updatedAt": "2025-07-30T13:15:34Z",
+      "closedAt": "2025-07-30T13:15:34Z",
       "comments": []
     },
     {
@@ -4218,10 +4264,13 @@
       "author": "nigel-r-davis",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "priority-1",
+        "wait-WG"
+      ],
       "body": "The breakout port model has been worked extensively to a point where it is well understood and is seen to represent the breakout structure very well.\n\nHowever, the breakout port model appears to be logical inventory and hence should potentially not be in the ivy model. \n\nThis issue relates to issue #125.  ",
       "createdAt": "2025-07-16T14:47:44Z",
-      "updatedAt": "2025-07-17T10:30:49Z",
+      "updatedAt": "2025-07-30T15:49:51Z",
       "closedAt": null,
       "comments": [
         {
@@ -4230,6 +4279,13 @@
           "body": "@nigel-r-davis I think it would be good to have an alternative proposal to present and discuss at IETF 123. We can work on that during offline and side meetings in Madrid",
           "createdAt": "2025-07-17T10:29:33Z",
           "updatedAt": "2025-07-17T10:30:49Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nWait for the on-going IVY WG discussion to complete:\n\nhttps://mailarchive.ietf.org/arch/msg/ivy/4_Xf7_l5HPP-0f9esa2C-oUUw9Q/\n\nTo be reviewed in the next call on September 3, 2025\n",
+          "createdAt": "2025-07-30T15:49:34Z",
+          "updatedAt": "2025-07-30T15:49:34Z"
         }
       ]
     },
@@ -4238,19 +4294,18 @@
       "id": "I_kwDOKiDYo87BDyGH",
       "title": "Impact on RFC8348 and IANA Hardware",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/127",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
         "question",
-        "needs discussion",
         "priority-1"
       ],
       "body": "Some of the enhancement of the base inventory model, especially for managing ports and breakout ports, may have an impact on RFC8348 and IANA Hardware\n\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/HMV09tk8C3NRhv2VkGxJySdP1CA/",
       "createdAt": "2025-07-17T10:15:30Z",
-      "updatedAt": "2025-07-17T10:16:49Z",
-      "closedAt": null,
+      "updatedAt": "2025-07-30T15:51:14Z",
+      "closedAt": "2025-07-30T15:51:14Z",
       "comments": [
         {
           "author": "italobusi",
@@ -4258,8 +4313,79 @@
           "body": "The impacts need to be further assessed based on the resolution of some priority 1 issues (e.g., #112 and #126)",
           "createdAt": "2025-07-17T10:16:49Z",
           "updatedAt": "2025-07-17T10:16:49Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nClosed because, based on the agreed changes during IETF 123, there is no impact on RFC8348 and IANA Hardware\n",
+          "createdAt": "2025-07-30T15:51:14Z",
+          "updatedAt": "2025-07-30T15:51:14Z"
         }
       ]
+    },
+    {
+      "number": 128,
+      "id": "I_kwDOKiDYo87DW_og",
+      "title": "Multiple software revisions",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/128",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [
+        "priority-1",
+        "wait-PR"
+      ],
+      "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nActions based on IETF 123 IVY WG feedbacks:\n\n- [ ] define a list of (software-name, software-rev) for the components\n\nAdditional considerations:\n1. the list of active software should also contain the software patches for each software-name instance\n2. since this list reports only the active SW modules, the software-name can be used as a key for this list\n3. the firmware revision can be removed and the software-rev list can be used also to report running firmware modules\n4. the approach can also be extened to the NE for consistency\n\nIt was also noted that the term firmware is sometimes used to refer to a read-only code (e.g., BIOS) which cannot be upgraded and sometimes used to refer to the programmable code of an FPGA which can be upgraded. By defining only the software-rev list can cover any type of programming data (including firmware) would resolve this ambiguity in the context of the base inventory model. They type of code can be distinguished from the name attribute.\n\nOLD\n\n     +--rw network-elements\n        +--rw network-element* [ne-id]\n           +--rw ne-id                 string\n           +-- ...\n           +--ro software-rev?         string\n           +--ro software-patch-rev*   string\n           +-- ...\n           +--ro components\n              +--rw component* [component-id]\n                 +--rw component-id           string\n                 +--ro class                  union\n                 +-- ...\n                 +--ro hardware-rev?          string\n                 +--ro software-rev?          string\n                 +--ro software-patch-rev*    string\n                 +-- ...\n                 +--ro firmware-rev?          string\n                 +-- ...\n\nNEW\n\n     +--rw network-elements\n        +--rw network-element* [ne-id]\n           +--rw ne-id                 string\n           +-- ...\n           +--ro software-rev [name]\n           |  +--ro name          string\n           |  +--ro revision?     string\n           |  +--ro patch-rev*    string\n           +-- ...\n           +--ro components\n              +--rw component* [component-id]\n                 +--rw component-id           string\n                 +--ro class                  union\n                 +-- ...\n                 +--ro hardware-rev?          string\n                 +--ro software-rev [name]\n                 |  +--ro name          string\n                 |  +--ro revision?     string\n                 |  +--ro patch-rev*    string\n                 +-- ...\n                 +--ro firmware-rev?          string\n                 +-- ...\n\n",
+      "createdAt": "2025-07-30T15:42:54Z",
+      "updatedAt": "2025-07-30T15:42:54Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 129,
+      "id": "I_kwDOKiDYo87DXA1q",
+      "title": "Clarify the software aspects in the scope of base inventory model",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/129",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "nigel-r-davis",
+        "manzoro"
+      ],
+      "labels": [
+        "priority-1",
+        "wait-PR"
+      ],
+      "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nNeed to clarify in the document the limited scope of the software information provided by the base inventory model, also considering the changes agreed in #128 \n\n- [ ] @nigel-r-davis @manzoro review the current text of the I-D and proposed text changes to clarify which aspects are in the scope of the base inventory model and which aspects should be outside the scope (e.g.,. in the scope of the SW inventory model)\n",
+      "createdAt": "2025-07-30T15:44:39Z",
+      "updatedAt": "2025-07-30T15:44:39Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 130,
+      "id": "I_kwDOKiDYo87DXDVl",
+      "title": "Modelling of non-modular network elements",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/130",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [
+        "priority-1",
+        "wait-PR"
+      ],
+      "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nIt seems worthwhile updating the I-D text to clarify how a non-modular network element can be  modelled: it is ok to model these types of NE as an NE with one chassis component containing one or more port components. Reporting a non-FRU module component is possible but not mandatory.\n\nAgreed actions:\n\n- [ ] Update the definition of chassis:\n\n> A field replaceable equipment with a particular structural format and dimensions. A chassis can, but does not need to, include spaces(called slots) to take cards.\n> Elsewhere, a chassis can be called shelf, sub-rack, stand-alone unit, etc.\n\n- [ ] Add a JSON example on how these type of non-modular network elements can be supported by the base inventory model\n",
+      "createdAt": "2025-07-30T15:48:01Z",
+      "updatedAt": "2025-07-30T15:48:01Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
