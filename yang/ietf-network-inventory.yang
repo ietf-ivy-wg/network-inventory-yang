@@ -68,7 +68,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2025-07-02 {
+  revision 2025-08-13 {
     description
       "Initial version";
     reference
@@ -467,15 +467,13 @@ module ietf-network-inventory {
             description
               "The list of components within a network element.";
             uses component-attributes;
-            container child-component-ref {
-              config false;
-              description
-                "A placeholder for adding the reference to child
-                 component(s): to further discuss whether to define
-                 a child leaf-list as RFC 8348 or a list of
-                 sub-components as openconfig-platform.";
-            }
             leaf parent-rel-pos {
+              when 'count(../parent) < 2' {
+                description
+                  "This data node is applicable only when this
+                   component is contained in the network-element or
+                   in only one parent component.";
+              }
               type int32 {
                 range "0 .. 2147483647";
               }
@@ -487,26 +485,19 @@ module ietf-network-inventory {
                 "RFC 6933: Entity MIB (Version 4) -
                            entPhysicalParentRelPos";
             }
-            leaf parent {
+            leaf-list parent {
               type leafref {
                 path "../../component/component-id";
                 require-instance false;
               }
               config false;
               description
-                "The identifier of the component that physically
-                 contains this component.
+                "The identifiers of all the components that
+                 physically contain this component.
 
-                 If this leaf is not instantiated, it indicates that
-                 this component is not contained in any other
-                 component.
-
-                 In the event that a physical component is contained
-                 by more than one physical component
-                 (e.g., double-wide modules), this node contains the
-                 identifier of one of these components.
-                 An implementation MUST use the same name every time
-                 this node is instantiated.";
+                 If this list is not empty, this component is not
+                 contained in any other component but it is contained
+                 in the network-element.";
               reference
                 "RFC 6933: Entity MIB (Version 4) -
                            entPhysicalContainedIn";
