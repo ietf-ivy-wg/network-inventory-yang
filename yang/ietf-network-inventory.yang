@@ -97,22 +97,6 @@ module ietf-network-inventory {
   }
 
   /*
-   * Editors' Note: This identity may need to be moved to
-   *                iana-hardware update
-   */
-
-  identity transceiver-module {
-    base ianahw:hardware-class;
-    description
-      "This identity is applicable if the hardware class is some sort
-       of self-contained sub-system which contains one or more
-       transceivers (e.g., optical or electrical transceivers).
-
-       A transceiver-module component can only be contained by a
-       port component.";
-  }
-
-  /*
    * Types
    */
 
@@ -152,46 +136,6 @@ module ietf-network-inventory {
             [nwi:component-id=current()]/nwi:class, 'ianahw:port')";
       description
         "The reference to the port component.";
-    }
-  }
-
-  grouping channel-ref {
-    description
-      "This grouping is intended to be used by data models that need
-       to reference one or more breakout channels within a
-       transceivers module component.";
-    leaf ne-ref {
-      type nwi:ne-ref;
-      description
-        "The reference to the Network Element which contains the
-         transceiver module to be referenced.";
-    }
-    leaf transceiver-module-ref {
-      type leafref {
-        path "/nwi:network-inventory/nwi:network-elements/"
-           + "nwi:network-element[nwi:ne-id=current()/../ne-ref]"
-           + "/nwi:components/nwi:component/nwi:component-id";
-      }
-      must "derived-from-or-self (/nwi:network-inventory/
-            nwi:network-elements/nwi:network-element
-            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component
-            [nwi:component-id=current()]/nwi:class,
-            'nwi:transceiver-module')";
-      description
-        "The reference to the transceivers module component.";
-    }
-    leaf-list channel-ref {
-      type leafref {
-        path "/nwi:network-inventory/nwi:network-elements"
-           + "/nwi:network-element[nwi:ne-id=current()/../ne-ref]/"
-           + "nwi:components/"
-           + "nwi:component[nwi:component-id="
-           + "current()/../transceiver-module-ref]/"
-           + "nwi:breakout-channels/nwi:breakout-channel/"
-           + "nwi:channel-id";
-      }
-      description
-        "The references to the breakout channels.";
     }
   }
 
@@ -513,30 +457,6 @@ module ietf-network-inventory {
                  there are chassis components which can take the
                  'main' role (e.g., multi-chassis network elements),
                  otherwise it is omitted.";
-            }
-            container breakout-channels {
-              when "derived-from-or-self(../nwi:class, "
-                 + "'nwi:transceiver-module')";
-              presence
-                "When present, it indicates that port breakout is
-                 supported.";
-              config false;
-              description
-                "Top level container for the list of breakout
-                 channels supported by the transceivers module.";
-              list breakout-channel {
-                key "channel-id";
-                description
-                  "The list of breakout channels supported by the
-                   transceivers module.";
-                leaf channel-id {
-                  type uint8;
-                  description
-                    "An identifier that uniquely identifies the
-                     breakout channel within the transceiver
-                     module.";
-                }
-              }
             }
           }
         }

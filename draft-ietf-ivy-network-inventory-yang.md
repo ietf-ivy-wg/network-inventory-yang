@@ -205,7 +205,7 @@ A chassis can, but does not need to, include spaces (called slots) to take cards
 
 Port:
 : A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables.
-: In case of pluggable ports, the port may be empty when no transceiver module is plugged in.
+: In case of pluggable ports, the port may be empty when no pluggable module is plugged in.
 
 Also, the document makes use of the following terms:
 
@@ -232,36 +232,8 @@ Card:
 Slot:
 : A space in a chassis that can be equipped with one card, which may be chosen from a limited range of types of cards. A slot can be subdivided into smaller spaces (called sub-slots).
 
-Physical interface:
-: An interface associated to a port. A physical interface is always in the lowest layer of the interface stack.
-
-Logical interface:
-: An interface which is not associated to a port.
-
-> Editors' Note: check whether the definitions of physical and logical interfaces can be replaced by a normative reference to {{!RFC8343}}
-
-Breakout Port:
-: A port is usually associated with a single physical interface. A breakout port is a port which is broken down and associated into multiple physical interfaces. Those physical interfaces can have the same or different speeds and the same or different number of breakout channels.
-
-Trunk Port:
-: A trunk port is a port which is associated with one and only physical interface.
-
-Port Breakout:
-: The configuration of a breakout port.
-
-> Note that interface channelization, when an interface (e.g., an Ethernet interface) is configured to support multiple logical sub-interfaces (e.g., VLAN interfaces), is different than port breakout and outside the scope of inventory models.
-
-Breakout channel:
-: An abstraction of the atomic resource elements into which a breakout port can be broken down: a physical interface can be associated with one or more breakout channels but no more than one physical interface can be associated with one breakout channel.
-: The physical elements abstracted as breakout channels are implementation specific.
-{{port-examples}} provides some examples of breakout ports configurations and implementations.
-
 Container:
 : A hardware component class that is capable of containing one or more removable physical entities (e.g., a slot in a chassis is containing a board).
-
-Transceiver:
-: A transceiver represents a transmitter/receiver (Tx/Rx) pair which is transmitting and receiving a signal from the media.
-: This definition generalizes the transceiver definition in {{?I-D.ietf-ccamp-optical-impairment-topology-yang}} to model also non optical transceivers (e.g., electrical transceivers).
 
 ## Tree Diagrams
 
@@ -489,16 +461,6 @@ classes, such as platform software, BIOS, bootloader, and software
 patch information, are outside the scope of this document and defined other documents such as
 {{?I-D.ietf-ivy-network-inventory-software}}.
 
-### Breakout ports {#ports}
-
-The model defines the 'breakout-channels' presence container to indicate whether the port, which contains the transceiver module, can be configured as a breakout port or not.
-
-The breakout channels represent the capability of the port to support port breakout, independently on how the port is configured (trunk or breakout).
-
-It is assumed that a port which supports port breakout can be configured either as a trunk port or as a breakout port.
-
-Reporting whether a port, which supports port breakout, is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model. The model providing the mapping between the topology and the inventory models should provide sufficient information to identify how the port is configured and, in case of breakout configuration, which breakout channel is associated with which Link Termination Point (LTP), abstracting a device physical interface within the topology model.
-
 ## Changes Since RFC 8348
 
 This document re-defines some attributes listed in {{!RFC8348}}, based on some integration experience for network inventory data.
@@ -629,13 +591,13 @@ An alternative YANG model structure, which defines the inventory objects directl
 
 The model proposed by this draft is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this draft. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.
 
-# Examples of ports, transceivers and port breakouts {#port-examples}
+# Examples of ports {#port-examples}
 
-This appendix provides some examples of ports, transceivers and port breakouts implementations and how they can be modelled using the "ietf-network-inventory" model defined in {{ni-yang}}.
+This appendix provides some examples of port implementations and how they can be modelled using the "ietf-network-inventory" module defined in {{ni-yang}}.
 
 {{fig-board}} shows an example of a single board which contains three type of ports:
 
-1. An integrated port (non pluggable). This port can be of any type (e.g., optical or electrical), single-channel or multi-channel but not supporting breakouts;
+1. An integrated port (non pluggable);
 1. An empty port;
 1. A pluggable port
 
@@ -644,58 +606,12 @@ This appendix provides some examples of ports, transceivers and port breakouts i
 ~~~~
 {:#fig-board title="Example of a board with different types of ports"}
 
-{{fig-single-channel}} describes an implementation of a single channel optical pluggable trunk port (e.g., a 100G-LR port configured as a single 100GE interface)
-
-~~~~ aasvg
-{::include figures/single-channel-port-example.txt}
-~~~~
-{:#fig-single-channel title="Example of a single channel optical pluggable port"}
-
-{{fig-wdm-multi-channel}} describes an implementation of a Wavelength-Division Multiplexing (WDM) based multi-channel optical pluggable trunk port (e.g., a 400G-LR4 port configured as a single 400GE interface).
-
-~~~~ aasvg
-{::include figures/wdm-multi-channel-port-example.txt}
-~~~~
-{:#fig-wdm-multi-channel title="Example of a WDM multi-channel optical pluggable port"}
-
-In this example, since breakout is not supported, the four WDM channels cannot be modelled as breakout channels and are not relevant from inventory management perspective.
-
-{{fig-mpo-trunk}} describes an implementation of a Multi-Fiber Push-on (MPO) trunk port (e.g., 400G-DR4 port configured as a single 400GE interface).
-
-~~~~ aasvg
-{::include figures/mpo-trunk-port-example.txt}
-~~~~
-{:#fig-mpo-trunk title="Example of a MPO trunk port"}
-
-If this MPO port cannot support breakouts, the four line channels cannot be modelled as breakout channels and are not relevant from inventory management perspective. From a network inventory perspective, there is no difference between single-channel ports and MPO trunk ports which do not support port breakouts.
-
-Instead, the MPO port can support breakouts, the four line channels are reported as breakout channels because, as describe in {{ports}}, the breakout channels represent the capability of the port to support breakout, independently on how the port is configured (trunk or breakout).
-
-{{fig-mpo-breakout}} describes an implementation of a MPO breakout port (e.g., 400G-DR4 port configured as 4x100GE interfaces).
-
-~~~~ aasvg
-{::include figures/mpo-breakout-port-example.txt}
-~~~~
-{:#fig-mpo-breakout title="Example of a MPO breakout port"}
-
-In this example, the four line channels are reported as breakout channels because the port shall support breakout in order to be configured as a breakout port.
-
 ## JSON Examples
 
-This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}, instantiating the "ietf-network-inventory" model to describe a single board, as shown in {{fig-board}}, with seven different types of ports, transceivers and breakouts configurations:
-
-1. An integrated port (non pluggable), as shown in {{fig-board}};
-1. An empty port, as shown in {{fig-board}};
-1. A single channel optical pluggable port, as shown in {{fig-board}} and {{fig-single-channel}};
-1. A WDM based multi-channel optical pluggable port, as shown in {{fig-board}} and {{fig-wdm-multi-channel}};
-1. An MPO trunk port, as shown in {{fig-board}} and {{fig-mpo-trunk}}, which does not support port breakouts;
-1. An MPO trunk port, as shown in {{fig-board}} and {{fig-mpo-trunk}}, which can not support port breakouts but it has been configured as a trunk port,
-1. An MPO breakout port, as shown in {{fig-board}} and {{fig-mpo-breakout}}.
-
-Note: as described in {{ports}}, reporting whether an MPO port is configured as a trunk or as a breakout port, is outside the scope of the base network inventory model.
+This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}, instantiating the "ietf-network-inventory" module to describe the three types of ports on a single board, as shown in {{fig-board}}.
 
 ~~~~ ascii-art
-{::include-fold json/ports-transceivers-breakouts-examples.json}
+{::include-fold json/port-examples.json}
 ~~~~
 
 # Example of multi-chassis network elements {#multi-chassis-examples}

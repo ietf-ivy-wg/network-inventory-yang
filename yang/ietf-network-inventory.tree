@@ -17,29 +17,26 @@ module: ietf-network-inventory
            +--ro product-rev?    string
            +--rw components
               +--rw component* [component-id]
-                 +--rw component-id         string
-                 +--ro class                union
-                 +--ro uuid?                yang:uuid
-                 +--rw name?                string
-                 +--rw description?         string
-                 +--rw alias?               string
+                 +--rw component-id      string
+                 +--ro class             union
+                 +--ro uuid?             yang:uuid
+                 +--rw name?             string
+                 +--rw description?      string
+                 +--rw alias?            string
                  +--ro software-rev* [name]
                  |  +--ro name         string
                  |  +--ro revision?    string
                  |  +--ro patch-rev*   string
-                 +--ro mfg-name?            string
-                 +--ro product-name?        string
-                 +--ro hardware-rev?        string
-                 +--ro mfg-date?            yang:date-and-time
-                 +--ro part-number?         string
-                 +--ro serial-number?       string
-                 +--ro asset-id?            string
-                 +--ro is-fru?              boolean
-                 +--ro uri*                 inet:uri
-                 +--ro parent-rel-pos?      int32
+                 +--ro mfg-name?         string
+                 +--ro product-name?     string
+                 +--ro hardware-rev?     string
+                 +--ro mfg-date?         yang:date-and-time
+                 +--ro part-number?      string
+                 +--ro serial-number?    string
+                 +--ro asset-id?         string
+                 +--ro is-fru?           boolean
+                 +--ro uri*              inet:uri
+                 +--ro parent-rel-pos?   int32
                  +--ro parent*
                  |       -> ../../component/component-id
-                 +--ro is-main?             boolean
-                 +--ro breakout-channels!
-                    +--ro breakout-channel* [channel-id]
-                       +--ro channel-id    uint8
+                 +--ro is-main?          boolean
