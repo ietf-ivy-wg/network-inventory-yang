@@ -509,11 +509,57 @@ sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-08-13.yan
 
 # Security Considerations
 
-  \<Add any security considerations>
+This section is modeled after the template described in {{Section 3.7
+of ?I-D.ietf-netmod-rfc8407bis}}.
+
+The "ietf-network-inventory" YANG module defines a data model that is
+designed to be accessed via YANG-based management protocols, such as
+NETCONF {{?RFC6241}} and RESTCONF {{?RFC8040}}. These YANG-based management
+protocols (1) have to use a secure transport layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC8446}},
+and QUIC {{?RFC9000}}) and (2) have to use mutual authentication.
+
+The Network Configuration Access Control Model (NACM) {{!RFC8341}}
+provides the means to restrict access for particular NETCONF or
+RESTCONF users to a preconfigured subset of all available NETCONF or
+RESTCONF protocol operations and content.
+
+Some of the readable data nodes in this YANG module may be considered
+sensitive or vulnerable in some network environments.  It is thus
+important to control read access (e.g., via get, get-config, or
+notification) to these data nodes. Specifically, the following
+subtrees and data nodes have particular sensitivities/
+vulnerabilities:
+
+Specifically, the following subtrees and data nodes have particular sensitivities/vulnerabilities:
+
+- "/nwi:network-elements"
+
+> This subtree reports the inventory information for all the network elements and their hardware components deployed within the network as well as of the software modules being active on these network elements and components. Unauthorized access to this subtree can disclose this information. A malicious attacker can use this information to perform targeted attacks to network elements, hardware components or software modules with known vulnerabilities.
+
+Modules that use the groupings that are defined in this document
+should identify the corresponding security considerations. For example, reusing the 'component-attributes' grouping may expose sensitive information.
 
 # IANA Considerations
 
-  \<Add any IANA considerations>
+IANA is requested to register the following URI in the "ns"
+registry within the "IETF XML Registry" group {{?RFC3688}}:
+
+~~~~
+      URI: urn:ietf:params:xml:ns:ietf-network-inventory
+      Registrant Contact: The IESG
+      XML: N/A; the requested URI is an XML namespace.
+~~~~
+
+IANA is requested to register the following YANG module in the "YANG
+Module Names" registry {{!RFC6020}} within the "YANG Parameters"
+registry group.
+
+~~~~
+      name:         ietf-network-inventory
+      namespace:    urn:ietf:params:xml:ns:yang:ietf-network-inventory
+      prefix:       nwi
+      reference:    RFC XXXX
+~~~~
 
 --- back
 
