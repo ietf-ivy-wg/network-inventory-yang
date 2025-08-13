@@ -195,6 +195,115 @@ module ietf-network-inventory {
     }
   }
 
+  grouping basic-common-entity-attributes {
+    description
+      "The set of basic attributes which are common to all the
+       entities (e.g., component, network elements, location, passive
+       entities) defined in this module and in other inventory
+       modules.";
+    leaf uuid {
+      type yang:uuid;
+      config false;
+      description
+        "The Universally Unique Identifier of the entity
+         (e.g., component).";
+    }
+    leaf name {
+      type string;
+      description
+        "The name of the  entity (e.g., component), as specified by
+         a network manager, that provides a non-volatile 'handle'
+         for the entity and that can be modified anytime during the
+         entity lifetime.
+
+         If no configured value exists, the server MAY set the value
+         of this node to a locally unique value in the operational
+         state.";
+    }
+    leaf description {
+      type string;
+      description
+        "The textual description of the entity (e.g., component).";
+    }
+    leaf alias {
+      type string;
+      description
+        "The alias name of the entity (e.g., component). This alias
+         name can be specified by network manager.";
+    }
+  }
+
+  grouping ne-component-common-entity-attributes {
+    description
+      "The set of attributes which are common to all the entities
+       (e.g., component, network elements) defined in this module.";
+    uses basic-common-entity-attributes;
+    leaf hardware-rev {
+      type string;
+      config false;
+      description
+        "The vendor-specific hardware revision string for the entity
+         (e.g., component).";
+    }
+    list software-rev {
+      key "name";
+      config false;
+      description
+        "The list of the active software modules within the entity
+         (e.g., component).";
+      leaf name {
+        type string;
+        description
+          "The vendor-specific name of the software module.";
+      }
+      leaf revision {
+        type string;
+        config false;
+        description
+          "The vendor-specific revision string of the software
+           module.";
+      }
+      leaf-list patch-rev {
+        type string;
+        config false;
+        description
+          "The list of vendor-specific patch revision strings for
+           software module.";
+      }
+    }
+    leaf mfg-name {
+      type string;
+      config false;
+      description
+        "The name of the manufacturer of this entity
+         (e.g., component).";
+    }
+    leaf mfg-date {
+      type yang:date-and-time;
+      config false;
+      description
+        "The date of manufacturing of the entity (e.g., component).";
+    }
+    leaf serial-number {
+      type string;
+      config false;
+      description
+        "The vendor-specific serial number of the the entity
+         (e.g., component) instance. It is expected that vendors
+         assign unique serial numbers to different network element
+         instances within the scope of the product name.";
+    }
+    leaf product-name {
+      type string;
+      config false;
+      description
+        "The vendor-specific and human-interpretable string
+         describing the entity (e.g., component) type. It is expected
+         that vendors assign unique product names to different entity
+         (e.g., component) types within the scope of the vendor.";
+    }
+  }
+
   grouping component-attributes {
     description
       "The set of common attributes of a component.
@@ -266,16 +375,6 @@ module ietf-network-inventory {
                      entPhysicalMfgDate";
       }
     }
-    leaf firmware-rev {
-      type string;
-      config false;
-      description
-        "The vendor-specific firmware revision string for the
-         component.";
-      reference
-        "RFC 6933: Entity MIB (Version 4) -
-                   entPhysicalFirmwareRev";
-    }
     leaf part-number {
       type string;
       config false;
@@ -327,103 +426,6 @@ module ietf-network-inventory {
          the component.";
       reference
         "RFC 6933: Entity MIB (Version 4) - entPhysicalUris";
-    }
-  }
-
-  grouping basic-common-entity-attributes {
-    description
-      "The set of basic attributes which are common to all the
-       entities (e.g., component, network elements, location, passive
-       entities) defined in this module and in other inventory
-       modules.";
-    leaf uuid {
-      type yang:uuid;
-      config false;
-      description
-        "The Universally Unique Identifier of the entity
-         (e.g., component).";
-    }
-    leaf name {
-      type string;
-      description
-        "The name of the  entity (e.g., component), as specified by
-         a network manager, that provides a non-volatile 'handle'
-         for the entity and that can be modified anytime during the
-         entity lifetime.
-
-         If no configured value exists, the server MAY set the value
-         of this node to a locally unique value in the operational
-         state.";
-    }
-    leaf description {
-      type string;
-      description
-        "The textual description of the entity (e.g., component).";
-    }
-    leaf alias {
-      type string;
-      description
-        "The alias name of the entity (e.g., component). This alias
-         name can be specified by network manager.";
-    }
-  }
-
-  grouping ne-component-common-entity-attributes {
-    description
-      "The set of attributes which are common to all the entities
-       (e.g., component, network elements) defined in this module.";
-    uses basic-common-entity-attributes;
-    leaf hardware-rev {
-      type string;
-      config false;
-      description
-        "The vendor-specific hardware revision string for the entity
-         (e.g., component).";
-    }
-    leaf software-rev {
-      type string;
-      config false;
-      description
-        "The vendor-specific software revision string for the entity
-         (e.g., component).";
-    }
-    leaf-list software-patch-rev {
-      type string;
-      config false;
-      description
-        "The vendor-specific patch software revision string for the
-         entity (e.g., component).";
-    }
-    leaf mfg-name {
-      type string;
-      config false;
-      description
-        "The name of the manufacturer of this entity
-         (e.g., component).";
-    }
-    leaf mfg-date {
-      type yang:date-and-time;
-      config false;
-      description
-        "The date of manufacturing of the entity (e.g., component).";
-    }
-    leaf serial-number {
-      type string;
-      config false;
-      description
-        "The vendor-specific serial number of the the entity
-         (e.g., component) instance. It is expected that vendors
-         assign unique serial numbers to different network element
-         instances within the scope of the product name.";
-    }
-    leaf product-name {
-      type string;
-      config false;
-      description
-        "The vendor-specific and human-interpretable string
-         describing the entity (e.g., component) type. It is expected
-         that vendors assign unique product names to different entity
-         (e.g., component) types within the scope of the vendor.";
     }
   }
 
