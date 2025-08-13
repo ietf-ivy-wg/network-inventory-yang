@@ -200,8 +200,8 @@ The following terms are defined in the description statements of the correspondi
 
 Chassis:
 : A field replaceable equipment with a particular structural format and dimensions.
-A chassis can include spaces(called slots) to take cards.
-: Elsewhere, a chassis can be called shelf, sub-rack, etc.
+A chassis can, but does not need to, include spaces (called slots) to take cards.
+: Elsewhere, a chassis can be called shelf, sub-rack, stand-alone unit, etc.
 
 Port:
 : A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables.
@@ -539,7 +539,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-02-03.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-08-13.yang"}
 
 # Manageability Considerations
 
@@ -700,7 +700,7 @@ Note: as described in {{ports}}, reporting whether an MPO port is configured as 
 
 # Example of multi-chassis network elements {#multi-chassis-examples}
 
-This appendix provides some examples of multi-chassis network elements and how they can be modelled using the "ietf-network-inventory" model defined in {{ni-yang}}.
+This appendix provides some examples of multi-chassis network elements and how they can be modelled using the "ietf-network-inventory" module defined in {{ni-yang}}.
 
 Multi-chassis network elements are network elements composed by two or more chassis interconnected, in principle, with any topology.
 
@@ -722,7 +722,7 @@ Stacked switches are an example of multi-chassis which consist of multiple stand
 ~~~~
 {:#fig-ring-stacked title="Example of a stacked switch in a ring topology"}
 
-Using the base network inventory model, each stackable switch can be modelled as a chassis within the same network element, which models the stacked switch. The stack ports are modelled like other ports. The stack cables are not reported using the base network inventory model but can be reported using the passive network inventory model under definition in {{?I-D.ygb-ivy-passive-network-inventory}}.
+Using the base network inventory YANG data model, each stackable switch can be modelled as a chassis within the same network element, which models the stacked switch. The stack ports are modelled like other ports. The stack cables are not reported using the base network inventory YANG data model but can be reported using the passive network inventory YANG data model under definition in {{?I-D.ygb-ivy-passive-network-inventory}}.
 
 Cascaded switches are another example of multi-chassis which consist of multiple standalone switches that are interconnected and managed as a single logical unit. Cascaded switch:
 - are usually connected in a tree topology
@@ -736,16 +736,34 @@ Cascaded switches are another example of multi-chassis which consist of multiple
 ~~~~
 {:#fig-tree-cascaded title="Example of a cascaded switch in a tree topology"}
 
-Using the base network inventory model each interconnected switch can be modelled as a chassis within the same network element, which models the cascaded switch. The ports used to interconnect the different chassis are normal (traffic) ports and modelled like other ports. The interconnecting cables are not reported using the base network inventory model but can be reported using the passive network inventory model under definition in {{?I-D.ygb-ivy-passive-network-inventory}}.
+Using the base network inventory YANG data model each interconnected switch can be modelled as a chassis within the same network element, which models the cascaded switch. The ports used to interconnect the different chassis are normal (traffic) ports and modelled like other ports. The interconnecting cables are not reported using the base network inventory YANG data model but can be reported using the passive network inventory model under definition in {{?I-D.ygb-ivy-passive-network-inventory}}.
 
 ## JSON Examples
 
-This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}, instantiating the "ietf-network-inventory" model to describe the three examples of multi-chassis NEs, as shown in xxx, yyy and zzz.
+This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}, instantiating the "ietf-network-inventory" model to describe the three examples of multi-chassis NEs, as shown in {{fig-daisy-chain-stacked}}, {{fig-ring-stacked}} and {{fig-tree-cascaded}}.
 
-> Note: the base inventory model allows reporting only the chassis and ports configuration. Reporting the link between the chassis of the same NE is outside the scope of the base inventory model. The YANG data model under definition in {{?I-D.ygb-ivy-passive-network-inventory}} as an augmentation of the base inventory model can be used to provide this additional information.
+> Note: the base inventory model allows reporting only the chassis and ports configuration. Reporting the link between the chassis of the same NE is outside the scope of the base inventory model. The YANG data model under definition in {{?I-D.ygb-ivy-passive-network-inventory}} as an augmentation of the base inventory YANG data model can be used to provide this additional information.
 
 ~~~~ ascii-art
 {::include-fold json/multi-chassis-examples.json}
+~~~~
+
+# Example of non-modular network elements {#non-modular-examples}
+
+This appendix provides some examples of non-modular network elements and how they can be modelled using the "ietf-network-inventory" module defined in {{ni-yang}}.
+
+Non-modular network elements (also known as "pizza boxes") are network elements composed by a single chassis (with a 1U horizontal oriented rectangular shape) as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field replaceable modules other than pluggable ports.
+
+Using the base network inventory YANG data model a non-modular network element can be modelled as a network element containing only one chassis and ports (as child components of the chassis).
+
+Reporting the single chassis component within a non-modular network element is required because the chassis component is the type of component which provides the physical characteristics of the network element chassis (the network element is defined just as an assembly of components) and its location, using the network inventory YANG data model under definition in {{?I-D.ietf-ivy-network-inventory-location}}.
+
+## JSON Examples
+
+This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}, instantiating the "ietf-network-inventory" module to describe an example of a non-modular network element.
+
+~~~~ ascii-art
+{::include-fold json/pizza-box-example.json}
 ~~~~
 
 {: numbered="false"}
