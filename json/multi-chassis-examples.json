@@ -15,108 +15,107 @@
                 "is-fru": true
               },
               {
-                "component-id": "board-1",
-                "class": "iana-hardware:module",
-                "description": "Single board of the first switch of the stack.",
-                "parent": "chassis-1",
-                "is-fru": false
-              },
-              {
                 "component-id": "port-1-1",
                 "class": "iana-hardware:port",
                 "description": "First stack port of the first switch in the stack.",
-                "parent": "board-1",
+                "parent": [
+                  "chassis-1"
+                ],
                 "parent-rel-pos": 1
               },
               {
                 "component-id": "port-1-2",
                 "class": "iana-hardware:port",
                 "description": "Second stack port of the first switch in the stack.",
-                "parent": "board-1",
+                "parent": [
+                  "chassis-1"
+                ],
                 "parent-rel-pos": 2
               },
               {
                 "component-id": "transceiver-module-1-2",
-                "class": "ietf-network-inventory:transceiver-module",
+                "class": "iana-hardware:module",
                 "description": "Transceiver module plugged in the second stack port of the first switch in the stack.",
-                "parent": "port-1-2",
+                "parent": [
+                  "port-1-2"
+                ],
                 "is-fru": true
               },
               {
                 "component-id": "chassis-2",
                 "class": "iana-hardware:chassis",
                 "description": "Second switch of the stack.",
-                "parent-rel-pos": 1,
+                "parent-rel-pos": 2,
                 "is-fru": true
-              },
-              {
-                "component-id": "board-2",
-                "class": "iana-hardware:module",
-                "description": "Single board of the second switch of the stack.",
-                "parent": "chassis-2",
-                "is-fru": false
               },
               {
                 "component-id": "port-2-1",
                 "class": "iana-hardware:port",
                 "description": "First stack port of the second switch in the stack.",
-                "parent": "board-2",
+                "parent": [
+                  "chassis-2"
+                ],
                 "parent-rel-pos": 1
               },
               {
                 "component-id": "transceiver-module-2-1",
-                "class": "ietf-network-inventory:transceiver-module",
+                "class": "iana-hardware:module",
                 "description": "Transceiver module plugged in the first stack port of the first switch in the stack.",
-                "parent": "port-2-1",
+                "parent": [
+                  "port-2-1"
+                ],
                 "is-fru": true
               },
               {
                 "component-id": "port-2-2",
                 "class": "iana-hardware:port",
                 "description": "Second stack port of the second switch in the stack.",
-                "parent": "board-2",
+                "parent": [
+                  "chassis-2"
+                ],
                 "parent-rel-pos": 2
               },
               {
                 "component-id": "transceiver-module-2-2",
-                "class": "ietf-network-inventory:transceiver-module",
+                "class": "iana-hardware:module",
                 "description": "Transceiver module plugged in the second stack port of the first switch in the stack.",
-                "parent": "port-2-2",
+                "parent": [
+                  "port-2-2"
+                ],
                 "is-fru": true
               },
               {
                 "component-id": "chassis-3",
                 "class": "iana-hardware:chassis",
                 "description": "Third switch of the stack.",
-                "parent-rel-pos": 1,
+                "parent-rel-pos": 3,
                 "is-fru": true
-              },
-              {
-                "component-id": "board-3",
-                "class": "iana-hardware:module",
-                "description": "Single board of the third switch of the stack.",
-                "parent": "chassis-3",
-                "is-fru": false
               },
               {
                 "component-id": "port-3-1",
                 "class": "iana-hardware:port",
                 "description": "First stack port of the third switch in the stack.",
-                "parent": "board-3",
+                "parent": [
+                  "chassis-3"
+                ],
                 "parent-rel-pos": 1
               },
               {
                 "component-id": "transceiver-module-3-1",
-                "class": "ietf-network-inventory:transceiver-module",
+                "class": "iana-hardware:module",
                 "description": "Transceiver module plugged in the first stack port of the third switch in the stack.",
-                "parent": "port-3-1",
+                "parent": [
+                  "port-3-1"
+                ],
                 "is-fru": true
               },
               {
                 "component-id": "port-3-2",
                 "class": "iana-hardware:port",
                 "description": "Second stack port of the second switch in the stack.",
-                "parent": "board-3",
+                "parent": [
+                  "chassis-3"
+                ],
                 "parent-rel-pos": 2
               }
             ]
@@ -135,122 +134,125 @@
                 "is-fru": true
               },
               {
-                "component-id": "board-1",
-                "class": "iana-hardware:module",
-                "description": "Single board of the first switch of the stack.",
-                "parent": "chassis-1",
-                "is-fru": false
-              },
-              {
                 "component-id": "port-1-1",
                 "class": "iana-hardware:port",
                 "description": "First stack port of the first switch in the stack.",
-                "parent": "board-1",
+                "parent": [
+                  "chassis-1"
+                ],
                 "parent-rel-pos": 1
               },
               {
                 "component-id": "transceiver-module-1-1",
-                "class": "ietf-network-inventory:transceiver-module",
+                "class": "iana-hardware:module",
                 "description": "Transceiver module plugged in the first stack port of the first switch in the stack.",
-                "parent": "port-1-1",
+                "parent": [
+                  "port-1-1"
+                ],
                 "is-fru": true
               },
               {
                 "component-id": "port-1-2",
                 "class": "iana-hardware:port",
                 "description": "Second stack port of the first switch in the stack.",
-                "parent": "board-1",
+                "parent": [
+                  "chassis-1"
+                ],
                 "parent-rel-pos": 2
               },
               {
                 "component-id": "transceiver-module-1-2",
-                "class": "ietf-network-inventory:transceiver-module",
+                "class": "iana-hardware:module",
                 "description": "Transceiver module plugged in the second stack port of the first switch in the stack.",
-                "parent": "port-1-2",
+                "parent": [
+                  "port-1-2"
+                ],
                 "is-fru": true
               },
               {
                 "component-id": "chassis-2",
                 "class": "iana-hardware:chassis",
                 "description": "Second switch of the stack.",
-                "parent-rel-pos": 1,
+                "parent-rel-pos": 2,
                 "is-fru": true
-              },
-              {
-                "component-id": "board-2",
-                "class": "iana-hardware:module",
-                "description": "Single board of the second switch of the stack.",
-                "parent": "chassis-2",
-                "is-fru": false
               },
               {
                 "component-id": "port-2-1",
                 "class": "iana-hardware:port",
                 "description": "First stack port of the second switch in the stack.",
-                "parent": "board-2",
+                "parent": [
+                  "chassis-2"
+                ],
                 "parent-rel-pos": 1
               },
               {
                 "component-id": "transceiver-module-2-1",
-                "class": "ietf-network-inventory:transceiver-module",
+                "class": "iana-hardware:module",
                 "description": "Transceiver module plugged in the first stack port of the first switch in the stack.",
-                "parent": "port-2-1",
+                "parent": [
+                  "port-2-1"
+                ],
                 "is-fru": true
               },
               {
                 "component-id": "port-2-2",
                 "class": "iana-hardware:port",
                 "description": "Second stack port of the second switch in the stack.",
-                "parent": "board-2",
+                "parent": [
+                  "chassis-2"
+                ],
                 "parent-rel-pos": 2
               },
               {
                 "component-id": "transceiver-module-2-2",
-                "class": "ietf-network-inventory:transceiver-module",
+                "class": "iana-hardware:module",
                 "description": "Transceiver module plugged in the second stack port of the first switch in the stack.",
-                "parent": "port-2-2",
+                "parent": [
+                  "port-2-2"
+                ],
                 "is-fru": true
               },
               {
                 "component-id": "chassis-3",
                 "class": "iana-hardware:chassis",
                 "description": "Third switch of the stack.",
-                "parent-rel-pos": 1,
+                "parent-rel-pos": 3,
                 "is-fru": true
-              },
-              {
-                "component-id": "board-3",
-                "class": "iana-hardware:module",
-                "description": "Single board of the third switch of the stack.",
-                "parent": "chassis-3",
-                "is-fru": false
               },
               {
                 "component-id": "port-3-1",
                 "class": "iana-hardware:port",
                 "description": "First stack port of the third switch in the stack.",
-                "parent": "board-3",
+                "parent": [
+                  "chassis-3"
+                ],
                 "parent-rel-pos": 1
               },
               {
                 "component-id": "transceiver-module-3-1",
-                "class": "ietf-network-inventory:transceiver-module",
+                "class": "iana-hardware:module",
                 "description": "Transceiver module plugged in the first stack port of the third switch in the stack.",
-                "parent": "port-3-1",
+                "parent": [
+                  "port-3-1"
+                ],
                 "is-fru": true
               },
               {
                 "component-id": "port-3-2",
                 "class": "iana-hardware:port",
                 "description": "Second stack port of the second switch in the stack.",
-                "parent": "board-3",
+                "parent": [
+                  "chassis-3"
+                ],
                 "parent-rel-pos": 2
               },
               {
                 "component-id": "transceiver-module-3-2",
-                "class": "ietf-network-inventory:transceiver-module",
+                "class": "iana-hardware:module",
                 "description": "Transceiver module plugged in the second stack port of the third switch in the stack.",
-                "parent": "port-3-2",
+                "parent": [
+                  "port-3-2"
+                ],
                 "is-fru": true
               }
             ]
@@ -258,133 +260,226 @@
         },
         {
           "ne-id": "NE-3",
-          "description": "TBA.",
+          "description": "Cascaded Switch in a tree topology.",
           "components": {
             "component": [
               {
                 "component-id": "chassis-1",
                 "class": "iana-hardware:chassis",
-                "description": "First TBD.",
+                "description": "First chassis of the cascaded switch.",
                 "parent-rel-pos": 1,
                 "is-fru": true
               },
               {
-                "component-id": "board-1",
-                "class": "iana-hardware:module",
-                "description": "Single board of the first switch of the stack.",
-                "parent": "chassis-1",
-                "is-fru": false
-              },
-              {
-                "component-id": "port-1-1",
-                "class": "iana-hardware:port",
-                "description": "First stack port of the first switch in the stack.",
-                "parent": "board-1",
+                "component-id": "slot-1-1",
+                "class": "iana-hardware:container",
+                "description": "Slot 1 of the first chassis of the cascaded switch.",
+                "parent": [
+                  "chassis-1"
+                ],
                 "parent-rel-pos": 1
               },
               {
-                "component-id": "transceiver-module-1-1",
-                "class": "ietf-network-inventory:transceiver-module",
-                "description": "Transceiver module plugged in the first stack port of the first switch in the stack.",
-                "parent": "port-1-1",
+                "component-id": "card-1-1",
+                "class": "iana-hardware:module",
+                "description": "Card plugged into slot 1 of the first chassis of the cascaded switch.",
+                "parent": [
+                  "slot-1-1"
+                ],
                 "is-fru": true
               },
               {
-                "component-id": "port-1-2",
+                "component-id": "port-1-1-1",
                 "class": "iana-hardware:port",
-                "description": "Second stack port of the first switch in the stack.",
-                "parent": "board-1",
-                "parent-rel-pos": 2
+                "description": "Empty port 1 on the card plugged into slot 1 of the first chassis of the cascaded switch.",
+                "parent": [
+                  "card-1-1"
+                ],
+                "parent-rel-pos": 1
               },
               {
-                "component-id": "transceiver-module-1-2",
-                "class": "ietf-network-inventory:transceiver-module",
-                "description": "Transceiver module plugged in the second stack port of the first switch in the stack.",
-                "parent": "port-1-2",
+                "component-id": "port-1-1-4",
+                "class": "iana-hardware:port",
+                "description": "Pluggable port 4 on the card plugged into slot 1 of the first chassis of the cascaded switch.",
+                "parent": [
+                  "card-1-1"
+                ],
+                "parent-rel-pos": 4
+              },
+              {
+                "component-id": "transceiver-module-1-1-4",
+                "class": "iana-hardware:module",
+                "description": "Transceiver module plugged in port 4 on the card plugged into slot 1 of the first chassis of the cascaded switch.",
+                "parent": [
+                  "port-1-1-4"
+                ],
                 "is-fru": true
+              },
+              {
+                "component-id": "port-1-1-10",
+                "class": "iana-hardware:port",
+                "description": "Empty port 10 on the card plugged into slot 1 of the first chassis of the cascaded switch.",
+                "parent": [
+                  "card-1-1"
+                ],
+                "parent-rel-pos": 10
+              },
+              {
+                "component-id": "slot-1-20",
+                "class": "iana-hardware:container",
+                "description": "Empty slot 20 of the first chassis of the cascaded switch.",
+                "parent": [
+                  "chassis-1"
+                ],
+                "parent-rel-pos": 20
+              },
+              {
+                "component-id": "slot-1-32",
+                "class": "iana-hardware:container",
+                "description": "Slot 32 of the first chassis of the cascaded switch.",
+                "parent": [
+                  "chassis-1"
+                ],
+                "parent-rel-pos": 32
+              },
+              {
+                "component-id": "card-1-32",
+                "class": "iana-hardware:module",
+                "description": "Card plugged into slot 32 of the first chassis of the cascaded switch.",
+                "parent": [
+                  "slot-1-32"
+                ],
+                "is-fru": true
+              },
+              {
+                "component-id": "port-1-32-1",
+                "class": "iana-hardware:port",
+                "description": "Empty port 1 on the card plugged into slot 32 of the first chassis of the cascaded switch.",
+                "parent": [
+                  "card-1-32"
+                ],
+                "parent-rel-pos": 1
+              },
+              {
+                "component-id": "port-1-32-6",
+                "class": "iana-hardware:port",
+                "description": "Pluggable port 6 on the card plugged into slot 32 of the first chassis of the cascaded switch.",
+                "parent": [
+                  "card-1-32"
+                ],
+                "parent-rel-pos": 6
+              },
+              {
+                "component-id": "transceiver-module-1-32-6",
+                "class": "iana-hardware:module",
+                "description": "Transceiver module plugged in port 6 on the card plugged into slot 32 of the first chassis of the cascaded switch.",
+                "parent": [
+                  "port-1-32-6"
+                ],
+                "is-fru": true
+              },
+              {
+                "component-id": "port-1-32-10",
+                "class": "iana-hardware:port",
+                "description": "Empty port 10 on the card plugged into slot 32 of the first chassis of the cascaded switch.",
+                "parent": [
+                  "card-1-32"
+                ],
+                "parent-rel-pos": 10
               },
               {
                 "component-id": "chassis-2",
                 "class": "iana-hardware:chassis",
-                "description": "Second switch of the stack.",
-                "parent-rel-pos": 1,
+                "description": "Second chassis of the cascaded switch.",
+                "parent-rel-pos": 2,
                 "is-fru": true
               },
               {
-                "component-id": "board-2",
-                "class": "iana-hardware:module",
-                "description": "Single board of the second switch of the stack.",
-                "parent": "chassis-2",
-                "is-fru": false
-              },
-              {
-                "component-id": "port-2-1",
-                "class": "iana-hardware:port",
-                "description": "First stack port of the second switch in the stack.",
-                "parent": "board-2",
+                "component-id": "slot-2-1",
+                "class": "iana-hardware:container",
+                "description": "Slot 1 of the second chassis of the cascaded switch.",
+                "parent": [
+                  "chassis-2"
+                ],
                 "parent-rel-pos": 1
               },
               {
-                "component-id": "transceiver-module-2-1",
-                "class": "ietf-network-inventory:transceiver-module",
-                "description": "Transceiver module plugged in the first stack port of the first switch in the stack.",
-                "parent": "port-2-1",
+                "component-id": "card-2-1",
+                "class": "iana-hardware:module",
+                "description": "Card plugged into slot 1 of the second chassis of the cascaded switch.",
+                "parent": [
+                  "slot-2-1"
+                ],
                 "is-fru": true
               },
               {
-                "component-id": "port-2-2",
+                "component-id": "port-2-1-5",
                 "class": "iana-hardware:port",
-                "description": "Second stack port of the second switch in the stack.",
-                "parent": "board-2",
-                "parent-rel-pos": 2
+                "description": "Pluggable port 5 on the card plugged into slot 1 of the second chassis of the cascaded switch.",
+                "parent": [
+                  "card-2-1"
+                ],
+                "parent-rel-pos": 4
               },
               {
-                "component-id": "transceiver-module-2-2",
-                "class": "ietf-network-inventory:transceiver-module",
-                "description": "Transceiver module plugged in the second stack port of the first switch in the stack.",
-                "parent": "port-2-2",
+                "component-id": "transceiver-module-2-1-5",
+                "class": "iana-hardware:module",
+                "description": "Transceiver module plugged in port 5 on the card plugged into slot 1 of the second chassis of the cascaded switch.",
+                "parent": [
+                  "port-2-1-5"
+                ],
                 "is-fru": true
               },
               {
                 "component-id": "chassis-3",
                 "class": "iana-hardware:chassis",
-                "description": "Third switch of the stack.",
-                "parent-rel-pos": 1,
+                "description": "Third chassis of the cascaded switch.",
+                "parent-rel-pos": 3,
                 "is-fru": true
               },
               {
-                "component-id": "board-3",
-                "class": "iana-hardware:module",
-                "description": "Single board of the third switch of the stack.",
-                "parent": "chassis-3",
-                "is-fru": false
-              },
-              {
-                "component-id": "port-3-1",
-                "class": "iana-hardware:port",
-                "description": "First stack port of the third switch in the stack.",
-                "parent": "board-3",
+                "component-id": "slot-3-1",
+                "class": "iana-hardware:container",
+                "description": "Empty slot 1 of the third chassis of the cascaded switch.",
+                "parent": [
+                  "chassis-3"
+                ],
                 "parent-rel-pos": 1
               },
               {
-                "component-id": "transceiver-module-3-1",
-                "class": "ietf-network-inventory:transceiver-module",
-                "description": "Transceiver module plugged in the first stack port of the third switch in the stack.",
-                "parent": "port-3-1",
+                "component-id": "slot-3-16",
+                "class": "iana-hardware:container",
+                "description": "Slot 16 of the third chassis of the cascaded switch.",
+                "parent": [
+                  "chassis-3"
+                ],
+                "parent-rel-pos": 16
+              },
+              {
+                "component-id": "card-3-16",
+                "class": "iana-hardware:module",
+                "description": "Card plugged into slot 16 of the third chassis of the cascaded switch.",
+                "parent": [
+                  "slot-3-16"
+                ],
                 "is-fru": true
               },
               {
-                "component-id": "port-3-2",
+                "component-id": "port-3-16-7",
                 "class": "iana-hardware:port",
-                "description": "Second stack port of the second switch in the stack.",
-                "parent": "board-3",
-                "parent-rel-pos": 2
+                "description": "Pluggable port 7 on the card plugged into slot 16 of the third chassis of the cascaded switch.",
+                "parent": [
+                  "card-3-16"
+                ],
+                "parent-rel-pos": 7
               },
               {
-                "component-id": "transceiver-module-3-2",
-                "class": "ietf-network-inventory:transceiver-module",
-                "description": "Transceiver module plugged in the second stack port of the third switch in the stack.",
-                "parent": "port-3-2",
+                "component-id": "transceiver-module-3-16-7",
+                "class": "iana-hardware:module",
+                "description": "Transceiver module plugged in port 7 on the card plugged into slot 16 of the third chassis of the cascaded switch.",
+                "parent": [
+                  "port-3-16-7"
+                ],
                 "is-fru": true
               }
             ]
