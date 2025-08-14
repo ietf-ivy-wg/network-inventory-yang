@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-31T01:07:00.038644+00:00",
+  "timestamp": "2025-08-14T01:03:16.163537+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -2027,12 +2027,12 @@
         "italobusi"
       ],
       "labels": [
-        "priority-1",
-        "wait-PR"
+        "needs discussion",
+        "priority-1"
       ],
       "body": "At device level we have the model name and the software rev. The software rev I believe is the version number (e.g. for Cisco IOS would be 7.11.2 , 7.8.2, etc, for Nokia 23.10, 24.4, etc....). The O.S. name itself could be (or not) included in the software rev.... So... would it be  more clear \"decoupling\" the software name and the software version/revision? This would requiring adding a field for the operating system name or software name. Another possibility, instead of just one leaf, would be to have a specific operating system container hanging from device... Thoughts?",
       "createdAt": "2024-04-11T08:38:17Z",
-      "updatedAt": "2025-07-30T15:39:14Z",
+      "updatedAt": "2025-08-13T20:31:49Z",
       "closedAt": null,
       "comments": [
         {
@@ -2059,9 +2059,16 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nActions based on IETF 123 IVY WG feedbacks:\n\n- [ ] add a software-name attribute to the NE\n",
+          "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nActions based on IETF 123 IVY WG feedbacks:\n\n- [x] add a software-name attribute to the NE\n",
           "createdAt": "2025-07-30T15:39:14Z",
-          "updatedAt": "2025-07-30T15:39:14Z"
+          "updatedAt": "2025-08-13T18:42:37Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> **[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n> \n> Actions based on IETF 123 IVY WG feedbacks:\n> \n> * [x]  add a software-name attribute to the NE\n\nI think this issue can be closed with #128 ",
+          "createdAt": "2025-08-13T18:42:51Z",
+          "updatedAt": "2025-08-13T18:42:51Z"
         }
       ]
     },
@@ -3895,7 +3902,7 @@
       ],
       "body": "The NE is not a piece of hardware. The hardware is represented by a component. The NE is some kind of grouping/assembly statement for management-control or commercial purposes:\n- It may be considered as an asset, although this is challenging.\n- It may be in some form of inventory, but only as an assembly.\n- It does not have a hardware rev, although it could have an assembly revision.\n- It does not hold or run software directly, but may summarise the allowed/installed software on its various parts. \n- There will certainly be more than one instance of software in some cases and potentially multiple revs of each.\n- It is assembled and this could be considered as a manufacture, but the date may be difficult to define (un-like for an atomic FRU).\n- It does not have a proper serial number like a piece of hardware, although it may have an equivalent. (this may be on a label attached to one of the pieces of hardware it is assembled from).\n\n\n           +--ro hardware-rev?         string\n           +--ro software-rev?         string\n           +--ro software-patch-rev*   string\n           +--ro mfg-name?             string\n           +--ro mfg-date?             yang:date-and-time\n           +--ro serial-number?        string\n           +--ro product-name?         string\n\nFor an NE that has a single piece of hardware (e.g., a pizza box), this would be an NE with one component representing the actual hardware.\nNote that once we deal with expected/actual in the device, then the controller view of an NE that is a pizza box where there is an expectation and the actual hardware reported is inconsistent, the NE could have two \"components\", one expected and one actual, etc.\n",
       "createdAt": "2025-05-28T13:33:14Z",
-      "updatedAt": "2025-07-30T15:37:18Z",
+      "updatedAt": "2025-08-13T18:43:14Z",
       "closedAt": null,
       "comments": [
         {
@@ -3915,9 +3922,9 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nActions based on IETF 123 IVY WG feedbacks:\n\n- [ ] implement only the changes already agreed: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/112#issuecomment-2984801432\n\n> Agreements:\n> \n> * mfg-date: remove it as meaningless for NE\n> * serial-number: remove it (management of the asset id for the NE is out of scope of base inventory model)\n> * product-name: keep it\n> * hardware-rev: rename is as product-rev\n",
+          "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nActions based on IETF 123 IVY WG feedbacks:\n\n- [x] implement only the changes already agreed: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/112#issuecomment-2984801432\n\n> Agreements:\n> \n> * mfg-date: remove it as meaningless for NE\n> * serial-number: remove it (management of the asset id for the NE is out of scope of base inventory model)\n> * product-name: keep it\n> * hardware-rev: rename is as product-rev\n",
           "createdAt": "2025-07-30T15:37:18Z",
-          "updatedAt": "2025-07-30T15:37:18Z"
+          "updatedAt": "2025-08-13T18:43:14Z"
         }
       ]
     },
@@ -4381,9 +4388,47 @@
         "priority-1",
         "wait-PR"
       ],
-      "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nIt seems worthwhile updating the I-D text to clarify how a non-modular network element can be  modelled: it is ok to model these types of NE as an NE with one chassis component containing one or more port components. Reporting a non-FRU module component is possible but not mandatory.\n\nAgreed actions:\n\n- [ ] Update the definition of chassis:\n\n> A field replaceable equipment with a particular structural format and dimensions. A chassis can, but does not need to, include spaces(called slots) to take cards.\n> Elsewhere, a chassis can be called shelf, sub-rack, stand-alone unit, etc.\n\n- [ ] Add a JSON example on how these type of non-modular network elements can be supported by the base inventory model\n",
+      "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nIt seems worthwhile updating the I-D text to clarify how a non-modular network element can be  modelled: it is ok to model these types of NE as an NE with one chassis component containing one or more port components. Reporting a non-FRU module component is possible but not mandatory.\n\nAgreed actions:\n\n- [x] Update the definition of chassis:\n\n> A field replaceable equipment with a particular structural format and dimensions. A chassis can, but does not need to, include spaces(called slots) to take cards.\n> Elsewhere, a chassis can be called shelf, sub-rack, stand-alone unit, etc.\n\n- [x] Add a JSON example on how these type of non-modular network elements can be supported by the base inventory model\n",
       "createdAt": "2025-07-30T15:48:01Z",
-      "updatedAt": "2025-07-30T15:48:01Z",
+      "updatedAt": "2025-08-13T19:56:48Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 132,
+      "id": "I_kwDOKiDYo87F4sYP",
+      "title": "Manageability Considerations",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/132",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "needs discussion",
+        "priority-1"
+      ],
+      "body": "The Manageability Considerations is empty: need to provide some text or decide to remove the section",
+      "createdAt": "2025-08-13T21:39:32Z",
+      "updatedAt": "2025-08-13T21:39:32Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 133,
+      "id": "I_kwDOKiDYo87F4w1T",
+      "title": "Definitions from IANA-HW",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/133",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "needs discussion",
+        "priority-1"
+      ],
+      "body": "The following terms are defined by reference to the identities defined in the \"iana-hardware\" module:\n- backplane\n- battery\n- container\n- cpu\n- chassis\n- fan\n- module\n- port\n- power supply\n- sensor\n- stack\n- storage device\n\nThese definitions are used to generalize the definition of hardware component.\n\nHowever there is this Editors' Note to be resolved:\n\n> Editors' Note: The chassis and port definition below needs to be moved to iana-hardware update\n\nIt is worth noting that in addition to chassis and port, the I-D is defining also the concept of container and the concept of card (modelled as a module)\n\nCould we provide a clean definition for the following terms (or equivalent terms as we have done for card versus module):\n- backplane\n- battery\n- cpu\n- fan\n- power supply\n- sensor\n- storage device\n\n\nLooking at the current text and example, maybe we can leave the concept of 'stack' outside the scope of the first RFC\n",
+      "createdAt": "2025-08-13T21:46:07Z",
+      "updatedAt": "2025-08-13T21:52:45Z",
       "closedAt": null,
       "comments": []
     }
@@ -8875,6 +8920,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 131,
+      "id": "PR_kwDOKiDYo86jjox4",
+      "title": "WG LC Preparation",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/131",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I-D and YANG updated for WG LC preparation:\r\n- Added support for multi-slot cards: fix #3\r\n- Added support for multiple SW revisions: fix #128\r\n- Cleaned-up network element attributes: fix #112 \r\n- Added pizza box example: fix #130\r\n- Removed breakout ports: fix #126\r\n- Added IANA and Security Considerations: fix #7 ",
+      "createdAt": "2025-08-13T20:30:34Z",
+      "updatedAt": "2025-08-13T21:54:40Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "95f61d777cde924825573400db09dcbd8763a1ed",
+      "headRepository": "italobusi/network-inventory-yang",
+      "headRefName": "wg-lc-prep",
+      "headRefOid": "23a48d80a7d6e35e39d574d043b40b131bbed60b",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
