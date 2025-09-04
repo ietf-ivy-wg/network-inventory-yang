@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-08-14T01:03:16.163537+00:00",
+  "timestamp": "2025-09-04T00:54:26.400267+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -485,11 +485,12 @@
         "italobusi"
       ],
       "labels": [
-        "priority-1"
+        "priority-1",
+        "wait-PR"
       ],
       "body": "See section 7 of [draft-wzwb-opsawg-network-inventory-management-04](https://datatracker.ietf.org/doc/html/draft-wzwb-opsawg-network-inventory-management-04#name-security-considerations)",
       "createdAt": "2023-10-23T08:36:14Z",
-      "updatedAt": "2025-07-30T16:11:29Z",
+      "updatedAt": "2025-09-03T17:46:32Z",
       "closedAt": null,
       "comments": [
         {
@@ -502,9 +503,9 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-06-23 Base Network Inventory ad-hoc call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-06-23)**\n\n- [ ] @italobusi provide some text proposal (target time, right after IETF 123)\n",
+          "body": "**[2025-06-23 Base Network Inventory ad-hoc call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-06-23)**\n\n- [x] @italobusi provide some text proposal (target time, right after IETF 123)\n",
           "createdAt": "2025-06-24T13:28:12Z",
-          "updatedAt": "2025-06-24T13:28:12Z"
+          "updatedAt": "2025-09-03T17:46:21Z"
         }
       ]
     },
@@ -2027,12 +2028,12 @@
         "italobusi"
       ],
       "labels": [
-        "needs discussion",
-        "priority-1"
+        "priority-1",
+        "wait-PR"
       ],
       "body": "At device level we have the model name and the software rev. The software rev I believe is the version number (e.g. for Cisco IOS would be 7.11.2 , 7.8.2, etc, for Nokia 23.10, 24.4, etc....). The O.S. name itself could be (or not) included in the software rev.... So... would it be  more clear \"decoupling\" the software name and the software version/revision? This would requiring adding a field for the operating system name or software name. Another possibility, instead of just one leaf, would be to have a specific operating system container hanging from device... Thoughts?",
       "createdAt": "2024-04-11T08:38:17Z",
-      "updatedAt": "2025-08-13T20:31:49Z",
+      "updatedAt": "2025-09-03T15:45:45Z",
       "closedAt": null,
       "comments": [
         {
@@ -2069,6 +2070,13 @@
           "body": "> **[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n> \n> Actions based on IETF 123 IVY WG feedbacks:\n> \n> * [x]  add a software-name attribute to the NE\n\nI think this issue can be closed with #128 ",
           "createdAt": "2025-08-13T18:42:51Z",
           "updatedAt": "2025-08-13T18:42:51Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-09-03 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-03)**\n\nAgreed that this issue can be closed together with issue #128",
+          "createdAt": "2025-09-03T15:44:32Z",
+          "updatedAt": "2025-09-03T15:45:45Z"
         }
       ]
     },
@@ -4273,11 +4281,12 @@
       "assignees": [],
       "labels": [
         "priority-1",
-        "wait-WG"
+        "wait-WG",
+        "wait-PR"
       ],
       "body": "The breakout port model has been worked extensively to a point where it is well understood and is seen to represent the breakout structure very well.\n\nHowever, the breakout port model appears to be logical inventory and hence should potentially not be in the ivy model. \n\nThis issue relates to issue #125.  ",
       "createdAt": "2025-07-16T14:47:44Z",
-      "updatedAt": "2025-07-30T15:49:51Z",
+      "updatedAt": "2025-09-03T17:45:55Z",
       "closedAt": null,
       "comments": [
         {
@@ -4293,6 +4302,20 @@
           "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nWait for the on-going IVY WG discussion to complete:\n\nhttps://mailarchive.ietf.org/arch/msg/ivy/4_Xf7_l5HPP-0f9esa2C-oUUw9Q/\n\nTo be reviewed in the next call on September 3, 2025\n",
           "createdAt": "2025-07-30T15:49:34Z",
           "updatedAt": "2025-07-30T15:49:34Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-09-03 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-03)**\n\n> Wait for the on-going IVY WG discussion to complete:\n> \n> https://mailarchive.ietf.org/arch/msg/ivy/4_Xf7_l5HPP-0f9esa2C-oUUw9Q/\n> \n\n- [x] @italobusi solicit further feedbacks from the IVY WG mailing list",
+          "createdAt": "2025-09-03T15:42:57Z",
+          "updatedAt": "2025-09-03T17:24:04Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x]  [@italobusi](https://github.com/italobusi) solicit further feedbacks from the IVY WG mailing list\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/nvTwLqu7sXU9rbXhLtrnXzoLz6E/",
+          "createdAt": "2025-09-03T17:25:21Z",
+          "updatedAt": "2025-09-03T17:25:21Z"
         }
       ]
     },
@@ -4343,13 +4366,29 @@
       ],
       "labels": [
         "priority-1",
+        "wait-WG",
         "wait-PR"
       ],
       "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nActions based on IETF 123 IVY WG feedbacks:\n\n- [ ] define a list of (software-name, software-rev) for the components\n\nAdditional considerations:\n1. the list of active software should also contain the software patches for each software-name instance\n2. since this list reports only the active SW modules, the software-name can be used as a key for this list\n3. the firmware revision can be removed and the software-rev list can be used also to report running firmware modules\n4. the approach can also be extened to the NE for consistency\n\nIt was also noted that the term firmware is sometimes used to refer to a read-only code (e.g., BIOS) which cannot be upgraded and sometimes used to refer to the programmable code of an FPGA which can be upgraded. By defining only the software-rev list can cover any type of programming data (including firmware) would resolve this ambiguity in the context of the base inventory model. They type of code can be distinguished from the name attribute.\n\nOLD\n\n     +--rw network-elements\n        +--rw network-element* [ne-id]\n           +--rw ne-id                 string\n           +-- ...\n           +--ro software-rev?         string\n           +--ro software-patch-rev*   string\n           +-- ...\n           +--ro components\n              +--rw component* [component-id]\n                 +--rw component-id           string\n                 +--ro class                  union\n                 +-- ...\n                 +--ro hardware-rev?          string\n                 +--ro software-rev?          string\n                 +--ro software-patch-rev*    string\n                 +-- ...\n                 +--ro firmware-rev?          string\n                 +-- ...\n\nNEW\n\n     +--rw network-elements\n        +--rw network-element* [ne-id]\n           +--rw ne-id                 string\n           +-- ...\n           +--ro software-rev [name]\n           |  +--ro name          string\n           |  +--ro revision?     string\n           |  +--ro patch-rev*    string\n           +-- ...\n           +--ro components\n              +--rw component* [component-id]\n                 +--rw component-id           string\n                 +--ro class                  union\n                 +-- ...\n                 +--ro hardware-rev?          string\n                 +--ro software-rev [name]\n                 |  +--ro name          string\n                 |  +--ro revision?     string\n                 |  +--ro patch-rev*    string\n                 +-- ...\n                 +--ro firmware-rev?          string\n                 +-- ...\n\n",
       "createdAt": "2025-07-30T15:42:54Z",
-      "updatedAt": "2025-07-30T15:42:54Z",
+      "updatedAt": "2025-09-03T17:37:57Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-09-03 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-03)**\n\n- [x] @italobusi check with IVY WG the additional thoughts from the call on July 30 (https://github.com/ietf-ivy-wg/network-inventory-yang/issues/128#issue-3277584928)\n",
+          "createdAt": "2025-09-03T15:47:17Z",
+          "updatedAt": "2025-09-03T17:35:11Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x]  [@italobusi](https://github.com/italobusi) check with IVY WG the additional thoughts from the call on July 30 ([Multiple software revisions\u00a0#128 (comment)](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/128#issue-3277584928))\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/BnUmYN6UOILyiDlEmxeo7RvW6ns/\n",
+          "createdAt": "2025-09-03T17:35:56Z",
+          "updatedAt": "2025-09-03T17:35:56Z"
+        }
+      ]
     },
     {
       "number": 129,
@@ -4404,14 +4443,29 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
-        "needs discussion",
-        "priority-1"
+        "priority-1",
+        "wait-WG"
       ],
       "body": "The Manageability Considerations is empty: need to provide some text or decide to remove the section",
       "createdAt": "2025-08-13T21:39:32Z",
-      "updatedAt": "2025-08-13T21:39:32Z",
+      "updatedAt": "2025-09-03T17:44:57Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-09-03 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-03)**\n\nAgreed to remove this section from the I-D\n\n- [x] @italobusi confirm this decision with the IVY WG mailing list",
+          "createdAt": "2025-09-03T15:48:40Z",
+          "updatedAt": "2025-09-03T17:36:52Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x]  [@italobusi](https://github.com/italobusi) confirm this decision with the IVY WG mailing list\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/u0kkL0CsVfiS0WL6O8nMwphRRQ4/\n",
+          "createdAt": "2025-09-03T17:44:38Z",
+          "updatedAt": "2025-09-03T17:44:38Z"
+        }
+      ]
     },
     {
       "number": 133,
@@ -4428,9 +4482,17 @@
       ],
       "body": "The following terms are defined by reference to the identities defined in the \"iana-hardware\" module:\n- backplane\n- battery\n- container\n- cpu\n- chassis\n- fan\n- module\n- port\n- power supply\n- sensor\n- stack\n- storage device\n\nThese definitions are used to generalize the definition of hardware component.\n\nHowever there is this Editors' Note to be resolved:\n\n> Editors' Note: The chassis and port definition below needs to be moved to iana-hardware update\n\nIt is worth noting that in addition to chassis and port, the I-D is defining also the concept of container and the concept of card (modelled as a module)\n\nCould we provide a clean definition for the following terms (or equivalent terms as we have done for card versus module):\n- backplane\n- battery\n- cpu\n- fan\n- power supply\n- sensor\n- storage device\n\n\nLooking at the current text and example, maybe we can leave the concept of 'stack' outside the scope of the first RFC\n",
       "createdAt": "2025-08-13T21:46:07Z",
-      "updatedAt": "2025-08-13T21:52:45Z",
+      "updatedAt": "2025-09-03T15:49:54Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-09-03 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-03)**\n\nThere are two options:\n\n1. reduce the list of terms defined by reference to IANA-HW (removing the terms which have been already defined in this I-D, such as port, chassis, ...)\n\n1. provide a definition for each of the component type defined in IANA-HW within this document and do not reference IANA-HW for defining these terms\n\nTo be further discussed in the next calls\n",
+          "createdAt": "2025-09-03T15:49:54Z",
+          "updatedAt": "2025-09-03T15:49:54Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -8931,9 +8993,9 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "I-D and YANG updated for WG LC preparation:\r\n- Added support for multi-slot cards: fix #3\r\n- Added support for multiple SW revisions: fix #128\r\n- Cleaned-up network element attributes: fix #112 \r\n- Added pizza box example: fix #130\r\n- Removed breakout ports: fix #126\r\n- Added IANA and Security Considerations: fix #7 ",
+      "body": "I-D and YANG updated for WG LC preparation:\r\n- Added support for multi-slot cards: fix #3\r\n- Added support for multiple SW revisions: fix #128 and fix #44\r\n- Cleaned-up network element attributes: fix #112 \r\n- Added pizza box example: fix #130\r\n- Removed breakout ports: fix #126\r\n- Added IANA and Security Considerations: fix #7 ",
       "createdAt": "2025-08-13T20:30:34Z",
-      "updatedAt": "2025-08-13T21:54:40Z",
+      "updatedAt": "2025-09-03T15:44:58Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "95f61d777cde924825573400db09dcbd8763a1ed",
@@ -8944,7 +9006,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-09-03 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-03)**\r\n\r\nThe plan is to get review comments by the next call (September 17, 2025)\r\n",
+          "createdAt": "2025-09-03T15:37:50Z",
+          "updatedAt": "2025-09-03T15:37:50Z"
+        }
+      ],
       "reviews": []
     }
   ]
