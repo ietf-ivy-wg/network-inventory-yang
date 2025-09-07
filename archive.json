@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-04T00:54:26.400267+00:00",
+  "timestamp": "2025-09-07T01:00:35.635185+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4369,9 +4369,9 @@
         "wait-WG",
         "wait-PR"
       ],
-      "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nActions based on IETF 123 IVY WG feedbacks:\n\n- [ ] define a list of (software-name, software-rev) for the components\n\nAdditional considerations:\n1. the list of active software should also contain the software patches for each software-name instance\n2. since this list reports only the active SW modules, the software-name can be used as a key for this list\n3. the firmware revision can be removed and the software-rev list can be used also to report running firmware modules\n4. the approach can also be extened to the NE for consistency\n\nIt was also noted that the term firmware is sometimes used to refer to a read-only code (e.g., BIOS) which cannot be upgraded and sometimes used to refer to the programmable code of an FPGA which can be upgraded. By defining only the software-rev list can cover any type of programming data (including firmware) would resolve this ambiguity in the context of the base inventory model. They type of code can be distinguished from the name attribute.\n\nOLD\n\n     +--rw network-elements\n        +--rw network-element* [ne-id]\n           +--rw ne-id                 string\n           +-- ...\n           +--ro software-rev?         string\n           +--ro software-patch-rev*   string\n           +-- ...\n           +--ro components\n              +--rw component* [component-id]\n                 +--rw component-id           string\n                 +--ro class                  union\n                 +-- ...\n                 +--ro hardware-rev?          string\n                 +--ro software-rev?          string\n                 +--ro software-patch-rev*    string\n                 +-- ...\n                 +--ro firmware-rev?          string\n                 +-- ...\n\nNEW\n\n     +--rw network-elements\n        +--rw network-element* [ne-id]\n           +--rw ne-id                 string\n           +-- ...\n           +--ro software-rev [name]\n           |  +--ro name          string\n           |  +--ro revision?     string\n           |  +--ro patch-rev*    string\n           +-- ...\n           +--ro components\n              +--rw component* [component-id]\n                 +--rw component-id           string\n                 +--ro class                  union\n                 +-- ...\n                 +--ro hardware-rev?          string\n                 +--ro software-rev [name]\n                 |  +--ro name          string\n                 |  +--ro revision?     string\n                 |  +--ro patch-rev*    string\n                 +-- ...\n                 +--ro firmware-rev?          string\n                 +-- ...\n\n",
+      "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nActions based on IETF 123 IVY WG feedbacks:\n\n- [ ] define a list of (software-name, software-rev) for the components\n\nAdditional considerations:\n1. the list of active software should also contain the software patches for each software-name instance\n2. since this list reports only the active SW modules, the software-name can be used as a key for this list\n3. the firmware revision can be removed and the software-rev list can be used also to report running firmware modules\n4. the approach can also be extened to the NE for consistency\n\nIt was also noted that the term firmware is sometimes used to refer to a read-only code (e.g., BIOS) which cannot be upgraded and sometimes used to refer to the programmable code of an FPGA which can be upgraded. By defining only the software-rev list can cover any type of programming data (including firmware) would resolve this ambiguity in the context of the base inventory model. They type of code can be distinguished from the name attribute.\n\nOLD\n\n     +--rw network-elements\n        +--rw network-element* [ne-id]\n           +--rw ne-id                 string\n           +-- ...\n           +--ro software-rev?         string\n           +--ro software-patch-rev*   string\n           +-- ...\n           +--ro components\n              +--rw component* [component-id]\n                 +--rw component-id           string\n                 +--ro class                  union\n                 +-- ...\n                 +--ro hardware-rev?          string\n                 +--ro software-rev?          string\n                 +--ro software-patch-rev*    string\n                 +-- ...\n                 +--ro firmware-rev?          string\n                 +-- ...\n\nNEW\n\n     +--rw network-elements\n        +--rw network-element* [ne-id]\n           +--rw ne-id                 string\n           +-- ...\n           +--ro software-rev [name]\n           |  +--ro name          string\n           |  +--ro revision?     string\n           |  +--ro patch-rev*    string\n           +-- ...\n           +--ro components\n              +--rw component* [component-id]\n                 +--rw component-id           string\n                 +--ro class                  union\n                 +-- ...\n                 +--ro hardware-rev?          string\n                 +--ro software-rev [name]\n                 |  +--ro name          string\n                 |  +--ro revision?     string\n                 |  +--ro patch-rev*    string\n                 +-- ...\n                 +-- ...\n\n",
       "createdAt": "2025-07-30T15:42:54Z",
-      "updatedAt": "2025-09-03T17:37:57Z",
+      "updatedAt": "2025-09-04T06:27:33Z",
       "closedAt": null,
       "comments": [
         {
@@ -8995,7 +8995,7 @@
       "labels": [],
       "body": "I-D and YANG updated for WG LC preparation:\r\n- Added support for multi-slot cards: fix #3\r\n- Added support for multiple SW revisions: fix #128 and fix #44\r\n- Cleaned-up network element attributes: fix #112 \r\n- Added pizza box example: fix #130\r\n- Removed breakout ports: fix #126\r\n- Added IANA and Security Considerations: fix #7 ",
       "createdAt": "2025-08-13T20:30:34Z",
-      "updatedAt": "2025-09-03T15:44:58Z",
+      "updatedAt": "2025-09-05T14:09:30Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "95f61d777cde924825573400db09dcbd8763a1ed",
@@ -9015,7 +9015,28 @@
           "updatedAt": "2025-09-03T15:37:50Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo86-Gl7Z",
+          "commit": {
+            "abbreviatedOid": "23a48d8"
+          },
+          "author": "jbouqui153",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "All changes look fine to me. Only one change requested. Thanks, Italo!",
+          "createdAt": "2025-09-05T13:33:14Z",
+          "updatedAt": "2025-09-05T14:09:30Z",
+          "comments": [
+            {
+              "originalPosition": 407,
+              "body": "Should be \"If this list is empty\"",
+              "createdAt": "2025-09-05T13:33:14Z",
+              "updatedAt": "2025-09-05T14:09:31Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
