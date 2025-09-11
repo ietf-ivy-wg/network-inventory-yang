@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-07T01:00:35.635185+00:00",
+  "timestamp": "2025-09-11T00:56:21.019914+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -8995,7 +8995,7 @@
       "labels": [],
       "body": "I-D and YANG updated for WG LC preparation:\r\n- Added support for multi-slot cards: fix #3\r\n- Added support for multiple SW revisions: fix #128 and fix #44\r\n- Cleaned-up network element attributes: fix #112 \r\n- Added pizza box example: fix #130\r\n- Removed breakout ports: fix #126\r\n- Added IANA and Security Considerations: fix #7 ",
       "createdAt": "2025-08-13T20:30:34Z",
-      "updatedAt": "2025-09-05T14:09:30Z",
+      "updatedAt": "2025-09-09T13:37:41Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "95f61d777cde924825573400db09dcbd8763a1ed",
@@ -9033,6 +9033,38 @@
               "body": "Should be \"If this list is empty\"",
               "createdAt": "2025-09-05T13:33:14Z",
               "updatedAt": "2025-09-05T14:09:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo86-xjQT",
+          "commit": {
+            "abbreviatedOid": "23a48d8"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-09T10:10:48Z",
+          "updatedAt": "2025-09-09T13:28:57Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "is it correct that this definition has been deleted ? ",
+              "createdAt": "2025-09-09T10:10:48Z",
+              "updatedAt": "2025-09-09T13:28:57Z"
+            },
+            {
+              "originalPosition": 23,
+              "body": "the same as above ",
+              "createdAt": "2025-09-09T10:11:10Z",
+              "updatedAt": "2025-09-09T13:28:57Z"
+            },
+            {
+              "originalPosition": 407,
+              "body": "same comment as Jeff",
+              "createdAt": "2025-09-09T13:21:27Z",
+              "updatedAt": "2025-09-09T13:28:57Z"
             }
           ]
         }
