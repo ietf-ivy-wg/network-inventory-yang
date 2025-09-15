@@ -68,7 +68,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2025-08-13 {
+  revision 2025-09-15 {
     description
       "Initial version";
     reference
@@ -437,7 +437,7 @@ module ietf-network-inventory {
                 "The identifiers of all the components that
                  physically contain this component.
 
-                 If this list is not empty, this component is not
+                 If this list is empty, this component is not
                  contained in any other component but it is contained
                  in the network-element.";
               reference
