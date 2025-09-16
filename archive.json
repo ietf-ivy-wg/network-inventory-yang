@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-11T00:56:21.019914+00:00",
+  "timestamp": "2025-09-16T00:55:27.305865+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -8995,13 +8995,13 @@
       "labels": [],
       "body": "I-D and YANG updated for WG LC preparation:\r\n- Added support for multi-slot cards: fix #3\r\n- Added support for multiple SW revisions: fix #128 and fix #44\r\n- Cleaned-up network element attributes: fix #112 \r\n- Added pizza box example: fix #130\r\n- Removed breakout ports: fix #126\r\n- Added IANA and Security Considerations: fix #7 ",
       "createdAt": "2025-08-13T20:30:34Z",
-      "updatedAt": "2025-09-09T13:37:41Z",
+      "updatedAt": "2025-09-15T14:40:47Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "95f61d777cde924825573400db09dcbd8763a1ed",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "wg-lc-prep",
-      "headRefOid": "23a48d80a7d6e35e39d574d043b40b131bbed60b",
+      "headRefOid": "b070bc6b715f5d1d81df0cc8df4dee26aa9f5f39",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -9065,6 +9065,86 @@
               "body": "same comment as Jeff",
               "createdAt": "2025-09-09T13:21:27Z",
               "updatedAt": "2025-09-09T13:28:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87AOXAj",
+          "commit": {
+            "abbreviatedOid": "23a48d8"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-15T14:38:32Z",
+          "updatedAt": "2025-09-15T14:38:32Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "These terms were used when describing the port breakout and are no longer used in the I-D.",
+              "createdAt": "2025-09-15T14:38:32Z",
+              "updatedAt": "2025-09-15T14:38:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87AOXRc",
+          "commit": {
+            "abbreviatedOid": "23a48d8"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-15T14:38:45Z",
+          "updatedAt": "2025-09-15T14:38:46Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "Same as above: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/131/files#r2349231865",
+              "createdAt": "2025-09-15T14:38:45Z",
+              "updatedAt": "2025-09-15T14:38:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87AOYfl",
+          "commit": {
+            "abbreviatedOid": "23a48d8"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-15T14:39:59Z",
+          "updatedAt": "2025-09-15T14:39:59Z",
+          "comments": [
+            {
+              "originalPosition": 407,
+              "body": "```suggestion\r\n                 If this list is empty, this component is not\r\n```",
+              "createdAt": "2025-09-15T14:39:59Z",
+              "updatedAt": "2025-09-15T14:39:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87AOZKY",
+          "commit": {
+            "abbreviatedOid": "23a48d8"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-15T14:40:28Z",
+          "updatedAt": "2025-09-15T14:40:29Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n  revision 2025-09-15 {\r\n```",
+              "createdAt": "2025-09-15T14:40:28Z",
+              "updatedAt": "2025-09-15T14:40:29Z"
             }
           ]
         }
