@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-16T00:55:27.305865+00:00",
+  "timestamp": "2025-09-18T00:54:38.119861+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -8995,7 +8995,7 @@
       "labels": [],
       "body": "I-D and YANG updated for WG LC preparation:\r\n- Added support for multi-slot cards: fix #3\r\n- Added support for multiple SW revisions: fix #128 and fix #44\r\n- Cleaned-up network element attributes: fix #112 \r\n- Added pizza box example: fix #130\r\n- Removed breakout ports: fix #126\r\n- Added IANA and Security Considerations: fix #7 ",
       "createdAt": "2025-08-13T20:30:34Z",
-      "updatedAt": "2025-09-15T14:40:47Z",
+      "updatedAt": "2025-09-17T14:18:35Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "95f61d777cde924825573400db09dcbd8763a1ed",
@@ -9147,6 +9147,58 @@
               "updatedAt": "2025-09-15T14:40:29Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87Ay9CM",
+          "commit": {
+            "abbreviatedOid": "b070bc6"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "In the multiple software revisions work there is the description \"The list of the active software modules within the entity\". Minor issue is that this property description makes it sound quite dynamic. Is it list of software intended to be active?\r\n\r\nI am OK that this stays as it is.\r\n\r\nI have reviewed the remainder of the changes and have no other issues.",
+          "createdAt": "2025-09-17T13:51:41Z",
+          "updatedAt": "2025-09-17T13:51:41Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87AzB4S",
+          "commit": {
+            "abbreviatedOid": "b070bc6"
+          },
+          "author": "philbedard",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-17T13:56:16Z",
+          "updatedAt": "2025-09-17T13:56:16Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87AzZUg",
+          "commit": {
+            "abbreviatedOid": "b070bc6"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-17T14:15:21Z",
+          "updatedAt": "2025-09-17T14:15:21Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87Azdb8",
+          "commit": {
+            "abbreviatedOid": "b070bc6"
+          },
+          "author": "jbouqui153",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-17T14:18:35Z",
+          "updatedAt": "2025-09-17T14:18:35Z",
+          "comments": []
         }
       ]
     }
