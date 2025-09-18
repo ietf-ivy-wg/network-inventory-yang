@@ -1,0 +1,112 @@
+{
+  "ietf-network-inventory:network-inventory": {
+    "network-elements": {
+      "network-element" : [
+        {
+          "ne-id": "Pizza-box-NE",
+          "description": "Example of a pizza box NE.",
+          "components": {
+            "component": [
+              {
+                "component-id": "pizza-chassis",
+                "class": "iana-hardware:chassis",
+                "description": "Pizza box chassis.",
+                "is-fru": true
+              },
+              {
+                "component-id": "port-1",
+                "class": "iana-hardware:port",
+                "description": "Port 1 of the pizza box.",
+                "parent": [
+                  "pizza-chassis"
+                ],
+                "parent-rel-pos": 1
+              },
+              {
+                "component-id": "port-2",
+                "class": "iana-hardware:port",
+                "description": "Port 2 of the pizza box.",
+                "parent": [
+                  "pizza-chassis"
+                ],
+                "parent-rel-pos": 2
+              },
+              {
+                "component-id": "port-3",
+                "class": "iana-hardware:port",
+                "description": "Port 3 of the pizza box.",
+                "parent": [
+                  "pizza-chassis"
+                ],
+                "parent-rel-pos": 3
+              },
+              {
+                "component-id": "port-4",
+                "class": "iana-hardware:port",
+                "description": "Port 4 of the pizza box.",
+                "parent": [
+                  "pizza-chassis"
+                ],
+                "parent-rel-pos": 4
+              },
+              {
+                "component-id": "port-5",
+                "class": "iana-hardware:port",
+                "description": "Port 5 of the pizza box.",
+                "parent": [
+                  "pizza-chassis"
+                ],
+                "parent-rel-pos": 5
+              },
+              {
+                "component-id": "port-6",
+                "class": "iana-hardware:port",
+                "description": "Port 6 of the pizza box.",
+                "parent": [
+                  "pizza-chassis"
+                ],
+                "parent-rel-pos": 6
+              },
+              {
+                "component-id": "port-7",
+                "class": "iana-hardware:port",
+                "description": "Port 7 of the pizza box.",
+                "parent": [
+                  "pizza-chassis"
+                ],
+                "parent-rel-pos": 7
+              },
+              {
+                "component-id": "port-8",
+                "class": "iana-hardware:port",
+                "description": "Port 8 of the pizza box.",
+                "parent": [
+                  "pizza-chassis"
+                ],
+                "parent-rel-pos": 8
+              },
+              {
+                "component-id": "port-9",
+                "class": "iana-hardware:port",
+                "description": "Port 9 of the pizza box.",
+                "parent": [
+                  "pizza-chassis"
+                ],
+                "parent-rel-pos": 9
+              },
+              {
+                "component-id": "port-10",
+                "class": "iana-hardware:port",
+                "description": "Port 10 of the pizza box.",
+                "parent": [
+                  "pizza-chassis"
+                ],
+                "parent-rel-pos": 10
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

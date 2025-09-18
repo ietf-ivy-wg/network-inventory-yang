@@ -1,0 +1,57 @@
+{
+  "ietf-network-inventory:network-inventory": {
+    "network-elements": {
+      "network-element" : [
+        {
+          "ne-id": "NE-1",
+          "description": "Network element example with ports and breakouts.",
+          "components": {
+            "component": [
+              {
+                "component-id": "board-1",
+                "class": "iana-hardware:module",
+                "description": "Network element example with ports and breakouts."
+              },
+              {
+                "component-id": "port-1",
+                "class": "iana-hardware:port",
+                "description": "Example of an integrated (non-pluggable) port.",
+                "parent": [
+                  "board-1"
+                ],
+                "parent-rel-pos": 1
+              },
+              {
+                "component-id": "port-2",
+                "class": "iana-hardware:port",
+                "description": "Example of an empty pluggable port.",
+                "parent": [
+                  "board-1"
+                ],
+                "parent-rel-pos": 2
+              },
+              {
+                "component-id": "port-3",
+                "class": "iana-hardware:port",
+                "description": "Example of a non empty pluggable port.",
+                "parent": [
+                  "board-1"
+                ],
+                "parent-rel-pos": 3
+              },
+              {
+                "component-id": "transceiver-module-3",
+                "class": "iana-hardware:module",
+                "description": "Example of a pluggable module plugged within a pluggable port.",
+                "parent": [
+                  "port-3"
+                ],
+                "is-fru": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
