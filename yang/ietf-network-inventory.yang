@@ -198,14 +198,22 @@ module ietf-network-inventory {
         config false;
         description
           "The vendor-specific revision string of the software
-           module.";
+           module when not implicitly defined as part of the name of
+           the software module.";
       }
-      leaf-list patch-rev {
-        type string;
-        config false;
+      list patch {
+        key "revision";
         description
-          "The list of vendor-specific patch revision strings for
-           software module.";
+          "The list of software patches configured to be active for
+           the software module.";
+        leaf revision {
+          type string;
+          config false;
+          description
+            "The vendor-specific revision string of the software
+             patch when not implicitly defined as part of the name or
+             revision of the software module.";
+        }
       }
     }
     leaf mfg-name {

@@ -9,9 +9,10 @@ module: ietf-network-inventory
            +--rw description?    string
            +--rw alias?          string
            +--ro software-rev* [name]
-           |  +--ro name         string
-           |  +--ro revision?    string
-           |  +--ro patch-rev*   string
+           |  +--ro name        string
+           |  +--ro revision?   string
+           |  +--ro patch* [revision]
+           |     +--ro revision    string
            +--ro mfg-name?       string
            +--ro product-name?   string
            +--ro product-rev?    string
@@ -24,9 +25,10 @@ module: ietf-network-inventory
                  +--rw description?      string
                  +--rw alias?            string
                  +--ro software-rev* [name]
-                 |  +--ro name         string
-                 |  +--ro revision?    string
-                 |  +--ro patch-rev*   string
+                 |  +--ro name        string
+                 |  +--ro revision?   string
+                 |  +--ro patch* [revision]
+                 |     +--ro revision    string
                  +--ro mfg-name?         string
                  +--ro product-name?     string
                  +--ro hardware-rev?     string
