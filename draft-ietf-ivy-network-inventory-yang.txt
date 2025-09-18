@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 17 January 2026                                           Nokia
+Expires: 22 March 2026                                             Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                            16 July 2025
+                                                       18 September 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 January 2026.
+   This Internet-Draft will expire on 22 March 2026.
 
 Copyright Notice
 
@@ -84,7 +84,6 @@ Table of Contents
      3.3.  Components
        3.3.1.  Hardware Components
        3.3.2.  Software Components
-       3.3.3.  Breakout ports
      3.4.  Changes Since RFC 8348
        3.4.1.  Part Number
        3.4.2.  Component identifiers
@@ -99,10 +98,12 @@ Table of Contents
    Appendix A.  Comparison With Openconfig-platform Data Model
    Appendix B.  Terminology of Container
    Appendix C.  Efficiency Issue
-   Appendix D.  Examples of ports, transceivers and port breakouts
+   Appendix D.  Examples of ports
      D.1.  JSON Examples
    Appendix E.  Example of multi-chassis network elements
      E.1.  JSON Examples
+   Appendix F.  Example of non-modular network elements
+     F.1.  JSON Examples
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -257,16 +258,17 @@ Table of Contents
       moved to iana-hardware update
 
    Chassis:  A field replaceable equipment with a particular structural
-      format and dimensions.  A chassis can include spaces(called slots)
-      to take cards.
+      format and dimensions.  A chassis can, but does not need to,
+      include spaces (called slots) to take cards.
 
-      Elsewhere, a chassis can be called shelf, sub-rack, etc.
+      Elsewhere, a chassis can be called shelf, sub-rack, stand-alone
+      unit, etc.
 
    Port:  A component where networking traffic can be received and/or
       transmitted, e.g., by attaching networking cables.
 
       In case of pluggable ports, the port may be empty when no
-      transceiver module is plugged in.
+      pluggable module is plugged in.
 
    Also, the document makes use of the following terms:
 
@@ -303,51 +305,9 @@ Table of Contents
       may be chosen from a limited range of types of cards.  A slot can
       be subdivided into smaller spaces (called sub-slots).
 
-   Physical interface:  An interface associated to a port.  A physical
-      interface is always in the lowest layer of the interface stack.
-
-   Logical interface:  An interface which is not associated to a port.
-
-      Editors' Note: check whether the definitions of physical and
-      logical interfaces can be replaced by a normative reference to
-      [RFC8343]
-
-   Breakout Port:  A port is usually associated with a single physical
-      interface.  A breakout port is a port which is broken down and
-      associated into multiple physical interfaces.  Those physical
-      interfaces can have the same or different speeds and the same or
-      different number of breakout channels.
-
-   Trunk Port:  A trunk port is a port which is associated with one and
-      only physical interface.
-
-   Port Breakout:  The configuration of a breakout port.
-
-      Note that interface channelization, when an interface (e.g., an
-      Ethernet interface) is configured to support multiple logical sub-
-      interfaces (e.g., VLAN interfaces), is different than port
-      breakout and outside the scope of inventory models.
-
-   Breakout channel:  An abstraction of the atomic resource elements
-      into which a breakout port can be broken down: a physical
-      interface can be associated with one or more breakout channels but
-      no more than one physical interface can be associated with one
-      breakout channel.
-
-      The physical elements abstracted as breakout channels are
-      implementation specific.  Appendix D provides some examples of
-      breakout ports configurations and implementations.
-
    Container:  A hardware component class that is capable of containing
       one or more removable physical entities (e.g., a slot in a chassis
       is containing a board).
-
-   Transceiver:  A transceiver represents a transmitter/receiver (Tx/Rx)
-      pair which is transmitting and receiving a signal from the media.
-
-      This definition generalizes the transceiver definition in
-      [I-D.ietf-ccamp-optical-impairment-topology-yang] to model also
-      non optical transceivers (e.g., electrical transceivers).
 
 2.3.  Tree Diagrams
 
@@ -630,28 +590,6 @@ Table of Contents
    scope of this document and defined other documents such as
    [I-D.ietf-ivy-network-inventory-software].
 
-3.3.3.  Breakout ports
-
-   The model defines the 'breakout-channels' presence container to
-   indicate whether the port, which contains the transceiver module, can
-   be configured as a breakout port or not.
-
-   The breakout channels represent the capability of the port to support
-   port breakout, independently on how the port is configured (trunk or
-   breakout).
-
-   It is assumed that a port which supports port breakout can be
-   configured either as a trunk port or as a breakout port.
-
-   Reporting whether a port, which supports port breakout, is configured
-   as a trunk or as a breakout port, is outside the scope of the base
-   network inventory model.  The model providing the mapping between the
-   topology and the inventory models should provide sufficient
-   information to identify how the port is configured and, in case of
-   breakout configuration, which breakout channel is associated with
-   which Link Termination Point (LTP), abstracting a device physical
-   interface within the topology model.
-
 3.4.  Changes Since RFC 8348
 
    This document re-defines some attributes listed in [RFC8348], based
@@ -693,53 +631,50 @@ Table of Contents
      +--rw network-inventory
         +--rw network-elements
            +--rw network-element* [ne-id]
-              +--rw ne-id                 string
-              +--ro ne-type?              identityref
-              +--ro uuid?                 yang:uuid
-              +--rw name?                 string
-              +--rw description?          string
-              +--rw alias?                string
-              +--ro hardware-rev?         string
-              +--ro software-rev?         string
-              +--ro software-patch-rev*   string
-              +--ro mfg-name?             string
-              +--ro mfg-date?             yang:date-and-time
-              +--ro serial-number?        string
-              +--ro product-name?         string
+              +--rw ne-id           string
+              +--ro ne-type?        identityref
+              +--ro uuid?           yang:uuid
+              +--rw name?           string
+              +--rw description?    string
+              +--rw alias?          string
+              +--ro software-rev* [name]
+              |  +--ro name         string
+              |  +--ro revision?    string
+              |  +--ro patch-rev*   string
+              +--ro mfg-name?       string
+              +--ro product-name?   string
+              +--ro product-rev?    string
               +--rw components
                  +--rw component* [component-id]
-                    +--rw component-id           string
-                    +--ro class                  union
-                    +--ro uuid?                  yang:uuid
-                    +--rw name?                  string
-                    +--rw description?           string
-                    +--rw alias?                 string
-                    +--ro hardware-rev?          string
-                    +--ro software-rev?          string
-                    +--ro software-patch-rev*    string
-                    +--ro mfg-name?              string
-                    +--ro mfg-date?              yang:date-and-time
-                    +--ro serial-number?         string
-                    +--ro product-name?          string
-                    +--ro firmware-rev?          string
-                    +--ro part-number?           string
-                    +--ro asset-id?              string
-                    +--ro is-fru?                boolean
-                    +--ro uri*                   inet:uri
-                    +--ro child-component-ref
-                    +--ro parent-rel-pos?        int32
-                    +--ro parent?
+                    +--rw component-id      string
+                    +--ro class             union
+                    +--ro uuid?             yang:uuid
+                    +--rw name?             string
+                    +--rw description?      string
+                    +--rw alias?            string
+                    +--ro software-rev* [name]
+                    |  +--ro name         string
+                    |  +--ro revision?    string
+                    |  +--ro patch-rev*   string
+                    +--ro mfg-name?         string
+                    +--ro product-name?     string
+                    +--ro hardware-rev?     string
+                    +--ro mfg-date?         yang:date-and-time
+                    +--ro part-number?      string
+                    +--ro serial-number?    string
+                    +--ro asset-id?         string
+                    +--ro is-fru?           boolean
+                    +--ro uri*              inet:uri
+                    +--ro parent-rel-pos?   int32
+                    +--ro parent*
                     |       -> ../../component/component-id
-                    +--ro is-main?               boolean
-                    +--ro breakout-channels!
-                       +--ro breakout-channel* [channel-id]
-                          +--ro channel-id    uint8
+                    +--ro is-main?          boolean
 
                   Figure 6: Network inventory tree diagram
 
 5.  YANG Data Model for Network Inventory
 
-   <CODE BEGINS> file "ietf-network-inventory@2025-02-03.yang"
+   <CODE BEGINS> file "ietf-network-inventory@2025-08-13.yang"
    module ietf-network-inventory {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-network-inventory";
@@ -810,7 +745,7 @@ Table of Contents
      // RFC Ed.: update the date below with the date of RFC publication
      // and remove this note.
 
-     revision 2025-07-02 {
+     revision 2025-09-18 {
        description
          "Initial version";
        reference
@@ -836,22 +771,6 @@ Table of Contents
        base nwi:ne-type;
        description
          "A physical network element (NE). ";
-     }
-
-     /*
-      * Editors' Note: This identity may need to be moved to
-      *                iana-hardware update
-      */
-
-     identity transceiver-module {
-       base ianahw:hardware-class;
-       description
-         "This identity is applicable if the hardware class is some sort
-          of self-contained sub-system which contains one or more
-          transceivers (e.g., optical or electrical transceivers).
-
-          A transceiver-module component can only be contained by a
-          port component.";
      }
 
      /*
@@ -894,181 +813,6 @@ Table of Contents
                [nwi:component-id=current()]/nwi:class, 'ianahw:port')";
          description
            "The reference to the port component.";
-       }
-     }
-
-     grouping channel-ref {
-       description
-         "This grouping is intended to be used by data models that need
-          to reference one or more breakout channels within a
-          transceivers module component.";
-       leaf ne-ref {
-         type nwi:ne-ref;
-         description
-           "The reference to the Network Element which contains the
-            transceiver module to be referenced.";
-       }
-       leaf transceiver-module-ref {
-         type leafref {
-           path "/nwi:network-inventory/nwi:network-elements/"
-              + "nwi:network-element[nwi:ne-id=current()/../ne-ref]"
-              + "/nwi:components/nwi:component/nwi:component-id";
-         }
-         must "derived-from-or-self (/nwi:network-inventory/
-               nwi:network-elements/nwi:network-element
-               [nwi:ne-id=../ne-ref]/nwi:components/nwi:component
-               [nwi:component-id=current()]/nwi:class,
-               'nwi:transceiver-module')";
-         description
-           "The reference to the transceivers module component.";
-       }
-       leaf-list channel-ref {
-         type leafref {
-           path "/nwi:network-inventory/nwi:network-elements"
-              + "/nwi:network-element[nwi:ne-id=current()/../ne-ref]/"
-              + "nwi:components/"
-              + "nwi:component[nwi:component-id="
-              + "current()/../transceiver-module-ref]/"
-              + "nwi:breakout-channels/nwi:breakout-channel/"
-              + "nwi:channel-id";
-         }
-         description
-           "The references to the breakout channels.";
-       }
-     }
-
-     grouping component-attributes {
-       description
-         "The set of common attributes of a component.
-
-          This grouping is intended also to be re-used by data models
-          that need to report the common attributes of a component.";
-       leaf component-id {
-         type string;
-         description
-           "An identifier that uniquely identifies the component
-            in a node.";
-       }
-       leaf class {
-         type union {
-           type identityref {
-             base ianahw:hardware-class;
-           }
-           type identityref {
-             base non-hardware-component-class;
-           }
-         }
-         config false;
-         mandatory true;
-         description
-           "The type of the component.";
-       }
-       uses ne-component-common-entity-attributes {
-         refine "hardware-rev" {
-           description
-             "The vendor-specific hardware revision string for
-              the component. The preferred value is the hardware
-              revision identifier actually printed on the
-              component itself (if present).";
-           reference
-             "RFC 6933: Entity MIB (Version 4) -
-                        entPhysicalHardwareRev";
-         }
-         refine "software-rev" {
-           reference
-             "RFC 6933: Entity MIB (Version 4) -
-                        entPhysicalSoftwareRev";
-         }
-         refine "mfg-name" {
-           description
-             "The name of the manufacturer of this physical
-              component.
-              The preferred value is the manufacturer name
-              string actually printed on the component itself
-              (if present).
-
-              Note that comparisons between instances of the
-              'model-name', 'firmware-rev', 'software-rev', and
-              'serial-number' nodes are only meaningful amongst
-              components with the same value of 'mfg-name'.
-
-              If the manufacturer name string associated with
-              the physical component is unknown to the server,
-              then this node is not instantiated.";
-           reference
-             "RFC 6933: Entity MIB (Version 4) -
-                        entPhysicalMfgName";
-         }
-         refine "mfg-date" {
-           description
-             "The date of manufacturing of the managed
-              component.";
-           reference
-             "RFC 6933: Entity MIB (Version 4) -
-                        entPhysicalMfgDate";
-         }
-       }
-       leaf firmware-rev {
-         type string;
-         config false;
-         description
-           "The vendor-specific firmware revision string for the
-            component.";
-         reference
-           "RFC 6933: Entity MIB (Version 4) -
-                      entPhysicalFirmwareRev";
-       }
-       leaf part-number {
-         type string;
-         config false;
-         description
-           "The vendor-specific part number of the component
-            type. It is expected that vendors assign unique part
-            numbers to different component types within the
-            scope of the vendor.";
-       }
-       leaf asset-id {
-         type string;
-         config false;
-         description
-           "This node is a user-assigned asset tracking
-            identifier for the component.
-
-            A server implementation MAY map this leaf to the
-            entPhysicalAssetID MIB object.  Such an
-            implementation needs to use some mechanism to handle
-            the differences in size and characters allowed
-            between this leaf and entPhysicalAssetID.
-
-            The definition of such a mechanism is outside the
-            scope of this document.";
-         reference
-           "RFC 6933: Entity MIB (Version 4) -
-                      entPhysicalAssetID";
-       }
-       leaf is-fru {
-         type boolean;
-         config false;
-         description
-           "This node indicates whether or not this component is
-            considered a 'field-replaceable unit' by the vendor.
-            If this node contains the value 'true', then this
-            component identifies a field-replaceable unit.
-            For all components that are permanently contained
-            within a field-replaceable unit, the value 'false'
-            should be returned for this node.";
-         reference
-           "RFC 6933: Entity MIB (Version 4) -
-                      entPhysicalIsFRU";
-       }
-       leaf-list uri {
-         type inet:uri;
-         config false;
-         description
-           "This node contains identification information about
-            the component.";
-         reference
-           "RFC 6933: Entity MIB (Version 4) - entPhysicalUris";
        }
      }
 
@@ -1115,26 +859,31 @@ Table of Contents
          "The set of attributes which are common to all the entities
           (e.g., component, network elements) defined in this module.";
        uses basic-common-entity-attributes;
-       leaf hardware-rev {
-         type string;
+       list software-rev {
+         key "name";
          config false;
          description
-           "The vendor-specific hardware revision string for the entity
-            (e.g., component).";
-       }
-       leaf software-rev {
-         type string;
-         config false;
-         description
-           "The vendor-specific software revision string for the entity
-            (e.g., component).";
-       }
-       leaf-list software-patch-rev {
-         type string;
-         config false;
-         description
-           "The vendor-specific patch software revision string for the
-            entity (e.g., component).";
+           "The list of the software modules configured to be active
+            within the entity (e.g., component).";
+         leaf name {
+           type string;
+           description
+             "The vendor-specific name of the software module.";
+         }
+         leaf revision {
+           type string;
+           config false;
+           description
+             "The vendor-specific revision string of the software
+              module.";
+         }
+         leaf-list patch-rev {
+           type string;
+           config false;
+           description
+             "The list of vendor-specific patch revision strings for
+              software module.";
+         }
        }
        leaf mfg-name {
          type string;
@@ -1143,11 +892,98 @@ Table of Contents
            "The name of the manufacturer of this entity
             (e.g., component).";
        }
+       leaf product-name {
+         type string;
+         config false;
+         description
+           "The vendor-specific and human-interpretable string
+            describing the entity (e.g., component) type. It is expected
+            that vendors assign unique product names to different entity
+            (e.g., component) types within the scope of the vendor.";
+       }
+     }
+
+     grouping component-attributes {
+       description
+         "The set of common attributes of a component.
+
+          This grouping is intended also to be re-used by data models
+          that need to report the common attributes of a component.";
+       leaf component-id {
+         type string;
+         description
+           "An identifier that uniquely identifies the component
+            in a node.";
+       }
+       leaf class {
+         type union {
+           type identityref {
+             base ianahw:hardware-class;
+           }
+           type identityref {
+             base non-hardware-component-class;
+           }
+         }
+         config false;
+         mandatory true;
+         description
+           "The type of the component.";
+       }
+       uses ne-component-common-entity-attributes {
+         refine "software-rev" {
+           reference
+             "RFC 6933: Entity MIB (Version 4) -
+                        entPhysicalSoftwareRev";
+         }
+         refine "mfg-name" {
+           description
+             "The name of the manufacturer of this physical
+              component.
+              The preferred value is the manufacturer name
+              string actually printed on the component itself
+              (if present).
+
+              Note that comparisons between instances of the
+              'model-name', 'software-rev', and 'serial-number' nodes
+              are only meaningful amongst components with the same value
+              of 'mfg-name'.
+
+              If the manufacturer name string associated with
+              the physical component is unknown to the server,
+              then this node is not instantiated.";
+           reference
+             "RFC 6933: Entity MIB (Version 4) -
+                        entPhysicalMfgName";
+         }
+       }
+       leaf hardware-rev {
+         type string;
+         config false;
+         description
+           "The vendor-specific hardware revision string for the
+            component.
+
+            The preferred value is the hardware revision identifier
+            actually printed on the component itself (if present).";
+         reference
+           "RFC 6933: Entity MIB (Version 4) - entPhysicalHardwareRev";
+       }
        leaf mfg-date {
          type yang:date-and-time;
          config false;
          description
-           "The date of manufacturing of the entity (e.g., component).";
+           "The date of manufacturing of the component.";
+         reference
+           "RFC 6933: Entity MIB (Version 4) - entPhysicalMfgDate";
+       }
+       leaf part-number {
+         type string;
+         config false;
+         description
+           "The vendor-specific part number of the component
+            type. It is expected that vendors assign unique part
+            numbers to different component types within the
+            scope of the vendor.";
        }
        leaf serial-number {
          type string;
@@ -1158,14 +994,48 @@ Table of Contents
             assign unique serial numbers to different network element
             instances within the scope of the product name.";
        }
-       leaf product-name {
+       leaf asset-id {
          type string;
          config false;
          description
-           "The vendor-specific and human-interpretable string
-            describing the entity (e.g., component) type. It is expected
-            that vendors assign unique product names to different entity
-            (e.g., component) types within the scope of the vendor.";
+           "This node is a user-assigned asset tracking
+            identifier for the component.
+
+            A server implementation MAY map this leaf to the
+            entPhysicalAssetID MIB object.  Such an
+            implementation needs to use some mechanism to handle
+            the differences in size and characters allowed
+            between this leaf and entPhysicalAssetID.
+
+            The definition of such a mechanism is outside the
+            scope of this document.";
+         reference
+           "RFC 6933: Entity MIB (Version 4) -
+                      entPhysicalAssetID";
+       }
+       leaf is-fru {
+         type boolean;
+         config false;
+         description
+           "This node indicates whether or not this component is
+            considered a 'field-replaceable unit' by the vendor.
+            If this node contains the value 'true', then this
+            component identifies a field-replaceable unit.
+            For all components that are permanently contained
+            within a field-replaceable unit, the value 'false'
+            should be returned for this node.";
+         reference
+           "RFC 6933: Entity MIB (Version 4) -
+                      entPhysicalIsFRU";
+       }
+       leaf-list uri {
+         type inet:uri;
+         config false;
+         description
+           "This node contains identification information about
+            the component.";
+         reference
+           "RFC 6933: Entity MIB (Version 4) - entPhysicalUris";
        }
      }
 
@@ -1200,6 +1070,13 @@ Table of Contents
                "The NE type.";
            }
            uses ne-component-common-entity-attributes;
+           leaf product-rev {
+             type string;
+             config false;
+             description
+               "The vendor-specific product revision string for the
+                network-element.";
+           }
            container components {
              description
                "The top-level container for the list of components
@@ -1209,15 +1086,13 @@ Table of Contents
                description
                  "The list of components within a network element.";
                uses component-attributes;
-               container child-component-ref {
-                 config false;
-                 description
-                   "A placeholder for adding the reference to child
-                    component(s): to further discuss whether to define
-                    a child leaf-list as RFC 8348 or a list of
-                    sub-components as openconfig-platform.";
-               }
                leaf parent-rel-pos {
+                 when 'count(../parent) < 2' {
+                   description
+                     "This data node is applicable only when this
+                      component is contained in the network-element or
+                      in only one parent component.";
+                 }
                  type int32 {
                    range "0 .. 2147483647";
                  }
@@ -1229,26 +1104,19 @@ Table of Contents
                    "RFC 6933: Entity MIB (Version 4) -
                               entPhysicalParentRelPos";
                }
-               leaf parent {
+               leaf-list parent {
                  type leafref {
                    path "../../component/component-id";
                    require-instance false;
                  }
                  config false;
                  description
-                   "The identifier of the component that physically
-                    contains this component.
+                   "The identifiers of all the components that
+                    physically contain this component.
 
-                    If this leaf is not instantiated, it indicates that
-                    this component is not contained in any other
-                    component.
-
-                    In the event that a physical component is contained
-                    by more than one physical component
-                    (e.g., double-wide modules), this node contains the
-                    identifier of one of these components.
-                    An implementation MUST use the same name every time
-                    this node is instantiated.";
+                    If this list is empty, this component is not
+                    contained in any other component but it is contained
+                    in the network-element.";
                  reference
                    "RFC 6933: Entity MIB (Version 4) -
                               entPhysicalContainedIn";
@@ -1267,30 +1135,6 @@ Table of Contents
                     'main' role (e.g., multi-chassis network elements),
                     otherwise it is omitted.";
                }
-               container breakout-channels {
-                 when "derived-from-or-self(../nwi:class, "
-                    + "'nwi:transceiver-module')";
-                 presence
-                   "When present, it indicates that port breakout is
-                    supported.";
-                 config false;
-                 description
-                   "Top level container for the list of breakout
-                    channels supported by the transceivers module.";
-                 list breakout-channel {
-                   key "channel-id";
-                   description
-                     "The list of breakout channels supported by the
-                      transceivers module.";
-                   leaf channel-id {
-                     type uint8;
-                     description
-                       "An identifier that uniquely identifies the
-                        breakout channel within the transceiver
-                        module.";
-                   }
-                 }
-               }
              }
            }
          }
@@ -1307,11 +1151,64 @@ Table of Contents
 
 7.  Security Considerations
 
-   <Add any security considerations>
+   This section is modeled after the template described in Section 3.7
+   of [I-D.ietf-netmod-rfc8407bis].
+
+   The "ietf-network-inventory" YANG module defines a data model that is
+   designed to be accessed via YANG-based management protocols, such as
+   NETCONF [RFC6241] and RESTCONF [RFC8040].  These YANG-based
+   management protocols (1) have to use a secure transport layer (e.g.,
+   SSH [RFC4252], TLS [RFC8446], and QUIC [RFC9000]) and (2) have to use
+   mutual authentication.
+
+   The Network Configuration Access Control Model (NACM) [RFC8341]
+   provides the means to restrict access for particular NETCONF or
+   RESTCONF users to a preconfigured subset of all available NETCONF or
+   RESTCONF protocol operations and content.
+
+   Some of the readable data nodes in this YANG module may be considered
+   sensitive or vulnerable in some network environments.  It is thus
+   important to control read access (e.g., via get, get-config, or
+   notification) to these data nodes.  Specifically, the following
+   subtrees and data nodes have particular sensitivities/
+   vulnerabilities:
+
+   Specifically, the following subtrees and data nodes have particular
+   sensitivities/vulnerabilities:
+
+   *  "/nwi:network-elements"
+
+      This subtree reports the inventory information for all the network
+      elements and their hardware components deployed within the network
+      as well as of the software modules being active on these network
+      elements and components.  Unauthorized access to this subtree can
+      disclose this information.  A malicious attacker can use this
+      information to perform targeted attacks to network elements,
+      hardware components or software modules with known
+      vulnerabilities.
+
+   Modules that use the groupings that are defined in this document
+   should identify the corresponding security considerations.  For
+   example, reusing the 'component-attributes' grouping may expose
+   sensitive information.
 
 8.  IANA Considerations
 
-   <Add any IANA considerations>
+   IANA is requested to register the following URI in the "ns" registry
+   within the "IETF XML Registry" group [RFC3688]:
+
+         URI: urn:ietf:params:xml:ns:ietf-network-inventory
+         Registrant Contact: The IESG
+         XML: N/A; the requested URI is an XML namespace.
+
+   IANA is requested to register the following YANG module in the "YANG
+   Module Names" registry [RFC6020] within the "YANG Parameters"
+   registry group.
+
+        name:         ietf-network-inventory
+        namespace:    urn:ietf:params:xml:ns:yang:ietf-network-inventory
+        prefix:       nwi
+        reference:    RFC XXXX
 
 9.  References
 
@@ -1331,6 +1228,11 @@ Table of Contents
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
+              the Network Configuration Protocol (NETCONF)", RFC 6020,
+              DOI 10.17487/RFC6020, October 2010,
+              <https://www.rfc-editor.org/rfc/rfc6020>.
 
    [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
               and A. Bierman, Ed., "Network Configuration Protocol
@@ -1354,14 +1256,15 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
+   [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
+              Access Control Model", STD 91, RFC 8341,
+              DOI 10.17487/RFC8341, March 2018,
+              <https://www.rfc-editor.org/rfc/rfc8341>.
+
    [RFC8342]  Bjorklund, M., Schoenwaelder, J., Shafer, P., Watsen, K.,
               and R. Wilton, "Network Management Datastore Architecture
               (NMDA)", RFC 8342, DOI 10.17487/RFC8342, March 2018,
               <https://www.rfc-editor.org/rfc/rfc8342>.
-
-   [RFC8343]  Bjorklund, M., "A YANG Data Model for Interface
-              Management", RFC 8343, DOI 10.17487/RFC8343, March 2018,
-              <https://www.rfc-editor.org/rfc/rfc8343>.
 
    [RFC8348]  Bierman, A., Bjorklund, M., Dong, J., and D. Romascanu, "A
               YANG Data Model for Hardware Management", RFC 8348,
@@ -1374,14 +1277,6 @@ Table of Contents
               <https://www.tmforum.org/resources/suite/mtosi-4-0/>.
 
 9.2.  Informative References
-
-   [I-D.ietf-ccamp-optical-impairment-topology-yang]
-              Beller, D., Le Rouzic, E., Belotti, S., Galimberti, G.,
-              and I. Busi, "A YANG Data Model for Optical Impairment-
-              aware Topology", Work in Progress, Internet-Draft, draft-
-              ietf-ccamp-optical-impairment-topology-yang-19, 7 July
-              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              ccamp-optical-impairment-topology-yang-19>.
 
    [I-D.ietf-ivy-network-inventory-location]
               Wu, B., Belotti, S., Bouquier, J., Peruzzini, F., and P.
@@ -1398,6 +1293,14 @@ Table of Contents
               ivy-network-inventory-software-01, 10 June 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
               network-inventory-software-01>.
+
+   [I-D.ietf-netmod-rfc8407bis]
+              Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
+              Authors and Reviewers of Documents Containing YANG Data
+              Models", Work in Progress, Internet-Draft, draft-ietf-
+              netmod-rfc8407bis-28, 5 June 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
+              rfc8407bis-28>.
 
    [I-D.ietf-teas-actn-poi-applicability]
               Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
@@ -1423,18 +1326,39 @@ Table of Contents
               DOI 10.17487/RFC1157, May 1990,
               <https://www.rfc-editor.org/rfc/rfc1157>.
 
+   [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
+              DOI 10.17487/RFC3688, January 2004,
+              <https://www.rfc-editor.org/rfc/rfc3688>.
+
+   [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
+              Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
+              January 2006, <https://www.rfc-editor.org/rfc/rfc4252>.
+
    [RFC7951]  Lhotka, L., "JSON Encoding of Data Modeled with YANG",
               RFC 7951, DOI 10.17487/RFC7951, August 2016,
               <https://www.rfc-editor.org/rfc/rfc7951>.
+
+   [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
+              Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
+              <https://www.rfc-editor.org/rfc/rfc8040>.
 
    [RFC8340]  Bjorklund, M. and L. Berger, Ed., "YANG Tree Diagrams",
               BCP 215, RFC 8340, DOI 10.17487/RFC8340, March 2018,
               <https://www.rfc-editor.org/rfc/rfc8340>.
 
+   [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
+              <https://www.rfc-editor.org/rfc/rfc8446>.
+
    [RFC8969]  Wu, Q., Ed., Boucadair, M., Ed., Lopez, D., Xie, C., and
               L. Geng, "A Framework for Automating Service and Network
               Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
               January 2021, <https://www.rfc-editor.org/rfc/rfc8969>.
+
+   [RFC9000]  Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
+              Multiplexed and Secure Transport", RFC 9000,
+              DOI 10.17487/RFC9000, May 2021,
+              <https://www.rfc-editor.org/rfc/rfc9000>.
 
 Appendix A.  Comparison With Openconfig-platform Data Model
 
@@ -1633,28 +1557,26 @@ Appendix C.  Efficiency Issue
    draft.  Solution description to efficiency/scalability limitations
    mentioned above is considered as out-of-scope.
 
-Appendix D.  Examples of ports, transceivers and port breakouts
+Appendix D.  Examples of ports
 
-   This appendix provides some examples of ports, transceivers and port
-   breakouts implementations and how they can be modelled using the
-   "ietf-network-inventory" model defined in Section 5.
+   This appendix provides some examples of port implementations and how
+   they can be modelled using the "ietf-network-inventory" module
+   defined in Section 5.
 
    Figure 8 shows an example of a single board which contains three type
    of ports:
 
-   1.  An integrated port (non pluggable).  This port can be of any type
-       (e.g., optical or electrical), single-channel or multi-channel
-       but not supporting breakouts;
+   1.  An integrated port (non pluggable);
 
    2.  An empty port;
 
    3.  A pluggable port
 
              +-------------------+
-             |   ............+---+
-             |   :           | O |     1) Non-Pluggable Port
-             |   :           | O |      (integrated transceiver)
-             |   :...........+---+
+             |               +---+
+             |               | O |     1) Non-Pluggable Port
+             |               | O |        (integrated)
+             |               +---+
              |                   |
              |   +---------------+
              |   |                     2) Emply hole (port)
@@ -1675,210 +1597,12 @@ Appendix D.  Examples of ports, transceivers and port breakouts
 
          Figure 8: Example of a board with different types of ports
 
-   Figure 9 describes an implementation of a single channel optical
-   pluggable trunk port (e.g., a 100G-LR port configured as a single
-   100GE interface)
-
-            Host                     Transceiver Module
-    _________/\_________   ___________________/\___________________
-   /                    \ /                                        \
-
-   +---------------+              +------------+
-   |               |<--RX1  RX1<--|            |                +--+
-   |               |<--RX2  RX2<--|     DSP    |   +--------+   |L |
-   |               |<--RX3  RX3<--|            |<--|Opt.Rec.|<--|C |
-   | 100G Ethernet |<--RX4  RX4<--| 4 X 25G NRZ|   +--------+   |  |
-   | Physical I/F  |              |            |                |c |
-   |               |  25G NRZ     |    <-->    | 100G PAM       |o |
-   |               |              |            |                |n |
-   |  (breakout    |-->TX1  TX1-->| 1X100G PAM4|   +--------+   |n |
-   | configuration)|-->TX2  TX2-->|            |-->|Opt.Tras|-->|e |
-   |               |-->TX3  TX3-->|  Gearbox   |   +--------+   |c |
-   |               |-->TX4  TX4-->|            |                +--+
-   +---------------+              +------------+
-                          ^                      ^
-                          |                      |
-                   Host Interface         Line Interface
-               (4x25G host channels)   (1x100G line channel)
-
-        Figure 9: Example of a single channel optical pluggable port
-
-   Figure 10 describes an implementation of a Wavelength-Division
-   Multiplexing (WDM) based multi-channel optical pluggable trunk port
-   (e.g., a 400G-LR4 port configured as a single 400GE interface).
-
-           Host                     Transceiver Module
-    ________/\________   ____________________/\____________________
-   /                  \ /                                          \
-
-   +-------------+             +--------+               |\
-   |             |             |        |   +-------+   | \
-   |             |<--RX1 RX1<--|        |<--|Opt.RX1|<--|D |
-   |             |<--RX2 RX2<--|        |   +-------+   |E |
-   |             |<--RX3 RX3<--|        |   +-------+   |M |   +---+
-   |             |<--RX4 RX4<--|        |<--|Opt.RX2|<--|U |   | d |
-   |             |<--RX5 RX5<--|        |   +-------+   |X |   | u |
-   |             |<--RX6 RX6<--| 8 X 50 |   +-------+   |  |<--| p |
-   |             |<--RX7 RX7<--| PAM4   |<--|Opt.RX3|<--|C |   | l |
-   |             |<--RX8 RX8<--|  to    |   +-------+   |W |   | e |
-   |             |             |        |   +-------+   |D |   | x |
-   |400G Ethernet|             |4 X 100G|<--|Opt.RX4|<--|M |   |   |
-   |  Physical   |             | PAM4   |   +-------+   | /    | L |
-   | Interfece   |             |        |               |/     | C |
-   |(no breakout |             |        |                      |   |
-   | config.)    |             |        |               |\     | c |
-   |             |             |        |   +-------+   | \    | o |
-   |             |             |Gearbox |-->|Opt.TX1|-->|  |   | n |
-   |             |             |        |   +-------+   |M |   | n |
-   |             |-->TX1 TX1-->|        |   +-------+   |U |   | e |
-   |             |-->TX2 TX2-->|        |-->|Opt.TX2|-->|X |   | c |
-   |             |-->TX3 TX3-->|        |   +-------+   |  |-->| t |
-   |             |-->TX4 TX4-->|        |   +-------+   |C |   | o |
-   |             |-->TX5 TX5-->|        |-->|Opt.TX3|-->|W |   | r |
-   |             |-->TX6 TX6-->|        |   +-------+   |D |   +---+
-   |             |-->TX7 TX7-->|        |   +-------+   |M |
-   |             |-->TX8 TX8-->|        |-->|Opt.TX4|-->|  |
-   |             |             |        |   +-------+   | /
-   +-------------+             +--------+               |/
-                        ^                 ^
-                        |                 |
-                Host Interface        Line Interface
-            (8x50G host channels)  (4x100G ine channels)
-
-      Figure 10: Example of a WDM multi-channel optical pluggable port
-
-   In this example, since breakout is not supported, the four WDM
-   channels cannot be modelled as breakout channels and are not relevant
-   from inventory management perspective.
-
-   Figure 11 describes an implementation of a Multi-Fiber Push-on (MPO)
-   trunk port (e.g., 400G-DR4 port configured as a single 400GE
-   interface).
-
-            Host                     Transceiver Module
-    _________/\_________   ___________________/\___________________
-   /                    \ /                                        \
-
-   +---------------+              +------------+                +--+
-   |               |              |            |   +--------+   |  |
-   |               |<--RX1  RX1<--|            |<--|Opt.RX.1|<--|  |
-   |               |<--RX2  RX2<--|            |   +--------+   |  |
-   |               |<--RX3  RX3<--|            |   +--------+   |  |
-   |               |<--RX4  RX4<--|            |<--|Opt.RX.2|<--|  |
-   |               |<--RX5  RX5<--|            |   +--------+   |  |
-   |               |<--RX6  RX6<--| 8 X 50 PAM4|   +--------+   |  |
-   |               |<--RX7  RX7<--|            |<--|Opt.RX.3|<--|  |
-   |               |<--RX8  RX8<--|     to     |   +--------+   |M |
-   | 400G Ethernet |              |            |   +--------+   |  |
-   |Physical Interf|              |4 X 100 PAM4|<--|Opt.RX.4|<--|P |
-   |               |              |            |   +--------+   |  |
-   | (no breakout  |              |            |                |O |
-   | configuration)|              |            |   +--------+   |  |
-   |               |              |  Gearbox   |-->|Opt.TX.1|-->|1 |
-   |               |              |            |   +--------+   |  |
-   |               |-->TX1  TX1-->|            |   +--------+   |2 |
-   |               |-->TX2  TX2-->|            |-->|Opt.TX.2|-->|  |
-   |               |-->TX3  TX3-->|            |   +--------+   |  |
-   |               |-->TX4  TX4-->|            |   +--------+   |  |
-   |               |-->TX5  TX5-->|            |-->|Opt.TX.3|-->|  |
-   |               |-->TX6  TX6-->|            |   +--------+   |  |
-   |               |-->TX7  TX7-->|            |   +--------+   |  |
-   |               |-->TX8  TX8-->|            |-->|Opt.TX.4|-->|  |
-   |               |              |            |   +--------+   |  |
-   +---------------+              +------------+                +--+
-                          ^                      ^
-                          |                      |
-                   Host Interface         Line Interface
-               (8x50G host channels)   (4x100G line channels)
-
-                   Figure 11: Example of a MPO trunk port
-
-   If this MPO port cannot support breakouts, the four line channels
-   cannot be modelled as breakout channels and are not relevant from
-   inventory management perspective.  From a network inventory
-   perspective, there is no difference between single-channel ports and
-   MPO trunk ports which do not support port breakouts.
-
-   Instead, the MPO port can support breakouts, the four line channels
-   are reported as breakout channels because, as describe in
-   Section 3.3.3, the breakout channels represent the capability of the
-   port to support breakout, independently on how the port is configured
-   (trunk or breakout).
-
-   Figure 12 describes an implementation of a MPO breakout port (e.g.,
-   400G-DR4 port configured as 4x100GE interfaces).
-
-            Host                     Transceiver Module
-    _________/\_________   ___________________/\___________________
-   /                    \ /                                        \
-
-   +---------------+              +------------+                +--+
-   |  100G Eth.    |<--RX1  RX1<--|            |   +--------+   |  |
-   |Physical I/F #1|<--RX2  RX2<--|            |<--|Opt.RX.1|<--|  |
-   | (breakout     |-->TX1        |            |   +--------+   |  |
-   | configuration)|-->TX2  RX3<--|            |   +--------+   |  |
-   +---------------+        RX4<--|            |<--|Opt.RX.2|<--|  |
-                                  |            |   +--------+   |  |
-   +---------------+        RX5<--| 8 X 50 PAM4|   +--------+   |  |
-   |  100G Eth.    |<--RX3  RX6<--|            |<--|Opt.RX.3|<--|  |
-   |Physical I/F #2|<--RX4        |     to     |   +--------+   |M |
-   | (breakout     |-->TX3  RX7<--|            |   +--------+   |  |
-   | configuration)|-->TX4  RX8<--|4 X 100 PAM4|<--|Opt.RX.4|<--|P |
-   +---------------+              |            |   +--------+   |  |
-                                  |            |                |O |
-   +---------------+        TX1-->|            |   +--------+   |  |
-   |  100G Eth.    |<--RX5  TX2-->|  Gearbox   |-->|Opt.TX.1|-->|1 |
-   |Physical I/F #3|<--RX6        |            |   +--------+   |  |
-   | (breakout     |-->TX5  TX3-->|            |   +--------+   |2 |
-   | configuration)|-->TX6  TX4-->|            |-->|Opt.TX.2|-->|  |
-   +---------------+              |            |   +--------+   |  |
-                            TX5-->|            |   +--------+   |  |
-   +---------------+        TX6-->|            |-->|Opt.TX.3|-->|  |
-   |  100G Eth.    |<--RX7        |            |   +--------+   |  |
-   |Physical I/F #4|<--RX8  TX7-->|            |   +--------+   |  |
-   | (breakout     |-->TX7  TX8-->|            |-->|Opt.TX.4|-->|  |
-   | configuration)|-->TX8        |            |   +--------+   |  |
-   +---------------+              +------------+                +--+
-                          ^                      ^
-                          |                      |
-                   Host Interface         Line Interface
-               (8x50G host channels)   (4x100G line channels)
-
-                 Figure 12: Example of a MPO breakout port
-
-   In this example, the four line channels are reported as breakout
-   channels because the port shall support breakout in order to be
-   configured as a breakout port.
-
 D.1.  JSON Examples
 
    This appendix contains an example of an instance data tree in JSON
-   encoding [RFC7951], instantiating the "ietf-network-inventory" model
-   to describe a single board, as shown in Figure 8, with seven
-   different types of ports, transceivers and breakouts configurations:
-
-   1.  An integrated port (non pluggable), as shown in Figure 8;
-
-   2.  An empty port, as shown in Figure 8;
-
-   3.  A single channel optical pluggable port, as shown in Figure 8 and
-       Figure 9;
-
-   4.  A WDM based multi-channel optical pluggable port, as shown in
-       Figure 8 and Figure 10;
-
-   5.  An MPO trunk port, as shown in Figure 8 and Figure 11, which does
-       not support port breakouts;
-
-   6.  An MPO trunk port, as shown in Figure 8 and Figure 11, which can
-       not support port breakouts but it has been configured as a trunk
-       port,
-
-   7.  An MPO breakout port, as shown in Figure 8 and Figure 12.
-
-   Note: as described in Section 3.3.3, reporting whether an MPO port is
-   configured as a trunk or as a breakout port, is outside the scope of
-   the base network inventory model.
+   encoding [RFC7951], instantiating the "ietf-network-inventory" module
+   to describe the three types of ports on a single board, as shown in
+   Figure 8.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -1903,139 +1627,39 @@ D.1.  JSON Examples
                    "class": "iana-hardware:port",
                    "description": "Example of an integrated (non-\
                                                       pluggable) port.",
-                   "parent": "board-1",
+                   "parent": [
+                     "board-1"
+                   ],
                    "parent-rel-pos": 1
-                 },
-                 {
-                   "component-id": "transceiver-module-1",
-                   "class": "ietf-network-inventory:transceiver-module",
-                   "description": "Example of an integrated (non-\
-                                                      pluggable) port.",
-                   "parent": "port-1",
-                   "is-fru": false
                  },
                  {
                    "component-id": "port-2",
                    "class": "iana-hardware:port",
-                   "description": "Example of an empty port.",
-                   "parent": "board-1",
+                   "description": "Example of an empty pluggable port.",
+                   "parent": [
+                     "board-1"
+                   ],
                    "parent-rel-pos": 2
                  },
                  {
                    "component-id": "port-3",
                    "class": "iana-hardware:port",
-                   "description": "Example of a single channel optical \
-                                                       pluggable port.",
-                   "parent": "board-1",
+                   "description": "Example of a non empty pluggable \
+                                                                 port.",
+                   "parent": [
+                     "board-1"
+                   ],
                    "parent-rel-pos": 3
                  },
                  {
                    "component-id": "transceiver-module-3",
-                   "class": "ietf-network-inventory:transceiver-module",
-                   "description": "Example of a single channel optical \
-                                                       pluggable port.",
-                   "parent": "port-3",
+                   "class": "iana-hardware:module",
+                   "description": "Example of a pluggable module \
+                                      plugged within a pluggable port.",
+                   "parent": [
+                     "port-3"
+                   ],
                    "is-fru": true
-                 },
-                 {
-                   "component-id": "port-4",
-                   "class": "iana-hardware:port",
-                   "description": "Example of a WDM multi-channel \
-                                                       pluggable port.",
-                   "parent": "board-1",
-                   "parent-rel-pos": 4
-                 },
-                 {
-                   "component-id": "transceiver-module-4",
-                   "class": "ietf-network-inventory:transceiver-module",
-                   "description": "Example of a WDM multi-channel \
-                                                       pluggable port.",
-                   "parent": "port-4",
-                   "is-fru": true
-                 },
-                 {
-                   "component-id": "port-5",
-                   "class": "iana-hardware:port",
-                   "description": "Example of an optical MPO pluggable \
-                                trunk port (not supporting breakouts).",
-                   "parent": "board-1",
-                   "parent-rel-pos": 5
-                 },
-                 {
-                   "component-id": "transceiver-module-5",
-                   "class": "ietf-network-inventory:transceiver-module",
-                   "description": "Example of an optical MPO pluggable \
-                                trunk port (not supporting breakouts).",
-                   "parent": "port-5",
-                   "is-fru": true
-                 },
-                 {
-                   "component-id": "port-6",
-                   "class": "iana-hardware:port",
-                   "description": "Example of an optical MPO pluggable \
-                                    trunk port (supporting breakouts).",
-                   "parent": "board-1",
-                   "parent-rel-pos": 6
-                 },
-                 {
-                   "component-id": "transceiver-module-6",
-                   "class": "ietf-network-inventory:transceiver-module",
-                   "description": "Example of an optical MPO pluggable \
-                                    trunk port (supporting breakouts).",
-                   "parent": "port-6",
-                   "is-fru": true,
-                   "transceiver-module-specific-info": {
-                     "breakout-channels": {
-                       "breakout-channel": [
-                         {
-                           "channel-id": 1
-                         },
-                         {
-                           "channel-id": 2
-                         },
-                         {
-                           "channel-id": 3
-                         },
-                         {
-                           "channel-id": 4
-                         }
-                       ]
-                     }
-                   }
-                 },
-                 {
-                   "component-id": "port-7",
-                   "class": "iana-hardware:port",
-                   "description": "Example of an optical MPO pluggable \
-                                                        breakout port.",
-                   "parent": "board-1",
-                   "parent-rel-pos": 7
-                 },
-                 {
-                   "component-id": "transceiver-module-7",
-                   "class": "ietf-network-inventory:transceiver-module",
-                   "description": "Example of an optical MPO pluggable \
-                                                        breakout port.",
-                   "parent": "port-7",
-                   "is-fru": true,
-                   "transceiver-module-specific-info": {
-                     "breakout-channels": {
-                       "breakout-channel": [
-                         {
-                           "channel-id": 1
-                         },
-                         {
-                           "channel-id": 2
-                         },
-                         {
-                           "channel-id": 3
-                         },
-                         {
-                           "channel-id": 4
-                         }
-                       ]
-                     }
-                   }
                  }
                ]
              }
@@ -2049,7 +1673,7 @@ Appendix E.  Example of multi-chassis network elements
 
    This appendix provides some examples of multi-chassis network
    elements and how they can be modelled using the "ietf-network-
-   inventory" model defined in Section 5.
+   inventory" module defined in Section 5.
 
    Multi-chassis network elements are network elements composed by two
    or more chassis interconnected, in principle, with any topology.
@@ -2062,7 +1686,7 @@ Appendix E.  Example of multi-chassis network elements
    software-upgrade - use Priority/MAC-Addr(s) decide Master/Members
    selection and communication.
 
-   Figure 13 and Figure 14 describe two examples of stacked switch with
+   Figure 9 and Figure 10 describe two examples of stacked switch with
    three stacked switches (pizza boxes) connected in a daisy-chain or
    ring topology.
 
@@ -2095,7 +1719,7 @@ Appendix E.  Example of multi-chassis network elements
        |                                +---+ |
        +--------------------------------------+
 
-      Figure 13: Example of a stacked switch in a daisy chain topology
+      Figure 9: Example of a stacked switch in a daisy chain topology
 
        +--------------------------------------+
        |                                +---+ |
@@ -2126,14 +1750,15 @@ Appendix E.  Example of multi-chassis network elements
        |                                +---+ |
        +--------------------------------------+
 
-         Figure 14: Example of a stacked switch in a ring topology
+         Figure 10: Example of a stacked switch in a ring topology
 
-   Using the base network inventory model, each stackable switch can be
-   modelled as a chassis within the same network element, which models
-   the stacked switch.  The stack ports are modelled like other ports.
-   The stack cables are not reported using the base network inventory
-   model but can be reported using the passive network inventory model
-   under definition in [I-D.ygb-ivy-passive-network-inventory].
+   Using the base network inventory YANG data model, each stackable
+   switch can be modelled as a chassis within the same network element,
+   which models the stacked switch.  The stack ports are modelled like
+   other ports.  The stack cables are not reported using the base
+   network inventory YANG data model but can be reported using the
+   passive network inventory YANG data model under definition in
+   [I-D.ygb-ivy-passive-network-inventory].
 
    Cascaded switches are another example of multi-chassis which consist
    of multiple standalone switches that are interconnected and managed
@@ -2141,7 +1766,7 @@ Appendix E.  Example of multi-chassis network elements
    in a tree topology - are managed using a single IP Address - the root
    of the tree is configured as Master.
 
-   Figure 15 describe an example of cascaded switch with three chassis
+   Figure 11 describe an example of cascaded switch with three chassis
    connected in a tree topology.
 
            +----------------------------------------------+
@@ -2189,31 +1814,31 @@ Appendix E.  Example of multi-chassis network elements
                              |     |                   |     |
                              +-------------------------------+
 
-         Figure 15: Example of a cascaded switch in a tree topology
+         Figure 11: Example of a cascaded switch in a tree topology
 
-   Using the base network inventory model each interconnected switch can
-   be modelled as a chassis within the same network element, which
-   models the cascaded switch.  The ports used to interconnect the
+   Using the base network inventory YANG data model each interconnected
+   switch can be modelled as a chassis within the same network element,
+   which models the cascaded switch.  The ports used to interconnect the
    different chassis are normal (traffic) ports and modelled like other
    ports.  The interconnecting cables are not reported using the base
-   network inventory model but can be reported using the passive network
-   inventory model under definition in
+   network inventory YANG data model but can be reported using the
+   passive network inventory model under definition in
    [I-D.ygb-ivy-passive-network-inventory].
 
 E.1.  JSON Examples
 
    This appendix contains an example of an instance data tree in JSON
    encoding [RFC7951], instantiating the "ietf-network-inventory" model
-   to describe the three examples of multi-chassis NEs, as shown in xxx,
-   yyy and zzz.
+   to describe the three examples of multi-chassis NEs, as shown in
+   Figure 9, Figure 10 and Figure 11.
 
       Note: the base inventory model allows reporting only the chassis
       and ports configuration.  Reporting the link between the chassis
       of the same NE is outside the scope of the base inventory model.
       The YANG data model under definition in
       [I-D.ygb-ivy-passive-network-inventory] as an augmentation of the
-      base inventory model can be used to provide this additional
-      information.
+      base inventory YANG data model can be used to provide this
+      additional information.
 
    =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -2234,19 +1859,13 @@ E.1.  JSON Examples
                    "is-fru": true
                  },
                  {
-                   "component-id": "board-1",
-                   "class": "iana-hardware:module",
-                   "description": "Single board of the first switch of \
-                                                            the stack.",
-                   "parent": "chassis-1",
-                   "is-fru": false
-                 },
-                 {
                    "component-id": "port-1-1",
                    "class": "iana-hardware:port",
                    "description": "First stack port of the first \
                                                   switch in the stack.",
-                   "parent": "board-1",
+                   "parent": [
+                     "chassis-1"
+                   ],
                    "parent-rel-pos": 1
                  },
                  {
@@ -2254,46 +1873,46 @@ E.1.  JSON Examples
                    "class": "iana-hardware:port",
                    "description": "Second stack port of the first \
                                                   switch in the stack.",
-                   "parent": "board-1",
+                   "parent": [
+                     "chassis-1"
+                   ],
                    "parent-rel-pos": 2
                  },
                  {
                    "component-id": "transceiver-module-1-2",
-                   "class": "ietf-network-inventory:transceiver-module",
+                   "class": "iana-hardware:module",
                    "description": "Transceiver module plugged in the \
                    second stack port of the first switch in the stack.",
-                   "parent": "port-1-2",
+                   "parent": [
+                     "port-1-2"
+                   ],
                    "is-fru": true
                  },
                  {
                    "component-id": "chassis-2",
                    "class": "iana-hardware:chassis",
                    "description": "Second switch of the stack.",
-                   "parent-rel-pos": 1,
+                   "parent-rel-pos": 2,
                    "is-fru": true
-                 },
-                 {
-                   "component-id": "board-2",
-                   "class": "iana-hardware:module",
-                   "description": "Single board of the second switch \
-                                                         of the stack.",
-                   "parent": "chassis-2",
-                   "is-fru": false
                  },
                  {
                    "component-id": "port-2-1",
                    "class": "iana-hardware:port",
                    "description": "First stack port of the second \
                                                   switch in the stack.",
-                   "parent": "board-2",
+                   "parent": [
+                     "chassis-2"
+                   ],
                    "parent-rel-pos": 1
                  },
                  {
                    "component-id": "transceiver-module-2-1",
-                   "class": "ietf-network-inventory:transceiver-module",
+                   "class": "iana-hardware:module",
                    "description": "Transceiver module plugged in the \
                     first stack port of the first switch in the stack.",
-                   "parent": "port-2-1",
+                   "parent": [
+                     "port-2-1"
+                   ],
                    "is-fru": true
                  },
                  {
@@ -2301,46 +1920,46 @@ E.1.  JSON Examples
                    "class": "iana-hardware:port",
                    "description": "Second stack port of the second \
                                                   switch in the stack.",
-                   "parent": "board-2",
+                   "parent": [
+                     "chassis-2"
+                   ],
                    "parent-rel-pos": 2
                  },
                  {
                    "component-id": "transceiver-module-2-2",
-                   "class": "ietf-network-inventory:transceiver-module",
+                   "class": "iana-hardware:module",
                    "description": "Transceiver module plugged in the \
                    second stack port of the first switch in the stack.",
-                   "parent": "port-2-2",
+                   "parent": [
+                     "port-2-2"
+                   ],
                    "is-fru": true
                  },
                  {
                    "component-id": "chassis-3",
                    "class": "iana-hardware:chassis",
                    "description": "Third switch of the stack.",
-                   "parent-rel-pos": 1,
+                   "parent-rel-pos": 3,
                    "is-fru": true
-                 },
-                 {
-                   "component-id": "board-3",
-                   "class": "iana-hardware:module",
-                   "description": "Single board of the third switch of \
-                                                            the stack.",
-                   "parent": "chassis-3",
-                   "is-fru": false
                  },
                  {
                    "component-id": "port-3-1",
                    "class": "iana-hardware:port",
                    "description": "First stack port of the third \
                                                   switch in the stack.",
-                   "parent": "board-3",
+                   "parent": [
+                     "chassis-3"
+                   ],
                    "parent-rel-pos": 1
                  },
                  {
                    "component-id": "transceiver-module-3-1",
-                   "class": "ietf-network-inventory:transceiver-module",
+                   "class": "iana-hardware:module",
                    "description": "Transceiver module plugged in the \
                     first stack port of the third switch in the stack.",
-                   "parent": "port-3-1",
+                   "parent": [
+                     "port-3-1"
+                   ],
                    "is-fru": true
                  },
                  {
@@ -2348,7 +1967,9 @@ E.1.  JSON Examples
                    "class": "iana-hardware:port",
                    "description": "Second stack port of the second \
                                                   switch in the stack.",
-                   "parent": "board-3",
+                   "parent": [
+                     "chassis-3"
+                   ],
                    "parent-rel-pos": 2
                  }
                ]
@@ -2367,27 +1988,23 @@ E.1.  JSON Examples
                    "is-fru": true
                  },
                  {
-                   "component-id": "board-1",
-                   "class": "iana-hardware:module",
-                   "description": "Single board of the first switch of \
-                                                            the stack.",
-                   "parent": "chassis-1",
-                   "is-fru": false
-                 },
-                 {
                    "component-id": "port-1-1",
                    "class": "iana-hardware:port",
                    "description": "First stack port of the first \
                                                   switch in the stack.",
-                   "parent": "board-1",
+                   "parent": [
+                     "chassis-1"
+                   ],
                    "parent-rel-pos": 1
                  },
                  {
                    "component-id": "transceiver-module-1-1",
-                   "class": "ietf-network-inventory:transceiver-module",
+                   "class": "iana-hardware:module",
                    "description": "Transceiver module plugged in the \
                     first stack port of the first switch in the stack.",
-                   "parent": "port-1-1",
+                   "parent": [
+                     "port-1-1"
+                   ],
                    "is-fru": true
                  },
                  {
@@ -2395,46 +2012,46 @@ E.1.  JSON Examples
                    "class": "iana-hardware:port",
                    "description": "Second stack port of the first \
                                                   switch in the stack.",
-                   "parent": "board-1",
+                   "parent": [
+                     "chassis-1"
+                   ],
                    "parent-rel-pos": 2
                  },
                  {
                    "component-id": "transceiver-module-1-2",
-                   "class": "ietf-network-inventory:transceiver-module",
+                   "class": "iana-hardware:module",
                    "description": "Transceiver module plugged in the \
                    second stack port of the first switch in the stack.",
-                   "parent": "port-1-2",
+                   "parent": [
+                     "port-1-2"
+                   ],
                    "is-fru": true
                  },
                  {
                    "component-id": "chassis-2",
                    "class": "iana-hardware:chassis",
                    "description": "Second switch of the stack.",
-                   "parent-rel-pos": 1,
+                   "parent-rel-pos": 2,
                    "is-fru": true
-                 },
-                 {
-                   "component-id": "board-2",
-                   "class": "iana-hardware:module",
-                   "description": "Single board of the second switch \
-                                                         of the stack.",
-                   "parent": "chassis-2",
-                   "is-fru": false
                  },
                  {
                    "component-id": "port-2-1",
                    "class": "iana-hardware:port",
                    "description": "First stack port of the second \
                                                   switch in the stack.",
-                   "parent": "board-2",
+                   "parent": [
+                     "chassis-2"
+                   ],
                    "parent-rel-pos": 1
                  },
                  {
                    "component-id": "transceiver-module-2-1",
-                   "class": "ietf-network-inventory:transceiver-module",
+                   "class": "iana-hardware:module",
                    "description": "Transceiver module plugged in the \
                     first stack port of the first switch in the stack.",
-                   "parent": "port-2-1",
+                   "parent": [
+                     "port-2-1"
+                   ],
                    "is-fru": true
                  },
                  {
@@ -2442,46 +2059,46 @@ E.1.  JSON Examples
                    "class": "iana-hardware:port",
                    "description": "Second stack port of the second \
                                                   switch in the stack.",
-                   "parent": "board-2",
+                   "parent": [
+                     "chassis-2"
+                   ],
                    "parent-rel-pos": 2
                  },
                  {
                    "component-id": "transceiver-module-2-2",
-                   "class": "ietf-network-inventory:transceiver-module",
+                   "class": "iana-hardware:module",
                    "description": "Transceiver module plugged in the \
                    second stack port of the first switch in the stack.",
-                   "parent": "port-2-2",
+                   "parent": [
+                     "port-2-2"
+                   ],
                    "is-fru": true
                  },
                  {
                    "component-id": "chassis-3",
                    "class": "iana-hardware:chassis",
                    "description": "Third switch of the stack.",
-                   "parent-rel-pos": 1,
+                   "parent-rel-pos": 3,
                    "is-fru": true
-                 },
-                 {
-                   "component-id": "board-3",
-                   "class": "iana-hardware:module",
-                   "description": "Single board of the third switch of \
-                                                            the stack.",
-                   "parent": "chassis-3",
-                   "is-fru": false
                  },
                  {
                    "component-id": "port-3-1",
                    "class": "iana-hardware:port",
                    "description": "First stack port of the third \
                                                   switch in the stack.",
-                   "parent": "board-3",
+                   "parent": [
+                     "chassis-3"
+                   ],
                    "parent-rel-pos": 1
                  },
                  {
                    "component-id": "transceiver-module-3-1",
-                   "class": "ietf-network-inventory:transceiver-module",
+                   "class": "iana-hardware:module",
                    "description": "Transceiver module plugged in the \
                     first stack port of the third switch in the stack.",
-                   "parent": "port-3-1",
+                   "parent": [
+                     "port-3-1"
+                   ],
                    "is-fru": true
                  },
                  {
@@ -2489,15 +2106,19 @@ E.1.  JSON Examples
                    "class": "iana-hardware:port",
                    "description": "Second stack port of the second \
                                                   switch in the stack.",
-                   "parent": "board-3",
+                   "parent": [
+                     "chassis-3"
+                   ],
                    "parent-rel-pos": 2
                  },
                  {
                    "component-id": "transceiver-module-3-2",
-                   "class": "ietf-network-inventory:transceiver-module",
+                   "class": "iana-hardware:module",
                    "description": "Transceiver module plugged in the \
                    second stack port of the third switch in the stack.",
-                   "parent": "port-3-2",
+                   "parent": [
+                     "port-3-2"
+                   ],
                    "is-fru": true
                  }
                ]
@@ -2505,149 +2126,400 @@ E.1.  JSON Examples
            },
            {
              "ne-id": "NE-3",
-             "description": "TBA.",
+             "description": "Cascaded Switch in a tree topology.",
              "components": {
                "component": [
                  {
                    "component-id": "chassis-1",
                    "class": "iana-hardware:chassis",
-                   "description": "First TBD.",
+                   "description": "First chassis of the cascaded switch\
+                                                                     .",
                    "parent-rel-pos": 1,
                    "is-fru": true
                  },
                  {
-                   "component-id": "board-1",
-                   "class": "iana-hardware:module",
-                   "description": "Single board of the first switch of \
-                                                            the stack.",
-                   "parent": "chassis-1",
-                   "is-fru": false
-                 },
-                 {
-                   "component-id": "port-1-1",
-                   "class": "iana-hardware:port",
-                   "description": "First stack port of the first \
-                                                  switch in the stack.",
-                   "parent": "board-1",
+                   "component-id": "slot-1-1",
+                   "class": "iana-hardware:container",
+                   "description": "Slot 1 of the first chassis of the \
+                                                      cascaded switch.",
+                   "parent": [
+                     "chassis-1"
+                   ],
                    "parent-rel-pos": 1
                  },
                  {
-                   "component-id": "transceiver-module-1-1",
-                   "class": "ietf-network-inventory:transceiver-module",
-                   "description": "Transceiver module plugged in the \
-                    first stack port of the first switch in the stack.",
-                   "parent": "port-1-1",
+                   "component-id": "card-1-1",
+                   "class": "iana-hardware:module",
+                   "description": "Card plugged into slot 1 of the \
+                                 first chassis of the cascaded switch.",
+                   "parent": [
+                     "slot-1-1"
+                   ],
                    "is-fru": true
                  },
                  {
-                   "component-id": "port-1-2",
+                   "component-id": "port-1-1-1",
                    "class": "iana-hardware:port",
-                   "description": "Second stack port of the first \
-                                                  switch in the stack.",
-                   "parent": "board-1",
-                   "parent-rel-pos": 2
+                   "description": "Empty port 1 on the card plugged \
+              into slot 1 of the first chassis of the cascaded switch.",
+                   "parent": [
+                     "card-1-1"
+                   ],
+                   "parent-rel-pos": 1
                  },
                  {
-                   "component-id": "transceiver-module-1-2",
-                   "class": "ietf-network-inventory:transceiver-module",
-                   "description": "Transceiver module plugged in the \
-                   second stack port of the first switch in the stack.",
-                   "parent": "port-1-2",
+                   "component-id": "port-1-1-4",
+                   "class": "iana-hardware:port",
+                   "description": "Pluggable port 4 on the card \
+      plugged into slot 1 of the first chassis of the cascaded switch.",
+                   "parent": [
+                     "card-1-1"
+                   ],
+                   "parent-rel-pos": 4
+                 },
+                 {
+                   "component-id": "transceiver-module-1-1-4",
+                   "class": "iana-hardware:module",
+                   "description": "Transceiver module plugged in port \
+   4 on the card plugged into slot 1 of the first chassis of the \
+                                                      cascaded switch.",
+                   "parent": [
+                     "port-1-1-4"
+                   ],
                    "is-fru": true
+                 },
+                 {
+                   "component-id": "port-1-1-10",
+                   "class": "iana-hardware:port",
+                   "description": "Empty port 10 on the card plugged \
+              into slot 1 of the first chassis of the cascaded switch.",
+                   "parent": [
+                     "card-1-1"
+                   ],
+                   "parent-rel-pos": 10
+                 },
+                 {
+                   "component-id": "slot-1-20",
+                   "class": "iana-hardware:container",
+                   "description": "Empty slot 20 of the first chassis \
+                                               of the cascaded switch.",
+                   "parent": [
+                     "chassis-1"
+                   ],
+                   "parent-rel-pos": 20
+                 },
+                 {
+                   "component-id": "slot-1-32",
+                   "class": "iana-hardware:container",
+                   "description": "Slot 32 of the first chassis of the \
+                                                      cascaded switch.",
+                   "parent": [
+                     "chassis-1"
+                   ],
+                   "parent-rel-pos": 32
+                 },
+                 {
+                   "component-id": "card-1-32",
+                   "class": "iana-hardware:module",
+                   "description": "Card plugged into slot 32 of the \
+                                 first chassis of the cascaded switch.",
+                   "parent": [
+                     "slot-1-32"
+                   ],
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "port-1-32-1",
+                   "class": "iana-hardware:port",
+                   "description": "Empty port 1 on the card plugged \
+             into slot 32 of the first chassis of the cascaded switch.",
+                   "parent": [
+                     "card-1-32"
+                   ],
+                   "parent-rel-pos": 1
+                 },
+                 {
+                   "component-id": "port-1-32-6",
+                   "class": "iana-hardware:port",
+                   "description": "Pluggable port 6 on the card \
+     plugged into slot 32 of the first chassis of the cascaded switch.",
+                   "parent": [
+                     "card-1-32"
+                   ],
+                   "parent-rel-pos": 6
+                 },
+                 {
+                   "component-id": "transceiver-module-1-32-6",
+                   "class": "iana-hardware:module",
+                   "description": "Transceiver module plugged in port \
+   6 on the card plugged into slot 32 of the first chassis of the \
+                                                      cascaded switch.",
+                   "parent": [
+                     "port-1-32-6"
+                   ],
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "port-1-32-10",
+                   "class": "iana-hardware:port",
+                   "description": "Empty port 10 on the card plugged \
+             into slot 32 of the first chassis of the cascaded switch.",
+                   "parent": [
+                     "card-1-32"
+                   ],
+                   "parent-rel-pos": 10
                  },
                  {
                    "component-id": "chassis-2",
                    "class": "iana-hardware:chassis",
-                   "description": "Second switch of the stack.",
-                   "parent-rel-pos": 1,
+                   "description": "Second chassis of the cascaded \
+                                                               switch.",
+                   "parent-rel-pos": 2,
                    "is-fru": true
                  },
                  {
-                   "component-id": "board-2",
-                   "class": "iana-hardware:module",
-                   "description": "Single board of the second switch \
-                                                         of the stack.",
-                   "parent": "chassis-2",
-                   "is-fru": false
-                 },
-                 {
-                   "component-id": "port-2-1",
-                   "class": "iana-hardware:port",
-                   "description": "First stack port of the second \
-                                                  switch in the stack.",
-                   "parent": "board-2",
+                   "component-id": "slot-2-1",
+                   "class": "iana-hardware:container",
+                   "description": "Slot 1 of the second chassis of the \
+                                                      cascaded switch.",
+                   "parent": [
+                     "chassis-2"
+                   ],
                    "parent-rel-pos": 1
                  },
                  {
-                   "component-id": "transceiver-module-2-1",
-                   "class": "ietf-network-inventory:transceiver-module",
-                   "description": "Transceiver module plugged in the \
-                    first stack port of the first switch in the stack.",
-                   "parent": "port-2-1",
+                   "component-id": "card-2-1",
+                   "class": "iana-hardware:module",
+                   "description": "Card plugged into slot 1 of the \
+                                second chassis of the cascaded switch.",
+                   "parent": [
+                     "slot-2-1"
+                   ],
                    "is-fru": true
                  },
                  {
-                   "component-id": "port-2-2",
+                   "component-id": "port-2-1-5",
                    "class": "iana-hardware:port",
-                   "description": "Second stack port of the second \
-                                                  switch in the stack.",
-                   "parent": "board-2",
-                   "parent-rel-pos": 2
+                   "description": "Pluggable port 5 on the card \
+     plugged into slot 1 of the second chassis of the cascaded switch.",
+                   "parent": [
+                     "card-2-1"
+                   ],
+                   "parent-rel-pos": 4
                  },
                  {
-                   "component-id": "transceiver-module-2-2",
-                   "class": "ietf-network-inventory:transceiver-module",
-                   "description": "Transceiver module plugged in the \
-                   second stack port of the first switch in the stack.",
-                   "parent": "port-2-2",
+                   "component-id": "transceiver-module-2-1-5",
+                   "class": "iana-hardware:module",
+                   "description": "Transceiver module plugged in port \
+   5 on the card plugged into slot 1 of the second chassis of the \
+                                                      cascaded switch.",
+                   "parent": [
+                     "port-2-1-5"
+                   ],
                    "is-fru": true
                  },
                  {
                    "component-id": "chassis-3",
                    "class": "iana-hardware:chassis",
-                   "description": "Third switch of the stack.",
-                   "parent-rel-pos": 1,
+                   "description": "Third chassis of the cascaded switch\
+                                                                     .",
+                   "parent-rel-pos": 3,
                    "is-fru": true
                  },
                  {
-                   "component-id": "board-3",
-                   "class": "iana-hardware:module",
-                   "description": "Single board of the third switch of \
-                                                            the stack.",
-                   "parent": "chassis-3",
-                   "is-fru": false
-                 },
-                 {
-                   "component-id": "port-3-1",
-                   "class": "iana-hardware:port",
-                   "description": "First stack port of the third \
-                                                  switch in the stack.",
-                   "parent": "board-3",
+                   "component-id": "slot-3-1",
+                   "class": "iana-hardware:container",
+                   "description": "Empty slot 1 of the third chassis \
+                                               of the cascaded switch.",
+                   "parent": [
+                     "chassis-3"
+                   ],
                    "parent-rel-pos": 1
                  },
                  {
-                   "component-id": "transceiver-module-3-1",
-                   "class": "ietf-network-inventory:transceiver-module",
-                   "description": "Transceiver module plugged in the \
-                    first stack port of the third switch in the stack.",
-                   "parent": "port-3-1",
+                   "component-id": "slot-3-16",
+                   "class": "iana-hardware:container",
+                   "description": "Slot 16 of the third chassis of the \
+                                                      cascaded switch.",
+                   "parent": [
+                     "chassis-3"
+                   ],
+                   "parent-rel-pos": 16
+                 },
+                 {
+                   "component-id": "card-3-16",
+                   "class": "iana-hardware:module",
+                   "description": "Card plugged into slot 16 of the \
+                                 third chassis of the cascaded switch.",
+                   "parent": [
+                     "slot-3-16"
+                   ],
                    "is-fru": true
                  },
                  {
-                   "component-id": "port-3-2",
+                   "component-id": "port-3-16-7",
                    "class": "iana-hardware:port",
-                   "description": "Second stack port of the second \
-                                                  switch in the stack.",
-                   "parent": "board-3",
+                   "description": "Pluggable port 7 on the card \
+     plugged into slot 16 of the third chassis of the cascaded switch.",
+                   "parent": [
+                     "card-3-16"
+                   ],
+                   "parent-rel-pos": 7
+                 },
+                 {
+                   "component-id": "transceiver-module-3-16-7",
+                   "class": "iana-hardware:module",
+                   "description": "Transceiver module plugged in port \
+   7 on the card plugged into slot 16 of the third chassis of the \
+                                                      cascaded switch.",
+                   "parent": [
+                     "port-3-16-7"
+                   ],
+                   "is-fru": true
+                 }
+               ]
+             }
+           }
+         ]
+       }
+     }
+   }
+
+Appendix F.  Example of non-modular network elements
+
+   This appendix provides some examples of non-modular network elements
+   and how they can be modelled using the "ietf-network-inventory"
+   module defined in Section 5.
+
+   Non-modular network elements (also known as "pizza boxes") are
+   network elements composed by a single chassis (with a 1U horizontal
+   oriented rectangular shape) as a self-contained system.  A non-
+   modular network element does not have any slots to take cards so it
+   cannot take any non-field replaceable modules other than pluggable
+   ports.
+
+   Using the base network inventory YANG data model a non-modular
+   network element can be modelled as a network element containing only
+   one chassis and ports (as child components of the chassis).
+
+   Reporting the single chassis component within a non-modular network
+   element is required because the chassis component is the type of
+   component which provides the physical characteristics of the network
+   element chassis (the network element is defined just as an assembly
+   of components) and its location, using the network inventory YANG
+   data model under definition in
+   [I-D.ietf-ivy-network-inventory-location].
+
+F.1.  JSON Examples
+
+   This appendix contains an example of an instance data tree in JSON
+   encoding [RFC7951], instantiating the "ietf-network-inventory" module
+   to describe an example of a non-modular network element.
+
+   {
+     "ietf-network-inventory:network-inventory": {
+       "network-elements": {
+         "network-element" : [
+           {
+             "ne-id": "Pizza-box-NE",
+             "description": "Example of a pizza box NE.",
+             "components": {
+               "component": [
+                 {
+                   "component-id": "pizza-chassis",
+                   "class": "iana-hardware:chassis",
+                   "description": "Pizza box chassis.",
+                   "is-fru": true
+                 },
+                 {
+                   "component-id": "port-1",
+                   "class": "iana-hardware:port",
+                   "description": "Port 1 of the pizza box.",
+                   "parent": [
+                     "pizza-chassis"
+                   ],
+                   "parent-rel-pos": 1
+                 },
+                 {
+                   "component-id": "port-2",
+                   "class": "iana-hardware:port",
+                   "description": "Port 2 of the pizza box.",
+                   "parent": [
+                     "pizza-chassis"
+                   ],
                    "parent-rel-pos": 2
                  },
                  {
-                   "component-id": "transceiver-module-3-2",
-                   "class": "ietf-network-inventory:transceiver-module",
-                   "description": "Transceiver module plugged in the \
-                   second stack port of the third switch in the stack.",
-                   "parent": "port-3-2",
-                   "is-fru": true
+                   "component-id": "port-3",
+                   "class": "iana-hardware:port",
+                   "description": "Port 3 of the pizza box.",
+                   "parent": [
+                     "pizza-chassis"
+                   ],
+                   "parent-rel-pos": 3
+                 },
+                 {
+                   "component-id": "port-4",
+                   "class": "iana-hardware:port",
+                   "description": "Port 4 of the pizza box.",
+                   "parent": [
+                     "pizza-chassis"
+                   ],
+                   "parent-rel-pos": 4
+                 },
+                 {
+                   "component-id": "port-5",
+                   "class": "iana-hardware:port",
+                   "description": "Port 5 of the pizza box.",
+                   "parent": [
+                     "pizza-chassis"
+                   ],
+                   "parent-rel-pos": 5
+                 },
+                 {
+                   "component-id": "port-6",
+                   "class": "iana-hardware:port",
+                   "description": "Port 6 of the pizza box.",
+                   "parent": [
+                     "pizza-chassis"
+                   ],
+                   "parent-rel-pos": 6
+                 },
+                 {
+                   "component-id": "port-7",
+                   "class": "iana-hardware:port",
+                   "description": "Port 7 of the pizza box.",
+                   "parent": [
+                     "pizza-chassis"
+                   ],
+                   "parent-rel-pos": 7
+                 },
+                 {
+                   "component-id": "port-8",
+                   "class": "iana-hardware:port",
+                   "description": "Port 8 of the pizza box.",
+                   "parent": [
+                     "pizza-chassis"
+                   ],
+                   "parent-rel-pos": 8
+                 },
+                 {
+                   "component-id": "port-9",
+                   "class": "iana-hardware:port",
+                   "description": "Port 9 of the pizza box.",
+                   "parent": [
+                     "pizza-chassis"
+                   ],
+                   "parent-rel-pos": 9
+                 },
+                 {
+                   "component-id": "port-10",
+                   "class": "iana-hardware:port",
+                   "description": "Port 10 of the pizza box.",
+                   "parent": [
+                     "pizza-chassis"
+                   ],
+                   "parent-rel-pos": 10
                  }
                ]
              }
