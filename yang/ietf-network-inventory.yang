@@ -68,7 +68,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2025-09-15 {
+  revision 2025-09-18 {
     description
       "Initial version";
     reference
@@ -186,8 +186,8 @@ module ietf-network-inventory {
       key "name";
       config false;
       description
-        "The list of the active software modules within the entity
-         (e.g., component).";
+        "The list of the software modules configured to be active
+         within the entity (e.g., component).";
       leaf name {
         type string;
         description
