@@ -1,13 +1,13 @@
 module: ietf-network-inventory
   +--rw network-inventory
-     +--rw network-elements
-        +--rw network-element* [ne-id]
-           +--rw ne-id           string
+     +--ro network-elements
+        +--ro network-element* [ne-id]
+           +--ro ne-id           string
            +--ro ne-type?        identityref
            +--ro uuid?           yang:uuid
-           +--rw name?           string
-           +--rw description?    string
-           +--rw alias?          string
+           +--ro name?           string
+           +--ro description?    string
+           +--ro alias?          string
            +--ro software-rev* [name]
            |  +--ro name        string
            |  +--ro revision?   string
@@ -16,14 +16,14 @@ module: ietf-network-inventory
            +--ro mfg-name?       string
            +--ro product-name?   string
            +--ro product-rev?    string
-           +--rw components
-              +--rw component* [component-id]
-                 +--rw component-id      string
+           +--ro components
+              +--ro component* [component-id]
+                 +--ro component-id      string
                  +--ro class             union
                  +--ro uuid?             yang:uuid
-                 +--rw name?             string
-                 +--rw description?      string
-                 +--rw alias?            string
+                 +--ro name?             string
+                 +--ro description?      string
+                 +--ro alias?            string
                  +--ro software-rev* [name]
                  |  +--ro name        string
                  |  +--ro revision?   string
