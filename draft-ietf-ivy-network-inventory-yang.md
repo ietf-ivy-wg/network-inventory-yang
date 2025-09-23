@@ -185,18 +185,13 @@ The following terms are defined in the description statements of the correspondi
 
 - backplane
 - battery
-- container
 - cpu
-- chassis
 - fan
 - module
-- port
 - power supply
 - sensor
 - stack
 - storage device
-
-> Editors' Note: The chassis and port definition below needs to be moved to iana-hardware update
 
 Chassis:
 : A field replaceable equipment with a particular structural format and dimensions.
