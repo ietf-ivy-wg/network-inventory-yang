@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-21T01:01:18.063976+00:00",
+  "timestamp": "2025-09-25T00:56:19.959901+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -9292,15 +9292,15 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "I-D and YANG updated for WG LC preparation:\r\n- Updated software list: fix #128 \r\n\r\nReviewers: @nigel-r-davis @prmanna ",
+      "body": "I-D and YANG updated for WG LC preparation:\r\n- Updated software list: fix #128 \r\n- Updated terminology section to remove references to IANA-HW for terms defined in this document: fix #133 \r\n- Marked the whole inventory container as RO: fix #134 \r\n- Removed config false from groupings where not applicable to any context in line with RFC8407-bis",
       "createdAt": "2025-09-18T11:51:48Z",
-      "updatedAt": "2025-09-19T13:29:46Z",
+      "updatedAt": "2025-09-24T13:07:51Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "dded14df33a6bd346f104d9c38fee641cfe4be49",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "wg-lc-prep-02",
-      "headRefOid": "a71d6577a0131e56dc49d429624caa8fc9198865",
+      "headRefOid": "c5e7fa5148749047dc64b8aa74a31a707fcc9c9a",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -9312,6 +9312,13 @@
           "body": "PR - still in draft.",
           "createdAt": "2025-09-18T16:21:02Z",
           "updatedAt": "2025-09-18T16:21:02Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I have removed the config false statements from the re-usable groupings in line with the guidelines in RFC8407-bis\r\n\r\nHowever, I am not sure about the config false statements for the following leaves:\r\n\r\n- leaf mfg-date\r\n- leaf serial-number\r\n- leaf is-fru\r\n",
+          "createdAt": "2025-09-24T13:07:51Z",
+          "updatedAt": "2025-09-24T13:07:51Z"
         }
       ],
       "reviews": [
