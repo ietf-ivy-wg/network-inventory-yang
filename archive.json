@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-25T00:56:19.959901+00:00",
+  "timestamp": "2025-09-28T01:02:08.224125+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -9294,7 +9294,7 @@
       "labels": [],
       "body": "I-D and YANG updated for WG LC preparation:\r\n- Updated software list: fix #128 \r\n- Updated terminology section to remove references to IANA-HW for terms defined in this document: fix #133 \r\n- Marked the whole inventory container as RO: fix #134 \r\n- Removed config false from groupings where not applicable to any context in line with RFC8407-bis",
       "createdAt": "2025-09-18T11:51:48Z",
-      "updatedAt": "2025-09-24T13:07:51Z",
+      "updatedAt": "2025-09-25T13:31:10Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "dded14df33a6bd346f104d9c38fee641cfe4be49",
@@ -9319,6 +9319,13 @@
           "body": "I have removed the config false statements from the re-usable groupings in line with the guidelines in RFC8407-bis\r\n\r\nHowever, I am not sure about the config false statements for the following leaves:\r\n\r\n- leaf mfg-date\r\n- leaf serial-number\r\n- leaf is-fru\r\n",
           "createdAt": "2025-09-24T13:07:51Z",
           "updatedAt": "2025-09-24T13:07:51Z"
+        },
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The changes are good for me\r\n",
+          "createdAt": "2025-09-25T13:31:09Z",
+          "updatedAt": "2025-09-25T13:31:09Z"
         }
       ],
       "reviews": [
@@ -9406,6 +9413,32 @@
           "body": "",
           "createdAt": "2025-09-19T13:29:46Z",
           "updatedAt": "2025-09-19T13:29:46Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87Ctvib",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "prmanna",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "looks good. approved.",
+          "createdAt": "2025-09-25T09:40:00Z",
+          "updatedAt": "2025-09-25T09:40:00Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87CxMaw",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-25T13:29:16Z",
+          "updatedAt": "2025-09-25T13:29:16Z",
           "comments": []
         }
       ]
