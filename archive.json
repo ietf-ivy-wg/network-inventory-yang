@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-28T01:02:08.224125+00:00",
+  "timestamp": "2025-09-30T00:56:47.821204+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4375,7 +4375,7 @@
       ],
       "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nActions based on IETF 123 IVY WG feedbacks:\n\n- [ ] define a list of (software-name, software-rev) for the components\n\nAdditional considerations:\n1. the list of active software should also contain the software patches for each software-name instance\n2. since this list reports only the active SW modules, the software-name can be used as a key for this list\n3. the firmware revision can be removed and the software-rev list can be used also to report running firmware modules\n4. the approach can also be extened to the NE for consistency\n\nIt was also noted that the term firmware is sometimes used to refer to a read-only code (e.g., BIOS) which cannot be upgraded and sometimes used to refer to the programmable code of an FPGA which can be upgraded. By defining only the software-rev list can cover any type of programming data (including firmware) would resolve this ambiguity in the context of the base inventory model. They type of code can be distinguished from the name attribute.\n\nOLD\n\n     +--rw network-elements\n        +--rw network-element* [ne-id]\n           +--rw ne-id                 string\n           +-- ...\n           +--ro software-rev?         string\n           +--ro software-patch-rev*   string\n           +-- ...\n           +--ro components\n              +--rw component* [component-id]\n                 +--rw component-id           string\n                 +--ro class                  union\n                 +-- ...\n                 +--ro hardware-rev?          string\n                 +--ro software-rev?          string\n                 +--ro software-patch-rev*    string\n                 +-- ...\n                 +--ro firmware-rev?          string\n                 +-- ...\n\nNEW\n\n     +--rw network-elements\n        +--rw network-element* [ne-id]\n           +--rw ne-id                 string\n           +-- ...\n           +--ro software-rev [name]\n           |  +--ro name          string\n           |  +--ro revision?     string\n           |  +--ro patch-rev*    string\n           +-- ...\n           +--ro components\n              +--rw component* [component-id]\n                 +--rw component-id           string\n                 +--ro class                  union\n                 +-- ...\n                 +--ro hardware-rev?          string\n                 +--ro software-rev [name]\n                 |  +--ro name          string\n                 |  +--ro revision?     string\n                 |  +--ro patch-rev*    string\n                 +-- ...\n                 +-- ...\n\n",
       "createdAt": "2025-07-30T15:42:54Z",
-      "updatedAt": "2025-09-18T13:45:51Z",
+      "updatedAt": "2025-09-29T10:33:26Z",
       "closedAt": null,
       "comments": [
         {
@@ -4405,6 +4405,13 @@
           "body": "> **[2025-09-17 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-17)**\n> \n> * [x]  [@italobusi](https://github.com/italobusi) discuss these comments and proposal with the IVY WG mailing list\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/g0i4HIC4AfGFRT1T6nZCQ0vhNB8/",
           "createdAt": "2025-09-18T13:36:51Z",
           "updatedAt": "2025-09-18T13:45:51Z"
+        },
+        {
+          "author": "lana-wu",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think the two-level software-and-patch list is too heavy.  \nHow about we use one flat software-version list with an optional \u201ctype\u201d (version/release/patch); it keeps the base model small and covers any combination.  \nIf a vendor needs a deeper hierarchy, the SW inventory extension can always add parent/child relationships.",
+          "createdAt": "2025-09-29T10:33:26Z",
+          "updatedAt": "2025-09-29T10:33:26Z"
         }
       ]
     },
@@ -9294,7 +9301,7 @@
       "labels": [],
       "body": "I-D and YANG updated for WG LC preparation:\r\n- Updated software list: fix #128 \r\n- Updated terminology section to remove references to IANA-HW for terms defined in this document: fix #133 \r\n- Marked the whole inventory container as RO: fix #134 \r\n- Removed config false from groupings where not applicable to any context in line with RFC8407-bis",
       "createdAt": "2025-09-18T11:51:48Z",
-      "updatedAt": "2025-09-25T13:31:10Z",
+      "updatedAt": "2025-09-29T09:36:03Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "dded14df33a6bd346f104d9c38fee641cfe4be49",
@@ -9439,6 +9446,39 @@
           "body": "",
           "createdAt": "2025-09-25T13:29:16Z",
           "updatedAt": "2025-09-25T13:29:16Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87Dbpmf",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-09-29T09:33:35Z",
+          "updatedAt": "2025-09-29T09:33:36Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "In section 3.1 of the I-I it is written about \"alias\" : Alias: : A human-readable label information which could be modified by user. It could also be present on a GUI instead of name.\r\nHow it can be modified by user if RO ? Or we should change the description in the section. \r\nMoreover the part of the tree in the section is not aligned with the new updates from this PR.  ",
+              "createdAt": "2025-09-29T09:33:35Z",
+              "updatedAt": "2025-09-29T09:33:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87DbsGE",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-09-29T09:36:03Z",
+          "updatedAt": "2025-09-29T09:36:03Z",
           "comments": []
         }
       ]
