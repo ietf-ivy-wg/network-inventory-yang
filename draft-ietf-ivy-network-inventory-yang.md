@@ -448,8 +448,23 @@ storage, port, or power supply are defined in the hardware extension.
 
 ### Software Components
 
-This document defines "software-rev" of NEs and components, which are
+This document defines a "software-rev" list for NEs and components, which provide
 basic software attributes of a Network Element.
+
+The scope of the list is to provide information about the working software running 
+on the related object (NE or component). It is modeled as a list to support
+scenario where multiple software binary are present on the object. E.g. on the NE 
+there could be an Operating System version and an Application version; in the same 
+way a component like a circuit pack may have a boot-loader code version, a firmware 
+version and one or more FPGA with the related version. 
+The use of the list allow to specify every working software item identified by
+its name and with the version information.
+
+Is not in the scope of this software-rev list to manage inactive/standby software 
+version of the same item and the related upgrade or downgrade life-cycle. 
+The management of the software life-cycle is deferred to an augmentation 
+data model like the one in {{?I-D.ietf-ivy-network-inventory-software}}. 
+
 
 The software and hardware components share the same attributes of the
 component and have similar replaceable requirements. Generally, the
