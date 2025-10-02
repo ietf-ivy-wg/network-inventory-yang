@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-09-30T00:56:47.821204+00:00",
+  "timestamp": "2025-10-02T00:55:10.782231+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4428,20 +4428,27 @@
         "manzoro"
       ],
       "labels": [
-        "agreed",
-        "priority-1"
+        "priority-1",
+        "wait-PR"
       ],
-      "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nNeed to clarify in the document the limited scope of the software information provided by the base inventory model, also considering the changes agreed in #128 \n\n- [ ] @nigel-r-davis @manzoro review the current text of the I-D and proposed text changes to clarify which aspects are in the scope of the base inventory model and which aspects should be outside the scope (e.g.,. in the scope of the SW inventory model)\n",
+      "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nNeed to clarify in the document the limited scope of the software information provided by the base inventory model, also considering the changes agreed in #128 \n\n- [x] @nigel-r-davis @manzoro review the current text of the I-D and proposed text changes to clarify which aspects are in the scope of the base inventory model and which aspects should be outside the scope (e.g.,. in the scope of the SW inventory model)\n",
       "createdAt": "2025-07-30T15:44:39Z",
-      "updatedAt": "2025-09-18T10:26:58Z",
+      "updatedAt": "2025-10-01T17:06:06Z",
       "closedAt": null,
       "comments": [
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-09-17 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-17)**\n\n> * [ ]  [@nigel-r-davis](https://github.com/nigel-r-davis) [@manzoro](https://github.com/manzoro) review the current text of the I-D and proposed text changes to clarify which aspects are in the scope of the base inventory model and which aspects should be outside the scope (e.g.,. in the scope of the SW inventory model)\n\nThe target is to have some text proposal by the next next for offline discussion and resolve this issue in the next call (October 1, 2025)",
+          "body": "**[2025-09-17 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-17)**\n\n> * [x]  [@nigel-r-davis](https://github.com/nigel-r-davis) [@manzoro](https://github.com/manzoro) review the current text of the I-D and proposed text changes to clarify which aspects are in the scope of the base inventory model and which aspects should be outside the scope (e.g.,. in the scope of the SW inventory model)\n\nThe target is to have some text proposal by the next next for offline discussion and resolve this issue in the next call (October 1, 2025)",
           "createdAt": "2025-09-18T10:07:09Z",
-          "updatedAt": "2025-09-18T10:07:09Z"
+          "updatedAt": "2025-10-01T03:11:51Z"
+        },
+        {
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Added a proposed in PR #136 to be discussed and refined with co-authors and contributors.",
+          "createdAt": "2025-10-01T03:11:31Z",
+          "updatedAt": "2025-10-01T03:11:31Z"
         }
       ]
     },
@@ -4560,7 +4567,7 @@
       ],
       "body": "**[2025-09-17 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-17)**\n\nIt is not clear why some attributes are marked as RW and not RO, considering the current scope:\n\n> The YANG data model defined in the document is intended to only report actual inventory data which includes both applied configuration data and state data of the network elements and components actually installed within the network.\n\nThe only RW attributes are the list keys, name, description and alias.\n\nIt has been agreed that these attributes can be configured on the device but not in the network inventory. These attributes should be re-defined as RO to report the applied configuration on the device.\n\n- [x] @italobusi raise this comment to the IVY WG \n- [ ] @italobusi update the YANG data model accordingly",
       "createdAt": "2025-09-18T10:04:56Z",
-      "updatedAt": "2025-09-18T13:46:53Z",
+      "updatedAt": "2025-10-01T16:53:04Z",
       "closedAt": null,
       "comments": [
         {
@@ -4569,6 +4576,13 @@
           "body": "> **[2025-09-17 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-17)**\n> \n> * [x]  [@italobusi](https://github.com/italobusi) raise this comment to the IVY WG\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/iI0s9QDvVrDNmyMXlbrKo_6qUOM/",
           "createdAt": "2025-09-18T13:43:37Z",
           "updatedAt": "2025-09-18T13:46:53Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-10-01 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-01)**\n\nSlides describing the current scope/workflows and potential issues on modifying the scope/workflow: [inventory-config-workflow-00.pptx](https://github.com/user-attachments/files/22644977/inventory-config-workflow-00.pptx)\n\nIt has been clarified that this model is implemented in the network controller and not in the device\n\nThe purpose of this model is to report the data that the network controller  knows and therefore it is only providing a read-only perspective.\n\nBetter not to mention that the model include both applied configuration and state data to avoid configuration\n\nThe information in the model is populated by controller by reading it from the devices using the device model supported by the devices. This model does not constraint the device models used on the device: RFC8348 is an option but other options (e.g., vendor specific models) are also allowed.\n\nIn case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).\n\nThe ne-id should be unique within the network (since it is the key of the  network-element list). The device cannot guaranteed that its identifier is unique within the network and therefore the ne-id should be administered by the network controller.\n\nThe ne-id should be assigned such that the same network element will always be identified through the same identifier, even if the network elements get disconnected from the network controller. Mechanisms to ensure this (e.g., checking the mfg-name, product-name, management IP address, physical location) are implementation specific and outside the scope of standardization.\n\n- [ ] @italobusi Update the text in the I-D\n",
+          "createdAt": "2025-10-01T16:52:52Z",
+          "updatedAt": "2025-10-01T16:53:04Z"
         }
       ]
     }
@@ -9301,7 +9315,7 @@
       "labels": [],
       "body": "I-D and YANG updated for WG LC preparation:\r\n- Updated software list: fix #128 \r\n- Updated terminology section to remove references to IANA-HW for terms defined in this document: fix #133 \r\n- Marked the whole inventory container as RO: fix #134 \r\n- Removed config false from groupings where not applicable to any context in line with RFC8407-bis",
       "createdAt": "2025-09-18T11:51:48Z",
-      "updatedAt": "2025-09-29T09:36:03Z",
+      "updatedAt": "2025-10-01T16:57:30Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "dded14df33a6bd346f104d9c38fee641cfe4be49",
@@ -9333,6 +9347,13 @@
           "body": "The changes are good for me\r\n",
           "createdAt": "2025-09-25T13:31:09Z",
           "updatedAt": "2025-09-25T13:31:09Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-10-01 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-01)**\r\n\r\nAgreed that, in principle, there could be other scenarios where the mfg-date, serial-number and is-fru attributes can be configurable so it is better to remove the config statements from the re-usable groupings\r\n\r\n- [ ] @italobusi Remove the config statements for the mfg-date, serial-number and is-fru attributes\r\n\r\nReview comments have pointed out that the YANG tree samples are not aligned with the latest version of the YANG data model and complete tree. It would be better to avoid using YANG tree samples (which tends to get out of sync) and provide text description of the model itself\r\n\r\n- [ ] @italobusi Remove the YANG tree samples and replace with proper text descriptions\r\n",
+          "createdAt": "2025-10-01T16:56:25Z",
+          "updatedAt": "2025-10-01T16:56:25Z"
         }
       ],
       "reviews": [
@@ -9480,6 +9501,310 @@
           "createdAt": "2025-09-29T09:36:03Z",
           "updatedAt": "2025-09-29T09:36:03Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87D8XoF",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Some tree exemple in the I-D text need to be aligned with latest model",
+          "createdAt": "2025-10-01T02:35:58Z",
+          "updatedAt": "2025-10-01T03:14:54Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "There is a tree sample in section  ## Network Element that is not aligned with the updated tree for the software-rev list",
+              "createdAt": "2025-10-01T02:35:59Z",
+              "updatedAt": "2025-10-01T03:14:54Z"
+            },
+            {
+              "originalPosition": 49,
+              "body": "Same as above, there is a tree sample in section ## Component that is not aligned with the updated tree for the software-rev list",
+              "createdAt": "2025-10-01T02:39:36Z",
+              "updatedAt": "2025-10-01T03:14:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87D9GVb",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "prmanna",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-01T05:07:57Z",
+          "updatedAt": "2025-10-01T05:07:57Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87EDE2z",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-01T13:26:45Z",
+          "updatedAt": "2025-10-01T13:26:45Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "My assumption is that it is modified elsewhere. On that basis the comment is not relevant. The alias is just a property like anything else. That does lead to the concern that there then needs to be a separate definition set from a different viewpoint where the properties are modifiable.",
+              "createdAt": "2025-10-01T13:26:45Z",
+              "updatedAt": "2025-10-01T13:26:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87EDnAJ",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-01T13:52:28Z",
+          "updatedAt": "2025-10-01T13:52:28Z",
+          "comments": [
+            {
+              "originalPosition": 83,
+              "body": "mfg-date (below) is still config false;\r\n",
+              "createdAt": "2025-10-01T13:52:28Z",
+              "updatedAt": "2025-10-01T13:52:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87EDzBu",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-01T14:01:55Z",
+          "updatedAt": "2025-10-01T14:01:56Z",
+          "comments": [
+            {
+              "originalPosition": 91,
+              "body": "serial-number (below) is still config false;\r\n\r\n",
+              "createdAt": "2025-10-01T14:01:56Z",
+              "updatedAt": "2025-10-01T14:01:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87ED0R9",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-01T14:02:44Z",
+          "updatedAt": "2025-10-01T14:02:44Z",
+          "comments": [
+            {
+              "originalPosition": 99,
+              "body": "is-fru (below) is still config false;\r\n\r\n",
+              "createdAt": "2025-10-01T14:02:44Z",
+              "updatedAt": "2025-10-01T14:02:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87ED2OD",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "There are several config false statements that should have been removed. As the YANG will have the same effect with the statements as without, I am approving.",
+          "createdAt": "2025-10-01T14:04:26Z",
+          "updatedAt": "2025-10-01T14:04:26Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87EG8JM",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-01T16:57:00Z",
+          "updatedAt": "2025-10-01T16:57:01Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "See https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135#issuecomment-3357280626",
+              "createdAt": "2025-10-01T16:57:01Z",
+              "updatedAt": "2025-10-01T16:57:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87EG8PT",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-01T16:57:07Z",
+          "updatedAt": "2025-10-01T16:57:07Z",
+          "comments": [
+            {
+              "originalPosition": 49,
+              "body": "See https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135#issuecomment-3357280626",
+              "createdAt": "2025-10-01T16:57:07Z",
+              "updatedAt": "2025-10-01T16:57:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87EG8Ye",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-01T16:57:14Z",
+          "updatedAt": "2025-10-01T16:57:15Z",
+          "comments": [
+            {
+              "originalPosition": 83,
+              "body": "See https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135#issuecomment-3357280626",
+              "createdAt": "2025-10-01T16:57:14Z",
+              "updatedAt": "2025-10-01T16:57:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87EG8jf",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-01T16:57:23Z",
+          "updatedAt": "2025-10-01T16:57:23Z",
+          "comments": [
+            {
+              "originalPosition": 91,
+              "body": "See https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135#issuecomment-3357280626",
+              "createdAt": "2025-10-01T16:57:23Z",
+              "updatedAt": "2025-10-01T16:57:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87EG8tY",
+          "commit": {
+            "abbreviatedOid": "c5e7fa5"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-01T16:57:30Z",
+          "updatedAt": "2025-10-01T16:57:30Z",
+          "comments": [
+            {
+              "originalPosition": 99,
+              "body": "See https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135#issuecomment-3357280626",
+              "createdAt": "2025-10-01T16:57:30Z",
+              "updatedAt": "2025-10-01T16:57:30Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 136,
+      "id": "PR_kwDOKiDYo86rdtQU",
+      "title": "Proposed text for software-rev list description",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/136",
+      "state": "OPEN",
+      "author": "manzoro",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Text proposal to address the description for software-rev list and remove ambiguity with software inventory model (Issue #129 )",
+      "createdAt": "2025-10-01T03:07:30Z",
+      "updatedAt": "2025-10-01T14:03:48Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "dded14df33a6bd346f104d9c38fee641cfe4be49",
+      "headRepository": "manzoro/network-inventory-yang",
+      "headRefName": "software-rev-desc",
+      "headRefOid": "0006e8ed785f131c9f03ac411c4ba624dcea95c4",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo87D_ARN",
+          "commit": {
+            "abbreviatedOid": "0006e8e"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-01T08:25:36Z",
+          "updatedAt": "2025-10-01T08:25:36Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87EDexA",
+          "commit": {
+            "abbreviatedOid": "0006e8e"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Mainly editorial comments to align the terminology used in the draft and in the YANG model plus few suggested rephrasing\r\n\r\nNote: if needed, the terminology used in the YANG model can also be updated with a better terminology. What is important is to be consistent.",
+          "createdAt": "2025-10-01T13:46:20Z",
+          "updatedAt": "2025-10-01T14:03:48Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "We are defining SW information also for components:\r\n\r\n```suggestion\r\nThis document defines a \"software-rev\" list for NEs and components, which provide\r\nbasic software attributes for network elements and components.\r\n```",
+              "createdAt": "2025-10-01T13:46:20Z",
+              "updatedAt": "2025-10-01T14:03:48Z"
+            },
+            {
+              "originalPosition": 15,
+              "body": "The text introduces the concept of \"working software running\" without defining it. For the YANG description, we have agreed to use the terminology \"software modules configured to be active within the entity\": see https://github.com/ietf-ivy-wg/network-inventory-yang/pull/131#issuecomment-3306550085\r\n\r\nBetter to align the terminology in the draft and in the YANG:\r\n\r\n```suggestion\r\nThe scope of the list is to provide information about the software modules configured to be active \r\non the related entity (network element or component).\r\n\r\nThe model supports scenarios where multiple software modules can be configured to be active on the entity. For example, on a network element an Operating System and an Application software modules can be configured to be active; in the same way, on a component like a circuit pack a boot-loader, a firmware \r\nand one or more FPGA software modules can be configured to be active.\r\n\r\nFor each software module, configured to be active, the name and version information is provided.\r\n```",
+              "createdAt": "2025-10-01T14:00:11Z",
+              "updatedAt": "2025-10-01T14:03:48Z"
+            },
+            {
+              "originalPosition": 20,
+              "body": "I would say that this is out of scope of the base inventory model:\r\n\r\n```suggestion\r\nThe management of inactive/standby software \r\nmodules and of the software upgrade or downgrade life-cycle are outside the scope of the base inventory model and can be addressed in other models which augment the base inventory model such as the model under definition in {{?I-D.ietf-ivy-network-inventory-software}}. \r\n```",
+              "createdAt": "2025-10-01T14:02:22Z",
+              "updatedAt": "2025-10-01T14:03:48Z"
+            }
+          ]
         }
       ]
     }
