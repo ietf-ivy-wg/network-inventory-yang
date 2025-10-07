@@ -68,7 +68,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2025-09-23 {
+  revision 2025-10-07 {
     description
       "Initial version";
     reference
@@ -163,16 +163,16 @@ module ietf-network-inventory {
          of this node to a locally unique value in the operational
          state.";
     }
-    leaf description {
-      type string;
-      description
-        "The textual description of the entity (e.g., component).";
-    }
     leaf alias {
       type string;
       description
         "The alias name of the entity (e.g., component). This alias
          name can be specified by network manager.";
+    }
+    leaf description {
+      type string;
+      description
+        "The textual description of the entity (e.g., component).";
     }
   }
 
@@ -293,7 +293,6 @@ module ietf-network-inventory {
     }
     leaf mfg-date {
       type yang:date-and-time;
-      config false;
       description
         "The date of manufacturing of the component.";
       reference
@@ -309,7 +308,6 @@ module ietf-network-inventory {
     }
     leaf serial-number {
       type string;
-      config false;
       description
         "The vendor-specific serial number of the the entity
          (e.g., component) instance. It is expected that vendors
@@ -336,7 +334,6 @@ module ietf-network-inventory {
     }
     leaf is-fru {
       type boolean;
-      config false;
       description
         "This node indicates whether or not this component is
          considered a 'field-replaceable unit' by the vendor.
@@ -364,10 +361,10 @@ module ietf-network-inventory {
    */
 
   container network-inventory {
+    config false;
     description
       "Top-level container for network inventory.";
     container network-elements {
-      config false;
       description
         "The top-level container for the list of network elements
          within the network.";

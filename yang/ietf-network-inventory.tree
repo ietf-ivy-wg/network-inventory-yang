@@ -1,5 +1,5 @@
 module: ietf-network-inventory
-  +--rw network-inventory
+  +--ro network-inventory
      +--ro network-elements
         +--ro network-element* [ne-id]
            +--ro ne-id           string
