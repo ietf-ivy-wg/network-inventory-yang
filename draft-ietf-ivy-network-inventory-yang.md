@@ -451,16 +451,16 @@ storage, port, or power supply are defined in the hardware extension.
 This document defines a "software-rev" list for NEs and components, which provide
 basic software attributes for network elements and components.
 
-The scope of the list is to provide information about the software modules configured to be active 
+The scope of the list is to provide information about the software modules configured to be active
 on the related entity (network element or component).
 
-The model supports scenarios where multiple software modules can be configured to be active on the entity. For example, on a network element an Operating System and an Application software modules can be configured to be active; in the same way, on a component like a circuit pack a boot-loader, a firmware 
+The model supports scenarios where multiple software modules can be configured to be active on the entity. For example, on a network element an Operating System and an Application software modules can be configured to be active; in the same way, on a component like a circuit pack a boot-loader, a firmware
 and one or more FPGA software modules can be configured to be active.
 
 For each software module, configured to be active, the name and version information is provided.
 
-The management of inactive/standby software 
-modules and of the software upgrade or downgrade life-cycle are outside the scope of the base inventory model and can be addressed in other models which augment the base inventory model such as the model under definition in {{?I-D.ietf-ivy-network-inventory-software}}. 
+The management of inactive/standby software
+modules and of the software upgrade or downgrade life-cycle are outside the scope of the base inventory model and can be addressed in other models which augment the base inventory model such as the model under definition in {{?I-D.ietf-ivy-network-inventory-software}}.
 
 
 The software and hardware components share the same attributes of the
