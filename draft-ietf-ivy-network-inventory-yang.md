@@ -449,7 +449,7 @@ storage, port, or power supply are defined in the hardware extension.
 ### Software Components
 
 This document defines a "software-rev" list for NEs and components, which provide
-basic software attributes of a Network Element.
+basic software attributes for network elements and components.
 
 The scope of the list is to provide information about the working software running 
 on the related object (NE or component). It is modeled as a list to support
