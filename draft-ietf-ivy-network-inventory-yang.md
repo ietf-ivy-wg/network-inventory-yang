@@ -451,14 +451,13 @@ storage, port, or power supply are defined in the hardware extension.
 This document defines a "software-rev" list for NEs and components, which provide
 basic software attributes for network elements and components.
 
-The scope of the list is to provide information about the working software running 
-on the related object (NE or component). It is modeled as a list to support
-scenario where multiple software binary are present on the object. E.g. on the NE 
-there could be an Operating System version and an Application version; in the same 
-way a component like a circuit pack may have a boot-loader code version, a firmware 
-version and one or more FPGA with the related version. 
-The use of the list allow to specify every working software item identified by
-its name and with the version information.
+The scope of the list is to provide information about the software modules configured to be active 
+on the related entity (network element or component).
+
+The model supports scenarios where multiple software modules can be configured to be active on the entity. For example, on a network element an Operating System and an Application software modules can be configured to be active; in the same way, on a component like a circuit pack a boot-loader, a firmware 
+and one or more FPGA software modules can be configured to be active.
+
+For each software module, configured to be active, the name and version information is provided.
 
 Is not in the scope of this software-rev list to manage inactive/standby software 
 version of the same item and the related upgrade or downgrade life-cycle. 
