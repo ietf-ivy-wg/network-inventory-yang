@@ -459,10 +459,8 @@ and one or more FPGA software modules can be configured to be active.
 
 For each software module, configured to be active, the name and version information is provided.
 
-Is not in the scope of this software-rev list to manage inactive/standby software 
-version of the same item and the related upgrade or downgrade life-cycle. 
-The management of the software life-cycle is deferred to an augmentation 
-data model like the one in {{?I-D.ietf-ivy-network-inventory-software}}. 
+The management of inactive/standby software 
+modules and of the software upgrade or downgrade life-cycle are outside the scope of the base inventory model and can be addressed in other models which augment the base inventory model such as the model under definition in {{?I-D.ietf-ivy-network-inventory-software}}. 
 
 
 The software and hardware components share the same attributes of the
