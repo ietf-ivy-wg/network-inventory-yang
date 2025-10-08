@@ -295,13 +295,13 @@ uuid:
 : The Universally Unique Identifier (UUID) of the inventory object, assigned by the server. Such identifiers are widely implemented with systems and guaranteed to be globally unique.
 
 name:
-: A human-readable label information of the inventory object, which is suggested to be assigned by the server. This label can be to present on a Graphical User Interface (GUI).
+: A human-readable label information of the inventory object, which could be assigned by the server. It could also be present on a Graphical User Interface (GUI).
 
 alias:
-: A human-readable label information of the inventory object, provided by a network manager. It could also be present on a GUI instead of the name.
+: A human-readable label information of the inventory object, provided by a network manager. It could also be present on a GUI instead as well as the name.
 
 description:
-: A human-readable description of the inventory object, provided by a network manager or by the server. The description provides more detailed information to prompt users when performing maintenance operations.
+: A human-readable description of the inventory object, provided by a network manager or by the server. The description provides more detailed information to prompt users when performing maintenance operations etc.
 
 ### Common attributes for network elements and components
 
@@ -354,8 +354,8 @@ part-number:
 : It is expected that vendors assign unique part numbers to different component types within the scope of the vendor.
 
 serial-number:
-: The vendor-specific serial number of the the entity (e.g., component) instance.
-: It is expected that vendors assign unique serial numbers to different network element instances within the scope of the product name.
+: The vendor-specific serial number of the the component instance.
+: It is expected that vendors assign unique serial numbers to different component instances at least within the scope of the part-number.
 
 asset-id:
 : A user-assigned asset tracking identifier for the component.
