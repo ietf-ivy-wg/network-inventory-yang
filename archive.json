@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-02T00:55:10.782231+00:00",
+  "timestamp": "2025-10-09T00:56:21.357594+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4371,11 +4371,11 @@
       ],
       "labels": [
         "priority-1",
-        "wait-WG"
+        "wait-PR"
       ],
       "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nActions based on IETF 123 IVY WG feedbacks:\n\n- [ ] define a list of (software-name, software-rev) for the components\n\nAdditional considerations:\n1. the list of active software should also contain the software patches for each software-name instance\n2. since this list reports only the active SW modules, the software-name can be used as a key for this list\n3. the firmware revision can be removed and the software-rev list can be used also to report running firmware modules\n4. the approach can also be extened to the NE for consistency\n\nIt was also noted that the term firmware is sometimes used to refer to a read-only code (e.g., BIOS) which cannot be upgraded and sometimes used to refer to the programmable code of an FPGA which can be upgraded. By defining only the software-rev list can cover any type of programming data (including firmware) would resolve this ambiguity in the context of the base inventory model. They type of code can be distinguished from the name attribute.\n\nOLD\n\n     +--rw network-elements\n        +--rw network-element* [ne-id]\n           +--rw ne-id                 string\n           +-- ...\n           +--ro software-rev?         string\n           +--ro software-patch-rev*   string\n           +-- ...\n           +--ro components\n              +--rw component* [component-id]\n                 +--rw component-id           string\n                 +--ro class                  union\n                 +-- ...\n                 +--ro hardware-rev?          string\n                 +--ro software-rev?          string\n                 +--ro software-patch-rev*    string\n                 +-- ...\n                 +--ro firmware-rev?          string\n                 +-- ...\n\nNEW\n\n     +--rw network-elements\n        +--rw network-element* [ne-id]\n           +--rw ne-id                 string\n           +-- ...\n           +--ro software-rev [name]\n           |  +--ro name          string\n           |  +--ro revision?     string\n           |  +--ro patch-rev*    string\n           +-- ...\n           +--ro components\n              +--rw component* [component-id]\n                 +--rw component-id           string\n                 +--ro class                  union\n                 +-- ...\n                 +--ro hardware-rev?          string\n                 +--ro software-rev [name]\n                 |  +--ro name          string\n                 |  +--ro revision?     string\n                 |  +--ro patch-rev*    string\n                 +-- ...\n                 +-- ...\n\n",
       "createdAt": "2025-07-30T15:42:54Z",
-      "updatedAt": "2025-09-29T10:33:26Z",
+      "updatedAt": "2025-10-08T15:24:01Z",
       "closedAt": null,
       "comments": [
         {
@@ -4412,6 +4412,27 @@
           "body": "I think the two-level software-and-patch list is too heavy.  \nHow about we use one flat software-version list with an optional \u201ctype\u201d (version/release/patch); it keeps the base model small and covers any combination.  \nIf a vendor needs a deeper hierarchy, the SW inventory extension can always add parent/child relationships.",
           "createdAt": "2025-09-29T10:33:26Z",
           "updatedAt": "2025-09-29T10:33:26Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I think the two-level software-and-patch list is too heavy. How about we use one flat software-version list with an optional \u201ctype\u201d (version/release/patch); it keeps the base model small and covers any combination. If a vendor needs a deeper hierarchy, the SW inventory extension can always add parent/child relationships.\n\nI am not sure we have clear definitions to distinguish between version, release, patch and revision ...\n\nLet me try to summarize what I have understood are the possible scenarios, borrowing from Mahesh's example; \n\n> [mj] In cases such as ours (Arrcus, and I have seen this with other vendors also), the software patch version/rev is part of the software name (or rev) and is not a separate field. For example, if the software version is 8.2.1, the patched version is 8.2.1.P1. Can the description of the software-rev field be relaxed to say that it denotes either the software-rev or a patched version of the image (and remove the software-patch-rev field)?\n\nAs far as I have understood, the comment, three implementations are possible on the device\n\nOne implementation option is when the device reports three fields:\n- SW name: \"FOO\"\n- SW release: \"8.2.1\"\n- SW patch: \"P1\"\n\nIn this case, the network controller has all the information to properly report:\n\n```\n{\n  \"software-rev\": [\n    {\n      \"name\": \"FOO\",\n      \"revision\": \"8.2.1\",\n      \"patch\": [\n        {\n          \"revision\": \"P1\"\n        }\n      ]\n    }\n  ]\n}\n```\n\nWith the alternative proposal from Bo, my understanding is that the network controller could report:\n\n```\n{\n  \"software-rev\": [\n    {\n      \"name\": \"FOO\",\n      \"revision\": [\n        {\n          \"version\": \"8.2.1\",\n          \"type\": \"revision\"\n        },\n        {\n          \"version\": \"P1\",\n          \"type\": \"patch\"\n        }\n      ]\n    }\n  ]\n}\n```\n\nAnother implementation option is when the device reports only tow fields:\n- SW name: \"FOO\"\n- SW release: \"8.2.1.P1\"\n\nIn this case the network controller has not enough information to split the patch information from the SW patch. The updated descriptions, proposed in PR #135, are intended to allow the network controller to report:\n\n```\n{\n  \"software-rev\": [\n    {\n      \"name\": \"FOO\",\n      \"revision\": \"8.2.1,P1\"\n    }\n  ]\n}\n```\n\nIt is worth noting that the patch list can be omitted/empty it two cases:\n1. when the software revision embeds the software patch information\n1. when there is no patch installed\n\nIn the [2025-09-17 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-17) it was agreed that there is no need to no need for a presence container to avoid ambiguity since this is a vendor choice.\n\nWith the alternative proposal from Bo, my understanding is that the network controller could report:\n\n```\n{\n  \"software-rev\": [\n    {\n      \"name\": \"FOO\",\n      \"revision\": [\n        {\n          \"version\": \"8.2.1.P1\",\n          \"type\": \"revision and patch\"\n        }\n      ]\n    }\n  ]\n}\n```\n\nA third implementation option is when the device reports only one field:\n- SW name: \"FOO R8.2.1.P1\"\n\nIn this case the network controller has not enough information to split the release and patch information from the SW name. The updated descriptions, proposed in PR #135, are intended to allow the network controller to report:\n\n```\n{\n  \"software-rev\": [\n    {\n      \"name\": \"FOO R8.2.1.P1\"\n    }\n  ]\n}\n```\n\n\n",
+          "createdAt": "2025-10-07T14:07:27Z",
+          "updatedAt": "2025-10-07T14:07:27Z"
+        },
+        {
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I think the two-level software-and-patch list is too heavy. How about we use one flat software-version list with an optional \u201ctype\u201d (version/release/patch); it keeps the base model small and covers any combination. If a vendor needs a deeper hierarchy, the SW inventory extension can always add parent/child relationships.\n\n@lana-wu Could you elaborate a bit what do you mean with \"flat software-version list \" not clear to me . This would permit also to help the comment below with the three scenarios described by Italo , but not sure his interpretation of your \"flal list\" is correct. ",
+          "createdAt": "2025-10-07T16:04:14Z",
+          "updatedAt": "2025-10-07T16:04:14Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-10-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-08)**\n\nThe current model in PR #135 allows having more than one patch configured to be active at the same time for the same software module but only one SW revision can be active on the same SW module at the same time.\n\nFor example, it is possible to have two patches P1 and P2 applied to the SW module FOO:\n\n```{\n  \"software-rev\": [\n    {\n      \"name\": \"FOO\",\n      \"revision\": \"8.2.1\",\n      \"patch\": [\n        {\n          \"revision\": \"P1\"\n        },\n        {\n          \"revision\": \"P2\"\n        }\n      ]\n    }\n  ]\n}\n```\n\nThe proposal from Bo would allow multiple SW revisions configured to be active on the same SW module. It seems that there are no requirements to allow multiple SW revisions being configured to be active for the same SW module (on the same component) at the same time. Moreover, if multiple SW revisions and patches are listed to, it would not be clear which patches apply to which SW revision.\n\nIn order not to delay the WG LC, it has been agreed not to change the model now. However, a WG LC comment can be submitted for further discussion within the IVY WG, if needed.\n",
+          "createdAt": "2025-10-08T15:16:08Z",
+          "updatedAt": "2025-10-08T15:16:08Z"
         }
       ]
     },
@@ -4420,7 +4441,7 @@
       "id": "I_kwDOKiDYo87DXA1q",
       "title": "Clarify the software aspects in the scope of base inventory model",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/129",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4433,8 +4454,8 @@
       ],
       "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nNeed to clarify in the document the limited scope of the software information provided by the base inventory model, also considering the changes agreed in #128 \n\n- [x] @nigel-r-davis @manzoro review the current text of the I-D and proposed text changes to clarify which aspects are in the scope of the base inventory model and which aspects should be outside the scope (e.g.,. in the scope of the SW inventory model)\n",
       "createdAt": "2025-07-30T15:44:39Z",
-      "updatedAt": "2025-10-01T17:06:06Z",
-      "closedAt": null,
+      "updatedAt": "2025-10-08T14:31:24Z",
+      "closedAt": "2025-10-08T14:31:24Z",
       "comments": [
         {
           "author": "italobusi",
@@ -4488,7 +4509,7 @@
       ],
       "body": "The Manageability Considerations is empty: need to provide some text or decide to remove the section",
       "createdAt": "2025-08-13T21:39:32Z",
-      "updatedAt": "2025-09-18T10:12:39Z",
+      "updatedAt": "2025-10-08T15:17:27Z",
       "closedAt": null,
       "comments": [
         {
@@ -4511,6 +4532,13 @@
           "body": "**[2025-09-17 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-17)**\n\n> > * [x]   [@italobusi](https://github.com/italobusi) confirm this decision with the IVY WG mailing list\n> \n> See: https://mailarchive.ietf.org/arch/msg/ivy/u0kkL0CsVfiS0WL6O8nMwphRRQ4/\n\nSummary of the discussion on the mailing list: move some of the relevant text in other sections (e.g., Introduction) to this new section.\n\nAgreed to complete the work with the current document structure (keeping this section empty) and then to do one update moving the text into this section. It would then be possible to check whether the readability is improved.",
           "createdAt": "2025-09-18T10:03:30Z",
           "updatedAt": "2025-09-18T10:03:30Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-10-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-08)**\n\n- [ ] @italobusi move the text spread around the document into this section after an I-D version with all the open issues addressed is published and submit a new I-D for WG LC",
+          "createdAt": "2025-10-08T15:17:27Z",
+          "updatedAt": "2025-10-08T15:17:27Z"
         }
       ]
     },
@@ -4526,12 +4554,12 @@
         "italobusi"
       ],
       "labels": [
-        "agreed",
-        "priority-1"
+        "priority-1",
+        "wait-PR"
       ],
       "body": "The following terms are defined by reference to the identities defined in the \"iana-hardware\" module:\n- backplane\n- battery\n- container\n- cpu\n- chassis\n- fan\n- module\n- port\n- power supply\n- sensor\n- stack\n- storage device\n\nThese definitions are used to generalize the definition of hardware component.\n\nHowever there is this Editors' Note to be resolved:\n\n> Editors' Note: The chassis and port definition below needs to be moved to iana-hardware update\n\nIt is worth noting that in addition to chassis and port, the I-D is defining also the concept of container and the concept of card (modelled as a module)\n\nCould we provide a clean definition for the following terms (or equivalent terms as we have done for card versus module):\n- backplane\n- battery\n- cpu\n- fan\n- power supply\n- sensor\n- storage device\n\n\nLooking at the current text and example, maybe we can leave the concept of 'stack' outside the scope of the first RFC\n",
       "createdAt": "2025-08-13T21:46:07Z",
-      "updatedAt": "2025-09-18T10:09:06Z",
+      "updatedAt": "2025-10-08T15:23:31Z",
       "closedAt": null,
       "comments": [
         {
@@ -4563,11 +4591,11 @@
       ],
       "labels": [
         "priority-1",
-        "wait-WG"
+        "wait-PR"
       ],
       "body": "**[2025-09-17 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-17)**\n\nIt is not clear why some attributes are marked as RW and not RO, considering the current scope:\n\n> The YANG data model defined in the document is intended to only report actual inventory data which includes both applied configuration data and state data of the network elements and components actually installed within the network.\n\nThe only RW attributes are the list keys, name, description and alias.\n\nIt has been agreed that these attributes can be configured on the device but not in the network inventory. These attributes should be re-defined as RO to report the applied configuration on the device.\n\n- [x] @italobusi raise this comment to the IVY WG \n- [ ] @italobusi update the YANG data model accordingly",
       "createdAt": "2025-09-18T10:04:56Z",
-      "updatedAt": "2025-10-01T16:53:04Z",
+      "updatedAt": "2025-10-08T15:23:07Z",
       "closedAt": null,
       "comments": [
         {
@@ -4585,6 +4613,26 @@
           "updatedAt": "2025-10-01T16:53:04Z"
         }
       ]
+    },
+    {
+      "number": 137,
+      "id": "I_kwDOKiDYo87QXsjw",
+      "title": "Next weekly calls",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/137",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [
+        "admin"
+      ],
+      "body": "**[2025-10-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-08)**\n\nThe base inventory model would be ready for WG LC soon and therefore it has been agreed not to have other calls for the base inventory model until there are comments to discuss and to check whether there is an interest to re-use this slot for other IVY drafts\n\n",
+      "createdAt": "2025-10-08T15:14:39Z",
+      "updatedAt": "2025-10-08T15:20:40Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -9313,15 +9361,15 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "I-D and YANG updated for WG LC preparation:\r\n- Updated software list: fix #128 \r\n- Updated terminology section to remove references to IANA-HW for terms defined in this document: fix #133 \r\n- Marked the whole inventory container as RO: fix #134 \r\n- Removed config false from groupings where not applicable to any context in line with RFC8407-bis",
+      "body": "I-D and YANG updated for WG LC preparation:\r\n- Updated software list: fix #128 \r\n- Updated terminology section to remove references to IANA-HW for terms defined in this document: fix #133 \r\n- Marked the whole inventory container as RO: fix #134 \r\n- Removed config false from groupings where not applicable to any context in line with RFC8407-bis\r\n- Removed the YANG tree samples and replace with proper text descriptions",
       "createdAt": "2025-09-18T11:51:48Z",
-      "updatedAt": "2025-10-01T16:57:30Z",
+      "updatedAt": "2025-10-08T15:04:16Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "dded14df33a6bd346f104d9c38fee641cfe4be49",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "wg-lc-prep-02",
-      "headRefOid": "c5e7fa5148749047dc64b8aa74a31a707fcc9c9a",
+      "headRefOid": "af4f33d0f18e2e58990992b191ce971f2a3fe936",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -9351,9 +9399,23 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-10-01 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-01)**\r\n\r\nAgreed that, in principle, there could be other scenarios where the mfg-date, serial-number and is-fru attributes can be configurable so it is better to remove the config statements from the re-usable groupings\r\n\r\n- [ ] @italobusi Remove the config statements for the mfg-date, serial-number and is-fru attributes\r\n\r\nReview comments have pointed out that the YANG tree samples are not aligned with the latest version of the YANG data model and complete tree. It would be better to avoid using YANG tree samples (which tends to get out of sync) and provide text description of the model itself\r\n\r\n- [ ] @italobusi Remove the YANG tree samples and replace with proper text descriptions\r\n",
+          "body": "**[2025-10-01 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-01)**\r\n\r\nAgreed that, in principle, there could be other scenarios where the mfg-date, serial-number and is-fru attributes can be configurable so it is better to remove the config statements from the re-usable groupings\r\n\r\n- [x] @italobusi Remove the config statements for the mfg-date, serial-number and is-fru attributes\r\n\r\nReview comments have pointed out that the YANG tree samples are not aligned with the latest version of the YANG data model and complete tree. It would be better to avoid using YANG tree samples (which tends to get out of sync) and provide text description of the model itself\r\n\r\n- [x] @italobusi Remove the YANG tree samples and replace with proper text descriptions\r\n",
           "createdAt": "2025-10-01T16:56:25Z",
-          "updatedAt": "2025-10-01T16:56:25Z"
+          "updatedAt": "2025-10-07T13:26:23Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> **[2025-10-01 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-01)**\r\n> \r\n> Agreed that, in principle, there could be other scenarios where the mfg-date, serial-number and is-fru attributes can be configurable so it is better to remove the config statements from the re-usable groupings\r\n> \r\n> * [x]  @italobusi Remove the config statements for the mfg-date, serial-number and is-fru attributes\r\n> \r\n> Review comments have pointed out that the YANG tree samples are not aligned with the latest version of the YANG data model and complete tree. It would be better to avoid using YANG tree samples (which tends to get out of sync) and provide text description of the model itself\r\n> \r\n> * [x]  @italobusi Remove the YANG tree samples and replace with proper text descriptions\r\n\r\nSee: b5553a0ee434d4e6d4f404dc9368a08c55242790",
+          "createdAt": "2025-10-07T13:33:43Z",
+          "updatedAt": "2025-10-07T13:33:43Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-10-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-08)**\r\n\r\nComments resolution agreed during the call:\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414083549\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414085830\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414109887\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414120882\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414119358\r\n\r\n- [ ] @italobusi : replace 'network manager' with 'network operator' through the whole document and YANG data model\r\n\r\nAgreed to merge the PR afterwards",
+          "createdAt": "2025-10-08T15:04:16Z",
+          "updatedAt": "2025-10-08T15:04:16Z"
         }
       ],
       "reviews": [
@@ -9733,6 +9795,325 @@
               "updatedAt": "2025-10-01T16:57:30Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FTP1Q",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-07T13:34:44Z",
+          "updatedAt": "2025-10-07T13:34:45Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "Please check the latest commit: b5553a0ee434d4e6d4f404dc9368a08c55242790",
+              "createdAt": "2025-10-07T13:34:45Z",
+              "updatedAt": "2025-10-07T13:34:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FT1jX",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-07T14:08:19Z",
+          "updatedAt": "2025-10-07T14:08:19Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Please see the follow-up comment on https://github.com/ietf-ivy-wg/network-inventory-yang/issues/128#issuecomment-3377067877",
+              "createdAt": "2025-10-07T14:08:19Z",
+              "updatedAt": "2025-10-07T14:08:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FWE85",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-07T16:21:50Z",
+          "updatedAt": "2025-10-07T16:21:50Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FWND_",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-07T16:30:17Z",
+          "updatedAt": "2025-10-07T16:30:17Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FmERc",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-08T14:25:18Z",
+          "updatedAt": "2025-10-08T14:25:18Z",
+          "comments": [
+            {
+              "originalPosition": 97,
+              "body": "I am not sure what you mean by \"which is suggested to be assigned by the server\"... parhaps simply  \"which may be assigned by the server\" or \"which could be...\" (you use could later).\r\n\r\nAlso \"This label can be to present\" could be \"This label may be presented..\" or This label could...\" ",
+              "createdAt": "2025-10-08T14:25:18Z",
+              "updatedAt": "2025-10-08T14:26:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FmGOp",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-08T14:27:14Z",
+          "updatedAt": "2025-10-08T14:27:14Z",
+          "comments": [
+            {
+              "originalPosition": 102,
+              "body": "Instead of or as well as... the name...",
+              "createdAt": "2025-10-08T14:27:14Z",
+              "updatedAt": "2025-10-08T14:27:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FmHWd",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-08T14:28:21Z",
+          "updatedAt": "2025-10-08T14:28:21Z",
+          "comments": [
+            {
+              "originalPosition": 108,
+              "body": "The description is not just for maintenance... should have \"maintenance operations etc.\"",
+              "createdAt": "2025-10-08T14:28:21Z",
+              "updatedAt": "2025-10-08T14:28:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FmMjU",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-08T14:32:57Z",
+          "updatedAt": "2025-10-08T14:32:57Z",
+          "comments": [
+            {
+              "originalPosition": 227,
+              "body": "Serial number is applicable to component as well as network element. Need to say different network element / component or similar.",
+              "createdAt": "2025-10-08T14:32:57Z",
+              "updatedAt": "2025-10-08T14:32:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FmQND",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-08T14:35:41Z",
+          "updatedAt": "2025-10-08T14:35:41Z",
+          "comments": [
+            {
+              "originalPosition": 98,
+              "body": "**[2025-10-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-08)**\r\n\r\n```suggestion\r\n: A human-readable label information of the inventory object, which could be assigned by the server. It could also be present on a Graphical User Interface (GUI).\r\n```",
+              "createdAt": "2025-10-08T14:35:41Z",
+              "updatedAt": "2025-10-08T14:58:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FmRIX",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-08T14:36:27Z",
+          "updatedAt": "2025-10-08T14:36:28Z",
+          "comments": [
+            {
+              "originalPosition": 103,
+              "body": "**[2025-10-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-08)**\r\n\r\n```suggestion\r\n: A human-readable label information of the inventory object, provided by a network manager. It could also be present on a GUI instead as well as the name.\r\n```",
+              "createdAt": "2025-10-08T14:36:28Z",
+              "updatedAt": "2025-10-08T15:00:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FmTqg",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-08T14:38:33Z",
+          "updatedAt": "2025-10-08T14:38:33Z",
+          "comments": [
+            {
+              "originalPosition": 233,
+              "body": "Not just by the vendor... it could be redefined by an operator perhaps??",
+              "createdAt": "2025-10-08T14:38:33Z",
+              "updatedAt": "2025-10-08T14:38:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FmYlr",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "I have made some comments on minor wording changes. It is not mandatory to make these adjustments although I would prefer that they be made. I have approved anyway :)",
+          "createdAt": "2025-10-08T14:42:47Z",
+          "updatedAt": "2025-10-08T14:42:47Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FmakZ",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-08T14:44:22Z",
+          "updatedAt": "2025-10-08T14:44:23Z",
+          "comments": [
+            {
+              "originalPosition": 108,
+              "body": "**[2025-10-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-08)**\r\n\r\n```suggestion\r\n: A human-readable description of the inventory object, provided by a network manager or by the server. The description provides more detailed information to prompt users when performing maintenance operations etc.\r\n```",
+              "createdAt": "2025-10-08T14:44:22Z",
+              "updatedAt": "2025-10-08T15:00:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FmeDJ",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-08T14:47:25Z",
+          "updatedAt": "2025-10-08T14:47:25Z",
+          "comments": [
+            {
+              "originalPosition": 227,
+              "body": "**[2025-10-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-08)**\r\n\r\n```suggestion\r\n: It is expected that vendors assign unique serial numbers to different component instances at least within the scope of the part-number.\r\n```",
+              "createdAt": "2025-10-08T14:47:25Z",
+              "updatedAt": "2025-10-08T15:01:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FmeyZ",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-08T14:47:51Z",
+          "updatedAt": "2025-10-08T14:47:51Z",
+          "comments": [
+            {
+              "originalPosition": 226,
+              "body": "**[2025-10-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-08)**\r\n\r\n```suggestion\r\n: The vendor-specific serial number of the the component instance.\r\n```",
+              "createdAt": "2025-10-08T14:47:51Z",
+              "updatedAt": "2025-10-08T15:01:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FmwYd",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-08T14:59:05Z",
+          "updatedAt": "2025-10-08T14:59:05Z",
+          "comments": [
+            {
+              "originalPosition": 97,
+              "body": "See: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414083549",
+              "createdAt": "2025-10-08T14:59:05Z",
+              "updatedAt": "2025-10-08T14:59:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87FmxGs",
+          "commit": {
+            "abbreviatedOid": "b5553a0"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-10-08T14:59:44Z",
+          "updatedAt": "2025-10-08T14:59:44Z",
+          "comments": [
+            {
+              "originalPosition": 102,
+              "body": "See: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414085830",
+              "createdAt": "2025-10-08T14:59:44Z",
+              "updatedAt": "2025-10-08T14:59:45Z"
+            }
+          ]
         }
       ]
     },
@@ -9741,25 +10122,35 @@
       "id": "PR_kwDOKiDYo86rdtQU",
       "title": "Proposed text for software-rev list description",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/136",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "manzoro",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Text proposal to address the description for software-rev list and remove ambiguity with software inventory model (Issue #129 )",
       "createdAt": "2025-10-01T03:07:30Z",
-      "updatedAt": "2025-10-01T14:03:48Z",
+      "updatedAt": "2025-10-08T15:18:07Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "dded14df33a6bd346f104d9c38fee641cfe4be49",
       "headRepository": "manzoro/network-inventory-yang",
       "headRefName": "software-rev-desc",
-      "headRefOid": "0006e8ed785f131c9f03ac411c4ba624dcea95c4",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "headRefOid": "5facbf3a4261f21385acd004ecbbc6802c5f9c6d",
+      "closedAt": "2025-10-08T14:31:22Z",
+      "mergedAt": "2025-10-08T14:31:22Z",
+      "mergedBy": "manzoro",
+      "mergeCommit": {
+        "oid": "a33bba35a2d17363abb80ffb9b2271ad17631dea"
+      },
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-10-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-08)**\r\n\r\nAgreed to merge the PR",
+          "createdAt": "2025-10-08T14:31:04Z",
+          "updatedAt": "2025-10-08T15:18:07Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOKiDYo87D_ARN",
@@ -9805,6 +10196,32 @@
               "updatedAt": "2025-10-01T14:03:48Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87Fk4wb",
+          "commit": {
+            "abbreviatedOid": "5facbf3"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-08T13:17:37Z",
+          "updatedAt": "2025-10-08T13:17:37Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87Fl1vM",
+          "commit": {
+            "abbreviatedOid": "5facbf3"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-08T14:13:13Z",
+          "updatedAt": "2025-10-08T14:13:13Z",
+          "comments": []
         }
       ]
     }
