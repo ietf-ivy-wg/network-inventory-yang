@@ -102,15 +102,15 @@ informative:
 
 --- abstract
 
-This document defines a base YANG data model for network inventory. The scope of this base model is set to
+This document defines a base YANG data model for reporting network inventory. The scope of this base model is set to
 be application- and technology-agnostic. The base data model can be augmented with application- and technology-specific details.
 
 --- middle
 
 # Introduction
 
-This document defines a base network inventory
-YANG data model that is application- and technology-agnostic.  The
+This document defines a base YANG data model for reporting network inventory
+that is application- and technology-agnostic.  The
 base data model can be augmented to describe application- and technology-specific information.
 Please note that the usage of term "network inventory", in the context of this I-D, is to indicate that it is
 describing "network-wide" scope inventory information.
@@ -143,7 +143,9 @@ The YANG data model defined in the document is scoped to cover the common use ca
 
 The YANG data model defined in this document conforms to the Network Management Datastore Architecture {{!RFC8342}}.
 
-The YANG data model defined in the document is intended to only report actual inventory data which includes both applied configuration data and state data of the network elements and components actually installed within the network.
+The YANG data model defined in the document is intended to report the actual inventory data that the network controller knows of the network elements and components actually installed within the network. Therefore this model provides a read-only perspective of the network inventory information.
+
+The information in the model is populated by controller by reading it from the devices using the device model supported by the devices. This model does not constraint the device models used on the device: RFC8348 is an option but other options (e.g., vendor specific models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
 
 ## Editorial Note (To be removed by RFC Editor)
 
@@ -185,18 +187,13 @@ The following terms are defined in the description statements of the correspondi
 
 - backplane
 - battery
-- container
 - cpu
-- chassis
 - fan
 - module
-- port
 - power supply
 - sensor
 - stack
 - storage device
-
-> Editors' Note: The chassis and port definition below needs to be moved to iana-hardware update
 
 Chassis:
 : A field replaceable equipment with a particular structural format and dimensions.
@@ -251,27 +248,14 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 | nwi    | ietf-network-inventory          | RFC XXXX      |
 {:#tab-prefixes title="Prefixes and corresponding YANG modules"}
 
-# YANG Data Model for Network Inventory Overview
+# YANG Data Model for Network Inventory Overview {#overview}
 
 The base network inventory model, defined in this document, provides a list of network elements and of network element components:
-
-~~~~ ascii-art
-  +--rw network-inventory
-     +--rw network-elements
-        +--rw network-element* [ne-id]
-           +--rw ne-id                 string
-           ...
-           +--rw components
-              +--rw component* [component-id]
-                 +--rw component-id                        string
-                 ...
-~~~~
-{:#fig-overall title="Overall Tree Structure"}
 
 The network-inventory top level container has been defined to support reporting other types of network inventory objects, besides the network elements and network element components.
 
 These additional types of network inventory objects can be defined, together with the associated YANG data model and the rationale for managing them as part of the network inventory, in other documents providing application- and technology-specific companion augmentation data models, such as
-{{?I-D.ietf-ivy-network-inventory-location}}
+{{?I-D.ietf-ivy-network-inventory-location}}.
 
 The network element definition is generalized to support physical
 network elements and other types of components' groups that can be managed as physical network elements from an
@@ -303,98 +287,81 @@ While {{!RFC8348}} is used to manage the hardware of a single server (e.g., a ne
 
 However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model. This approach can simplify the implementation of this inventory model when the controller uses the YANG data model defined in {{!RFC8348}} to retrieve the hardware  from the network elements under its control.
 
-## Common Design for All Inventory Objects {#common-attributes}
+## Common attributes for inventory object {#common-attributes}
 
-For all the inventory objects, there are some common attributes {{fig-nec-tree}}. Such as:
+For all the inventory objects, there are some common attributes, such as:
 
-Identifier:
-: The UUID format is used. Such identifiers are widely implemented with systems. It is guaranteed to be globally unique.
+uuid:
+: The Universally Unique Identifier (UUID) of the inventory object, assigned by the server. Such identifiers are widely implemented with systems and guaranteed to be globally unique.
 
-Name:
-: A human-readable label information which could be used to present on a GUI. This name is suggested to be provided by a server.
+name:
+: A human-readable label information of the inventory object, which could be assigned by the server. It could also be present on a Graphical User Interface (GUI).
 
-Alias:
-: A human-readable label information which could be modified by user. It could also be present on a GUI instead of name.
+alias:
+: A human-readable label information of the inventory object, provided by a network operator. It could also be present on a GUI instead as well as the name.
 
-Description:
-: A human-readable information which could be also input by a user. The description provides more detailed information to prompt users when performing maintenance operations.
+description:
+: A human-readable description of the inventory object, provided by a network operator or by the server. The description provides more detailed information to prompt users when performing maintenance operations etc.
 
-~~~~ ascii-art
-  +--rw network-elements
-     +--rw network-element* [ne-id]
-        +--rw ne-id            string
-        +--rw ne-type?         identityref
-        +--rw uuid?            yang:uuid
-        +--rw name?            string
-        +--rw description?     string
-        +--rw alias?           string
-        ...
-        +--rw components
-           +--rw component* [component-id]
-              +--rw component-id            string
-              +--rw uuid?                   yang:uuid
-              +--rw name?                   string
-              +--rw description?            string
-              +--rw alias?                  string
-              +--rw class                   union
-              ...
-~~~~
-{:#fig-nec-tree title="Common Attributes Between Network Elements and Components Subtree"}
+### Common attributes for network elements and components
+
+To be consistent with the component definition, some of the attributes defined in {{!RFC8348}} for components are reused for network elements, such as:
+
+mfg-name:
+: The name of the manufacturer of the entity (component or network element).
+
+product-name:
+: The vendor-specific and human-interpretable string describing the entity (component or network element) type.
+: It is expected that vendors assign unique product names to different entities within the scope of the vendor.
+
+Other software-related attributes are defined in {{sw-inventory}} and applicable to network elements and components.
 
 ## Network Element
 
-To be consistent with the component definition, some of the
-attributes defined in {{!RFC8348}} for components are reused for network
-elements as shown in {{fig-ne-tree}}.
+In addition to the common attributes defined for network elements and components in {{common-attributes}}, the following attributes are defined for the network elements:
 
-~~~~ ascii-art
-  +--rw network-elements
-     +--rw network-element* [ne-id]
-        ...
-        +--rw hardware-rev?    string
-        +--rw software-rev?    string
-        +--rw mfg-name?        string
-        +--rw mfg-date?        yang:date-and-time
-        +--rw part-number?     string
-        +--rw serial-number?   string
-        +--rw product-name?    string
-        ...
-~~~~
-{:#fig-ne-tree title="Network Elements Subtree"}
+ne-id:
+: The identifier that uniquely identifies the NE within the network, assigned by the server since the network elements cannot guaranteed that their local  identifier is unique within the network.
+: The ne-id should be assigned such that the same network element will always be identified through the same identifier, even if the network elements get disconnected from the network controller. Mechanisms to ensure this (e.g., checking the mfg-name, product-name, management IP address, physical location) are implementation specific and outside the scope of standardization.
 
-> Not all the attributes defined in {{?RFC8348}} are applicable for network element. And there could also be some missing attributes which are not recognized by {{?RFC8348}}. More extensions could be introduced in later revisions after the missing attributes are fully discussed.
+ne-type:
+: The type of network element (e.g., physical network element). See {{overview}} for the definition of NE types.
+
+product-rev:
+: A vendor-specific product revision string for the network-element.
 
 ## Components {#ne-component}
 
 The YANG data model for network inventory mainly follows the same approach of {{!RFC8348}} and reports the network hardware inventory as a list of components with different types (e.g., chassis, module, and port).
 
-The component definition ({{fig-comp-tree}}) is generalized to both hardware components
-and non-hardware components (e.g., software components).
+In addition to the common attributes defined for network elements and components in {{common-attributes}}, the following attributes are defined for the network elements:
 
-~~~~ ascii-art
-  +--rw components
-      +--rw component* [component-id]
-        +--rw component-id            string
-        +--rw uuid?                   yang:uuid
-        +--rw name?                   string
-        +--rw description?            string
-        +--rw alias?                  string
-        +--rw class                   union
-        +--rw child-component-ref
-        +--rw parent-rel-pos?         int32
-        +--rw parent-component-ref
-        +--rw hardware-rev?           string
-        +--rw firmware-rev?           string
-        +--rw software-rev?           string
-        +--rw serial-num?             string
-        +--rw mfg-name?               string
-        +--rw part-number?            string
-        +--rw asset-id?               string
-        +--rw is-fru?                 boolean
-        +--rw mfg-date?               yang:date-and-time
-        +--rw uri*                    inet:uri
-~~~~
-{:#fig-comp-tree title="Components Subtree"}
+component-id:
+: The identifier that uniquely identifies the component within the NE. It can be assigned by the NE or by the server.
+
+class:
+: The type of component (e.g., chassis, module, port). See {{overview}} for the definition of component types.
+
+hardware-rev:
+: The vendor-specific hardware revision string for the component.
+: The preferred value is the hardware revision identifier actually printed on the component itself (if present).
+
+mfg-date:
+: The date of manufacturing of the component.
+
+part-number:
+: The vendor-specific part number of the component type.
+: It is expected that vendors assign unique part numbers to different component types within the scope of the vendor.
+
+serial-number:
+: The vendor-specific serial number of the the component instance.
+: It is expected that vendors assign unique serial numbers to different component instances at least within the scope of the part-number.
+
+asset-id:
+: An asset tracking identifier for the component, provided by a network operator.
+
+is-fru:
+: Indicates whether or not a component is considered a 'field-replaceable unit' by the vendor.
 
 For state data like "admin-state", "oper-state", and so on, this document considers that they are related to device hardware management, not network inventory. Therefore, they are outside of the scope of this document. Same for the sensor-data, they should be defined in some other performance monitoring data models instead of the inventory data model.
 
@@ -446,7 +413,7 @@ Some of the definitions taken from {{!RFC8348}} are based on the ENTITY-MIB {{!R
 Additional attributes of specific hardware, such as CPU,
 storage, port, or power supply are defined in the hardware extension.
 
-### Software Components
+### Software Components {#sw-inventory}
 
 This document defines a "software-rev" list for NEs and components, which provide
 basic software attributes for network elements and components.
@@ -481,14 +448,6 @@ This document re-defines some attributes listed in {{!RFC8348}}, based on some i
 
 According to the description in {{!RFC8348}}, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. "Model-name" is not straightforward to understand and we suggest to rename it as "part-number" directly.
 
-~~~~ ascii-art
-  +--ro components
-     +--ro component* [component-id]
-        ...
-        +--ro part-number?           string
-        ...
-~~~~
-
 ### Component identifiers
 
 There are some use cases where the name of the components are assigned and changed by the operator. In these cases, the assigned names are also not guaranteed to be always unique.
@@ -513,7 +472,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-08-13.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-10-07.yang"}
 
 # Manageability Considerations
 
