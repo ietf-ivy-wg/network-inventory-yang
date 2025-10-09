@@ -68,7 +68,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2025-10-07 {
+  revision 2025-10-09 {
     description
       "Initial version";
     reference
@@ -155,7 +155,7 @@ module ietf-network-inventory {
       type string;
       description
         "The name of the  entity (e.g., component), as specified by
-         a network manager, that provides a non-volatile 'handle'
+         a network operator, that provides a non-volatile 'handle'
          for the entity and that can be modified anytime during the
          entity lifetime.
 
@@ -167,7 +167,7 @@ module ietf-network-inventory {
       type string;
       description
         "The alias name of the entity (e.g., component). This alias
-         name can be specified by network manager.";
+         name can be specified by a network operator.";
     }
     leaf description {
       type string;
@@ -317,8 +317,8 @@ module ietf-network-inventory {
     leaf asset-id {
       type string;
       description
-        "This node is a user-assigned asset tracking
-         identifier for the component.
+        "This node is an asset tracking identifier for the component,
+         as specified by a network operator.
 
          A server implementation MAY map this leaf to the
          entPhysicalAssetID MIB object.  Such an

@@ -6,8 +6,8 @@ module: ietf-network-inventory
            +--ro ne-type?        identityref
            +--ro uuid?           yang:uuid
            +--ro name?           string
-           +--ro description?    string
            +--ro alias?          string
+           +--ro description?    string
            +--ro software-rev* [name]
            |  +--ro name        string
            |  +--ro revision?   string
@@ -22,8 +22,8 @@ module: ietf-network-inventory
                  +--ro class             union
                  +--ro uuid?             yang:uuid
                  +--ro name?             string
-                 +--ro description?      string
                  +--ro alias?            string
+                 +--ro description?      string
                  +--ro software-rev* [name]
                  |  +--ro name        string
                  |  +--ro revision?   string

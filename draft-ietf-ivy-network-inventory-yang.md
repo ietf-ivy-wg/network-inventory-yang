@@ -298,10 +298,10 @@ name:
 : A human-readable label information of the inventory object, which could be assigned by the server. It could also be present on a Graphical User Interface (GUI).
 
 alias:
-: A human-readable label information of the inventory object, provided by a network manager. It could also be present on a GUI instead as well as the name.
+: A human-readable label information of the inventory object, provided by a network operator. It could also be present on a GUI instead as well as the name.
 
 description:
-: A human-readable description of the inventory object, provided by a network manager or by the server. The description provides more detailed information to prompt users when performing maintenance operations etc.
+: A human-readable description of the inventory object, provided by a network operator or by the server. The description provides more detailed information to prompt users when performing maintenance operations etc.
 
 ### Common attributes for network elements and components
 
@@ -358,7 +358,7 @@ serial-number:
 : It is expected that vendors assign unique serial numbers to different component instances at least within the scope of the part-number.
 
 asset-id:
-: A user-assigned asset tracking identifier for the component.
+: An asset tracking identifier for the component, provided by a network operator.
 
 is-fru:
 : Indicates whether or not a component is considered a 'field-replaceable unit' by the vendor.
