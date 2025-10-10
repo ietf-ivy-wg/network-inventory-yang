@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 12 April 2026                                             Nokia
+Expires: 13 April 2026                                             Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                          9 October 2025
+                                                         10 October 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 April 2026.
+   This Internet-Draft will expire on 13 April 2026.
 
 Copyright Notice
 
@@ -118,6 +118,9 @@ Table of Contents
    inventory", in the context of this I-D, is to indicate that it is
    describing "network-wide" scope inventory information.
 
+   Network Inventory is a collection of data for network devices and
+   their components managed by a specific management system.
+
    Network inventory is a fundamental functional block in the overall
    network management which was specified many years ago.  Network
    inventory management is a critical part for ensuring that the network
@@ -152,10 +155,9 @@ Table of Contents
    for defining the YANG network inventory data model presented in this
    document.
 
-   Network Inventory is a collection of data for network devices and
-   their components managed by a specific management system.  Per the
-   definition of [RFC8969], the network inventory model is a network
-   model.
+   Per the definition of [RFC8969], the YANG data model defined in
+   [RFC8348] is a device model while the YANG data model defined in this
+   document is a network model.
 
    This document defines one YANG module "ietf-network-inventory" in
    Section 5.
@@ -173,21 +175,6 @@ Table of Contents
 
    The YANG data model defined in this document conforms to the Network
    Management Datastore Architecture [RFC8342].
-
-   The YANG data model defined in the document is intended to report the
-   actual inventory data that the network controller knows of the
-   network elements and components actually installed within the
-   network.  Therefore this model provides a read-only perspective of
-   the network inventory information.
-
-   The information in the model is populated by controller by reading it
-   from the devices using the device model supported by the devices.
-   This model does not constraint the device models used on the device:
-   RFC8348 is an option but other options (e.g., vendor specific models)
-   are also allowed.  In case some information is not provided by the
-   device, the network controller SHALL omit this information unless
-   this information is known by other sources of information (e.g.,
-   through local configuration within the network controller).
 
 1.1.  Editorial Note (To be removed by RFC Editor)
 
@@ -1150,7 +1137,43 @@ Table of Contents
 
 6.  Manageability Considerations
 
-   <Add any manageability considerations>
+   The network inventory YANG data model defined in the document is
+   intended to report the actual inventory data that a network
+   controller knows of the network elements and components actually
+   installed within the network.  Therefore this model provides a read-
+   only perspective of the network inventory information.
+
+   As outlined in Section 1, per the definition of [RFC8969], the
+   network inventory model is a network model.
+
+   This information can be provided by a network controller to an higher
+   level hierarchical network controller, to an Inventory OSS or to any
+   other type of application which needs to discover the network
+   inventory information.
+
+   For example, in the context of ACTN, the network inventory YANG data
+   model can be used at the MPI interfaces, as defined in [RFC8453], or
+   on an interface, not defined in [RFC8453] between the MDSC and the
+   Inventory OSS.
+
+   The information in the model is populated by controller by reading it
+   from the devices using the device model supported by the devices.
+   This model does not constraint the device models used on the device:
+   the YANG data model defined in [RFC8348] is an option but other
+   options (e.g., vendor specific interfaces or YANG data models) are
+   also allowed.  In case some information is not provided by the
+   device, the network controller SHALL omit this information unless
+   this information is known by other sources of information (e.g.,
+   through local configuration within the network controller).
+
+   In case of hierarchical controllers, a hierarchical network
+   controller can also collect the network inventory information from
+   its lower level network controllers using this YANG data model (or
+   other mechanisms which are outside the scope of this document) and
+   report the combined network inventory information to an an higher
+   level network controller, to an Inventory OSS or to any other type of
+   application which needs to discover the network inventory
+   information.
 
 7.  Security Considerations
 
@@ -1352,6 +1375,11 @@ Table of Contents
    [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
               <https://www.rfc-editor.org/rfc/rfc8446>.
+
+   [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
+              Abstraction and Control of TE Networks (ACTN)", RFC 8453,
+              DOI 10.17487/RFC8453, August 2018,
+              <https://www.rfc-editor.org/rfc/rfc8453>.
 
    [RFC8969]  Wu, Q., Ed., Boucadair, M., Ed., Lopez, D., Xie, C., and
               L. Geng, "A Framework for Automating Service and Network
