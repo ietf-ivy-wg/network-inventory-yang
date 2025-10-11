@@ -471,9 +471,9 @@ artwork-name="ietf-network-inventory.tree"}
 {:#fig-ni-yang title="Network inventory YANG module"
 sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-10-07.yang"}
 
-# Manageability Considerations
+# Operational Considerations
 
-The network inventory YANG data model defined in the document is intended to report the actual inventory data that a network controller knows of the network elements and components actually installed within the network. Therefore this model provides a read-only perspective of the network inventory information.
+The network inventory YANG data model defined in the document is intended to report the actual inventory data that a network controller knows of the network elements and components actually installed within the network. Therefore, this data model provides a read-only perspective of the network inventory information.
 
 As outlined in {{intro}}, per the definition of {{?RFC8969}}, the network inventory model is a network model.
 
