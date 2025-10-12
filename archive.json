@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-09T00:56:21.357594+00:00",
+  "timestamp": "2025-10-12T00:58:52.112733+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4363,7 +4363,7 @@
       "id": "I_kwDOKiDYo87DW_og",
       "title": "Multiple software revisions",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/128",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4375,8 +4375,8 @@
       ],
       "body": "**[2025-07-30 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-30)**\n\nActions based on IETF 123 IVY WG feedbacks:\n\n- [ ] define a list of (software-name, software-rev) for the components\n\nAdditional considerations:\n1. the list of active software should also contain the software patches for each software-name instance\n2. since this list reports only the active SW modules, the software-name can be used as a key for this list\n3. the firmware revision can be removed and the software-rev list can be used also to report running firmware modules\n4. the approach can also be extened to the NE for consistency\n\nIt was also noted that the term firmware is sometimes used to refer to a read-only code (e.g., BIOS) which cannot be upgraded and sometimes used to refer to the programmable code of an FPGA which can be upgraded. By defining only the software-rev list can cover any type of programming data (including firmware) would resolve this ambiguity in the context of the base inventory model. They type of code can be distinguished from the name attribute.\n\nOLD\n\n     +--rw network-elements\n        +--rw network-element* [ne-id]\n           +--rw ne-id                 string\n           +-- ...\n           +--ro software-rev?         string\n           +--ro software-patch-rev*   string\n           +-- ...\n           +--ro components\n              +--rw component* [component-id]\n                 +--rw component-id           string\n                 +--ro class                  union\n                 +-- ...\n                 +--ro hardware-rev?          string\n                 +--ro software-rev?          string\n                 +--ro software-patch-rev*    string\n                 +-- ...\n                 +--ro firmware-rev?          string\n                 +-- ...\n\nNEW\n\n     +--rw network-elements\n        +--rw network-element* [ne-id]\n           +--rw ne-id                 string\n           +-- ...\n           +--ro software-rev [name]\n           |  +--ro name          string\n           |  +--ro revision?     string\n           |  +--ro patch-rev*    string\n           +-- ...\n           +--ro components\n              +--rw component* [component-id]\n                 +--rw component-id           string\n                 +--ro class                  union\n                 +-- ...\n                 +--ro hardware-rev?          string\n                 +--ro software-rev [name]\n                 |  +--ro name          string\n                 |  +--ro revision?     string\n                 |  +--ro patch-rev*    string\n                 +-- ...\n                 +-- ...\n\n",
       "createdAt": "2025-07-30T15:42:54Z",
-      "updatedAt": "2025-10-08T15:24:01Z",
-      "closedAt": null,
+      "updatedAt": "2025-10-09T17:55:09Z",
+      "closedAt": "2025-10-09T17:55:09Z",
       "comments": [
         {
           "author": "italobusi",
@@ -4433,6 +4433,13 @@
           "body": "**[2025-10-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-08)**\n\nThe current model in PR #135 allows having more than one patch configured to be active at the same time for the same software module but only one SW revision can be active on the same SW module at the same time.\n\nFor example, it is possible to have two patches P1 and P2 applied to the SW module FOO:\n\n```{\n  \"software-rev\": [\n    {\n      \"name\": \"FOO\",\n      \"revision\": \"8.2.1\",\n      \"patch\": [\n        {\n          \"revision\": \"P1\"\n        },\n        {\n          \"revision\": \"P2\"\n        }\n      ]\n    }\n  ]\n}\n```\n\nThe proposal from Bo would allow multiple SW revisions configured to be active on the same SW module. It seems that there are no requirements to allow multiple SW revisions being configured to be active for the same SW module (on the same component) at the same time. Moreover, if multiple SW revisions and patches are listed to, it would not be clear which patches apply to which SW revision.\n\nIn order not to delay the WG LC, it has been agreed not to change the model now. However, a WG LC comment can be submitted for further discussion within the IVY WG, if needed.\n",
           "createdAt": "2025-10-08T15:16:08Z",
           "updatedAt": "2025-10-08T15:16:08Z"
+        },
+        {
+          "author": "lana-wu",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I agree that the flat SW revision list doesn\u2019t show the clear relationship between patches and its software revision.  \nHowever, a software module normally has only one active revision, so the patches should apply only to that active revision anyway.\n\nIn summary, I have no objection to the current hierarchical YANG definition.  I can see that the present definition is more flexible and leaves room for us to capture the link between (1) the currently-active revision and (2) historical revisions plus their patch states.\n\n\n\n",
+          "createdAt": "2025-10-09T02:29:03Z",
+          "updatedAt": "2025-10-09T02:29:03Z"
         }
       ]
     },
@@ -4502,14 +4509,15 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "italobusi"
+      ],
       "labels": [
-        "wait",
         "priority-1"
       ],
       "body": "The Manageability Considerations is empty: need to provide some text or decide to remove the section",
       "createdAt": "2025-08-13T21:39:32Z",
-      "updatedAt": "2025-10-08T15:17:27Z",
+      "updatedAt": "2025-10-09T17:55:46Z",
       "closedAt": null,
       "comments": [
         {
@@ -4547,7 +4555,7 @@
       "id": "I_kwDOKiDYo87F4w1T",
       "title": "Definitions from IANA-HW",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/133",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4559,8 +4567,8 @@
       ],
       "body": "The following terms are defined by reference to the identities defined in the \"iana-hardware\" module:\n- backplane\n- battery\n- container\n- cpu\n- chassis\n- fan\n- module\n- port\n- power supply\n- sensor\n- stack\n- storage device\n\nThese definitions are used to generalize the definition of hardware component.\n\nHowever there is this Editors' Note to be resolved:\n\n> Editors' Note: The chassis and port definition below needs to be moved to iana-hardware update\n\nIt is worth noting that in addition to chassis and port, the I-D is defining also the concept of container and the concept of card (modelled as a module)\n\nCould we provide a clean definition for the following terms (or equivalent terms as we have done for card versus module):\n- backplane\n- battery\n- cpu\n- fan\n- power supply\n- sensor\n- storage device\n\n\nLooking at the current text and example, maybe we can leave the concept of 'stack' outside the scope of the first RFC\n",
       "createdAt": "2025-08-13T21:46:07Z",
-      "updatedAt": "2025-10-08T15:23:31Z",
-      "closedAt": null,
+      "updatedAt": "2025-10-09T17:55:10Z",
+      "closedAt": "2025-10-09T17:55:10Z",
       "comments": [
         {
           "author": "italobusi",
@@ -4583,7 +4591,7 @@
       "id": "I_kwDOKiDYo87Ma9YF",
       "title": "RO or RW attributes",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/134",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4595,8 +4603,8 @@
       ],
       "body": "**[2025-09-17 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-09-17)**\n\nIt is not clear why some attributes are marked as RW and not RO, considering the current scope:\n\n> The YANG data model defined in the document is intended to only report actual inventory data which includes both applied configuration data and state data of the network elements and components actually installed within the network.\n\nThe only RW attributes are the list keys, name, description and alias.\n\nIt has been agreed that these attributes can be configured on the device but not in the network inventory. These attributes should be re-defined as RO to report the applied configuration on the device.\n\n- [x] @italobusi raise this comment to the IVY WG \n- [ ] @italobusi update the YANG data model accordingly",
       "createdAt": "2025-09-18T10:04:56Z",
-      "updatedAt": "2025-10-08T15:23:07Z",
-      "closedAt": null,
+      "updatedAt": "2025-10-09T17:55:10Z",
+      "closedAt": "2025-10-09T17:55:10Z",
       "comments": [
         {
           "author": "italobusi",
@@ -9356,24 +9364,26 @@
       "id": "PR_kwDOKiDYo86pRglu",
       "title": "WG LC Preparation - step 2",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "I-D and YANG updated for WG LC preparation:\r\n- Updated software list: fix #128 \r\n- Updated terminology section to remove references to IANA-HW for terms defined in this document: fix #133 \r\n- Marked the whole inventory container as RO: fix #134 \r\n- Removed config false from groupings where not applicable to any context in line with RFC8407-bis\r\n- Removed the YANG tree samples and replace with proper text descriptions",
       "createdAt": "2025-09-18T11:51:48Z",
-      "updatedAt": "2025-10-08T15:04:16Z",
+      "updatedAt": "2025-10-09T17:55:09Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "dded14df33a6bd346f104d9c38fee641cfe4be49",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "wg-lc-prep-02",
-      "headRefOid": "af4f33d0f18e2e58990992b191ce971f2a3fe936",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "0483cd57e4470be2fb520fd86dbaf441040b8fa2",
+      "closedAt": "2025-10-09T17:55:08Z",
+      "mergedAt": "2025-10-09T17:55:08Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "de73a9ac32a2a1173a965ba6bf75fc7e0423c750"
+      },
       "comments": [
         {
           "author": "prmanna",
@@ -9413,9 +9423,16 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-10-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-08)**\r\n\r\nComments resolution agreed during the call:\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414083549\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414085830\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414109887\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414120882\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414119358\r\n\r\n- [ ] @italobusi : replace 'network manager' with 'network operator' through the whole document and YANG data model\r\n\r\nAgreed to merge the PR afterwards",
+          "body": "**[2025-10-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-08)**\r\n\r\nComments resolution agreed during the call:\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414083549\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414085830\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414109887\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414120882\r\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/135/files#r2414119358\r\n\r\n- [x] @italobusi : replace 'network manager' with 'network operator' through the whole document and YANG data model\r\n\r\nAgreed to merge the PR afterwards",
           "createdAt": "2025-10-08T15:04:16Z",
-          "updatedAt": "2025-10-08T15:04:16Z"
+          "updatedAt": "2025-10-09T17:53:43Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * [x]  @italobusi : replace 'network manager' with 'network operator' through the whole document and YANG data model\r\n\r\nSee: 0483cd57e4470be2fb520fd86dbaf441040b8fa2",
+          "createdAt": "2025-10-09T17:54:16Z",
+          "updatedAt": "2025-10-09T17:54:16Z"
         }
       ],
       "reviews": [
@@ -10224,6 +10241,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 138,
+      "id": "PR_kwDOKiDYo86tOwKn",
+      "title": "rename the section per draft-opsarea-rfc5706bis",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/138",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-11T09:42:43Z",
+      "updatedAt": "2025-10-11T09:42:44Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "32be4742135f42bed8118d0215503dbca2e0f8f6",
+      "headRepository": "boucadair/network-inventory-yang",
+      "headRefName": "patch-15",
+      "headRefOid": "369852790f7cb3018a8c3aa5cdd4e4c2db0ed30a",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
