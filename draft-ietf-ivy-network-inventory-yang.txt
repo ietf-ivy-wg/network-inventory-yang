@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 13 April 2026                                             Nokia
+Expires: 17 April 2026                                             Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                         10 October 2025
+                                                         14 October 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 April 2026.
+   This Internet-Draft will expire on 17 April 2026.
 
 Copyright Notice
 
@@ -90,7 +90,7 @@ Table of Contents
        3.4.2.  Component identifiers
    4.  Network Inventory Tree Diagram
    5.  YANG Data Model for Network Inventory
-   6.  Manageability Considerations
+   6.  Operational Considerations
    7.  Security Considerations
    8.  IANA Considerations
    9.  References
@@ -1135,13 +1135,13 @@ Table of Contents
 
                   Figure 3: Network inventory YANG module
 
-6.  Manageability Considerations
+6.  Operational Considerations
 
    The network inventory YANG data model defined in the document is
    intended to report the actual inventory data that a network
    controller knows of the network elements and components actually
-   installed within the network.  Therefore this model provides a read-
-   only perspective of the network inventory information.
+   installed within the network.  Therefore, this data model provides a
+   read-only perspective of the network inventory information.
 
    As outlined in Section 1, per the definition of [RFC8969], the
    network inventory model is a network model.
