@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-12T00:58:52.112733+00:00",
+  "timestamp": "2025-10-14T00:56:19.737022+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -10254,7 +10254,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-10-11T09:42:43Z",
-      "updatedAt": "2025-10-11T09:42:44Z",
+      "updatedAt": "2025-10-13T15:44:07Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "32be4742135f42bed8118d0215503dbca2e0f8f6",
@@ -10266,7 +10266,34 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo87GnCAJ",
+          "commit": {
+            "abbreviatedOid": "3698527"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-13T15:38:01Z",
+          "updatedAt": "2025-10-13T15:38:01Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87GnG0u",
+          "commit": {
+            "abbreviatedOid": "3698527"
+          },
+          "author": "jbouqui153",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-13T15:44:07Z",
+          "updatedAt": "2025-10-13T15:44:07Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
