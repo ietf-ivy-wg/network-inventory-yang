@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-14T00:56:19.737022+00:00",
+  "timestamp": "2025-10-16T00:57:37.243243+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -10247,24 +10247,26 @@
       "id": "PR_kwDOKiDYo86tOwKn",
       "title": "rename the section per draft-opsarea-rfc5706bis",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/138",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-10-11T09:42:43Z",
-      "updatedAt": "2025-10-13T15:44:07Z",
+      "updatedAt": "2025-10-14T13:20:52Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "32be4742135f42bed8118d0215503dbca2e0f8f6",
       "headRepository": "boucadair/network-inventory-yang",
       "headRefName": "patch-15",
       "headRefOid": "369852790f7cb3018a8c3aa5cdd4e4c2db0ed30a",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-10-14T13:20:52Z",
+      "mergedAt": "2025-10-14T13:20:52Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "3797f87d54fd2052e11798680dec5acd08db7462"
+      },
       "comments": [],
       "reviews": [
         {
