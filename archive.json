@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-16T00:57:37.243243+00:00",
+  "timestamp": "2025-11-18T00:59:53.555834+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4639,6 +4639,42 @@
       "body": "**[2025-10-08 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-10-08)**\n\nThe base inventory model would be ready for WG LC soon and therefore it has been agreed not to have other calls for the base inventory model until there are comments to discuss and to check whether there is an interest to re-use this slot for other IVY drafts\n\n",
       "createdAt": "2025-10-08T15:14:39Z",
       "updatedAt": "2025-10-08T15:20:40Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 139,
+      "id": "I_kwDOKiDYo87YcLon",
+      "title": "draft-ietf-ivy-network-inventory-yang-11 ietf last call Opsdir review",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/139",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "> Document: draft-ietf-ivy-network-inventory-yang\n> Title: A Base YANG Data Model for Network Inventory\n> Reviewer: Samir Barguil\n> Review result: Has Nits\n> \n> Hi,\n> \n> I have been selected as the Operational Directorate (opsdir) reviewer for this Internet-Draft.\n> \n> The Operational Directorate reviews all operational and management-related Internet-Drafts to ensure alignment with operational best practices and to verify that adequate operational considerations are included.\n> \n> A complete set of Guidelines for Considering Operations and Management in IETF Specifications can be found at:\n> https://datatracker.ietf.org/doc/draft-opsarea-rfc5706bis/ .\n> \n> While these comments are primarily intended for the Operations and Management Area Directors (Ops ADs), the authors should consider them along with any other feedback received.\n> \n> Document: A Base YANG Data Model for Network Inventory\n> Reviewer: Samier Barguil\n> Review Date: 15-Nov-2025\n> Intended Status: Standards Track\n> \n> Summary\n> \n> The Internet-Draft defines ietf-network-inventory, a base YANG data model that provides a technology-agnostic, extensible, read-only view of network-wide inventory. It describes how to represent network elements (NEs) and their components, capturing essential attributes such as identifiers, manufacturer details, and software revisions. The model is intended for controllers to report inventory to higher-level systems (e.g., OSS, MDSC), and it serves as a foundation for future technology-specific augmentations.\n> \n> The draft deliberately excludes operational state, performance metrics, alarms, software lifecycle management, and physical interconnects, keeping the scope focused strictly on inventory representation. The structure and definitions of the model are fully detailed in the accompanying YANG tree and module specification.\n> \n> This document is essentially ready for publication, but it contains a few nits that should be addressed prior to finalization.\n> \n> General Operational Comments (Alignment with RFC 5706bis)\n> \n> The draft explicitly considers and documents operational feasibility, dedicating Section 6 to Operational Considerations.\n> \n> I suggest that the Operational Considerations section include some discussion of how operators might migrate from existing or external inventory systems to the YANG-based model defined in this document. In many deployments, legacy inventory databases use proprietary data structures, identifiers, and hierarchical representations that may not align directly with the data model presented here. Providing guidance on expected practices\u2014such as data normalization when importing legacy information, approaches for reconciling differing identifier schemes, and strategies for incremental or hybrid migration (where controllers combine device-reported data with external sources)\u2014would help clarify operational feasibility.\n> \n\n- [ ] TBD\n\n> It may also be useful to describe how conflicts between device-derived and legacy inventory data are expected to be handled, and to note that certain categories of legacy information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model and may require augmentations or mediation layers. Including this clarification would assist operators in planning a realistic transition path and would strengthen the operational guidance provided by the draft.\n> \n\n- [ ] TBD\n\n> Major Issues\n> \n> No major issues found.\n> \n> Minor Issues\n> \n> No minor issues found.\n> \n> Nits\n> \n> Duplicated word (\u201cthe\u201d) in the definition of serial-number in Section 3.3\n> (Components): \u201cThe vendor-specific serial number of the the component instance.\u201d\n> \n> This duplicated phrase also appears in the definition of the serial-number leaf within the component-attributes grouping in the YANG module: \u201cThe vendor-specific serial number of the the entity (e.g., component) instance.\u201d\n> \n> Duplicated word (\u201can\u201d) in Section 6 (Operational Considerations):\n> \u201c...report the combined network inventory information to an an higher level network controller...\u201d\n> \n> In Figure 4, which provides an example of a board with different types of ports, item 2 is listed as: \u201c2) Emply hole (port).\u201d This appears to be a misspelling of \u201cEmpty.\u201d\n> \n\nSee: #140 \n\n> Thank you for your work on this document. Please address these comments, or feel free to contact me for clarification and/or further discussion.\n> \n> Best regards,\n> Samier Barguil\n> \n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/_i6do1zTj92HwankjyOEFH2em-g/\n",
+      "createdAt": "2025-11-16T23:25:39Z",
+      "updatedAt": "2025-11-16T23:26:55Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 140,
+      "id": "I_kwDOKiDYo87YcLto",
+      "title": "Fix nits from ietf last call Opsdir review",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/140",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "> Nits\n> \n> Duplicated word (\u201cthe\u201d) in the definition of serial-number in Section 3.3\n> (Components): \u201cThe vendor-specific serial number of the the component instance.\u201d\n> \n> This duplicated phrase also appears in the definition of the serial-number leaf within the component-attributes grouping in the YANG module: \u201cThe vendor-specific serial number of the the entity (e.g., component) instance.\u201d\n> \n> Duplicated word (\u201can\u201d) in Section 6 (Operational Considerations):\n> \u201c...report the combined network inventory information to an an higher level network controller...\u201d\n> \n> In Figure 4, which provides an example of a board with different types of ports, item 2 is listed as: \u201c2) Emply hole (port).\u201d This appears to be a misspelling of \u201cEmpty.\u201d\n> \n",
+      "createdAt": "2025-11-16T23:26:02Z",
+      "updatedAt": "2025-11-16T23:27:32Z",
       "closedAt": null,
       "comments": []
     }
