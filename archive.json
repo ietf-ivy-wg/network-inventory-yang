@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-11-23T01:08:26.842259+00:00",
+  "timestamp": "2025-12-02T01:01:38.557888+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4757,6 +4757,96 @@
       "body": "> Hi Daniele, chairs, IVY WG,\n> \n> I support the document.\n> it is the foundation of inventory and provide the base information that can be augmented for technology specific cases. \n> The document is ready to go ahead with some comments , we (as co-authors/contributors) need to consider . \n> \n> Support\n> \n> Thanks\n> Sergio (as co-author)\n> \n> \n> \n> Here my comments:\n> Sec. 3.3 \n> At the beginning of the section it is said : \u201c\u2026..In addition to the common attributes defined for network elements and components in Section 3.1, the following attributes are defined for\n>    the network elements.\n> But the section is related to \u201ccomponent\u201d attributes .\n> \n> component -id : the comment is related to components but is more general through the document: we need to better describe the server role. We need to better describe here who is taking care the assignment of identifier. Le sentence here is clearly supposing the scenario of a domain controller PNC (the server with respect a MDSC/hierarchical controller) with the device/NE embedded controller. But the scenario could be also the one in which the server is multi-domain controller with on top an OSS or another MDSC (MDSC can be hierarchical) . Also saying NE is too generic, what about \u201cdevice controller\u201d, theoretically you could also have more than one device controller in an NE depending on the number of management interfaces. \n> \n> Sec. 5\n> Serial-number : the description in the data node is not aligned with attribute definition in Sec. 3.3: the attribute is a component attribute and in the YANG description we refer network element instance while in 3.3. we correctly indicate component instances.\n> \n> Editorial\n> \n> Appendix D/D.1\n> -There is typo in the figure 4, s/ 2) Emply hole (port)/Empty hole (port)\n> -Parent and parent-rel-pos data nodes should be inverted in the order of appearance in the example (following the tree)\n> \n> Appendix E\n> JSON multi-chassis example:\n> Line 191 : in the description \u201cTransceiver module plugged in the first stack port of the first switch in the stack\u201d , it is the second switch in the stack \n> Line 209: same problem, s/first switch/second switch\n> Line 243: \u201c\"description\": \"Second stack port of the second switch in the stack.\", s/ second switch in the stack/third switch in the stack\n> Line 422: s/ \"parent-rel-pos\": 4/ \"parent-rel-pos\": 5\n> \n> To be added:\n>                {\n>                 \"component-id\": \"slot-2-16\",\n>                 \"class\": \"iana-hardware:container\",\n>                 \"description\": \"Empty slot 16 of the third chassis of the cascaded switch.\",\n>                 \"parent\": [\n>                   \"chassis-2\"\n>                 ],\n>                 \"parent-rel-pos\": 16\n>               },\n> \n> Not Blocking issue:\n> \n> Appendix F\n> Regarding non-modular NE, the appendix does not report the promised examples . It would be good to add at least one example of pizza-box in alignment with what done with multi-chassis case \n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/qUQGftqR_YsV7FGCyDkoKN9Omvw/",
       "createdAt": "2025-11-20T18:26:48Z",
       "updatedAt": "2025-11-20T18:27:22Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 143,
+      "id": "I_kwDOKiDYo87bXddW",
+      "title": "WG LC comments from Italo on draft-ietf-ivy-network-inventory-yang-11",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/143",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "> Hi IVY WG and chairs,\n> \n> I have reviewed the draft and I think it is ready to move forward after having addressed the comments received so far as well as the few nits reported below\n> \n> \n> Nits:\n> \n> 1) Section 2.2: the definitions of chassis and port shall be moved after the text \"Also, the document makes use of the following terms:\"\n> \n> 2) Section 3: the first paragraph should be closed with a period (.)\n> \n> 3) Section 5: the date of the module in the <CODE BEGIN> tag does not match the revision date within the module\n> \n> 4) Appendix E: the formatting of the list bullets in the third paragraph is messed up (kramdown syntax issue)\n> \n> 5) Appendix E: same issue as above in the second paragraph after Figure 6\n> \n> 6) Acknowledgment: It would be worthwhile adding acknowledgement also to other people, not listed as co-authors or contributors, who have provided input on the IVY WG mailing list discussions\n> \n> Italo (as co-author)\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/7hlml08X0vPFwqmI39-AQxWAG1I/",
+      "createdAt": "2025-12-01T10:38:00Z",
+      "updatedAt": "2025-12-01T10:38:06Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 144,
+      "id": "I_kwDOKiDYo87bXezB",
+      "title": "YDR LC of draft-ietf-ivy-network-inventory-yang-11",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/144",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "> Document: draft-ietf-ivy-network-inventory-yang\n> Title: A Base YANG Data Model for Network Inventory\n> Reviewer: Reshad Rahman\n> Review result: Ready with Issues\n> \n> Please bear in mind that I haven't followed discussions on this document...\n> \n> Issues (maybe)\n> ==============\n> \n> - The model is read-only and the reasoning is explained in section 6. Did the\n> authors consider having a read-write model and using access control, i.e NACM.\n> Section 6 states: \"The information in the model is populated by controller by\n> reading it\n>    from the devices using the device model supported by the devices.\". That is\n>    one way of doing it, but another implementation may want to populate the\n>    data via a read-write model?\n> \n> - For the inventory I was expecting something which would tell me the \"state\"\n> of a network element e.g. is it in production, in a lab or a spare device? I\n> realize that the current expected implementation (section 6) is to read data\n> from the devices so it assumes that the devices are deployed, but an inventory\n> is also useful for the devices from which we can't (yet) read. Or is this use\n> case deemed outside the scope of this document?\n> \n> Comments/questions\n> ==================\n> \n> - Introduction:\n>    Network\n>    inventory management is a critical part for ensuring that the network\n>    remains healthy (e.g., auditing to identify faulty elements)\n> Do we really need inventory mgmt for ensuring that the network remains healthy?\n> \n> - Terminology. The terms borrowed (MDSC, MPI etc) from RFC8453 should be\n> mentioned here?\n> \n> - YANG model\n> \n> In grouping basic-common-entity-attributes, for \"leaf name\" the description\n> says \"If no configured value exists...\". The tree is read-only so that\n> description doesn't currently make sense?\n> \n> parent-rel-pos,  RFC6933 has entPhysicalParentRelPos as -1 .. 2147483647 but\n> parent-rel-pos starts at 0. Also the description says \"only when this component\n> is contained in the network-element or in only 1 parent\", is the 1st part\n> accurate?\n> \n> Ne-type why is only ne-physical defined? Couldn't the network inventory also\n> have virtual appliances/devices? In the description of ne-type, spell out\n> Network Element.\n> \n> In grouping component-attributes, when using\n> ne-component-common-entity-attributes, the refined description states \"physical\n> component\", why is physical specified here I.e. does it have a special meaning?\n> \n> base non-hardware-component-class => add the prefix of this module\n> \n> - Thank you for the many examples. Have they been validated?\n> \n> Regards,\n> Reshad.\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/bh9lEAIRANXxnnSfbC3GX1l05FY/\n",
+      "createdAt": "2025-12-01T10:39:31Z",
+      "updatedAt": "2025-12-01T10:39:37Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 145,
+      "id": "I_kwDOKiDYo87bbsvJ",
+      "title": "WG LC comments from Bo on draft-ietf-ivy-network-inventory-yang-11",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/145",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "> Hi WG,\n> \n> I have reviewed the draft and I think it is ready with some minor issues.\n> \n> 1. Section 3.3, second sentence  \n>    Current: \u201cThe following attributes are defined for the network elements:\u201d\n>    Fix: Replace \u201cnetwork elements\u201d with \u201ccomponents\u201d.  \n> \n> 2. Section 3.3.1. Hardware Components\n> Add: Perhaps somewhere, insert \u201cSee Appendices E and F for concrete hardware-component examples.\u201d\n> \n> 2. Section 3.3.2  Software Components, paragraph 1  \n>    Current: \u201cThis document defines a \u2018software-rev\u2019 list for NEs and components \u2026\u201d, \u201cThe scope of the list\u201d\n> Suggested text: \u201cEach instance of a network element or a component includes its own software-rev list.\u201d\n>    The wording implies a single shared list, while the data model actually contains two independent lists\u2014one under each network-element entry and one under each component entry.  \n> \n> Thanks,\n> Bo   \n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/H2zzNmPzW-VtKqSwIAPCC8Lrmmk/",
+      "createdAt": "2025-12-01T15:11:58Z",
+      "updatedAt": "2025-12-01T15:11:58Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 146,
+      "id": "I_kwDOKiDYo87bhUYm",
+      "title": "WG LC comments from Adrian on draft-ietf-ivy-network-inventory-yang-11",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/146",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "> Hi,\n> \n> Thanks to the authors for all the work on this draft. I've done a review\n> during the Working Group last call.  I find only some nits.\n> \n> Publication would be a good thing.\n> \n> Have fun,\n> Adrian\n> \n> ===\n> \n> 1. para 1\n> s/I-D/document/\n> \n> ---\n> \n> 1.\n> \n>    Network inventory is a fundamental functional block in the overall\n>    network management which was specified many years ago.\n> \n> This feels a bit like you are asserting something and saying the reader\n> doesn't need to worry about it. Have you got a reference?\n> \n> ---\n> \n> 1.\n> \n>    Network\n>    inventory management is a critical part for ensuring that the network\n>    remains healthy (e.g., auditing to identify faulty elements), well-\n>    planned (e.g., identify assets to upgrade or to decommission), and\n>    maintained appropriately to meet the performance objectives.\n> \n> A critical part of what?\n> Do you mean \"remains well-planned\"?\n> \n> Possibly...\n> \n>    Network\n>    inventory management is a critical component of network management\n>    for ensuring that the network is well-planned (e.g., identify assets\n>    to upgrade or to decommission), remains healthy (e.g., auditing to\n>    identify faulty elements), and is maintained appropriately to meet\n>    the performance objectives.\n> \n> ---\n> \n> There seems to be some discrepancy between the usage of \"network\n> inventory\" and \"network inventory management\".\n> \n> ---\n> \n> 1.\n> \n> s/vendors/vendors'/\n> \n> ---\n> \n> 1.\n> \n> 8309 may be a better reference (or an additional reference) than\n> 8969 for the definition of device model and network model.\n> \n> ---\n> \n> 2.2\n> \n> The terms \"configuration data\" and \"applied configuration\" don't seem to\n> be used in the document.\n> \n> There is some mixture of \"cpu\" and \"CPU\" in the text.\n> \n> ---\n> \n> 3.1\n> \n>    name:  A human-readable label information of the inventory object,\n>       which could be assigned by the server.  It could also be present\n>       on a Graphical User Interface (GUI).\n> \n>    alias:  A human-readable label information of the inventory object,\n>       provided by a network operator.  It could also be present on a GUI\n>       instead as well as the name.\n> \n> In both cases, perhaps s/label information/label/\n> \n> ---\n> \n> 3.1.1\n> \nAdd a title\n*\nTitle\nAdd a description\nMarkdown input: edit mode selected.\nWrite\nPreview\n\n> Is \"human-interpretable\" different from \"human-readable\"?\n> \n> ---\n> \n> 3.2\n> \n> This is the first use of \"NE\".\n> \n> I suggest you put \"(NE)\" in the definition in Section 2.2.\n> \n> ---\n> \n> 3.2\n> \n> s/guaranteed/guarantee/\n> \n> ---\n> \n> 4.\n> \n> s/Figure 2 below/Figure 2/\n> \n> ---\n> \n> Appendixes\n> \n> I think you need a reference to RFC 8792\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/H2zzNmPzW-VtKqSwIAPCC8Lrmmk/",
+      "createdAt": "2025-12-01T21:28:53Z",
+      "updatedAt": "2025-12-01T21:28:53Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 147,
+      "id": "I_kwDOKiDYo87bhVsS",
+      "title": "WG LC comments from Roberto on draft-ietf-ivy-network-inventory-yang-11",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/147",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "> Hi Ivy WG and chairs,\n> \n>  \n> \n> I have read the draft, and I support its publication.\n> \n> I think is ready to move on with the fix of few additional nits that I have\n> found on top of the one already shared in this thread.\n> \n>  \n> \n> Thanks\n> \n> Regards\n> \n> Roberto\n> \n>  \n> \n>  \n> \n> Section 2.2 Slot definition:\n> \n> For completeness is better to also add the sub-slot can be present in Card\n> component, as also stated in the Card definition.\n> \n>  \n> \n> Section 3.3.2: \n> \n> In the definition of software-rev list for a components we used\n> \"boot-loader\" as an example of active software module, while in the last\n> sentence of the section (left from previous document revision) bootloader is\n> indicated as out of scope. Either we consider to remove \"boot-loader\" from\n> the example or we rephrase/remove the last sentence. I'm more inclined to\n> the second option since we added the software-rev list with exactly the\n> scope to mange different active software modules.\n> \n>  \n> \n> Section 7:\n> \n> The sentence \"Specifically, the following subtrees and data nodes have\n> particular sensitivities/vulnerabilities:\" is present twice, before and\n> after the page break.\n> \n>  \n> \n> Appendix A:\n> \n> *\tIn the comparison table with oc-platfomr there are still few line\n> with \"TBD\"  in the remarks column, I think they should be addressed while\n> working on LC review fix and before moving on with publication\n> *\tstorage/cpu: it could make sense to indicate them as \"technology\n> specific\" instead of indicating as not required for Optical/IP?\n> *\tBackplane: \"is considered part of board\", better to change in \"is\n> considered part of chassis\"\n> \n>  \n> \n> Appendix C:\n> \n> The document is referenced as \"this draft\" inf few places, should be changed\n> in \"this document\" or \"this RFC\"\n> \n>  \n> \n> Appendix D.1:\n> \n> The example do not include breakouts anymore, so I would suggest the\n> following change in the item description:\n> \n> *\tChange the description for NE-1 to: \"Network element example with\n> fixed and pluggable ports\"\n> *\tChange the description for the board-1 component to \"Board example\n> with fixed and pluggable ports\"\n> \n>  \n> \n> Appendix E:\n> \n> *\tuse Priority/MAC-Addr(s) **to** decide Master/Members\n> \n>  \n> \n> Appendix F:\n> \n> *\tI would remove \"(with a 1U horizontal oriented rectangular shape)\"\n> as part of the Non-modular NE description since this is not strictly true,\n> it can be 2 or 3 RU or even any other shape.\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/pa5Qi7mFxE-y_aHI2EHGzVIvCXw/",
+      "createdAt": "2025-12-01T21:30:19Z",
+      "updatedAt": "2025-12-01T21:30:19Z",
       "closedAt": null,
       "comments": []
     }
