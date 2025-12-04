@@ -358,7 +358,7 @@ part-number:
 : It is expected that vendors assign unique part numbers to different component types within the scope of the vendor.
 
 serial-number:
-: The vendor-specific serial number of the the component instance.
+: The vendor-specific serial number of the component instance.
 : It is expected that vendors assign unique serial numbers to different component instances at least within the scope of the part-number.
 
 asset-id:
@@ -491,7 +491,7 @@ For example, in the context of ACTN, the network inventory YANG data model can b
 
 The information in the model is populated by controller by reading it from the devices using the device model supported by the devices. This model does not constraint the device models used on the device: the YANG data model defined in {{!RFC8348}} is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
 
-In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to an an higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
+In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to an higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
 
 # Security Considerations
 

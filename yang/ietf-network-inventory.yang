@@ -309,9 +309,8 @@ module ietf-network-inventory {
     leaf serial-number {
       type string;
       description
-        "The vendor-specific serial number of the the component)
-         instance.
-         
+        "The vendor-specific serial number of the component instance.
+
          It is expected that vendors assign unique serial numbers to
          different component instances within the scope of the
          'part-number'.";
