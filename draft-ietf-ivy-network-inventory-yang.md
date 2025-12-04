@@ -373,6 +373,8 @@ For state data like "admin-state", "oper-state", and so on, this document consid
 
 Based on TMF classification in {{TMF_SD2-20}}, hardware components can be divided into two groups, holder group and equipment group. The holder group contains rack, chassis, slot, sub-slot while the equipment group contains network-element, board and port.
 
+See {port-examples}, {multi-chassis-examples}, and {non-modular-examples} for concrete hardware component examples.
+
 {{fig-hw-inventory-object-relationship}} describes the relationship between typical inventory objects in a physical network element.
 
 ~~~~ aasvg
@@ -419,11 +421,10 @@ storage, port, or power supply are defined in the hardware extension.
 
 ### Software Components {#sw-inventory}
 
-This document defines a "software-rev" list for NEs and components, which provide
-basic software attributes for network elements and components.
+Each instance of a network element or a component includes its own "software-rev" list which provides basic software attributes for each entity (network element and component).
 
 The scope of the list is to provide information about the software modules configured to be active
-on the related entity (network element or component).
+on the related entity.
 
 The model supports scenarios where multiple software modules can be configured to be active on the entity. For example, on a network element an Operating System and an Application software modules can be configured to be active; in the same way, on a component like a circuit pack a boot-loader, a firmware
 and one or more FPGA software modules can be configured to be active.
