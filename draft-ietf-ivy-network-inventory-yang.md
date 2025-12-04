@@ -180,6 +180,13 @@ The following terms are defined in {{!RFC8342}} and are not redefined here:
 
 - applied configuration
 
+The following terms are defined in {{?RFC8453}} and are not redefined here:
+
+- Abstraction and Control of TE Networks (ACTN)
+- Multi-Domain Service Coordinator (MDSC)
+- Provisioning Network Controller (PNC)
+- MDSC-PNC Interface (MPI)
+
 The following terms are defined in the description statements of the corresponding YANG identities, defined in {{IANA_HW_YANG}}, and are not redefined here:
 
 - backplane

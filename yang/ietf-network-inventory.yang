@@ -246,7 +246,7 @@ module ietf-network-inventory {
           base ianahw:hardware-class;
         }
         type identityref {
-          base non-hardware-component-class;
+          base nwi:non-hardware-component-class;
         }
       }
       mandatory true;
@@ -261,8 +261,8 @@ module ietf-network-inventory {
       }
       refine "mfg-name" {
         description
-          "The name of the manufacturer of this physical
-           component.
+          "The name of the manufacturer of this component.
+
            The preferred value is the manufacturer name
            string actually printed on the component itself
            (if present).
@@ -273,8 +273,8 @@ module ietf-network-inventory {
            of 'mfg-name'.
 
            If the manufacturer name string associated with
-           the physical component is unknown to the server,
-           then this node is not instantiated.";
+           the component is unknown to the server, then this node is
+           not instantiated.";
         reference
           "RFC 6933: Entity MIB (Version 4) -
                      entPhysicalMfgName";
@@ -386,7 +386,10 @@ module ietf-network-inventory {
           }
           default "nwi:ne-physical";
           description
-            "The NE type.";
+            "The network element type.";
+          reference
+            "RFC XXXX: A YANG Data Model for Network Inventory,
+                       Section 3.";
         }
         uses ne-component-common-entity-attributes;
         leaf product-rev {
