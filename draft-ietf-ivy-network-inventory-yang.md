@@ -199,6 +199,8 @@ The following terms are defined in the description statements of the correspondi
 - stack
 - storage device
 
+Also, the document makes use of the following terms:
+
 Chassis:
 : A field replaceable equipment with a particular structural format and dimensions.
 A chassis can, but does not need to, include spaces (called slots) to take cards.
@@ -207,8 +209,6 @@ A chassis can, but does not need to, include spaces (called slots) to take cards
 Port:
 : A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables.
 : In case of pluggable ports, the port may be empty when no pluggable module is plugged in.
-
-Also, the document makes use of the following terms:
 
 Network Inventory:
 : A collection of data for network elements and their components with network-wide scope, managed by a specific management system.
@@ -254,7 +254,7 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 
 # YANG Data Model for Network Inventory Overview {#overview}
 
-The base network inventory model, defined in this document, provides a list of network elements and of network element components:
+The base network inventory model, defined in this document, provides a list of network elements and of network element components.
 
 The network-inventory top level container has been defined to support reporting other types of network inventory objects, besides the network elements and network element components.
 
@@ -657,6 +657,7 @@ This appendix provides some examples of multi-chassis network elements and how t
 Multi-chassis network elements are network elements composed by two or more chassis interconnected, in principle, with any topology.
 
 Stacked switches are an example of multi-chassis which consist of multiple standalone switches that are interconnected through dedicated stack ports and cables and managed as a single logical unit. Stacked switch:
+
 - are connected using a daisy-chain or a ring topology
 - are managed using a single IP Address
 - synchronized software-upgrade
@@ -677,6 +678,7 @@ Stacked switches are an example of multi-chassis which consist of multiple stand
 Using the base network inventory YANG data model, each stackable switch can be modelled as a chassis within the same network element, which models the stacked switch. The stack ports are modelled like other ports. The stack cables are not reported using the base network inventory YANG data model but can be reported using the passive network inventory YANG data model under definition in {{?I-D.ygb-ivy-passive-network-inventory}}.
 
 Cascaded switches are another example of multi-chassis which consist of multiple standalone switches that are interconnected and managed as a single logical unit. Cascaded switch:
+
 - are usually connected in a tree topology
 - are managed using a single IP Address
 - the root of the tree is configured as Master.
