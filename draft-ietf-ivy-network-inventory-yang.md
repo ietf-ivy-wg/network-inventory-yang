@@ -292,7 +292,7 @@ uuid:
 : The Universally Unique Identifier (UUID) of the inventory object, assigned by the server. Such identifiers are widely implemented with systems and guaranteed to be globally unique.
 
 name:
-: A human-readable label information of the inventory object, which could be assigned by the server. It could also be present on a Graphical User Interface (GUI).
+: A human-readable label information of the inventory object, provided by a network operator or by the server. It could also be present on a Graphical User Interface (GUI).
 
 alias:
 : A human-readable label information of the inventory object, provided by a network operator. It could also be present on a GUI instead as well as the name.
@@ -331,7 +331,7 @@ product-rev:
 
 The YANG data model for network inventory mainly follows the same approach of {{!RFC8348}} and reports the network hardware inventory as a list of components with different types (e.g., chassis, module, and port).
 
-In addition to the common attributes defined for network elements and components in {{common-attributes}}, the following attributes are defined for the network elements:
+In addition to the common attributes defined for network elements and components in {{common-attributes}}, the following attributes are defined for the components:
 
 component-id:
 : The identifier that uniquely identifies the component within the NE. It can be assigned by the NE or by the server.
@@ -469,7 +469,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-10-07.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-12-04.yang"}
 
 # Operational Considerations
 
