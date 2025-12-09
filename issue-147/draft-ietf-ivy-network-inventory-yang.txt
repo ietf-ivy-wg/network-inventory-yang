@@ -1587,7 +1587,7 @@ Appendix C.  Efficiency Issue
    think that this scalability limitation should be solved at protocol
    level rather than data model level.
 
-   The model proposed by this documet is designed to be as generic as
+   The model proposed by this document is designed to be as generic as
    possible so to cover future special types of inventory objects that
    could be used in other technologies, that have not been identified
    yet.  If the inventory objects were to be defined directly with fixed
