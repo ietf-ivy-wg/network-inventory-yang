@@ -14,24 +14,23 @@
        This document defines a base YANG data model for reporting network inventory. The scope of this base model is set to
 be application- and technology-agnostic. The base data model can be augmented with application- and technology-specific details. 
     " name="description">
-<meta content="xml2rfc 3.30.2" name="generator">
+<meta content="xml2rfc 3.31.0" name="generator">
 <meta content="next generation" name="keyword">
 <meta content="unicorn" name="keyword">
 <meta content="sparkling distributed ledger" name="keyword">
 <meta content="draft-ietf-ivy-network-inventory-yang-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.30.2
-    Python 3.12.11
+  xml2rfc 3.31.0
+    Python 3.12.12
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.6
     lxml 5.3.1
-    platformdirs 4.4.0
+    platformdirs 4.5.0
     pycountry 24.6.1
     PyYAML 6.0.2
     requests 2.32.5
-    setuptools 80.9.0
     wcwidth 0.2.14
 -->
 <link href="draft-ietf-ivy-network-inventory-yang.xml" rel="alternate" type="application/rfc+xml">
@@ -1051,11 +1050,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Network Inventory YANG</td>
-<td class="right">October 2025</td>
+<td class="right">December 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Yu, et al.</td>
-<td class="center">Expires 13 April 2026</td>
+<td class="center">Expires 12 June 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1067,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ivy-network-inventory-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-10-10" class="published">10 October 2025</time>
+<time datetime="2025-12-09" class="published">9 December 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-04-13">13 April 2026</time></dd>
+<dd class="expires"><time datetime="2026-06-12">12 June 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1135,7 +1134,7 @@ be application- and technology-agnostic. The base data model can be augmented wi
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 12 June 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1234,7 +1233,7 @@ be application- and technology-agnostic. The base data model can be augmented wi
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-yang-data-model-for-network-" class="internal xref">YANG Data Model for Network Inventory</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-manageability-consideration" class="internal xref">Manageability Considerations</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-operational-considerations" class="internal xref">Operational Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
@@ -1500,7 +1499,7 @@ A chassis can, but does not need to, include spaces (called slots) to take cards
           <dd class="break"></dd>
 <dt id="section-2.2-11.17">Slot:</dt>
           <dd style="margin-left: 1.5em" id="section-2.2-11.18">
-            <p id="section-2.2-11.18.1">A space in a chassis that can be equipped with one card, which may be chosen from a limited range of types of cards. A slot can be subdivided into smaller spaces (called sub-slots).<a href="#section-2.2-11.18.1" class="pilcrow">¶</a></p>
+            <p id="section-2.2-11.18.1">A space in a chassis that can be equipped with one card, which may be chosen from a limited range of types of cards. A slot can be subdivided into smaller spaces that can also be part of a Card (called sub-slots).<a href="#section-2.2-11.18.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-11.19">Container:</dt>
@@ -1857,9 +1856,8 @@ modules and of the software upgrade or downgrade life-cycle are outside the scop
 component and have similar replaceable requirements. Generally, the
 device also has other software data, for example, one or more
 software patch information.<a href="#section-3.3.2-6" class="pilcrow">¶</a></p>
-<p id="section-3.3.2-7">The software components of other
-classes, such as platform software, BIOS, bootloader, and software
-patch information, are outside the scope of this document and defined other documents such as
+<p id="section-3.3.2-7">The software components lifecycle  (like activation, deactivation, installation, storage, removal, etc.) is
+outside the scope of this document and defined in other documents such as
 <span>[<a href="#I-D.ietf-ivy-network-inventory-software" class="cite xref">I-D.ietf-ivy-network-inventory-software</a>]</span>.<a href="#section-3.3.2-7" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2430,12 +2428,12 @@ module ietf-network-inventory {
 </div>
 </section>
 </div>
-<div id="manageability-considerations">
+<div id="operational-considerations">
 <section id="section-6">
-      <h2 id="name-manageability-consideration">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-manageability-consideration" class="section-name selfRef">Manageability Considerations</a>
+      <h2 id="name-operational-considerations">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-operational-considerations" class="section-name selfRef">Operational Considerations</a>
       </h2>
-<p id="section-6-1">The network inventory YANG data model defined in the document is intended to report the actual inventory data that a network controller knows of the network elements and components actually installed within the network. Therefore this model provides a read-only perspective of the network inventory information.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">The network inventory YANG data model defined in the document is intended to report the actual inventory data that a network controller knows of the network elements and components actually installed within the network. Therefore, this data model provides a read-only perspective of the network inventory information.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">As outlined in <a href="#intro" class="auto internal xref">Section 1</a>, per the definition of <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>, the network inventory model is a network model.<a href="#section-6-2" class="pilcrow">¶</a></p>
 <p id="section-6-3">This information can be provided by a network controller to an higher level hierarchical network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.<a href="#section-6-3" class="pilcrow">¶</a></p>
 <p id="section-6-4">For example, in the context of ACTN, the network inventory YANG data model can be used at the MPI interfaces, as defined in <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span>, or on an interface, not defined in <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span> between the MDSC and the Inventory OSS.<a href="#section-6-4" class="pilcrow">¶</a></p>
@@ -2461,9 +2459,7 @@ RESTCONF protocol operations and content.<a href="#section-7-3" class="pilcrow">
 <p id="section-7-4">Some of the readable data nodes in this YANG module may be considered
 sensitive or vulnerable in some network environments.  It is thus
 important to control read access (e.g., via get, get-config, or
-notification) to these data nodes. Specifically, the following
-subtrees and data nodes have particular sensitivities/
-vulnerabilities:<a href="#section-7-4" class="pilcrow">¶</a></p>
+notification) to these data nodes.<a href="#section-7-4" class="pilcrow">¶</a></p>
 <p id="section-7-5">Specifically, the following subtrees and data nodes have particular sensitivities/vulnerabilities:<a href="#section-7-5" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-7-6.1">
@@ -2584,7 +2580,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <dd class="break"></dd>
 <dt id="I-D.ietf-ivy-network-inventory-software">[I-D.ietf-ivy-network-inventory-software]</dt>
         <dd>
-<span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Zhou, C.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">M. Boucadair</span>, <span class="refTitle">"A YANG Network Data Model of Network Inventory Software Extensions"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-software-01</span>, <time datetime="2025-06-10" class="refDate">10 June 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-software-01">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-software-01</a>&gt;</span>. </dd>
+<span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Zhou, C.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">M. Boucadair</span>, <span class="refTitle">"A YANG Network Data Model of Network Inventory Software Extensions"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-software-02</span>, <time datetime="2025-10-20" class="refDate">20 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-software-02">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-software-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-netmod-rfc8407bis">[I-D.ietf-netmod-rfc8407bis]</dt>
         <dd>
@@ -2727,7 +2723,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">clei-code</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+            <td class="text-left" rowspan="1" colspan="1">Not defined even in RFC-8348 at device level</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">removable</td>
@@ -2752,7 +2748,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">redundant-role</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+            <td class="text-left" rowspan="1" colspan="1">functional information, may be part of future augmentation</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">last-switchover-reason</td>
@@ -2792,12 +2788,12 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">allocated-power</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+            <td class="text-left" rowspan="1" colspan="1">state/performance data</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">used-power</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+            <td class="text-left" rowspan="1" colspan="1">state/performance data</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">pcie</td>
@@ -2807,7 +2803,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">properties</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+            <td class="text-left" rowspan="1" colspan="1">Generic properties can be handled as part of "description"</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">subcomponents</td>
@@ -2827,7 +2823,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">power-supply</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+            <td class="text-left" rowspan="1" colspan="1">Power supply is considered as a specific board. And no need to define as a single component</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">fan</td>
@@ -2837,17 +2833,17 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">fabric</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+            <td class="text-left" rowspan="1" colspan="1">Fabric is considered as a specific board. And no need to define as a single component</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">storage</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">For Optical and IP technology, no need to manage storage on network element</td>
+            <td class="text-left" rowspan="1" colspan="1">Technology specific</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">cpu</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">For Optical and IP technology, no need to manage CPU on network element</td>
+            <td class="text-left" rowspan="1" colspan="1">Technology specific</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">integrated-circuit</td>
@@ -2862,7 +2858,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">software-module</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">TBD</td>
+            <td class="text-left" rowspan="1" colspan="1">managed in the software-rev list</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">controller-card</td>
@@ -2910,9 +2906,9 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <a href="#appendix-C" class="section-number selfRef">Appendix C. </a><a href="#name-efficiency-issue" class="section-name selfRef">Efficiency Issue</a>
       </h2>
 <p id="appendix-C-1">During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks.  More discussions are needed to address these concerns.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
-<p id="appendix-C-2">Considering that relational databases are widely used by traditional OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in current draft, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller &amp; OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.<a href="#appendix-C-2" class="pilcrow">¶</a></p>
+<p id="appendix-C-2">Considering that relational databases are widely used by traditional OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in this document, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller &amp; OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.<a href="#appendix-C-2" class="pilcrow">¶</a></p>
 <p id="appendix-C-3">An alternative YANG model structure, which defines the inventory objects directly, instead of defining generic components, has also been analyzed. However, also with this model, there still could be some scalability limitations when synchronizing full inventory resources in large scale of networks. This scalability limitation is caused by the limited transmission capabilities of HTTP protocol. We think that this scalability limitation should be solved at protocol level rather than data model level.<a href="#appendix-C-3" class="pilcrow">¶</a></p>
-<p id="appendix-C-4">The model proposed by this draft is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this draft. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.<a href="#appendix-C-4" class="pilcrow">¶</a></p>
+<p id="appendix-C-4">The model proposed by this documet is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this document. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.<a href="#appendix-C-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="port-examples">
@@ -3005,15 +3001,15 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
       "network-element" : [
         {
           "ne-id": "NE-1",
-          "description": "Network element example with ports and \
-                                                         breakouts.",
+          "description": "Network element example with fixed and \
+                                                   pluggable ports.",
           "components": {
             "component": [
               {
                 "component-id": "board-1",
                 "class": "iana-hardware:module",
-                "description": "Network element example with ports \
-                                                      and breakouts."
+                "description": "Board example with fixed and \
+                                                    pluggable ports."
               },
               {
                 "component-id": "port-1",
@@ -3078,7 +3074,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 - are connected using a daisy-chain or a ring topology
 - are managed using a single IP Address
 - synchronized software-upgrade
-- use Priority/MAC-Addr(s) decide Master/Members selection and communication.<a href="#appendix-E-3" class="pilcrow">¶</a></p>
+- use Priority/MAC-Addr(s) to decide Master/Members selection and communication.<a href="#appendix-E-3" class="pilcrow">¶</a></p>
 <p id="appendix-E-4"><a href="#fig-daisy-chain-stacked" class="auto internal xref">Figure 5</a> and <a href="#fig-ring-stacked" class="auto internal xref">Figure 6</a> describe two examples of stacked switch with three stacked switches (pizza boxes) connected in a daisy-chain or ring topology.<a href="#appendix-E-4" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-stacked-switch"></span><div id="fig-daisy-chain-stacked">
 <figure id="figure-5">
@@ -3963,7 +3959,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <a href="#appendix-F" class="section-number selfRef">Appendix F. </a><a href="#name-example-of-non-modular-netw" class="section-name selfRef">Example of non-modular network elements</a>
       </h2>
 <p id="appendix-F-1">This appendix provides some examples of non-modular network elements and how they can be modelled using the "ietf-network-inventory" module defined in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#appendix-F-1" class="pilcrow">¶</a></p>
-<p id="appendix-F-2">Non-modular network elements (also known as "pizza boxes") are network elements composed by a single chassis (with a 1U horizontal oriented rectangular shape) as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field replaceable modules other than pluggable ports.<a href="#appendix-F-2" class="pilcrow">¶</a></p>
+<p id="appendix-F-2">Non-modular network elements (also known as "pizza boxes") are network elements composed by a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field replaceable modules other than pluggable ports.<a href="#appendix-F-2" class="pilcrow">¶</a></p>
 <p id="appendix-F-3">Using the base network inventory YANG data model a non-modular network element can be modelled as a network element containing only one chassis and ports (as child components of the chassis).<a href="#appendix-F-3" class="pilcrow">¶</a></p>
 <p id="appendix-F-4">Reporting the single chassis component within a non-modular network element is required because the chassis component is the type of component which provides the physical characteristics of the network element chassis (the network element is defined just as an assembly of components) and its location, using the network inventory YANG data model under definition in <span>[<a href="#I-D.ietf-ivy-network-inventory-location" class="cite xref">I-D.ietf-ivy-network-inventory-location</a>]</span>.<a href="#appendix-F-4" class="pilcrow">¶</a></p>
 <div id="json-examples-2">
