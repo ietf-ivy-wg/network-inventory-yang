@@ -224,7 +224,7 @@ Card:
 : Elsewhere, a card can be called board, module, circuit pack, etc..
 
 Slot:
-: A space in a chassis that can be equipped with one card, which may be chosen from a limited range of types of cards. A slot can be subdivided into smaller spaces (called sub-slots).
+: A space in a chassis that can be equipped with one card, which may be chosen from a limited range of types of cards. A slot can be subdivided into smaller spaces that can also be part of a Card (called sub-slots).
 
 Container:
 : A hardware component class that is capable of containing one or more removable physical entities (e.g., a slot in a chassis is containing a board).
@@ -432,9 +432,8 @@ component and have similar replaceable requirements. Generally, the
 device also has other software data, for example, one or more
 software patch information.
 
-The software components of other
-classes, such as platform software, BIOS, bootloader, and software
-patch information, are outside the scope of this document and defined other documents such as
+The software components lifecycle  (like activation, deactivation, installation, storage, removal, etc.) is
+outside the scope of this document and defined in other documents such as
 {{?I-D.ietf-ivy-network-inventory-software}}.
 
 ## Changes Since RFC 8348
@@ -504,9 +503,7 @@ RESTCONF protocol operations and content.
 Some of the readable data nodes in this YANG module may be considered
 sensitive or vulnerable in some network environments.  It is thus
 important to control read access (e.g., via get, get-config, or
-notification) to these data nodes. Specifically, the following
-subtrees and data nodes have particular sensitivities/
-vulnerabilities:
+notification) to these data nodes.
 
 Specifically, the following subtrees and data nodes have particular sensitivities/vulnerabilities:
 
@@ -561,12 +558,12 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | software-version           | software-rev             |                          |
 | serial-no                  | serial-num               |                          |
 | part-no                    | part-number              |                          |
-| clei-code                  |                          | TBD                      |
+| clei-code                  |                          | Not defined even in RFC-8348 at device level  |
 | removable                  | is-fru                   |                          |
 | oper-status                |                          | state data               |
 | empty                      | contained-child?         | If there is no contained child, it is empty.  |
 | parent                     | parent-references        |                          |
-| redundant-role             |                          | TBD                      |
+| redundant-role             |                          | functional information, may be part of future augmentation |
 | last-switchover-reason     |                          | state data               |
 | last-switchover-time       |                          | state data               |
 | last-reboot-reason         |                          | state data               |
@@ -574,21 +571,21 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | switchover-ready           |                          | state data               |
 | temperature                |                          | performance data         |
 | memory                     |                          | performance data         |
-| allocated-power            |                          | TBD                      |
-| used-power                 |                          | TBD                      |
+| allocated-power            |                          | state/performance data   |
+| used-power                 |                          | state/performance data   |
 | pcie                       |                          | alarm  data              |
-| properties                 |                          | TBD                      |
+| properties                 |                          | Generic properties can be handled as part of "description" |
 | subcomponents              |                          |                          |
 | chassis                    |                          |                          |
 | port                       |                          |                          |
-| power-supply               |                          | TBD                      |
+| power-supply               | power-supply             |                          |
 | fan                        |                          | Fan is considered as a specific board. And no need to define as a single component  |
-| fabric                     |                          | TBD                      |
-| storage                    |                          | For Optical and IP technology, no need to manage storage on network element |
-| cpu                        |                          | For Optical and IP technology, no need to manage CPU on network element  |
+| fabric                     |                          | Fabric is considered as a specific board. And no need to define as a single component  |
+| storage                    | storage-drive            |                          |
+| cpu                        | cpu                      |                          |
 | integrated-circuit         |                          |                          |
 | backplane                  |                          | Backplane is considered as a part of board. And no need to define as a single component  |
-| software-module            |                          | TBD                      |
+| software-module            |                          | managed in the software-rev list |
 | controller-card            |                          | Controller card is considered as a specific functional board. And no need to define as a single component  |
 {:#tab-oc title="Comparison between openconfig platform and inventory data models"}
 
@@ -609,11 +606,11 @@ Within this document , with the term "container" we consider an hardware compone
 
 During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks.  More discussions are needed to address these concerns.
 
-Considering that relational databases are widely used by traditional OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in current draft, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller & OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.
+Considering that relational databases are widely used by traditional OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in this document, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller & OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.
 
 An alternative YANG model structure, which defines the inventory objects directly, instead of defining generic components, has also been analyzed. However, also with this model, there still could be some scalability limitations when synchronizing full inventory resources in large scale of networks. This scalability limitation is caused by the limited transmission capabilities of HTTP protocol. We think that this scalability limitation should be solved at protocol level rather than data model level.
 
-The model proposed by this draft is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this draft. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.
+The model proposed by this document is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this document. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.
 
 # Examples of ports {#port-examples}
 
@@ -648,7 +645,7 @@ Stacked switches are an example of multi-chassis which consist of multiple stand
 - are connected using a daisy-chain or a ring topology
 - are managed using a single IP Address
 - synchronized software-upgrade
-- use Priority/MAC-Addr(s) decide Master/Members selection and communication.
+- use Priority/MAC-Addr(s) to decide Master/Members selection and communication.
 
 {{fig-daisy-chain-stacked}} and {{fig-ring-stacked}} describe two examples of stacked switch with three stacked switches (pizza boxes) connected in a daisy-chain or ring topology.
 
@@ -692,7 +689,7 @@ This appendix contains an example of an instance data tree in JSON encoding {{?R
 
 This appendix provides some examples of non-modular network elements and how they can be modelled using the "ietf-network-inventory" module defined in {{ni-yang}}.
 
-Non-modular network elements (also known as "pizza boxes") are network elements composed by a single chassis (with a 1U horizontal oriented rectangular shape) as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field replaceable modules other than pluggable ports.
+Non-modular network elements (also known as "pizza boxes") are network elements composed by a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field replaceable modules other than pluggable ports.
 
 Using the base network inventory YANG data model a non-modular network element can be modelled as a network element containing only one chassis and ports (as child components of the chassis).
 
