@@ -578,11 +578,11 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | subcomponents              |                          |                          |
 | chassis                    |                          |                          |
 | port                       |                          |                          |
-| power-supply               |                          | Power supply is considered as a specific board. And no need to define as a single component |
+| power-supply               | power-supply             |                          |
 | fan                        |                          | Fan is considered as a specific board. And no need to define as a single component  |
 | fabric                     |                          | Fabric is considered as a specific board. And no need to define as a single component  |
-| storage                    |                          | Technology specific      |
-| cpu                        |                          | Technology specific      |
+| storage                    | storage-drive            |                          |
+| cpu                        | cpu                      |                          |
 | integrated-circuit         |                          |                          |
 | backplane                  |                          | Backplane is considered as a part of board. And no need to define as a single component  |
 | software-module            |                          | managed in the software-rev list |
