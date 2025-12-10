@@ -180,6 +180,13 @@ The following terms are defined in {{!RFC8342}} and are not redefined here:
 
 - applied configuration
 
+The following terms are defined in {{?RFC8453}} and are not redefined here:
+
+- Abstraction and Control of TE Networks (ACTN)
+- Multi-Domain Service Coordinator (MDSC)
+- Provisioning Network Controller (PNC)
+- MDSC-PNC Interface (MPI)
+
 The following terms are defined in the description statements of the corresponding YANG identities, defined in {{IANA_HW_YANG}}, and are not redefined here:
 
 - backplane
@@ -192,6 +199,8 @@ The following terms are defined in the description statements of the correspondi
 - stack
 - storage device
 
+Also, the document makes use of the following terms:
+
 Chassis:
 : A field replaceable equipment with a particular structural format and dimensions.
 A chassis can, but does not need to, include spaces (called slots) to take cards.
@@ -200,8 +209,6 @@ A chassis can, but does not need to, include spaces (called slots) to take cards
 Port:
 : A component where networking traffic can be received and/or transmitted, e.g., by attaching networking cables.
 : In case of pluggable ports, the port may be empty when no pluggable module is plugged in.
-
-Also, the document makes use of the following terms:
 
 Network Inventory:
 : A collection of data for network elements and their components with network-wide scope, managed by a specific management system.
@@ -247,7 +254,7 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 
 # YANG Data Model for Network Inventory Overview {#overview}
 
-The base network inventory model, defined in this document, provides a list of network elements and of network element components:
+The base network inventory model, defined in this document, provides a list of network elements and of network element components.
 
 The network-inventory top level container has been defined to support reporting other types of network inventory objects, besides the network elements and network element components.
 
@@ -292,7 +299,7 @@ uuid:
 : The Universally Unique Identifier (UUID) of the inventory object, assigned by the server. Such identifiers are widely implemented with systems and guaranteed to be globally unique.
 
 name:
-: A human-readable label information of the inventory object, which could be assigned by the server. It could also be present on a Graphical User Interface (GUI).
+: A human-readable label information of the inventory object, provided by a network operator or by the server. It could also be present on a Graphical User Interface (GUI).
 
 alias:
 : A human-readable label information of the inventory object, provided by a network operator. It could also be present on a GUI instead as well as the name.
@@ -331,7 +338,7 @@ product-rev:
 
 The YANG data model for network inventory mainly follows the same approach of {{!RFC8348}} and reports the network hardware inventory as a list of components with different types (e.g., chassis, module, and port).
 
-In addition to the common attributes defined for network elements and components in {{common-attributes}}, the following attributes are defined for the network elements:
+In addition to the common attributes defined for network elements and components in {{common-attributes}}, the following attributes are defined for the components:
 
 component-id:
 : The identifier that uniquely identifies the component within the NE. It can be assigned by the NE or by the server.
@@ -351,7 +358,7 @@ part-number:
 : It is expected that vendors assign unique part numbers to different component types within the scope of the vendor.
 
 serial-number:
-: The vendor-specific serial number of the the component instance.
+: The vendor-specific serial number of the component instance.
 : It is expected that vendors assign unique serial numbers to different component instances at least within the scope of the part-number.
 
 asset-id:
@@ -365,6 +372,8 @@ For state data like "admin-state", "oper-state", and so on, this document consid
 ### Hardware Components
 
 Based on TMF classification in {{TMF_SD2-20}}, hardware components can be divided into two groups, holder group and equipment group. The holder group contains rack, chassis, slot, sub-slot while the equipment group contains network-element, board and port.
+
+See {port-examples}, {multi-chassis-examples}, and {non-modular-examples} for concrete hardware component examples.
 
 {{fig-hw-inventory-object-relationship}} describes the relationship between typical inventory objects in a physical network element.
 
@@ -412,11 +421,10 @@ storage, port, or power supply are defined in the hardware extension.
 
 ### Software Components {#sw-inventory}
 
-This document defines a "software-rev" list for NEs and components, which provide
-basic software attributes for network elements and components.
+Each instance of a network element or a component includes its own "software-rev" list which provides basic software attributes for each entity (network element and component).
 
 The scope of the list is to provide information about the software modules configured to be active
-on the related entity (network element or component).
+on the related entity.
 
 The model supports scenarios where multiple software modules can be configured to be active on the entity. For example, on a network element an Operating System and an Application software modules can be configured to be active; in the same way, on a component like a circuit pack a boot-loader, a firmware
 and one or more FPGA software modules can be configured to be active.
@@ -468,7 +476,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-10-07.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-12-04.yang"}
 
 # Operational Considerations
 
@@ -482,7 +490,11 @@ For example, in the context of ACTN, the network inventory YANG data model can b
 
 The information in the model is populated by controller by reading it from the devices using the device model supported by the devices. This model does not constraint the device models used on the device: the YANG data model defined in {{!RFC8348}} is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
 
-In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to an an higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
+In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to an higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
+
+When used in brownfield scenarios, it is worth noting that existing deployments are based on proprietary Inventory OSS and that the migration path is highly dependent on the specific proprietary solution. Therefore the migration processes are operator dependent: it is expected that the deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing Inventory OSSes will also take longer time. In a longer term, the network controllers could provide inventory information, using this YANG data model, also to next generation OSSes.
+
+When this model is used, the source of truth for the inventory data in the scope of this model is the network controller providing this data. Some legacy inventory information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model.
 
 # Security Considerations
 
@@ -642,6 +654,7 @@ This appendix provides some examples of multi-chassis network elements and how t
 Multi-chassis network elements are network elements composed by two or more chassis interconnected, in principle, with any topology.
 
 Stacked switches are an example of multi-chassis which consist of multiple standalone switches that are interconnected through dedicated stack ports and cables and managed as a single logical unit. Stacked switch:
+
 - are connected using a daisy-chain or a ring topology
 - are managed using a single IP Address
 - synchronized software-upgrade
@@ -662,6 +675,7 @@ Stacked switches are an example of multi-chassis which consist of multiple stand
 Using the base network inventory YANG data model, each stackable switch can be modelled as a chassis within the same network element, which models the stacked switch. The stack ports are modelled like other ports. The stack cables are not reported using the base network inventory YANG data model but can be reported using the passive network inventory YANG data model under definition in {{?I-D.ygb-ivy-passive-network-inventory}}.
 
 Cascaded switches are another example of multi-chassis which consist of multiple standalone switches that are interconnected and managed as a single logical unit. Cascaded switch:
+
 - are usually connected in a tree topology
 - are managed using a single IP Address
 - the root of the tree is configured as Master.

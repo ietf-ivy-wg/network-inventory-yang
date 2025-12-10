@@ -188,7 +188,7 @@
               {
                 "component-id": "transceiver-module-2-1",
                 "class": "iana-hardware:module",
-                "description": "Transceiver module plugged in the first stack port of the first switch in the stack.",
+                "description": "Transceiver module plugged in the first stack port of the second switch in the stack.",
                 "parent": [
                   "port-2-1"
                 ],
@@ -206,7 +206,7 @@
               {
                 "component-id": "transceiver-module-2-2",
                 "class": "iana-hardware:module",
-                "description": "Transceiver module plugged in the second stack port of the first switch in the stack.",
+                "description": "Transceiver module plugged in the second stack port of the second switch in the stack.",
                 "parent": [
                   "port-2-2"
                 ],
@@ -240,7 +240,7 @@
               {
                 "component-id": "port-3-2",
                 "class": "iana-hardware:port",
-                "description": "Second stack port of the second switch in the stack.",
+                "description": "Second stack port of the third switch in the stack.",
                 "parent": [
                   "chassis-3"
                 ],
@@ -419,7 +419,7 @@
                 "parent": [
                   "card-2-1"
                 ],
-                "parent-rel-pos": 4
+                "parent-rel-pos": 5
               },
               {
                 "component-id": "transceiver-module-2-1-5",
@@ -429,6 +429,15 @@
                   "port-2-1-5"
                 ],
                 "is-fru": true
+              },
+              {
+                "component-id": "slot-2-16",
+                "class": "iana-hardware:container",
+                "description": "Slot 16 of the second chassis of the cascaded switch.",
+                "parent": [
+                  "chassis-2"
+                ],
+                "parent-rel-pos": 16
               },
               {
                 "component-id": "chassis-3",
