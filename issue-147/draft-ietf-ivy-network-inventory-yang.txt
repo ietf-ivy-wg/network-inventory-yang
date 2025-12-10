@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 12 June 2026                                              Nokia
+Expires: 13 June 2026                                              Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                         9 December 2025
+                                                        10 December 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 June 2026.
+   This Internet-Draft will expire on 13 June 2026.
 
 Copyright Notice
 
@@ -1485,12 +1485,7 @@ Appendix A.  Comparison With Openconfig-platform Data Model
    +------------------------+-------------------+----------------------+
    | port                   |                   |                      |
    +------------------------+-------------------+----------------------+
-   | power-supply           |                   | Power supply is      |
-   |                        |                   | considered as a      |
-   |                        |                   | specific board.      |
-   |                        |                   | And no need to       |
-   |                        |                   | define as a single   |
-   |                        |                   | component            |
+   | power-supply           | power-supply      |                      |
    +------------------------+-------------------+----------------------+
    | fan                    |                   | Fan is considered    |
    |                        |                   | as a specific        |
@@ -1505,9 +1500,9 @@ Appendix A.  Comparison With Openconfig-platform Data Model
    |                        |                   | define as a single   |
    |                        |                   | component            |
    +------------------------+-------------------+----------------------+
-   | storage                |                   | Technology specific  |
+   | storage                | storage-drive     |                      |
    +------------------------+-------------------+----------------------+
-   | cpu                    |                   | Technology specific  |
+   | cpu                    | cpu               |                      |
    +------------------------+-------------------+----------------------+
    | integrated-circuit     |                   |                      |
    +------------------------+-------------------+----------------------+
