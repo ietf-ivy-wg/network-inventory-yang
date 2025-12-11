@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-12-07T01:08:11.340943+00:00",
+  "timestamp": "2025-12-11T01:04:15.589429+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4685,7 +4685,7 @@
       ],
       "body": "> Document: draft-ietf-ivy-network-inventory-yang\n> Title: A Base YANG Data Model for Network Inventory\n> Reviewer: Samir Barguil\n> Review result: Has Nits\n> \n> Hi,\n> \n> I have been selected as the Operational Directorate (opsdir) reviewer for this Internet-Draft.\n> \n> The Operational Directorate reviews all operational and management-related Internet-Drafts to ensure alignment with operational best practices and to verify that adequate operational considerations are included.\n> \n> A complete set of Guidelines for Considering Operations and Management in IETF Specifications can be found at:\n> https://datatracker.ietf.org/doc/draft-opsarea-rfc5706bis/ .\n> \n> While these comments are primarily intended for the Operations and Management Area Directors (Ops ADs), the authors should consider them along with any other feedback received.\n> \n> Document: A Base YANG Data Model for Network Inventory\n> Reviewer: Samier Barguil\n> Review Date: 15-Nov-2025\n> Intended Status: Standards Track\n> \n> Summary\n> \n> The Internet-Draft defines ietf-network-inventory, a base YANG data model that provides a technology-agnostic, extensible, read-only view of network-wide inventory. It describes how to represent network elements (NEs) and their components, capturing essential attributes such as identifiers, manufacturer details, and software revisions. The model is intended for controllers to report inventory to higher-level systems (e.g., OSS, MDSC), and it serves as a foundation for future technology-specific augmentations.\n> \n> The draft deliberately excludes operational state, performance metrics, alarms, software lifecycle management, and physical interconnects, keeping the scope focused strictly on inventory representation. The structure and definitions of the model are fully detailed in the accompanying YANG tree and module specification.\n> \n> This document is essentially ready for publication, but it contains a few nits that should be addressed prior to finalization.\n> \n> General Operational Comments (Alignment with RFC 5706bis)\n> \n> The draft explicitly considers and documents operational feasibility, dedicating Section 6 to Operational Considerations.\n> \n> I suggest that the Operational Considerations section include some discussion of how operators might migrate from existing or external inventory systems to the YANG-based model defined in this document. In many deployments, legacy inventory databases use proprietary data structures, identifiers, and hierarchical representations that may not align directly with the data model presented here. Providing guidance on expected practices\u2014such as data normalization when importing legacy information, approaches for reconciling differing identifier schemes, and strategies for incremental or hybrid migration (where controllers combine device-reported data with external sources)\u2014would help clarify operational feasibility.\n> \n\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/139#issuecomment-3553474877\n\n> It may also be useful to describe how conflicts between device-derived and legacy inventory data are expected to be handled, and to note that certain categories of legacy information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model and may require augmentations or mediation layers. Including this clarification would assist operators in planning a realistic transition path and would strengthen the operational guidance provided by the draft.\n> \n\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/139#issuecomment-3553474877\n\n> Major Issues\n> \n> No major issues found.\n> \n> Minor Issues\n> \n> No minor issues found.\n> \n> Nits\n> \n> Duplicated word (\u201cthe\u201d) in the definition of serial-number in Section 3.3\n> (Components): \u201cThe vendor-specific serial number of the the component instance.\u201d\n> \n> This duplicated phrase also appears in the definition of the serial-number leaf within the component-attributes grouping in the YANG module: \u201cThe vendor-specific serial number of the the entity (e.g., component) instance.\u201d\n> \n> Duplicated word (\u201can\u201d) in Section 6 (Operational Considerations):\n> \u201c...report the combined network inventory information to an an higher level network controller...\u201d\n> \n> In Figure 4, which provides an example of a board with different types of ports, item 2 is listed as: \u201c2) Emply hole (port).\u201d This appears to be a misspelling of \u201cEmpty.\u201d\n> \n\nSee: #140 \n\n> Thank you for your work on this document. Please address these comments, or feel free to contact me for clarification and/or further discussion.\n> \n> Best regards,\n> Samier Barguil\n> \n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/_i6do1zTj92HwankjyOEFH2em-g/\n",
       "createdAt": "2025-11-16T23:25:39Z",
-      "updatedAt": "2025-12-04T18:29:40Z",
+      "updatedAt": "2025-12-10T16:43:49Z",
       "closedAt": null,
       "comments": [
         {
@@ -4693,7 +4693,14 @@
           "authorAssociation": "COLLABORATOR",
           "body": "**[2025-11-19 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-11-19)**\n\n> I suggest that the Operational Considerations section include some discussion of how operators might migrate from existing or external inventory systems to the YANG-based model defined in this document. In many deployments, legacy inventory databases use proprietary data structures, identifiers, and hierarchical representations that may not align directly with the data model presented here. Providing guidance on expected practices\u2014such as data normalization when importing legacy information, approaches for reconciling differing identifier schemes, and strategies for incremental or hybrid migration (where controllers combine device-reported data with external sources)\u2014would help clarify operational feasibility.\n> \n\nJeff: this depends on different operators and it depends a lot of what has been implemented already.\n\nItalo: maybe we can simply state that the existing deployments are based on proprietary inventory OSS and that the migration path is highly dependent on the specific proprietary solution. In simple statement, there are no guidelines because it highly depends what has been already deployed which is different in different operators\n\nJeff: The guidelines are operator dependent and deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing inventory OSSes will also take longer time. In the future, the MDSC could provide inventory information, using this YANG data model, also to next generation OSSes.\n\n- [x] @italobusi provide some text proposal for review in future calls\n\n> It may also be useful to describe how conflicts between device-derived and legacy inventory data are expected to be handled, and to note that certain categories of legacy information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model and may require augmentations or mediation layers. Including this clarification would assist operators in planning a realistic transition path and would strengthen the operational guidance provided by the draft.\n> \n\nJeff: for the network devices under the control of a controller, the controller is the source of truth for the inventory data in the scope of this model.\n\n- [x] @italobusi provide some text proposal for review in future calls, clarifying also that that certain categories of legacy information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model.\n",
           "createdAt": "2025-11-19T15:57:57Z",
-          "updatedAt": "2025-12-04T16:09:21Z"
+          "updatedAt": "2025-12-10T16:43:03Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-12-10 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-12-10)**\n\nSee draft PR #151 \n\n\n> **[2025-11-19 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-11-19)**\n> \n> > I suggest that the Operational Considerations section include some discussion of how operators might migrate from existing or external inventory systems to the YANG-based model defined in this document. In many deployments, legacy inventory databases use proprietary data structures, identifiers, and hierarchical representations that may not align directly with the data model presented here. Providing guidance on expected practices\u2014such as data normalization when importing legacy information, approaches for reconciling differing identifier schemes, and strategies for incremental or hybrid migration (where controllers combine device-reported data with external sources)\u2014would help clarify operational feasibility.\n> \n> Jeff: this depends on different operators and it depends a lot of what has been implemented already.\n> \n> Italo: maybe we can simply state that the existing deployments are based on proprietary inventory OSS and that the migration path is highly dependent on the specific proprietary solution. In simple statement, there are no guidelines because it highly depends what has been already deployed which is different in different operators\n> \n> Jeff: The guidelines are operator dependent and deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing inventory OSSes will also take longer time. In the future, the MDSC could provide inventory information, using this YANG data model, also to next generation OSSes.\n> \n> * [x]  [@italobusi](https://github.com/italobusi) provide some text proposal for review in future calls\n> \n> > It may also be useful to describe how conflicts between device-derived and legacy inventory data are expected to be handled, and to note that certain categories of legacy information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model and may require augmentations or mediation layers. Including this clarification would assist operators in planning a realistic transition path and would strengthen the operational guidance provided by the draft.\n> \n> Jeff: for the network devices under the control of a controller, the controller is the source of truth for the inventory data in the scope of this model.\n> \n> * [x]  [@italobusi](https://github.com/italobusi) provide some text proposal for review in future calls, clarifying also that that certain categories of legacy information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model.\n\n",
+          "createdAt": "2025-12-10T16:43:49Z",
+          "updatedAt": "2025-12-10T16:43:49Z"
         }
       ]
     },
@@ -4762,7 +4769,7 @@
       ],
       "body": "> Hi Daniele, chairs, IVY WG,\n> \n> I support the document.\n> it is the foundation of inventory and provide the base information that can be augmented for technology specific cases. \n> The document is ready to go ahead with some comments , we (as co-authors/contributors) need to consider . \n> \n> Support\n> \n> Thanks\n> Sergio (as co-author)\n> \n> \n> \n> Here my comments:\n> Sec. 3.3 \n> At the beginning of the section it is said : \u201c\u2026..In addition to the common attributes defined for network elements and components in Section 3.1, the following attributes are defined for\n>    the network elements.\n> But the section is related to \u201ccomponent\u201d attributes .\n> \n> component -id : the comment is related to components but is more general through the document: we need to better describe the server role. We need to better describe here who is taking care the assignment of identifier. Le sentence here is clearly supposing the scenario of a domain controller PNC (the server with respect a MDSC/hierarchical controller) with the device/NE embedded controller. But the scenario could be also the one in which the server is multi-domain controller with on top an OSS or another MDSC (MDSC can be hierarchical) . Also saying NE is too generic, what about \u201cdevice controller\u201d, theoretically you could also have more than one device controller in an NE depending on the number of management interfaces. \n> \n> Sec. 5\n> Serial-number : the description in the data node is not aligned with attribute definition in Sec. 3.3: the attribute is a component attribute and in the YANG description we refer network element instance while in 3.3. we correctly indicate component instances.\n> \n> Editorial\n> \n> Appendix D/D.1\n> -There is typo in the figure 4, s/ 2) Emply hole (port)/Empty hole (port)\n> -Parent and parent-rel-pos data nodes should be inverted in the order of appearance in the example (following the tree)\n> \n> Appendix E\n> JSON multi-chassis example:\n> Line 191 : in the description \u201cTransceiver module plugged in the first stack port of the first switch in the stack\u201d , it is the second switch in the stack \n> Line 209: same problem, s/first switch/second switch\n> Line 243: \u201c\"description\": \"Second stack port of the second switch in the stack.\", s/ second switch in the stack/third switch in the stack\n> Line 422: s/ \"parent-rel-pos\": 4/ \"parent-rel-pos\": 5\n> \n> To be added:\n>                {\n>                 \"component-id\": \"slot-2-16\",\n>                 \"class\": \"iana-hardware:container\",\n>                 \"description\": \"Empty slot 16 of the third chassis of the cascaded switch.\",\n>                 \"parent\": [\n>                   \"chassis-2\"\n>                 ],\n>                 \"parent-rel-pos\": 16\n>               },\n> \n> Not Blocking issue:\n> \n> Appendix F\n> Regarding non-modular NE, the appendix does not report the promised examples . It would be good to add at least one example of pizza-box in alignment with what done with multi-chassis case \n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/qUQGftqR_YsV7FGCyDkoKN9Omvw/",
       "createdAt": "2025-11-20T18:26:48Z",
-      "updatedAt": "2025-12-04T15:39:16Z",
+      "updatedAt": "2025-12-10T16:47:55Z",
       "closedAt": null,
       "comments": [
         {
@@ -4775,9 +4782,9 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "> * [@italobusi](https://github.com/italobusi) check offline and discuss in the next calls, if needed\n\nProposed reply:\n\n> Hi Daniele, chairs, IVY WG,\n> \n> I support the document.\n> it is the foundation of inventory and provide the base information that can be augmented for technology specific cases. \n> The document is ready to go ahead with some comments , we (as co-authors/contributors) need to consider . \n> \n> Support\n> \n> Thanks\n> Sergio (as co-author)\n> \n> \n> \n> Here my comments:\n> Sec. 3.3 \n> At the beginning of the section it is said : \u201c\u2026..In addition to the common attributes defined for network elements and components in Section 3.1, the following attributes are defined for\n>    the network elements.\n> But the section is related to \u201ccomponent\u201d attributes .\n> \n\nAuthors: Fixed\n\n> component -id : the comment is related to components but is more general through the document: we need to better describe the server role. We need to better describe here who is taking care the assignment of identifier. Le sentence here is clearly supposing the scenario of a domain controller PNC (the server with respect a MDSC/hierarchical controller) with the device/NE embedded controller. But the scenario could be also the one in which the server is multi-domain controller with on top an OSS or another MDSC (MDSC can be hierarchical) . Also saying NE is too generic, what about \u201cdevice controller\u201d, theoretically you could also have more than one device controller in an NE depending on the number of management interfaces. \n> \n\nSee #149 \n\n> Sec. 5\n> Serial-number : the description in the data node is not aligned with attribute definition in Sec. 3.3: the attribute is a component attribute and in the YANG description we refer network element instance while in 3.3. we correctly indicate component instances.\n> \n\nAuthors: Fixed the YANG description\n\n> Editorial\n> \n> Appendix D/D.1\n> -There is typo in the figure 4, s/ 2) Emply hole (port)/Empty hole (port)\n\nAuthors: Fixed\n\n> -Parent and parent-rel-pos data nodes should be inverted in the order of appearance in the example (following the tree)\n> \n\nAuthors: Changed the order in the YANG tree\n\n> Appendix E\n> JSON multi-chassis example:\n> Line 191 : in the description \u201cTransceiver module plugged in the first stack port of the first switch in the stack\u201d , it is the second switch in the stack \n> Line 209: same problem, s/first switch/second switch\n> Line 243: \u201c\"description\": \"Second stack port of the second switch in the stack.\", s/ second switch in the stack/third switch in the stack\n> Line 422: s/ \"parent-rel-pos\": 4/ \"parent-rel-pos\": 5\n> \n\nAuthors: Fixed all the above\n\n> To be added:\n>                {\n>                 \"component-id\": \"slot-2-16\",\n>                 \"class\": \"iana-hardware:container\",\n>                 \"description\": \"Empty slot 16 of the third chassis of the cascaded switch.\",\n>                 \"parent\": [\n>                   \"chassis-2\"\n>                 ],\n>                 \"parent-rel-pos\": 16\n>               },\n> \n\nAuthors: Done with the description updated as \"Slot 16 of the second chassis of the cascaded switch.\"\n\n> Not Blocking issue:\n> \n> Appendix F\n> Regarding non-modular NE, the appendix does not report the promised examples . It would be good to add at least one example of pizza-box in alignment with what done with multi-chassis case \n> \n\n-  [ ] @ggalimba56 please help providing a figure in ASCII art",
+          "body": "> - [x] [@italobusi](https://github.com/italobusi) check offline and discuss in the next calls, if needed\n\nProposed reply:\n\n> Hi Daniele, chairs, IVY WG,\n> \n> I support the document.\n> it is the foundation of inventory and provide the base information that can be augmented for technology specific cases. \n> The document is ready to go ahead with some comments , we (as co-authors/contributors) need to consider . \n> \n> Support\n> \n> Thanks\n> Sergio (as co-author)\n> \n> \n> \n> Here my comments:\n> Sec. 3.3 \n> At the beginning of the section it is said : \u201c\u2026..In addition to the common attributes defined for network elements and components in Section 3.1, the following attributes are defined for\n>    the network elements.\n> But the section is related to \u201ccomponent\u201d attributes .\n> \n\nAuthors: Fixed\n\n> component -id : the comment is related to components but is more general through the document: we need to better describe the server role. We need to better describe here who is taking care the assignment of identifier. Le sentence here is clearly supposing the scenario of a domain controller PNC (the server with respect a MDSC/hierarchical controller) with the device/NE embedded controller. But the scenario could be also the one in which the server is multi-domain controller with on top an OSS or another MDSC (MDSC can be hierarchical) . Also saying NE is too generic, what about \u201cdevice controller\u201d, theoretically you could also have more than one device controller in an NE depending on the number of management interfaces. \n> \n\nSee #149 \n\n> Sec. 5\n> Serial-number : the description in the data node is not aligned with attribute definition in Sec. 3.3: the attribute is a component attribute and in the YANG description we refer network element instance while in 3.3. we correctly indicate component instances.\n> \n\nAuthors: Fixed the YANG description\n\n> Editorial\n> \n> Appendix D/D.1\n> -There is typo in the figure 4, s/ 2) Emply hole (port)/Empty hole (port)\n\nAuthors: Fixed\n\n> -Parent and parent-rel-pos data nodes should be inverted in the order of appearance in the example (following the tree)\n> \n\nAuthors: Changed the order in the YANG tree\n\n> Appendix E\n> JSON multi-chassis example:\n> Line 191 : in the description \u201cTransceiver module plugged in the first stack port of the first switch in the stack\u201d , it is the second switch in the stack \n> Line 209: same problem, s/first switch/second switch\n> Line 243: \u201c\"description\": \"Second stack port of the second switch in the stack.\", s/ second switch in the stack/third switch in the stack\n> Line 422: s/ \"parent-rel-pos\": 4/ \"parent-rel-pos\": 5\n> \n\nAuthors: Fixed all the above\n\n> To be added:\n>                {\n>                 \"component-id\": \"slot-2-16\",\n>                 \"class\": \"iana-hardware:container\",\n>                 \"description\": \"Empty slot 16 of the third chassis of the cascaded switch.\",\n>                 \"parent\": [\n>                   \"chassis-2\"\n>                 ],\n>                 \"parent-rel-pos\": 16\n>               },\n> \n\nAuthors: Done with the description updated as \"Slot 16 of the second chassis of the cascaded switch.\"\n\n> Not Blocking issue:\n> \n> Appendix F\n> Regarding non-modular NE, the appendix does not report the promised examples . It would be good to add at least one example of pizza-box in alignment with what done with multi-chassis case \n> \n\n-  [ ] @ggalimba56 please help providing a figure in ASCII art\n\nSee draft PR #151 ",
           "createdAt": "2025-12-04T12:55:59Z",
-          "updatedAt": "2025-12-04T15:39:16Z"
+          "updatedAt": "2025-12-10T16:47:55Z"
         }
       ]
     },
@@ -4798,7 +4805,7 @@
       ],
       "body": "> Hi IVY WG and chairs,\n> \n> I have reviewed the draft and I think it is ready to move forward after having addressed the comments received so far as well as the few nits reported below\n> \n> \n> Nits:\n> \n> 1) Section 2.2: the definitions of chassis and port shall be moved after the text \"Also, the document makes use of the following terms:\"\n> \n> 2) Section 3: the first paragraph should be closed with a period (.)\n> \n> 3) Section 5: the date of the module in the `<CODE BEGIN>` tag does not match the revision date within the module\n> \n> 4) Appendix E: the formatting of the list bullets in the third paragraph is messed up (kramdown syntax issue)\n> \n> 5) Appendix E: same issue as above in the second paragraph after Figure 6\n> \n> 6) Acknowledgment: It would be worthwhile adding acknowledgement also to other people, not listed as co-authors or contributors, who have provided input on the IVY WG mailing list discussions\n> \n> Italo (as co-author)\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/7hlml08X0vPFwqmI39-AQxWAG1I/",
       "createdAt": "2025-12-01T10:38:00Z",
-      "updatedAt": "2025-12-04T16:18:14Z",
+      "updatedAt": "2025-12-10T16:47:22Z",
       "closedAt": null,
       "comments": [
         {
@@ -4811,9 +4818,9 @@
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "> * [@italobusi](https://github.com/italobusi) check offline and discuss in the next calls, if needed\n\nProposed reply:\n\n> Hi IVY WG and chairs,\n> \n> I have reviewed the draft and I think it is ready to move forward after having addressed the comments received so far as well as the few nits reported below\n> \n> \n> Nits:\n> \n> 1) Section 2.2: the definitions of chassis and port shall be moved after the text \"Also, the document makes use of the following terms:\"\n> \n\nAuthors: Fixed\n\n> 2) Section 3: the first paragraph should be closed with a period (.)\n> \n\nAuthors: Fixed\n\n> 3) Section 5: the date of the module in the `<CODE BEGIN>` tag does not match the revision date within the module\n> \n\nAuthors: Fixed\n\n> 4) Appendix E: the formatting of the list bullets in the third paragraph is messed up (kramdown syntax issue)\n> \n\nAuthors: Fixed\n\n> 5) Appendix E: same issue as above in the second paragraph after Figure 6\n> \n\nAuthors: Fixed\n\n> 6) Acknowledgment: It would be worthwhile adding acknowledgement also to other people, not listed as co-authors or contributors, who have provided input on the IVY WG mailing list discussions\n> \n\n- [ ] Help needed in searching on the IVY WG mailing list for contributions from people not listed as authors or contributors\n\n> Italo (as co-author)\n",
+          "body": "> - [x] [@italobusi](https://github.com/italobusi) check offline and discuss in the next calls, if needed\n\nProposed reply:\n\n> Hi IVY WG and chairs,\n> \n> I have reviewed the draft and I think it is ready to move forward after having addressed the comments received so far as well as the few nits reported below\n> \n> \n> Nits:\n> \n> 1) Section 2.2: the definitions of chassis and port shall be moved after the text \"Also, the document makes use of the following terms:\"\n> \n\nAuthors: Fixed\n\n> 2) Section 3: the first paragraph should be closed with a period (.)\n> \n\nAuthors: Fixed\n\n> 3) Section 5: the date of the module in the `<CODE BEGIN>` tag does not match the revision date within the module\n> \n\nAuthors: Fixed\n\n> 4) Appendix E: the formatting of the list bullets in the third paragraph is messed up (kramdown syntax issue)\n> \n\nAuthors: Fixed\n\n> 5) Appendix E: same issue as above in the second paragraph after Figure 6\n> \n\nAuthors: Fixed\n\n> 6) Acknowledgment: It would be worthwhile adding acknowledgement also to other people, not listed as co-authors or contributors, who have provided input on the IVY WG mailing list discussions\n> \n\n- [ ] Help needed in searching on the IVY WG mailing list for contributions from people not listed as authors or contributors\n\n> Italo (as co-author)\n\nSee draft PR #151 ",
           "createdAt": "2025-12-04T16:18:13Z",
-          "updatedAt": "2025-12-04T16:18:13Z"
+          "updatedAt": "2025-12-10T16:47:22Z"
         }
       ]
     },
@@ -4909,7 +4916,7 @@
       "id": "I_kwDOKiDYo87bhVsS",
       "title": "WG LC comments from Roberto on draft-ietf-ivy-network-inventory-yang-11",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/147",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4920,15 +4927,29 @@
       ],
       "body": "> Hi Ivy WG and chairs,\n> \n>  \n> \n> I have read the draft, and I support its publication.\n> \n> I think is ready to move on with the fix of few additional nits that I have\n> found on top of the one already shared in this thread.\n> \n>  \n> \n> Thanks\n> \n> Regards\n> \n> Roberto\n> \n>  \n> \n>  \n> \n> Section 2.2 Slot definition:\n> \n> For completeness is better to also add the sub-slot can be present in Card\n> component, as also stated in the Card definition.\n> \n>  \n> \n> Section 3.3.2: \n> \n> In the definition of software-rev list for a components we used\n> \"boot-loader\" as an example of active software module, while in the last\n> sentence of the section (left from previous document revision) bootloader is\n> indicated as out of scope. Either we consider to remove \"boot-loader\" from\n> the example or we rephrase/remove the last sentence. I'm more inclined to\n> the second option since we added the software-rev list with exactly the\n> scope to mange different active software modules.\n> \n>  \n> \n> Section 7:\n> \n> The sentence \"Specifically, the following subtrees and data nodes have\n> particular sensitivities/vulnerabilities:\" is present twice, before and\n> after the page break.\n> \n>  \n> \n> Appendix A:\n> \n> *\tIn the comparison table with oc-platfomr there are still few line\n> with \"TBD\"  in the remarks column, I think they should be addressed while\n> working on LC review fix and before moving on with publication\n> *\tstorage/cpu: it could make sense to indicate them as \"technology\n> specific\" instead of indicating as not required for Optical/IP?\n> *\tBackplane: \"is considered part of board\", better to change in \"is\n> considered part of chassis\"\n> \n>  \n> \n> Appendix C:\n> \n> The document is referenced as \"this draft\" inf few places, should be changed\n> in \"this document\" or \"this RFC\"\n> \n>  \n> \n> Appendix D.1:\n> \n> The example do not include breakouts anymore, so I would suggest the\n> following change in the item description:\n> \n> *\tChange the description for NE-1 to: \"Network element example with\n> fixed and pluggable ports\"\n> *\tChange the description for the board-1 component to \"Board example\n> with fixed and pluggable ports\"\n> \n>  \n> \n> Appendix E:\n> \n> *\tuse Priority/MAC-Addr(s) **to** decide Master/Members\n> \n>  \n> \n> Appendix F:\n> \n> *\tI would remove \"(with a 1U horizontal oriented rectangular shape)\"\n> as part of the Non-modular NE description since this is not strictly true,\n> it can be 2 or 3 RU or even any other shape.\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/pa5Qi7mFxE-y_aHI2EHGzVIvCXw/",
       "createdAt": "2025-12-01T21:30:19Z",
-      "updatedAt": "2025-12-04T15:30:17Z",
-      "closedAt": null,
+      "updatedAt": "2025-12-10T16:56:15Z",
+      "closedAt": "2025-12-10T16:48:21Z",
       "comments": [
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2025-12-03 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-12-03)**\n\n- [ ] @manzoro submit a PR proposing the resolution of these comments\n",
+          "body": "**[2025-12-03 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-12-03)**\n\n- [x] @manzoro submit a PR proposing the resolution of these comments\n",
           "createdAt": "2025-12-04T15:30:17Z",
-          "updatedAt": "2025-12-04T15:30:17Z"
+          "updatedAt": "2025-12-10T16:35:08Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2025-12-10 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-12-10)**\n\n> * [@manzoro](https://github.com/manzoro) submit a PR proposing the resolution of these comments\n\n[PR #150 ](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/150) submitted and reviewed\n\nAddressed PR review comments:\n\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/150/files#r2607165369\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/150/files#r2607158152\n- https://github.com/ietf-ivy-wg/network-inventory-yang/pull/150/files#r2607161216\n\n- [x] @manzoro merge the PR",
+          "createdAt": "2025-12-10T16:37:58Z",
+          "updatedAt": "2025-12-10T16:56:15Z"
+        },
+        {
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "body": "PR #150 merged to main and closing the issue",
+          "createdAt": "2025-12-10T16:48:21Z",
+          "updatedAt": "2025-12-10T16:48:21Z"
         }
       ]
     },
@@ -10623,6 +10644,186 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 150,
+      "id": "PR_kwDOKiDYo86368t4",
+      "title": "Proposed change to address comments in issue #147",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/150",
+      "state": "MERGED",
+      "author": "manzoro",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As agreed in last call I'm providing a PR to address my WGLC comments. \r\nI also provided comment to remove the TBD left over in OpenConfig comparison table. \r\nPlease review and comment\r\nThanks",
+      "createdAt": "2025-12-09T13:36:59Z",
+      "updatedAt": "2025-12-10T16:46:52Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "3797f87d54fd2052e11798680dec5acd08db7462",
+      "headRepository": "ietf-ivy-wg/network-inventory-yang",
+      "headRefName": "issue-147",
+      "headRefOid": "ac0c799146160756f65a7ac01aa00cb2d5e5c821",
+      "closedAt": "2025-12-10T16:46:51Z",
+      "mergedAt": "2025-12-10T16:46:51Z",
+      "mergedBy": "manzoro",
+      "mergeCommit": {
+        "oid": "d9fe5920342939b3c6c925a87d35518940c3f10b"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo87UE5--",
+          "commit": {
+            "abbreviatedOid": "9ea381a"
+          },
+          "author": "jbouqui153",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-12-09T15:24:56Z",
+          "updatedAt": "2025-12-09T15:26:14Z",
+          "comments": [
+            {
+              "originalPosition": 87,
+              "body": "typo: documet\r\n```suggestion\r\nThe model proposed by this document is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this document. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.\r\n```",
+              "createdAt": "2025-12-09T15:24:56Z",
+              "updatedAt": "2025-12-09T15:26:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87UIiHn",
+          "commit": {
+            "abbreviatedOid": "785faea"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Thanks for having addressed some TBD in the OpenConfig appendix: I have some comments on the proposed updates to be discussed\r\n\r\nAll the other proposed text changes look ok for me",
+          "createdAt": "2025-12-09T18:29:30Z",
+          "updatedAt": "2025-12-09T18:36:31Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "IANA-HW defines an identity for power-supply:\r\n\r\n```\r\n  identity power-supply {\r\n    base ianahw:hardware-class;\r\n    description\r\n      \"This identity is applicable if the hardware class is a\r\n       power-supplying component.\";\r\n  }\r\n\r\n```\r\n\r\nHowever, I am not sure there is a perfect match since IANA-HW also defines identities for energy-object (definition quite unclear) and battery:\r\n\r\n```\r\n  identity energy-object {\r\n    base ianahw:hardware-class;\r\n    description\r\n      \"This identity is applicable if the hardware class is some sort\r\n       of energy object, i.e., it is a piece of equipment that is\r\n       part of or attached to a communications network that is\r\n       monitored, it is controlled, or it aids in the management of\r\n       another device for Energy Management.\";\r\n  }\r\n\r\n  identity battery {\r\n    base ianahw:hardware-class;\r\n    description\r\n      \"This identity is applicable if the hardware class is some sort\r\n       of battery.\";\r\n  }\r\n\r\n```",
+              "createdAt": "2025-12-09T18:29:31Z",
+              "updatedAt": "2025-12-09T18:36:31Z"
+            },
+            {
+              "originalPosition": 68,
+              "body": "IANA-HW defines an identity for storage-drive:\r\n\r\n```\r\n  identity storage-drive {\r\n    base ianahw:hardware-class;\r\n    description\r\n      \"This identity is applicable if the hardware class is some sort\r\n       of component with data storage capability as its main\r\n       functionality, e.g., hard disk drive (HDD), solid-state device\r\n       (SSD), solid-state hybrid drive (SSHD), object storage device\r\n       (OSD), or other.\";\r\n  }\r\n\r\n```",
+              "createdAt": "2025-12-09T18:33:08Z",
+              "updatedAt": "2025-12-09T18:36:31Z"
+            },
+            {
+              "originalPosition": 69,
+              "body": "IANA-HW defines an identity for cpu:\r\n\r\n```\r\n  identity cpu {\r\n    base ianahw:hardware-class;\r\n    description\r\n      \"This identity is applicable if the hardware class is some sort\r\n       of central processing unit.\";\r\n  }\r\n\r\n```",
+              "createdAt": "2025-12-09T18:33:50Z",
+              "updatedAt": "2025-12-09T18:36:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87UYc-y",
+          "commit": {
+            "abbreviatedOid": "785faea"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-12-10T15:36:58Z",
+          "updatedAt": "2025-12-10T15:36:59Z",
+          "comments": [
+            {
+              "originalPosition": 68,
+              "body": "**[2025-12-10 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-12-10)**\r\n\r\n```suggestion\r\n| storage                    | storage-drive            |                          |\r\n```",
+              "createdAt": "2025-12-10T15:36:58Z",
+              "updatedAt": "2025-12-10T15:36:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87UYeI7",
+          "commit": {
+            "abbreviatedOid": "785faea"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-12-10T15:37:51Z",
+          "updatedAt": "2025-12-10T15:37:51Z",
+          "comments": [
+            {
+              "originalPosition": 69,
+              "body": "**[2025-12-10 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-12-10)**\r\n\r\n```suggestion\r\n| cpu                        | cpu                      |                          |\r\n```",
+              "createdAt": "2025-12-10T15:37:51Z",
+              "updatedAt": "2025-12-10T15:37:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87UYfg6",
+          "commit": {
+            "abbreviatedOid": "785faea"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-12-10T15:38:59Z",
+          "updatedAt": "2025-12-10T15:38:59Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "**[2025-12-10 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-12-10)**\r\n\r\n```suggestion\r\n| power-supply               | power-supply             |                          |\r\n```",
+              "createdAt": "2025-12-10T15:38:59Z",
+              "updatedAt": "2025-12-10T15:38:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo87UYgo5",
+          "commit": {
+            "abbreviatedOid": "ac0c799"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-12-10T15:40:00Z",
+          "updatedAt": "2025-12-10T15:40:00Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 151,
+      "id": "PR_kwDOKiDYo864Ln9s",
+      "title": "WG LC comments resolution",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/151",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Proposed changes to address:\r\n\r\n- OpsDir review comments: #139\r\n- WG LC comments from Sergio: #142\r\n- WG LC comments from Italo: issue #143\r\n- WG LC comments from Bo: issue #145 \r\n- YDR comments: issue #144 \r\n",
+      "createdAt": "2025-12-10T16:42:22Z",
+      "updatedAt": "2025-12-10T16:42:22Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "3797f87d54fd2052e11798680dec5acd08db7462",
+      "headRepository": "italobusi/network-inventory-yang",
+      "headRefName": "wg-lc-res",
+      "headRefOid": "8f1bfa25336b130e2025d093e55d5ba5855f8197",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
