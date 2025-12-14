@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-12-11T01:04:15.589429+00:00",
+  "timestamp": "2025-12-14T01:08:43.174481+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -3261,7 +3261,7 @@
       ],
       "body": "PR #73 has proposed to integrate pyang validation in your ci/cd chain and make sure that changes are clean and do not break the validation and automatically generate the YANG trees (the level, etc. can be controlled)\r\n\r\nPR #73 has been close due to conflicts but it would be useful to integrate pyang validation in the github CI/CD chain",
       "createdAt": "2025-01-29T19:03:47Z",
-      "updatedAt": "2025-04-16T18:55:33Z",
+      "updatedAt": "2025-12-12T11:33:46Z",
       "closedAt": null,
       "comments": [
         {
@@ -3319,6 +3319,13 @@
           "body": "**[2025-04-16 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-04-16)**\n\nA call has been organized on April 28 and a call for volunteers to work on this topic has been sent to Netmod WG mailing list: https://mailarchive.ietf.org/arch/msg/netmod/2Orsi3aCtZKcjSZLFIYkcWqFAOc/\n\nAnybody who is interested to contribution can reply to the call for volunteers\n\n- [ ] @prmanna @italobusi report when there is any progress which can be adopted in our GitHub for better CI/CD integration\n",
           "createdAt": "2025-04-16T18:55:32Z",
           "updatedAt": "2025-04-16T18:55:32Z"
+        },
+        {
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "An update on this one: I think https://github.com/IETF-OPS-AD/I-D-with-yang-template is now ready to cover yang validation, automatic tree generation, example validation. ",
+          "createdAt": "2025-12-12T11:33:46Z",
+          "updatedAt": "2025-12-12T11:33:46Z"
         }
       ]
     },
@@ -4736,11 +4743,11 @@
       "assignees": [],
       "labels": [
         "priority-1",
-        "wait-WG"
+        "wait-sub"
       ],
       "body": "WG LC started on November 17, 2025\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/7pXC1fCbPjmG06fqbWzhIdKi-Ts/\n",
       "createdAt": "2025-11-19T16:11:15Z",
-      "updatedAt": "2025-12-04T18:27:53Z",
+      "updatedAt": "2025-12-11T17:10:58Z",
       "closedAt": null,
       "comments": [
         {
@@ -4834,12 +4841,13 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
-        "needs discussion",
-        "priority-1"
+        "priority-1",
+        "wait-issue",
+        "wait-PR-text"
       ],
       "body": "> Document: draft-ietf-ivy-network-inventory-yang\n> Title: A Base YANG Data Model for Network Inventory\n> Reviewer: Reshad Rahman\n> Review result: Ready with Issues\n> \n> Please bear in mind that I haven't followed discussions on this document...\n> \n> Issues (maybe)\n> ==============\n> \n> - The model is read-only and the reasoning is explained in section 6. Did the\n> authors consider having a read-write model and using access control, i.e NACM.\n> Section 6 states: \"The information in the model is populated by controller by\n> reading it\n>    from the devices using the device model supported by the devices.\". That is\n>    one way of doing it, but another implementation may want to populate the\n>    data via a read-write model?\n> \n> - For the inventory I was expecting something which would tell me the \"state\"\n> of a network element e.g. is it in production, in a lab or a spare device? I\n> realize that the current expected implementation (section 6) is to read data\n> from the devices so it assumes that the devices are deployed, but an inventory\n> is also useful for the devices from which we can't (yet) read. Or is this use\n> case deemed outside the scope of this document?\n> \n> Comments/questions\n> ==================\n> \n> - Introduction:\n>    Network\n>    inventory management is a critical part for ensuring that the network\n>    remains healthy (e.g., auditing to identify faulty elements)\n> Do we really need inventory mgmt for ensuring that the network remains healthy?\n> \n> - Terminology. The terms borrowed (MDSC, MPI etc) from RFC8453 should be\n> mentioned here?\n> \n> - YANG model\n> \n> In grouping basic-common-entity-attributes, for \"leaf name\" the description\n> says \"If no configured value exists...\". The tree is read-only so that\n> description doesn't currently make sense?\n> \n> parent-rel-pos,  RFC6933 has entPhysicalParentRelPos as -1 .. 2147483647 but\n> parent-rel-pos starts at 0. \n> Also the description says \"only when this component\n> is contained in the network-element or in only 1 parent\", is the 1st part\n> accurate?\n> \n> Ne-type why is only ne-physical defined? Couldn't the network inventory also\n> have virtual appliances/devices? In the description of ne-type, spell out\n> Network Element.\n> \n> In grouping component-attributes, when using\n> ne-component-common-entity-attributes, the refined description states \"physical\n> component\", why is physical specified here I.e. does it have a special meaning?\n> \n> base non-hardware-component-class => add the prefix of this module\n> \n> - Thank you for the many examples. Have they been validated?\n> \n> Regards,\n> Reshad.\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/bh9lEAIRANXxnnSfbC3GX1l05FY/\n",
       "createdAt": "2025-12-01T10:39:31Z",
-      "updatedAt": "2025-12-04T12:53:39Z",
+      "updatedAt": "2025-12-11T17:16:20Z",
       "closedAt": null,
       "comments": [
         {
@@ -4902,14 +4910,23 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
+        "help wanted",
         "needs discussion",
         "priority-1"
       ],
-      "body": "> Hi,\n> \n> Thanks to the authors for all the work on this draft. I've done a review\n> during the Working Group last call.  I find only some nits.\n> \n> Publication would be a good thing.\n> \n> Have fun,\n> Adrian\n> \n> ===\n> \n> 1. para 1\n> s/I-D/document/\n> \n> ---\n> \n> 1.\n> \n>    Network inventory is a fundamental functional block in the overall\n>    network management which was specified many years ago.\n> \n> This feels a bit like you are asserting something and saying the reader\n> doesn't need to worry about it. Have you got a reference?\n> \n> ---\n> \n> 1.\n> \n>    Network\n>    inventory management is a critical part for ensuring that the network\n>    remains healthy (e.g., auditing to identify faulty elements), well-\n>    planned (e.g., identify assets to upgrade or to decommission), and\n>    maintained appropriately to meet the performance objectives.\n> \n> A critical part of what?\n> Do you mean \"remains well-planned\"?\n> \n> Possibly...\n> \n>    Network\n>    inventory management is a critical component of network management\n>    for ensuring that the network is well-planned (e.g., identify assets\n>    to upgrade or to decommission), remains healthy (e.g., auditing to\n>    identify faulty elements), and is maintained appropriately to meet\n>    the performance objectives.\n> \n> ---\n> \n> There seems to be some discrepancy between the usage of \"network\n> inventory\" and \"network inventory management\".\n> \n> ---\n> \n> 1.\n> \n> s/vendors/vendors'/\n> \n> ---\n> \n> 1.\n> \n> 8309 may be a better reference (or an additional reference) than\n> 8969 for the definition of device model and network model.\n> \n> ---\n> \n> 2.2\n> \n> The terms \"configuration data\" and \"applied configuration\" don't seem to\n> be used in the document.\n> \n> There is some mixture of \"cpu\" and \"CPU\" in the text.\n> \n> ---\n> \n> 3.1\n> \n>    name:  A human-readable label information of the inventory object,\n>       which could be assigned by the server.  It could also be present\n>       on a Graphical User Interface (GUI).\n> \n>    alias:  A human-readable label information of the inventory object,\n>       provided by a network operator.  It could also be present on a GUI\n>       instead as well as the name.\n> \n> In both cases, perhaps s/label information/label/\n> \n> ---\n> \n> 3.1.1\n> \nAdd a title\n*\nTitle\nAdd a description\nMarkdown input: edit mode selected.\nWrite\nPreview\n\n> Is \"human-interpretable\" different from \"human-readable\"?\n> \n> ---\n> \n> 3.2\n> \n> This is the first use of \"NE\".\n> \n> I suggest you put \"(NE)\" in the definition in Section 2.2.\n> \n> ---\n> \n> 3.2\n> \n> s/guaranteed/guarantee/\n> \n> ---\n> \n> 4.\n> \n> s/Figure 2 below/Figure 2/\n> \n> ---\n> \n> Appendixes\n> \n> I think you need a reference to RFC 8792\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/H2zzNmPzW-VtKqSwIAPCC8Lrmmk/",
+      "body": "> Hi,\n> \n> Thanks to the authors for all the work on this draft. I've done a review\n> during the Working Group last call.  I find only some nits.\n> \n> Publication would be a good thing.\n> \n> Have fun,\n> \n> Adrian\n> \n> ===\n> \n> 1. para 1\n> \n> s/I-D/document/\n> \n> ---\n> \n> 1.\n> \n>     Network inventory is a fundamental functional block in the overall\n>     network management which was specified many years ago.\n> \n> This feels a bit like you are asserting something and saying the reader\n> doesn't need to worry about it. Have you got a reference?\n> \n> ---\n> \n> 1.\n> \n>     Network\n>     inventory management is a critical part for ensuring that the network\n>     remains healthy (e.g., auditing to identify faulty elements), well-\n>     planned (e.g., identify assets to upgrade or to decommission), and\n>     maintained appropriately to meet the performance objectives.\n> \n> A critical part of what?\n> \n> Do you mean \"remains well-planned\"?\n> \n> Possibly...\n> \n>     Network\n>     inventory management is a critical component of network management\n>     for ensuring that the network is well-planned (e.g., identify assets\n>     to upgrade or to decommission), remains healthy (e.g., auditing to\n>     identify faulty elements), and is maintained appropriately to meet\n>     the performance objectives.\n> \n> ---\n> \n> There seems to be some discrepancy between the usage of \"network\n> inventory\" and \"network inventory management\".\n> \n> ---\n> \n> 1.\n> \n> s/vendors/vendors'/\n> \n> ---\n> \n> 1.\n> \n> 8309 may be a better reference (or an additional reference) than\n> 8969 for the definition of device model and network model.\n> \n> ---\n> \n> 2.2\n> \n> The terms \"configuration data\" and \"applied configuration\" don't seem to\n> be used in the document.\n> \n> There is some mixture of \"cpu\" and \"CPU\" in the text.\n> \n> ---\n> \n> 3.1\n> \n>     name:  A human-readable label information of the inventory object,\n>        which could be assigned by the server.  It could also be present\n>        on a Graphical User Interface (GUI).\n> \n>     alias:  A human-readable label information of the inventory object,\n>        provided by a network operator.  It could also be present on a GUI\n>        instead as well as the name.\n> \n> In both cases, perhaps s/label information/label/\n> \n> ---\n> \n> 3.1.1\n> \n> Is \"human-interpretable\" different from \"human-readable\"?\n> \n> ---\n> \n> 3.2\n> \n> This is the first use of \"NE\".\n> \n> I suggest you put \"(NE)\" in the definition in Section 2.2.\n> \n> ---\n> \n> 3.2\n> \n> s/guaranteed/guarantee/\n> \n> ---\n> \n> 4.\n> \n> s/Figure 2 below/Figure 2/\n> \n> ---\n> \n> Appendixes\n> \n> I think you need a reference to RFC 8792\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/H2zzNmPzW-VtKqSwIAPCC8Lrmmk/",
       "createdAt": "2025-12-01T21:28:53Z",
-      "updatedAt": "2025-12-03T15:54:37Z",
+      "updatedAt": "2025-12-11T17:36:56Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Proposed reply:\n\n> Hi,\n> \n> Thanks to the authors for all the work on this draft. I've done a review\n> during the Working Group last call.  I find only some nits.\n> \n> Publication would be a good thing.\n> \n> Have fun,\n> \n> Adrian\n> \n> ===\n> \n> 1. para 1\n> \n> s/I-D/document/\n> \n\nItalo: Ok\n\n> ---\n> \n> 1.\n> \n>     Network inventory is a fundamental functional block in the overall\n>     network management which was specified many years ago.\n> \n> This feels a bit like you are asserting something and saying the reader\n> doesn't need to worry about it. Have you got a reference?\n> \n\nItalo: Need help\n\n> ---\n> \n> 1.\n> \n>     Network\n>     inventory management is a critical part for ensuring that the network\n>     remains healthy (e.g., auditing to identify faulty elements), well-\n>     planned (e.g., identify assets to upgrade or to decommission), and\n>     maintained appropriately to meet the performance objectives.\n> \n> A critical part of what?\n> \n> Do you mean \"remains well-planned\"?\n> \n> Possibly...\n> \n>     Network\n>     inventory management is a critical component of network management\n>     for ensuring that the network is well-planned (e.g., identify assets\n>     to upgrade or to decommission), remains healthy (e.g., auditing to\n>     identify faulty elements), and is maintained appropriately to meet\n>     the performance objectives.\n> \n\nItalo: Ok\n\n> ---\n> \n> There seems to be some discrepancy between the usage of \"network\n> inventory\" and \"network inventory management\".\n> \n\nItalo: Need discussion\n\n> ---\n> \n> 1.\n> \n> s/vendors/vendors'/\n> \n\nItalo: Ok\n\n> ---\n> \n> 1.\n> \n> 8309 may be a better reference (or an additional reference) than\n> 8969 for the definition of device model and network model.\n> \n\nItalo: Ok\n\n> ---\n> \n> 2.2\n> \n> The terms \"configuration data\" and \"applied configuration\" don't seem to\n> be used in the document.\n> \n\nItalo: Remove these terms\n\n> There is some mixture of \"cpu\" and \"CPU\" in the text.\n> \n\nItalo: Ok\n\n> ---\n> \n> 3.1\n> \n>     name:  A human-readable label information of the inventory object,\n>        which could be assigned by the server.  It could also be present\n>        on a Graphical User Interface (GUI).\n> \n>     alias:  A human-readable label information of the inventory object,\n>        provided by a network operator.  It could also be present on a GUI\n>        instead as well as the name.\n> \n> In both cases, perhaps s/label information/label/\n> \n\nItalo: Ok\n\n> ---\n> \n> 3.1.1\n> \n> Is \"human-interpretable\" different from \"human-readable\"?\n> \n\nItalo: Need help\n\n> ---\n> \n> 3.2\n> \n> This is the first use of \"NE\".\n> \n> I suggest you put \"(NE)\" in the definition in Section 2.2.\n> \n\nItalo: Ok\n\n> ---\n> \n> 3.2\n> \n> s/guaranteed/guarantee/\n> \n\nItalo: Ok\n\n> ---\n> \n> 4.\n> \n> s/Figure 2 below/Figure 2/\n> \n\nItalo: Ok\n\n> ---\n> \n> Appendixes\n> \n> I think you need a reference to RFC 8792\n> \n\nItalo: Ok\n",
+          "createdAt": "2025-12-11T17:33:09Z",
+          "updatedAt": "2025-12-11T17:36:56Z"
+        }
+      ]
     },
     {
       "number": 147,
@@ -4927,7 +4944,7 @@
       ],
       "body": "> Hi Ivy WG and chairs,\n> \n>  \n> \n> I have read the draft, and I support its publication.\n> \n> I think is ready to move on with the fix of few additional nits that I have\n> found on top of the one already shared in this thread.\n> \n>  \n> \n> Thanks\n> \n> Regards\n> \n> Roberto\n> \n>  \n> \n>  \n> \n> Section 2.2 Slot definition:\n> \n> For completeness is better to also add the sub-slot can be present in Card\n> component, as also stated in the Card definition.\n> \n>  \n> \n> Section 3.3.2: \n> \n> In the definition of software-rev list for a components we used\n> \"boot-loader\" as an example of active software module, while in the last\n> sentence of the section (left from previous document revision) bootloader is\n> indicated as out of scope. Either we consider to remove \"boot-loader\" from\n> the example or we rephrase/remove the last sentence. I'm more inclined to\n> the second option since we added the software-rev list with exactly the\n> scope to mange different active software modules.\n> \n>  \n> \n> Section 7:\n> \n> The sentence \"Specifically, the following subtrees and data nodes have\n> particular sensitivities/vulnerabilities:\" is present twice, before and\n> after the page break.\n> \n>  \n> \n> Appendix A:\n> \n> *\tIn the comparison table with oc-platfomr there are still few line\n> with \"TBD\"  in the remarks column, I think they should be addressed while\n> working on LC review fix and before moving on with publication\n> *\tstorage/cpu: it could make sense to indicate them as \"technology\n> specific\" instead of indicating as not required for Optical/IP?\n> *\tBackplane: \"is considered part of board\", better to change in \"is\n> considered part of chassis\"\n> \n>  \n> \n> Appendix C:\n> \n> The document is referenced as \"this draft\" inf few places, should be changed\n> in \"this document\" or \"this RFC\"\n> \n>  \n> \n> Appendix D.1:\n> \n> The example do not include breakouts anymore, so I would suggest the\n> following change in the item description:\n> \n> *\tChange the description for NE-1 to: \"Network element example with\n> fixed and pluggable ports\"\n> *\tChange the description for the board-1 component to \"Board example\n> with fixed and pluggable ports\"\n> \n>  \n> \n> Appendix E:\n> \n> *\tuse Priority/MAC-Addr(s) **to** decide Master/Members\n> \n>  \n> \n> Appendix F:\n> \n> *\tI would remove \"(with a 1U horizontal oriented rectangular shape)\"\n> as part of the Non-modular NE description since this is not strictly true,\n> it can be 2 or 3 RU or even any other shape.\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/pa5Qi7mFxE-y_aHI2EHGzVIvCXw/",
       "createdAt": "2025-12-01T21:30:19Z",
-      "updatedAt": "2025-12-10T16:56:15Z",
+      "updatedAt": "2025-12-12T09:47:22Z",
       "closedAt": "2025-12-10T16:48:21Z",
       "comments": [
         {
@@ -4950,6 +4967,13 @@
           "body": "PR #150 merged to main and closing the issue",
           "createdAt": "2025-12-10T16:48:21Z",
           "updatedAt": "2025-12-10T16:48:21Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Reply mail sent to IVY WG mailing list\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/6mcj4p8BYd5Wa8KAGvoinxFa0QU/",
+          "createdAt": "2025-12-12T09:47:22Z",
+          "updatedAt": "2025-12-12T09:47:22Z"
         }
       ]
     },
@@ -4963,13 +4987,22 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
+        "needs discussion",
         "priority-1"
       ],
       "body": "> Hi all, \n> \n> I have reviewed the document and support it with the following minor feedback:  \n> \n> There are quite a few typos and English grammar nits throughout the document, I can help to remedy those.  \n> \n> Section 1 the text reads \"Exposing standard interfaces to retrieve network elements capabilities\u201d.   Capabilities is a very open term, it would be good to be specific about network inventory.   This is the only time capabilities is mentioned in the document.  \n> \n> 3.3:  \n> part-number:   This is often alphanumeric and not just a number and is defined as a string in the model.  It would be good to rename this leaf as \u201cpart-id\u201d as the common industry term is \u201cPID\u201d which expands to \u201cProduct IDentification\u201d.  \n> \n> Similar comment with \u201cserial-number\u201d which could be renamed to \u201cserial-id\u201d \n> \n> 3.3.1 Figure 1: \n> The diagram references \u201csub-chassis\u201d but that term is not used / defined elsewhere in the document.  Sub-slot is well defined in the definition section.  \n> \n> 3.3.2:  \n> Text \"For each software module, configured to be active, the name and   version information is provided.\u201c    \n> This would be reported for inactive software as well.  \n> \n> The section could use some work.  As Roberto pointed out there are some conflicts in the text.   Terms like \u201cplatform software\u201d which is listed as out of scope could be confused with \u201coperating system\u201d which is in scope.  \n> \n> \n> Appendix A.  Comparison With Openconfig-platform Data Model\n> Would be good to reference the specific version of that model being used for comparison and a reference should be added since it is in a public repository.  \n> \n> \n> Thanks, \n> Phil \n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/PdPeulJvcLAfan0zfFaBaB6pBmQ/",
       "createdAt": "2025-12-03T13:01:28Z",
-      "updatedAt": "2025-12-04T15:52:16Z",
+      "updatedAt": "2025-12-11T17:35:49Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Proposed reply:\n\n> Hi all, \n> \n> I have reviewed the document and support it with the following minor feedback:  \n> \n> There are quite a few typos and English grammar nits throughout the document, I can help to remedy those.  \n> \n> Section 1 the text reads \"Exposing standard interfaces to retrieve network elements capabilities\u201d.   Capabilities is a very open term, it would be good to be specific about network inventory.   This is the only time capabilities is mentioned in the document.  \n> \n\nItalo: need discussion\n\n> 3.3:  \n> part-number:   This is often alphanumeric and not just a number and is defined as a string in the model.  It would be good to rename this leaf as \u201cpart-id\u201d as the common industry term is \u201cPID\u201d which expands to \u201cProduct IDentification\u201d.  \n> \n> Similar comment with \u201cserial-number\u201d which could be renamed to \u201cserial-id\u201d \n> \n\nItalo: need discussion\n\n> 3.3.1 Figure 1: \n> The diagram references \u201csub-chassis\u201d but that term is not used / defined elsewhere in the document.  Sub-slot is well defined in the definition section.  \n> \n\nItalo: remove sub-chassis from the Figure\n\n> 3.3.2:  \n> Text \"For each software module, configured to be active, the name and   version information is provided.\u201c    \n> This would be reported for inactive software as well.  \n> \n> The section could use some work.  As Roberto pointed out there are some conflicts in the text.   Terms like \u201cplatform software\u201d which is listed as out of scope could be confused with \u201coperating system\u201d which is in scope.  \n> \n\nItalo: need discussion\n\n> \n> Appendix A.  Comparison With Openconfig-platform Data Model\n> Would be good to reference the specific version of that model being used for comparison and a reference should be added since it is in a public repository.  \n\nItalo: need discussion\n\n> \n> \n> Thanks, \n> Phil \n> \n",
+          "createdAt": "2025-12-11T17:35:43Z",
+          "updatedAt": "2025-12-11T17:35:43Z"
+        }
+      ]
     },
     {
       "number": 149,
