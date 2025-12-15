@@ -691,13 +691,21 @@ This appendix provides some examples of non-modular network elements and how the
 
 Non-modular network elements (also known as "pizza boxes") are network elements composed by a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field replaceable modules other than pluggable ports.
 
+{{fig-pizza-box}} describes an example of a pizza box with 8 ports.
+
+~~~~ aasvg
+{::include figures/pizza-box-example.txt}
+~~~~
+{:#fig-pizza-box title="Example of an 8 ports pizza box device"}
+
 Using the base network inventory YANG data model a non-modular network element can be modelled as a network element containing only one chassis and ports (as child components of the chassis).
 
 Reporting the single chassis component within a non-modular network element is required because the chassis component is the type of component which provides the physical characteristics of the network element chassis (the network element is defined just as an assembly of components) and its location, using the network inventory YANG data model under definition in {{?I-D.ietf-ivy-network-inventory-location}}.
 
+
 ## JSON Examples
 
-This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}, instantiating the "ietf-network-inventory" module to describe an example of a non-modular network element.
+This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}, instantiating the "ietf-network-inventory" module to describe the pizza box example, as shown in {{fig-pizza-box}}.
 
 ~~~~ ascii-art
 {::include-fold json/pizza-box-example.json}
