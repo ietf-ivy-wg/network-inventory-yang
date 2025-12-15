@@ -84,24 +84,6 @@
                   "pizza-chassis"
                 ],
                 "parent-rel-pos": 8
-              },
-              {
-                "component-id": "port-9",
-                "class": "iana-hardware:port",
-                "description": "Port 9 of the pizza box.",
-                "parent": [
-                  "pizza-chassis"
-                ],
-                "parent-rel-pos": 9
-              },
-              {
-                "component-id": "port-10",
-                "class": "iana-hardware:port",
-                "description": "Port 10 of the pizza box.",
-                "parent": [
-                  "pizza-chassis"
-                ],
-                "parent-rel-pos": 10
               }
             ]
           }
