@@ -87,7 +87,7 @@ module ietf-network-inventory {
 
   identity ne-type {
     description
-      "Base identity for Network Element (NE) types.";
+      "Base identity for network element (NE) types.";
   }
 
   identity ne-physical {

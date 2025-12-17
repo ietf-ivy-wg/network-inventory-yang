@@ -112,27 +112,30 @@ be application- and technology-agnostic. The base data model can be augmented wi
 This document defines a base YANG data model for reporting network inventory
 that is application- and technology-agnostic.  The
 base data model can be augmented to describe application- and technology-specific information.
-Please note that the usage of term "network inventory", in the context of this I-D, is to indicate that it is
+Please note that the usage of term "network inventory", in the context of this document, is to indicate that it is
 describing "network-wide" scope inventory information.
 
 Network Inventory is a collection of data for network devices and their components managed by a specific management system.
 
-Network inventory is a fundamental functional block in the overall network
-management which was specified many years ago. Network inventory management is a critical
-part for ensuring that the network remains healthy (e.g., auditing to identify faulty elements), well-planned (e.g., identify assets to upgrade or to decommission), and maintained appropriately to meet the performance objectives. Also, network inventory
-management allows operators to keep track of which devices are deployed in their networks, including relevant embedded software and
-hardware versions.
+Network inventory management is a fundamental functional block in the overall network
+management which was specified many years ago.
+Network inventory management is a critical component of network management
+for ensuring that the network is well-planned (e.g., identify assets
+to upgrade or to decommission), remains healthy (e.g., auditing to
+identify faulty elements), and is maintained appropriately to meet
+the performance objectives.
+Also, network inventory management allows operators to keep track of which devices are deployed in their networks, including relevant embedded software and hardware versions.
 
 Exposing standard interfaces to retrieve network elements capabilities as maintained in an inventory are key enablers for many applications. For example, {{?I-D.ietf-teas-actn-poi-applicability}} identifies a gap about the lack of YANG data models that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware inventory information available at domain controller level towards
 upper layer systems (e.g., Multi-Domain Service Coordinator (MDSC) or Operations Support Systems (OSS) layers).
 
 It is key for operators to coordinate with the industry towards the use of a
 standard YANG data model for Network Inventory data instead
-of using vendors proprietary APIs.
+of using vendors' proprietary APIs.
 
 {{!RFC8348}} defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller towards the network elements rather than at the northbound interface of a network controller (e.g., toward an application or another hierarchical network controller). However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model presented in this document.
 
-Per the definition of {{?RFC8969}}, the YANG data model defined in {{!RFC8348}} is a device model while the YANG data model defined in this document is a network model.
+Per the definition of {{?RFC8309}} {{?RFC8969}}, the YANG data model defined in {{!RFC8348}} is a device model while the YANG data model defined in this document is a network model.
 
 This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
 
@@ -173,12 +176,7 @@ The following terms are defined in {{!RFC7950}} and are not redefined here:
 
 The following terms are defined in {{!RFC6241}} and are not redefined here:
 
-- configuration data
 - state data
-
-The following terms are defined in {{!RFC8342}} and are not redefined here:
-
-- applied configuration
 
 The following terms are defined in {{?RFC8453}} and are not redefined here:
 
@@ -220,7 +218,7 @@ Network Element:
 : The generalization of the physical network element definition.
 
 Hardware Component:
-: The generalization of the hardware components defined in {{IANA_HW_YANG}} (e.g., backplane, battery, container, cpu, chassis, fan, module, port, power supply, sensor, stack, and storage device components).
+: The generalization of the hardware components defined in {{IANA_HW_YANG}} (e.g., backplane, battery, container, central processing unit (CPU), chassis, fan, module, port, power supply, sensor, stack, and storage device components).
 : The list of hardware components can be extended in future versions of {{IANA_ENTITY_MIB}} (and, consequently, of ({{IANA_HW_YANG}}).
 
 Component:
@@ -251,6 +249,10 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 | ianahw | iana-hardware                   | {{IANA_HW_YANG}} |
 | nwi    | ietf-network-inventory          | RFC XXXX      |
 {:#tab-prefixes title="Prefixes and corresponding YANG modules"}
+
+## Artwork folding
+
+This document uses artwork folding {{?RFC8792}} for better formatting.
 
 # YANG Data Model for Network Inventory Overview {#overview}
 
@@ -299,10 +301,10 @@ uuid:
 : The Universally Unique Identifier (UUID) of the inventory object, assigned by the server. Such identifiers are widely implemented with systems and guaranteed to be globally unique.
 
 name:
-: A human-readable label information of the inventory object, provided by a network operator or by the server. It could also be present on a Graphical User Interface (GUI).
+: A human-readable label of the inventory object, provided by a network operator or by the server. It could also be present on a Graphical User Interface (GUI).
 
 alias:
-: A human-readable label information of the inventory object, provided by a network operator. It could also be present on a GUI instead as well as the name.
+: A human-readable label of the inventory object, provided by a network operator. It could also be present on a GUI instead as well as the name.
 
 description:
 : A human-readable description of the inventory object, provided by a network operator or by the server. The description provides more detailed information to prompt users when performing maintenance operations etc.
@@ -325,7 +327,7 @@ Other software-related attributes are defined in {{sw-inventory}} and applicable
 In addition to the common attributes defined for network elements and components in {{common-attributes}}, the following attributes are defined for the network elements:
 
 ne-id:
-: The identifier that uniquely identifies the NE within the network, assigned by the server since the network elements cannot guaranteed that their local  identifier is unique within the network.
+: The identifier that uniquely identifies the network element (NE) within the network, assigned by the server since the network elements cannot guarantee that their local  identifier is unique within the network.
 : The ne-id should be assigned such that the same network element will always be identified through the same identifier, even if the network elements get disconnected from the network controller. Mechanisms to ensure this (e.g., checking the mfg-name, product-name, management IP address, physical location) are implementation specific and outside the scope of standardization.
 
 ne-type:
@@ -463,7 +465,7 @@ Instead the name is defined as an optional attribute and the component-id is def
 
 # Network Inventory Tree Diagram {#ni-tree}
 
-{{fig-ni-tree}} below shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
+{{fig-ni-tree}} shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
 
 ~~~~ ascii-art
 {::include-fold yang/ietf-network-inventory.tree}
@@ -485,7 +487,7 @@ The network inventory YANG data model defined in the document is intended to rep
 
 It is worth noting that some information reported within this YANG data model can be configured on the device through mechanisms which are outside the scope of this document.
 
-As outlined in {{intro}}, per the definition of {{?RFC8969}}, the network inventory model is a network model.
+As outlined in {{intro}}, per the definition of {{?RFC8309}} {{?RFC8969}}, the network inventory model is a network model.
 
 This information can be provided by a network controller to an higher level hierarchical network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
 
@@ -559,7 +561,7 @@ registry group.
 
 Since more and more devices can be managed by domain controller through OpenConfig, to ensure that our inventory data model can cover these devices' inventory data, we have compared our inventory data model with the "openconfig-platform" model which is the data model used to manage inventory information in OpenConfig.
 
-Openconfig-platform data model is NE-level and uses a generic component concept to describe its inner devices and containers, which is similar to "ietf-hardware" model in {{?RFC8348}}. Since we have also reused the component concept of {{?RFC8348}} in our inventory data model, we can compare the component's attributes between "openconfig-platform" and our model directly , which is stated below:
+Openconfig-platform data model is NE-level and uses a generic component concept to describe its inner devices and containers, which is similar to "ietf-hardware" model in {{?RFC8348}}. Since we have also reused the component concept of {{?RFC8348}} in our inventory data model, we can compare the component's attributes between "openconfig-platform" and our model directly , which is stated in {{tab-oc}}.
 
 | Attributes in oc-platform  | Attributes in our model  | remark                   |
 | -------------------------- | ------------------------ | ------------------------ |
@@ -606,7 +608,7 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | controller-card            |                          | Controller card is considered as a specific functional board. And no need to define as a single component  |
 {:#tab-oc title="Comparison between openconfig platform and inventory data models"}
 
-As it mentioned in {{ne-component}} that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. And for some component specific structures in "openconfig-platform", we consider some of them can be contained by our existing structure, such as fan, backplane, and controller-card, while some others do not need to be included in this network inventory model like storage and cpu.
+As it mentioned in {{ne-component}} that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. And for some component specific structures in "openconfig-platform", we consider some of them can be contained by our existing structure, such as fan, backplane, and controller-card, while some others do not need to be included in this network inventory model like storage and CPU.
 
 Mostly, our inventory data model can cover the attributes from OpenConfig.
 
