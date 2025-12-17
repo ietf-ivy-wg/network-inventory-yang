@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 13 June 2026                                              Nokia
+Expires: 20 June 2026                                              Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                        10 December 2025
+                                                        17 December 2025
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 June 2026.
+   This Internet-Draft will expire on 20 June 2026.
 
 Copyright Notice
 
@@ -2437,6 +2437,16 @@ Appendix F.  Example of non-modular network elements
    take cards so it cannot take any non-field replaceable modules other
    than pluggable ports.
 
+   Figure 8 describes an example of a pizza box with 8 ports.
+
+       +-------------------------------------------------+
+       | +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ |
+       | | 1 | | 2 | | 3 | | 4 | | 5 | | 6 | | 7 | | 8 | |
+       | +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+ |
+       +-------------------------------------------------+
+
+              Figure 8: Example of an 8 ports pizza box device
+
    Using the base network inventory YANG data model a non-modular
    network element can be modelled as a network element containing only
    one chassis and ports (as child components of the chassis).
@@ -2453,7 +2463,7 @@ F.1.  JSON Examples
 
    This appendix contains an example of an instance data tree in JSON
    encoding [RFC7951], instantiating the "ietf-network-inventory" module
-   to describe an example of a non-modular network element.
+   to describe the pizza box example, as shown in Figure 8.
 
    {
      "ietf-network-inventory:network-inventory": {
