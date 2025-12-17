@@ -68,7 +68,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2025-12-04 {
+  revision 2025-12-15 {
     description
       "Initial version";
     reference
@@ -159,8 +159,8 @@ module ietf-network-inventory {
          for the entity and that can be modified anytime during the
          entity lifetime.
 
-         If no configured value exists, the server MAY set the value
-         of this node to a locally unique value in the operational
+         If no value is discovered, the server MAY set the value of
+         this node to a locally unique value in the operational
          state.";
     }
     leaf alias {

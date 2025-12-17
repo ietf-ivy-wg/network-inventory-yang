@@ -483,6 +483,8 @@ sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-12-04.yan
 
 The network inventory YANG data model defined in the document is intended to report the actual inventory data that a network controller knows of the network elements and components actually installed within the network. Therefore, this data model provides a read-only perspective of the network inventory information.
 
+It is worth noting that some information reported within this YANG data model can be configured on the device through mechanisms which are outside the scope of this document.
+
 As outlined in {{intro}}, per the definition of {{?RFC8969}}, the network inventory model is a network model.
 
 This information can be provided by a network controller to an higher level hierarchical network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
