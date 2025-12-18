@@ -301,13 +301,13 @@ uuid:
 : The Universally Unique Identifier (UUID) of the inventory object, assigned by the server. Such identifiers are widely implemented with systems and guaranteed to be globally unique.
 
 name:
-: A human-readable label of the inventory object, provided by a network operator or by the server. It could also be present on a Graphical User Interface (GUI).
+: A human-interpretable label of the inventory object, provided by a network operator or by the server. It could also be present on a Graphical User Interface (GUI).
 
 alias:
-: A human-readable label of the inventory object, provided by a network operator. It could also be present on a GUI instead as well as the name.
+: A human-interpretable label of the inventory object, provided by a network operator. It could also be present on a GUI instead as well as the name.
 
 description:
-: A human-readable description of the inventory object, provided by a network operator or by the server. The description provides more detailed information to prompt users when performing maintenance operations etc.
+: A human-interpretable description of the inventory object, provided by a network operator or by the server. The description provides more detailed information to prompt users when performing maintenance operations etc.
 
 ### Common attributes for network elements and components
 
