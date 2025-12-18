@@ -135,7 +135,7 @@ of using vendors' proprietary APIs.
 
 {{!RFC8348}} defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller towards the network elements rather than at the northbound interface of a network controller (e.g., toward an application or another hierarchical network controller). However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model presented in this document.
 
-Per the definition of {{?RFC8309}} {{?RFC8969}}, the YANG data model defined in {{!RFC8348}} is a device model while the YANG data model defined in this document is a network model.
+Per the definition of {{?RFC8309}} and {{?RFC8969}}, the YANG data model defined in {{!RFC8348}} is a device model while the YANG data model defined in this document is a network model.
 
 This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
 
@@ -486,7 +486,7 @@ The network inventory YANG data model defined in the document is intended to rep
 
 It is worth noting that some information reported within this YANG data model can be configured on the device through mechanisms which are outside the scope of this document.
 
-As outlined in {{intro}}, per the definition of {{?RFC8309}} {{?RFC8969}}, the network inventory model is a network model.
+As outlined in {{intro}}, per the definition of {{?RFC8309}} and {{?RFC8969}}, the network inventory model is a network model.
 
 This information can be provided by a network controller to an higher level hierarchical network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
 
