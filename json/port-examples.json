@@ -4,13 +4,13 @@
       "network-element" : [
         {
           "ne-id": "NE-1",
-          "description": "Network element example with ports and breakouts.",
+          "description": "Network element example with fixed and pluggable ports.",
           "components": {
             "component": [
               {
                 "component-id": "board-1",
                 "class": "iana-hardware:module",
-                "description": "Network element example with ports and breakouts."
+                "description": "Board example with fixed and pluggable ports."
               },
               {
                 "component-id": "port-1",
