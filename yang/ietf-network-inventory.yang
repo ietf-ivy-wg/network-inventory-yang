@@ -68,7 +68,7 @@ module ietf-network-inventory {
   // RFC Ed.: update the date below with the date of RFC publication
   // and remove this note.
 
-  revision 2025-10-09 {
+  revision 2025-12-15 {
     description
       "Initial version";
     reference
@@ -87,7 +87,7 @@ module ietf-network-inventory {
 
   identity ne-type {
     description
-      "Base identity for Network Element (NE) types.";
+      "Base identity for network element (NE) types.";
   }
 
   identity ne-physical {
@@ -159,8 +159,8 @@ module ietf-network-inventory {
          for the entity and that can be modified anytime during the
          entity lifetime.
 
-         If no configured value exists, the server MAY set the value
-         of this node to a locally unique value in the operational
+         If no value is discovered, the server MAY set the value of
+         this node to a locally unique value in the operational
          state.";
     }
     leaf alias {
@@ -246,7 +246,7 @@ module ietf-network-inventory {
           base ianahw:hardware-class;
         }
         type identityref {
-          base non-hardware-component-class;
+          base nwi:non-hardware-component-class;
         }
       }
       mandatory true;
@@ -261,20 +261,20 @@ module ietf-network-inventory {
       }
       refine "mfg-name" {
         description
-          "The name of the manufacturer of this physical
-           component.
+          "The name of the manufacturer of this component.
+
            The preferred value is the manufacturer name
            string actually printed on the component itself
            (if present).
 
            Note that comparisons between instances of the
-           'model-name', 'software-rev', and 'serial-number' nodes
+           'part-number', 'software-rev', and 'serial-number' nodes
            are only meaningful amongst components with the same value
            of 'mfg-name'.
 
            If the manufacturer name string associated with
-           the physical component is unknown to the server,
-           then this node is not instantiated.";
+           the component is unknown to the server, then this node is
+           not instantiated.";
         reference
           "RFC 6933: Entity MIB (Version 4) -
                      entPhysicalMfgName";
@@ -309,10 +309,11 @@ module ietf-network-inventory {
     leaf serial-number {
       type string;
       description
-        "The vendor-specific serial number of the the entity
-         (e.g., component) instance. It is expected that vendors
-         assign unique serial numbers to different network element
-         instances within the scope of the product name.";
+        "The vendor-specific serial number of the component instance.
+
+         It is expected that vendors assign unique serial numbers to
+         different component instances within the scope of the
+         'part-number'.";
     }
     leaf asset-id {
       type string;
@@ -384,7 +385,10 @@ module ietf-network-inventory {
           }
           default "nwi:ne-physical";
           description
-            "The NE type.";
+            "The network element type.";
+          reference
+            "RFC XXXX: A YANG Data Model for Network Inventory,
+                       Section 3.";
         }
         uses ne-component-common-entity-attributes;
         leaf product-rev {
@@ -402,6 +406,22 @@ module ietf-network-inventory {
             description
               "The list of components within a network element.";
             uses component-attributes;
+            leaf-list parent {
+              type leafref {
+                path "../../component/component-id";
+                require-instance false;
+              }
+              description
+                "The identifiers of all the components that
+                 physically contain this component.
+
+                 If this list is empty, this component is not
+                 contained in any other component but it is contained
+                 in the network-element.";
+              reference
+                "RFC 6933: Entity MIB (Version 4) -
+                           entPhysicalContainedIn";
+            }
             leaf parent-rel-pos {
               when 'count(../parent) < 2' {
                 description
@@ -418,22 +438,6 @@ module ietf-network-inventory {
               reference
                 "RFC 6933: Entity MIB (Version 4) -
                            entPhysicalParentRelPos";
-            }
-            leaf-list parent {
-              type leafref {
-                path "../../component/component-id";
-                require-instance false;
-              }
-              description
-                "The identifiers of all the components that
-                 physically contain this component.
-
-                 If this list is empty, this component is not
-                 contained in any other component but it is contained
-                 in the network-element.";
-              reference
-                "RFC 6933: Entity MIB (Version 4) -
-                           entPhysicalContainedIn";
             }
             leaf is-main {
               when "derived-from-or-self(../nwi:class, "

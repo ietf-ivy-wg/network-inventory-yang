@@ -5,7 +5,7 @@
           |               +---+
           |                   |
           |   +---------------+
-          |   |                     2) Emply hole (port)
+          |   |                     2) Empty hole (port)
   Hole #1 |   |                
           |   |                     
           |   |                
