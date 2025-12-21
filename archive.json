@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-12-18T01:01:05.892487+00:00",
+  "timestamp": "2025-12-21T01:08:27.718098+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -10875,24 +10875,26 @@
       "id": "PR_kwDOKiDYo864Ln9s",
       "title": "WG LC comments resolution",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/151",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Proposed changes to address:\r\n\r\n- OpsDir review comments: #139\r\n- WG LC comments from Sergio: #142\r\n- WG LC comments from Italo: issue #143\r\n- WG LC comments from Bo: issue #145 \r\n- YDR comments: issue #144 \r\n- WG LC comments from Adrian: issue #146 \r\n",
       "createdAt": "2025-12-10T16:42:22Z",
-      "updatedAt": "2025-12-17T22:59:30Z",
+      "updatedAt": "2025-12-19T19:18:03Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
-      "baseRefOid": "3797f87d54fd2052e11798680dec5acd08db7462",
+      "baseRefOid": "e3b6669ebe64fa2afd5293009c5b706cfd40904d",
       "headRepository": "italobusi/network-inventory-yang",
       "headRefName": "wg-lc-res",
-      "headRefOid": "90f1157be875fd3df0dd33e2ceeef9eb7b98c8b7",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "93d14ddd8605d498e4f1dc9eaa6f46be633e3b54",
+      "closedAt": "2025-12-19T19:18:03Z",
+      "mergedAt": "2025-12-19T19:18:03Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "47013f04bba8e4c9b3498ea749e30bee35c38741"
+      },
       "comments": [
         {
           "author": "italobusi",
@@ -10906,14 +10908,40 @@
         {
           "id": "PRR_kwDOKiDYo87V-v4o",
           "commit": {
-            "abbreviatedOid": "90f1157"
+            "abbreviatedOid": "561dbf4"
           },
           "author": "aguoietf",
           "authorAssociation": "COLLABORATOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2025-12-17T22:59:30Z",
-          "updatedAt": "2025-12-17T22:59:30Z",
+          "updatedAt": "2025-12-18T07:51:26Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87WHWjV",
+          "commit": {
+            "abbreviatedOid": "93d14dd"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Looks fine for me. Thanks!",
+          "createdAt": "2025-12-18T11:12:49Z",
+          "updatedAt": "2025-12-18T11:12:49Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87WOxVd",
+          "commit": {
+            "abbreviatedOid": "93d14dd"
+          },
+          "author": "sergiobelotti",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "I'm fine with all the updates !",
+          "createdAt": "2025-12-18T17:46:07Z",
+          "updatedAt": "2025-12-18T17:46:07Z",
           "comments": []
         }
       ]
