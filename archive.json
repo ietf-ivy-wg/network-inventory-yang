@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-12-23T01:03:59.660603+00:00",
+  "timestamp": "2026-01-08T01:06:06.812381+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4768,7 +4768,7 @@
       "id": "I_kwDOKiDYo87ZeBru",
       "title": "WG LC comments from Sergio on draft-ietf-ivy-network-inventory-yang-11",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/142",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -4778,8 +4778,8 @@
       ],
       "body": "> Hi Daniele, chairs, IVY WG,\n> \n> I support the document.\n> it is the foundation of inventory and provide the base information that can be augmented for technology specific cases. \n> The document is ready to go ahead with some comments , we (as co-authors/contributors) need to consider . \n> \n> Support\n> \n> Thanks\n> Sergio (as co-author)\n> \n> \n> \n> Here my comments:\n> Sec. 3.3 \n> At the beginning of the section it is said : \u201c\u2026..In addition to the common attributes defined for network elements and components in Section 3.1, the following attributes are defined for\n>    the network elements.\n> But the section is related to \u201ccomponent\u201d attributes .\n> \n> component -id : the comment is related to components but is more general through the document: we need to better describe the server role. We need to better describe here who is taking care the assignment of identifier. Le sentence here is clearly supposing the scenario of a domain controller PNC (the server with respect a MDSC/hierarchical controller) with the device/NE embedded controller. But the scenario could be also the one in which the server is multi-domain controller with on top an OSS or another MDSC (MDSC can be hierarchical) . Also saying NE is too generic, what about \u201cdevice controller\u201d, theoretically you could also have more than one device controller in an NE depending on the number of management interfaces. \n> \n> Sec. 5\n> Serial-number : the description in the data node is not aligned with attribute definition in Sec. 3.3: the attribute is a component attribute and in the YANG description we refer network element instance while in 3.3. we correctly indicate component instances.\n> \n> Editorial\n> \n> Appendix D/D.1\n> -There is typo in the figure 4, s/ 2) Emply hole (port)/Empty hole (port)\n> -Parent and parent-rel-pos data nodes should be inverted in the order of appearance in the example (following the tree)\n> \n> Appendix E\n> JSON multi-chassis example:\n> Line 191 : in the description \u201cTransceiver module plugged in the first stack port of the first switch in the stack\u201d , it is the second switch in the stack \n> Line 209: same problem, s/first switch/second switch\n> Line 243: \u201c\"description\": \"Second stack port of the second switch in the stack.\", s/ second switch in the stack/third switch in the stack\n> Line 422: s/ \"parent-rel-pos\": 4/ \"parent-rel-pos\": 5\n> \n> To be added:\n>                {\n>                 \"component-id\": \"slot-2-16\",\n>                 \"class\": \"iana-hardware:container\",\n>                 \"description\": \"Empty slot 16 of the third chassis of the cascaded switch.\",\n>                 \"parent\": [\n>                   \"chassis-2\"\n>                 ],\n>                 \"parent-rel-pos\": 16\n>               },\n> \n> Not Blocking issue:\n> \n> Appendix F\n> Regarding non-modular NE, the appendix does not report the promised examples . It would be good to add at least one example of pizza-box in alignment with what done with multi-chassis case \n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/qUQGftqR_YsV7FGCyDkoKN9Omvw/",
       "createdAt": "2025-11-20T18:26:48Z",
-      "updatedAt": "2025-12-22T15:32:46Z",
-      "closedAt": null,
+      "updatedAt": "2026-01-07T17:41:12Z",
+      "closedAt": "2026-01-07T17:41:12Z",
       "comments": [
         {
           "author": "italobusi",
@@ -4794,6 +4794,13 @@
           "body": "> - [x] [@italobusi](https://github.com/italobusi) check offline and discuss in the next calls, if needed\n\nProposed reply:\n\n> Hi Daniele, chairs, IVY WG,\n> \n> I support the document.\n> it is the foundation of inventory and provide the base information that can be augmented for technology specific cases. \n> The document is ready to go ahead with some comments , we (as co-authors/contributors) need to consider . \n> \n> Support\n> \n> Thanks\n> Sergio (as co-author)\n> \n> \n> \n> Here my comments:\n> Sec. 3.3 \n> At the beginning of the section it is said : \u201c\u2026..In addition to the common attributes defined for network elements and components in Section 3.1, the following attributes are defined for\n>    the network elements.\n> But the section is related to \u201ccomponent\u201d attributes .\n> \n\nAuthors: Fixed\n\n> component -id : the comment is related to components but is more general through the document: we need to better describe the server role. We need to better describe here who is taking care the assignment of identifier. Le sentence here is clearly supposing the scenario of a domain controller PNC (the server with respect a MDSC/hierarchical controller) with the device/NE embedded controller. But the scenario could be also the one in which the server is multi-domain controller with on top an OSS or another MDSC (MDSC can be hierarchical) . Also saying NE is too generic, what about \u201cdevice controller\u201d, theoretically you could also have more than one device controller in an NE depending on the number of management interfaces. \n> \n\nSee #149 \n\n> Sec. 5\n> Serial-number : the description in the data node is not aligned with attribute definition in Sec. 3.3: the attribute is a component attribute and in the YANG description we refer network element instance while in 3.3. we correctly indicate component instances.\n> \n\nAuthors: Fixed the YANG description\n\n> Editorial\n> \n> Appendix D/D.1\n> -There is typo in the figure 4, s/ 2) Emply hole (port)/Empty hole (port)\n\nAuthors: Fixed\n\n> -Parent and parent-rel-pos data nodes should be inverted in the order of appearance in the example (following the tree)\n> \n\nAuthors: Changed the order in the YANG tree\n\n> Appendix E\n> JSON multi-chassis example:\n> Line 191 : in the description \u201cTransceiver module plugged in the first stack port of the first switch in the stack\u201d , it is the second switch in the stack \n> Line 209: same problem, s/first switch/second switch\n> Line 243: \u201c\"description\": \"Second stack port of the second switch in the stack.\", s/ second switch in the stack/third switch in the stack\n> Line 422: s/ \"parent-rel-pos\": 4/ \"parent-rel-pos\": 5\n> \n\nAuthors: Fixed all the above\n\n> To be added:\n>                {\n>                 \"component-id\": \"slot-2-16\",\n>                 \"class\": \"iana-hardware:container\",\n>                 \"description\": \"Empty slot 16 of the third chassis of the cascaded switch.\",\n>                 \"parent\": [\n>                   \"chassis-2\"\n>                 ],\n>                 \"parent-rel-pos\": 16\n>               },\n> \n\nAuthors: Done with the description updated as \"Slot 16 of the second chassis of the cascaded switch.\"\n\n> Not Blocking issue:\n> \n> Appendix F\n> Regarding non-modular NE, the appendix does not report the promised examples . It would be good to add at least one example of pizza-box in alignment with what done with multi-chassis case \n> \n\nAuthors: Done \n\n-  [x] @ggalimba56 please help providing a figure in ASCII art\n\nSee PR #152 and draft PR #151 ",
           "createdAt": "2025-12-04T12:55:59Z",
           "updatedAt": "2025-12-15T18:27:28Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See: https://mailarchive.ietf.org/arch/msg/ivy/R17JHJwoV3PQJ3DEgsWvG7wQ1HA/",
+          "createdAt": "2026-01-07T17:41:12Z",
+          "updatedAt": "2026-01-07T17:41:12Z"
         }
       ]
     },
@@ -4885,7 +4892,7 @@
       "id": "I_kwDOKiDYo87bbsvJ",
       "title": "WG LC comments from Bo on draft-ietf-ivy-network-inventory-yang-11",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/145",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -4895,8 +4902,8 @@
       ],
       "body": "> Hi WG,\n> \n> I have reviewed the draft and I think it is ready with some minor issues.\n> \n> 1. Section 3.3, second sentence  \n>    Current: \u201cThe following attributes are defined for the network elements:\u201d\n>    Fix: Replace \u201cnetwork elements\u201d with \u201ccomponents\u201d.  \n> \n> 2. Section 3.3.1. Hardware Components\n> Add: Perhaps somewhere, insert \u201cSee Appendices E and F for concrete hardware-component examples.\u201d\n> \n> 2. Section 3.3.2  Software Components, paragraph 1  \n>    Current: \u201cThis document defines a \u2018software-rev\u2019 list for NEs and components \u2026\u201d, \u201cThe scope of the list\u201d\n> Suggested text: \u201cEach instance of a network element or a component includes its own software-rev list.\u201d\n>    The wording implies a single shared list, while the data model actually contains two independent lists\u2014one under each network-element entry and one under each component entry.  \n> \n> Thanks,\n> Bo   \n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/Pg0QibCqWAH3Pfxw3GyRets92MM/",
       "createdAt": "2025-12-01T15:11:58Z",
-      "updatedAt": "2025-12-22T16:39:08Z",
-      "closedAt": null,
+      "updatedAt": "2026-01-07T17:39:37Z",
+      "closedAt": "2026-01-07T17:39:37Z",
       "comments": [
         {
           "author": "italobusi",
@@ -4911,6 +4918,13 @@
           "body": "> * [@italobusi](https://github.com/italobusi) check offline and discuss in the next calls, if needed\n\nProposed reply:\n\n> Hi WG,\n> \n> I have reviewed the draft and I think it is ready with some minor issues.\n> \n> 1. Section 3.3, second sentence  \n>    Current: \u201cThe following attributes are defined for the network elements:\u201d\n>    Fix: Replace \u201cnetwork elements\u201d with \u201ccomponents\u201d.  \n> \n\nAuthors: Fixed\n\n> 2. Section 3.3.1. Hardware Components\n> Add: Perhaps somewhere, insert \u201cSee Appendices E and F for concrete hardware-component examples.\u201d\n> \n\nAuthors: Text added (also referencing Appendix D)\n\n> 2. Section 3.3.2  Software Components, paragraph 1  \n>    Current: \u201cThis document defines a \u2018software-rev\u2019 list for NEs and components \u2026\u201d, \u201cThe scope of the list\u201d\n> Suggested text: \u201cEach instance of a network element or a component includes its own software-rev list.\u201d\n>    The wording implies a single shared list, while the data model actually contains two independent lists\u2014one under each network-element entry and one under each component entry.  \n\nAuthors: Text updated in line with the suggested text (with some additional tweaks)\n\n> \n> Thanks,\n> Bo   \n> \n",
           "createdAt": "2025-12-04T15:50:28Z",
           "updatedAt": "2025-12-04T15:50:28Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See: https://mailarchive.ietf.org/arch/msg/ivy/JR5j7MVOcQokS3wi1aV91f7eU3o/",
+          "createdAt": "2026-01-07T17:39:37Z",
+          "updatedAt": "2026-01-07T17:39:37Z"
         }
       ]
     },
