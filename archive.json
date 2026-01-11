@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-08T01:06:06.812381+00:00",
+  "timestamp": "2026-01-11T01:12:40.935106+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4852,17 +4852,18 @@
       "id": "I_kwDOKiDYo87bXezB",
       "title": "YDR LC of draft-ietf-ivy-network-inventory-yang-11",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/144",
-      "state": "CLOSED",
+      "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
+        "needs discussion",
         "priority-1"
       ],
       "body": "> Document: draft-ietf-ivy-network-inventory-yang\n> Title: A Base YANG Data Model for Network Inventory\n> Reviewer: Reshad Rahman\n> Review result: Ready with Issues\n> \n> Please bear in mind that I haven't followed discussions on this document...\n> \n> Issues (maybe)\n> ==============\n> \n> - The model is read-only and the reasoning is explained in section 6. Did the\n> authors consider having a read-write model and using access control, i.e NACM.\n> Section 6 states: \"The information in the model is populated by controller by\n> reading it\n>    from the devices using the device model supported by the devices.\". That is\n>    one way of doing it, but another implementation may want to populate the\n>    data via a read-write model?\n> \n> - For the inventory I was expecting something which would tell me the \"state\"\n> of a network element e.g. is it in production, in a lab or a spare device? I\n> realize that the current expected implementation (section 6) is to read data\n> from the devices so it assumes that the devices are deployed, but an inventory\n> is also useful for the devices from which we can't (yet) read. Or is this use\n> case deemed outside the scope of this document?\n> \n> Comments/questions\n> ==================\n> \n> - Introduction:\n>    Network\n>    inventory management is a critical part for ensuring that the network\n>    remains healthy (e.g., auditing to identify faulty elements)\n> Do we really need inventory mgmt for ensuring that the network remains healthy?\n> \n> - Terminology. The terms borrowed (MDSC, MPI etc) from RFC8453 should be\n> mentioned here?\n> \n> - YANG model\n> \n> In grouping basic-common-entity-attributes, for \"leaf name\" the description\n> says \"If no configured value exists...\". The tree is read-only so that\n> description doesn't currently make sense?\n> \n> parent-rel-pos,  RFC6933 has entPhysicalParentRelPos as -1 .. 2147483647 but\n> parent-rel-pos starts at 0. \n> Also the description says \"only when this component\n> is contained in the network-element or in only 1 parent\", is the 1st part\n> accurate?\n> \n> Ne-type why is only ne-physical defined? Couldn't the network inventory also\n> have virtual appliances/devices? In the description of ne-type, spell out\n> Network Element.\n> \n> In grouping component-attributes, when using\n> ne-component-common-entity-attributes, the refined description states \"physical\n> component\", why is physical specified here I.e. does it have a special meaning?\n> \n> base non-hardware-component-class => add the prefix of this module\n> \n> - Thank you for the many examples. Have they been validated?\n> \n> Regards,\n> Reshad.\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/bh9lEAIRANXxnnSfbC3GX1l05FY/\n",
       "createdAt": "2025-12-01T10:39:31Z",
-      "updatedAt": "2025-12-22T15:28:39Z",
-      "closedAt": "2025-12-22T15:28:39Z",
+      "updatedAt": "2026-01-09T09:33:48Z",
+      "closedAt": null,
       "comments": [
         {
           "author": "italobusi",
@@ -4884,6 +4885,13 @@
           "body": "See: https://mailarchive.ietf.org/arch/msg/ivy/-2VjBKYdTTXYCiG0GANMFrESFGQ/",
           "createdAt": "2025-12-22T15:28:39Z",
           "updatedAt": "2025-12-22T15:28:39Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Thank you Italo and co-authors/contributors. Inline \\<RR>.\n>     On Monday, December 22, 2025 at 10:27:41 AM EST, Italo Busi <italo.busi@huawei.com> wrote:  \n>  \n>  Hi Reshad,\n> \n> Thanks for your YD review and comments\n> \n> We have just submitted a -12 version of the I-D addressing your comments\n> \n> Please find our feedbacks in line below\n> \n> Italo (on behalf of co-authors/contributors)\n> \n> > -----Original Message-----\n> > From: Reshad Rahman via Datatracker <noreply@ietf.org>\n> > Sent: sabato 29 novembre 2025 23:32\n> > To: [yang-doctors@ietf.org](mailto:yang-doctors@ietf.org)\n> > Cc: [draft-ietf-ivy-network-inventory-yang.all@ietf.org](mailto:draft-ietf-ivy-network-inventory-yang.all@ietf.org); [ivy@ietf.org](mailto:ivy@ietf.org); last-\n> > [call@ietf.org](mailto:call@ietf.org)\n> > Subject: [Ivy] draft-ietf-ivy-network-inventory-yang-11 ietf last call Yangdoctors\n> > review\n> >\n> \n> > Document: draft-ietf-ivy-network-inventory-yang\n> > Title: A Base YANG Data Model for Network Inventory\n> > Reviewer: Reshad Rahman\n> > Review result: Ready with Issues\n> > \n> > Please bear in mind that I haven't followed discussions on this document...\n> > \n> > Issues (maybe)\n> > ==============\n> > \n> > - The model is read-only and the reasoning is explained in section 6. Did the\n> > authors consider having a read-write model and using access control, i.e NACM.\n> > Section 6 states: \"The information in the model is populated by controller by\n> > reading it\n> >    from the devices using the device model supported by the devices.\". That is\n> >    one way of doing it, but another implementation may want to populate the\n> >    data via a read-write model?\n> \n> \\<RR> Despite the response below, I still have a hard time with the paragraph above. I have no issue with the paragraph being given as an implementation suggestion, but it seems too prescriptive.\n> Also, do we read the info once from devices or at regular intervals? I assume it's the latter since the info can change. What happens when a device becomes unreachable? How is that distinguished from a device which has been decommissoned?\n> \n\n- [ ] to discuss\n\n> > \n> > - For the inventory I was expecting something which would tell me the \"state\"\n> > of a network element e.g. is it in production, in a lab or a spare device? I realize\n> > that the current expected implementation (section 6) is to read data from the\n> > devices so it assumes that the devices are deployed, but an inventory is also\n> > useful for the devices from which we can't (yet) read. Or is this use case\n> > deemed outside the scope of this document?\n> > \n> \n> Authors: Correct, the document is addressing only what is actually deployed. The discussion about the possibility to report also intended or planned has been postponed for a future update of this model or for a new model.\n> \n> \\<RR> Could you make that clear in the introduction, ideally early on.\n> \n> And a comment as a potential user of the model (not as YD): only having deployed devices and only data which can be read from devices seems somewhat limiting. e.g. I can't use this model to see whether we have a spare device in a specific location.\n> \n\n- [ ] to discuss\n\n> > Comments/questions\n> > ==================\n> > \n> > - Introduction:\n> >    Network\n> >    inventory management is a critical part for ensuring that the network\n> >    remains healthy (e.g., auditing to identify faulty elements) Do we really need\n> > inventory mgmt for ensuring that the network remains healthy?\n> > \n> \n> Authors: Yes, the operator needs to know what equipment they have in their network and where. This knowledge could be based on paper-based or a machine-based network inventory management solution.\n> \n> > - Terminology. The terms borrowed (MDSC, MPI etc) from RFC8453 should be\n> > mentioned here?\n> > \n> \n> Authors: We have added the terminology borrowed from RFC8345.\n> \n> > - YANG model\n> > \n> > In grouping basic-common-entity-attributes, for \"leaf name\" the description\n> > says \"If no configured value exists...\". The tree is read-only so that description\n> > doesn't currently make sense?\n> > \n> Authors: The value can be configured on the device by means outside the scope of this document.\n> \n> See also: https://mailarchive.ietf.org/arch/msg/ivy/3LADG0Xtsnkd_lR4kHBFY-9UGRQ/\n> \n> We have improved the description to clarify that we are talking about the configuration in the device and clarified in section 8 that \u201csome information reported within this YANG data model can be configured on the device through mechanisms which are outside the scope of this document\u201d.\n> \n> \\<RR> ack.\n> \n> > parent-rel-pos,  RFC6933 has entPhysicalParentRelPos as -1 .. 2147483647 but\n> > parent-rel-pos starts at 0. \n> \n> Authors: Our understanding is that he value -1 of the entPhysicalParentRelPos is used in SNMP to indicate an invalid value. In YANG, this is done by omitting the leaf so we do not need a -1 special value and the range can start from 0 (as done also in RFC8348).\n> \n> \\<RR> right, thanks for the reminder.\n> \n> > Also the description says \"only when this component\n> > is contained in the network-element or in only 1 parent\", is the 1st part\n> > accurate?\n> > \n> \n> Authors: A component can be contained within another component but also directly within the network element (i.e., with no parent component). The first part of the sentence is to describe the case where the component has no parent component.\n> \n> > Ne-type why is only ne-physical defined? Couldn't the network inventory also\n> > have virtual appliances/devices? \n> \n> Authors: Network inventory for virtual NEs is outside the scope of this document and under definition in draft-ietf-ivy-network-inventory-software\n> \n> \\<RR> I struggle with this a bit. A network may have both physical and virtual NEs... But if that's the WG consensus, no objections from me. Just add some text, e.g. in the intro, that the document is only for physical NEs.\n> \n\n- [ ] to discuss\n\n> Regards,\n> Reshad.\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/hTOzS0mxLIaha2fwrkPB9Sj_HRE/",
+          "createdAt": "2026-01-09T09:30:21Z",
+          "updatedAt": "2026-01-09T09:33:48Z"
         }
       ]
     },
@@ -5103,6 +5111,27 @@
           "updatedAt": "2025-12-22T15:34:25Z"
         }
       ]
+    },
+    {
+      "number": 154,
+      "id": "I_kwDOKiDYo87iSw_b",
+      "title": "Additional comment from Bo",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/154",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [
+        "needs discussion",
+        "priority-1"
+      ],
+      "body": "> Hi Italo, authors,\n> \n> Working on ietf-ni-location model, I have identified a architectural conflict between the ietf-ni-location model and the base inventory module, which prevents the configuration of location data.\n> \n> 1. The statement \"config false\" under container \"network-inventory\" explicitly defines the entire inventory subtree as Read-Only Operational State which makes it impossible for the ietf-ni-location module to augment this subtree with writable configuration location data\n> \n> 2. ietf-ni-location model also attempts to augment the list of \"network-element \" to add writable location references (location-ref, rack-ref). However, because the target of the augmentation is Read-Only:\n> It is impossible to assign a location to a network element.\n> \n> I suggest to reconsider the RW definitions for network-inventory and network-element.\n> \n> Thanks,\n> Bo\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/vtDAIsTnZ3VRUMz3PWkaVKYdL9M/",
+      "createdAt": "2026-01-09T11:19:12Z",
+      "updatedAt": "2026-01-09T11:19:12Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
