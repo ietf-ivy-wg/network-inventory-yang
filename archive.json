@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-11T01:12:40.935106+00:00",
+  "timestamp": "2026-01-15T01:04:12.637196+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -5040,14 +5040,17 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "philbedard",
+        "italobusi",
+        "manzoro"
+      ],
       "labels": [
-        "needs discussion",
         "priority-1"
       ],
       "body": "> Hi all, \n> \n> I have reviewed the document and support it with the following minor feedback:  \n> \n> There are quite a few typos and English grammar nits throughout the document, I can help to remedy those.  \n> \n> Section 1 the text reads \"Exposing standard interfaces to retrieve network elements capabilities\u201d.   Capabilities is a very open term, it would be good to be specific about network inventory.   This is the only time capabilities is mentioned in the document.  \n> \n> 3.3:  \n> part-number:   This is often alphanumeric and not just a number and is defined as a string in the model.  It would be good to rename this leaf as \u201cpart-id\u201d as the common industry term is \u201cPID\u201d which expands to \u201cProduct IDentification\u201d.  \n> \n> Similar comment with \u201cserial-number\u201d which could be renamed to \u201cserial-id\u201d \n> \n> 3.3.1 Figure 1: \n> The diagram references \u201csub-chassis\u201d but that term is not used / defined elsewhere in the document.  Sub-slot is well defined in the definition section.  \n> \n> 3.3.2:  \n> Text \"For each software module, configured to be active, the name and   version information is provided.\u201c    \n> This would be reported for inactive software as well.  \n> \n> The section could use some work.  As Roberto pointed out there are some conflicts in the text.   Terms like \u201cplatform software\u201d which is listed as out of scope could be confused with \u201coperating system\u201d which is in scope.  \n> \n> \n> Appendix A.  Comparison With Openconfig-platform Data Model\n> Would be good to reference the specific version of that model being used for comparison and a reference should be added since it is in a public repository.  \n> \n> \n> Thanks, \n> Phil \n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/PdPeulJvcLAfan0zfFaBaB6pBmQ/",
       "createdAt": "2025-12-03T13:01:28Z",
-      "updatedAt": "2025-12-11T17:35:49Z",
+      "updatedAt": "2026-01-14T21:05:21Z",
       "closedAt": null,
       "comments": [
         {
@@ -5056,6 +5059,13 @@
           "body": "Proposed reply:\n\n> Hi all, \n> \n> I have reviewed the document and support it with the following minor feedback:  \n> \n> There are quite a few typos and English grammar nits throughout the document, I can help to remedy those.  \n> \n> Section 1 the text reads \"Exposing standard interfaces to retrieve network elements capabilities\u201d.   Capabilities is a very open term, it would be good to be specific about network inventory.   This is the only time capabilities is mentioned in the document.  \n> \n\nItalo: need discussion\n\n> 3.3:  \n> part-number:   This is often alphanumeric and not just a number and is defined as a string in the model.  It would be good to rename this leaf as \u201cpart-id\u201d as the common industry term is \u201cPID\u201d which expands to \u201cProduct IDentification\u201d.  \n> \n> Similar comment with \u201cserial-number\u201d which could be renamed to \u201cserial-id\u201d \n> \n\nItalo: need discussion\n\n> 3.3.1 Figure 1: \n> The diagram references \u201csub-chassis\u201d but that term is not used / defined elsewhere in the document.  Sub-slot is well defined in the definition section.  \n> \n\nItalo: remove sub-chassis from the Figure\n\n> 3.3.2:  \n> Text \"For each software module, configured to be active, the name and   version information is provided.\u201c    \n> This would be reported for inactive software as well.  \n> \n> The section could use some work.  As Roberto pointed out there are some conflicts in the text.   Terms like \u201cplatform software\u201d which is listed as out of scope could be confused with \u201coperating system\u201d which is in scope.  \n> \n\nItalo: need discussion\n\n> \n> Appendix A.  Comparison With Openconfig-platform Data Model\n> Would be good to reference the specific version of that model being used for comparison and a reference should be added since it is in a public repository.  \n\nItalo: need discussion\n\n> \n> \n> Thanks, \n> Phil \n> \n",
           "createdAt": "2025-12-11T17:35:43Z",
           "updatedAt": "2025-12-11T17:35:43Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2026-01-14 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2026-01-14)**\n\n> Hi all, \n> \n> I have reviewed the document and support it with the following minor feedback:  \n> \n> There are quite a few typos and English grammar nits throughout the document, I can help to remedy those.  \n> \n> Section 1 the text reads \"Exposing standard interfaces to retrieve network elements capabilities\u201d.   Capabilities is a very open term, it would be good to be specific about network inventory.   This is the only time capabilities is mentioned in the document.  \n> \n\nAuthors: we will rephrase as: \"Exposing standard interfaces to retrieve network element components\"\n\n> 3.3:  \n> part-number:   This is often alphanumeric and not just a number and is defined as a string in the model.  It would be good to rename this leaf as \u201cpart-id\u201d as the common industry term is \u201cPID\u201d which expands to \u201cProduct IDentification\u201d.  \n> \n> Similar comment with \u201cserial-number\u201d which could be renamed to \u201cserial-id\u201d \n> \n\nAuthors: Our preference is to keep the names \"part-number\" and \"serial-number\" for consistency with industry widely used terms. We will check that it is clear in the text that these attributes are alphanumeric strings and add a clarification note to report why these names has been chosen.\n\n> 3.3.1 Figure 1: \n> The diagram references \u201csub-chassis\u201d but that term is not used / defined elsewhere in the document.  Sub-slot is well defined in the definition section.  \n> \n\nAuthors: We will remove sub-chassis from the Figure.\n\n> 3.3.2:  \n> Text \"For each software module, configured to be active, the name and   version information is provided.\u201c    \n> This would be reported for inactive software as well.  \n> \n> The section could use some work.  As Roberto pointed out there are some conflicts in the text.   Terms like \u201cplatform software\u201d which is listed as out of scope could be confused with \u201coperating system\u201d which is in scope.  \n> \n\n- [ ] @philbedard @manzoro check offline if this comment has been already addressed with the changes in draft-ietf-ivy-network-inventory-yang-12\n\n> \n> Appendix A.  Comparison With Openconfig-platform Data Model\n> Would be good to reference the specific version of that model being used for comparison and a reference should be added since it is in a public repository.  \n> \n\n- [ ] @italobusi @manzoro check offline also with @YuChaode and update the draft accordingly\n\n> \n> Thanks, \n> Phil \n> \n",
+          "createdAt": "2026-01-14T21:03:43Z",
+          "updatedAt": "2026-01-14T21:03:43Z"
         }
       ]
     },
@@ -5121,17 +5131,25 @@
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
-        "italobusi"
+        "lana-wu"
       ],
       "labels": [
-        "needs discussion",
+        "agreed",
         "priority-1"
       ],
       "body": "> Hi Italo, authors,\n> \n> Working on ietf-ni-location model, I have identified a architectural conflict between the ietf-ni-location model and the base inventory module, which prevents the configuration of location data.\n> \n> 1. The statement \"config false\" under container \"network-inventory\" explicitly defines the entire inventory subtree as Read-Only Operational State which makes it impossible for the ietf-ni-location module to augment this subtree with writable configuration location data\n> \n> 2. ietf-ni-location model also attempts to augment the list of \"network-element \" to add writable location references (location-ref, rack-ref). However, because the target of the augmentation is Read-Only:\n> It is impossible to assign a location to a network element.\n> \n> I suggest to reconsider the RW definitions for network-inventory and network-element.\n> \n> Thanks,\n> Bo\n> \n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/vtDAIsTnZ3VRUMz3PWkaVKYdL9M/",
       "createdAt": "2026-01-09T11:19:12Z",
-      "updatedAt": "2026-01-09T11:19:12Z",
+      "updatedAt": "2026-01-14T20:56:59Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2026-01-14 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2026-01-14)**\n\nNigel pointed out that the design principle for the base inventory is to report what is discovered by the controller as a RO view. The discovered information can be configured via other interfaces which are outside the scope of the inventory model.\n\nBo does not agree on this approach for the inventory location but only for the base (NEs and components).\n\nItalo mentioned that it is better to keep the inventory RO for the first phase and consider in a future phase whether it makes sense or not to change the model for RW.\n\nPotential use cases for RW operations on the inventory model are:\n- the inventory OSS is the source of truth for the inventory model needs to provide it to a network controller (e.g., to make it available to other clients of the network controller or for use by the network controller itself)\n- management of planned deployments of inventory elements\n- input for a what-if-analysis\n\nIt is still not clear/agreed whether the best design option for these three use is to make the inventory model RW or create another model.\n\nJeff thinks that the management of planned configuration should be outside the scope of the inventory.\n\nJeff: the information in the inventory OSS is currently mainly manually written and can be incorrect. In the future, the source of truth should be the network controller discovering it and providing it to the inventory OSS\n\nItalo mentioned that the intention is not to say that the inventory model will always remain RO not to preclude any design option to address the use cases above\n\nIt has been agreed to:\n- keep the whole inventory model RO for the time being (including the top-level container)\n- have more discussion on the definition, requirements and design for the use cases above\n\n- [ ] @lana-wu summarize the conclusion of the discussion on the IVY WG mailing list\n",
+          "createdAt": "2026-01-14T20:56:47Z",
+          "updatedAt": "2026-01-14T20:56:47Z"
+        }
+      ]
     }
   ],
   "pulls": [
