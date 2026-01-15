@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 22 June 2026                                              Nokia
+Expires: 19 July 2026                                              Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                        19 December 2025
+                                                         15 January 2026
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,11 +53,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 June 2026.
+   This Internet-Draft will expire on 19 July 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1344,9 +1344,9 @@ Table of Contents
               Wu, B., Belotti, S., Bouquier, J., Peruzzini, F., and P.
               Bedard, "A YANG Data Model for Network Inventory
               Location", Work in Progress, Internet-Draft, draft-ietf-
-              ivy-network-inventory-location-03, 7 July 2025,
+              ivy-network-inventory-location-04, 9 January 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-location-03>.
+              network-inventory-location-04>.
 
    [I-D.ietf-ivy-network-inventory-software]
               Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
@@ -1369,9 +1369,9 @@ Table of Contents
               Ceccarelli, "Applicability of Abstraction and Control of
               Traffic Engineered Networks (ACTN) to Packet Optical
               Integration (POI)", Work in Progress, Internet-Draft,
-              draft-ietf-teas-actn-poi-applicability-16, 9 October 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              actn-poi-applicability-16>.
+              draft-ietf-teas-actn-poi-applicability-17, 22 December
+              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              teas-actn-poi-applicability-17>.
 
    [I-D.ygb-ivy-passive-network-inventory]
               Yu, C., Guo, A., Busi, I., Boroon, M., Belotti, S., van
@@ -1379,9 +1379,9 @@ Table of Contents
               Peters, B., Yoon, B. Y., LIUYUCONG, Zhao, Y., and A.
               Sakalabhaktula, "A YANG Data Model for Passive Network
               Inventory", Work in Progress, Internet-Draft, draft-ygb-
-              ivy-passive-network-inventory-02, 7 July 2025,
+              ivy-passive-network-inventory-03, 7 January 2026,
               <https://datatracker.ietf.org/doc/html/draft-ygb-ivy-
-              passive-network-inventory-02>.
+              passive-network-inventory-03>.
 
    [RFC1157]  Case, J., Fedor, M., Schoffstall, M., and J. Davin,
               "Simple Network Management Protocol (SNMP)", RFC 1157,
