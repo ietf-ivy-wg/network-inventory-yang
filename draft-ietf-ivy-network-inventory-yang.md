@@ -137,6 +137,10 @@ of using vendors' proprietary APIs.
 
 Per the definition of {{?RFC8309}} and {{?RFC8969}}, the YANG data model defined in {{!RFC8348}} is a device model while the YANG data model defined in this document is a network model.
 
+As outlined in {{operational}}, the network inventory provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network.
+
+As outlined in {{overview}}, the base inventory YANG data model defined in this document supports only physical network elements but generalizes the network element definition to allow supporting other types of network elements through proper augmentations.
+
 This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
 
 This base data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
@@ -482,7 +486,7 @@ artwork-name="ietf-network-inventory.tree"}
 {:#fig-ni-yang title="Network inventory YANG module"
 sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-12-15.yang"}
 
-# Operational Considerations
+# Operational Considerations {#operational}
 
 The network inventory YANG data model defined in the document is intended to report the actual inventory data that a network controller knows of the network elements and components actually installed within the network. Therefore, this data model provides a read-only perspective of the network inventory information.
 
@@ -494,7 +498,9 @@ This information can be provided by a network controller to an higher level hier
 
 For example, in the context of ACTN, the network inventory YANG data model can be used at the MPI interfaces, as defined in {{?RFC8453}}, or on an interface, not defined in {{?RFC8453}} between the MDSC and the Inventory OSS.
 
-The information in the model is populated by controller by reading it from the devices using the device model supported by the devices. This model does not constraint the device models used on the device: the YANG data model defined in {{!RFC8348}} is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
+The information in the model is discovered by the controller through mechanisms which are outside the scope of this document.
+
+For example, the network controller can collect this information by reading it from the devices using the device model supported by the devices. This model does not constraint the device models used on the device: the YANG data model defined in {{!RFC8348}} is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
 
 In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to an higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
 
