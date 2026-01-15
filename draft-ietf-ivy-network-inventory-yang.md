@@ -126,7 +126,7 @@ identify faulty elements), and is maintained appropriately to meet
 the performance objectives.
 Also, network inventory management allows operators to keep track of which devices are deployed in their networks, including relevant embedded software and hardware versions.
 
-Exposing standard interfaces to retrieve network elements capabilities as maintained in an inventory are key enablers for many applications. For example, {{?I-D.ietf-teas-actn-poi-applicability}} identifies a gap about the lack of YANG data models that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware inventory information available at domain controller level towards
+Exposing standard interfaces to retrieve network element components as maintained in an inventory are key enablers for many applications. For example, {{?I-D.ietf-teas-actn-poi-applicability}} identifies a gap about the lack of YANG data models that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware inventory information available at domain controller level towards
 upper layer systems (e.g., Multi-Domain Service Coordinator (MDSC) or Operations Support Systems (OSS) layers).
 
 It is key for operators to coordinate with the industry towards the use of a
@@ -358,10 +358,12 @@ mfg-date:
 part-number:
 : The vendor-specific part number of the component type.
 : It is expected that vendors assign unique part numbers to different component types within the scope of the vendor.
+: > Although the part number is often an alphanumeric string and not a number, this document uses this term since it is widely used and well known in the industry.
 
 serial-number:
 : The vendor-specific serial number of the component instance.
 : It is expected that vendors assign unique serial numbers to different component instances at least within the scope of the part-number.
+: > Although the serial number is often an alphanumeric string and not a number, this document uses this term since it is widely used and well known in the industry.
 
 asset-id:
 : An asset tracking identifier for the component, provided by a network operator.
@@ -392,8 +394,8 @@ See {port-examples}, {multi-chassis-examples}, and {non-modular-examples} for co
                                     ||
                                     \/
                               +-------------+
-                              |   chassis/  |---+
-                              | sub-chassis |<--|
+                              |   chassis   |---+
+                              |             |<--|
                               +-------------+
                                     ||
                      ______1:N______||_____1:M_______
