@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 19 July 2026                                              Nokia
+Expires: 25 July 2026                                              Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                         15 January 2026
+                                                         21 January 2026
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 July 2026.
+   This Internet-Draft will expire on 25 July 2026.
 
 Copyright Notice
 
@@ -1405,6 +1405,11 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ygb-ivy-
               passive-network-inventory-03>.
 
+   [OpenConfig]
+              OpenConfig Working Group, "OpenConfig Public Release
+              v5.6.0", Release 5.6.0 , January 2026,
+              <https://github.com/openconfig/public/tree/v5.6.0/>.
+
    [RFC1157]  Case, J., Fedor, M., Schoffstall, M., and J. Davin,
               "Simple Network Management Protocol (SNMP)", RFC 1157,
               DOI 10.17487/RFC1157, May 1990,
@@ -1413,6 +1418,11 @@ Table of Contents
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
               <https://www.rfc-editor.org/rfc/rfc3688>.
+
+   [RFC4152]  Tesink, K. and R. Fox, "A Uniform Resource Name (URN)
+              Namespace for the Common Language Equipment Identifier
+              (CLEI) Code", RFC 4152, DOI 10.17487/RFC4152, August 2005,
+              <https://www.rfc-editor.org/rfc/rfc4152>.
 
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
@@ -1463,8 +1473,9 @@ Appendix A.  Comparison With Openconfig-platform Data Model
    Since more and more devices can be managed by domain controller
    through OpenConfig, to ensure that our inventory data model can cover
    these devices' inventory data, we have compared our inventory data
-   model with the "openconfig-platform" model which is the data model
-   used to manage inventory information in OpenConfig.
+   model with the "openconfig-platform" and "openconfig-platform-types"
+   YANG modules, as defined in [OpenConfig], which defines the YANG data
+   model used to manage inventory information in OpenConfig.
 
    Openconfig-platform data model is NE-level and uses a generic
    component concept to describe its inner devices and containers, which
@@ -1501,9 +1512,10 @@ Appendix A.  Comparison With Openconfig-platform Data Model
    +------------------------+-------------------+----------------------+
    | part-no                | part-number       |                      |
    +------------------------+-------------------+----------------------+
-   | clei-code              |                   | Not defined even in  |
-   |                        |                   | RFC-8348 at device   |
-   |                        |                   | level                |
+   | clei-code              | uri               | CLEI code can be     |
+   |                        |                   | mapped into one URI  |
+   |                        |                   | as defined in        |
+   |                        |                   | [RFC4152]            |
    +------------------------+-------------------+----------------------+
    | removable              | is-fru            |                      |
    +------------------------+-------------------+----------------------+
