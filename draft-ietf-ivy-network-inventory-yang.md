@@ -85,13 +85,11 @@ normative:
     date:  May 2008
     seriesinfo: TMF MTOSI 4.0, Network Resource Fulfilment (NRF), SD2-20
     target: https://www.tmforum.org/resources/suite/mtosi-4-0/
-
   IANA_ENTITY_MIB:
     title: IANA-ENTITY-MIB
     author:
       org: IANA
     target: https://www.iana.org/assignments/ianaentity-mib/ianaentity-mib.xhtml
-
   IANA_HW_YANG:
     title: iana-hardware YANG Module
     author:
@@ -99,6 +97,13 @@ normative:
     target: https://www.iana.org/assignments/iana-hardware/iana-hardware.xhtml
 
 informative:
+  OpenConfig:
+    title: OpenConfig Public Release v5.6.0
+    author:
+      org: OpenConfig Working Group
+    date:  January 2026
+    seriesinfo: Release 5.6.0
+    target: https://github.com/openconfig/public/tree/v5.6.0/
 
 --- abstract
 
@@ -153,15 +158,15 @@ The YANG data model defined in this document conforms to the Network Management 
 
 ## Editorial Note (To be removed by RFC Editor)
 
-  > Note to the RFC Editor: This section is to be removed prior to publication.
+> Note to the RFC Editor: This section is to be removed prior to publication.
 
-   This document contains placeholder values that need to be replaced
-   with finalized values at the time of publication.  This note
-   summarizes all of the substitutions that are needed.
+This document contains placeholder values that need to be replaced
+with finalized values at the time of publication.  This note
+summarizes all of the substitutions that are needed.
 
-   Please apply the following replacements:
+Please apply the following replacements:
 
-   *  XXXX --> the assigned RFC number for this I-D
+- XXXX --> the assigned RFC number for this I-D
 
 # Terminology and Notations
 
@@ -564,7 +569,7 @@ registry group.
 
 # Comparison With Openconfig-platform Data Model
 
-Since more and more devices can be managed by domain controller through OpenConfig, to ensure that our inventory data model can cover these devices' inventory data, we have compared our inventory data model with the "openconfig-platform" model which is the data model used to manage inventory information in OpenConfig.
+Since more and more devices can be managed by domain controller through OpenConfig, to ensure that our inventory data model can cover these devices' inventory data, we have compared our inventory data model with the "openconfig-platform" and "openconfig-platform-types" YANG modules, as defined in [OPENCONFIG], which defines the YANG data model used to manage inventory information in OpenConfig.
 
 Openconfig-platform data model is NE-level and uses a generic component concept to describe its inner devices and containers, which is similar to "ietf-hardware" model in {{?RFC8348}}. Since we have also reused the component concept of {{?RFC8348}} in our inventory data model, we can compare the component's attributes between "openconfig-platform" and our model directly , which is stated in {{tab-oc}}.
 
@@ -582,7 +587,7 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | software-version           | software-rev             |                          |
 | serial-no                  | serial-num               |                          |
 | part-no                    | part-number              |                          |
-| clei-code                  |                          | Not defined even in RFC-8348 at device level  |
+| clei-code                  | uri                      | CLEI code can be mapped into one URI as defined in {{?RFC4152}}  |
 | removable                  | is-fru                   |                          |
 | oper-status                |                          | state data               |
 | empty                      | contained-child?         | If there is no contained child, it is empty.  |
