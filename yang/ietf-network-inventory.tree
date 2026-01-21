@@ -40,5 +40,5 @@ module: ietf-network-inventory
                  +--ro uri*              inet:uri
                  +--ro parent*
                  |       -> ../../component/component-id
-                 +--ro parent-rel-pos?   int32
+                 +--ro parent-rel-pos?   string
                  +--ro is-main?          boolean

@@ -167,6 +167,7 @@ summarizes all of the substitutions that are needed.
 Please apply the following replacements:
 
 - XXXX --> the assigned RFC number for this I-D
+- 2026-01-21 --> the actual date of the publication of this document
 
 # Terminology and Notations
 
@@ -473,6 +474,14 @@ In order to support these use cases, this model is not aligned with {{!RFC8348}}
 
 Instead the name is defined as an optional attribute and the component-id is defined as the key for the component list (in alignment with the approach followed for the network-element list).
 
+### Parent relative position
+
+There are some use cases where the parent relative position is not reported as an integer but as a string.
+
+In order to support these use cases and allowing a straightforward match between the relative position definition in the device and in the network inventory, this model is defining the 'parent-rel-pos' data node as a string instead of as an integer.
+
+If the device reports the relative position as an integer, e.g., using the device model defined in {{?RFC8348}}, the integer value reported by the device can be mapped into a string within the network inventory.
+
 # Network Inventory Tree Diagram {#ni-tree}
 
 {{fig-ni-tree}} shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
@@ -489,7 +498,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-12-15.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-01-21.yang"}
 
 # Operational Considerations {#operational}
 
