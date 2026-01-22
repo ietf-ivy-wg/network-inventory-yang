@@ -31,7 +31,7 @@ be application- and technology-agnostic. The base data model can be augmented wi
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.32.5
-    wcwidth 0.2.14
+    wcwidth 0.3.0
 -->
 <link href="draft-ietf-ivy-network-inventory-yang.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1054,7 +1054,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Yu, et al.</td>
-<td class="center">Expires 25 July 2026</td>
+<td class="center">Expires 26 July 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1067,12 +1067,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ivy-network-inventory-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-01-21" class="published">21 January 2026</time>
+<time datetime="2026-01-22" class="published">22 January 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-07-25">25 July 2026</time></dd>
+<dd class="expires"><time datetime="2026-07-26">26 July 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1134,7 +1134,7 @@ be application- and technology-agnostic. The base data model can be augmented wi
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 25 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 26 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1224,6 +1224,9 @@ be application- and technology-agnostic. The base data model can be augmented wi
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4.2.2">
                     <p id="section-toc.1-1.3.2.4.2.2.1"><a href="#section-3.4.2" class="auto internal xref">3.4.2</a>.  <a href="#name-component-identifiers" class="internal xref">Component identifiers</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4.2.3">
+                    <p id="section-toc.1-1.3.2.4.2.3.1"><a href="#section-3.4.3" class="auto internal xref">3.4.3</a>.  <a href="#name-parent-relative-position" class="internal xref">Parent relative position</a></p>
 </li>
                 </ul>
 </li>
@@ -1352,6 +1355,9 @@ summarizes all of the substitutions that are needed.<a href="#section-1.1-2" cla
 <ul class="normal">
 <li class="normal" id="section-1.1-4.1">
             <p id="section-1.1-4.1.1">XXXX --&gt; the assigned RFC number for this I-D<a href="#section-1.1-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.1-4.2">
+            <p id="section-1.1-4.2.1">2026-01-21 --&gt; the actual date of the publication of this document<a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1924,6 +1930,16 @@ outside the scope of this document and defined in other documents such as
 <p id="section-3.4.2-3">Instead the name is defined as an optional attribute and the component-id is defined as the key for the component list (in alignment with the approach followed for the network-element list).<a href="#section-3.4.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="parent-relative-position">
+<section id="section-3.4.3">
+          <h4 id="name-parent-relative-position">
+<a href="#section-3.4.3" class="section-number selfRef">3.4.3. </a><a href="#name-parent-relative-position" class="section-name selfRef">Parent relative position</a>
+          </h4>
+<p id="section-3.4.3-1">There are some use cases where the parent relative position is not reported as an integer but as a string.<a href="#section-3.4.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.4.3-2">In order to support these use cases and allowing a straightforward match between the relative position definition in the device and in the network inventory, this model is defining the 'parent-rel-pos' data node as a string instead of as an integer.<a href="#section-3.4.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.4.3-3">If the device reports the relative position as an integer, e.g., using the device model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, the integer value reported by the device can be mapped into a string within the network inventory.<a href="#section-3.4.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 </section>
@@ -1980,7 +1996,7 @@ module: ietf-network-inventory
                  +--ro uri*              inet:uri
                  +--ro parent*
                  |       -&gt; ../../component/component-id
-                 +--ro parent-rel-pos?   int32
+                 +--ro parent-rel-pos?   string
                  +--ro is-main?          boolean
 </pre>
 </div>
@@ -1998,7 +2014,7 @@ module: ietf-network-inventory
 <span id="name-network-inventory-yang-modu"></span><div id="fig-ni-yang">
 <figure id="figure-3">
         <div class="breakable lang-yang sourcecode" id="section-5-1.1">
-<pre>&lt;CODE BEGINS&gt; file "ietf-network-inventory@2025-12-15.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-network-inventory@2026-01-21.yang"
 
 module ietf-network-inventory {
   yang-version 1.1;
@@ -2048,7 +2064,7 @@ module ietf-network-inventory {
      The model fully conforms to the Network Management
      Datastore Architecture (NMDA).
 
-     Copyright (c) 2025 IETF Trust and the persons
+     Copyright (c) 2026 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -2067,10 +2083,7 @@ module ietf-network-inventory {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  // RFC Ed.: update the date below with the date of RFC publication
-  // and remove this note.
-
-  revision 2025-12-15 {
+  revision 2026-01-21 {
     description
       "Initial version";
     reference
@@ -2431,12 +2444,14 @@ module ietf-network-inventory {
                    component is contained in the network-element or
                    in only one parent component.";
               }
-              type int32 {
-                range "0 .. 2147483647";
-              }
+              type string;
               description
                 "The relative position with respect to the parent
-                 component among all the sibling components.";
+                 component among all the sibling components.
+
+                 The format of this string is
+                 implementation-specific. It MAY encode an integer
+                 value representing the entPhysicalParentRelPos.";
               reference
                 "RFC 6933: Entity MIB (Version 4) -
                            entPhysicalParentRelPos";
@@ -3081,7 +3096,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "board-1"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "port-2",
@@ -3090,7 +3105,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "board-1"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "port-3",
@@ -3100,7 +3115,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "board-1"
                 ],
-                "parent-rel-pos": 3
+                "parent-rel-pos": "3"
               },
               {
                 "component-id": "transceiver-module-3",
@@ -3498,7 +3513,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "component-id": "chassis-1",
                 "class": "iana-hardware:chassis",
                 "description": "First switch of the stack.",
-                "parent-rel-pos": 1,
+                "parent-rel-pos": "1",
                 "is-fru": true
               },
               {
@@ -3509,7 +3524,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-1"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "port-1-2",
@@ -3519,7 +3534,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-1"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "transceiver-module-1-2",
@@ -3535,7 +3550,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "component-id": "chassis-2",
                 "class": "iana-hardware:chassis",
                 "description": "Second switch of the stack.",
-                "parent-rel-pos": 2,
+                "parent-rel-pos": "2",
                 "is-fru": true
               },
               {
@@ -3546,7 +3561,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-2"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "transceiver-module-2-1",
@@ -3566,7 +3581,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-2"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "transceiver-module-2-2",
@@ -3582,7 +3597,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "component-id": "chassis-3",
                 "class": "iana-hardware:chassis",
                 "description": "Third switch of the stack.",
-                "parent-rel-pos": 3,
+                "parent-rel-pos": "3",
                 "is-fru": true
               },
               {
@@ -3593,7 +3608,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-3"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "transceiver-module-3-1",
@@ -3613,7 +3628,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-3"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               }
             ]
           }
@@ -3627,7 +3642,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "component-id": "chassis-1",
                 "class": "iana-hardware:chassis",
                 "description": "First switch of the stack.",
-                "parent-rel-pos": 1,
+                "parent-rel-pos": "1",
                 "is-fru": true
               },
               {
@@ -3638,7 +3653,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-1"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "transceiver-module-1-1",
@@ -3658,7 +3673,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-1"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "transceiver-module-1-2",
@@ -3674,7 +3689,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "component-id": "chassis-2",
                 "class": "iana-hardware:chassis",
                 "description": "Second switch of the stack.",
-                "parent-rel-pos": 2,
+                "parent-rel-pos": "2",
                 "is-fru": true
               },
               {
@@ -3685,7 +3700,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-2"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "transceiver-module-2-1",
@@ -3705,7 +3720,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-2"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "transceiver-module-2-2",
@@ -3721,7 +3736,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "component-id": "chassis-3",
                 "class": "iana-hardware:chassis",
                 "description": "Third switch of the stack.",
-                "parent-rel-pos": 3,
+                "parent-rel-pos": "3",
                 "is-fru": true
               },
               {
@@ -3732,7 +3747,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-3"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "transceiver-module-3-1",
@@ -3752,7 +3767,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-3"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "transceiver-module-3-2",
@@ -3777,7 +3792,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "class": "iana-hardware:chassis",
                 "description": "First chassis of the cascaded switch\
                                                                   .",
-                "parent-rel-pos": 1,
+                "parent-rel-pos": "1",
                 "is-fru": true
               },
               {
@@ -3788,7 +3803,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-1"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "card-1-1",
@@ -3808,7 +3823,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-1-1"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "port-1-1-4",
@@ -3818,7 +3833,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-1-1"
                 ],
-                "parent-rel-pos": 4
+                "parent-rel-pos": "4"
               },
               {
                 "component-id": "transceiver-module-1-1-4",
@@ -3839,7 +3854,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-1-1"
                 ],
-                "parent-rel-pos": 10
+                "parent-rel-pos": "10"
               },
               {
                 "component-id": "slot-1-20",
@@ -3849,7 +3864,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-1"
                 ],
-                "parent-rel-pos": 20
+                "parent-rel-pos": "20"
               },
               {
                 "component-id": "slot-1-32",
@@ -3859,7 +3874,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-1"
                 ],
-                "parent-rel-pos": 32
+                "parent-rel-pos": "32"
               },
               {
                 "component-id": "card-1-32",
@@ -3879,7 +3894,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-1-32"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "port-1-32-6",
@@ -3889,7 +3904,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-1-32"
                 ],
-                "parent-rel-pos": 6
+                "parent-rel-pos": "6"
               },
               {
                 "component-id": "transceiver-module-1-32-6",
@@ -3910,14 +3925,14 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-1-32"
                 ],
-                "parent-rel-pos": 10
+                "parent-rel-pos": "10"
               },
               {
                 "component-id": "chassis-2",
                 "class": "iana-hardware:chassis",
                 "description": "Second chassis of the cascaded \
                                                             switch.",
-                "parent-rel-pos": 2,
+                "parent-rel-pos": "2",
                 "is-fru": true
               },
               {
@@ -3928,7 +3943,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-2"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "card-2-1",
@@ -3948,7 +3963,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-2-1"
                 ],
-                "parent-rel-pos": 5
+                "parent-rel-pos": "5"
               },
               {
                 "component-id": "transceiver-module-2-1-5",
@@ -3969,14 +3984,14 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-2"
                 ],
-                "parent-rel-pos": 16
+                "parent-rel-pos": "16"
               },
               {
                 "component-id": "chassis-3",
                 "class": "iana-hardware:chassis",
                 "description": "Third chassis of the cascaded switch\
                                                                   .",
-                "parent-rel-pos": 3,
+                "parent-rel-pos": "3",
                 "is-fru": true
               },
               {
@@ -3987,7 +4002,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-3"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "slot-3-16",
@@ -3997,7 +4012,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-3"
                 ],
-                "parent-rel-pos": 16
+                "parent-rel-pos": "16"
               },
               {
                 "component-id": "card-3-16",
@@ -4017,7 +4032,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-3-16"
                 ],
-                "parent-rel-pos": 7
+                "parent-rel-pos": "7"
               },
               {
                 "component-id": "transceiver-module-3-16-7",
@@ -4141,7 +4156,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "port-2",
@@ -4150,7 +4165,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "port-3",
@@ -4159,7 +4174,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 3
+                "parent-rel-pos": "3"
               },
               {
                 "component-id": "port-4",
@@ -4168,7 +4183,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 4
+                "parent-rel-pos": "4"
               },
               {
                 "component-id": "port-5",
@@ -4177,7 +4192,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 5
+                "parent-rel-pos": "5"
               },
               {
                 "component-id": "port-6",
@@ -4186,7 +4201,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 6
+                "parent-rel-pos": "6"
               },
               {
                 "component-id": "port-7",
@@ -4195,7 +4210,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 7
+                "parent-rel-pos": "7"
               },
               {
                 "component-id": "port-8",
@@ -4204,7 +4219,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 8
+                "parent-rel-pos": "8"
               }
             ]
           }
