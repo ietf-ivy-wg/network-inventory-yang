@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-22T01:07:38.729136+00:00",
+  "timestamp": "2026-01-25T01:13:34.363525+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -11184,13 +11184,13 @@
       "labels": [],
       "body": "- WG LC comments from Phil: see #148 \r\n- YD LC follow-up comments: see #144 \r\n- Report the parent relative position as a string: fix #156 ",
       "createdAt": "2026-01-15T13:45:07Z",
-      "updatedAt": "2026-01-21T17:52:53Z",
+      "updatedAt": "2026-01-22T10:08:32Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
-      "baseRefOid": "47013f04bba8e4c9b3498ea749e30bee35c38741",
+      "baseRefOid": "f5c390ab6faf32779e6e72b82fc8278d36ae0a16",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "wg-lc-res-02",
-      "headRefOid": "26551364a4b946e794004857be33a4097b0e0c10",
+      "headRefOid": "8757ecf15e4d8d1da2f541e308f2325f229c95a1",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
