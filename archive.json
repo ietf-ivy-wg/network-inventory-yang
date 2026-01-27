@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-25T01:13:34.363525+00:00",
+  "timestamp": "2026-01-27T01:11:04.946667+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -11184,7 +11184,7 @@
       "labels": [],
       "body": "- WG LC comments from Phil: see #148 \r\n- YD LC follow-up comments: see #144 \r\n- Report the parent relative position as a string: fix #156 ",
       "createdAt": "2026-01-15T13:45:07Z",
-      "updatedAt": "2026-01-22T10:08:32Z",
+      "updatedAt": "2026-01-26T15:37:24Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "f5c390ab6faf32779e6e72b82fc8278d36ae0a16",
@@ -11196,7 +11196,34 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo87c55p2",
+          "commit": {
+            "abbreviatedOid": "8757ecf"
+          },
+          "author": "jbouqui153",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-26T13:58:13Z",
+          "updatedAt": "2026-01-26T13:58:13Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo87c7t06",
+          "commit": {
+            "abbreviatedOid": "8757ecf"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-01-26T15:37:24Z",
+          "updatedAt": "2026-01-26T15:37:24Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
