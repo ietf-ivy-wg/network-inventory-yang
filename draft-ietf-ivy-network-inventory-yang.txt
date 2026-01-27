@@ -201,7 +201,7 @@ Table of Contents
 
    *  XXXX --> the assigned RFC number for this I-D
 
-   *  2026-01-21 --> the actual date of the publication of this document
+   *  2026-01-27 --> the actual date of the publication of this document
 
 2.  Terminology and Notations
 
@@ -330,9 +330,9 @@ Table of Contents
        +========+========================+========================+
        | Prefix | YANG Module            | Reference              |
        +========+========================+========================+
-       | inet   | ietf-inet-types        | Section 4 of [RFC6991] |
+       | inet   | ietf-inet-types        | Section 4 of [RFC9911] |
        +--------+------------------------+------------------------+
-       | yang   | ietf-yang-types        | Section 3 of [RFC6991] |
+       | yang   | ietf-yang-types        | Section 3 of [RFC9911] |
        +--------+------------------------+------------------------+
        | ianahw | iana-hardware          | [IANA_HW_YANG]         |
        +--------+------------------------+------------------------+
@@ -724,7 +724,7 @@ Table of Contents
 
 5.  YANG Data Model for Network Inventory
 
-   <CODE BEGINS> file "ietf-network-inventory@2026-01-21.yang"
+   <CODE BEGINS> file "ietf-network-inventory@2026-01-27.yang"
    module ietf-network-inventory {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-network-inventory";
@@ -738,12 +738,12 @@ Table of Contents
      import ietf-yang-types {
        prefix yang;
        reference
-         "RFC 6991: Common YANG Data Types";
+         "RFC 9911: Common YANG Data Types";
      }
      import ietf-inet-types {
        prefix inet;
        reference
-         "RFC 6991: Common YANG Data Types";
+         "RFC 9911: Common YANG Data Types";
      }
 
      organization
@@ -792,7 +792,7 @@ Table of Contents
         described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
         they appear in all capitals, as shown here.";
 
-     revision 2026-01-21 {
+     revision 2026-01-27 {
        description
          "Initial version";
        reference
@@ -1345,10 +1345,6 @@ Table of Contents
               DOI 10.17487/RFC6933, May 2013,
               <https://www.rfc-editor.org/rfc/rfc6933>.
 
-   [RFC6991]  Schoenwaelder, J., Ed., "Common YANG Data Types",
-              RFC 6991, DOI 10.17487/RFC6991, July 2013,
-              <https://www.rfc-editor.org/rfc/rfc6991>.
-
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
               <https://www.rfc-editor.org/rfc/rfc7950>.
@@ -1371,6 +1367,10 @@ Table of Contents
               YANG Data Model for Hardware Management", RFC 8348,
               DOI 10.17487/RFC8348, March 2018,
               <https://www.rfc-editor.org/rfc/rfc8348>.
+
+   [RFC9911]  Schönwälder, J., Ed., "Common YANG Data Types", RFC 9911,
+              DOI 10.17487/RFC9911, December 2025,
+              <https://www.rfc-editor.org/rfc/rfc9911>.
 
    [TMF_SD2-20]
               TM Forum, "SD2-20_Equipment Model", TMF MTOSI 4.0, Network

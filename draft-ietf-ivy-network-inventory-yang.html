@@ -1358,7 +1358,7 @@ summarizes all of the substitutions that are needed.<a href="#section-1.1-2" cla
             <p id="section-1.1-4.1.1">XXXX --&gt; the assigned RFC number for this I-D<a href="#section-1.1-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.1-4.2">
-            <p id="section-1.1-4.2.1">2026-01-21 --&gt; the actual date of the publication of this document<a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-1.1-4.2.1">2026-01-27 --&gt; the actual date of the publication of this document<a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1561,14 +1561,14 @@ A chassis can, but does not need to, include spaces (called slots) to take cards
               <td class="text-left" rowspan="1" colspan="1">inet</td>
               <td class="text-left" rowspan="1" colspan="1">ietf-inet-types</td>
               <td class="text-left" rowspan="1" colspan="1">
-                <span><a href="https://rfc-editor.org/rfc/rfc6991#section-4" class="relref">Section 4</a> of [<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>
+                <span><a href="https://rfc-editor.org/rfc/rfc9911#section-4" class="relref">Section 4</a> of [<a href="#RFC9911" class="cite xref">RFC9911</a>]</span>
 </td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">yang</td>
               <td class="text-left" rowspan="1" colspan="1">ietf-yang-types</td>
               <td class="text-left" rowspan="1" colspan="1">
-                <span><a href="https://rfc-editor.org/rfc/rfc6991#section-3" class="relref">Section 3</a> of [<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>
+                <span><a href="https://rfc-editor.org/rfc/rfc9911#section-3" class="relref">Section 3</a> of [<a href="#RFC9911" class="cite xref">RFC9911</a>]</span>
 </td>
             </tr>
             <tr>
@@ -2015,7 +2015,7 @@ module: ietf-network-inventory
 <span id="name-network-inventory-yang-modu"></span><div id="fig-ni-yang">
 <figure id="figure-3">
         <div class="breakable lang-yang sourcecode" id="section-5-1.1">
-<pre>&lt;CODE BEGINS&gt; file "ietf-network-inventory@2026-01-21.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-network-inventory@2026-01-27.yang"
 
 module ietf-network-inventory {
   yang-version 1.1;
@@ -2030,12 +2030,12 @@ module ietf-network-inventory {
   import ietf-yang-types {
     prefix yang;
     reference
-      "RFC 6991: Common YANG Data Types";
+      "RFC 9911: Common YANG Data Types";
   }
   import ietf-inet-types {
     prefix inet;
     reference
-      "RFC 6991: Common YANG Data Types";
+      "RFC 9911: Common YANG Data Types";
   }
 
   organization
@@ -2084,7 +2084,7 @@ module ietf-network-inventory {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-01-21 {
+  revision 2026-01-27 {
     description
       "Initial version";
     reference
@@ -2598,10 +2598,6 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Romascanu, D.</span>, <span class="refAuthor">Quittek, J.</span>, and <span class="refAuthor">M. Chandramouli</span>, <span class="refTitle">"Entity MIB (Version 4)"</span>, <span class="seriesInfo">RFC 6933</span>, <span class="seriesInfo">DOI 10.17487/RFC6933</span>, <time datetime="2013-05" class="refDate">May 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6933">https://www.rfc-editor.org/rfc/rfc6933</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC6991">[RFC6991]</dt>
-        <dd>
-<span class="refAuthor">Schoenwaelder, J., Ed.</span>, <span class="refTitle">"Common YANG Data Types"</span>, <span class="seriesInfo">RFC 6991</span>, <span class="seriesInfo">DOI 10.17487/RFC6991</span>, <time datetime="2013-07" class="refDate">July 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6991">https://www.rfc-editor.org/rfc/rfc6991</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC7950">[RFC7950]</dt>
         <dd>
 <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"The YANG 1.1 Data Modeling Language"</span>, <span class="seriesInfo">RFC 7950</span>, <span class="seriesInfo">DOI 10.17487/RFC7950</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7950">https://www.rfc-editor.org/rfc/rfc7950</a>&gt;</span>. </dd>
@@ -2621,6 +2617,10 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <dt id="RFC8348">[RFC8348]</dt>
         <dd>
 <span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Bjorklund, M.</span>, <span class="refAuthor">Dong, J.</span>, and <span class="refAuthor">D. Romascanu</span>, <span class="refTitle">"A YANG Data Model for Hardware Management"</span>, <span class="seriesInfo">RFC 8348</span>, <span class="seriesInfo">DOI 10.17487/RFC8348</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8348">https://www.rfc-editor.org/rfc/rfc8348</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9911">[RFC9911]</dt>
+        <dd>
+<span class="refAuthor">Schönwälder, J., Ed.</span>, <span class="refTitle">"Common YANG Data Types"</span>, <span class="seriesInfo">RFC 9911</span>, <span class="seriesInfo">DOI 10.17487/RFC9911</span>, <time datetime="2025-12" class="refDate">December 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9911">https://www.rfc-editor.org/rfc/rfc9911</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="TMF_SD2-20">[TMF_SD2-20]</dt>
       <dd>
