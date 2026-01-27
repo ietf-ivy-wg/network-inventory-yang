@@ -167,7 +167,7 @@ summarizes all of the substitutions that are needed.
 Please apply the following replacements:
 
 - XXXX --> the assigned RFC number for this I-D
-- 2026-01-21 --> the actual date of the publication of this document
+- 2026-01-27 --> the actual date of the publication of this document
 
 # Terminology and Notations
 
@@ -254,8 +254,8 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 
 | Prefix | YANG Module                     | Reference     |
 | ------ | ------------------------------- | ------------- |
-| inet   | ietf-inet-types                 | {{Section 4 of !RFC6991}}  |
-| yang   | ietf-yang-types                 | {{Section 3 of !RFC6991}}  |
+| inet   | ietf-inet-types                 | {{Section 4 of !RFC9911}}  |
+| yang   | ietf-yang-types                 | {{Section 3 of !RFC9911}}  |
 | ianahw | iana-hardware                   | {{IANA_HW_YANG}} |
 | nwi    | ietf-network-inventory          | RFC XXXX      |
 {:#tab-prefixes title="Prefixes and corresponding YANG modules"}
@@ -498,7 +498,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-01-21.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-01-27.yang"}
 
 # Operational Considerations {#operational}
 
