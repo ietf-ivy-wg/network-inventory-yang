@@ -31,7 +31,7 @@ be application- and technology-agnostic. The base data model can be augmented wi
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.32.5
-    wcwidth 0.2.14
+    wcwidth 0.3.0
 -->
 <link href="draft-ietf-ivy-network-inventory-yang.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -572,6 +572,7 @@ aside, blockquote {
 }
 blockquote {
   margin: 1em 0;
+  border-left: 2px var(--pilcrow-strong) solid;
 }
 cite {
   display: block;
@@ -642,7 +643,7 @@ a.pilcrow {
   }
 }
 @media not print {
-  :hover > a.pilcrow {
+  :hover > a.pilcrow, a.pilcrow:focus {
     opacity: 1;
   }
   a.pilcrow[href]:hover {
@@ -1054,7 +1055,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Yu, et al.</td>
-<td class="center">Expires 19 July 2026</td>
+<td class="center">Expires 31 July 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1067,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ivy-network-inventory-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-01-15" class="published">15 January 2026</time>
+<time datetime="2026-01-27" class="published">27 January 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-07-19">19 July 2026</time></dd>
+<dd class="expires"><time datetime="2026-07-31">31 July 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1134,7 +1135,7 @@ be application- and technology-agnostic. The base data model can be augmented wi
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 19 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 31 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1224,6 +1225,9 @@ be application- and technology-agnostic. The base data model can be augmented wi
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4.2.2">
                     <p id="section-toc.1-1.3.2.4.2.2.1"><a href="#section-3.4.2" class="auto internal xref">3.4.2</a>.  <a href="#name-component-identifiers" class="internal xref">Component identifiers</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4.2.3">
+                    <p id="section-toc.1-1.3.2.4.2.3.1"><a href="#section-3.4.3" class="auto internal xref">3.4.3</a>.  <a href="#name-parent-relative-position" class="internal xref">Parent relative position</a></p>
 </li>
                 </ul>
 </li>
@@ -1320,19 +1324,21 @@ to upgrade or to decommission), remains healthy (e.g., auditing to
 identify faulty elements), and is maintained appropriately to meet
 the performance objectives.
 Also, network inventory management allows operators to keep track of which devices are deployed in their networks, including relevant embedded software and hardware versions.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">Exposing standard interfaces to retrieve network elements capabilities as maintained in an inventory are key enablers for many applications. For example, <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> identifies a gap about the lack of YANG data models that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware inventory information available at domain controller level towards
+<p id="section-1-4">Exposing standard interfaces to retrieve network element components as maintained in an inventory are key enablers for many applications. For example, <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> identifies a gap about the lack of YANG data models that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware inventory information available at domain controller level towards
 upper layer systems (e.g., Multi-Domain Service Coordinator (MDSC) or Operations Support Systems (OSS) layers).<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">It is key for operators to coordinate with the industry towards the use of a
 standard YANG data model for Network Inventory data instead
 of using vendors' proprietary APIs.<a href="#section-1-5" class="pilcrow">¶</a></p>
 <p id="section-1-6"><span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller towards the network elements rather than at the northbound interface of a network controller (e.g., toward an application or another hierarchical network controller). However, the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> has been used as a reference for defining the YANG network inventory data model presented in this document.<a href="#section-1-6" class="pilcrow">¶</a></p>
 <p id="section-1-7">Per the definition of <span>[<a href="#RFC8309" class="cite xref">RFC8309</a>]</span> and <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>, the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> is a device model while the YANG data model defined in this document is a network model.<a href="#section-1-7" class="pilcrow">¶</a></p>
-<p id="section-1-8">This document defines one YANG module "ietf-network-inventory" in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#section-1-8" class="pilcrow">¶</a></p>
-<p id="section-1-9">This base data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
+<p id="section-1-8">As outlined in <a href="#operational" class="auto internal xref">Section 6</a>, the network inventory provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network.<a href="#section-1-8" class="pilcrow">¶</a></p>
+<p id="section-1-9">As outlined in <a href="#overview" class="auto internal xref">Section 3</a>, the base inventory YANG data model defined in this document supports only physical network elements but generalizes the network element definition to allow supporting other types of network elements through proper augmentations.<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-10">This document defines one YANG module "ietf-network-inventory" in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#section-1-10" class="pilcrow">¶</a></p>
+<p id="section-1-11">This base data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
 microwave networks as well as optical local loops, access networks, core networks, data centers, etc.) and can be augmented to
-include required application- and technology-specific inventory details together with specific hardware or software component's attributes.<a href="#section-1-9" class="pilcrow">¶</a></p>
-<p id="section-1-10">The YANG data model defined in the document is scoped to cover the common use cases for Inventory but at network-wide level, covering both hardware and base software information.<a href="#section-1-10" class="pilcrow">¶</a></p>
-<p id="section-1-11">The YANG data model defined in this document conforms to the Network Management Datastore Architecture <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-11" class="pilcrow">¶</a></p>
+include required application- and technology-specific inventory details together with specific hardware or software component's attributes.<a href="#section-1-11" class="pilcrow">¶</a></p>
+<p id="section-1-12">The YANG data model defined in the document is scoped to cover the common use cases for Inventory but at network-wide level, covering both hardware and base software information.<a href="#section-1-12" class="pilcrow">¶</a></p>
+<p id="section-1-13">The YANG data model defined in this document conforms to the Network Management Datastore Architecture <span>[<a href="#RFC8342" class="cite xref">RFC8342</a>]</span>.<a href="#section-1-13" class="pilcrow">¶</a></p>
 <div id="editorial-note-to-be-removed-by-rfc-editor">
 <section id="section-1.1">
         <h3 id="name-editorial-note-to-be-remove">
@@ -1344,12 +1350,15 @@ include required application- and technology-specific inventory details together
 </li>
         </ul>
 <p id="section-1.1-2">This document contains placeholder values that need to be replaced
-   with finalized values at the time of publication.  This note
-   summarizes all of the substitutions that are needed.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+with finalized values at the time of publication.  This note
+summarizes all of the substitutions that are needed.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
 <p id="section-1.1-3">Please apply the following replacements:<a href="#section-1.1-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1.1-4.1">
             <p id="section-1.1-4.1.1">XXXX --&gt; the assigned RFC number for this I-D<a href="#section-1.1-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-1.1-4.2">
+            <p id="section-1.1-4.2.1">2026-01-21 --&gt; the actual date of the publication of this document<a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1745,24 +1754,42 @@ document and could be defined in application- and technology-specific companion 
             <p id="section-3.3-3.14.1">It is expected that vendors assign unique part numbers to different component types within the scope of the vendor.<a href="#section-3.3-3.14.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.15">serial-number:</dt>
+<dt id="section-3.3-3.15"></dt>
           <dd style="margin-left: 1.5em" id="section-3.3-3.16">
-            <p id="section-3.3-3.16.1">The vendor-specific serial number of the component instance.<a href="#section-3.3-3.16.1" class="pilcrow">¶</a></p>
+            <ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-3.3-3.16.1.1">
+                <p id="section-3.3-3.16.1.1.1">Although the part number is often an alphanumeric string and not a number, this document uses this term since it is widely used and well known in the industry.<a href="#section-3.3-3.16.1.1.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.17"></dt>
+<dt id="section-3.3-3.17">serial-number:</dt>
           <dd style="margin-left: 1.5em" id="section-3.3-3.18">
-            <p id="section-3.3-3.18.1">It is expected that vendors assign unique serial numbers to different component instances at least within the scope of the part-number.<a href="#section-3.3-3.18.1" class="pilcrow">¶</a></p>
+            <p id="section-3.3-3.18.1">The vendor-specific serial number of the component instance.<a href="#section-3.3-3.18.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.19">asset-id:</dt>
+<dt id="section-3.3-3.19"></dt>
           <dd style="margin-left: 1.5em" id="section-3.3-3.20">
-            <p id="section-3.3-3.20.1">An asset tracking identifier for the component, provided by a network operator.<a href="#section-3.3-3.20.1" class="pilcrow">¶</a></p>
+            <p id="section-3.3-3.20.1">It is expected that vendors assign unique serial numbers to different component instances at least within the scope of the part-number.<a href="#section-3.3-3.20.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.21">is-fru:</dt>
+<dt id="section-3.3-3.21"></dt>
           <dd style="margin-left: 1.5em" id="section-3.3-3.22">
-            <p id="section-3.3-3.22.1">Indicates whether or not a component is considered a 'field-replaceable unit' by the vendor.<a href="#section-3.3-3.22.1" class="pilcrow">¶</a></p>
+            <ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-3.3-3.22.1.1">
+                <p id="section-3.3-3.22.1.1.1">Although the serial number is often an alphanumeric string and not a number, this document uses this term since it is widely used and well known in the industry.<a href="#section-3.3-3.22.1.1.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-3.3-3.23">asset-id:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.3-3.24">
+            <p id="section-3.3-3.24.1">An asset tracking identifier for the component, provided by a network operator.<a href="#section-3.3-3.24.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-3.3-3.25">is-fru:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.3-3.26">
+            <p id="section-3.3-3.26.1">Indicates whether or not a component is considered a 'field-replaceable unit' by the vendor.<a href="#section-3.3-3.26.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1829,8 +1856,7 @@ document and could be defined in application- and technology-specific companion 
                     <text x="256" y="52">element</text>
                     <text x="240" y="132">1:M</text>
                     <text x="220" y="196">\/</text>
-                    <text x="228" y="228">chassis/</text>
-                    <text x="224" y="244">sub-chassis</text>
+                    <text x="224" y="228">chassis</text>
                     <text x="152" y="292">1:N</text>
                     <text x="280" y="292">1:M</text>
                     <text x="100" y="324">\/</text>
@@ -1905,6 +1931,16 @@ outside the scope of this document and defined in other documents such as
 <p id="section-3.4.2-3">Instead the name is defined as an optional attribute and the component-id is defined as the key for the component list (in alignment with the approach followed for the network-element list).<a href="#section-3.4.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="parent-relative-position">
+<section id="section-3.4.3">
+          <h4 id="name-parent-relative-position">
+<a href="#section-3.4.3" class="section-number selfRef">3.4.3. </a><a href="#name-parent-relative-position" class="section-name selfRef">Parent relative position</a>
+          </h4>
+<p id="section-3.4.3-1">There are some use cases where the parent relative position is not reported as an integer but as a string.<a href="#section-3.4.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.4.3-2">In order to support these use cases and allowing a straightforward match between the relative position definition in the device and in the network inventory, this model is defining the 'parent-rel-pos' data node as a string instead of as an integer.<a href="#section-3.4.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.4.3-3">If the device reports the relative position as an integer, e.g., using the device model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, the integer value reported by the device can be mapped into a string within the network inventory.<a href="#section-3.4.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 </section>
@@ -1961,7 +1997,7 @@ module: ietf-network-inventory
                  +--ro uri*              inet:uri
                  +--ro parent*
                  |       -&gt; ../../component/component-id
-                 +--ro parent-rel-pos?   int32
+                 +--ro parent-rel-pos?   string
                  +--ro is-main?          boolean
 </pre>
 </div>
@@ -1979,7 +2015,7 @@ module: ietf-network-inventory
 <span id="name-network-inventory-yang-modu"></span><div id="fig-ni-yang">
 <figure id="figure-3">
         <div class="breakable lang-yang sourcecode" id="section-5-1.1">
-<pre>&lt;CODE BEGINS&gt; file "ietf-network-inventory@2025-12-04.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-network-inventory@2026-01-21.yang"
 
 module ietf-network-inventory {
   yang-version 1.1;
@@ -2029,7 +2065,7 @@ module ietf-network-inventory {
      The model fully conforms to the Network Management
      Datastore Architecture (NMDA).
 
-     Copyright (c) 2025 IETF Trust and the persons
+     Copyright (c) 2026 IETF Trust and the persons
      identified as authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -2048,10 +2084,7 @@ module ietf-network-inventory {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  // RFC Ed.: update the date below with the date of RFC publication
-  // and remove this note.
-
-  revision 2025-12-15 {
+  revision 2026-01-21 {
     description
       "Initial version";
     reference
@@ -2412,12 +2445,14 @@ module ietf-network-inventory {
                    component is contained in the network-element or
                    in only one parent component.";
               }
-              type int32 {
-                range "0 .. 2147483647";
-              }
+              type string;
               description
                 "The relative position with respect to the parent
-                 component among all the sibling components.";
+                 component among all the sibling components.
+
+                 The format of this string is
+                 implementation-specific. It MAY encode an integer
+                 value representing the entPhysicalParentRelPos.";
               reference
                 "RFC 6933: Entity MIB (Version 4) -
                            entPhysicalParentRelPos";
@@ -2450,7 +2485,7 @@ module ietf-network-inventory {
 </div>
 </section>
 </div>
-<div id="operational-considerations">
+<div id="operational">
 <section id="section-6">
       <h2 id="name-operational-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-operational-considerations" class="section-name selfRef">Operational Considerations</a>
@@ -2460,10 +2495,11 @@ module ietf-network-inventory {
 <p id="section-6-3">As outlined in <a href="#intro" class="auto internal xref">Section 1</a>, per the definition of <span>[<a href="#RFC8309" class="cite xref">RFC8309</a>]</span> and <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>, the network inventory model is a network model.<a href="#section-6-3" class="pilcrow">¶</a></p>
 <p id="section-6-4">This information can be provided by a network controller to an higher level hierarchical network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.<a href="#section-6-4" class="pilcrow">¶</a></p>
 <p id="section-6-5">For example, in the context of ACTN, the network inventory YANG data model can be used at the MPI interfaces, as defined in <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span>, or on an interface, not defined in <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span> between the MDSC and the Inventory OSS.<a href="#section-6-5" class="pilcrow">¶</a></p>
-<p id="section-6-6">The information in the model is populated by controller by reading it from the devices using the device model supported by the devices. This model does not constraint the device models used on the device: the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).<a href="#section-6-6" class="pilcrow">¶</a></p>
-<p id="section-6-7">In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to an higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.<a href="#section-6-7" class="pilcrow">¶</a></p>
-<p id="section-6-8">When used in brownfield scenarios, it is worth noting that existing deployments are based on proprietary Inventory OSS and that the migration path is highly dependent on the specific proprietary solution. Therefore the migration processes are operator dependent: it is expected that the deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing Inventory OSSes will also take longer time. In a longer term, the network controllers could provide inventory information, using this YANG data model, also to next generation OSSes.<a href="#section-6-8" class="pilcrow">¶</a></p>
-<p id="section-6-9">When this model is used, the source of truth for the inventory data in the scope of this model is the network controller providing this data. Some legacy inventory information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model.<a href="#section-6-9" class="pilcrow">¶</a></p>
+<p id="section-6-6">The information in the model is discovered by the controller through mechanisms which are outside the scope of this document.<a href="#section-6-6" class="pilcrow">¶</a></p>
+<p id="section-6-7">For example, the network controller can collect this information by reading it from the devices using the device model supported by the devices. This model does not constraint the device models used on the device: the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).<a href="#section-6-7" class="pilcrow">¶</a></p>
+<p id="section-6-8">In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to an higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.<a href="#section-6-8" class="pilcrow">¶</a></p>
+<p id="section-6-9">When used in brownfield scenarios, it is worth noting that existing deployments are based on proprietary Inventory OSS and that the migration path is highly dependent on the specific proprietary solution. Therefore the migration processes are operator dependent: it is expected that the deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing Inventory OSSes will also take longer time. In a longer term, the network controllers could provide inventory information, using this YANG data model, also to next generation OSSes.<a href="#section-6-9" class="pilcrow">¶</a></p>
+<p id="section-6-10">When this model is used, the source of truth for the inventory data in the scope of this model is the network controller providing this data. Some legacy inventory information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model.<a href="#section-6-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
@@ -2619,6 +2655,10 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">Yu, C.</span>, <span class="refAuthor">Guo, A.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">Boroon, M.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">van caenegem, T.</span>, <span class="refAuthor">S., S. 1.</span>, <span class="refAuthor">B., S.</span>, <span class="refAuthor">Davis, N.</span>, <span class="refAuthor">Tilocca, M.</span>, <span class="refAuthor">Peters, B.</span>, <span class="refAuthor">Yoon, B. Y.</span>, <span class="refAuthor">LIUYUCONG</span>, <span class="refAuthor">Zhao, Y.</span>, and <span class="refAuthor">A. Sakalabhaktula</span>, <span class="refTitle">"A YANG Data Model for Passive Network Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ygb-ivy-passive-network-inventory-03</span>, <time datetime="2026-01-07" class="refDate">7 January 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ygb-ivy-passive-network-inventory-03">https://datatracker.ietf.org/doc/html/draft-ygb-ivy-passive-network-inventory-03</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="OpenConfig">[OpenConfig]</dt>
+        <dd>
+<span class="refAuthor">OpenConfig Working Group</span>, <span class="refTitle">"OpenConfig Public Release v5.6.0"</span>, <span class="seriesInfo">Release 5.6.0 </span>, <time datetime="2026-01" class="refDate">January 2026</time>, <span>&lt;<a href="https://github.com/openconfig/public/tree/v5.6.0/">https://github.com/openconfig/public/tree/v5.6.0/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC1157">[RFC1157]</dt>
         <dd>
 <span class="refAuthor">Case, J.</span>, <span class="refAuthor">Fedor, M.</span>, <span class="refAuthor">Schoffstall, M.</span>, and <span class="refAuthor">J. Davin</span>, <span class="refTitle">"Simple Network Management Protocol (SNMP)"</span>, <span class="seriesInfo">RFC 1157</span>, <span class="seriesInfo">DOI 10.17487/RFC1157</span>, <time datetime="1990-05" class="refDate">May 1990</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc1157">https://www.rfc-editor.org/rfc/rfc1157</a>&gt;</span>. </dd>
@@ -2626,6 +2666,10 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <dt id="RFC3688">[RFC3688]</dt>
         <dd>
 <span class="refAuthor">Mealling, M.</span>, <span class="refTitle">"The IETF XML Registry"</span>, <span class="seriesInfo">BCP 81</span>, <span class="seriesInfo">RFC 3688</span>, <span class="seriesInfo">DOI 10.17487/RFC3688</span>, <time datetime="2004-01" class="refDate">January 2004</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3688">https://www.rfc-editor.org/rfc/rfc3688</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4152">[RFC4152]</dt>
+        <dd>
+<span class="refAuthor">Tesink, K.</span> and <span class="refAuthor">R. Fox</span>, <span class="refTitle">"A Uniform Resource Name (URN) Namespace for the Common Language Equipment Identifier (CLEI) Code"</span>, <span class="seriesInfo">RFC 4152</span>, <span class="seriesInfo">DOI 10.17487/RFC4152</span>, <time datetime="2005-08" class="refDate">August 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4152">https://www.rfc-editor.org/rfc/rfc4152</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4252">[RFC4252]</dt>
         <dd>
@@ -2677,7 +2721,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
       <h2 id="name-comparison-with-openconfig-">
 <a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-comparison-with-openconfig-" class="section-name selfRef">Comparison With Openconfig-platform Data Model</a>
       </h2>
-<p id="appendix-A-1">Since more and more devices can be managed by domain controller through OpenConfig, to ensure that our inventory data model can cover these devices' inventory data, we have compared our inventory data model with the "openconfig-platform" model which is the data model used to manage inventory information in OpenConfig.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">Since more and more devices can be managed by domain controller through OpenConfig, to ensure that our inventory data model can cover these devices' inventory data, we have compared our inventory data model with the "openconfig-platform" and "openconfig-platform-types" YANG modules, as defined in <span>[<a href="#OpenConfig" class="cite xref">OpenConfig</a>]</span>, which defines the YANG data model used to manage inventory information in OpenConfig.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <p id="appendix-A-2">Openconfig-platform data model is NE-level and uses a generic component concept to describe its inner devices and containers, which is similar to "ietf-hardware" model in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>. Since we have also reused the component concept of <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> in our inventory data model, we can compare the component's attributes between "openconfig-platform" and our model directly , which is stated in <a href="#tab-oc" class="auto internal xref">Table 2</a>.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 <span id="name-comparison-between-openconf"></span><div id="tab-oc">
 <table class="center" id="table-2">
@@ -2755,8 +2799,9 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">clei-code</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">Not defined even in RFC-8348 at device level</td>
+            <td class="text-left" rowspan="1" colspan="1">uri</td>
+            <td class="text-left" rowspan="1" colspan="1">CLEI code can be mapped into one URI as defined in <span>[<a href="#RFC4152" class="cite xref">RFC4152</a>]</span>
+</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">removable</td>
@@ -3052,7 +3097,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "board-1"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "port-2",
@@ -3061,7 +3106,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "board-1"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "port-3",
@@ -3071,7 +3116,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "board-1"
                 ],
-                "parent-rel-pos": 3
+                "parent-rel-pos": "3"
               },
               {
                 "component-id": "transceiver-module-3",
@@ -3469,7 +3514,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "component-id": "chassis-1",
                 "class": "iana-hardware:chassis",
                 "description": "First switch of the stack.",
-                "parent-rel-pos": 1,
+                "parent-rel-pos": "1",
                 "is-fru": true
               },
               {
@@ -3480,7 +3525,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-1"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "port-1-2",
@@ -3490,7 +3535,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-1"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "transceiver-module-1-2",
@@ -3506,7 +3551,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "component-id": "chassis-2",
                 "class": "iana-hardware:chassis",
                 "description": "Second switch of the stack.",
-                "parent-rel-pos": 2,
+                "parent-rel-pos": "2",
                 "is-fru": true
               },
               {
@@ -3517,7 +3562,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-2"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "transceiver-module-2-1",
@@ -3537,7 +3582,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-2"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "transceiver-module-2-2",
@@ -3553,7 +3598,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "component-id": "chassis-3",
                 "class": "iana-hardware:chassis",
                 "description": "Third switch of the stack.",
-                "parent-rel-pos": 3,
+                "parent-rel-pos": "3",
                 "is-fru": true
               },
               {
@@ -3564,7 +3609,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-3"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "transceiver-module-3-1",
@@ -3584,7 +3629,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-3"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               }
             ]
           }
@@ -3598,7 +3643,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "component-id": "chassis-1",
                 "class": "iana-hardware:chassis",
                 "description": "First switch of the stack.",
-                "parent-rel-pos": 1,
+                "parent-rel-pos": "1",
                 "is-fru": true
               },
               {
@@ -3609,7 +3654,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-1"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "transceiver-module-1-1",
@@ -3629,7 +3674,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-1"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "transceiver-module-1-2",
@@ -3645,7 +3690,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "component-id": "chassis-2",
                 "class": "iana-hardware:chassis",
                 "description": "Second switch of the stack.",
-                "parent-rel-pos": 2,
+                "parent-rel-pos": "2",
                 "is-fru": true
               },
               {
@@ -3656,7 +3701,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-2"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "transceiver-module-2-1",
@@ -3676,7 +3721,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-2"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "transceiver-module-2-2",
@@ -3692,7 +3737,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "component-id": "chassis-3",
                 "class": "iana-hardware:chassis",
                 "description": "Third switch of the stack.",
-                "parent-rel-pos": 3,
+                "parent-rel-pos": "3",
                 "is-fru": true
               },
               {
@@ -3703,7 +3748,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-3"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "transceiver-module-3-1",
@@ -3723,7 +3768,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-3"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "transceiver-module-3-2",
@@ -3748,7 +3793,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "class": "iana-hardware:chassis",
                 "description": "First chassis of the cascaded switch\
                                                                   .",
-                "parent-rel-pos": 1,
+                "parent-rel-pos": "1",
                 "is-fru": true
               },
               {
@@ -3759,7 +3804,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-1"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "card-1-1",
@@ -3779,7 +3824,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-1-1"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "port-1-1-4",
@@ -3789,7 +3834,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-1-1"
                 ],
-                "parent-rel-pos": 4
+                "parent-rel-pos": "4"
               },
               {
                 "component-id": "transceiver-module-1-1-4",
@@ -3810,7 +3855,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-1-1"
                 ],
-                "parent-rel-pos": 10
+                "parent-rel-pos": "10"
               },
               {
                 "component-id": "slot-1-20",
@@ -3820,7 +3865,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-1"
                 ],
-                "parent-rel-pos": 20
+                "parent-rel-pos": "20"
               },
               {
                 "component-id": "slot-1-32",
@@ -3830,7 +3875,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-1"
                 ],
-                "parent-rel-pos": 32
+                "parent-rel-pos": "32"
               },
               {
                 "component-id": "card-1-32",
@@ -3850,7 +3895,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-1-32"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "port-1-32-6",
@@ -3860,7 +3905,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-1-32"
                 ],
-                "parent-rel-pos": 6
+                "parent-rel-pos": "6"
               },
               {
                 "component-id": "transceiver-module-1-32-6",
@@ -3881,14 +3926,14 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-1-32"
                 ],
-                "parent-rel-pos": 10
+                "parent-rel-pos": "10"
               },
               {
                 "component-id": "chassis-2",
                 "class": "iana-hardware:chassis",
                 "description": "Second chassis of the cascaded \
                                                             switch.",
-                "parent-rel-pos": 2,
+                "parent-rel-pos": "2",
                 "is-fru": true
               },
               {
@@ -3899,7 +3944,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-2"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "card-2-1",
@@ -3919,7 +3964,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-2-1"
                 ],
-                "parent-rel-pos": 5
+                "parent-rel-pos": "5"
               },
               {
                 "component-id": "transceiver-module-2-1-5",
@@ -3940,14 +3985,14 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-2"
                 ],
-                "parent-rel-pos": 16
+                "parent-rel-pos": "16"
               },
               {
                 "component-id": "chassis-3",
                 "class": "iana-hardware:chassis",
                 "description": "Third chassis of the cascaded switch\
                                                                   .",
-                "parent-rel-pos": 3,
+                "parent-rel-pos": "3",
                 "is-fru": true
               },
               {
@@ -3958,7 +4003,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-3"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "slot-3-16",
@@ -3968,7 +4013,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "chassis-3"
                 ],
-                "parent-rel-pos": 16
+                "parent-rel-pos": "16"
               },
               {
                 "component-id": "card-3-16",
@@ -3988,7 +4033,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "card-3-16"
                 ],
-                "parent-rel-pos": 7
+                "parent-rel-pos": "7"
               },
               {
                 "component-id": "transceiver-module-3-16-7",
@@ -4112,7 +4157,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "port-2",
@@ -4121,7 +4166,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "port-3",
@@ -4130,7 +4175,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 3
+                "parent-rel-pos": "3"
               },
               {
                 "component-id": "port-4",
@@ -4139,7 +4184,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 4
+                "parent-rel-pos": "4"
               },
               {
                 "component-id": "port-5",
@@ -4148,7 +4193,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 5
+                "parent-rel-pos": "5"
               },
               {
                 "component-id": "port-6",
@@ -4157,7 +4202,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 6
+                "parent-rel-pos": "6"
               },
               {
                 "component-id": "port-7",
@@ -4166,7 +4211,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 7
+                "parent-rel-pos": "7"
               },
               {
                 "component-id": "port-8",
@@ -4175,7 +4220,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 8
+                "parent-rel-pos": "8"
               }
             ]
           }

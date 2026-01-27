@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 19 July 2026                                              Nokia
+Expires: 31 July 2026                                              Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                         15 January 2026
+                                                         27 January 2026
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 July 2026.
+   This Internet-Draft will expire on 31 July 2026.
 
 Copyright Notice
 
@@ -89,6 +89,7 @@ Table of Contents
      3.4.  Changes Since RFC 8348
        3.4.1.  Part Number
        3.4.2.  Component identifiers
+       3.4.3.  Parent relative position
    4.  Network Inventory Tree Diagram
    5.  YANG Data Model for Network Inventory
    6.  Operational Considerations
@@ -133,16 +134,16 @@ Table of Contents
    are deployed in their networks, including relevant embedded software
    and hardware versions.
 
-   Exposing standard interfaces to retrieve network elements
-   capabilities as maintained in an inventory are key enablers for many
-   applications.  For example, [I-D.ietf-teas-actn-poi-applicability]
-   identifies a gap about the lack of YANG data models that could be
-   used at Abstraction and Control of TE Networks (ACTN) Multi-Domain
-   Service Coordinator-Provisioning Network Controller Interface (MPI)
-   level to report whole or partial network hardware inventory
-   information available at domain controller level towards upper layer
-   systems (e.g., Multi-Domain Service Coordinator (MDSC) or Operations
-   Support Systems (OSS) layers).
+   Exposing standard interfaces to retrieve network element components
+   as maintained in an inventory are key enablers for many applications.
+   For example, [I-D.ietf-teas-actn-poi-applicability] identifies a gap
+   about the lack of YANG data models that could be used at Abstraction
+   and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-
+   Provisioning Network Controller Interface (MPI) level to report whole
+   or partial network hardware inventory information available at domain
+   controller level towards upper layer systems (e.g., Multi-Domain
+   Service Coordinator (MDSC) or Operations Support Systems (OSS)
+   layers).
 
    It is key for operators to coordinate with the industry towards the
    use of a standard YANG data model for Network Inventory data instead
@@ -160,6 +161,15 @@ Table of Contents
    Per the definition of [RFC8309] and [RFC8969], the YANG data model
    defined in [RFC8348] is a device model while the YANG data model
    defined in this document is a network model.
+
+   As outlined in Section 6, the network inventory provides a read-only
+   perspective of the actual inventory data that a network controller
+   knows of what it is actually installed within the network.
+
+   As outlined in Section 3, the base inventory YANG data model defined
+   in this document supports only physical network elements but
+   generalizes the network element definition to allow supporting other
+   types of network elements through proper augmentations.
 
    This document defines one YANG module "ietf-network-inventory" in
    Section 5.
@@ -190,6 +200,8 @@ Table of Contents
    Please apply the following replacements:
 
    *  XXXX --> the assigned RFC number for this I-D
+
+   *  2026-01-21 --> the actual date of the publication of this document
 
 2.  Terminology and Notations
 
@@ -496,12 +508,22 @@ Table of Contents
       It is expected that vendors assign unique part numbers to
       different component types within the scope of the vendor.
 
+ 
+         Although the part number is often an alphanumeric string and
+         not a number, this document uses this term since it is widely
+         used and well known in the industry.
+
    serial-number:  The vendor-specific serial number of the component
       instance.
 
       It is expected that vendors assign unique serial numbers to
       different component instances at least within the scope of the
       part-number.
+
+ 
+         Although the serial number is often an alphanumeric string and
+         not a number, this document uses this term since it is widely
+         used and well known in the industry.
 
    asset-id:  An asset tracking identifier for the component, provided
       by a network operator.
@@ -541,8 +563,8 @@ Table of Contents
                                        ||
                                        \/
                                  +-------------+
-                                 |   chassis/  |---+
-                                 | sub-chassis |<--|
+                                 |   chassis   |---+
+                                 |             |<--|
                                  +-------------+
                                        ||
                         ______1:N______||_____1:M_______
@@ -633,6 +655,21 @@ Table of Contents
    component-id is defined as the key for the component list (in
    alignment with the approach followed for the network-element list).
 
+3.4.3.  Parent relative position
+
+   There are some use cases where the parent relative position is not
+   reported as an integer but as a string.
+
+   In order to support these use cases and allowing a straightforward
+   match between the relative position definition in the device and in
+   the network inventory, this model is defining the 'parent-rel-pos'
+   data node as a string instead of as an integer.
+
+   If the device reports the relative position as an integer, e.g.,
+   using the device model defined in [RFC8348], the integer value
+   reported by the device can be mapped into a string within the network
+   inventory.
+
 4.  Network Inventory Tree Diagram
 
    Figure 2 shows the tree diagram of the YANG data model defined in
@@ -680,14 +717,14 @@ Table of Contents
                     +--ro uri*              inet:uri
                     +--ro parent*
                     |       -> ../../component/component-id
-                    +--ro parent-rel-pos?   int32
+                    +--ro parent-rel-pos?   string
                     +--ro is-main?          boolean
 
                   Figure 2: Network inventory tree diagram
 
 5.  YANG Data Model for Network Inventory
 
-   <CODE BEGINS> file "ietf-network-inventory@2025-12-04.yang"
+   <CODE BEGINS> file "ietf-network-inventory@2026-01-21.yang"
    module ietf-network-inventory {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-network-inventory";
@@ -736,7 +773,7 @@ Table of Contents
         The model fully conforms to the Network Management
         Datastore Architecture (NMDA).
 
-        Copyright (c) 2025 IETF Trust and the persons
+        Copyright (c) 2026 IETF Trust and the persons
         identified as authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -755,10 +792,7 @@ Table of Contents
         described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
         they appear in all capitals, as shown here.";
 
-     // RFC Ed.: update the date below with the date of RFC publication
-     // and remove this note.
-
-     revision 2025-12-15 {
+     revision 2026-01-21 {
        description
          "Initial version";
        reference
@@ -1119,12 +1153,14 @@ Table of Contents
                       component is contained in the network-element or
                       in only one parent component.";
                  }
-                 type int32 {
-                   range "0 .. 2147483647";
-                 }
+                 type string;
                  description
                    "The relative position with respect to the parent
-                    component among all the sibling components.";
+                    component among all the sibling components.
+
+                    The format of this string is
+                    implementation-specific. It MAY encode an integer
+                    value representing the entPhysicalParentRelPos.";
                  reference
                    "RFC 6933: Entity MIB (Version 4) -
                               entPhysicalParentRelPos";
@@ -1177,12 +1213,15 @@ Table of Contents
    on an interface, not defined in [RFC8453] between the MDSC and the
    Inventory OSS.
 
-   The information in the model is populated by controller by reading it
-   from the devices using the device model supported by the devices.
-   This model does not constraint the device models used on the device:
-   the YANG data model defined in [RFC8348] is an option but other
-   options (e.g., vendor specific interfaces or YANG data models) are
-   also allowed.  In case some information is not provided by the
+   The information in the model is discovered by the controller through
+   mechanisms which are outside the scope of this document.
+
+   For example, the network controller can collect this information by
+   reading it from the devices using the device model supported by the
+   devices.  This model does not constraint the device models used on
+   the device: the YANG data model defined in [RFC8348] is an option but
+   other options (e.g., vendor specific interfaces or YANG data models)
+   are also allowed.  In case some information is not provided by the
    device, the network controller SHALL omit this information unless
    this information is known by other sources of information (e.g.,
    through local configuration within the network controller).
@@ -1383,6 +1422,11 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ygb-ivy-
               passive-network-inventory-03>.
 
+   [OpenConfig]
+              OpenConfig Working Group, "OpenConfig Public Release
+              v5.6.0", Release 5.6.0 , January 2026,
+              <https://github.com/openconfig/public/tree/v5.6.0/>.
+
    [RFC1157]  Case, J., Fedor, M., Schoffstall, M., and J. Davin,
               "Simple Network Management Protocol (SNMP)", RFC 1157,
               DOI 10.17487/RFC1157, May 1990,
@@ -1391,6 +1435,11 @@ Table of Contents
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
               <https://www.rfc-editor.org/rfc/rfc3688>.
+
+   [RFC4152]  Tesink, K. and R. Fox, "A Uniform Resource Name (URN)
+              Namespace for the Common Language Equipment Identifier
+              (CLEI) Code", RFC 4152, DOI 10.17487/RFC4152, August 2005,
+              <https://www.rfc-editor.org/rfc/rfc4152>.
 
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
@@ -1441,8 +1490,9 @@ Appendix A.  Comparison With Openconfig-platform Data Model
    Since more and more devices can be managed by domain controller
    through OpenConfig, to ensure that our inventory data model can cover
    these devices' inventory data, we have compared our inventory data
-   model with the "openconfig-platform" model which is the data model
-   used to manage inventory information in OpenConfig.
+   model with the "openconfig-platform" and "openconfig-platform-types"
+   YANG modules, as defined in [OpenConfig], which defines the YANG data
+   model used to manage inventory information in OpenConfig.
 
    Openconfig-platform data model is NE-level and uses a generic
    component concept to describe its inner devices and containers, which
@@ -1479,9 +1529,10 @@ Appendix A.  Comparison With Openconfig-platform Data Model
    +------------------------+-------------------+----------------------+
    | part-no                | part-number       |                      |
    +------------------------+-------------------+----------------------+
-   | clei-code              |                   | Not defined even in  |
-   |                        |                   | RFC-8348 at device   |
-   |                        |                   | level                |
+   | clei-code              | uri               | CLEI code can be     |
+   |                        |                   | mapped into one URI  |
+   |                        |                   | as defined in        |
+   |                        |                   | [RFC4152]            |
    +------------------------+-------------------+----------------------+
    | removable              | is-fru            |                      |
    +------------------------+-------------------+----------------------+
@@ -1716,7 +1767,7 @@ D.1.  JSON Examples
                    "parent": [
                      "board-1"
                    ],
-                   "parent-rel-pos": 1
+                   "parent-rel-pos": "1"
                  },
                  {
                    "component-id": "port-2",
@@ -1725,7 +1776,7 @@ D.1.  JSON Examples
                    "parent": [
                      "board-1"
                    ],
-                   "parent-rel-pos": 2
+                   "parent-rel-pos": "2"
                  },
                  {
                    "component-id": "port-3",
@@ -1735,7 +1786,7 @@ D.1.  JSON Examples
                    "parent": [
                      "board-1"
                    ],
-                   "parent-rel-pos": 3
+                   "parent-rel-pos": "3"
                  },
                  {
                    "component-id": "transceiver-module-3",
@@ -1951,7 +2002,7 @@ E.1.  JSON Examples
                    "component-id": "chassis-1",
                    "class": "iana-hardware:chassis",
                    "description": "First switch of the stack.",
-                   "parent-rel-pos": 1,
+                   "parent-rel-pos": "1",
                    "is-fru": true
                  },
                  {
@@ -1962,7 +2013,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-1"
                    ],
-                   "parent-rel-pos": 1
+                   "parent-rel-pos": "1"
                  },
                  {
                    "component-id": "port-1-2",
@@ -1972,7 +2023,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-1"
                    ],
-                   "parent-rel-pos": 2
+                   "parent-rel-pos": "2"
                  },
                  {
                    "component-id": "transceiver-module-1-2",
@@ -1988,7 +2039,7 @@ E.1.  JSON Examples
                    "component-id": "chassis-2",
                    "class": "iana-hardware:chassis",
                    "description": "Second switch of the stack.",
-                   "parent-rel-pos": 2,
+                   "parent-rel-pos": "2",
                    "is-fru": true
                  },
                  {
@@ -1999,7 +2050,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-2"
                    ],
-                   "parent-rel-pos": 1
+                   "parent-rel-pos": "1"
                  },
                  {
                    "component-id": "transceiver-module-2-1",
@@ -2019,7 +2070,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-2"
                    ],
-                   "parent-rel-pos": 2
+                   "parent-rel-pos": "2"
                  },
                  {
                    "component-id": "transceiver-module-2-2",
@@ -2035,7 +2086,7 @@ E.1.  JSON Examples
                    "component-id": "chassis-3",
                    "class": "iana-hardware:chassis",
                    "description": "Third switch of the stack.",
-                   "parent-rel-pos": 3,
+                   "parent-rel-pos": "3",
                    "is-fru": true
                  },
                  {
@@ -2046,7 +2097,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-3"
                    ],
-                   "parent-rel-pos": 1
+                   "parent-rel-pos": "1"
                  },
                  {
                    "component-id": "transceiver-module-3-1",
@@ -2066,7 +2117,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-3"
                    ],
-                   "parent-rel-pos": 2
+                   "parent-rel-pos": "2"
                  }
                ]
              }
@@ -2080,7 +2131,7 @@ E.1.  JSON Examples
                    "component-id": "chassis-1",
                    "class": "iana-hardware:chassis",
                    "description": "First switch of the stack.",
-                   "parent-rel-pos": 1,
+                   "parent-rel-pos": "1",
                    "is-fru": true
                  },
                  {
@@ -2091,7 +2142,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-1"
                    ],
-                   "parent-rel-pos": 1
+                   "parent-rel-pos": "1"
                  },
                  {
                    "component-id": "transceiver-module-1-1",
@@ -2111,7 +2162,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-1"
                    ],
-                   "parent-rel-pos": 2
+                   "parent-rel-pos": "2"
                  },
                  {
                    "component-id": "transceiver-module-1-2",
@@ -2127,7 +2178,7 @@ E.1.  JSON Examples
                    "component-id": "chassis-2",
                    "class": "iana-hardware:chassis",
                    "description": "Second switch of the stack.",
-                   "parent-rel-pos": 2,
+                   "parent-rel-pos": "2",
                    "is-fru": true
                  },
                  {
@@ -2138,7 +2189,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-2"
                    ],
-                   "parent-rel-pos": 1
+                   "parent-rel-pos": "1"
                  },
                  {
                    "component-id": "transceiver-module-2-1",
@@ -2158,7 +2209,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-2"
                    ],
-                   "parent-rel-pos": 2
+                   "parent-rel-pos": "2"
                  },
                  {
                    "component-id": "transceiver-module-2-2",
@@ -2174,7 +2225,7 @@ E.1.  JSON Examples
                    "component-id": "chassis-3",
                    "class": "iana-hardware:chassis",
                    "description": "Third switch of the stack.",
-                   "parent-rel-pos": 3,
+                   "parent-rel-pos": "3",
                    "is-fru": true
                  },
                  {
@@ -2185,7 +2236,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-3"
                    ],
-                   "parent-rel-pos": 1
+                   "parent-rel-pos": "1"
                  },
                  {
                    "component-id": "transceiver-module-3-1",
@@ -2205,7 +2256,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-3"
                    ],
-                   "parent-rel-pos": 2
+                   "parent-rel-pos": "2"
                  },
                  {
                    "component-id": "transceiver-module-3-2",
@@ -2230,7 +2281,7 @@ E.1.  JSON Examples
                    "class": "iana-hardware:chassis",
                    "description": "First chassis of the cascaded switch\
                                                                      .",
-                   "parent-rel-pos": 1,
+                   "parent-rel-pos": "1",
                    "is-fru": true
                  },
                  {
@@ -2241,7 +2292,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-1"
                    ],
-                   "parent-rel-pos": 1
+                   "parent-rel-pos": "1"
                  },
                  {
                    "component-id": "card-1-1",
@@ -2261,7 +2312,7 @@ E.1.  JSON Examples
                    "parent": [
                      "card-1-1"
                    ],
-                   "parent-rel-pos": 1
+                   "parent-rel-pos": "1"
                  },
                  {
                    "component-id": "port-1-1-4",
@@ -2271,7 +2322,7 @@ E.1.  JSON Examples
                    "parent": [
                      "card-1-1"
                    ],
-                   "parent-rel-pos": 4
+                   "parent-rel-pos": "4"
                  },
                  {
                    "component-id": "transceiver-module-1-1-4",
@@ -2292,7 +2343,7 @@ E.1.  JSON Examples
                    "parent": [
                      "card-1-1"
                    ],
-                   "parent-rel-pos": 10
+                   "parent-rel-pos": "10"
                  },
                  {
                    "component-id": "slot-1-20",
@@ -2302,7 +2353,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-1"
                    ],
-                   "parent-rel-pos": 20
+                   "parent-rel-pos": "20"
                  },
                  {
                    "component-id": "slot-1-32",
@@ -2312,7 +2363,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-1"
                    ],
-                   "parent-rel-pos": 32
+                   "parent-rel-pos": "32"
                  },
                  {
                    "component-id": "card-1-32",
@@ -2332,7 +2383,7 @@ E.1.  JSON Examples
                    "parent": [
                      "card-1-32"
                    ],
-                   "parent-rel-pos": 1
+                   "parent-rel-pos": "1"
                  },
                  {
                    "component-id": "port-1-32-6",
@@ -2342,7 +2393,7 @@ E.1.  JSON Examples
                    "parent": [
                      "card-1-32"
                    ],
-                   "parent-rel-pos": 6
+                   "parent-rel-pos": "6"
                  },
                  {
                    "component-id": "transceiver-module-1-32-6",
@@ -2363,14 +2414,14 @@ E.1.  JSON Examples
                    "parent": [
                      "card-1-32"
                    ],
-                   "parent-rel-pos": 10
+                   "parent-rel-pos": "10"
                  },
                  {
                    "component-id": "chassis-2",
                    "class": "iana-hardware:chassis",
                    "description": "Second chassis of the cascaded \
                                                                switch.",
-                   "parent-rel-pos": 2,
+                   "parent-rel-pos": "2",
                    "is-fru": true
                  },
                  {
@@ -2381,7 +2432,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-2"
                    ],
-                   "parent-rel-pos": 1
+                   "parent-rel-pos": "1"
                  },
                  {
                    "component-id": "card-2-1",
@@ -2401,7 +2452,7 @@ E.1.  JSON Examples
                    "parent": [
                      "card-2-1"
                    ],
-                   "parent-rel-pos": 5
+                   "parent-rel-pos": "5"
                  },
                  {
                    "component-id": "transceiver-module-2-1-5",
@@ -2422,14 +2473,14 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-2"
                    ],
-                   "parent-rel-pos": 16
+                   "parent-rel-pos": "16"
                  },
                  {
                    "component-id": "chassis-3",
                    "class": "iana-hardware:chassis",
                    "description": "Third chassis of the cascaded switch\
                                                                      .",
-                   "parent-rel-pos": 3,
+                   "parent-rel-pos": "3",
                    "is-fru": true
                  },
                  {
@@ -2440,7 +2491,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-3"
                    ],
-                   "parent-rel-pos": 1
+                   "parent-rel-pos": "1"
                  },
                  {
                    "component-id": "slot-3-16",
@@ -2450,7 +2501,7 @@ E.1.  JSON Examples
                    "parent": [
                      "chassis-3"
                    ],
-                   "parent-rel-pos": 16
+                   "parent-rel-pos": "16"
                  },
                  {
                    "component-id": "card-3-16",
@@ -2470,7 +2521,7 @@ E.1.  JSON Examples
                    "parent": [
                      "card-3-16"
                    ],
-                   "parent-rel-pos": 7
+                   "parent-rel-pos": "7"
                  },
                  {
                    "component-id": "transceiver-module-3-16-7",
@@ -2553,7 +2604,7 @@ F.1.  JSON Examples
                    "parent": [
                      "pizza-chassis"
                    ],
-                   "parent-rel-pos": 1
+                   "parent-rel-pos": "1"
                  },
                  {
                    "component-id": "port-2",
@@ -2562,7 +2613,7 @@ F.1.  JSON Examples
                    "parent": [
                      "pizza-chassis"
                    ],
-                   "parent-rel-pos": 2
+                   "parent-rel-pos": "2"
                  },
                  {
                    "component-id": "port-3",
@@ -2571,7 +2622,7 @@ F.1.  JSON Examples
                    "parent": [
                      "pizza-chassis"
                    ],
-                   "parent-rel-pos": 3
+                   "parent-rel-pos": "3"
                  },
                  {
                    "component-id": "port-4",
@@ -2580,7 +2631,7 @@ F.1.  JSON Examples
                    "parent": [
                      "pizza-chassis"
                    ],
-                   "parent-rel-pos": 4
+                   "parent-rel-pos": "4"
                  },
                  {
                    "component-id": "port-5",
@@ -2589,7 +2640,7 @@ F.1.  JSON Examples
                    "parent": [
                      "pizza-chassis"
                    ],
-                   "parent-rel-pos": 5
+                   "parent-rel-pos": "5"
                  },
                  {
                    "component-id": "port-6",
@@ -2598,7 +2649,7 @@ F.1.  JSON Examples
                    "parent": [
                      "pizza-chassis"
                    ],
-                   "parent-rel-pos": 6
+                   "parent-rel-pos": "6"
                  },
                  {
                    "component-id": "port-7",
@@ -2607,7 +2658,7 @@ F.1.  JSON Examples
                    "parent": [
                      "pizza-chassis"
                    ],
-                   "parent-rel-pos": 7
+                   "parent-rel-pos": "7"
                  },
                  {
                    "component-id": "port-8",
@@ -2616,7 +2667,7 @@ F.1.  JSON Examples
                    "parent": [
                      "pizza-chassis"
                    ],
-                   "parent-rel-pos": 8
+                   "parent-rel-pos": "8"
                  }
                ]
              }
