@@ -20,7 +20,7 @@
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "port-2",
@@ -29,7 +29,7 @@
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "port-3",
@@ -38,7 +38,7 @@
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 3
+                "parent-rel-pos": "3"
               },
               {
                 "component-id": "port-4",
@@ -47,7 +47,7 @@
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 4
+                "parent-rel-pos": "4"
               },
               {
                 "component-id": "port-5",
@@ -56,7 +56,7 @@
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 5
+                "parent-rel-pos": "5"
               },
               {
                 "component-id": "port-6",
@@ -65,7 +65,7 @@
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 6
+                "parent-rel-pos": "6"
               },
               {
                 "component-id": "port-7",
@@ -74,7 +74,7 @@
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 7
+                "parent-rel-pos": "7"
               },
               {
                 "component-id": "port-8",
@@ -83,7 +83,7 @@
                 "parent": [
                   "pizza-chassis"
                 ],
-                "parent-rel-pos": 8
+                "parent-rel-pos": "8"
               }
             ]
           }

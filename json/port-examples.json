@@ -19,7 +19,7 @@
                 "parent": [
                   "board-1"
                 ],
-                "parent-rel-pos": 1
+                "parent-rel-pos": "1"
               },
               {
                 "component-id": "port-2",
@@ -28,7 +28,7 @@
                 "parent": [
                   "board-1"
                 ],
-                "parent-rel-pos": 2
+                "parent-rel-pos": "2"
               },
               {
                 "component-id": "port-3",
@@ -37,7 +37,7 @@
                 "parent": [
                   "board-1"
                 ],
-                "parent-rel-pos": 3
+                "parent-rel-pos": "3"
               },
               {
                 "component-id": "transceiver-module-3",

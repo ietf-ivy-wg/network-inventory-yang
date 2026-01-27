@@ -85,13 +85,11 @@ normative:
     date:  May 2008
     seriesinfo: TMF MTOSI 4.0, Network Resource Fulfilment (NRF), SD2-20
     target: https://www.tmforum.org/resources/suite/mtosi-4-0/
-
   IANA_ENTITY_MIB:
     title: IANA-ENTITY-MIB
     author:
       org: IANA
     target: https://www.iana.org/assignments/ianaentity-mib/ianaentity-mib.xhtml
-
   IANA_HW_YANG:
     title: iana-hardware YANG Module
     author:
@@ -99,6 +97,13 @@ normative:
     target: https://www.iana.org/assignments/iana-hardware/iana-hardware.xhtml
 
 informative:
+  OpenConfig:
+    title: OpenConfig Public Release v5.6.0
+    author:
+      org: OpenConfig Working Group
+    date:  January 2026
+    seriesinfo: Release 5.6.0
+    target: https://github.com/openconfig/public/tree/v5.6.0/
 
 --- abstract
 
@@ -126,7 +131,7 @@ identify faulty elements), and is maintained appropriately to meet
 the performance objectives.
 Also, network inventory management allows operators to keep track of which devices are deployed in their networks, including relevant embedded software and hardware versions.
 
-Exposing standard interfaces to retrieve network elements capabilities as maintained in an inventory are key enablers for many applications. For example, {{?I-D.ietf-teas-actn-poi-applicability}} identifies a gap about the lack of YANG data models that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware inventory information available at domain controller level towards
+Exposing standard interfaces to retrieve network element components as maintained in an inventory are key enablers for many applications. For example, {{?I-D.ietf-teas-actn-poi-applicability}} identifies a gap about the lack of YANG data models that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware inventory information available at domain controller level towards
 upper layer systems (e.g., Multi-Domain Service Coordinator (MDSC) or Operations Support Systems (OSS) layers).
 
 It is key for operators to coordinate with the industry towards the use of a
@@ -136,6 +141,10 @@ of using vendors' proprietary APIs.
 {{!RFC8348}} defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller towards the network elements rather than at the northbound interface of a network controller (e.g., toward an application or another hierarchical network controller). However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model presented in this document.
 
 Per the definition of {{?RFC8309}} and {{?RFC8969}}, the YANG data model defined in {{!RFC8348}} is a device model while the YANG data model defined in this document is a network model.
+
+As outlined in {{operational}}, the network inventory provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network.
+
+As outlined in {{overview}}, the base inventory YANG data model defined in this document supports only physical network elements but generalizes the network element definition to allow supporting other types of network elements through proper augmentations.
 
 This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
 
@@ -149,15 +158,16 @@ The YANG data model defined in this document conforms to the Network Management 
 
 ## Editorial Note (To be removed by RFC Editor)
 
-  > Note to the RFC Editor: This section is to be removed prior to publication.
+> Note to the RFC Editor: This section is to be removed prior to publication.
 
-   This document contains placeholder values that need to be replaced
-   with finalized values at the time of publication.  This note
-   summarizes all of the substitutions that are needed.
+This document contains placeholder values that need to be replaced
+with finalized values at the time of publication.  This note
+summarizes all of the substitutions that are needed.
 
-   Please apply the following replacements:
+Please apply the following replacements:
 
-   *  XXXX --> the assigned RFC number for this I-D
+- XXXX --> the assigned RFC number for this I-D
+- 2026-01-21 --> the actual date of the publication of this document
 
 # Terminology and Notations
 
@@ -358,10 +368,12 @@ mfg-date:
 part-number:
 : The vendor-specific part number of the component type.
 : It is expected that vendors assign unique part numbers to different component types within the scope of the vendor.
+: > Although the part number is often an alphanumeric string and not a number, this document uses this term since it is widely used and well known in the industry.
 
 serial-number:
 : The vendor-specific serial number of the component instance.
 : It is expected that vendors assign unique serial numbers to different component instances at least within the scope of the part-number.
+: > Although the serial number is often an alphanumeric string and not a number, this document uses this term since it is widely used and well known in the industry.
 
 asset-id:
 : An asset tracking identifier for the component, provided by a network operator.
@@ -392,8 +404,8 @@ See {port-examples}, {multi-chassis-examples}, and {non-modular-examples} for co
                                     ||
                                     \/
                               +-------------+
-                              |   chassis/  |---+
-                              | sub-chassis |<--|
+                              |   chassis   |---+
+                              |             |<--|
                               +-------------+
                                     ||
                      ______1:N______||_____1:M_______
@@ -462,6 +474,14 @@ In order to support these use cases, this model is not aligned with {{!RFC8348}}
 
 Instead the name is defined as an optional attribute and the component-id is defined as the key for the component list (in alignment with the approach followed for the network-element list).
 
+### Parent relative position
+
+There are some use cases where the parent relative position is not reported as an integer but as a string.
+
+In order to support these use cases and allowing a straightforward match between the relative position definition in the device and in the network inventory, this model is defining the 'parent-rel-pos' data node as a string instead of as an integer.
+
+If the device reports the relative position as an integer, e.g., using the device model defined in {{?RFC8348}}, the integer value reported by the device can be mapped into a string within the network inventory.
+
 # Network Inventory Tree Diagram {#ni-tree}
 
 {{fig-ni-tree}} shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
@@ -478,9 +498,9 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2025-12-04.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-01-21.yang"}
 
-# Operational Considerations
+# Operational Considerations {#operational}
 
 The network inventory YANG data model defined in the document is intended to report the actual inventory data that a network controller knows of the network elements and components actually installed within the network. Therefore, this data model provides a read-only perspective of the network inventory information.
 
@@ -492,7 +512,9 @@ This information can be provided by a network controller to an higher level hier
 
 For example, in the context of ACTN, the network inventory YANG data model can be used at the MPI interfaces, as defined in {{?RFC8453}}, or on an interface, not defined in {{?RFC8453}} between the MDSC and the Inventory OSS.
 
-The information in the model is populated by controller by reading it from the devices using the device model supported by the devices. This model does not constraint the device models used on the device: the YANG data model defined in {{!RFC8348}} is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
+The information in the model is discovered by the controller through mechanisms which are outside the scope of this document.
+
+For example, the network controller can collect this information by reading it from the devices using the device model supported by the devices. This model does not constraint the device models used on the device: the YANG data model defined in {{!RFC8348}} is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
 
 In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to an higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
 
@@ -556,7 +578,7 @@ registry group.
 
 # Comparison With Openconfig-platform Data Model
 
-Since more and more devices can be managed by domain controller through OpenConfig, to ensure that our inventory data model can cover these devices' inventory data, we have compared our inventory data model with the "openconfig-platform" model which is the data model used to manage inventory information in OpenConfig.
+Since more and more devices can be managed by domain controller through OpenConfig, to ensure that our inventory data model can cover these devices' inventory data, we have compared our inventory data model with the "openconfig-platform" and "openconfig-platform-types" YANG modules, as defined in [OPENCONFIG], which defines the YANG data model used to manage inventory information in OpenConfig.
 
 Openconfig-platform data model is NE-level and uses a generic component concept to describe its inner devices and containers, which is similar to "ietf-hardware" model in {{?RFC8348}}. Since we have also reused the component concept of {{?RFC8348}} in our inventory data model, we can compare the component's attributes between "openconfig-platform" and our model directly , which is stated in {{tab-oc}}.
 
@@ -574,7 +596,7 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | software-version           | software-rev             |                          |
 | serial-no                  | serial-num               |                          |
 | part-no                    | part-number              |                          |
-| clei-code                  |                          | Not defined even in RFC-8348 at device level  |
+| clei-code                  | uri                      | CLEI code can be mapped into one URI as defined in {{?RFC4152}}  |
 | removable                  | is-fru                   |                          |
 | oper-status                |                          | state data               |
 | empty                      | contained-child?         | If there is no contained child, it is empty.  |
