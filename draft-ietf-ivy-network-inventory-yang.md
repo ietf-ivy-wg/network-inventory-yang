@@ -76,6 +76,10 @@ contributor:
     name: Nigel Davis
     org: Ciena
     email: ndavis@ciena.com
+  -
+    name: Roberto Manzotti
+    org: Cisco
+    email: rmanzott@cisco.com
 
 normative:
   TMF_SD2-20:
@@ -756,5 +760,23 @@ This appendix contains an example of an instance data tree in JSON encoding {{?R
 # Acknowledgments
 
 The authors of this document would like to thank the authors of {{?I-D.ietf-teas-actn-poi-applicability}} for having identified the gap and requirements to trigger this work.
+
+The authors of this document would like to thank
+Adrian Farrel,
+Alexander Clemm,
+Brad Peters,
+Camilo Cardona,
+Daniele Ceccarelli,
+Gabriele Galimberti,
+Jan Lindblad,
+Joe Clarke,
+Mahesh Jethanandani,
+Mohamed Boucadair,
+Prasenjit Manna,
+Rob Wilton,
+Qin Wu,
+Qiufang Ma, and
+Swamynathan B
+for their valuable input to the technical discussions during the development of this document.
 
 This document was prepared using kramdown.
