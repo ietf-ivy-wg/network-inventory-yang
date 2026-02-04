@@ -5,14 +5,14 @@
 Network Working Group                                              C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 31 July 2026                                              Nokia
+Expires: 8 August 2026                                             Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                         27 January 2026
+                                                         4 February 2026
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 July 2026.
+   This Internet-Draft will expire on 8 August 2026.
 
 Copyright Notice
 
@@ -2683,6 +2683,13 @@ Acknowledgments
    [I-D.ietf-teas-actn-poi-applicability] for having identified the gap
    and requirements to trigger this work.
 
+   The authors of this document would like to thank Adrian Farrel,
+   Alexander Clemm, Brad Peters, Camilo Cardona, Daniele Ceccarelli,
+   Gabriele Galimberti, Jan Lindblad, Joe Clarke, Mahesh Jethanandani,
+   Mohamed Boucadair, Prasenjit Manna, Rob Wilton, Qin Wu, Qiufang Ma,
+   and Swamynathan B for their valuable input to the technical
+   discussions during the development of this document.
+
    This document was prepared using kramdown.
 
 Contributors
@@ -2720,6 +2727,11 @@ Contributors
    Nigel Davis
    Ciena
    Email: ndavis@ciena.com
+
+
+   Roberto Manzotti
+   Cisco
+   Email: rmanzott@cisco.com
 
 
 Authors' Addresses
