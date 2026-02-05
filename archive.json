@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-01-29T01:17:00.549274+00:00",
+  "timestamp": "2026-02-05T01:17:18.150830+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4816,12 +4816,11 @@
         "italobusi"
       ],
       "labels": [
-        "wait",
         "priority-1"
       ],
       "body": "> Hi IVY WG and chairs,\n> \n> I have reviewed the draft and I think it is ready to move forward after having addressed the comments received so far as well as the few nits reported below\n> \n> \n> Nits:\n> \n> 1) Section 2.2: the definitions of chassis and port shall be moved after the text \"Also, the document makes use of the following terms:\"\n> \n> 2) Section 3: the first paragraph should be closed with a period (.)\n> \n> 3) Section 5: the date of the module in the `<CODE BEGIN>` tag does not match the revision date within the module\n> \n> 4) Appendix E: the formatting of the list bullets in the third paragraph is messed up (kramdown syntax issue)\n> \n> 5) Appendix E: same issue as above in the second paragraph after Figure 6\n> \n> 6) Acknowledgment: It would be worthwhile adding acknowledgement also to other people, not listed as co-authors or contributors, who have provided input on the IVY WG mailing list discussions\n> \n> Italo (as co-author)\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/7hlml08X0vPFwqmI39-AQxWAG1I/",
       "createdAt": "2025-12-01T10:38:00Z",
-      "updatedAt": "2026-01-28T16:55:56Z",
+      "updatedAt": "2026-02-04T18:43:01Z",
       "closedAt": null,
       "comments": [
         {
@@ -5290,6 +5289,22 @@
           "updatedAt": "2026-01-27T16:54:48Z"
         }
       ]
+    },
+    {
+      "number": 158,
+      "id": "I_kwDOKiDYo87oNRL-",
+      "title": "Clarification on parent-rel-pos value",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/158",
+      "state": "OPEN",
+      "author": "navinpurohit",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "I would like to clarify the identification protocol for a sub-slot within a card located in a slot on a shelf. Specifically, should the sub-slot be referenced solely in relation to the card, without including details about the slot on the shelf? For instance, if the location of the equipment holder is \"shelf:1-slot:1-subslot:2,\" should the parent-relative position only indicate '2' in relation to its parent, or should the complete location information, including \"shelf:1-slot:1-subslot:2,\" be provided?",
+      "createdAt": "2026-02-04T10:25:05Z",
+      "updatedAt": "2026-02-04T10:25:05Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
