@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-02-05T01:17:18.150830+00:00",
+  "timestamp": "2026-02-22T01:21:16.097682+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -4741,7 +4741,7 @@
       "id": "I_kwDOKiDYo87ZKo_-",
       "title": "IVY WG LC",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/141",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -4751,8 +4751,8 @@
       ],
       "body": "WG LC started on November 17, 2025\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/7pXC1fCbPjmG06fqbWzhIdKi-Ts/\n",
       "createdAt": "2025-11-19T16:11:15Z",
-      "updatedAt": "2025-12-11T17:10:58Z",
-      "closedAt": null,
+      "updatedAt": "2026-02-19T08:30:29Z",
+      "closedAt": "2026-02-19T08:30:29Z",
       "comments": [
         {
           "author": "italobusi",
@@ -4760,6 +4760,13 @@
           "body": "Waiting for closing the WG LC on December 1st, 2025",
           "createdAt": "2025-11-19T16:12:14Z",
           "updatedAt": "2025-11-19T16:12:14Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "All sub-issues have been closed",
+          "createdAt": "2026-02-19T08:30:29Z",
+          "updatedAt": "2026-02-19T08:30:29Z"
         }
       ]
     },
@@ -4809,7 +4816,7 @@
       "id": "I_kwDOKiDYo87bXddW",
       "title": "WG LC comments from Italo on draft-ietf-ivy-network-inventory-yang-11",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/143",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -4820,8 +4827,8 @@
       ],
       "body": "> Hi IVY WG and chairs,\n> \n> I have reviewed the draft and I think it is ready to move forward after having addressed the comments received so far as well as the few nits reported below\n> \n> \n> Nits:\n> \n> 1) Section 2.2: the definitions of chassis and port shall be moved after the text \"Also, the document makes use of the following terms:\"\n> \n> 2) Section 3: the first paragraph should be closed with a period (.)\n> \n> 3) Section 5: the date of the module in the `<CODE BEGIN>` tag does not match the revision date within the module\n> \n> 4) Appendix E: the formatting of the list bullets in the third paragraph is messed up (kramdown syntax issue)\n> \n> 5) Appendix E: same issue as above in the second paragraph after Figure 6\n> \n> 6) Acknowledgment: It would be worthwhile adding acknowledgement also to other people, not listed as co-authors or contributors, who have provided input on the IVY WG mailing list discussions\n> \n> Italo (as co-author)\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/7hlml08X0vPFwqmI39-AQxWAG1I/",
       "createdAt": "2025-12-01T10:38:00Z",
-      "updatedAt": "2026-02-04T18:43:01Z",
-      "closedAt": null,
+      "updatedAt": "2026-02-19T08:30:03Z",
+      "closedAt": "2026-02-19T08:30:03Z",
       "comments": [
         {
           "author": "italobusi",
@@ -4850,6 +4857,13 @@
           "body": "See: https://mailarchive.ietf.org/arch/msg/ivy/0y9yl6CRm4ixFT_tDjUQ5alkqVw/",
           "createdAt": "2026-01-28T16:55:56Z",
           "updatedAt": "2026-01-28T16:55:56Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See: https://mailarchive.ietf.org/arch/msg/ivy/9kBFhEop0i7ohF5pwCZ3b9-5ZXQ/",
+          "createdAt": "2026-02-19T08:30:03Z",
+          "updatedAt": "2026-02-19T08:30:03Z"
         }
       ]
     },
@@ -5302,9 +5316,17 @@
       "labels": [],
       "body": "I would like to clarify the identification protocol for a sub-slot within a card located in a slot on a shelf. Specifically, should the sub-slot be referenced solely in relation to the card, without including details about the slot on the shelf? For instance, if the location of the equipment holder is \"shelf:1-slot:1-subslot:2,\" should the parent-relative position only indicate '2' in relation to its parent, or should the complete location information, including \"shelf:1-slot:1-subslot:2,\" be provided?",
       "createdAt": "2026-02-04T10:25:05Z",
-      "updatedAt": "2026-02-04T10:25:05Z",
+      "updatedAt": "2026-02-19T08:29:47Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The YANG description says:\n\n```\n                \"The relative position with respect to the parent\n                 component among all the sibling components.\n```\n\nMy interpretation is that this should be solely in relation to the card ('2' in you example).\n\nIn the TNBI design team, we have produced some examples on how the complete location information (shelf:1-slot:1-subslot:2\") can be computed by the client controller:\n\nhttps://github.com/ietf-ccamp-wg/transport-nbi/tree/master/json-examples\n\nSee also: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/42",
+          "createdAt": "2026-02-19T08:29:47Z",
+          "updatedAt": "2026-02-19T08:29:47Z"
+        }
+      ]
     }
   ],
   "pulls": [
