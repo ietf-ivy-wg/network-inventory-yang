@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-02-22T01:21:16.097682+00:00",
+  "timestamp": "2026-02-26T01:18:34.869999+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -566,11 +566,11 @@
       "assignees": [],
       "labels": [
         "wait",
-        "priority-2"
+        "candidate-future-rev-augment"
       ],
       "body": "> Some quick comments:\n> \n>   *   Please soften the various citations to ACTN. I would simply remove them.\n\n- [x] Closed with PR #74 \n>   *   Consider adding a dedicated section to describe the provisions in the model for future augmentations.\\\n\nSee: #72\n\n>   *   Consider if some data nodes that are defined in other models can be added directly to the base model, e.g., the following ones from draft-li\n> \n> ```\n>       +--ro required-components*          -> ../uuid\n>       +--ro dependent-components*         -> ../uuid\n> \n> ```\n> \n\nSee: #70\n\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/\n",
       "createdAt": "2023-11-17T20:03:19Z",
-      "updatedAt": "2025-05-21T10:14:13Z",
+      "updatedAt": "2026-02-25T15:25:20Z",
       "closedAt": null,
       "comments": [
         {
@@ -667,11 +667,11 @@
       ],
       "labels": [
         "needs discussion",
-        "priority-2"
+        "candidate-future-rev-augment"
       ],
       "body": "Evaluate whether there are attributes missing in RFC8348 which are needed to be reported in the Network Inventory model\n\nSee: https://github.com/ietf-ccamp-wg/ietf-network-inventory/issues/2#issuecomment-903086514\n",
       "createdAt": "2021-10-13T17:40:14Z",
-      "updatedAt": "2025-07-07T11:29:49Z",
+      "updatedAt": "2026-02-25T15:25:22Z",
       "closedAt": null,
       "comments": [
         {
@@ -1843,11 +1843,11 @@
       "labels": [
         "bug",
         "needs discussion",
-        "priority-2"
+        "candidate-future-rev-augment"
       ],
       "body": "The \"asset-id\" is a user-assigned identifier (as indicated in the current I-D) that applies to both components and NEs.\r\n\r\nHowever, it is currently defined only for the components.\r\n\r\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/33#issuecomment-1933254876\r\n \r\nSee: https://github.com/ietf-ivy-wg/network-inventory-yang/issues/33#issuecomment-1934226018\r\n",
       "createdAt": "2024-02-08T14:32:10Z",
-      "updatedAt": "2024-10-01T16:03:41Z",
+      "updatedAt": "2026-02-25T15:25:23Z",
       "closedAt": null,
       "comments": [
         {
@@ -1924,21 +1924,18 @@
       "id": "I_kwDOKiDYo86BgAds",
       "title": "Hardware and Firmware revisions for NE",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/40",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
         "italobusi",
         "YuChaode"
       ],
-      "labels": [
-        "priority-2",
-        "wait-issue"
-      ],
+      "labels": [],
       "body": "It is not clear why for the network elements, the hardware-rev is defined but the firmware-rev is not defined: it should either have both hardware-rev and firmware-rev or none\r\n",
       "createdAt": "2024-03-07T00:02:05Z",
-      "updatedAt": "2025-07-02T16:18:01Z",
-      "closedAt": null,
+      "updatedAt": "2026-02-25T15:24:52Z",
+      "closedAt": "2026-02-25T15:16:55Z",
       "comments": [
         {
           "author": "italobusi",
@@ -1953,6 +1950,13 @@
           "body": "**[2025-07-02 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2025-07-02)**\n\nCan be closed with #112 by removing hardware-revision from the NE data\n",
           "createdAt": "2025-07-02T16:18:01Z",
           "updatedAt": "2025-07-02T16:18:01Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2026-02-25 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2026-02-25)**\n\nThis issue has been superseded. See: [draft-ietf-ivy-network-inventory-yang-14](https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-14)",
+          "createdAt": "2026-02-25T15:16:55Z",
+          "updatedAt": "2026-02-25T15:24:31Z"
         }
       ]
     },
@@ -1968,11 +1972,12 @@
         "prmanna"
       ],
       "labels": [
-        "enhancement"
+        "enhancement",
+        "candidate-future-rev-augment"
       ],
       "body": "Is the management of SW upgrades (including patches) in the scope of IVY WG?\r\n\r\nIs it in the scope of inventory model or of ALMO?",
       "createdAt": "2024-03-07T00:07:10Z",
-      "updatedAt": "2024-03-08T16:47:40Z",
+      "updatedAt": "2026-02-25T15:26:02Z",
       "closedAt": null,
       "comments": [
         {
@@ -2004,12 +2009,12 @@
       ],
       "labels": [
         "enhancement",
-        "priority-2",
+        "candidate-future-rev-augment",
         "wait-WG"
       ],
       "body": "The location attribute defined in [draft-ietf-ccamp-network-inventory-yang-02](https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-network-inventory-yang-02) is missing from the base model:\r\n\r\n```\r\n        leaf location {\r\n          type string;\r\n          description\r\n            \"A relative location information of this component.\r\n            In optical transport network, the location string is\r\n            using the following pattern:\r\n              '/ne=<nw-ne-name>[/r=<r_index>][/sh=<sh_index>\r\n              [/s_sh=<s_sh_index> ...]][[/sl=<sl_index>\r\n              [/s_sl=<s_sl_index> ...]][/p=<p_index> \u2026]]'\r\n            \";\r\n        }\r\n\r\n```\r\n\r\nAs indicated in Appendix A.1 of [draft-ietf-ccamp-network-inventory-yang-02](https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-network-inventory-yang-02), a similar attribute exists also in OpenConfig:\r\n\r\nhttps://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform.yang\r\n\r\nIt is proposed to add this attribute also to the base network inventory model with a more generic description:\r\n\r\n```\r\n    leaf location {\r\n      type string;\r\n      description\r\n        \"A system-defined description of the location of the\r\n        component within the system.\";\r\n    }\r\n\r\n```\r\n",
       "createdAt": "2024-03-22T04:10:51Z",
-      "updatedAt": "2025-07-09T22:32:10Z",
+      "updatedAt": "2026-02-25T15:25:24Z",
       "closedAt": null,
       "comments": [
         {
@@ -2870,11 +2875,11 @@
       "assignees": [],
       "labels": [
         "needs discussion",
-        "priority-2"
+        "candidate-future-rev-augment"
       ],
       "body": ">   *   Consider if some data nodes that are defined in other models can be added directly to the base model, e.g., the following ones from draft-li\r\n> \r\n> ```\r\n>       +--ro required-components*          -> ../uuid\r\n>       +--ro dependent-components*         -> ../uuid\r\n> \r\n> ```\r\n> \r\n\r\nSee: https://mailarchive.ietf.org/arch/msg/inventory-yang/dVKTwV_pSSnG9-vsxH0THDQcuLI/\r\n",
       "createdAt": "2024-11-27T10:57:37Z",
-      "updatedAt": "2024-11-27T10:58:49Z",
+      "updatedAt": "2026-02-25T15:25:27Z",
       "closedAt": null,
       "comments": [
         {
@@ -3257,11 +3262,11 @@
       ],
       "labels": [
         "wait",
-        "priority-2"
+        "candidate-future-rev-augment"
       ],
       "body": "PR #73 has proposed to integrate pyang validation in your ci/cd chain and make sure that changes are clean and do not break the validation and automatically generate the YANG trees (the level, etc. can be controlled)\r\n\r\nPR #73 has been close due to conflicts but it would be useful to integrate pyang validation in the github CI/CD chain",
       "createdAt": "2025-01-29T19:03:47Z",
-      "updatedAt": "2025-12-12T11:33:46Z",
+      "updatedAt": "2026-02-25T15:25:28Z",
       "closedAt": null,
       "comments": [
         {
