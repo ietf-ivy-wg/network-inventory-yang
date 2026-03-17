@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-02-26T01:18:34.869999+00:00",
+  "timestamp": "2026-03-17T01:20:39.842735+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -1637,11 +1637,12 @@
       "labels": [
         "enhancement",
         "needs discussion",
-        "candidate-future-rev-augment"
+        "candidate-future-rev-augment",
+        "wait-WG"
       ],
       "body": "",
       "createdAt": "2024-01-09T19:11:02Z",
-      "updatedAt": "2024-10-01T16:14:26Z",
+      "updatedAt": "2026-03-16T01:28:44Z",
       "closedAt": null,
       "comments": [
         {
@@ -1657,6 +1658,13 @@
           "body": "**[2024-04-24 Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/blob/main/minutes/minutes-2024-04-24.md)**\r\n\r\n\r\nThe 'physical span' is the end-to-end collection of strands between the access ports\r\n\r\nThe 'physical span' can be unidirectional or bidirectional ...\r\n\r\nMultiple 'physical spans' can be contained within a single cable or go through multiple cables\r\n\r\nThe 'physical span' can be modelled as a link in the 'physical network' topology proposed in [draft-wzwb-ivy-network-inventory-topology](https://datatracker.ietf.org/doc/html/draft-wzwb-ivy-network-inventory-topology)\r\n\r\nIt was pointed out that the term 'physical network' is not fully correct since the topology is reporting an abstract view of the physical network: the term 'abstract physical network' has been proposed as an alternative\r\n\r\nThe 'abstract physical link' can support an OTS link in the WDM topology or an ETH link in the ETH topology\r\n\r\nThe key question is whether there is a need to model the cables in the inventory model\r\n\r\nFurther discussion is also required about the need to report within the inventory of the fibers/cables within a network element",
           "createdAt": "2024-04-24T22:44:24Z",
           "updatedAt": "2024-04-24T22:44:24Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See #46 ",
+          "createdAt": "2026-03-16T01:28:43Z",
+          "updatedAt": "2026-03-16T01:28:43Z"
         }
       ]
     },
@@ -2264,11 +2272,12 @@
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [
-        "candidate-future-rev-augment"
+        "candidate-future-rev-augment",
+        "wait-WG"
       ],
       "body": "Use Case: \r\n\r\n- Passive Hardware should be handled by network inventory? what is the procedure to create a component when the Class and some other attributes are Config False. \r\n\r\n\r\n```\r\n[...]\r\n+--rw components\r\n              +--rw component* [component-id]\r\n                 +--rw component-id              string\r\n                 +--ro class                     union\r\n                 +--ro uuid?                     yang:uuid\r\n                 +--rw name?                     string\r\n                 +--rw description?              string\r\n[...]\r\n```\r\n",
       "createdAt": "2024-05-17T08:29:42Z",
-      "updatedAt": "2024-10-01T16:06:14Z",
+      "updatedAt": "2026-03-16T01:25:45Z",
       "closedAt": null,
       "comments": [
         {
@@ -2277,6 +2286,13 @@
           "body": "**[2024-09-11 Base Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2024-09-11)**\r\n\r\nAihua asked if what is foreseen is to use IVY model to expose passive component (that are stored in the domain controller in such way) or it is foreseen that IVY model would be able to provision passive component (read/write discussion).\r\n\r\nAgreed that this issue is definitely in IVY scope but priority 3\r\n",
           "createdAt": "2024-09-11T19:03:52Z",
           "updatedAt": "2024-09-11T19:03:52Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "A augmentation model has been proposed in [draft-ygb-ivy-passive-network-inventory](https://datatracker.ietf.org/doc/html/draft-ygb-ivy-passive-network-inventory)\n\nWaiting for the draft to be accepted as WG document before closing this isuse",
+          "createdAt": "2026-03-16T01:25:19Z",
+          "updatedAt": "2026-03-16T01:25:19Z"
         }
       ]
     },
@@ -3261,12 +3277,11 @@
         "prmanna"
       ],
       "labels": [
-        "wait",
-        "candidate-future-rev-augment"
+        "wait"
       ],
       "body": "PR #73 has proposed to integrate pyang validation in your ci/cd chain and make sure that changes are clean and do not break the validation and automatically generate the YANG trees (the level, etc. can be controlled)\r\n\r\nPR #73 has been close due to conflicts but it would be useful to integrate pyang validation in the github CI/CD chain",
       "createdAt": "2025-01-29T19:03:47Z",
-      "updatedAt": "2026-02-25T15:25:28Z",
+      "updatedAt": "2026-03-16T01:15:22Z",
       "closedAt": null,
       "comments": [
         {
