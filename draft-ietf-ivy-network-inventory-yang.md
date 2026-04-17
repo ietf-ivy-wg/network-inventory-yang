@@ -239,7 +239,7 @@ Component:
 : The generalization of the hardware component definition to include other inventory objects which can be managed, from an inventory perspective, like hardware components.
 
 Card:
-: A pluggable equipment with a particular structural format and dimensions which can be inserted into one or more slots (or sub-slots). A card can have spaces (called sub-slots) to take other cards.
+: Pluggable equipment with a particular structural format and dimensions which can be inserted into one or more slots (or sub-slots). A card can have spaces (called sub-slots) to take other cards.
 : Elsewhere, a card can be called board, module, circuit pack, etc..
 
 Slot:
@@ -452,15 +452,12 @@ For each software module, configured to be active, the name and version informat
 The management of inactive/standby software
 modules and of the software upgrade or downgrade life-cycle are outside the scope of the base inventory model and can be addressed in other models which augment the base inventory model such as the model under definition in {{?I-D.ietf-ivy-network-inventory-software}}.
 
-
 The software and hardware components share the same attributes of the
 component and have similar replaceable requirements. Generally, the
 device also has other software data, for example, one or more
 software patch information.
 
-The software components lifecycle  (like activation, deactivation, installation, storage, removal, etc.) is
-outside the scope of this document and defined in other documents such as
-{{?I-D.ietf-ivy-network-inventory-software}}.
+The software components lifecycle (like activation, deactivation, installation, storage, removal, etc.) is outside the scope of this document and defined in other documents such as {{?I-D.ietf-ivy-network-inventory-software}}.
 
 ## Changes Since RFC 8348
 
@@ -468,7 +465,7 @@ This document re-defines some attributes listed in {{!RFC8348}}, based on some i
 
 ### Part Number
 
-According to the description in {{!RFC8348}}, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. "Model-name" is not straightforward to understand and we suggest to rename it as "part-number" directly.
+According to the description in {{!RFC8348}}, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. "Model-name" is not straightforward to understand and therefore in this model the attribute is called "part-number".
 
 ### Component identifiers
 
@@ -476,7 +473,7 @@ There are some use cases where the name of the components are assigned and chang
 
 In order to support these use cases, this model is not aligned with {{!RFC8348}} in defining the component name as the key for the component list.
 
-Instead the name is defined as an optional attribute and the component-id is defined as the key for the component list (in alignment with the approach followed for the network-element list).
+Instead, the name is defined as an optional attribute and the component-id is defined as the key for the component list (in alignment with the approach followed for the network-element list).
 
 ### Parent relative position
 
@@ -512,7 +509,7 @@ It is worth noting that some information reported within this YANG data model ca
 
 As outlined in {{intro}}, per the definition of {{?RFC8309}} and {{?RFC8969}}, the network inventory model is a network model.
 
-This information can be provided by a network controller to an higher level hierarchical network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
+This information can be provided by a network controller to a higher level hierarchical network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
 
 For example, in the context of ACTN, the network inventory YANG data model can be used at the MPI interfaces, as defined in {{?RFC8453}}, or on an interface, not defined in {{?RFC8453}} between the MDSC and the Inventory OSS.
 
@@ -522,16 +519,16 @@ Note that distinguishing between the cases where a NE is unreachable versus deco
 
 For example, the network controller can collect this information by reading it from the devices using the device model supported by the devices. This model does not constraint the device models used on the device: the YANG data model defined in {{!RFC8348}} is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
 
-In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to an higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
+In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to a higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
 
-When used in brownfield scenarios, it is worth noting that existing deployments are based on proprietary Inventory OSS and that the migration path is highly dependent on the specific proprietary solution. Therefore the migration processes are operator dependent: it is expected that the deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing Inventory OSSes will also take longer time. In a longer term, the network controllers could provide inventory information, using this YANG data model, also to next generation OSSes.
+When used in brownfield scenarios, it is worth noting that existing deployments are based on proprietary Inventory OSS and that the migration path is highly dependent on the specific proprietary solution. Therefore, the migration processes are operator dependent: it is expected that the deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing Inventory OSSes will also take longer time. In a longer term, the network controllers could provide inventory information, using this YANG data model, also to next generation OSSes.
 
 When this model is used, the source of truth for the inventory data in the scope of this model is the network controller providing this data. Some legacy inventory information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model.
 
 # Security Considerations
 
 This section is modeled after the template described in {{Section 3.7
-of ?I-D.ietf-netmod-rfc8407bis}}.
+of ?RFC9907}}.
 
 The "ietf-network-inventory" YANG module defines a data model that is
 designed to be accessed via YANG-based management protocols, such as
@@ -662,7 +659,7 @@ This appendix provides some examples of port implementations and how they can be
 
 {{fig-board}} shows an example of a single board which contains three type of ports:
 
-1. An integrated port (non pluggable);
+1. An integrated port (non-pluggable);
 1. An empty port;
 1. A pluggable port
 
