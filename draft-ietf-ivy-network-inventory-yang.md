@@ -82,13 +82,6 @@ contributor:
     email: rmanzott@cisco.com
 
 normative:
-  TMF_SD2-20:
-    title: SD2-20_Equipment Model
-    author:
-      org: TM Forum
-    date:  May 2008
-    seriesinfo: TMF MTOSI 4.0, Network Resource Fulfilment (NRF), SD2-20
-    target: https://www.tmforum.org/resources/suite/mtosi-4-0/
   IANA_ENTITY_MIB:
     title: IANA-ENTITY-MIB
     author:
@@ -101,6 +94,13 @@ normative:
     target: https://www.iana.org/assignments/iana-hardware/iana-hardware.xhtml
 
 informative:
+  TMF_SD2-20:
+    title: SD2-20_Equipment Model
+    author:
+      org: TM Forum
+    date:  May 2008
+    seriesinfo: TMF MTOSI 4.0, Network Resource Fulfilment (NRF), SD2-20
+    target: https://www.tmforum.org/resources/suite/mtosi-4-0/
   OpenConfig:
     title: OpenConfig Public Release v5.6.0
     author:
@@ -146,7 +146,7 @@ of using vendors' proprietary APIs.
 
 Per the definition of {{?RFC8309}} and {{?RFC8969}}, the YANG data model defined in {{!RFC8348}} is a device model while the YANG data model defined in this document is a network model.
 
-As outlined in {{operational}}, the network inventory provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network.
+As outlined in {{operational}}, the network inventory provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network. Therefore other inventory data (e.g., spare or inactive assets) are outside the scope of this model
 
 As outlined in {{overview}}, the base inventory YANG data model defined in this document supports only physical network elements but generalizes the network element definition to allow supporting other types of network elements through proper augmentations.
 
@@ -391,7 +391,7 @@ For state data like "admin-state", "oper-state", and so on, this document consid
 
 Based on TMF classification in {{TMF_SD2-20}}, hardware components can be divided into two groups, holder group and equipment group. The holder group contains rack, chassis, slot, sub-slot while the equipment group contains network-element, board and port.
 
-See {port-examples}, {multi-chassis-examples}, and {non-modular-examples} for concrete hardware component examples.
+See {{port-examples}}, {{multi-chassis-examples}}, and {{non-modular-examples}} for concrete hardware component examples.
 
 {{fig-hw-inventory-object-relationship}} describes the relationship between typical inventory objects in a physical network element.
 
@@ -517,6 +517,8 @@ This information can be provided by a network controller to an higher level hier
 For example, in the context of ACTN, the network inventory YANG data model can be used at the MPI interfaces, as defined in {{?RFC8453}}, or on an interface, not defined in {{?RFC8453}} between the MDSC and the Inventory OSS.
 
 The information in the model is discovered by the controller through mechanisms which are outside the scope of this document.
+
+Note that distinguishing between the cases where a NE is unreachable versus decommissioned depends on the mechanism used for discovering this information and outside the scope of this document.
 
 For example, the network controller can collect this information by reading it from the devices using the device model supported by the devices. This model does not constraint the device models used on the device: the YANG data model defined in {{!RFC8348}} is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
 
@@ -648,7 +650,7 @@ Within this document , with the term "container" we consider an hardware compone
 
 During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks.  More discussions are needed to address these concerns.
 
-Considering that relational databases are widely used by traditional OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in this document, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller & OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.
+Considering that relational databases are widely used by existing OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in this document, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller & OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.
 
 An alternative YANG model structure, which defines the inventory objects directly, instead of defining generic components, has also been analyzed. However, also with this model, there still could be some scalability limitations when synchronizing full inventory resources in large scale of networks. This scalability limitation is caused by the limited transmission capabilities of HTTP protocol. We think that this scalability limitation should be solved at protocol level rather than data model level.
 
@@ -688,7 +690,7 @@ Stacked switches are an example of multi-chassis which consist of multiple stand
 - are connected using a daisy-chain or a ring topology
 - are managed using a single IP Address
 - synchronized software-upgrade
-- use Priority/MAC-Addr(s) to decide Master/Members selection and communication.
+- use Priority/MAC-Addr(s) to decide Main/Members selection and communication.
 
 {{fig-daisy-chain-stacked}} and {{fig-ring-stacked}} describe two examples of stacked switch with three stacked switches (pizza boxes) connected in a daisy-chain or ring topology.
 
@@ -708,7 +710,7 @@ Cascaded switches are another example of multi-chassis which consist of multiple
 
 - are usually connected in a tree topology
 - are managed using a single IP Address
-- the root of the tree is configured as Master.
+- the root of the tree is configured as Main.
 
 {{fig-tree-cascaded}} describe an example of cascaded switch with three chassis connected in a tree topology.
 
