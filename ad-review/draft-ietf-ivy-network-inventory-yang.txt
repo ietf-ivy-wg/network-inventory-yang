@@ -303,7 +303,7 @@ Table of Contents
       to include other inventory objects which can be managed, from an
       inventory perspective, like hardware components.
 
-   Card:  A pluggable equipment with a particular structural format and
+   Card:  Pluggable equipment with a particular structural format and
       dimensions which can be inserted into one or more slots (or sub-
       slots).  A card can have spaces (called sub-slots) to take other
       cards.
@@ -641,7 +641,8 @@ Table of Contents
    According to the description in [RFC8348], the attribute named
    "model-name" under the component, is preferred to have a customer-
    visible part number value.  "Model-name" is not straightforward to
-   understand and we suggest to rename it as "part-number" directly.
+   understand and therefore in this model the attribute is called "part-
+   number".
 
 3.4.2.  Component identifiers
 
@@ -653,7 +654,7 @@ Table of Contents
    [RFC8348] in defining the component name as the key for the component
    list.
 
-   Instead the name is defined as an optional attribute and the
+   Instead, the name is defined as an optional attribute and the
    component-id is defined as the key for the component list (in
    alignment with the approach followed for the network-element list).
 
@@ -1207,7 +1208,7 @@ Table of Contents
    As outlined in Section 1, per the definition of [RFC8309] and
    [RFC8969], the network inventory model is a network model.
 
-   This information can be provided by a network controller to an higher
+   This information can be provided by a network controller to a higher
    level hierarchical network controller, to an Inventory OSS or to any
    other type of application which needs to discover the network
    inventory information.
@@ -1238,7 +1239,7 @@ Table of Contents
    controller can also collect the network inventory information from
    its lower level network controllers using this YANG data model (or
    other mechanisms which are outside the scope of this document) and
-   report the combined network inventory information to an higher level
+   report the combined network inventory information to a higher level
    network controller, to an Inventory OSS or to any other type of
    application which needs to discover the network inventory
    information.
@@ -1246,7 +1247,7 @@ Table of Contents
    When used in brownfield scenarios, it is worth noting that existing
    deployments are based on proprietary Inventory OSS and that the
    migration path is highly dependent on the specific proprietary
-   solution.  Therefore the migration processes are operator dependent:
+   solution.  Therefore, the migration processes are operator dependent:
    it is expected that the deployment of the standard YANG-based
    solution on the controllers will take some time and its integration
    with existing Inventory OSSes will also take longer time.  In a
@@ -1263,7 +1264,7 @@ Table of Contents
 7.  Security Considerations
 
    This section is modeled after the template described in Section 3.7
-   of [I-D.ietf-netmod-rfc8407bis].
+   of [RFC9907].
 
    The "ietf-network-inventory" YANG module defines a data model that is
    designed to be accessed via YANG-based management protocols, such as
@@ -1398,14 +1399,6 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
               network-inventory-software-03>.
 
-   [I-D.ietf-netmod-rfc8407bis]
-              Bierman, A., Boucadair, M., and Q. Wu, "Guidelines for
-              Authors and Reviewers of Documents Containing YANG Data
-              Models", Work in Progress, Internet-Draft, draft-ietf-
-              netmod-rfc8407bis-28, 5 June 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-netmod-
-              rfc8407bis-28>.
-
    [I-D.ietf-teas-actn-poi-applicability]
               Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
               Ceccarelli, "Applicability of Abstraction and Control of
@@ -1485,6 +1478,11 @@ Table of Contents
               Multiplexed and Secure Transport", RFC 9000,
               DOI 10.17487/RFC9000, May 2021,
               <https://www.rfc-editor.org/rfc/rfc9000>.
+
+   [RFC9907]  Bierman, A., Boucadair, M., Ed., and Q. Wu, "Guidelines
+              for Authors and Reviewers of Documents Containing YANG
+              Data Models", BCP 216, RFC 9907, DOI 10.17487/RFC9907,
+              March 2026, <https://www.rfc-editor.org/rfc/rfc9907>.
 
    [TMF_SD2-20]
               TM Forum, "SD2-20_Equipment Model", TMF MTOSI 4.0, Network
@@ -1709,7 +1707,7 @@ Appendix D.  Examples of ports
    Figure 4 shows an example of a single board which contains three type
    of ports:
 
-   1.  An integrated port (non pluggable);
+   1.  An integrated port (non-pluggable);
 
    2.  An empty port;
 
@@ -1787,7 +1785,7 @@ D.1.  JSON Examples
                  {
                    "component-id": "port-3",
                    "class": "iana-hardware:port",
-                   "description": "Example of a non empty pluggable \
+                   "description": "Example of a non-empty pluggable \
                                                                  port.",
                    "parent": [
                      "board-1"
