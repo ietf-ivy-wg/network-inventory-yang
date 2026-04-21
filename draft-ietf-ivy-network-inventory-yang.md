@@ -629,7 +629,9 @@ It is also useful to compare the identity oc-platform-type:OPENCONFIG_HARDWARE_C
 | BACKPLANE                                      | backplane             |
 | FABRIC                                         | module                |
 | POWER_SUPPLY                                   | power-supply          |
-| FAN / FAN_TRAY / FAN_TRAY_CONTROLLER           | fan                   |
+| FAN                                            | fan                   |
+| FAN_TRAY                                       | module                |
+| FAN_TRAY_CONTROLLER                            | module                |
 | SENSOR                                         | sensor                |
 | LINECARD                                       | module                |
 | CONTROLLER_CARD                                | module                |
