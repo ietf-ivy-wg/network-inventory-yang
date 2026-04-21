@@ -588,7 +588,7 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | Attributes in oc-platform  | Attributes in our model  | remark                   |
 | -------------------------- | ------------------------ | ------------------------ |
 | name                       | name                     |                          |
-| type                       | class                    | see table {{tab-oc-hw}} for comparisono between oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT and ianahw:hardware-clas |
+| type                       | class                    | see {{tab-oc-hw}} for comparisono between oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT and ianahw:hardware-clas |
 | id                         | uuid                     |                          |
 | location                   | location                 |                          |
 | description                | description              |                          |
@@ -621,7 +621,7 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 
 As it mentioned in {{ne-component}} that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. For the same reason some component specific structures in "openconfig-platform", like the one defined for fan, backplane, controller-card, etc., are considered out of scope since they provide specialized operational and alarms data for that components.
 
-It is also useful to compare the identity oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT with ianahw:hardware-class in the following {{tab-oc-hw}} table to highlight that our model allign with openconfig-platorm also for the definizion of hardware component type/class.
+It is also useful to compare the identity oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT with ianahw:hardware-class in the following {{tab-oc-hw}} to highlight that our model allign with openconfig-platorm also for the definizion of hardware component type/class.
 
 | oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT | ianahw:hardware-class |
 | ---------------------------------------------- | --------------------- |
