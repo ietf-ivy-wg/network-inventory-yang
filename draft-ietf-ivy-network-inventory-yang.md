@@ -639,6 +639,7 @@ It is also useful to compare the identity oc-platform-type:OPENCONFIG_HARDWARE_C
 | CPU                                            | cpu                   |
 | STORAGE                                        | storage-drive         |
 | INTEGRATED_CIRCUIT                             | module                |
+| WIFI_ACCESS_POINT                              | N/A (technology specific) |
 | FPGA                                           | module                |
 {:#tab-oc-hw title="Comparison between openconfig-platform OPENCONFIG_HARDWARE_COMPONEN and IANA hardware-class identity"}
 
