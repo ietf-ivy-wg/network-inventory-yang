@@ -1332,7 +1332,7 @@ standard YANG data model for Network Inventory data instead
 of using vendors' proprietary APIs.<a href="#section-1-5" class="pilcrow">¶</a></p>
 <p id="section-1-6"><span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller towards the network elements rather than at the northbound interface of a network controller (e.g., toward an application or another hierarchical network controller). However, the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> has been used as a reference for defining the YANG network inventory data model presented in this document.<a href="#section-1-6" class="pilcrow">¶</a></p>
 <p id="section-1-7">Per the definition of <span>[<a href="#RFC8309" class="cite xref">RFC8309</a>]</span> and <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>, the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> is a device model while the YANG data model defined in this document is a network model.<a href="#section-1-7" class="pilcrow">¶</a></p>
-<p id="section-1-8">As outlined in <a href="#operational" class="auto internal xref">Section 6</a>, the network inventory provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network. Therefore other inventory data (e.g., spare or inactive assets) are outside the scope of this model<a href="#section-1-8" class="pilcrow">¶</a></p>
+<p id="section-1-8">As outlined in <a href="#operational" class="auto internal xref">Section 6</a>, the network inventory provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network. Therefore, other inventory data (e.g., spare or inactive assets) are outside the scope of this model.<a href="#section-1-8" class="pilcrow">¶</a></p>
 <p id="section-1-9">As outlined in <a href="#overview" class="auto internal xref">Section 3</a>, the base inventory YANG data model defined in this document supports only physical network elements but generalizes the network element definition to allow supporting other types of network elements through proper augmentations.<a href="#section-1-9" class="pilcrow">¶</a></p>
 <p id="section-1-10">This document defines one YANG module "ietf-network-inventory" in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#section-1-10" class="pilcrow">¶</a></p>
 <p id="section-1-11">This base data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
@@ -1359,7 +1359,7 @@ summarizes all of the substitutions that are needed.<a href="#section-1.1-2" cla
             <p id="section-1.1-4.1.1">XXXX --&gt; the assigned RFC number for this I-D<a href="#section-1.1-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.1-4.2">
-            <p id="section-1.1-4.2.1">2026-01-27 --&gt; the actual date of the publication of this document<a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-1.1-4.2.1">2026-04-22 --&gt; the actual date of the publication of this document<a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1917,7 +1917,7 @@ software patch information.<a href="#section-3.3.2-6" class="pilcrow">¶</a></p>
           <h4 id="name-part-number">
 <a href="#section-3.4.1" class="section-number selfRef">3.4.1. </a><a href="#name-part-number" class="section-name selfRef">Part Number</a>
           </h4>
-<p id="section-3.4.1-1">According to the description in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. "Model-name" is not straightforward to understand and therefore in this model the attribute is called "part-number".<a href="#section-3.4.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.4.1-1">According to the description in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. "Model-name" is not straightforward to understand, and therefore, in this model the attribute is called "part-number".<a href="#section-3.4.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="component-identifiers">
@@ -2014,7 +2014,7 @@ module: ietf-network-inventory
 <span id="name-network-inventory-yang-modu"></span><div id="fig-ni-yang">
 <figure id="figure-3">
         <div class="breakable lang-yang sourcecode" id="section-5-1.1">
-<pre>&lt;CODE BEGINS&gt; file "ietf-network-inventory@2026-01-27.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-network-inventory@2026-04-22.yang"
 
 module ietf-network-inventory {
   yang-version 1.1;
@@ -2083,7 +2083,7 @@ module ietf-network-inventory {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-04-17 {
+  revision 2026-04-22 {
     description
       "Initial version";
     reference
@@ -2119,6 +2119,7 @@ module ietf-network-inventory {
     type leafref {
       path "/nwi:network-inventory/nwi:network-elements"
          + "/nwi:network-element/nwi:ne-id";
+      require-instance false;
     }
     description
       "This type is intended to be used by data models that need to
@@ -2128,6 +2129,28 @@ module ietf-network-inventory {
   /*
    * Groupings
    */
+
+  grouping component-ref {
+    description
+      "This grouping is intended to be used by data models that need
+       to reference a component within a Network Element.";
+    leaf ne-ref {
+      type nwi:ne-ref;
+      description
+        "The reference to the Network Element which contains the
+         component to be referenced.";
+    }
+    leaf component-ref {
+      type leafref {
+        path "/nwi:network-inventory/nwi:network-elements/"
+           + "nwi:network-element[nwi:ne-id=current()/../ne-ref]"
+           + "/nwi:components/nwi:component/nwi:component-id";
+        require-instance false;
+      }
+      description
+        "The reference to the component.";
+    }
+  }
 
   grouping port-ref {
     description
@@ -2144,13 +2167,13 @@ module ietf-network-inventory {
         path "/nwi:network-inventory/nwi:network-elements/"
            + "nwi:network-element[nwi:ne-id=current()/../ne-ref]"
            + "/nwi:components/nwi:component/nwi:component-id";
+        require-instance false;
       }
-      must "derived-from-or-self (/nwi:network-inventory/
-            nwi:network-elements/nwi:network-element
-            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component
-            [nwi:component-id=current()]/nwi:class, 'ianahw:port')";
       description
-        "The reference to the port component.";
+        "The reference to the port component.
+
+         Note: the class of the referenced port component MUST be
+         'ianahw:port' or a derived identity.";
     }
   }
 
@@ -2991,7 +3014,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
       <h2 id="name-terminology-of-container">
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-terminology-of-container" class="section-name selfRef">Terminology of Container</a>
       </h2>
-<p id="appendix-B-1">Within this document , with the term "container" we consider an hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">Within this document , with the term "container" we consider a hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <span id="name-terminology-mapping"></span><div id="tab-term">
 <table class="center" id="table-4">
         <caption>
