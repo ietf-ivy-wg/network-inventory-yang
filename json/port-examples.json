@@ -33,7 +33,7 @@
               {
                 "component-id": "port-3",
                 "class": "iana-hardware:port",
-                "description": "Example of a non empty pluggable port.",
+                "description": "Example of a non-empty pluggable port.",
                 "parent": [
                   "board-1"
                 ],

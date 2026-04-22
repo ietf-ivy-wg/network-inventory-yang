@@ -82,13 +82,6 @@ contributor:
     email: rmanzott@cisco.com
 
 normative:
-  TMF_SD2-20:
-    title: SD2-20_Equipment Model
-    author:
-      org: TM Forum
-    date:  May 2008
-    seriesinfo: TMF MTOSI 4.0, Network Resource Fulfilment (NRF), SD2-20
-    target: https://www.tmforum.org/resources/suite/mtosi-4-0/
   IANA_ENTITY_MIB:
     title: IANA-ENTITY-MIB
     author:
@@ -101,6 +94,13 @@ normative:
     target: https://www.iana.org/assignments/iana-hardware/iana-hardware.xhtml
 
 informative:
+  TMF_SD2-20:
+    title: SD2-20_Equipment Model
+    author:
+      org: TM Forum
+    date:  May 2008
+    seriesinfo: TMF MTOSI 4.0, Network Resource Fulfilment (NRF), SD2-20
+    target: https://www.tmforum.org/resources/suite/mtosi-4-0/
   OpenConfig:
     title: OpenConfig Public Release v5.6.0
     author:
@@ -146,7 +146,7 @@ of using vendors' proprietary APIs.
 
 Per the definition of {{?RFC8309}} and {{?RFC8969}}, the YANG data model defined in {{!RFC8348}} is a device model while the YANG data model defined in this document is a network model.
 
-As outlined in {{operational}}, the network inventory provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network.
+As outlined in {{operational}}, the network inventory provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network. Therefore, other inventory data (e.g., spare or inactive assets) are outside the scope of this model.
 
 As outlined in {{overview}}, the base inventory YANG data model defined in this document supports only physical network elements but generalizes the network element definition to allow supporting other types of network elements through proper augmentations.
 
@@ -171,7 +171,7 @@ summarizes all of the substitutions that are needed.
 Please apply the following replacements:
 
 - XXXX --> the assigned RFC number for this I-D
-- 2026-01-27 --> the actual date of the publication of this document
+- 2026-04-22 --> the actual date of the publication of this document
 
 # Terminology and Notations
 
@@ -239,7 +239,7 @@ Component:
 : The generalization of the hardware component definition to include other inventory objects which can be managed, from an inventory perspective, like hardware components.
 
 Card:
-: A pluggable equipment with a particular structural format and dimensions which can be inserted into one or more slots (or sub-slots). A card can have spaces (called sub-slots) to take other cards.
+: Pluggable equipment with a particular structural format and dimensions which can be inserted into one or more slots (or sub-slots). A card can have spaces (called sub-slots) to take other cards.
 : Elsewhere, a card can be called board, module, circuit pack, etc..
 
 Slot:
@@ -391,7 +391,7 @@ For state data like "admin-state", "oper-state", and so on, this document consid
 
 Based on TMF classification in {{TMF_SD2-20}}, hardware components can be divided into two groups, holder group and equipment group. The holder group contains rack, chassis, slot, sub-slot while the equipment group contains network-element, board and port.
 
-See {port-examples}, {multi-chassis-examples}, and {non-modular-examples} for concrete hardware component examples.
+See {{port-examples}}, {{multi-chassis-examples}}, and {{non-modular-examples}} for concrete hardware component examples.
 
 {{fig-hw-inventory-object-relationship}} describes the relationship between typical inventory objects in a physical network element.
 
@@ -452,15 +452,12 @@ For each software module, configured to be active, the name and version informat
 The management of inactive/standby software
 modules and of the software upgrade or downgrade life-cycle are outside the scope of the base inventory model and can be addressed in other models which augment the base inventory model such as the model under definition in {{?I-D.ietf-ivy-network-inventory-software}}.
 
-
 The software and hardware components share the same attributes of the
 component and have similar replaceable requirements. Generally, the
 device also has other software data, for example, one or more
 software patch information.
 
-The software components lifecycle  (like activation, deactivation, installation, storage, removal, etc.) is
-outside the scope of this document and defined in other documents such as
-{{?I-D.ietf-ivy-network-inventory-software}}.
+The software components lifecycle (like activation, deactivation, installation, storage, removal, etc.) is outside the scope of this document and defined in other documents such as {{?I-D.ietf-ivy-network-inventory-software}}.
 
 ## Changes Since RFC 8348
 
@@ -468,7 +465,7 @@ This document re-defines some attributes listed in {{!RFC8348}}, based on some i
 
 ### Part Number
 
-According to the description in {{!RFC8348}}, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. "Model-name" is not straightforward to understand and we suggest to rename it as "part-number" directly.
+According to the description in {{!RFC8348}}, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. "Model-name" is not straightforward to understand, and therefore, in this model the attribute is called "part-number".
 
 ### Component identifiers
 
@@ -476,7 +473,7 @@ There are some use cases where the name of the components are assigned and chang
 
 In order to support these use cases, this model is not aligned with {{!RFC8348}} in defining the component name as the key for the component list.
 
-Instead the name is defined as an optional attribute and the component-id is defined as the key for the component list (in alignment with the approach followed for the network-element list).
+Instead, the name is defined as an optional attribute and the component-id is defined as the key for the component list (in alignment with the approach followed for the network-element list).
 
 ### Parent relative position
 
@@ -502,7 +499,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-01-27.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-04-22.yang"}
 
 # Operational Considerations {#operational}
 
@@ -512,24 +509,26 @@ It is worth noting that some information reported within this YANG data model ca
 
 As outlined in {{intro}}, per the definition of {{?RFC8309}} and {{?RFC8969}}, the network inventory model is a network model.
 
-This information can be provided by a network controller to an higher level hierarchical network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
+This information can be provided by a network controller to a higher level hierarchical network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
 
 For example, in the context of ACTN, the network inventory YANG data model can be used at the MPI interfaces, as defined in {{?RFC8453}}, or on an interface, not defined in {{?RFC8453}} between the MDSC and the Inventory OSS.
 
 The information in the model is discovered by the controller through mechanisms which are outside the scope of this document.
 
+Note that distinguishing between the cases where a NE is unreachable versus decommissioned depends on the mechanism used for discovering this information and outside the scope of this document.
+
 For example, the network controller can collect this information by reading it from the devices using the device model supported by the devices. This model does not constraint the device models used on the device: the YANG data model defined in {{!RFC8348}} is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
 
-In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to an higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
+In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to a higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
 
-When used in brownfield scenarios, it is worth noting that existing deployments are based on proprietary Inventory OSS and that the migration path is highly dependent on the specific proprietary solution. Therefore the migration processes are operator dependent: it is expected that the deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing Inventory OSSes will also take longer time. In a longer term, the network controllers could provide inventory information, using this YANG data model, also to next generation OSSes.
+When used in brownfield scenarios, it is worth noting that existing deployments are based on proprietary Inventory OSS and that the migration path is highly dependent on the specific proprietary solution. Therefore, the migration processes are operator dependent: it is expected that the deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing Inventory OSSes will also take longer time. In a longer term, the network controllers could provide inventory information, using this YANG data model, also to next generation OSSes.
 
 When this model is used, the source of truth for the inventory data in the scope of this model is the network controller providing this data. Some legacy inventory information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model.
 
 # Security Considerations
 
 This section is modeled after the template described in {{Section 3.7
-of ?I-D.ietf-netmod-rfc8407bis}}.
+of ?RFC9907}}.
 
 The "ietf-network-inventory" YANG module defines a data model that is
 designed to be accessed via YANG-based management protocols, such as
@@ -589,21 +588,21 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | Attributes in oc-platform  | Attributes in our model  | remark                   |
 | -------------------------- | ------------------------ | ------------------------ |
 | name                       | name                     |                          |
-| type                       | class                    |                          |
+| type                       | class                    | see {{tab-oc-hw}} for comparisono between oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT and ianahw:hardware-clas |
 | id                         | uuid                     |                          |
 | location                   | location                 |                          |
 | description                | description              |                          |
 | mfg-name                   | mfg-name                 |                          |
 | mfg-date                   | mfg-date                 |                          |
 | hardware-version           | hardware-rev             |                          |
-| firmware-version           | firmware-rev             |                          |
-| software-version           | software-rev             |                          |
-| serial-no                  | serial-num               |                          |
+| firmware-version           | software-rev*            | items of software-rev list that provide firmware informantion |
+| software-version           | software-rev*            | items of software-rev list that provide software informantion |
+| serial-no                  | serial-number            |                          |
 | part-no                    | part-number              |                          |
 | clei-code                  | uri                      | CLEI code can be mapped into one URI as defined in {{?RFC4152}}  |
 | removable                  | is-fru                   |                          |
 | oper-status                |                          | state data               |
-| empty                      | contained-child?         | If there is no contained child, it is empty.  |
+| empty                      |                          | If there is no other component that refer to an holder as parent, it can be considered empty |
 | parent                     | parent-references        |                          |
 | redundant-role             |                          | functional information, may be part of future augmentation |
 | last-switchover-reason     |                          | state data               |
@@ -618,26 +617,40 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | pcie                       |                          | alarm  data              |
 | properties                 |                          | Generic properties can be handled as part of "description" |
 | subcomponents              |                          |                          |
-| chassis                    |                          |                          |
-| port                       |                          |                          |
-| power-supply               | power-supply             |                          |
-| fan                        |                          | Fan is considered as a specific board. And no need to define as a single component  |
-| fabric                     |                          | Fabric is considered as a specific board. And no need to define as a single component  |
-| storage                    | storage-drive            |                          |
-| cpu                        | cpu                      |                          |
-| integrated-circuit         |                          |                          |
-| backplane                  |                          | Backplane is considered as a part of board. And no need to define as a single component  |
-| software-module            |                          | managed in the software-rev list |
-| controller-card            |                          | Controller card is considered as a specific functional board. And no need to define as a single component  |
 {:#tab-oc title="Comparison between openconfig platform and inventory data models"}
 
-As it mentioned in {{ne-component}} that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. And for some component specific structures in "openconfig-platform", we consider some of them can be contained by our existing structure, such as fan, backplane, and controller-card, while some others do not need to be included in this network inventory model like storage and CPU.
+As it mentioned in {{ne-component}} that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. For the same reason some component specific structures in "openconfig-platform", like the one defined for fan, backplane, controller-card, etc., are considered out of scope since they provide specialized operational and alarms data for that components.
 
-Mostly, our inventory data model can cover the attributes from OpenConfig.
+It is also useful to compare the identity oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT with ianahw:hardware-class in the following {{tab-oc-hw}} to highlight that our model allign with openconfig-platorm also for the definizion of hardware component type/class.
+
+| oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT | ianahw:hardware-class |
+| ---------------------------------------------- | --------------------- |
+| CHASSIS                                        | chassis               |
+| BACKPLANE                                      | backplane             |
+| FABRIC                                         | module                |
+| POWER_SUPPLY                                   | power-supply          |
+| FAN                                            | fan                   |
+| FAN_TRAY                                       | module                |
+| FAN_TRAY_CONTROLLER                            | module                |
+| SENSOR                                         | sensor                |
+| LINECARD                                       | module                |
+| CONTROLLER_CARD                                | module                |
+| PORT                                           | port                  |
+| USB_PORT                                       | port                  |
+| TRANSCEIVER                                    | module                |
+| CPU                                            | cpu                   |
+| STORAGE                                        | storage-drive         |
+| INTEGRATED_CIRCUIT                             | module                |
+| WIFI_ACCESS_POINT                              | N/A (technology specific) |
+| FPGA                                           | module                |
+{:#tab-oc-hw title="Comparison between openconfig-platform OPENCONFIG_HARDWARE_COMPONEN and IANA hardware-class identity"}
+
+
+Overall we can state that our inventory data model can be populated with data from a device running OpenConfig.
 
 # Terminology of Container
 
-Within this document , with the term "container" we consider an hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.
+Within this document , with the term "container" we consider a hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.
 
 | terminology of IVY base model  |terminology in other model  |
 | ------------------------------ | -------------------------- |
@@ -648,7 +661,7 @@ Within this document , with the term "container" we consider an hardware compone
 
 During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks.  More discussions are needed to address these concerns.
 
-Considering that relational databases are widely used by traditional OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in this document, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller & OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.
+Considering that relational databases are widely used by existing OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in this document, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller & OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.
 
 An alternative YANG model structure, which defines the inventory objects directly, instead of defining generic components, has also been analyzed. However, also with this model, there still could be some scalability limitations when synchronizing full inventory resources in large scale of networks. This scalability limitation is caused by the limited transmission capabilities of HTTP protocol. We think that this scalability limitation should be solved at protocol level rather than data model level.
 
@@ -660,7 +673,7 @@ This appendix provides some examples of port implementations and how they can be
 
 {{fig-board}} shows an example of a single board which contains three type of ports:
 
-1. An integrated port (non pluggable);
+1. An integrated port (non-pluggable);
 1. An empty port;
 1. A pluggable port
 
@@ -688,7 +701,7 @@ Stacked switches are an example of multi-chassis which consist of multiple stand
 - are connected using a daisy-chain or a ring topology
 - are managed using a single IP Address
 - synchronized software-upgrade
-- use Priority/MAC-Addr(s) to decide Master/Members selection and communication.
+- use Priority/MAC-Addr(s) to decide Main/Members selection and communication.
 
 {{fig-daisy-chain-stacked}} and {{fig-ring-stacked}} describe two examples of stacked switch with three stacked switches (pizza boxes) connected in a daisy-chain or ring topology.
 
@@ -708,7 +721,7 @@ Cascaded switches are another example of multi-chassis which consist of multiple
 
 - are usually connected in a tree topology
 - are managed using a single IP Address
-- the root of the tree is configured as Master.
+- the root of the tree is configured as Main.
 
 {{fig-tree-cascaded}} describe an example of cascaded switch with three chassis connected in a tree topology.
 
