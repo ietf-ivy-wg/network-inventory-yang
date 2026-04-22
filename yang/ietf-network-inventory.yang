@@ -101,6 +101,7 @@ module ietf-network-inventory {
     type leafref {
       path "/nwi:network-inventory/nwi:network-elements"
          + "/nwi:network-element/nwi:ne-id";
+      require-instance false;
     }
     description
       "This type is intended to be used by data models that need to
@@ -126,6 +127,7 @@ module ietf-network-inventory {
         path "/nwi:network-inventory/nwi:network-elements/"
            + "nwi:network-element[nwi:ne-id=current()/../ne-ref]"
            + "/nwi:components/nwi:component/nwi:component-id";
+        require-instance false;
       }
       description
         "The reference to the component.";
@@ -147,11 +149,8 @@ module ietf-network-inventory {
         path "/nwi:network-inventory/nwi:network-elements/"
            + "nwi:network-element[nwi:ne-id=current()/../ne-ref]"
            + "/nwi:components/nwi:component/nwi:component-id";
+        require-instance false;
       }
-      must "derived-from-or-self (/nwi:network-inventory/
-            nwi:network-elements/nwi:network-element
-            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component
-            [nwi:component-id=current()]/nwi:class, 'ianahw:port')";
       description
         "The reference to the port component.";
     }
