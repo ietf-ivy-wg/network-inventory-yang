@@ -146,7 +146,7 @@ of using vendors' proprietary APIs.
 
 Per the definition of {{?RFC8309}} and {{?RFC8969}}, the YANG data model defined in {{!RFC8348}} is a device model while the YANG data model defined in this document is a network model.
 
-As outlined in {{operational}}, the network inventory provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network. Therefore other inventory data (e.g., spare or inactive assets) are outside the scope of this model
+As outlined in {{operational}}, the network inventory provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network. Therefore, other inventory data (e.g., spare or inactive assets) are outside the scope of this model.
 
 As outlined in {{overview}}, the base inventory YANG data model defined in this document supports only physical network elements but generalizes the network element definition to allow supporting other types of network elements through proper augmentations.
 
@@ -171,7 +171,7 @@ summarizes all of the substitutions that are needed.
 Please apply the following replacements:
 
 - XXXX --> the assigned RFC number for this I-D
-- 2026-01-27 --> the actual date of the publication of this document
+- 2026-04-22 --> the actual date of the publication of this document
 
 # Terminology and Notations
 
@@ -465,7 +465,7 @@ This document re-defines some attributes listed in {{!RFC8348}}, based on some i
 
 ### Part Number
 
-According to the description in {{!RFC8348}}, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. "Model-name" is not straightforward to understand and therefore in this model the attribute is called "part-number".
+According to the description in {{!RFC8348}}, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. "Model-name" is not straightforward to understand, and therefore, in this model the attribute is called "part-number".
 
 ### Component identifiers
 
@@ -499,7 +499,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-01-27.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-04-22.yang"}
 
 # Operational Considerations {#operational}
 
@@ -650,7 +650,7 @@ Overall we can state that our inventory data model can be populated with data fr
 
 # Terminology of Container
 
-Within this document , with the term "container" we consider an hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.
+Within this document , with the term "container" we consider a hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.
 
 | terminology of IVY base model  |terminology in other model  |
 | ------------------------------ | -------------------------- |

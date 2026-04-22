@@ -65,7 +65,7 @@ module ietf-network-inventory {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-04-17 {
+  revision 2026-04-22 {
     description
       "Initial version";
     reference
@@ -101,6 +101,7 @@ module ietf-network-inventory {
     type leafref {
       path "/nwi:network-inventory/nwi:network-elements"
          + "/nwi:network-element/nwi:ne-id";
+      require-instance false;
     }
     description
       "This type is intended to be used by data models that need to
@@ -110,6 +111,28 @@ module ietf-network-inventory {
   /*
    * Groupings
    */
+
+  grouping component-ref {
+    description
+      "This grouping is intended to be used by data models that need
+       to reference a component within a Network Element.";
+    leaf ne-ref {
+      type nwi:ne-ref;
+      description
+        "The reference to the Network Element which contains the
+         component to be referenced.";
+    }
+    leaf component-ref {
+      type leafref {
+        path "/nwi:network-inventory/nwi:network-elements/"
+           + "nwi:network-element[nwi:ne-id=current()/../ne-ref]"
+           + "/nwi:components/nwi:component/nwi:component-id";
+        require-instance false;
+      }
+      description
+        "The reference to the component.";
+    }
+  }
 
   grouping port-ref {
     description
@@ -126,13 +149,13 @@ module ietf-network-inventory {
         path "/nwi:network-inventory/nwi:network-elements/"
            + "nwi:network-element[nwi:ne-id=current()/../ne-ref]"
            + "/nwi:components/nwi:component/nwi:component-id";
+        require-instance false;
       }
-      must "derived-from-or-self (/nwi:network-inventory/
-            nwi:network-elements/nwi:network-element
-            [nwi:ne-id=../ne-ref]/nwi:components/nwi:component
-            [nwi:component-id=current()]/nwi:class, 'ianahw:port')";
       description
-        "The reference to the port component.";
+        "The reference to the port component.
+
+         Note: the class of the referenced port component MUST be
+         'ianahw:port' or a derived identity.";
     }
   }
 
