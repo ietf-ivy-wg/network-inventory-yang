@@ -14,20 +14,20 @@
        This document defines a base YANG data model for reporting network inventory. The scope of this base model is set to
 be application- and technology-agnostic. The base data model can be augmented with application- and technology-specific details. 
     " name="description">
-<meta content="xml2rfc 3.32.0" name="generator">
+<meta content="xml2rfc 3.33.0" name="generator">
 <meta content="next generation" name="keyword">
 <meta content="unicorn" name="keyword">
 <meta content="sparkling distributed ledger" name="keyword">
 <meta content="draft-ietf-ivy-network-inventory-yang-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.32.0
-    Python 3.12.12
+  xml2rfc 3.33.0
+    Python 3.12.13
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.0.2
-    platformdirs 4.9.4
+    platformdirs 4.9.6
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.32.5
@@ -1056,7 +1056,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Yu, et al.</td>
-<td class="center">Expires 19 October 2026</td>
+<td class="center">Expires 24 October 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1069,12 +1069,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-ivy-network-inventory-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-04-17" class="published">17 April 2026</time>
+<time datetime="2026-04-22" class="published">22 April 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-10-19">19 October 2026</time></dd>
+<dd class="expires"><time datetime="2026-10-24">24 October 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1136,7 +1136,7 @@ be application- and technology-agnostic. The base data model can be augmented wi
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 19 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 24 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2747,7 +2747,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">type</td>
             <td class="text-left" rowspan="1" colspan="1">class</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">see <a href="#tab-oc-hw" class="auto internal xref">Table 3</a> for comparisono between oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT and ianahw:hardware-clas</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">id</td>
@@ -2781,17 +2781,17 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">firmware-version</td>
-            <td class="text-left" rowspan="1" colspan="1">firmware-rev</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">software-rev*</td>
+            <td class="text-left" rowspan="1" colspan="1">items of software-rev list that provide firmware informantion</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">software-version</td>
-            <td class="text-left" rowspan="1" colspan="1">software-rev</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">software-rev*</td>
+            <td class="text-left" rowspan="1" colspan="1">items of software-rev list that provide software informantion</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">serial-no</td>
-            <td class="text-left" rowspan="1" colspan="1">serial-num</td>
+            <td class="text-left" rowspan="1" colspan="1">serial-number</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
           </tr>
           <tr>
@@ -2817,8 +2817,8 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">empty</td>
-            <td class="text-left" rowspan="1" colspan="1">contained-child?</td>
-            <td class="text-left" rowspan="1" colspan="1">If there is no contained child, it is empty.</td>
+            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">If there is no other component that refer to an holder as parent, it can be considered empty</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">parent</td>
@@ -2890,66 +2890,100 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
             <td class="text-left" rowspan="1" colspan="1"> </td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
           </tr>
+        </tbody>
+      </table>
+</div>
+<p id="appendix-A-4">As it mentioned in <a href="#ne-component" class="auto internal xref">Section 3.3</a> that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. For the same reason some component specific structures in "openconfig-platform", like the one defined for fan, backplane, controller-card, etc., are considered out of scope since they provide specialized operational and alarms data for that components.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
+<p id="appendix-A-5">It is also useful to compare the identity oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT with ianahw:hardware-class in the following <a href="#tab-oc-hw" class="auto internal xref">Table 3</a> to highlight that our model allign with openconfig-platorm also for the definizion of hardware component type/class.<a href="#appendix-A-5" class="pilcrow">¶</a></p>
+<span id="name-comparison-between-openconfi"></span><div id="tab-oc-hw">
+<table class="center" id="table-3">
+        <caption>
+<a href="#table-3" class="selfRef">Table 3</a>:
+<a href="#name-comparison-between-openconfi" class="selfRef">Comparison between openconfig-platform OPENCONFIG_HARDWARE_COMPONEN and IANA hardware-class identity</a>
+        </caption>
+<thead>
           <tr>
+            <th class="text-left" rowspan="1" colspan="1">oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT</th>
+            <th class="text-left" rowspan="1" colspan="1">ianahw:hardware-class</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">CHASSIS</td>
             <td class="text-left" rowspan="1" colspan="1">chassis</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
           </tr>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">port</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
-          </tr>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">power-supply</td>
-            <td class="text-left" rowspan="1" colspan="1">power-supply</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
-          </tr>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">fan</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">Fan is considered as a specific board. And no need to define as a single component</td>
-          </tr>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">fabric</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">Fabric is considered as a specific board. And no need to define as a single component</td>
-          </tr>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">storage</td>
-            <td class="text-left" rowspan="1" colspan="1">storage-drive</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
-          </tr>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">cpu</td>
-            <td class="text-left" rowspan="1" colspan="1">cpu</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
-          </tr>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">integrated-circuit</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
-          </tr>
-          <tr>
+            <td class="text-left" rowspan="1" colspan="1">BACKPLANE</td>
             <td class="text-left" rowspan="1" colspan="1">backplane</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">Backplane is considered as a part of board. And no need to define as a single component</td>
           </tr>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">software-module</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">managed in the software-rev list</td>
+            <td class="text-left" rowspan="1" colspan="1">FABRIC</td>
+            <td class="text-left" rowspan="1" colspan="1">module</td>
           </tr>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">controller-card</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">Controller card is considered as a specific functional board. And no need to define as a single component</td>
+            <td class="text-left" rowspan="1" colspan="1">POWER_SUPPLY</td>
+            <td class="text-left" rowspan="1" colspan="1">power-supply</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">FAN</td>
+            <td class="text-left" rowspan="1" colspan="1">fan</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">FAN_TRAY</td>
+            <td class="text-left" rowspan="1" colspan="1">module</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">FAN_TRAY_CONTROLLER</td>
+            <td class="text-left" rowspan="1" colspan="1">module</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">SENSOR</td>
+            <td class="text-left" rowspan="1" colspan="1">sensor</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">LINECARD</td>
+            <td class="text-left" rowspan="1" colspan="1">module</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">CONTROLLER_CARD</td>
+            <td class="text-left" rowspan="1" colspan="1">module</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">PORT</td>
+            <td class="text-left" rowspan="1" colspan="1">port</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">USB_PORT</td>
+            <td class="text-left" rowspan="1" colspan="1">port</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">TRANSCEIVER</td>
+            <td class="text-left" rowspan="1" colspan="1">module</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">CPU</td>
+            <td class="text-left" rowspan="1" colspan="1">cpu</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">STORAGE</td>
+            <td class="text-left" rowspan="1" colspan="1">storage-drive</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">INTEGRATED_CIRCUIT</td>
+            <td class="text-left" rowspan="1" colspan="1">module</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">WIFI_ACCESS_POINT</td>
+            <td class="text-left" rowspan="1" colspan="1">N/A (technology specific)</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">FPGA</td>
+            <td class="text-left" rowspan="1" colspan="1">module</td>
           </tr>
         </tbody>
       </table>
 </div>
-<p id="appendix-A-4">As it mentioned in <a href="#ne-component" class="auto internal xref">Section 3.3</a> that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. And for some component specific structures in "openconfig-platform", we consider some of them can be contained by our existing structure, such as fan, backplane, and controller-card, while some others do not need to be included in this network inventory model like storage and CPU.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
-<p id="appendix-A-5">Mostly, our inventory data model can cover the attributes from OpenConfig.<a href="#appendix-A-5" class="pilcrow">¶</a></p>
+<p id="appendix-A-7">Overall we can state that our inventory data model can be populated with data from a device running OpenConfig.<a href="#appendix-A-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology-of-container">
@@ -2959,9 +2993,9 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
       </h2>
 <p id="appendix-B-1">Within this document , with the term "container" we consider an hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <span id="name-terminology-mapping"></span><div id="tab-term">
-<table class="center" id="table-3">
+<table class="center" id="table-4">
         <caption>
-<a href="#table-3" class="selfRef">Table 3</a>:
+<a href="#table-4" class="selfRef">Table 4</a>:
 <a href="#name-terminology-mapping" class="selfRef">terminology mapping</a>
         </caption>
 <thead>
