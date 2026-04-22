@@ -65,7 +65,7 @@ module ietf-network-inventory {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-04-17 {
+  revision 2026-04-22 {
     description
       "Initial version";
     reference
@@ -110,6 +110,27 @@ module ietf-network-inventory {
   /*
    * Groupings
    */
+
+  grouping component-ref {
+    description
+      "This grouping is intended to be used by data models that need
+       to reference a component within a Network Element.";
+    leaf ne-ref {
+      type nwi:ne-ref;
+      description
+        "The reference to the Network Element which contains the
+         port to be referenced.";
+    }
+    leaf component-ref {
+      type leafref {
+        path "/nwi:network-inventory/nwi:network-elements/"
+           + "nwi:network-element[nwi:ne-id=current()/../ne-ref]"
+           + "/nwi:components/nwi:component/nwi:component-id";
+      }
+      description
+        "The reference to the component.";
+    }
+  }
 
   grouping port-ref {
     description

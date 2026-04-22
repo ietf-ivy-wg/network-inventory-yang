@@ -171,7 +171,7 @@ summarizes all of the substitutions that are needed.
 Please apply the following replacements:
 
 - XXXX --> the assigned RFC number for this I-D
-- 2026-01-27 --> the actual date of the publication of this document
+- 2026-04-22 --> the actual date of the publication of this document
 
 # Terminology and Notations
 
@@ -499,7 +499,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-01-27.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-04-22.yang"}
 
 # Operational Considerations {#operational}
 
