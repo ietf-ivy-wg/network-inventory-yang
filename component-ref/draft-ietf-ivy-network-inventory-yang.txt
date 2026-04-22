@@ -882,7 +882,10 @@ Table of Contents
            require-instance false;
          }
          description
-           "The reference to the port component.";
+           "The reference to the port component.
+
+            Note: the class of the referenced port component MUST be
+            'ianahw:port' or a derived identity.";
        }
      }
 
