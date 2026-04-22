@@ -588,21 +588,21 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | Attributes in oc-platform  | Attributes in our model  | remark                   |
 | -------------------------- | ------------------------ | ------------------------ |
 | name                       | name                     |                          |
-| type                       | class                    |                          |
+| type                       | class                    | see {{tab-oc-hw}} for comparisono between oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT and ianahw:hardware-clas |
 | id                         | uuid                     |                          |
 | location                   | location                 |                          |
 | description                | description              |                          |
 | mfg-name                   | mfg-name                 |                          |
 | mfg-date                   | mfg-date                 |                          |
 | hardware-version           | hardware-rev             |                          |
-| firmware-version           | firmware-rev             |                          |
-| software-version           | software-rev             |                          |
-| serial-no                  | serial-num               |                          |
+| firmware-version           | software-rev*            | items of software-rev list that provide firmware informantion |
+| software-version           | software-rev*            | items of software-rev list that provide software informantion |
+| serial-no                  | serial-number            |                          |
 | part-no                    | part-number              |                          |
 | clei-code                  | uri                      | CLEI code can be mapped into one URI as defined in {{?RFC4152}}  |
 | removable                  | is-fru                   |                          |
 | oper-status                |                          | state data               |
-| empty                      | contained-child?         | If there is no contained child, it is empty.  |
+| empty                      |                          | If there is no other component that refer to an holder as parent, it can be considered empty |
 | parent                     | parent-references        |                          |
 | redundant-role             |                          | functional information, may be part of future augmentation |
 | last-switchover-reason     |                          | state data               |
@@ -617,22 +617,36 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | pcie                       |                          | alarm  data              |
 | properties                 |                          | Generic properties can be handled as part of "description" |
 | subcomponents              |                          |                          |
-| chassis                    |                          |                          |
-| port                       |                          |                          |
-| power-supply               | power-supply             |                          |
-| fan                        |                          | Fan is considered as a specific board. And no need to define as a single component  |
-| fabric                     |                          | Fabric is considered as a specific board. And no need to define as a single component  |
-| storage                    | storage-drive            |                          |
-| cpu                        | cpu                      |                          |
-| integrated-circuit         |                          |                          |
-| backplane                  |                          | Backplane is considered as a part of board. And no need to define as a single component  |
-| software-module            |                          | managed in the software-rev list |
-| controller-card            |                          | Controller card is considered as a specific functional board. And no need to define as a single component  |
 {:#tab-oc title="Comparison between openconfig platform and inventory data models"}
 
-As it mentioned in {{ne-component}} that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. And for some component specific structures in "openconfig-platform", we consider some of them can be contained by our existing structure, such as fan, backplane, and controller-card, while some others do not need to be included in this network inventory model like storage and CPU.
+As it mentioned in {{ne-component}} that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. For the same reason some component specific structures in "openconfig-platform", like the one defined for fan, backplane, controller-card, etc., are considered out of scope since they provide specialized operational and alarms data for that components.
 
-Mostly, our inventory data model can cover the attributes from OpenConfig.
+It is also useful to compare the identity oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT with ianahw:hardware-class in the following {{tab-oc-hw}} to highlight that our model allign with openconfig-platorm also for the definizion of hardware component type/class.
+
+| oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT | ianahw:hardware-class |
+| ---------------------------------------------- | --------------------- |
+| CHASSIS                                        | chassis               |
+| BACKPLANE                                      | backplane             |
+| FABRIC                                         | module                |
+| POWER_SUPPLY                                   | power-supply          |
+| FAN                                            | fan                   |
+| FAN_TRAY                                       | module                |
+| FAN_TRAY_CONTROLLER                            | module                |
+| SENSOR                                         | sensor                |
+| LINECARD                                       | module                |
+| CONTROLLER_CARD                                | module                |
+| PORT                                           | port                  |
+| USB_PORT                                       | port                  |
+| TRANSCEIVER                                    | module                |
+| CPU                                            | cpu                   |
+| STORAGE                                        | storage-drive         |
+| INTEGRATED_CIRCUIT                             | module                |
+| WIFI_ACCESS_POINT                              | N/A (technology specific) |
+| FPGA                                           | module                |
+{:#tab-oc-hw title="Comparison between openconfig-platform OPENCONFIG_HARDWARE_COMPONEN and IANA hardware-class identity"}
+
+
+Overall we can state that our inventory data model can be populated with data from a device running OpenConfig.
 
 # Terminology of Container
 
