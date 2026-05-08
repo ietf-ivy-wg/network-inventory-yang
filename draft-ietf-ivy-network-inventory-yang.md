@@ -589,7 +589,7 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | Attributes in oc-platform  | Attributes in our model  | remark                   |
 | -------------------------- | ------------------------ | ------------------------ |
 | name                       | name                     |                          |
-| type                       | class                    | see {{tab-oc-hw}} for comparisono between oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT and ianahw:hardware-clas |
+| type                       | class                    | see {{tab-oc-hw}} for comparison between oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT and ianahw:hardware-clas |
 | id                         | uuid                     |                          |
 | location                   | location                 |                          |
 | description                | description              |                          |
