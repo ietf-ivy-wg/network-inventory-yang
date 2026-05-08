@@ -596,8 +596,8 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | mfg-name                   | mfg-name                 |                          |
 | mfg-date                   | mfg-date                 |                          |
 | hardware-version           | hardware-rev             |                          |
-| firmware-version           | software-rev*            | items of software-rev list that provide firmware informantion |
-| software-version           | software-rev*            | items of software-rev list that provide software informantion |
+| firmware-version           | software-rev*            | items of software-rev list that provide firmware information |
+| software-version           | software-rev*            | items of software-rev list that provide software information |
 | serial-no                  | serial-number            |                          |
 | part-no                    | part-number              |                          |
 | clei-code                  | uri                      | CLEI code can be mapped into one URI as defined in {{?RFC4152}}  |
