@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-05-10T02:07:03.779032+00:00",
+  "timestamp": "2026-05-12T02:11:12.049501+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -11723,7 +11723,7 @@
       "labels": [],
       "body": "Address follow-up comments from Mahesh: see #159 \r\nFix some minor types\r\n\r\n---\r\n\r\n[Updated Copy](https://italobusi.github.io/network-inventory-yang/ad-review-02/draft-ietf-ivy-network-inventory-yang.html)\r\n\r\n[Compare Updated Copy to Editor's Copy](https://author-tools.ietf.org/api/iddiff?url_1=https://ietf-ivy-wg.github.io/network-inventory-yang/draft-ietf-ivy-network-inventory-yang.txt&url_2=https://italobusi.github.io/network-inventory-yang/ad-review-02/draft-ietf-ivy-network-inventory-yang.txt)\r\n\r\n[Compare Updated Copy to Working Group Draft](https://author-tools.ietf.org/api/iddiff?doc_1=draft-ietf-ivy-network-inventory-yang&url_2=https://italobusi.github.io/network-inventory-yang/ad-review-02/draft-ietf-ivy-network-inventory-yang.txt)",
       "createdAt": "2026-05-08T21:27:25Z",
-      "updatedAt": "2026-05-08T21:35:15Z",
+      "updatedAt": "2026-05-11T16:09:06Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "fb03ff480bc5e9b54096b620bb1531929980c031",
@@ -11735,7 +11735,28 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo87-OMLA",
+          "commit": {
+            "abbreviatedOid": "6fdeebf"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "There is an additional comment on the model from AD that I think is not yet addressed:\r\n\r\n> Section 5 YANG Model\r\n>\r\n> \u2018is-main\u2019 description. The description says the leaf is \"applicable only to scenarios >where there are chassis components which can take the 'main' role,\" but the when >condition already enforces this. Is this statement needed? \r\n>\r\n>The description should also clarify what false means for a single-chassis NE.\r\n\r\nWhile I think the first sentence should not require change but just need a reply (the when condition just force the use of the leaf on 'chassis' component but do not explain its meaning), the second sentence may need some additional text in the description",
+          "createdAt": "2026-05-11T15:42:07Z",
+          "updatedAt": "2026-05-11T16:09:06Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "\"components into into two groups\"\nseems a typo with \"into\" repeated twice\n\n```suggestion\nOther models (e.g., {{TMF_SD2-20}}) classifies the hardware components into two groups: holder group and equipment group. The holder group contains rack, chassis, slot, sub-slot while the equipment group contains network-element, board and port. This model, likewise {{!RFC8348}}, does not follow this classification and manage all the hardware components without distinguishing between holder and equipment groups.\n```",
+              "createdAt": "2026-05-11T15:42:07Z",
+              "updatedAt": "2026-05-11T16:04:58Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
