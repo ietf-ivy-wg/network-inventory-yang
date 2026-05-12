@@ -389,7 +389,7 @@ For state data like "admin-state", "oper-state", and so on, this document consid
 
 ### Hardware Components
 
-Other models (e.g., {{TMF_SD2-20}}) classifies the hardware components into into two groups: holder group and equipment group. The holder group contains rack, chassis, slot, sub-slot while the equipment group contains network-element, board and port. This model, likewise {{!RFC8348}}, does not follow this classification and manage all the hardware components without distinguishing between holder and equipment groups.
+Other models (e.g., {{TMF_SD2-20}}) classifies the hardware components into two groups: holder group and equipment group. The holder group contains rack, chassis, slot, sub-slot while the equipment group contains network-element, board and port. This model, likewise {{!RFC8348}}, does not follow this classification and manage all the hardware components without distinguishing between holder and equipment groups.
 
 See {{port-examples}}, {{multi-chassis-examples}}, and {{non-modular-examples}} for concrete hardware component examples.
 
