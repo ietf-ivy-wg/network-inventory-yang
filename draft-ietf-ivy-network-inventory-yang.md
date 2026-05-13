@@ -171,7 +171,7 @@ summarizes all of the substitutions that are needed.
 Please apply the following replacements:
 
 - XXXX --> the assigned RFC number for this I-D
-- 2026-04-22 --> the actual date of the publication of this document
+- 2026-05-13 --> the actual date of the publication of this document
 
 # Terminology and Notations
 
@@ -389,7 +389,7 @@ For state data like "admin-state", "oper-state", and so on, this document consid
 
 ### Hardware Components
 
-Based on TMF classification in {{TMF_SD2-20}}, hardware components can be divided into two groups, holder group and equipment group. The holder group contains rack, chassis, slot, sub-slot while the equipment group contains network-element, board and port.
+Other models (e.g., {{TMF_SD2-20}}) classifies the hardware components into two groups: holder group and equipment group. The holder group contains rack, chassis, slot, sub-slot while the equipment group contains network-element, board and port. This model, likewise {{!RFC8348}}, does not follow this classification and manage all the hardware components without distinguishing between holder and equipment groups.
 
 See {{port-examples}}, {{multi-chassis-examples}}, and {{non-modular-examples}} for concrete hardware component examples.
 
@@ -441,13 +441,12 @@ storage, port, or power supply are defined in the hardware extension.
 
 Each instance of a network element or a component includes its own "software-rev" list which provides basic software attributes for each entity (network element and component).
 
-The scope of the list is to provide information about the software modules configured to be active
-on the related entity.
+The scope of the list is to provide information about the software images intended to be running within the related entity.
 
-The model supports scenarios where multiple software modules can be configured to be active on the entity. For example, on a network element an Operating System and an Application software modules can be configured to be active; in the same way, on a component like a circuit pack a boot-loader, a firmware
-and one or more FPGA software modules can be configured to be active.
+The model supports scenarios where multiple software modules can be images intended to be running within the entity. For example, on a network element an Operating System and an Application software modules can be intended to be running; in the same way, on a component like a circuit pack a boot-loader, a firmware
+and one or more FPGA software modules can be intended to be running.
 
-For each software module, configured to be active, the name and version information is provided.
+For each software module, intended to be running, the name and version information is provided.
 
 The management of inactive/standby software
 modules and of the software upgrade or downgrade life-cycle are outside the scope of the base inventory model and can be addressed in other models which augment the base inventory model such as the model under definition in {{?I-D.ietf-ivy-network-inventory-software}}.
@@ -499,7 +498,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-04-22.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-05-13.yang"}
 
 # Operational Considerations {#operational}
 
@@ -525,7 +524,7 @@ When used in brownfield scenarios, it is worth noting that existing deployments 
 
 When this model is used, the source of truth for the inventory data in the scope of this model is the network controller providing this data. Some legacy inventory information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model.
 
-# Security Considerations
+# Security Considerations {#security}
 
 This section is modeled after the template described in {{Section 3.7
 of ?RFC9907}}.
@@ -552,6 +551,8 @@ Specifically, the following subtrees and data nodes have particular sensitivitie
 
 > This subtree reports the inventory information for all the network elements and their hardware components deployed within the network as well as of the software modules being active on these network elements and components. Unauthorized access to this subtree can disclose this information. A malicious attacker can use this information to perform targeted attacks to network elements, hardware components or software modules with known vulnerabilities.
 
+> In large networks, the massive volume of reported data can cause scalability issues, as reported in {{scalability}}. A malicious attacker could leverage this to cause  resource exhaustion.
+
 Modules that use the groupings that are defined in this document
 should identify the corresponding security considerations. For example, reusing the 'component-attributes' grouping may expose sensitive information.
 
@@ -561,7 +562,7 @@ IANA is requested to register the following URI in the "ns"
 registry within the "IETF XML Registry" group {{?RFC3688}}:
 
 ~~~~
-      URI: urn:ietf:params:xml:ns:ietf-network-inventory
+      URI: urn:ietf:params:xml:ns:yang:ietf-network-inventory
       Registrant Contact: The IESG
       XML: N/A; the requested URI is an XML namespace.
 ~~~~
@@ -588,15 +589,15 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 | Attributes in oc-platform  | Attributes in our model  | remark                   |
 | -------------------------- | ------------------------ | ------------------------ |
 | name                       | name                     |                          |
-| type                       | class                    | see {{tab-oc-hw}} for comparisono between oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT and ianahw:hardware-clas |
+| type                       | class                    | see {{tab-oc-hw}} for comparison between oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT and ianahw:hardware-clas |
 | id                         | uuid                     |                          |
 | location                   | location                 |                          |
 | description                | description              |                          |
 | mfg-name                   | mfg-name                 |                          |
 | mfg-date                   | mfg-date                 |                          |
 | hardware-version           | hardware-rev             |                          |
-| firmware-version           | software-rev*            | items of software-rev list that provide firmware informantion |
-| software-version           | software-rev*            | items of software-rev list that provide software informantion |
+| firmware-version           | software-rev*            | items of software-rev list that provide firmware information |
+| software-version           | software-rev*            | items of software-rev list that provide software information |
 | serial-no                  | serial-number            |                          |
 | part-no                    | part-number              |                          |
 | clei-code                  | uri                      | CLEI code can be mapped into one URI as defined in {{?RFC4152}}  |
@@ -621,7 +622,7 @@ Openconfig-platform data model is NE-level and uses a generic component concept 
 
 As it mentioned in {{ne-component}} that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. For the same reason some component specific structures in "openconfig-platform", like the one defined for fan, backplane, controller-card, etc., are considered out of scope since they provide specialized operational and alarms data for that components.
 
-It is also useful to compare the identity oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT with ianahw:hardware-class in the following {{tab-oc-hw}} to highlight that our model allign with openconfig-platorm also for the definizion of hardware component type/class.
+It is also useful to compare the identity oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT with ianahw:hardware-class in the following {{tab-oc-hw}} to highlight that our model align with openconfig-platorm also for the definition of hardware component type/class.
 
 | oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT | ianahw:hardware-class |
 | ---------------------------------------------- | --------------------- |
@@ -657,9 +658,11 @@ Within this document , with the term "container" we consider a hardware componen
 | container                      | holder                     |
 {:#tab-term title="terminology mapping"}
 
-# Efficiency Issue
+# Efficiency Issue {#scalability}
 
-During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks.  More discussions are needed to address these concerns.
+During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks. As outlined in {{security}}, these efficiency and scalability issues can pose security issues.
+
+While implementing NACM {{?RFC8341}} and protocol-specific filtering mechanisms (e.g., RESTCONF filtering {{?RFC8040}}) mitigates these efficiency and scalability concerns, full resolution may require further protocol enhancements beyond the scope of this document.
 
 Considering that relational databases are widely used by existing OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in this document, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller & OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.
 
