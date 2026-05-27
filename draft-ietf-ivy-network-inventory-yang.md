@@ -9,8 +9,8 @@ number:
 date:
 consensus: true
 v: 3
-# area: AREA
-# workgroup: IVY Working Group
+area: Operations and Management
+workgroup: IVY Working Group
 keyword:
  - next generation
  - unicorn
@@ -148,6 +148,8 @@ Per the definition of {{?RFC8309}} and {{?RFC8969}}, the YANG data model defined
 
 As outlined in {{operational}}, the network inventory provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network. Therefore, other inventory data (e.g., spare or inactive assets) are outside the scope of this model.
 
+The distinction between a temporarily unreachable network element and one that has been removed from the network is outside the scope of this document and depends on the discovery mechanism used by the controller.
+
 As outlined in {{overview}}, the base inventory YANG data model defined in this document supports only physical network elements but generalizes the network element definition to allow supporting other types of network elements through proper augmentations.
 
 This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
@@ -171,7 +173,7 @@ summarizes all of the substitutions that are needed.
 Please apply the following replacements:
 
 - XXXX --> the assigned RFC number for this I-D
-- 2026-05-13 --> the actual date of the publication of this document
+- 2026-05-27 --> the actual date of the publication of this document
 
 # Terminology and Notations
 
