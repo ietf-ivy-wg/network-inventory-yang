@@ -735,7 +735,7 @@ Table of Contents
 
 5.  YANG Data Model for Network Inventory
 
-   <CODE BEGINS> file "ietf-network-inventory@2026-05-13.yang"
+   <CODE BEGINS> file "ietf-network-inventory@2026-05-27.yang"
    module ietf-network-inventory {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-network-inventory";
