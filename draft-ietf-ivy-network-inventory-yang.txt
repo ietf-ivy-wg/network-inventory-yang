@@ -2,17 +2,17 @@
 
 
 
-Network Working Group                                              C. Yu
+IVY Working Group                                                  C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 14 November 2026                                          Nokia
+Expires: 28 November 2026                                          Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                             13 May 2026
+                                                             27 May 2026
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 November 2026.
+   This Internet-Draft will expire on 28 November 2026.
 
 Copyright Notice
 
@@ -168,6 +168,11 @@ Table of Contents
    Therefore, other inventory data (e.g., spare or inactive assets) are
    outside the scope of this model.
 
+   The distinction between a temporarily unreachable network element and
+   one that has been removed from the network is outside the scope of
+   this document and depends on the discovery mechanism used by the
+   controller.
+
    As outlined in Section 3, the base inventory YANG data model defined
    in this document supports only physical network elements but
    generalizes the network element definition to allow supporting other
@@ -203,7 +208,7 @@ Table of Contents
 
    *  XXXX --> the assigned RFC number for this I-D
 
-   *  2026-05-13 --> the actual date of the publication of this document
+   *  2026-05-27 --> the actual date of the publication of this document
 
 2.  Terminology and Notations
 
@@ -798,7 +803,7 @@ Table of Contents
         described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
         they appear in all capitals, as shown here.";
 
-     revision 2026-05-13 {
+     revision 2026-05-27 {
        description
          "Initial version";
        reference
@@ -909,8 +914,8 @@ Table of Contents
          description
            "The name of the  entity (e.g., component), as specified by
             a network operator, that provides a non-volatile 'handle'
-            for the entity and that can change anytime during the entity
-            lifetime.
+            for the entity. The The network operator can specify a
+            different value anytime during the entity lifetime.
 
             If no value is discovered, the server MAY set the value of
             this node to a locally unique value in the operational
@@ -1447,9 +1452,9 @@ Table of Contents
               Guo, A., van caenegem, T., Davis, N., Tilocca, M., and B.
               Peters, "A YANG Data Model for Passive Network Inventory",
               Work in Progress, Internet-Draft, draft-ygb-ivy-passive-
-              network-inventory-04, 2 March 2026,
+              network-inventory-05, 26 May 2026,
               <https://datatracker.ietf.org/doc/html/draft-ygb-ivy-
-              passive-network-inventory-04>.
+              passive-network-inventory-05>.
 
    [OpenConfig]
               OpenConfig Working Group, "OpenConfig Public Release
