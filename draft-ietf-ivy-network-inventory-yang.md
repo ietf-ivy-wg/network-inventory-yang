@@ -134,8 +134,7 @@ devices present in the network, and also be used to audit and catalog
 what devices are discovered in the network, and to expose that
 information in a consistent way.
 
-Network inventory management is a fundamental functional block in the overall network
-management which was specified many years ago.
+Network inventory management is a fundamental functional block in the overall network management architecture.
 Network inventory management is a critical component of network management
 for ensuring that the network is well-planned (e.g., identify assets
 to upgrade or to decommission), remains healthy (e.g., auditing to
