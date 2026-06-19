@@ -124,7 +124,15 @@ base data model can be augmented to describe application- and technology-specifi
 Please note that the usage of term "network inventory", in the context of this document, is to indicate that it is
 describing "network-wide" scope inventory information.
 
-Network Inventory is a collection of data for network devices and their components managed by a specific management system.
+Network inventory is a foundation for network management in all types
+of networks. Network operators need to keep a record of what equipment
+is planned and installed in their networks (including a variety of
+information such as product name, vendor, product series, embedded
+software, and hardware/software versions). Network inventories may
+be constructed from management system data to represent the expected
+devices present in the network, and also be used to audit and catalog
+what devices are discovered in the network, and to expose that
+information in a consistent way.
 
 Network inventory management is a fundamental functional block in the overall network
 management which was specified many years ago.
@@ -146,7 +154,7 @@ of using vendors' proprietary APIs.
 
 Per the definition of {{?RFC8309}} and {{?RFC8969}}, the YANG data model defined in {{!RFC8348}} is a device model while the YANG data model defined in this document is a network model.
 
-As outlined in {{operational}}, the network inventory provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network. Therefore, other inventory data (e.g., spare or inactive assets) are outside the scope of this model.
+As outlined in {{operational}}, the base network inventory model provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network. Therefore, other inventory data (e.g., spare or inactive assets, or planned assets) are outside the scope of this model.
 
 The distinction between a temporarily unreachable network element and one that has been removed from the network is outside the scope of this document and depends on the discovery mechanism used by the controller.
 
