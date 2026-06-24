@@ -134,26 +134,17 @@ devices present in the network, and also be used to audit and catalog
 what devices are discovered in the network, and to expose that
 information in a consistent way.
 
-Network inventory management is a fundamental functional block in the overall network management architecture.
-Network inventory management is a critical component of network management
-for ensuring that the network is well-planned (e.g., identify assets
-to upgrade or to decommission), remains healthy (e.g., auditing to
-identify faulty elements), and is maintained appropriately to meet
-the performance objectives.
+Network inventory management is a critical component for ensuring the infrastructure remains up-to-date (e.g., identifying assets that need to be upgraded or decommissioned), stays healthy (e.g., auditing to identify faulty elements), and is maintained to meet strict performance objectives.
 Also, network inventory management allows operators to keep track of which devices are deployed in their networks, including relevant embedded software and hardware versions.
 
-Exposing standard interfaces to retrieve network element components as maintained in an inventory are key enablers for many applications. For example, {{?I-D.ietf-teas-actn-poi-applicability}} identifies a gap about the lack of YANG data models that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware inventory information available at domain controller level towards
+Exposing standard interfaces to retrieve information relating to network element components as maintained in an inventory provides key enablers for many applications. For example, {{?I-D.ietf-teas-actn-poi-applicability}} identifies a gap relating to the lack of YANG data models that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware inventory information available at domain controller level towards
 upper layer systems (e.g., Multi-Domain Service Coordinator (MDSC) or Operations Support Systems (OSS) layers).
-
-It is key for operators to coordinate with the industry towards the use of a
-standard YANG data model for Network Inventory data instead
-of using vendors' proprietary APIs.
 
 {{!RFC8348}} defines a YANG data model for the management of the hardware on a single server and therefore it is more applicable to the domain controller towards the network elements rather than at the northbound interface of a network controller (e.g., toward an application or another hierarchical network controller). However, the YANG data model defined in {{!RFC8348}} has been used as a reference for defining the YANG network inventory data model presented in this document.
 
 Per the definition of {{?RFC8309}} and {{?RFC8969}}, the YANG data model defined in {{!RFC8348}} is a device model while the YANG data model defined in this document is a network model.
 
-As outlined in {{operational}}, the base network inventory model provides a read-only perspective of the actual inventory data that a network controller knows of what it is actually installed within the network. Therefore, other inventory data (e.g., spare or inactive assets, or planned assets) are outside the scope of this model.
+As outlined in {{operational}}, the base network inventory model provides a read-only perspective of the actual inventory data of which a network controller is aware covering the components that are actually installed and intended to be running within the network. Therefore, other inventory data (e.g., inactive assets or warehouse spares, or planned assets) are outside the scope of this model.
 
 The distinction between a temporarily unreachable network element and one that has been removed from the network is outside the scope of this document and depends on the discovery mechanism used by the controller.
 
@@ -180,7 +171,7 @@ summarizes all of the substitutions that are needed.
 Please apply the following replacements:
 
 - XXXX --> the assigned RFC number for this I-D
-- 2026-05-27 --> the actual date of the publication of this document
+- 2026-06-24 --> the actual date of the publication of this document
 
 # Terminology and Notations
 
@@ -241,11 +232,11 @@ Network Element:
 : The generalization of the physical network element definition.
 
 Hardware Component:
-: The generalization of the hardware components defined in {{IANA_HW_YANG}} (e.g., backplane, battery, container, central processing unit (CPU), chassis, fan, module, port, power supply, sensor, stack, and storage device components).
+: A general definition of category of components as defined in {{!RFC8348}} and {{IANA_HW_YANG}} (e.g., backplane, battery, container, central processing unit (CPU), chassis, fan, module, port, power supply, sensor, stack, and storage device components).
 : The list of hardware components can be extended in future versions of {{IANA_ENTITY_MIB}} (and, consequently, of ({{IANA_HW_YANG}}).
 
 Component:
-: The generalization of the hardware component definition to include other inventory objects which can be managed, from an inventory perspective, like hardware components.
+: A further extension of the hardware component definition to include other inventory objects which can be managed, from an inventory perspective, in the same way as hardware components.
 
 Card:
 : Pluggable equipment with a particular structural format and dimensions which can be inserted into one or more slots (or sub-slots). A card can have spaces (called sub-slots) to take other cards.
@@ -318,7 +309,7 @@ However, the YANG data model defined in {{!RFC8348}} has been used as a referenc
 
 ## Common attributes for inventory object {#common-attributes}
 
-For all the inventory objects, there are some common attributes, such as:
+For all the inventory objects, there are some common attributes, including:
 
 uuid:
 : The Universally Unique Identifier (UUID) of the inventory object, assigned by the server. Such identifiers are widely implemented with systems and guaranteed to be globally unique.
@@ -334,7 +325,7 @@ description:
 
 ### Common attributes for network elements and components
 
-To be consistent with the component definition, some of the attributes defined in {{!RFC8348}} for components are reused for network elements, such as:
+To be consistent with the component definition, the following attributes defined in {{!RFC8348}} for components are reused for network elements:
 
 mfg-name:
 : The name of the manufacturer of the entity (component or network element).
@@ -361,7 +352,7 @@ product-rev:
 
 ## Components {#ne-component}
 
-The YANG data model for network inventory mainly follows the same approach of {{!RFC8348}} and reports the network hardware inventory as a list of components with different types (e.g., chassis, module, and port).
+The YANG data model for network inventory mainly follows the same approach as {{!RFC8348}} and reports the network hardware inventory as a list of components with different types (e.g., chassis, module, and port).
 
 In addition to the common attributes defined for network elements and components in {{common-attributes}}, the following attributes are defined for the components:
 
@@ -398,7 +389,7 @@ For state data like "admin-state", "oper-state", and so on, this document consid
 
 ### Hardware Components
 
-Other models (e.g., {{TMF_SD2-20}}) classifies the hardware components into two groups: holder group and equipment group. The holder group contains rack, chassis, slot, sub-slot while the equipment group contains network-element, board and port. This model, likewise {{!RFC8348}}, does not follow this classification and manage all the hardware components without distinguishing between holder and equipment groups.
+Other models (e.g., {{TMF_SD2-20}}) classify the hardware components into two groups: holder group and equipment group. The holder group contains rack, chassis, slot, sub-slot while the equipment group contains network-element, board and port. This model, likewise {{!RFC8348}}, does not follow this classification and manages all the hardware components without distinguishing between holder and equipment groups.
 
 See {{port-examples}}, {{multi-chassis-examples}}, and {{non-modular-examples}} for concrete hardware component examples.
 
@@ -452,20 +443,20 @@ Each instance of a network element or a component includes its own "software-rev
 
 The scope of the list is to provide information about the software images intended to be running within the related entity.
 
-The model supports scenarios where multiple software modules can be images intended to be running within the entity. For example, on a network element an Operating System and an Application software modules can be intended to be running; in the same way, on a component like a circuit pack a boot-loader, a firmware
-and one or more FPGA software modules can be intended to be running.
+The model supports scenarios where multiple software modules can be images intended to be running within the entity.
+For example, one Operating System and one or more Application software modules can be intended to be running in a network element, and, in the same way, one boot-loader, one firmware and one or more Field-Programmable Gate Array (FPGA) software modules can be intended to be running on a component like a circuit pack.
 
 For each software module, intended to be running, the name and version information is provided.
 
 The management of inactive/standby software
-modules and of the software upgrade or downgrade life-cycle are outside the scope of the base inventory model and can be addressed in other models which augment the base inventory model such as the model under definition in {{?I-D.ietf-ivy-network-inventory-software}}.
+modules and of the software upgrade or downgrade life-cycle are outside the scope of the base inventory model and can be addressed in other models which augment the base inventory model such as the model defined in {{?I-D.ietf-ivy-network-inventory-software}}.
 
 The software and hardware components share the same attributes of the
-component and have similar replaceable requirements. Generally, the
+component and have similar replaceability requirements. Generally, the
 device also has other software data, for example, one or more
-software patch information.
+records of software patches that have been applied.
 
-The software components lifecycle (like activation, deactivation, installation, storage, removal, etc.) is outside the scope of this document and defined in other documents such as {{?I-D.ietf-ivy-network-inventory-software}}.
+The software components lifecycle (such as activation, deactivation, installation, storage, removal, etc.) is outside the scope of this document and defined in other documents such as {{?I-D.ietf-ivy-network-inventory-software}}.
 
 ## Changes Since RFC 8348
 
@@ -507,7 +498,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-05-27.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-06-24.yang"}
 
 # Operational Considerations {#operational}
 
@@ -523,15 +514,15 @@ For example, in the context of ACTN, the network inventory YANG data model can b
 
 The information in the model is discovered by the controller through mechanisms which are outside the scope of this document.
 
-Note that distinguishing between the cases where a NE is unreachable versus decommissioned depends on the mechanism used for discovering this information and outside the scope of this document.
+Note that distinguishing between the cases where a NE is unreachable versus decommissioned depends on the mechanism used for discovering this information and is outside the scope of this document.
 
-For example, the network controller can collect this information by reading it from the devices using the device model supported by the devices. This model does not constraint the device models used on the device: the YANG data model defined in {{!RFC8348}} is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
+For example, the network controller can collect this information by reading it from the devices using the device model supported by the devices. This model does not constrain the device models used on the device: the YANG data model defined in {{!RFC8348}} is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
 
 In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to a higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
 
 Since this YANG data model reports what it is actually installed in the network, if a component (e.g., a board) is physically removed from the network, also its descendant components (e.g., daughter boards and ports) are also physically removed from the network and, as a consequence, from the inventory data being reported through this YANG data model.
 
-When used in brownfield scenarios, it is worth noting that existing deployments are based on proprietary Inventory OSS and that the migration path is highly dependent on the specific proprietary solution. Therefore, the migration processes are operator dependent: it is expected that the deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing Inventory OSSes will also take longer time. In a longer term, the network controllers could provide inventory information, using this YANG data model, also to next generation OSSes.
+If the inventory system defined by this document is to be deployed into a network which has a preexisting inventory system, it is worth noting that existing deployments are based on proprietary Inventory OSS and that the migration path is highly dependent on the specific proprietary solution. Therefore, the migration processes are operator dependent: it is expected that the deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing Inventory OSSes will also take longer time. In a longer term, the network controllers could provide inventory information, using this YANG data model, also to next generation OSSes.
 
 When this model is used, the source of truth for the inventory data in the scope of this model is the network controller providing this data. Some legacy inventory information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model.
 
@@ -560,7 +551,7 @@ Specifically, the following subtrees and data nodes have particular sensitivitie
 
 - "/nwi:network-elements"
 
-> This subtree reports the inventory information for all the network elements and their hardware components deployed within the network as well as of the software modules being active on these network elements and components. Unauthorized access to this subtree can disclose this information. A malicious attacker can use this information to perform targeted attacks to network elements, hardware components or software modules with known vulnerabilities.
+> This subtree reports the inventory information for all the network elements and their hardware components deployed within the network as well as of the software modules being intended to be running on these network elements and components. Unauthorized access to this subtree can disclose this information. A malicious attacker can use this information to perform targeted attacks to network elements, hardware components or software modules with known vulnerabilities.
 
 > In large networks, the massive volume of reported data can cause scalability issues, as reported in {{scalability}}. A malicious attacker could leverage this to cause  resource exhaustion.
 
