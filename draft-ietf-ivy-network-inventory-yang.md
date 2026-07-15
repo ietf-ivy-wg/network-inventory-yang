@@ -486,7 +486,7 @@ If the device reports the relative position as an integer, e.g., using the devic
 
 {{fig-ni-tree}} shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
 
-~~~~ ascii-art
+~~~~ yantree
 {::include-fold yang/ietf-network-inventory.tree}
 ~~~~
 {:#fig-ni-tree title="Network inventory tree diagram"
@@ -691,7 +691,7 @@ This appendix provides some examples of port implementations and how they can be
 
 This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}, instantiating the "ietf-network-inventory" module to describe the three types of ports on a single board, as shown in {{fig-board}}.
 
-~~~~ ascii-art
+~~~~ json
 {::include-fold json/port-examples.json}
 ~~~~
 
@@ -743,7 +743,7 @@ This appendix contains an example of an instance data tree in JSON encoding {{?R
 
 > Note: the base inventory model allows reporting only the chassis and ports configuration. Reporting the link between the chassis of the same NE is outside the scope of the base inventory model. The YANG data model under definition in {{?I-D.ygb-ivy-passive-network-inventory}} as an augmentation of the base inventory YANG data model can be used to provide this additional information.
 
-~~~~ ascii-art
+~~~~ json
 {::include-fold json/multi-chassis-examples.json}
 ~~~~
 
@@ -769,7 +769,7 @@ Reporting the single chassis component within a non-modular network element is r
 
 This appendix contains an example of an instance data tree in JSON encoding {{?RFC7951}}, instantiating the "ietf-network-inventory" module to describe the pizza box example, as shown in {{fig-pizza-box}}.
 
-~~~~ ascii-art
+~~~~ json
 {::include-fold json/pizza-box-example.json}
 ~~~~
 
