@@ -1260,7 +1260,7 @@ be application- and technology-agnostic. The base data model can be augmented wi
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-comparison-with-openconfig-" class="internal xref">Comparison With Openconfig-platform Data Model</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-comparison-with-openconfig-" class="internal xref">Comparison With OpenConfig Platform YANG Data Model</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
             <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-terminology-of-container" class="internal xref">Terminology of Container</a></p>
@@ -2750,13 +2750,13 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
-<div id="comparison-with-openconfig-platform-data-model">
+<div id="comparison-with-openconfig-platform-yang-data-model">
 <section id="appendix-A">
       <h2 id="name-comparison-with-openconfig-">
-<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-comparison-with-openconfig-" class="section-name selfRef">Comparison With Openconfig-platform Data Model</a>
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-comparison-with-openconfig-" class="section-name selfRef">Comparison With OpenConfig Platform YANG Data Model</a>
       </h2>
-<p id="appendix-A-1">Since more and more devices can be managed by domain controller through OpenConfig, to ensure that our inventory data model can cover these devices' inventory data, we have compared our inventory data model with the "openconfig-platform" and "openconfig-platform-types" YANG modules, as defined in <span>[<a href="#OpenConfig" class="cite xref">OpenConfig</a>]</span>, which defines the YANG data model used to manage inventory information in OpenConfig.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
-<p id="appendix-A-2">Openconfig-platform data model is NE-level and uses a generic component concept to describe its inner devices and containers, which is similar to "ietf-hardware" model in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>. Since we have also reused the component concept of <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> in our inventory data model, we can compare the component's attributes between "openconfig-platform" and our model directly , which is stated in <a href="#tab-oc" class="auto internal xref">Table 2</a>.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">Because an increasing number of devices implement OpenConfig, this appendix compares the OpenConfig Platform model, defined in <span>[<a href="#OpenConfig" class="cite xref">OpenConfig</a>]</span>, with the base network inventory model, defined in this document, to ensure network controllers can accurately report discovered data.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-2">The OpenConfig platform data model, defined by the "openconfig-platform" and "openconfig-platform-types" modules in <span>[<a href="#OpenConfig" class="cite xref">OpenConfig</a>]</span>, is a device model that uses a generic component concept to describe internal components and containers, similar to the models in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> and in this document. Therefore, <a href="#tab-oc" class="auto internal xref">Table 2</a> compares the component attributes between the "openconfig-platform" YANG module in <span>[<a href="#OpenConfig" class="cite xref">OpenConfig</a>]</span> and the "ietf-network-inventory" module in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 <span id="name-comparison-between-openconf"></span><div id="tab-oc">
 <table class="center" id="table-2">
         <caption>
@@ -2765,9 +2765,9 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
         </caption>
 <thead>
           <tr>
-            <th class="text-left" rowspan="1" colspan="1">Attributes in oc-platform</th>
-            <th class="text-left" rowspan="1" colspan="1">Attributes in our model</th>
-            <th class="text-left" rowspan="1" colspan="1">remark</th>
+            <th class="text-left" rowspan="1" colspan="1">Attributes in "openconfig-platform"</th>
+            <th class="text-left" rowspan="1" colspan="1">Attributes in "ietf-network-inventory"</th>
+            <th class="text-left" rowspan="1" colspan="1">Remark</th>
           </tr>
         </thead>
         <tbody>
@@ -2779,7 +2779,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">type</td>
             <td class="text-left" rowspan="1" colspan="1">class</td>
-            <td class="text-left" rowspan="1" colspan="1">see <a href="#tab-oc-hw" class="auto internal xref">Table 3</a> for comparison between oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT and ianahw:hardware-clas</td>
+            <td class="text-left" rowspan="1" colspan="1">See <a href="#tab-oc-hw" class="auto internal xref">Table 3</a> for the comparison between "oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT" and "ianahw:hardware-class"</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">id</td>
@@ -2814,12 +2814,12 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">firmware-version</td>
             <td class="text-left" rowspan="1" colspan="1">software-rev*</td>
-            <td class="text-left" rowspan="1" colspan="1">items of software-rev list that provide firmware information</td>
+            <td class="text-left" rowspan="1" colspan="1">Items of "software-rev" list that provide firmware information</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">software-version</td>
             <td class="text-left" rowspan="1" colspan="1">software-rev*</td>
-            <td class="text-left" rowspan="1" colspan="1">items of software-rev list that provide software information</td>
+            <td class="text-left" rowspan="1" colspan="1">Items of "software-rev" list that provide software information</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">serial-no</td>
@@ -2834,7 +2834,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">clei-code</td>
             <td class="text-left" rowspan="1" colspan="1">uri</td>
-            <td class="text-left" rowspan="1" colspan="1">CLEI code can be mapped into one URI as defined in <span>[<a href="#RFC4152" class="cite xref">RFC4152</a>]</span>
+            <td class="text-left" rowspan="1" colspan="1">CLEI code can be mapped into a URI as defined in <span>[<a href="#RFC4152" class="cite xref">RFC4152</a>]</span>
 </td>
           </tr>
           <tr>
@@ -2845,12 +2845,12 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">oper-status</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">state data</td>
+            <td class="text-left" rowspan="1" colspan="1">State data</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">empty</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">If there is no other component that refer to an holder as parent, it can be considered empty</td>
+            <td class="text-left" rowspan="1" colspan="1">If there is no other component that refers to a holder as a parent, it can be considered empty</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">parent</td>
@@ -2860,57 +2860,57 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">redundant-role</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">functional information, may be part of future augmentation</td>
+            <td class="text-left" rowspan="1" colspan="1">Functional information, may be part of a future augmentation</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">last-switchover-reason</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">state data</td>
+            <td class="text-left" rowspan="1" colspan="1">State data</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">last-switchover-time</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">state data</td>
+            <td class="text-left" rowspan="1" colspan="1">State data</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">last-reboot-reason</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">state data</td>
+            <td class="text-left" rowspan="1" colspan="1">State data</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">last-reboot-time</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">state data</td>
+            <td class="text-left" rowspan="1" colspan="1">State data</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">switchover-ready</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">state data</td>
+            <td class="text-left" rowspan="1" colspan="1">State data</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">temperature</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">performance data</td>
+            <td class="text-left" rowspan="1" colspan="1">Performance data</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">memory</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">performance data</td>
+            <td class="text-left" rowspan="1" colspan="1">Performance data</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">allocated-power</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">state/performance data</td>
+            <td class="text-left" rowspan="1" colspan="1">State/performance data</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">used-power</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">state/performance data</td>
+            <td class="text-left" rowspan="1" colspan="1">State/performance data</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">pcie</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1">alarm  data</td>
+            <td class="text-left" rowspan="1" colspan="1">Alarm data</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">properties</td>
@@ -2925,18 +2925,18 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
         </tbody>
       </table>
 </div>
-<p id="appendix-A-4">As it mentioned in <a href="#ne-component" class="auto internal xref">Section 3.3</a> that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. For the same reason some component specific structures in "openconfig-platform", like the one defined for fan, backplane, controller-card, etc., are considered out of scope since they provide specialized operational and alarms data for that components.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
-<p id="appendix-A-5">It is also useful to compare the identity oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT with ianahw:hardware-class in the following <a href="#tab-oc-hw" class="auto internal xref">Table 3</a> to highlight that our model align with openconfig-platorm also for the definition of hardware component type/class.<a href="#appendix-A-5" class="pilcrow">¶</a></p>
+<p id="appendix-A-4">As mentioned in <a href="#ne-component" class="auto internal xref">Section 3.3</a>, state data, performance data, and alarm data are out of scope of the data model defined in this document, and they should be defined in other data models separately. For the same reason some component specific structures in "openconfig-platform", like the one defined for fan, backplane, controller-card, etc., are considered out of scope since they provide specialized operational and alarm data for those components.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
+<p id="appendix-A-5"><a href="#tab-oc-hw" class="auto internal xref">Table 3</a> compares the identities derived from "oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT" with those derived from "ianahw:hardware-class". This comparison highlights that the base network inventory model aligns with the OpenConfig Platform model also regarding hardware component "type"/"class" definition.<a href="#appendix-A-5" class="pilcrow">¶</a></p>
 <span id="name-comparison-between-openconfi"></span><div id="tab-oc-hw">
 <table class="center" id="table-3">
         <caption>
 <a href="#table-3" class="selfRef">Table 3</a>:
-<a href="#name-comparison-between-openconfi" class="selfRef">Comparison between openconfig-platform OPENCONFIG_HARDWARE_COMPONEN and IANA hardware-class identity</a>
+<a href="#name-comparison-between-openconfi" class="selfRef">Comparison between openconfig-platform OPENCONFIG_HARDWARE_COMPONENT and IANA hardware-class derived identities</a>
         </caption>
 <thead>
           <tr>
-            <th class="text-left" rowspan="1" colspan="1">oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT</th>
-            <th class="text-left" rowspan="1" colspan="1">ianahw:hardware-class</th>
+            <th class="text-left" rowspan="1" colspan="1">"oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT"</th>
+            <th class="text-left" rowspan="1" colspan="1">"ianahw:hardware-class"</th>
           </tr>
         </thead>
         <tbody>
@@ -3015,7 +3015,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
         </tbody>
       </table>
 </div>
-<p id="appendix-A-7">Overall we can state that our inventory data model can be populated with data from a device running OpenConfig.<a href="#appendix-A-7" class="pilcrow">¶</a></p>
+<p id="appendix-A-7">Overall, the analysis in this appendix confirms that the base network inventory YANG data model can be populated with data discovered from devices running OpenConfig.<a href="#appendix-A-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology-of-container">
