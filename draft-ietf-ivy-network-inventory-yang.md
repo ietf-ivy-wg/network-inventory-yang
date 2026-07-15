@@ -582,74 +582,73 @@ registry group.
 
 --- back
 
-# Comparison With Openconfig-platform Data Model
+# Comparison With OpenConfig Platform YANG Data Model
 
-Since more and more devices can be managed by domain controller through OpenConfig, to ensure that our inventory data model can cover these devices' inventory data, we have compared our inventory data model with the "openconfig-platform" and "openconfig-platform-types" YANG modules, as defined in [OPENCONFIG], which defines the YANG data model used to manage inventory information in OpenConfig.
+Because an increasing number of devices implement OpenConfig, this appendix compares the OpenConfig Platform model, defined in {{OpenConfig}}, with the base network inventory model, defined in this document, to ensure network controllers can accurately report discovered data.
 
-Openconfig-platform data model is NE-level and uses a generic component concept to describe its inner devices and containers, which is similar to "ietf-hardware" model in {{?RFC8348}}. Since we have also reused the component concept of {{?RFC8348}} in our inventory data model, we can compare the component's attributes between "openconfig-platform" and our model directly , which is stated in {{tab-oc}}.
+The OpenConfig platform data model, defined by the "openconfig-platform" and "openconfig-platform-types" modules in {{OpenConfig}}, is a device model that uses a generic component concept to describe internal components and containers, similar to the models in {{?RFC8348}} and in this document. Therefore, {{tab-oc}} compares the component attributes between the "openconfig-platform" YANG module in {{OpenConfig}} and the "ietf-network-inventory" module in {{ni-yang}}.
 
-| Attributes in oc-platform  | Attributes in our model  | remark                   |
-| -------------------------- | ------------------------ | ------------------------ |
-| name                       | name                     |                          |
-| type                       | class                    | see {{tab-oc-hw}} for comparison between oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT and ianahw:hardware-clas |
-| id                         | uuid                     |                          |
-| location                   | location                 |                          |
-| description                | description              |                          |
-| mfg-name                   | mfg-name                 |                          |
-| mfg-date                   | mfg-date                 |                          |
-| hardware-version           | hardware-rev             |                          |
-| firmware-version           | software-rev*            | items of software-rev list that provide firmware information |
-| software-version           | software-rev*            | items of software-rev list that provide software information |
-| serial-no                  | serial-number            |                          |
-| part-no                    | part-number              |                          |
-| clei-code                  | uri                      | CLEI code can be mapped into one URI as defined in {{?RFC4152}}  |
-| removable                  | is-fru                   |                          |
-| oper-status                |                          | state data               |
-| empty                      |                          | If there is no other component that refer to an holder as parent, it can be considered empty |
-| parent                     | parent-references        |                          |
-| redundant-role             |                          | functional information, may be part of future augmentation |
-| last-switchover-reason     |                          | state data               |
-| last-switchover-time       |                          | state data               |
-| last-reboot-reason         |                          | state data               |
-| last-reboot-time           |                          | state data               |
-| switchover-ready           |                          | state data               |
-| temperature                |                          | performance data         |
-| memory                     |                          | performance data         |
-| allocated-power            |                          | state/performance data   |
-| used-power                 |                          | state/performance data   |
-| pcie                       |                          | alarm  data              |
-| properties                 |                          | Generic properties can be handled as part of "description" |
-| subcomponents              |                          |                          |
+| Attributes in "openconfig-platform" | Attributes in "ietf-network-inventory" | Remark |
+| ----------------------------------- | -------------------------------------- | ------ |
+| name                                | name                                   |        |
+| type                                | class                                  | See {{tab-oc-hw}} for the comparison between "oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT" and "ianahw:hardware-class" |
+| id                                  | uuid                                   |        |
+| location                            | location                               |        |
+| description                         | description                            |        |
+| mfg-name                            | mfg-name                               |        |
+| mfg-date                            | mfg-date                               |        |
+| hardware-version                    | hardware-rev                           |        |
+| firmware-version                    | software-rev*                          | Items of "software-rev" list that provide firmware information |
+| software-version                    | software-rev*                          | Items of "software-rev" list that provide software information |
+| serial-no                           | serial-number                          |        |
+| part-no                             | part-number                            |        |
+| clei-code                           | uri                                    | CLEI code can be mapped into a URI as defined in {{?RFC4152}}  |
+| removable                           | is-fru                                 |        |
+| oper-status                         |                                        | State data |
+| empty                               |                                        | If there is no other component that refers to a holder as a parent, it can be considered empty |
+| parent                              | parent-references                      |        |
+| redundant-role                      |                                        | Functional information, may be part of a future augmentation |
+| last-switchover-reason              |                                        | State data |
+| last-switchover-time                |                                        | State data |
+| last-reboot-reason                  |                                        | State data |
+| last-reboot-time                    |                                        | State data |
+| switchover-ready                    |                                        | State data |
+| temperature                         |                                        | Performance data |
+| memory                              |                                        | Performance data |
+| allocated-power                     |                                        | State/performance data |
+| used-power                          |                                        | State/performance data |
+| pcie                                |                                        | Alarm data |
+| properties                          |                                        | Generic properties can be handled as part of "description" |
+| subcomponents                       |                                        |        |
 {:#tab-oc title="Comparison between openconfig platform and inventory data models"}
 
-As it mentioned in {{ne-component}} that state data and performance data are out of scope of our data model, it is same for alarm data and it should be defined in some other alarm data models separately. For the same reason some component specific structures in "openconfig-platform", like the one defined for fan, backplane, controller-card, etc., are considered out of scope since they provide specialized operational and alarms data for that components.
+As mentioned in {{ne-component}}, state data, performance data, and alarm data are out of scope of the data model defined in this document, and they should be defined in other data models separately. For the same reason some component specific structures in "openconfig-platform", like the one defined for fan, backplane, controller-card, etc., are considered out of scope since they provide specialized operational and alarm data for those components.
 
-It is also useful to compare the identity oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT with ianahw:hardware-class in the following {{tab-oc-hw}} to highlight that our model align with openconfig-platorm also for the definition of hardware component type/class.
+{{tab-oc-hw}} compares the identities derived from "oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT" with those derived from "ianahw:hardware-class". This comparison highlights that the base network inventory model aligns with the OpenConfig Platform model also regarding hardware component "type"/"class" definition.
 
-| oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT | ianahw:hardware-class |
-| ---------------------------------------------- | --------------------- |
-| CHASSIS                                        | chassis               |
-| BACKPLANE                                      | backplane             |
-| FABRIC                                         | module                |
-| POWER_SUPPLY                                   | power-supply          |
-| FAN                                            | fan                   |
-| FAN_TRAY                                       | module                |
-| FAN_TRAY_CONTROLLER                            | module                |
-| SENSOR                                         | sensor                |
-| LINECARD                                       | module                |
-| CONTROLLER_CARD                                | module                |
-| PORT                                           | port                  |
-| USB_PORT                                       | port                  |
-| TRANSCEIVER                                    | module                |
-| CPU                                            | cpu                   |
-| STORAGE                                        | storage-drive         |
-| INTEGRATED_CIRCUIT                             | module                |
-| WIFI_ACCESS_POINT                              | N/A (technology specific) |
-| FPGA                                           | module                |
-{:#tab-oc-hw title="Comparison between openconfig-platform OPENCONFIG_HARDWARE_COMPONEN and IANA hardware-class identity"}
+| "oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT" | "ianahw:hardware-class" |
+| ------------------------------------------------ | ----------------------- |
+| CHASSIS                                          | chassis                 |
+| BACKPLANE                                        | backplane               |
+| FABRIC                                           | module                  |
+| POWER_SUPPLY                                     | power-supply            |
+| FAN                                              | fan                     |
+| FAN_TRAY                                         | module                  |
+| FAN_TRAY_CONTROLLER                              | module                  |
+| SENSOR                                           | sensor                  |
+| LINECARD                                         | module                  |
+| CONTROLLER_CARD                                  | module                  |
+| PORT                                             | port                    |
+| USB_PORT                                         | port                    |
+| TRANSCEIVER                                      | module                  |
+| CPU                                              | cpu                     |
+| STORAGE                                          | storage-drive           |
+| INTEGRATED_CIRCUIT                               | module                  |
+| WIFI_ACCESS_POINT                                | N/A (technology specific) |
+| FPGA                                             | module                  |
+{:#tab-oc-hw title="Comparison between openconfig-platform OPENCONFIG_HARDWARE_COMPONENT and IANA hardware-class derived identities"}
 
-
-Overall we can state that our inventory data model can be populated with data from a device running OpenConfig.
+Overall, the analysis in this appendix confirms that the base network inventory YANG data model can be populated with data discovered from devices running OpenConfig.
 
 # Terminology of Container
 
