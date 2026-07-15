@@ -5,14 +5,14 @@
 IVY Working Group                                                  C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 26 December 2026                                          Nokia
+Expires: 16 January 2027                                           Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                            24 June 2026
+                                                            15 July 2026
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 December 2026.
+   This Internet-Draft will expire on 16 January 2027.
 
 Copyright Notice
 
@@ -1439,17 +1439,17 @@ Table of Contents
               Wu, B., Belotti, S., Bouquier, J., Peruzzini, F., and P.
               Bedard, "A YANG Data Model for Network Inventory
               Location", Work in Progress, Internet-Draft, draft-ietf-
-              ivy-network-inventory-location-05, 28 February 2026,
+              ivy-network-inventory-location-06, 6 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-location-05>.
+              network-inventory-location-06>.
 
    [I-D.ietf-ivy-network-inventory-software]
               Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
               Network Data Model of Network Inventory Software
               Extensions", Work in Progress, Internet-Draft, draft-ietf-
-              ivy-network-inventory-software-03, 15 April 2026,
+              ivy-network-inventory-software-04, 6 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-software-03>.
+              network-inventory-software-04>.
 
    [I-D.ietf-teas-actn-poi-applicability]
               Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
