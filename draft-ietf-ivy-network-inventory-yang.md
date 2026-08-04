@@ -652,11 +652,11 @@ Overall, the analysis in this appendix confirms that the base network inventory 
 
 # Terminology of Container
 
-Within this document , with the term "container" we consider a hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.
+Within this document , term "container" represents an hardware component class capable of containing one or more removable physical entities, e.g., a slot in a chassis which is capabable to contain a board.
 
-| terminology of IVY base model  |terminology in other model  |
-| ------------------------------ | -------------------------- |
-| container                      | holder                     |
+| terminology of IVY base model  | terminology in other models |
+| ------------------------------ | --------------------------- |
+| container                      | holder                      |
 {:#tab-term title="terminology mapping"}
 
 # Efficiency Issue {#scalability}
@@ -667,15 +667,17 @@ While implementing NACM {{?RFC8341}} and protocol-specific filtering mechanisms 
 
 Considering that relational databases are widely used by existing OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in this document, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller & OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.
 
-An alternative YANG model structure, which defines the inventory objects directly, instead of defining generic components, has also been analyzed. However, also with this model, there still could be some scalability limitations when synchronizing full inventory resources in large scale of networks. This scalability limitation is caused by the limited transmission capabilities of HTTP protocol. We think that this scalability limitation should be solved at protocol level rather than data model level.
+An alternative YANG model structure, which defines the inventory objects directly, instead of defining generic components, has also been analyzed. However, also with this model, there still could be some scalability limitations when synchronizing full inventory resources in large scale networks. This scalability limitation is caused by the limited transmission capabilities of HTTP protocol. This scalability limitation should be solved at protocol level rather than data model level.
 
-The model proposed by this document is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this document. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.
+The model proposed by this document is designed to be as generic as possible so as to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in the YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only necessary to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible.
+
+The main scope of this documento is to define the generic data model, enabling a flexible and backward compatible approach for other technologies. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.
 
 # Examples of ports {#port-examples}
 
 This appendix provides some examples of port implementations and how they can be modelled using the "ietf-network-inventory" module defined in {{ni-yang}}.
 
-{{fig-board}} shows an example of a single board which contains three type of ports:
+{{fig-board}} shows an example of a single board which contains three type of port:
 
 1. An integrated port (non-pluggable);
 1. An empty port;
@@ -698,43 +700,43 @@ This appendix contains an example of an instance data tree in JSON encoding {{?R
 
 This appendix provides some examples of multi-chassis network elements and how they can be modelled using the "ietf-network-inventory" module defined in {{ni-yang}}.
 
-Multi-chassis network elements are network elements composed by two or more chassis interconnected, in principle, with any topology.
+Multi-chassis network elements are network elements comprised of two or more chassis interconnected, in principle, with any topology.
 
-Stacked switches are an example of multi-chassis which consist of multiple standalone switches that are interconnected through dedicated stack ports and cables and managed as a single logical unit. Stacked switch:
+Stacked switches are an example of multi-chassis which consist of multiple standalone switches that are interconnected through dedicated stack ports and cables and managed as a single logical unit. Stacked switches:
 
 - are connected using a daisy-chain or a ring topology
 - are managed using a single IP Address
-- synchronized software-upgrade
+- require synchronized software-upgrade
 - use Priority/MAC-Addr(s) to decide Main/Members selection and communication.
 
-{{fig-daisy-chain-stacked}} and {{fig-ring-stacked}} describe two examples of stacked switch with three stacked switches (pizza boxes) connected in a daisy-chain or ring topology.
+{{fig-daisy-chain-stacked}} and {{fig-ring-stacked}} describe two examples of stacked switches with three switches (pizza boxes) connected in a daisy-chain or ring topology.
 
 ~~~~ aasvg
 {::include figures/multichassis-daisy-example.txt}
 ~~~~
-{:#fig-daisy-chain-stacked title="Example of a stacked switch in a daisy chain topology"}
+{:#fig-daisy-chain-stacked title="Example of stacked switches in a daisy chain topology"}
 
 ~~~~ aasvg
 {::include figures/multichassis-ring-example.txt}
 ~~~~
-{:#fig-ring-stacked title="Example of a stacked switch in a ring topology"}
+{:#fig-ring-stacked title="Example of stacked switches in a ring topology"}
 
-Using the base network inventory YANG data model, each stackable switch can be modelled as a chassis within the same network element, which models the stacked switch. The stack ports are modelled like other ports. The stack cables are not reported using the base network inventory YANG data model but can be reported using the passive network inventory YANG data model under definition in {{?I-D.ygb-ivy-passive-network-inventory}}.
+Using the base network inventory YANG data model, each stackable switch can be modelled as a chassis within the same network element, which models the stacked switches. The stack ports are modelled like other ports. The stack cables are not reported using the base network inventory YANG data model but can be reported using the passive network inventory YANG data model under definition in {{?I-D.ygb-ivy-passive-network-inventory}}.
 
-Cascaded switches are another example of multi-chassis which consist of multiple standalone switches that are interconnected and managed as a single logical unit. Cascaded switch:
+Cascaded switches are another example of multi-chassis which consist of multiple standalone switches that are interconnected and managed as a single logical unit. Cascaded switches:
 
 - are usually connected in a tree topology
 - are managed using a single IP Address
 - the root of the tree is configured as Main.
 
-{{fig-tree-cascaded}} describe an example of cascaded switch with three chassis connected in a tree topology.
+{{fig-tree-cascaded}} describe an example of cascaded switches with three chassis connected in a tree topology.
 
 ~~~~ aasvg
 {::include figures/multichassis-hierarchical-example.txt}
 ~~~~
-{:#fig-tree-cascaded title="Example of a cascaded switch in a tree topology"}
+{:#fig-tree-cascaded title="Example of cascaded switches in a tree topology"}
 
-Using the base network inventory YANG data model each interconnected switch can be modelled as a chassis within the same network element, which models the cascaded switch. The ports used to interconnect the different chassis are normal (traffic) ports and modelled like other ports. The interconnecting cables are not reported using the base network inventory YANG data model but can be reported using the passive network inventory model under definition in {{?I-D.ygb-ivy-passive-network-inventory}}.
+Using the base network inventory YANG data model, each interconnected switch is modelled as a chassis component of the same network element. The ports used to interconnect these switches are normal (traffic) ports and modelled like other ports. The interconnecting cables are not reported using the base network inventory YANG data model but can be reported using the passive network inventory model under definition in {{?I-D.ygb-ivy-passive-network-inventory}}.
 
 ## JSON Examples
 
@@ -750,7 +752,7 @@ This appendix contains an example of an instance data tree in JSON encoding {{?R
 
 This appendix provides some examples of non-modular network elements and how they can be modelled using the "ietf-network-inventory" module defined in {{ni-yang}}.
 
-Non-modular network elements (also known as "pizza boxes") are network elements composed by a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field replaceable modules other than pluggable ports.
+Non-modular network elements (also known as "pizza boxes") are network elements comprised of a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field replaceable modules other than pluggable ports.
 
 {{fig-pizza-box}} describes an example of a pizza box with 8 ports.
 
@@ -762,7 +764,6 @@ Non-modular network elements (also known as "pizza boxes") are network elements 
 Using the base network inventory YANG data model a non-modular network element can be modelled as a network element containing only one chassis and ports (as child components of the chassis).
 
 Reporting the single chassis component within a non-modular network element is required because the chassis component is the type of component which provides the physical characteristics of the network element chassis (the network element is defined just as an assembly of components) and its location, using the network inventory YANG data model under definition in {{?I-D.ietf-ivy-network-inventory-location}}.
-
 
 ## JSON Examples
 
@@ -779,21 +780,14 @@ This appendix contains an example of an instance data tree in JSON encoding {{?R
 The authors of this document would like to thank the authors of {{?I-D.ietf-teas-actn-poi-applicability}} for having identified the gap and requirements to trigger this work.
 
 The authors of this document would like to thank
-Adrian Farrel,
-Alexander Clemm,
-Brad Peters,
-Camilo Cardona,
-Daniele Ceccarelli,
-Gabriele Galimberti,
-Jan Lindblad,
-Joe Clarke,
-Mahesh Jethanandani,
-Mohamed Boucadair,
-Prasenjit Manna,
-Rob Wilton,
-Qin Wu,
-Qiufang Ma, and
-Swamynathan B
-for their valuable input to the technical discussions during the development of this document.
+Adrian Farrel, Alexander Clemm, Brad Peters, Camilo Cardona, Daniele Ceccarelli,
+Gabriele Galimberti, Jan Lindblad, Joe Clarke, Mahesh Jethanandani,
+Mohamed Boucadair, Prasenjit Manna, Rob Wilton, Qin Wu, Qiufang Ma, and
+Swamynathan Balasundaram for their valuable input to the technical discussions during the development of this document.
+
+The authors would like to thank Reshad Rahman for his YANG Doctor eview.
+
+The authors would like to thank Valery Smyslov, Samier Barguil, and
+for their Security Directorate, Operational Directorate (ops-dir), and General Area Review Team (Gen-ART) reviews.
 
 This document was prepared using kramdown.
