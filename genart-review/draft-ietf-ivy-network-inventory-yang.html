@@ -28,7 +28,7 @@ be application- and technology-agnostic. The base data model can be augmented wi
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.10.0
+    platformdirs 4.11.0
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
@@ -68,7 +68,6 @@ be application- and technology-agnostic. The base data model can be augmented wi
   src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-
 @font-face {
   font-family: 'Lora';
   font-style: italic;
@@ -117,7 +116,6 @@ be application- and technology-agnostic. The base data model can be augmented wi
   src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
 @font-face {
   font-family: 'Lora';
   font-style: normal;
@@ -182,7 +180,6 @@ be application- and technology-agnostic. The base data model can be augmented wi
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 }
 
 @font-face {
@@ -1051,11 +1048,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Network Inventory YANG</td>
-<td class="right">July 2026</td>
+<td class="right">August 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Yu, et al.</td>
-<td class="center">Expires 16 January 2027</td>
+<td class="center">Expires 5 February 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1065,12 @@ svg {
 <dd class="internet-draft">draft-ietf-ivy-network-inventory-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-07-15" class="published">15 July 2026</time>
+<time datetime="2026-08-04" class="published">4 August 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-01-16">16 January 2027</time></dd>
+<dd class="expires"><time datetime="2027-02-05">5 February 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1135,7 +1132,7 @@ be application- and technology-agnostic. The base data model can be augmented wi
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 16 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -3023,7 +3020,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
       <h2 id="name-terminology-of-container">
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-terminology-of-container" class="section-name selfRef">Terminology of Container</a>
       </h2>
-<p id="appendix-B-1">Within this document , with the term "container" we consider a hardware component class capable of containing one or more removable physical entities, e.g. a slot in a chassis is containing a board.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">Within this document , term "container" represents an hardware component class capable of containing one or more removable physical entities, e.g., a slot in a chassis which is capabable to contain a board.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <span id="name-terminology-mapping"></span><div id="tab-term">
 <table class="center" id="table-4">
         <caption>
@@ -3033,7 +3030,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <thead>
           <tr>
             <th class="text-left" rowspan="1" colspan="1">terminology of IVY base model</th>
-            <th class="text-left" rowspan="1" colspan="1">terminology in other model</th>
+            <th class="text-left" rowspan="1" colspan="1">terminology in other models</th>
           </tr>
         </thead>
         <tbody>
@@ -3054,8 +3051,9 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <p id="appendix-C-1">During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks. As outlined in <a href="#security" class="auto internal xref">Section 7</a>, these efficiency and scalability issues can pose security issues.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 <p id="appendix-C-2">While implementing NACM <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span> and protocol-specific filtering mechanisms (e.g., RESTCONF filtering <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>) mitigates these efficiency and scalability concerns, full resolution may require further protocol enhancements beyond the scope of this document.<a href="#appendix-C-2" class="pilcrow">¶</a></p>
 <p id="appendix-C-3">Considering that relational databases are widely used by existing OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in this document, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller &amp; OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.<a href="#appendix-C-3" class="pilcrow">¶</a></p>
-<p id="appendix-C-4">An alternative YANG model structure, which defines the inventory objects directly, instead of defining generic components, has also been analyzed. However, also with this model, there still could be some scalability limitations when synchronizing full inventory resources in large scale of networks. This scalability limitation is caused by the limited transmission capabilities of HTTP protocol. We think that this scalability limitation should be solved at protocol level rather than data model level.<a href="#appendix-C-4" class="pilcrow">¶</a></p>
-<p id="appendix-C-5">The model proposed by this document is designed to be as generic as possible so to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only needed to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible. We consider that this generic data model, enabling a flexible and backward compatible approach for other technologies, represents the main scope of this document. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.<a href="#appendix-C-5" class="pilcrow">¶</a></p>
+<p id="appendix-C-4">An alternative YANG model structure, which defines the inventory objects directly, instead of defining generic components, has also been analyzed. However, also with this model, there still could be some scalability limitations when synchronizing full inventory resources in large scale networks. This scalability limitation is caused by the limited transmission capabilities of HTTP protocol. This scalability limitation should be solved at protocol level rather than data model level.<a href="#appendix-C-4" class="pilcrow">¶</a></p>
+<p id="appendix-C-5">The model proposed by this document is designed to be as generic as possible so as to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in the YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only necessary to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible.<a href="#appendix-C-5" class="pilcrow">¶</a></p>
+<p id="appendix-C-6">The main scope of this documento is to define the generic data model, enabling a flexible and backward compatible approach for other technologies. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.<a href="#appendix-C-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="port-examples">
@@ -3064,7 +3062,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <a href="#appendix-D" class="section-number selfRef">Appendix D. </a><a href="#name-examples-of-ports" class="section-name selfRef">Examples of ports</a>
       </h2>
 <p id="appendix-D-1">This appendix provides some examples of port implementations and how they can be modelled using the "ietf-network-inventory" module defined in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#appendix-D-1" class="pilcrow">¶</a></p>
-<p id="appendix-D-2"><a href="#fig-board" class="auto internal xref">Figure 4</a> shows an example of a single board which contains three type of ports:<a href="#appendix-D-2" class="pilcrow">¶</a></p>
+<p id="appendix-D-2"><a href="#fig-board" class="auto internal xref">Figure 4</a> shows an example of a single board which contains three type of port:<a href="#appendix-D-2" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="appendix-D-3">
 <li id="appendix-D-3.1">
           <p id="appendix-D-3.1.1">An integrated port (non-pluggable);<a href="#appendix-D-3.1.1" class="pilcrow">¶</a></p>
@@ -3216,8 +3214,8 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <a href="#appendix-E" class="section-number selfRef">Appendix E. </a><a href="#name-example-of-multi-chassis-ne" class="section-name selfRef">Example of multi-chassis network elements</a>
       </h2>
 <p id="appendix-E-1">This appendix provides some examples of multi-chassis network elements and how they can be modelled using the "ietf-network-inventory" module defined in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#appendix-E-1" class="pilcrow">¶</a></p>
-<p id="appendix-E-2">Multi-chassis network elements are network elements composed by two or more chassis interconnected, in principle, with any topology.<a href="#appendix-E-2" class="pilcrow">¶</a></p>
-<p id="appendix-E-3">Stacked switches are an example of multi-chassis which consist of multiple standalone switches that are interconnected through dedicated stack ports and cables and managed as a single logical unit. Stacked switch:<a href="#appendix-E-3" class="pilcrow">¶</a></p>
+<p id="appendix-E-2">Multi-chassis network elements are network elements comprised of two or more chassis interconnected, in principle, with any topology.<a href="#appendix-E-2" class="pilcrow">¶</a></p>
+<p id="appendix-E-3">Stacked switches are an example of multi-chassis which consist of multiple standalone switches that are interconnected through dedicated stack ports and cables and managed as a single logical unit. Stacked switches:<a href="#appendix-E-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-E-4.1">
           <p id="appendix-E-4.1.1">are connected using a daisy-chain or a ring topology<a href="#appendix-E-4.1.1" class="pilcrow">¶</a></p>
@@ -3226,14 +3224,14 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <p id="appendix-E-4.2.1">are managed using a single IP Address<a href="#appendix-E-4.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-E-4.3">
-          <p id="appendix-E-4.3.1">synchronized software-upgrade<a href="#appendix-E-4.3.1" class="pilcrow">¶</a></p>
+          <p id="appendix-E-4.3.1">require synchronized software-upgrade<a href="#appendix-E-4.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-E-4.4">
           <p id="appendix-E-4.4.1">use Priority/MAC-Addr(s) to decide Main/Members selection and communication.<a href="#appendix-E-4.4.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-E-5"><a href="#fig-daisy-chain-stacked" class="auto internal xref">Figure 5</a> and <a href="#fig-ring-stacked" class="auto internal xref">Figure 6</a> describe two examples of stacked switch with three stacked switches (pizza boxes) connected in a daisy-chain or ring topology.<a href="#appendix-E-5" class="pilcrow">¶</a></p>
-<span id="name-example-of-a-stacked-switch"></span><div id="fig-daisy-chain-stacked">
+<p id="appendix-E-5"><a href="#fig-daisy-chain-stacked" class="auto internal xref">Figure 5</a> and <a href="#fig-ring-stacked" class="auto internal xref">Figure 6</a> describe two examples of stacked switches with three switches (pizza boxes) connected in a daisy-chain or ring topology.<a href="#appendix-E-5" class="pilcrow">¶</a></p>
+<span id="name-example-of-stacked-switches"></span><div id="fig-daisy-chain-stacked">
 <figure id="figure-5">
         <div id="appendix-E-6.1">
           <div class="alignLeft art-svg artwork" id="appendix-E-6.1.1">
@@ -3300,10 +3298,10 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 </div>
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
-<a href="#name-example-of-a-stacked-switch" class="selfRef">Example of a stacked switch in a daisy chain topology</a>
+<a href="#name-example-of-stacked-switches" class="selfRef">Example of stacked switches in a daisy chain topology</a>
         </figcaption></figure>
 </div>
-<span id="name-example-of-a-stacked-switch-"></span><div id="fig-ring-stacked">
+<span id="name-example-of-stacked-switches-"></span><div id="fig-ring-stacked">
 <figure id="figure-6">
         <div id="appendix-E-7.1">
           <div class="alignLeft art-svg artwork" id="appendix-E-7.1.1">
@@ -3377,11 +3375,11 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 </div>
 </div>
 <figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
-<a href="#name-example-of-a-stacked-switch-" class="selfRef">Example of a stacked switch in a ring topology</a>
+<a href="#name-example-of-stacked-switches-" class="selfRef">Example of stacked switches in a ring topology</a>
         </figcaption></figure>
 </div>
-<p id="appendix-E-8">Using the base network inventory YANG data model, each stackable switch can be modelled as a chassis within the same network element, which models the stacked switch. The stack ports are modelled like other ports. The stack cables are not reported using the base network inventory YANG data model but can be reported using the passive network inventory YANG data model under definition in <span>[<a href="#I-D.ygb-ivy-passive-network-inventory" class="cite xref">I-D.ygb-ivy-passive-network-inventory</a>]</span>.<a href="#appendix-E-8" class="pilcrow">¶</a></p>
-<p id="appendix-E-9">Cascaded switches are another example of multi-chassis which consist of multiple standalone switches that are interconnected and managed as a single logical unit. Cascaded switch:<a href="#appendix-E-9" class="pilcrow">¶</a></p>
+<p id="appendix-E-8">Using the base network inventory YANG data model, each stackable switch can be modelled as a chassis within the same network element, which models the stacked switches. The stack ports are modelled like other ports. The stack cables are not reported using the base network inventory YANG data model but can be reported using the passive network inventory YANG data model under definition in <span>[<a href="#I-D.ygb-ivy-passive-network-inventory" class="cite xref">I-D.ygb-ivy-passive-network-inventory</a>]</span>.<a href="#appendix-E-8" class="pilcrow">¶</a></p>
+<p id="appendix-E-9">Cascaded switches are another example of multi-chassis which consist of multiple standalone switches that are interconnected and managed as a single logical unit. Cascaded switches:<a href="#appendix-E-9" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-E-10.1">
           <p id="appendix-E-10.1.1">are usually connected in a tree topology<a href="#appendix-E-10.1.1" class="pilcrow">¶</a></p>
@@ -3393,8 +3391,8 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <p id="appendix-E-10.3.1">the root of the tree is configured as Main.<a href="#appendix-E-10.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-E-11"><a href="#fig-tree-cascaded" class="auto internal xref">Figure 7</a> describe an example of cascaded switch with three chassis connected in a tree topology.<a href="#appendix-E-11" class="pilcrow">¶</a></p>
-<span id="name-example-of-a-cascaded-switc"></span><div id="fig-tree-cascaded">
+<p id="appendix-E-11"><a href="#fig-tree-cascaded" class="auto internal xref">Figure 7</a> describe an example of cascaded switches with three chassis connected in a tree topology.<a href="#appendix-E-11" class="pilcrow">¶</a></p>
+<span id="name-example-of-cascaded-switche"></span><div id="fig-tree-cascaded">
 <figure id="figure-7">
         <div id="appendix-E-12.1">
           <div class="alignLeft art-svg artwork" id="appendix-E-12.1.1">
@@ -3551,10 +3549,10 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 </div>
 </div>
 <figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
-<a href="#name-example-of-a-cascaded-switc" class="selfRef">Example of a cascaded switch in a tree topology</a>
+<a href="#name-example-of-cascaded-switche" class="selfRef">Example of cascaded switches in a tree topology</a>
         </figcaption></figure>
 </div>
-<p id="appendix-E-13">Using the base network inventory YANG data model each interconnected switch can be modelled as a chassis within the same network element, which models the cascaded switch. The ports used to interconnect the different chassis are normal (traffic) ports and modelled like other ports. The interconnecting cables are not reported using the base network inventory YANG data model but can be reported using the passive network inventory model under definition in <span>[<a href="#I-D.ygb-ivy-passive-network-inventory" class="cite xref">I-D.ygb-ivy-passive-network-inventory</a>]</span>.<a href="#appendix-E-13" class="pilcrow">¶</a></p>
+<p id="appendix-E-13">Using the base network inventory YANG data model, each interconnected switch is modelled as a chassis component of the same network element. The ports used to interconnect these switches are normal (traffic) ports and modelled like other ports. The interconnecting cables are not reported using the base network inventory YANG data model but can be reported using the passive network inventory model under definition in <span>[<a href="#I-D.ygb-ivy-passive-network-inventory" class="cite xref">I-D.ygb-ivy-passive-network-inventory</a>]</span>.<a href="#appendix-E-13" class="pilcrow">¶</a></p>
 <div id="json-examples-1">
 <section id="appendix-E.1">
         <h3 id="name-json-examples-2">
@@ -4134,7 +4132,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <a href="#appendix-F" class="section-number selfRef">Appendix F. </a><a href="#name-example-of-non-modular-netw" class="section-name selfRef">Example of non-modular network elements</a>
       </h2>
 <p id="appendix-F-1">This appendix provides some examples of non-modular network elements and how they can be modelled using the "ietf-network-inventory" module defined in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#appendix-F-1" class="pilcrow">¶</a></p>
-<p id="appendix-F-2">Non-modular network elements (also known as "pizza boxes") are network elements composed by a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field replaceable modules other than pluggable ports.<a href="#appendix-F-2" class="pilcrow">¶</a></p>
+<p id="appendix-F-2">Non-modular network elements (also known as "pizza boxes") are network elements comprised of a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field replaceable modules other than pluggable ports.<a href="#appendix-F-2" class="pilcrow">¶</a></p>
 <p id="appendix-F-3"><a href="#fig-pizza-box" class="auto internal xref">Figure 8</a> describes an example of a pizza box with 8 ports.<a href="#appendix-F-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-an-8-ports-pizza"></span><div id="fig-pizza-box">
 <figure id="figure-8">
@@ -4311,23 +4309,14 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
       </h2>
 <p id="appendix-G-1">The authors of this document would like to thank the authors of <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> for having identified the gap and requirements to trigger this work.<a href="#appendix-G-1" class="pilcrow">¶</a></p>
 <p id="appendix-G-2">The authors of this document would like to thank
-Adrian Farrel,
-Alexander Clemm,
-Brad Peters,
-Camilo Cardona,
-Daniele Ceccarelli,
-Gabriele Galimberti,
-Jan Lindblad,
-Joe Clarke,
-Mahesh Jethanandani,
-Mohamed Boucadair,
-Prasenjit Manna,
-Rob Wilton,
-Qin Wu,
-Qiufang Ma, and
-Swamynathan B
-for their valuable input to the technical discussions during the development of this document.<a href="#appendix-G-2" class="pilcrow">¶</a></p>
-<p id="appendix-G-3">This document was prepared using kramdown.<a href="#appendix-G-3" class="pilcrow">¶</a></p>
+Adrian Farrel, Alexander Clemm, Brad Peters, Camilo Cardona, Daniele Ceccarelli,
+Gabriele Galimberti, Jan Lindblad, Joe Clarke, Mahesh Jethanandani,
+Mohamed Boucadair, Prasenjit Manna, Rob Wilton, Qin Wu, Qiufang Ma, and
+Swamynathan Balasundaram for their valuable input to the technical discussions during the development of this document.<a href="#appendix-G-2" class="pilcrow">¶</a></p>
+<p id="appendix-G-3">The authors would like to thank Reshad Rahman for his YANG Doctor eview.<a href="#appendix-G-3" class="pilcrow">¶</a></p>
+<p id="appendix-G-4">The authors would like to thank Valery Smyslov, Samier Barguil, and
+for their Security Directorate, Operational Directorate (ops-dir), and General Area Review Team (Gen-ART) reviews.<a href="#appendix-G-4" class="pilcrow">¶</a></p>
+<p id="appendix-G-5">This document was prepared using kramdown.<a href="#appendix-G-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="contributors">
