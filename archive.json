@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-04T01:45:35.046736+00:00",
+  "timestamp": "2026-08-06T01:47:51.108693+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -11928,13 +11928,13 @@
       "labels": [],
       "body": "Address IETF LC Genart review: issue #165 ",
       "createdAt": "2026-06-19T14:18:45Z",
-      "updatedAt": "2026-07-15T22:03:56Z",
+      "updatedAt": "2026-08-05T14:48:39Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d1a47e9a0312b060bc9a2513deee92ff6284f91e",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "genart-review",
-      "headRefOid": "9a9ef58ea64d1e65c9913ea482495ce8c876f3ae",
+      "headRefOid": "53f65c6a25b37ae6706d408dc84c56943fe45539",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
