@@ -677,7 +677,7 @@ The main scope of this documento is to define the generic data model, enabling a
 
 This appendix provides some examples of port implementations and how they can be modelled using the "ietf-network-inventory" module defined in {{ni-yang}}.
 
-{{fig-board}} shows an example of a single board which contains three type of port:
+{{fig-board}} shows an example of a single board which contains three types of port:
 
 1. An integrated port (non-pluggable);
 1. An empty port;
