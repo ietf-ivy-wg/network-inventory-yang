@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-06T01:47:51.108693+00:00",
+  "timestamp": "2026-08-09T01:02:53.670927+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -11928,19 +11928,80 @@
       "labels": [],
       "body": "Address IETF LC Genart review: issue #165 ",
       "createdAt": "2026-06-19T14:18:45Z",
-      "updatedAt": "2026-08-05T14:48:39Z",
+      "updatedAt": "2026-08-07T18:46:50Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d1a47e9a0312b060bc9a2513deee92ff6284f91e",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "genart-review",
-      "headRefOid": "53f65c6a25b37ae6706d408dc84c56943fe45539",
+      "headRefOid": "4bfd98025ff66f06c091f1a26524c854d36038df",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo88AAAABInxm4w",
+          "commit": {
+            "abbreviatedOid": "53f65c6"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "I have checked the PR against issue #165 and all the follow up comments from the week;y meeting. I have found only one Nit that has not been correctly fixed.\r\n\r\nAfter that update the PR is fine for me.\r\n\r\nThanks!",
+          "createdAt": "2026-08-06T10:18:30Z",
+          "updatedAt": "2026-08-06T11:50:57Z",
+          "comments": [
+            {
+              "originalPosition": 344,
+              "body": "Te proposed text in the comment is \"three types of port\"\n```suggestion\n{{fig-board}} shows an example of a single board which contains three types of port:\n```",
+              "createdAt": "2026-08-06T10:18:30Z",
+              "updatedAt": "2026-08-06T11:49:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABIo1oww",
+          "commit": {
+            "abbreviatedOid": "53f65c6"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-06T12:38:57Z",
+          "updatedAt": "2026-08-06T12:46:27Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": " This has been discussed, but \"Intended to be running\" seems to me also include those that are pre-provisioned and in this case, can be reported as intended to be running. \n\nperhaps we could say, \"considered as running\" or \"detected as running\" or something.\n\nIf no better words I am fine to keep it as is.",
+              "createdAt": "2026-08-06T12:38:57Z",
+              "updatedAt": "2026-08-06T12:46:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABIzW4XQ",
+          "commit": {
+            "abbreviatedOid": "53f65c6"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-07T18:46:50Z",
+          "updatedAt": "2026-08-07T18:46:50Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "I recall this was discussed during the calls and we decided to use the term \"intended to be running\"\r\n\r\n@nigel-r-davis any suggestion?",
+              "createdAt": "2026-08-07T18:46:50Z",
+              "updatedAt": "2026-08-07T18:46:50Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
