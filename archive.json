@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-09T01:02:53.670927+00:00",
+  "timestamp": "2026-08-13T01:13:17.919616+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -5518,6 +5518,24 @@
           "updatedAt": "2026-08-03T14:26:12Z"
         }
       ]
+    },
+    {
+      "number": 167,
+      "id": "I_kwDOKiDYo88AAAABMhCEIw",
+      "title": "Improve IANA components' definitions",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/167",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "candidate-future-rev-augment"
+      ],
+      "body": "",
+      "createdAt": "2026-08-12T20:13:30Z",
+      "updatedAt": "2026-08-12T20:13:30Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -11928,7 +11946,7 @@
       "labels": [],
       "body": "Address IETF LC Genart review: issue #165 ",
       "createdAt": "2026-06-19T14:18:45Z",
-      "updatedAt": "2026-08-07T18:46:50Z",
+      "updatedAt": "2026-08-12T20:12:24Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d1a47e9a0312b060bc9a2513deee92ff6284f91e",
@@ -11998,6 +12016,126 @@
               "body": "I recall this was discussed during the calls and we decided to use the term \"intended to be running\"\r\n\r\n@nigel-r-davis any suggestion?",
               "createdAt": "2026-08-07T18:46:50Z",
               "updatedAt": "2026-08-07T18:46:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABJPR0sg",
+          "commit": {
+            "abbreviatedOid": "53f65c6"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-12T09:25:28Z",
+          "updatedAt": "2026-08-12T09:25:29Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "I see Aihua's point here. We are supposed reporting what is, not what is expected/intended (which may not be what is). \r\n\r\nDetected as running is closer. \"reported as running\" may be better as it is the decision of the NE to state what is running. Of course, it may not be... but any report may be wrong. Detected suggest that there is some subtle process that diagnoses and observes and comes to a conclusion... I prefer \"reported as running\", and I do think we should change the wording.",
+              "createdAt": "2026-08-12T09:25:28Z",
+              "updatedAt": "2026-08-12T09:25:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABJP1ZxQ",
+          "commit": {
+            "abbreviatedOid": "4bfd980"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-12T10:36:48Z",
+          "updatedAt": "2026-08-12T10:36:48Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "Thinking further though. We report inventory that is present whether it is running or not. It is that it is detectable by the NE and that the NE says it is there. So perhaps running is not relevant at all for the hardware (the software is potentially slightly more complicated). It is just that it is actually installed.",
+              "createdAt": "2026-08-12T10:36:48Z",
+              "updatedAt": "2026-08-12T10:36:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABJP2LFg",
+          "commit": {
+            "abbreviatedOid": "4bfd980"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-12T10:38:27Z",
+          "updatedAt": "2026-08-12T10:38:27Z",
+          "comments": [
+            {
+              "originalPosition": 58,
+              "body": "I think we will need to refine the IANA definitions as they are poor... but for now, we can stick with them.",
+              "createdAt": "2026-08-12T10:38:27Z",
+              "updatedAt": "2026-08-12T10:38:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABJP3LCA",
+          "commit": {
+            "abbreviatedOid": "4bfd980"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-12T10:40:49Z",
+          "updatedAt": "2026-08-12T10:40:50Z",
+          "comments": [
+            {
+              "originalPosition": 98,
+              "body": "I am happy with this statement. The TMF classification actually has errors. We are correct to not follow it.",
+              "createdAt": "2026-08-12T10:40:49Z",
+              "updatedAt": "2026-08-12T10:40:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABJQQ2Mw",
+          "commit": {
+            "abbreviatedOid": "4bfd980"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-12T11:34:58Z",
+          "updatedAt": "2026-08-12T11:34:58Z",
+          "comments": [
+            {
+              "originalPosition": 108,
+              "body": "We have the word \"intended\" again. Here it is more complicated. We are dealing with a distinction between software that is to be run and software that is an alternative, a future version, a previous version etc. that is loaded onto the component. Unlike the expected hardware, the software is actually there on the hardware. Also, the software intended to be running may not be running at this moment. So I think in the case of software, the wording is OK.",
+              "createdAt": "2026-08-12T11:34:58Z",
+              "updatedAt": "2026-08-12T11:34:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABJUxbcA",
+          "commit": {
+            "abbreviatedOid": "4bfd980"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-12T20:12:24Z",
+          "updatedAt": "2026-08-12T20:12:24Z",
+          "comments": [
+            {
+              "originalPosition": 58,
+              "body": "We can plan for a future work: I have created issue #167 to track this action",
+              "createdAt": "2026-08-12T20:12:24Z",
+              "updatedAt": "2026-08-12T20:13:57Z"
             }
           ]
         }
