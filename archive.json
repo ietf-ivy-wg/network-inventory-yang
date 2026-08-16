@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-13T01:13:17.919616+00:00",
+  "timestamp": "2026-08-16T00:46:45.777253+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -11946,7 +11946,7 @@
       "labels": [],
       "body": "Address IETF LC Genart review: issue #165 ",
       "createdAt": "2026-06-19T14:18:45Z",
-      "updatedAt": "2026-08-12T20:12:24Z",
+      "updatedAt": "2026-08-13T19:06:55Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d1a47e9a0312b060bc9a2513deee92ff6284f91e",
@@ -12136,6 +12136,26 @@
               "body": "We can plan for a future work: I have created issue #167 to track this action",
               "createdAt": "2026-08-12T20:12:24Z",
               "updatedAt": "2026-08-12T20:13:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABJeRA9Q",
+          "commit": {
+            "abbreviatedOid": "53f65c6"
+          },
+          "author": "philbedard",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-13T19:06:55Z",
+          "updatedAt": "2026-08-13T19:06:55Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "Maybe this text is clearer:  \r\n\r\nAs outlined in {{operational}}, the base network inventory model provides a read-only perspective of the installed network inventory data the controller is aware of as reported from network infrastructure devices. Therefore, other inventory data (e.g., inactive assets, warehouse spares, or planned assets) are outside the scope of this model. ",
+              "createdAt": "2026-08-13T19:06:55Z",
+              "updatedAt": "2026-08-13T19:06:55Z"
             }
           ]
         }
