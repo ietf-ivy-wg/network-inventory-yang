@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-08-16T00:46:45.777253+00:00",
+  "timestamp": "2026-09-03T02:15:53.315134+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -11946,7 +11946,7 @@
       "labels": [],
       "body": "Address IETF LC Genart review: issue #165 ",
       "createdAt": "2026-06-19T14:18:45Z",
-      "updatedAt": "2026-08-13T19:06:55Z",
+      "updatedAt": "2026-09-02T15:53:40Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d1a47e9a0312b060bc9a2513deee92ff6284f91e",
@@ -12156,6 +12156,26 @@
               "body": "Maybe this text is clearer:  \r\n\r\nAs outlined in {{operational}}, the base network inventory model provides a read-only perspective of the installed network inventory data the controller is aware of as reported from network infrastructure devices. Therefore, other inventory data (e.g., inactive assets, warehouse spares, or planned assets) are outside the scope of this model. ",
               "createdAt": "2026-08-13T19:06:55Z",
               "updatedAt": "2026-08-13T19:06:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABL4Dm2Q",
+          "commit": {
+            "abbreviatedOid": "53f65c6"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-09-02T15:53:40Z",
+          "updatedAt": "2026-09-02T15:53:40Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "**[2026-09-02 Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2026-09-02)**\r\n\r\nActivated is an administrative state while running is an operational state.\r\n\r\nUnder normal condition an activated SW module is running but there are some exceptions (e.g., a software crash or rebooting) where an activated SW module is not running.\r\n\r\nIt is still not clear what is in the scope of the base inventory model and what it is in the scope of the softare inventory model (and outside the scope of the base inventory model)\r\n\r\nFew slides analyzing the SW upgrade scenarios have been discussed: [sw-scenarios-00.pptx](https://github.com/user-attachments/files/31745531/sw-scenarios-00.pptx)\r\n\r\n",
+              "createdAt": "2026-09-02T15:53:40Z",
+              "updatedAt": "2026-09-02T15:57:39Z"
             }
           ]
         }
