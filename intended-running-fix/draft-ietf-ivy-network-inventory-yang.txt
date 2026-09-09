@@ -5,14 +5,14 @@
 IVY Working Group                                                  C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 8 February 2027                                           Nokia
+Expires: 13 March 2027                                             Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                           7 August 2026
+                                                        9 September 2026
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 February 2027.
+   This Internet-Draft will expire on 13 March 2027.
 
 Copyright Notice
 
@@ -164,11 +164,11 @@ Table of Contents
    defined in this document is a network model.
 
    As outlined in Section 6, the base network inventory model provides a
-   read-only perspective of the actual inventory data of which a network
-   controller is aware covering the components that are actually
-   installed and intended to be running within the network.  Therefore,
-   other inventory data (e.g., inactive assets or warehouse spares, or
-   planned assets) are outside the scope of this model.
+   read-only perspective of the installed network inventory data the
+   controller is aware of as reported from network infrastructure
+   devices.  Therefore, other inventory data (e.g., inactive assets,
+   warehouse spares, or planned assets) are outside the scope of this
+   model.
 
    The distinction between a temporarily unreachable network element and
    one that has been removed from the network is outside the scope of
@@ -614,18 +614,22 @@ Table of Contents
    entity (network element and component).
 
    The scope of the list is to provide information about the software
-   images intended to be running within the related entity.
+   images that are running within the related entity.  The term
+   "running" here is intended as the software modules that the
+   controller has discovered as running in the network element or
+   component as explained in section Section 6.  The way used by the
+   controller to discover and keep synchronized running software
+   information is outside the scope of this document.
 
    The model supports scenarios where multiple software modules can be
-   images intended to be running within the entity.  For example, one
-   Operating System and one or more Application software modules can be
-   intended to be running in a network element, and, in the same way,
-   one boot-loader, one firmware and one or more Field-Programmable Gate
-   Array (FPGA) software modules can be intended to be running on a
-   component like a circuit pack.
+   images running within the entity.  For example, one Operating System
+   and one or more Application software modules can be running in a
+   network element, and, in the same way, one boot-loader, one firmware
+   and one or more Field-Programmable Gate Array (FPGA) software modules
+   can be running on a component like a circuit pack.
 
-   For each software module, intended to be running, the name and
-   version information is provided.
+   For each software module running on the entity, the name and version
+   information is provided.
 
    The management of inactive/standby software modules and of the
    software upgrade or downgrade life-cycle are outside the scope of the
@@ -1338,7 +1342,7 @@ Table of Contents
 
       This subtree reports the inventory information for all the network
       elements and their hardware components deployed within the network
-      as well as of the software modules being intended to be running on
+      as well as of the software modules being discovered as running on
       these network elements and components.  Unauthorized access to
       this subtree can disclose this information.  A malicious attacker
       can use this information to perform targeted attacks to network
@@ -1456,9 +1460,9 @@ Table of Contents
               Ceccarelli, "Applicability of Abstraction and Control of
               Traffic Engineered Networks (ACTN) to Packet Optical
               Integration (POI)", Work in Progress, Internet-Draft,
-              draft-ietf-teas-actn-poi-applicability-19, 11 June 2026,
+              draft-ietf-teas-actn-poi-applicability-20, 31 August 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              actn-poi-applicability-19>.
+              actn-poi-applicability-20>.
 
    [I-D.ygb-ivy-passive-network-inventory]
               Guo, A., van caenegem, T., Davis, N., Tilocca, M., and B.
