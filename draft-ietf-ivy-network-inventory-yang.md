@@ -144,7 +144,7 @@ upper layer systems (e.g., Multi-Domain Service Coordinator (MDSC) or Operations
 
 Per the definition of {{?RFC8309}} and {{?RFC8969}}, the YANG data model defined in {{!RFC8348}} is a device model while the YANG data model defined in this document is a network model.
 
-As outlined in {{operational}}, the base network inventory model provides a read-only perspective of the actual inventory data of which a network controller is aware covering the components that are actually installed and intended to be running within the network. Therefore, other inventory data (e.g., inactive assets or warehouse spares, or planned assets) are outside the scope of this model.
+As outlined in {{operational}}, the base network inventory model provides a read-only perspective of the installed network inventory data the controller is aware of as reported from network infrastructure devices. Therefore, other inventory data (e.g., inactive assets, warehouse spares, or planned assets) are outside the scope of this model.
 
 The distinction between a temporarily unreachable network element and one that has been removed from the network is outside the scope of this document and depends on the discovery mechanism used by the controller.
 
@@ -441,12 +441,12 @@ storage, port, or power supply are defined in the hardware extension.
 
 Each instance of a network element or a component includes its own "software-rev" list which provides basic software attributes for each entity (network element and component).
 
-The scope of the list is to provide information about the software images intended to be running within the related entity.
+The scope of the list is to provide information about the software images that are running within the related entity. The term "running" here is intended as the software modules that the controller has discovered as running in the network element or component as explained in section {{operational}}. The way used by the controller to discover and keep synchronized running software information is outside the scope of this document.
 
-The model supports scenarios where multiple software modules can be images intended to be running within the entity.
-For example, one Operating System and one or more Application software modules can be intended to be running in a network element, and, in the same way, one boot-loader, one firmware and one or more Field-Programmable Gate Array (FPGA) software modules can be intended to be running on a component like a circuit pack.
+The model supports scenarios where multiple software modules can be images running within the entity.
+For example, one Operating System and one or more Application software modules can be running in a network element, and, in the same way, one boot-loader, one firmware and one or more Field-Programmable Gate Array (FPGA) software modules can be running on a component like a circuit pack.
 
-For each software module, intended to be running, the name and version information is provided.
+For each software module running on the entity, the name and version information is provided.
 
 The management of inactive/standby software
 modules and of the software upgrade or downgrade life-cycle are outside the scope of the base inventory model and can be addressed in other models which augment the base inventory model such as the model defined in {{?I-D.ietf-ivy-network-inventory-software}}.
@@ -551,7 +551,7 @@ Specifically, the following subtrees and data nodes have particular sensitivitie
 
 - "/nwi:network-elements"
 
-> This subtree reports the inventory information for all the network elements and their hardware components deployed within the network as well as of the software modules being intended to be running on these network elements and components. Unauthorized access to this subtree can disclose this information. A malicious attacker can use this information to perform targeted attacks to network elements, hardware components or software modules with known vulnerabilities.
+> This subtree reports the inventory information for all the network elements and their hardware components deployed within the network as well as of the software modules being discovered as running on these network elements and components. Unauthorized access to this subtree can disclose this information. A malicious attacker can use this information to perform targeted attacks to network elements, hardware components or software modules with known vulnerabilities.
 
 > In large networks, the massive volume of reported data can cause scalability issues, as reported in {{scalability}}. A malicious attacker could leverage this to cause  resource exhaustion.
 
