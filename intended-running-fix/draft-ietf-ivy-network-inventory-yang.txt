@@ -5,14 +5,14 @@
 IVY Working Group                                                  C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 13 March 2027                                             Nokia
+Expires: 14 March 2027                                             Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                        9 September 2026
+                                                       10 September 2026
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 March 2027.
+   This Internet-Draft will expire on 14 March 2027.
 
 Copyright Notice
 
@@ -165,10 +165,9 @@ Table of Contents
 
    As outlined in Section 6, the base network inventory model provides a
    read-only perspective of the installed network inventory data the
-   controller is aware of as reported from network infrastructure
-   devices.  Therefore, other inventory data (e.g., inactive assets,
-   warehouse spares, or planned assets) are outside the scope of this
-   model.
+   controller is aware of.  Therefore, other inventory data (e.g.,
+   inactive assets, warehouse spares, or planned assets) are outside the
+   scope of this model.
 
    The distinction between a temporarily unreachable network element and
    one that has been removed from the network is outside the scope of
@@ -619,7 +618,9 @@ Table of Contents
    controller has discovered as running in the network element or
    component as explained in section Section 6.  The way used by the
    controller to discover and keep synchronized running software
-   information is outside the scope of this document.
+   information as well as manage transient state (e.g. reboot or loss of
+   connectivity with the network element) is outside the scope of this
+   document.
 
    The model supports scenarios where multiple software modules can be
    images running within the entity.  For example, one Operating System
