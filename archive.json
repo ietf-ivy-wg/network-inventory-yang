@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-03T02:15:53.315134+00:00",
+  "timestamp": "2026-09-10T02:18:36.875577+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -11946,7 +11946,7 @@
       "labels": [],
       "body": "Address IETF LC Genart review: issue #165 ",
       "createdAt": "2026-06-19T14:18:45Z",
-      "updatedAt": "2026-09-02T15:53:40Z",
+      "updatedAt": "2026-09-09T16:41:48Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d1a47e9a0312b060bc9a2513deee92ff6284f91e",
@@ -12178,6 +12178,66 @@
               "updatedAt": "2026-09-02T15:57:39Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABM2Wz0w",
+          "commit": {
+            "abbreviatedOid": "53f65c6"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-09-09T16:41:47Z",
+          "updatedAt": "2026-09-09T16:41:48Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "For the sentence commented by Aihua I agree on the proposed text from Phil, that is aligned with the explanation in the \"Operational Consideration\" section. I think that this also require to remove the concept of \"intended to be running\" also in the SW section. I have create a PR #168 that include both Phil proposal and removal of \"intended to be running\", we can comment, correct and use it (or trash it if we don't like)",
+              "createdAt": "2026-09-09T16:41:47Z",
+              "updatedAt": "2026-09-09T16:41:48Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 168,
+      "id": "PR_kwDOKiDYo88AAAABC3XOtg",
+      "title": "Fix for \"intended to be running\" comment",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/168",
+      "state": "OPEN",
+      "author": "manzoro",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Removed \"intended to be running\" concept to address Genart review comments. Include suggestion from Phil Bedard",
+      "createdAt": "2026-09-09T16:39:09Z",
+      "updatedAt": "2026-09-09T20:04:02Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "genart-review",
+      "baseRefOid": "4bfd98025ff66f06c091f1a26524c854d36038df",
+      "headRepository": "ietf-ivy-wg/network-inventory-yang",
+      "headRefName": "intended-running-fix",
+      "headRefOid": "2e3b3f910b7931fc4c1c5af70e68fb65d7440451",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOKiDYo88AAAABM4SbmQ",
+          "commit": {
+            "abbreviatedOid": "2e3b3f9"
+          },
+          "author": "aguoietf",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-09-09T20:04:02Z",
+          "updatedAt": "2026-09-09T20:04:02Z",
+          "comments": []
         }
       ]
     }
