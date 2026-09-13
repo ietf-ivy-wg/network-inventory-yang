@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-10T02:18:36.875577+00:00",
+  "timestamp": "2026-09-13T02:18:28.388051+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -12213,13 +12213,13 @@
       "labels": [],
       "body": "Removed \"intended to be running\" concept to address Genart review comments. Include suggestion from Phil Bedard",
       "createdAt": "2026-09-09T16:39:09Z",
-      "updatedAt": "2026-09-09T20:04:02Z",
+      "updatedAt": "2026-09-10T08:57:54Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "genart-review",
       "baseRefOid": "4bfd98025ff66f06c091f1a26524c854d36038df",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "intended-running-fix",
-      "headRefOid": "2e3b3f910b7931fc4c1c5af70e68fb65d7440451",
+      "headRefOid": "b428a65659e42bc99ef4c3bbf70de8241ec2842d",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
