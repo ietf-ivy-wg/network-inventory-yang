@@ -65,7 +65,7 @@ module ietf-network-inventory {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-05-27 {
+  revision 2026-06-24 {
     description
       "Initial version";
     reference
@@ -222,7 +222,7 @@ module ietf-network-inventory {
       list patch {
         key "revision";
         description
-          "The list of software patches configured to be active for
+          "The list of software patches intended to be running for
            the software module.";
         leaf revision {
           type string;
