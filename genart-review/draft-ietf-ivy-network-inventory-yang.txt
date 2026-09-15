@@ -5,14 +5,14 @@
 IVY Working Group                                                  C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 18 March 2027                                             Nokia
+Expires: 19 March 2027                                             Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                       14 September 2026
+                                                       15 September 2026
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 March 2027.
+   This Internet-Draft will expire on 19 March 2027.
 
 Copyright Notice
 
@@ -1364,18 +1364,19 @@ Table of Contents
    IANA is requested to register the following URI in the "ns" registry
    within the "IETF XML Registry" group [RFC3688]:
 
-         URI: urn:ietf:params:xml:ns:yang:ietf-network-inventory
-         Registrant Contact: The IESG
-         XML: N/A; the requested URI is an XML namespace.
+      URI: urn:ietf:params:xml:ns:yang:ietf-network-inventory
+      Registrant Contact: The IESG
+      XML: N/A; the requested URI is an XML namespace.
 
    IANA is requested to register the following YANG module in the "YANG
    Module Names" registry [RFC6020] within the "YANG Parameters"
    registry group.
 
-        name:         ietf-network-inventory
-        namespace:    urn:ietf:params:xml:ns:yang:ietf-network-inventory
-        prefix:       nwi
-        reference:    RFC XXXX
+      Name:         ietf-network-inventory
+      Maintained by IANA?  N
+      Namespace:    urn:ietf:params:xml:ns:yang:ietf-network-inventory
+      Prefix:       nwi
+      Reference:    RFC XXXX
 
 9.  References
 
