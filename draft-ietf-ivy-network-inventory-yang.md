@@ -486,7 +486,7 @@ If the device reports the relative position as an integer, e.g., using the devic
 
 {{fig-ni-tree}} shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
 
-~~~~ yantree
+~~~~ yangtree
 {::include-fold yang/ietf-network-inventory.tree}
 ~~~~
 {:#fig-ni-tree title="Network inventory tree diagram"
