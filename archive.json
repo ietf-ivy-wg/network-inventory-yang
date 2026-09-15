@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-13T02:18:28.388051+00:00",
+  "timestamp": "2026-09-15T02:39:40.970990+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -11946,13 +11946,13 @@
       "labels": [],
       "body": "Address IETF LC Genart review: issue #165 ",
       "createdAt": "2026-06-19T14:18:45Z",
-      "updatedAt": "2026-09-09T16:41:48Z",
+      "updatedAt": "2026-09-14T17:35:40Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d1a47e9a0312b060bc9a2513deee92ff6284f91e",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "genart-review",
-      "headRefOid": "4bfd98025ff66f06c091f1a26524c854d36038df",
+      "headRefOid": "99152c7bb2c66393faec0224e386fa6500c25b24",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -12206,24 +12206,26 @@
       "id": "PR_kwDOKiDYo88AAAABC3XOtg",
       "title": "Fix for \"intended to be running\" comment",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/168",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "manzoro",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Removed \"intended to be running\" concept to address Genart review comments. Include suggestion from Phil Bedard",
       "createdAt": "2026-09-09T16:39:09Z",
-      "updatedAt": "2026-09-10T08:57:54Z",
+      "updatedAt": "2026-09-14T17:35:38Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "genart-review",
       "baseRefOid": "4bfd98025ff66f06c091f1a26524c854d36038df",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "intended-running-fix",
       "headRefOid": "b428a65659e42bc99ef4c3bbf70de8241ec2842d",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-09-14T17:35:38Z",
+      "mergedAt": "2026-09-14T17:35:38Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "99152c7bb2c66393faec0224e386fa6500c25b24"
+      },
       "comments": [],
       "reviews": [
         {
@@ -12237,6 +12239,19 @@
           "body": "",
           "createdAt": "2026-09-09T20:04:02Z",
           "updatedAt": "2026-09-09T20:04:02Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABNf9GHg",
+          "commit": {
+            "abbreviatedOid": "b428a65"
+          },
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-09-14T17:35:24Z",
+          "updatedAt": "2026-09-14T17:35:24Z",
           "comments": []
         }
       ]
