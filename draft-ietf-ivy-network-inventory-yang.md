@@ -31,7 +31,7 @@ author:
   -
     name: Sergio Belotti
     org: Nokia
-    email: sergio.belotti@nokia.com
+    email: s.belotti.ietf@gmail.com
   -
     ins: J-F. Bouquier
     name: Jean-Francois Bouquier
