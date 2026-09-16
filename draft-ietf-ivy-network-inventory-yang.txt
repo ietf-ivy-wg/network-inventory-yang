@@ -2835,7 +2835,7 @@ Authors' Addresses
 
    Sergio Belotti
    Nokia
-   Email: sergio.belotti@nokia.com
+   Email: s.belotti.ietf@gmail.com
 
 
    Jean-Francois Bouquier
