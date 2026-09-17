@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-15T02:39:40.970990+00:00",
+  "timestamp": "2026-09-17T02:38:27.553556+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -5531,9 +5531,9 @@
       "labels": [
         "candidate-future-rev-augment"
       ],
-      "body": "",
+      "body": "I think we will need to refine the IANA definitions as they are poor... but for now, we can stick with them.\n\n_Originally posted by @nigel-r-davis in https://github.com/ietf-ivy-wg/network-inventory-yang/pull/166#discussion_r3765639784_\n",
       "createdAt": "2026-08-12T20:13:30Z",
-      "updatedAt": "2026-08-12T20:13:30Z",
+      "updatedAt": "2026-09-16T14:17:40Z",
       "closedAt": null,
       "comments": []
     }
@@ -11939,24 +11939,26 @@
       "id": "PR_kwDOKiDYo87oaEeN",
       "title": "Address IETF LC Genart review",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/166",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Address IETF LC Genart review: issue #165 ",
       "createdAt": "2026-06-19T14:18:45Z",
-      "updatedAt": "2026-09-14T17:35:40Z",
+      "updatedAt": "2026-09-16T14:31:02Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "d1a47e9a0312b060bc9a2513deee92ff6284f91e",
       "headRepository": "ietf-ivy-wg/network-inventory-yang",
       "headRefName": "genart-review",
-      "headRefOid": "99152c7bb2c66393faec0224e386fa6500c25b24",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "46e269bff43b297385074b3011c9302a65f86b8a",
+      "closedAt": "2026-09-16T14:31:02Z",
+      "mergedAt": "2026-09-16T14:31:02Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "e775a07e68468d28995702c8a2163c68a08c3b2e"
+      },
       "comments": [],
       "reviews": [
         {
@@ -12198,6 +12200,19 @@
               "updatedAt": "2026-09-09T16:41:48Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABN1Ewxw",
+          "commit": {
+            "abbreviatedOid": "1ea1b5e"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Looks fine for me!",
+          "createdAt": "2026-09-16T13:05:10Z",
+          "updatedAt": "2026-09-16T13:05:10Z",
+          "comments": []
         }
       ]
     },
@@ -12213,7 +12228,7 @@
       "labels": [],
       "body": "Removed \"intended to be running\" concept to address Genart review comments. Include suggestion from Phil Bedard",
       "createdAt": "2026-09-09T16:39:09Z",
-      "updatedAt": "2026-09-14T17:35:38Z",
+      "updatedAt": "2026-09-16T13:10:42Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "genart-review",
       "baseRefOid": "4bfd98025ff66f06c091f1a26524c854d36038df",
