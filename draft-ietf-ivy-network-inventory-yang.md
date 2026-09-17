@@ -528,14 +528,15 @@ When this model is used, the source of truth for the inventory data in the scope
 
 # Security Considerations {#security}
 
-This section is modeled after the template described in {{Section 3.7
+This section is modeled after the template described in {{Section 3.7.1
 of ?RFC9907}}.
 
 The "ietf-network-inventory" YANG module defines a data model that is
 designed to be accessed via YANG-based management protocols, such as
-NETCONF {{?RFC6241}} and RESTCONF {{?RFC8040}}. These YANG-based management
-protocols (1) have to use a secure transport layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC8446}},
-and QUIC {{?RFC9000}}) and (2) have to use mutual authentication.
+Network Configuration Protocol (NETCONF) {{?RFC6241}} and RESTCONF {{?RFC8040}}.
+These YANG-based management protocols (1) have to use a secure transport
+layer (e.g., SSH {{?RFC4252}}, TLS {{?RFC9846}}, and
+QUIC {{?RFC9000}}) and (2) have to use mutual authentication.
 
 The Network Configuration Access Control Model (NACM) {{!RFC8341}}
 provides the means to restrict access for particular NETCONF or
