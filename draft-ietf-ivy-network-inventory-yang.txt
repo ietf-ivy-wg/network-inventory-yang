@@ -5,14 +5,14 @@
 IVY Working Group                                                  C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 21 March 2027                                             Nokia
+Expires: 1 April 2027                                              Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                       17 September 2026
+                                                       28 September 2026
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 March 2027.
+   This Internet-Draft will expire on 1 April 2027.
 
 Copyright Notice
 
@@ -209,7 +209,7 @@ Table of Contents
 
    *  XXXX --> the assigned RFC number for this I-D
 
-   *  2026-06-24 --> the actual date of the publication of this document
+   *  2026-09-29 --> the actual date of the publication of this document
 
 2.  Terminology and Notations
 
@@ -744,7 +744,7 @@ Table of Contents
 
 5.  YANG Data Model for Network Inventory
 
-   <CODE BEGINS> file "ietf-network-inventory@2026-06-24.yang"
+   <CODE BEGINS> file "ietf-network-inventory@2026-09-29.yang"
    module ietf-network-inventory {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-network-inventory";
@@ -809,7 +809,7 @@ Table of Contents
         described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
         they appear in all capitals, as shown here.";
 
-     revision 2026-09-16 {
+     revision 2026-09-29 {
        description
          "Initial version";
        reference
@@ -918,10 +918,10 @@ Table of Contents
        leaf name {
          type string;
          description
-           "The name of the  entity (e.g., component), as specified by
-            a network operator, that provides a non-volatile 'handle'
-            for the entity. The The network operator can specify a
-            different value anytime during the entity lifetime.
+           "The name of the entity (e.g., component), as specified by a
+            network operator, that provides a non-volatile 'handle' for
+            the entity. The network operator can specify a different
+            value anytime during the entity lifetime.
 
             If no value is discovered, the server MAY set the value of
             this node to a locally unique value in the operational
@@ -1221,7 +1221,7 @@ Table of Contents
 
                     It is therefore omitted in scenarios where the
                     network element does not contain chassis components
-                    which can can take or not the 'main' role
+                    which can take or not the 'main' role
                     (e.g., single-chassis network elements).";
                }
              }
@@ -1284,6 +1284,10 @@ Table of Contents
    network controller, to an Inventory OSS or to any other type of
    application which needs to discover the network inventory
    information.
+
+   The inventory needs to be updated every time components are added or
+   removed from the network.  Protocol-specific mechanisms can be used
+   to notify the client about these changes.
 
    Since this YANG data model reports what it is actually installed in
    the network, if a component (e.g., a board) is physically removed
@@ -1716,10 +1720,9 @@ Appendix A.  Comparison With OpenConfig Platform YANG Data Model
 
 Appendix B.  Terminology of Container
 
-   Within this document , term "container" represents an hardware
+   Within this document, the term "container" represents a hardware
    component class capable of containing one or more removable physical
-   entities, e.g., a slot in a chassis which is capabable to contain a
-   board.
+   entities, e.g., a slot in a chassis capable of containing a board.
 
       +===============================+=============================+
       | terminology of IVY base model | terminology in other models |
@@ -1775,7 +1778,7 @@ Appendix C.  Efficiency Issue
    attributes for this new inventory component class, which is more
    flexible.
 
-   The main scope of this documento is to define the generic data model,
+   The main scope of this document is to define the generic data model,
    enabling a flexible and backward compatible approach for other
    technologies.  Solution description to efficiency/scalability
    limitations mentioned above is considered as out-of-scope.
@@ -2775,12 +2778,12 @@ Acknowledgments
    and Swamynathan Balasundaram for their valuable input to the
    technical discussions during the development of this document.
 
-   The authors would like to thank Reshad Rahman for his YANG Doctor
-   eview.
+   The authors would like to thank Reshad Rahman for his YANG Doctors
+   review.
 
    The authors would like to thank Valery Smyslov, Samier Barguil, and
-   for their Security Directorate, Operational Directorate (ops-dir),
-   and General Area Review Team (Gen-ART) reviews.
+   Elwyn Davies for their Security Directorate, Operational Directorate
+   (ops-dir), and General Area Review Team (Gen-ART) reviews.
 
    This document was prepared using kramdown.
 
