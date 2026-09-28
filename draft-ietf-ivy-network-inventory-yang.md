@@ -171,7 +171,7 @@ summarizes all of the substitutions that are needed.
 Please apply the following replacements:
 
 - XXXX --> the assigned RFC number for this I-D
-- 2026-06-24 --> the actual date of the publication of this document
+- 2026-09-29 --> the actual date of the publication of this document
 
 # Terminology and Notations
 
@@ -498,7 +498,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-06-24.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-09-29.yang"}
 
 # Operational Considerations {#operational}
 
@@ -519,6 +519,8 @@ Note that distinguishing between the cases where a NE is unreachable versus deco
 For example, the network controller can collect this information by reading it from the devices using the device model supported by the devices. This model does not constrain the device models used on the device: the YANG data model defined in {{!RFC8348}} is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
 
 In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to a higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
+
+The inventory needs to be updated every time components are added or removed from the network. Protocol-specific mechanisms can be used to notify the client about these changes.
 
 Since this YANG data model reports what it is actually installed in the network, if a component (e.g., a board) is physically removed from the network, also its descendant components (e.g., daughter boards and ports) are also physically removed from the network and, as a consequence, from the inventory data being reported through this YANG data model.
 
@@ -654,7 +656,7 @@ Overall, the analysis in this appendix confirms that the base network inventory 
 
 # Terminology of Container
 
-Within this document , term "container" represents an hardware component class capable of containing one or more removable physical entities, e.g., a slot in a chassis which is capabable to contain a board.
+Within this document, the term "container" represents a hardware component class capable of containing one or more removable physical entities, e.g., a slot in a chassis capable of containing a board.
 
 | terminology of IVY base model  | terminology in other models |
 | ------------------------------ | --------------------------- |
@@ -673,7 +675,7 @@ An alternative YANG model structure, which defines the inventory objects directl
 
 The model proposed by this document is designed to be as generic as possible so as to cover future special types of inventory objects that could be used in other technologies, that have not been identified yet. If the inventory objects were to be defined directly with fixed hierarchical relationships in the YANG model, this new type of inventory objects needs to be manually defined, which is not a backward compatible change and therefore is not an acceptable approach for implementation. With a generic model, it is only necessary to augment a new component class and extend some specific attributes for this new inventory component class, which is more flexible.
 
-The main scope of this documento is to define the generic data model, enabling a flexible and backward compatible approach for other technologies. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.
+The main scope of this document is to define the generic data model, enabling a flexible and backward compatible approach for other technologies. Solution description to efficiency/scalability limitations mentioned above is considered as out-of-scope.
 
 # Examples of ports {#port-examples}
 
@@ -787,9 +789,9 @@ Gabriele Galimberti, Jan Lindblad, Joe Clarke, Mahesh Jethanandani,
 Mohamed Boucadair, Prasenjit Manna, Rob Wilton, Qin Wu, Qiufang Ma, and
 Swamynathan Balasundaram for their valuable input to the technical discussions during the development of this document.
 
-The authors would like to thank Reshad Rahman for his YANG Doctor eview.
+The authors would like to thank Reshad Rahman for his YANG Doctors review.
 
-The authors would like to thank Valery Smyslov, Samier Barguil, and
+The authors would like to thank Valery Smyslov, Samier Barguil, and Elwyn Davies
 for their Security Directorate, Operational Directorate (ops-dir), and General Area Review Team (Gen-ART) reviews.
 
 This document was prepared using kramdown.
