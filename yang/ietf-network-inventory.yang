@@ -20,9 +20,9 @@ module ietf-network-inventory {
   }
 
   organization
-    "IETF IVY Working Group";
+    "IETF Network Inventory YANG (IVY) Working Group";
   contact
-    "WG Web:   <https://datatracker.ietf.org/wg/ivy/>
+    "WG Web:   https://datatracker.ietf.org/wg/ivy/
      WG List:  <mailto:ivy@ietf.org>
 
      Editor:   Chaode Yu
@@ -53,6 +53,10 @@ module ietf-network-inventory {
      Relating to IETF Documents
      (https://trustee.ietf.org/license-info).
 
+     All revisions of IETF and IANA published modules can be found
+     at the YANG Parameters registry group
+     (https://www.iana.org/assignments/yang-parameters).
+
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.
 
@@ -66,7 +70,7 @@ module ietf-network-inventory {
     description
       "Initial version";
     reference
-      "RFC XXXX: A YANG Data Model for Network Inventory.";
+      "RFC XXXX: A Base YANG Data Model for Network Inventory";
   }
 
   /*
@@ -81,13 +85,13 @@ module ietf-network-inventory {
 
   identity ne-type {
     description
-      "Base identity for network element (NE) types.";
+      "Base identity for Network Element (NE) types.";
   }
 
   identity ne-physical {
     base nwi:ne-type;
     description
-      "A physical network element (NE). ";
+      "Indicates a physical NE.";
   }
 
   /*
@@ -102,7 +106,7 @@ module ietf-network-inventory {
     }
     description
       "This type is intended to be used by data models that need to
-       reference Network Element.";
+       reference a network element.";
   }
 
   /*
@@ -112,11 +116,11 @@ module ietf-network-inventory {
   grouping component-ref {
     description
       "This grouping is intended to be used by data models that need
-       to reference a component within a Network Element.";
+       to reference a component within a network element.";
     leaf ne-ref {
       type nwi:ne-ref;
       description
-        "The reference to the Network Element which contains the
+        "The reference to the network element which contains the
          component to be referenced.";
     }
     leaf component-ref {
@@ -134,11 +138,11 @@ module ietf-network-inventory {
   grouping port-ref {
     description
       "This grouping is intended to be used by data models that need
-       to reference a port component within a Network Element.";
+       to reference a port component within a network element.";
     leaf ne-ref {
       type nwi:ne-ref;
       description
-        "The reference to the Network Element which contains the
+        "The reference to the network element which contains the
          port to be referenced.";
     }
     leaf port-ref {
@@ -151,7 +155,7 @@ module ietf-network-inventory {
       description
         "The reference to the port component.
 
-         Note: the class of the referenced port component MUST be
+         The class of the referenced port component MUST be
          'ianahw:port' or a derived identity.";
     }
   }
@@ -196,7 +200,7 @@ module ietf-network-inventory {
   grouping ne-component-common-entity-attributes {
     description
       "The set of attributes which are common to all the entities
-       (e.g., component, network elements) defined in this module.";
+       (e.g., component or network elements) defined in this module.";
     uses basic-common-entity-attributes;
     list software-rev {
       key "name";
@@ -404,8 +408,8 @@ module ietf-network-inventory {
           description
             "The network element type.";
           reference
-            "RFC XXXX: A YANG Data Model for Network Inventory,
-                       Section 3.";
+            "RFC XXXX: A Base YANG Data Model for Network
+                       Inventory, Section 3.";
         }
         uses ne-component-common-entity-attributes;
         leaf product-rev {
@@ -434,7 +438,7 @@ module ietf-network-inventory {
 
                  If this list is empty, this component is not
                  contained in any other component but it is contained
-                 in the network-element.";
+                 in the network element.";
               reference
                 "RFC 6933: Entity MIB (Version 4) -
                            entPhysicalContainedIn";
