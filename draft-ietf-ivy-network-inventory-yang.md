@@ -560,7 +560,7 @@ should identify the corresponding security considerations. For example, reusing 
 # IANA Considerations
 
 IANA is requested to register the following URI in the "ns"
-registry within the "IETF XML Registry" group {{?RFC3688}}:
+registry within the "IETF XML Registry" group {{!RFC3688}}:
 
 ~~~~
    URI: urn:ietf:params:xml:ns:yang:ietf-network-inventory
