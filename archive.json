@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-01T03:19:07.164940+00:00",
+  "timestamp": "2026-10-04T03:33:37.607489+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -12291,6 +12291,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 169,
+      "id": "PR_kwDOKiDYo88AAAABGDFWQw",
+      "title": "Edits/Nits from Med's IESG Review",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/169",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-01T07:47:28Z",
+      "updatedAt": "2026-10-02T06:23:35Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "main",
+      "baseRefOid": "3a3d69502cfffc44ed92ccb1d4fe3bf4ae60d21f",
+      "headRepository": "boucadair/network-inventory-yang",
+      "headRefName": "patch-16",
+      "headRefOid": "829f14ffd85396e13af45546ed19db5c00632476",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
