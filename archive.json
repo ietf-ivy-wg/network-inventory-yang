@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-04T03:33:37.607489+00:00",
+  "timestamp": "2026-10-08T03:44:48.383951+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -5557,6 +5557,229 @@
       "updatedAt": "2026-09-16T14:17:40Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 170,
+      "id": "I_kwDOKiDYo88AAAABVZlK4g",
+      "title": "Telechat Rtgdir review of draft-ietf-ivy-network-inventory-yang-20",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/170",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "Document: draft-ietf-ivy-network-inventory-yang\nTitle: A Base YANG Data Model for Network Inventory\nReviewer: Linda Dunbar\nReview result: Has Nits\n\nThe document is generally clear and the approach of separating a generic\nnetwork-wide inventory model from technology-specific augmentations seems\nreasonable.\n\nHere is one minor issue with the document:\n\nIn a hierarchical-controller deployment, a higher-level controller may combine\ninventories learned from multiple lower-level controllers. Since ne-id is\nassigned by the server and is the key of the network-element list, I assume\nthat the higher-level controller, acting as the server for the combined\ninventory, is responsible for ensuring that ne-id values are unique within the\ninventory it exposes. A short clarification to this effect could be helpful.\n\nBest Regards,\n\nLinda Dunbar\n\n---\n\nSee: https://datatracker.ietf.org/doc/review-ietf-ivy-network-inventory-yang-20-rtgdir-telechat-dunbar-2026-10-01/",
+      "createdAt": "2026-10-06T15:29:46Z",
+      "updatedAt": "2026-10-08T00:59:22Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2026-10-07 Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2026-10-07)**\n\n- [ ] Propose some text",
+          "createdAt": "2026-10-08T00:59:22Z",
+          "updatedAt": "2026-10-08T00:59:22Z"
+        }
+      ]
+    },
+    {
+      "number": 171,
+      "id": "I_kwDOKiDYo88AAAABVZmi4w",
+      "title": "Telechat Intdir review of draft-ietf-ivy-network-inventory-yang-19",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/171",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "Document: draft-ietf-ivy-network-inventory-yang\nTitle: A Base YANG Data Model for Network Inventory\nReviewer: Haoyu Song\nReview result: Ready with Nits\n\nI am an assigned INT directorate reviewer for\ndraft-ietf-ivy-network-inventory-yang-19. These comments were written primarily\nfor the benefit of the Internet Area Directors. Document editors and\nshepherd(s) should treat these comments just like they would treat comments\nfrom any other IETF contributors and resolve them along with any other Last\nCall comments that have been received. For more details on the INT Directorate,\nsee https://datatracker.ietf.org/group/intdir/about/\n\nThis document defines a base YANG data model for reporting network inventory\nacross a network domain. The data model is application- and technology-\nagnostic. The model is a read-only network model intended for northbound\ncontroller-to-OSS or controller-to-controller interfaces. It offers a\nnetwork-wide view of discovered physical network elements and their\nhardware/software components. The document has limited Internet Area impact.\nThe comments below list a few potential issues and some nits I noticed during\nthe review.\n\nMy review conclusion is: Ready with Minor Issues / Nits\n\n------------------------------------------------\nPotential issues that SHOULD be addressed.\n-----------------------------------------------\n\n1. Possible identity name mismatch? Section 3 says the document defines the\n\"physical-network-element\" identity and a \"non-hardware\" identity. In Section\n5, the module defines \"ne-physical\" and \"non-hardware-component-class\". Please\nalign the names for consistency.\n\n2. mfg-date type uses yang:date-and-time.  Time of day is meaningless for\nmanufacturing date. Is yang:date a more proper type?\n\n3. Possible errors in the Appendix E.1 JSON.\n   - transceiver-module-2-1: description says \"first stack port of the first switch\"; it should be the second switch.\n   - transceiver-module-2-2: same issue. description should be the second switch.\n\n4. Appendix A, Table 2 mappings.\n   - \"location -> location\": the base module has no location node; it is defined in I-D.ietf-ivy-network-inventory-location. Please say so in the Remark column.\n   - \"id -> uuid\": the OpenConfig \"id\" is a vendor/device identifier, not necessarily a UUID. Mapping it to uuid seems wrong.\n   - \"subcomponents\" has an empty Remark. Presumably it maps to the inverse of \"parent\"; please state that if so.\n\n-------------------------------------------\nNits\n-------------------------------------------\n\n- Section 2.4: \"Table 1 list\" -> \"Table 1 lists\".\n- Section 3.3: the attribute list omits uri, parent, parent-rel-pos, and is-main, which are in the tree/module.\n- Section 3.3.1: \"This model, likewise [RFC8348],\" -> \"This model, like [RFC8348],\".\n- Section 5, revision reference and ne-type reference: \"A YANG Data Model for Network Inventory\" vs. the document title \"A Base YANG  Data Model for Network Inventory\".\n- Section 5, contact: Peruzzini's address (telecomitalia.it) and Belotti's address ([nokia.com](http://nokia.com/)) differ from the Authors' Addresses ([fibercop.com](http://fibercop.com/), [gmail.com](http://gmail.com/)) - Section 5, name description: \"The The network operator\".\n- Section 5, is-main description: \"which can can take\".\n- Section 6: \"reports what it is actually installed\" -> \"reports what is actually installed\".\n- Appendix B: \"an hardware\" -> \"a hardware\"; \"capabable\" ->  \"capable\".\n- Appendix C: \"documento\" ->\"document\".\n- Appendix E: \"Figure 7 describe\" -> \"Figure 7 describes\".\n- Appendix F: \"cannot take any non-field replaceable modules other than pluggable ports\" is hard to parse.  Do you mean field-replaceable modules? \n- Acknowledgments: \"YANG Doctor eview\" -> \"review\"; \"Valery Smyslov, Samier Barguil, and for their\" a name is missing after \"and\"?\n\n---\n\nSee: https://datatracker.ietf.org/doc/review-ietf-ivy-network-inventory-yang-19-intdir-telechat-song-2026-09-30/",
+      "createdAt": "2026-10-06T15:31:18Z",
+      "updatedAt": "2026-10-08T01:31:39Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2026-10-07 Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2026-10-07)**\n\n> * \"id -> uuid\": the OpenConfig \"id\" is a vendor/device identifier, not necessarily a UUID. Mapping it to uuid seems wrong.\n\nThe \"id\" attribute in OpenConfig has been deprecated. It is proposed to:\n\nOLD\n\n    +---------------+-----------+-------------------------------------+\n    | id            |uuid       |                                     |\n    +---------------+-----------+-------------------------------------+\n\nNEW\n\n    +---------------+-----------+-------------------------------------+\n    | id            |           | Deprecated                          |\n    +---------------+-----------+-------------------------------------+\n\nDuring the discussion it was also noted that the \"name\" attribute in OpenConfig and in the base inventory model matches but in OpenConfig it is a key used to uniquely identify a component within the network element while in the base inventory model it is not a key. It was agreed to add a clarificatio note about this.\n\n> * \"subcomponents\" has an empty Remark. Presumably it maps to the inverse of \"parent\"; please state that if so.\n\nThe subcomponents provides duplicated data with respect to the parent reeference to support reverse navigation from parent to children components. It has been agreed to add a note.\n\n> * mfg-date type uses yang:date-and-time.  Time of day is meaningless for\n>   manufacturing date. Is yang:date a more proper type?\n\nSee [sub-issue #179 ](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/179#issuecomment-6050102515)",
+          "createdAt": "2026-10-08T01:01:23Z",
+          "updatedAt": "2026-10-08T01:31:39Z"
+        }
+      ]
+    },
+    {
+      "number": 172,
+      "id": "I_kwDOKiDYo88AAAABVZnvKg",
+      "title": "IETF LC Secdir review of draft-ietf-ivy-network-inventory-yang-18",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/172",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Document: draft-ietf-ivy-network-inventory-yang\nTitle: A Base YANG Data Model for Network Inventory\nReviewer: Valery Smyslov\nReview result: Ready\n\nI have reviewed this document as part of the security directorate's ongoing\neffort to review all IETF documents being processed by the IESG.  These\ncomments were written primarily for the benefit of the security area directors.\nDocument editors and WG chairs should treat these comments just like any other\nlast call comments.\n\nThe draft defines a base YANG data model for reporting network inventory.\nI think that security considerations for accessing this data are described correctly.\n\n---\n\nSee: https://datatracker.ietf.org/doc/review-ietf-ivy-network-inventory-yang-18-secdir-lc-smyslov-2026-06-10/",
+      "createdAt": "2026-10-06T15:32:37Z",
+      "updatedAt": "2026-10-06T15:35:25Z",
+      "closedAt": "2026-10-06T15:35:24Z",
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Old issue",
+          "createdAt": "2026-10-06T15:35:24Z",
+          "updatedAt": "2026-10-06T15:35:24Z"
+        }
+      ]
+    },
+    {
+      "number": 173,
+      "id": "I_kwDOKiDYo88AAAABVZo6AQ",
+      "title": "IETF LC Genart review of draft-ietf-ivy-network-inventory-yang-18",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/173",
+      "state": "CLOSED",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I am the assigned Gen-ART reviewer for this draft. The General Area\nReview Team (Gen-ART) reviews all IETF documents being processed\nby the IESG for the IETF Chair.  Please treat these comments just\nlike any other last call comments.\n\nFor more information, please see the FAQ at\n\n<[https://wiki.ietf.org/en/group/gen/GenArtFAQ>](https://wiki.ietf.org/en/group/gen/GenArtFAQ%3E).\n\nDocument: [draft-ietf-ivy-network-inventory-yang-18](https://datatracker.ietf.org/doc/draft-ietf-ivy-network-inventory-yang/18/)\nReviewer: Elwyn Davies\nReview Date: 2026-06-10\nIETF LC End Date: 2026-06-10\nIESG Telechat date: Not scheduled for a telechat\n\nSummary:  There is one potential issue that the document itself brings out and\na couple of operational ssues that could make the specification difficult to\nuse especially on larger systems. Otherwise, the document has a fair number of\nnits and editorial issues outside the YANG specification.  I have not looked at\nthe form of the YANG in great detail.  Please note that some parts of the\nappendices are (partly) written in academic paper style and need to be\ndepersonalized.\n\nJudging from the example in Appendix E, the comments in the Security section\nabout the risks of very high volumes of YANG data needed to complete the\ninventory of a network seem rather too well justified. I don't know if this\ncould be a show stopper but feel that consideration should be given to this\nmatter by peole with more hands-on knowledge of inventory handling.  I wonder\nif the inventory could be segmented in some way to limit the size of chunks\nbeing handled.  I am unsure whether there is going to be much call for complete\ninventories to be interchanged.  It  strikes me that one aspect that has not\nbeen discussed here is the dynamic cnstruction of complete inventories.  I\ncould see an example where a new component is added to a network:  Would the\nexpansion of the inventory be conveniently carried out by the new component\ncarrying its own inventory and passing it over to the inventory server (with\nappropriate security checks) for integration into the overall inventory - as\nopposed to the central inventory being updated by manual/semi-automatic\ninteraction at the inventory server.  There are also potential risks of the\nconsistency of the model being damaged by incomplete or faulty removal of the\ninventory associated with a componet tht has been removed.\n\nMajor issues:\n1. Potential problem:  Size of complete YANG inventory specifications if needed\nto be interchanged between devices. 2. Possble problem:  Ease or difficulty of\nintegrating/de-integrating YANG inventory specifications for added or\nsubtracted components. 3. Handling inter-component connections and\ndisconnections. Ensuring that changes to interconnections can be handled in a\nway that limits the scope for dangling connections to be left in place after\nchanges to components.  This is not discussed in the document.\n\nMinor issues:\nNone\n\nNits/editorial comments:\n\nS1, paras1 and 2:  The definition of Network Inventory really needs to appear\nright at the beginning of the text.  As this document is the primary output of\nthe IVY WG, I would suggest copying all or at least the beginning of the first\nparagraph of the charter of the IVY WG to supply the definition of Network\nInventory:- thus some of all of:\n\n    Network inventory is a foundation for network management in all types\n    of: Network operators need to keep a record of what equipment\n    is planned and installed in their networks (including a variety of\n    information such as product name, vendor, product series, embedded\n    software, and hardware/software versions). Network inventories may\n    be constructed from management system data to represent the expected\n    devices present in the network, and also be used to audit and catalog\n   what devices are discovered in the network, and to expose that\n   information in a consistent way.\n\nand delete para 2\n\ns1, para 3:  s/overall network management/scheme of network management/\n\ns1, para 3: \"which was specified many years ago\"  If so, can we have a\nreference please.  I could not identify where this specification is located\nalthough maybe [RFC 8969](https://datatracker.ietf.org/doc/rfc8969/) may be relevant.  If there isn't one, just omit this\nphrase - I am quite prepared to accept that it is a useful fundamental block.\n\ns1, para 3: s/well-planned/well-managed/ (One hopes that the planning precedes\ndefinition of the inventory;  the inventory essentially documents the plan).\n\ns1, para 4: s/to retrieve network element/to retrieve information relating to\nnetwork element/\n\ns1, para 4: s/are key enablers/provides key enablers/\n\ns1, para 4: s/a gap about/a gap relating to/\n\ns1, para 5:  Please delete this paragraph.  This is a standards document and\nnot a poltical positioning paper.\n\ns1, para 8:  This paragraph does not read well.  Suggest:\nOLD:\nAs outlined in Section 6, the network inventory provides a read-only\nperspective of the actual inventory data that a network controller knows of\nwhat it is actually installed within the network. NEW: As outlined in Section\n6, the network inventory provides a read-only perspective of the actual\ninventory data of which a network controller is aware covering the components\nthat are actually installed and active within the network. END The term 'spare'\nin the second sentence of this paragraph may be misleading. Networks may\ncontain backup components which are there as spares that can be switched in\nautomatically in the event of the primary component failing. I would expect the\ninventory to account for these. This is clearly different from having offline\nspares that might require human intervention to insert them into the active\ninventory.\n\ns2, definition of Hardware Component:  s/The generalisation of/A portmanteau\n[or alternatively 'An umbrella'] term for any of/  It might be worth\nreferencing [RFC 8348](https://datatracker.ietf.org/doc/rfc8348/) here which sets out terms for adding items to the lists.\n\ns2, definition of Component:\nOLD:\nComponent: The generalization of the hardware component definition to include\nother inventory objects which can be managed, from an inventory perspective,\nlike hardware components. NEW: Component: A furher extension of the portmanteau\nhardware component definition to include other inventory objects which can be\nmanaged, from an inventory perspective, in the same way as hardware components.\nEND\n\ns3.1 and s3.1.1: The use of 'such as' in the first paragraphs of these sections\nimplies that there are other common attributes. etc.  I suspect that the lists\ngivn are complete and different phraseology should be used:\n\nIn s3,1;\nOLD:\nFor all the inventory objects, there are some common attributes, such as:\nNEW:\nAll inventory objects have the following common attributes:\nEND\n\nIn s3.1.1:\nOLD:\nTo be consistent with the component definition, some of the attributes defined\nin [[RFC8348](https://datatracker.ietf.org/doc/rfc8348/)] for components are reused for network elements, such as: NEW: To\nbe consistent with the component definition, the following attributes defined\nin [[RFC8348](https://datatracker.ietf.org/doc/rfc8348/)] for components are reused for network elements: END\n\ns3.1, definition of ne_id: 'assigned by the server' -  Which server would that\nbe?\n\ns3.3, para 1: s/same approach of/same approach as/\n\ns3.3, definitions of hardware_rev and mfg-date:  Should the specification offer\na standard form for use in case these items are not known?\n\ns3.3.1, para 1:s./classifies/classify/, s/and manage all/and manages all/\n\ns3.3.2, para 3: s/an Application software modules/an Application module [or\nApplication software modules]/ Which is intended?\n\ns3.3.2, para 3: Expand FPGA - it isn't defined currently.\n\ns3.3.2, para5: s/under definition/defined/ (By the time this draft is\npublished, the model will have been defined)\n\ns3.3.2, para 6:  'have similar replaceable requrements':  Does this mean that\nthe components have similar requirements or characteristics as to\nreplaceability?  I don't understand what is meant here.\n\ns3.3.2, para 6: s/one or more software patch information/one or more records of\nsoftware patches that have been applied./\n\ns3,3.2, last para: s/like/such as/\n\ns5, module description item:  Suggest adding reference to [RFC 8342](https://datatracker.ietf.org/doc/rfc8342/) for\nDatastore Architecture\n\ns6, para 7: s/ and outside the scope/and is outside the scope/\n\ns6, para 8: s/dooes not constraint/does not constrain/\n\ns6, para 10:  The term 'brownfield' is jargon that needs to be explained or\nreplaced.\n\n I suggest somethings along the lines of:\n\n      If the inventory system defined by this document is to be deployed\n      into a nework which has a  preexistng inventory system....\n\ns9,2:  Arguably [RFC7951](https://datatracker.ietf.org/doc/rfc7951/) and [RFC 8340](https://datatracker.ietf.org/doc/rfc8340/) are normative references.  If [RFC 6241](https://datatracker.ietf.org/doc/rfc6241/)\n(NETCONF) is nomative then I would suggest RFC  8040 (RESTCONF) is normative as\nwell... but they could also both  be considered informative.\n\nAppendix A:  The firstt two and last paragraphs and table of this section\nsection is written in academic paper style  with 'we' do things and 'our'\nrather than impersonal standards form  and need to be rewritten.  There are\nalso two missing deifinte articles in the first sentence of the second\nparagraph. before Openconfig and \"ietf-hardware\".and another one missing in\neach of the third and fourth paragraphs.\n\nAppendices B and C; Also have the academic paper style issue.\n\nAppendix C, para 3: s/large scale of networks/large scale networks/\n\nAppendix C, para 4: s/ so to cover/so as to cover/, s/in YANG model/in the YANG\nmodel/, s/it is only needed/it is only necessary/\n\nAppendix D, para 2: s/three type of ports/three types of port/\n\nAppendix E:, para 2: ss/composed by/comprised of/\n\nAppendix E para 3 and para 8: :s/Stacked switch/Stacked switches/\n\nAppendix E, para 6: s/synchronzed/require synchronized/\n\nAppendix E, titles of Figures 5 and 6: s/a stacked switch/stacked switches/\n\nAppendix E, para 9:\nOLD:\nUsing the base network inventory YANG data model each interconnected switch can\nbe modelled as a chassis within the same network element, which models the\ncascaded switch. The ports used to interconnect the different chassis are\nnormal (traffic) ports and modelled like other ports. NEW: Using the base\nnetwork inventory, the YANG data model for each interconnected switch can be\nset up as a chassis within the same network element, which models the cascaded\nswitch. The ports used to interconnect the different chassis are normal\n(traffic) ports and modelled in the same way as other ports. END\n\nAppendix E: [Aside: Yes, that's quite a lot of YANG!! ]\n\n---\n\nSee: https://datatracker.ietf.org/doc/review-ietf-ivy-network-inventory-yang-18-genart-lc-davies-2026-06-10/",
+      "createdAt": "2026-10-06T15:33:49Z",
+      "updatedAt": "2026-10-06T15:35:01Z",
+      "closedAt": "2026-10-06T15:35:00Z",
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Old issue",
+          "createdAt": "2026-10-06T15:35:00Z",
+          "updatedAt": "2026-10-06T15:35:00Z"
+        }
+      ]
+    },
+    {
+      "number": 174,
+      "id": "I_kwDOKiDYo88AAAABVZtMUw",
+      "title": "Roman Danyliw's No Objection on draft-ietf-ivy-network-inventory-yang-20: (with COMMENT)",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/174",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "----------------------------------------------------------------------\nCOMMENT:\n----------------------------------------------------------------------\n\nThank you to Elwyn Davies for the GENART review.\n\n** software-rev\n\nGiven the diverse choices in SBOM formats and the focus on software supply\nchain security, consider if richer format than name, revision and patch would\nbe helpful.\n\n---\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/HtXTvEhVGhEYuFrb4FwvtPfW2FM/",
+      "createdAt": "2026-10-06T15:38:41Z",
+      "updatedAt": "2026-10-06T15:38:41Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 175,
+      "id": "I_kwDOKiDYo88AAAABVaAt9w",
+      "title": "Deb Cooley's No Objection on draft-ietf-ivy-network-inventory-yang-20: (with COMMENT)",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/175",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "----------------------------------------------------------------------\nCOMMENT:\n----------------------------------------------------------------------\n\n\nThanks to Valery Smyslov for their secdir review.\n\nSection 3.2, para 2, sentence 2:  It is unusual to use the term being defined\n'running' in the definition.  Perhaps the word 'executing' might be an option?\nOr is the intent to define the difference between software images and software\nmodules?\n\nSection 3.4:  Is this an update to RFC 8348?  If so, that should be stated up\nfront.  It would not be shocking for an RFC published 8 years ago to benefit\nfrom an update.\n\nSection 3.4.2, last para:  Does 'name' really mean 'component name'?  Or is\nthere another form of 'name'?  The fact that there are components and\ncomponent-id as two distinct entities is confusing (to me, anyway).\n\nSection 7, bullet 1:  The example that comes to my mind with respect to\nsensitive information is version/patch level for hw/sw running on a network.\nThis isn't stated directly, but I assume that is what is reported in that\nsubtree.\n\n---\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/XnvQdxWmc0OuWVrYylu-3dAh2P4/",
+      "createdAt": "2026-10-06T16:01:23Z",
+      "updatedAt": "2026-10-06T16:01:23Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 176,
+      "id": "I_kwDOKiDYo88AAAABVaLXpw",
+      "title": "Ketan Talaulikar's No Objection on draft-ietf-ivy-network-inventory-yang-20: (with COMMENT)",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/176",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "----------------------------------------------------------------------\nCOMMENT:\n----------------------------------------------------------------------\n\nThanks to the authors and the WG for their work on this document.\n\nPlease find below some comments, questions and suggestions on this document\ninline in the idnits output of v20 of this document. The end of the review is\nmarked by the tag <EoRv20>.\n\nI've not been following or familiar with this work, so please correct me if\nI am wrong.\n\n\n251\t   The following terms are defined in the description statements of the\n252\t   corresponding YANG identities, defined in [IANA_HW_YANG], and are not\n253\t   redefined here:\n\n<nit> Section 2.2 says \"power supply\" and \"storage device\" but the\niana-hardware identities are \"power-supply\" and \"storage-drive\".\n\n\n374\t   Physical network elements are usually devices such as hosts,\n375\t   gateways, terminal servers, and the like, which have management\n376\t   agents responsible for performing the network management functions\n377\t   requested by the network management stations ([RFC1157]).\n\n<minor> RFC 1157 is Historic; perhaps cite something current ?\n\n379\t   The \"ne-type\" is defined as a YANG identity to describe the type of\n380\t   the network element.  This document defines only the \"physical-\n381\t   network-element\" identity.\n\n<major> The module defines \"ne-physical\", not \"physical-network-element\".\nSimilarly, in the same section, it defines \"non-hardware-component-class\",\nnot \"non-hardware\". Also RFC 8348 carries no \"rack\", \"sub-slot\" or \"board\"\nat all, and no \"slot\" identity \u2014 a slot there seems to be modelled as\n\"ianahw:container\" and a board or card as \"ianahw:module\"?\n\n\n785\t     description\n786\t       \"This module defines a base model for retrieving network\n787\t        inventory.\n\n789\t        Copyright (c) 2026 IETF Trust and the persons\n790\t        identified as authors of the code.  All rights reserved.\n\n792\t        Redistribution and use in source and binary forms, with or\n793\t        without modification, is permitted pursuant to, and subject\n794\t        to the license terms contained in, the Revised BSD License\n795\t        set forth in Section 4.c of the IETF Trust's Legal Provisions\n796\t        Relating to IETF Documents\n797\t        (https://trustee.ietf.org/license-info).\n\n799\t        This version of this YANG module is part of RFC XXXX; see\n800\t        the RFC itself for full legal notices.\n\n802\t        The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL\n803\t        NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',\n804\t        'MAY', and 'OPTIONAL' in this document are to be interpreted as\n805\t        described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,\n806\t        they appear in all capitals, as shown here.\";\n\n<minor> RFC 9907 Section 4.8 asks every published module's description to\ncarry a pointer to the registry group where its revisions can be found, and\nthe module description does not have one. Suggest adding to the description:\n\n   All revisions of IETF and IANA published modules can be found at\n   the \"YANG Parameters\" registry group:\n   <https://www.iana.org/assignments/yang-parameters>.\n\n811\t       reference\n812\t         \"RFC XXXX: A YANG Data Model for Network Inventory.\";\n\n<nit> The revision and ne-type reference statements cite \"A YANG Data Model\nfor Network Inventory\"; the document's title has \"Base\" in it.\n\n1061\t       leaf part-number {\n1062\t         type string;\n1063\t         description\n1064\t           \"The vendor-specific part number of the component\n1065\t            type. It is expected that vendors assign unique part\n1066\t            numbers to different component types within the\n1067\t            scope of the vendor.\";\n1068\t       }\n1069\t       leaf serial-number {\n1070\t         type string;\n1071\t         description\n1072\t           \"The vendor-specific serial number of the component instance.\n\n1074\t            It is expected that vendors assign unique serial numbers to\n1075\t            different component instances within the scope of the\n1076\t            'part-number'.\";\n1077\t       }\n\n<minor> \"part-number\" and \"serial-number\" carry no reference?\n\n1136\t           leaf ne-id {\n1137\t             type string;\n1138\t             description\n1139\t               \"An identifier that uniquely identifies the NE in\n1140\t                a network.\";\n1141\t           }\n\n<minor> Section 3.2 says the ne-id is assigned by the server, and that it\nshould be assigned so that the same network element keeps the same identifier\neven across disconnection; Section 3.1 says the uuid is assigned by the\nserver. The module descriptions for those two nodes carry neither point.\n\n1271\t   are also allowed.  In case some information is not provided by the\n1272\t   device, the network controller SHALL omit this information unless\n1273\t   this information is known by other sources of information (e.g.,\n1274\t   through local configuration within the network controller).\n\n<major> This is a normative requirement on an implementation sits oddly in\nOperational Considerations. Suggest moving the sentence into Section 3.\n\n\n1361\t   IANA is requested to register the following URI in the \"ns\" registry\n1362\t   within the \"IETF XML Registry\" group [RFC3688]:\n\n1364\t      URI: urn:ietf:params:xml:ns:yang:ietf-network-inventory\n1365\t      Registrant Contact: The IESG\n1366\t      XML: N/A; the requested URI is an XML namespace.\n\n1368\t   IANA is requested to register the following YANG module in the \"YANG\n1369\t   Module Names\" registry [RFC6020] within the \"YANG Parameters\"\n1370\t   registry group.\n\n<minor> RFC 6020 is listed as normative and RFC 3688 as informative. Suggest\nclassifying the two the same way, whichever way is more accurate.\n\n\n<EoRv20>\n\n---\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/WD_aF0TvYzRgRrowejwZyTknN1M/",
+      "createdAt": "2026-10-06T16:13:42Z",
+      "updatedAt": "2026-10-06T16:13:42Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 177,
+      "id": "I_kwDOKiDYo88AAAABVaNTjw",
+      "title": "Gorry Fairhurst's No Objection on draft-ietf-ivy-network-inventory-yang-20: (with COMMENT)",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/177",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "----------------------------------------------------------------------\nCOMMENT:\n----------------------------------------------------------------------\n\nThank you for this specification, I do not see any transport-protocol related\nconcerns with the data model.\n\nHowever, I do have a query relating to the size of the data model that is\ntransferred: \"Large\" objects require a transport method that either uses\npre-provisioned capacity, a method that includes either rate-limiting (possibly\nby defining a circuit breaker) or uses a transport with congestion control.\n\nI expect a short note to be useful within the operational considerations\n(because I imagine the data volume can be large), but I also expect that\nanother document is the correct place to address such requirements.\n\n---\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/XjcPrR8B9Qg6fPDg0HD1hQSYOWs/",
+      "createdAt": "2026-10-06T16:16:04Z",
+      "updatedAt": "2026-10-06T16:16:04Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 178,
+      "id": "I_kwDOKiDYo88AAAABVaOXUQ",
+      "title": "Mohamed Boucadair's Yes on draft-ietf-ivy-network-inventory-yang-20: (with COMMENT)",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/178",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "priority-1"
+      ],
+      "body": "Hi Chaode, Sergio, Jean-Francois, Fabio, and Phil,\n\nThank you for the effort put into this specification.\n\nI reviewed the document in the past, so I only have few comments:\n\n# Remove the NMDA statement as the guidance was reverted in RFC9907\n\n# Consider calling out appendices A/B/C in the main text to explain why these\nare provided. Not sure the terminology appendix brings much, btw.\n\n# Cyclic references\n\nThe following text in Section 3 points to Section 3! Consider adding a\nsubsection for the preamble and refer explicitly to it:\n\nCURRENT:\n\nne-type:\nThe type of network element (e.g., physical network element). See Section 3 for\nthe definition of NE types. .. class: The type of component (e.g., chassis,\nmodule, port). See Section 3 for the definition of component types.\n\n# The following is misleading as we are not replacing 8348 but leveraging it.\nPlease reword.\n\nCURRENT:\n3.4. Changes Since RFC 8348\n\n# For convenience, you may find some more edits/nits at\nhttps://github.com/ietf-ivy-wg/network-inventory-yang/pull/169\n\nCheers,\nMed\n\n---\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/0L3AL2SkUY-4UizWc6aSwNsoM7I/",
+      "createdAt": "2026-10-06T16:17:19Z",
+      "updatedAt": "2026-10-06T16:17:19Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 179,
+      "id": "I_kwDOKiDYo88AAAABVvnDIw",
+      "title": "Data type for mfg-date",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/179",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "italobusi"
+      ],
+      "labels": [
+        "priority-1",
+        "wait-WG"
+      ],
+      "body": "> * mfg-date type uses yang:date-and-time.  Time of day is meaningless for\n>   manufacturing date. Is yang:date a more proper type?\n\n _Originally posted by @italobusi in [#171](https://github.com/ietf-ivy-wg/network-inventory-yang/issues/171)_",
+      "createdAt": "2026-10-08T01:07:54Z",
+      "updatedAt": "2026-10-08T01:11:28Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**[2026-10-07 Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2026-10-07)**\n\nOpenConfig define this attribute as a date, while RFC8348 define it as a date-and-time (but the description mentions just date).\n\nAlso TAPI defines this attribute as date-and-time.\n\nIt has also been noted that date-and-time might be more versatile since the time can be omitted when not known. Our proposal is to keep the date-and-time since it is more versatile and may be cover cases, e.g., software inventory, where the time is needed.\n\n- [ ] Trigger discussion on the IVY WG mailing list",
+          "createdAt": "2026-10-08T01:11:28Z",
+          "updatedAt": "2026-10-08T01:11:28Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -12304,7 +12527,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2026-10-01T07:47:28Z",
-      "updatedAt": "2026-10-02T06:23:35Z",
+      "updatedAt": "2026-10-07T14:17:04Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "3a3d69502cfffc44ed92ccb1d4fe3bf4ae60d21f",
