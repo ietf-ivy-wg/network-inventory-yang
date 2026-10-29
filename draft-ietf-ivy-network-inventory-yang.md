@@ -460,7 +460,7 @@ This document re-defines some attributes listed in {{!RFC8348}}, based on some i
 
 ### Part Number
 
-According to the description in {{!RFC8348}}, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. "model-name" is not straightforward to understand, and therefore, in the base inventory data model the attribute is called "part-number".
+According to the description in {{!RFC8348}}, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. The "model-name" data node identifier is not straightforward to understand, and therefore, in the base inventory data model the attribute is called "part-number".
 
 ### Component identifiers
 
