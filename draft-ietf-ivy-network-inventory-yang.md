@@ -281,7 +281,7 @@ inventory perspective.
 
 Physical network elements are usually devices such as hosts, gateways, terminal servers, and the like, which have management agents responsible for performing the network management functions requested by the network management stations {{?RFC1157}}.
 
-"ne-type" is defined as a YANG identity to describe the type of a network element. This document defines only the "physical-network-element" identity. Other types of network elements can be defined in other documents, together with the associated YANG identities and the rationale for managing them as network elements from an inventory perspective.
+The "ne-type" YANG identity is defined as a base identity to describe the type of a network element. This document defines only the "physical-network-element" identity. Other types of network elements can be defined in other documents, together with the associated YANG identities and the rationale for managing them as network elements from an inventory perspective.
 
 The component definition is also generalized to support any types of
 component inventory objects that can be managed as hardware components from an inventory perspective.
