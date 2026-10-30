@@ -286,7 +286,7 @@ The "ne-type" YANG identity is defined as a base identity to describe the type o
 The component definition is also generalized to support any types of
 component inventory objects that can be managed as hardware components from an inventory perspective.
 
-The top-level "components" container exposes a list of components within each network element and other parameters.
+The top-level "components" container exposes a list of components, within each network element, and other parameters.
 
 Different component types can be distinguished by the class of component. The component "class" is defined as a union between the hardware class identity, defined in "iana-hardware", and the "non-hardware" identity, defined in this document.
 
