@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-25T02:29:07.026370+00:00",
+  "timestamp": "2026-11-01T03:29:54.858132+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -5937,9 +5937,17 @@
       ],
       "body": "> 1061 leaf part-number { \n> 1062 type string; \n> 1063 description \n> 1064 \"The vendor-specific part number of the component \n> 1065 type. It is expected that vendors assign unique part \n> 1066 numbers to different component types within the \n> 1067 scope of the vendor.\"; \n> 1068 } \n> 1069 leaf serial-number { \n> 1070 type string; \n> 1071 description \n> 1072 \"The vendor-specific serial number of the component instance.\n> \n> 1074 It is expected that vendors assign unique serial numbers to \n> 1075 different component instances within the scope of the \n> 1076 'part-number'.\"; \n> 1077 }\n> \n> \"part-number\" and \"serial-number\" carry no reference?\n> \n\n- [ ] Look for some references\n",
       "createdAt": "2026-10-21T16:30:04Z",
-      "updatedAt": "2026-10-21T16:30:04Z",
+      "updatedAt": "2026-10-30T14:21:33Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "I found the following references:\n\n1. ANSI MH10.8.2 / ISO 15459 (Data Identifiers)\n\nThe most widely used global trade and industrial standard for labeling and data structures is ANSI MH10.8.2. It assigns strict codes (Data Identifiers) to distinguish the two concepts globally:\n\u2022 Part Number (DI: 1P): Formally defined as a class-level identifier or manufacturer catalog ID. It identifies the specific design, model, or form/fit/function configuration of an item. All physical items manufactured to that exact design share the same part number.\n\u2022 Serial Number (DI: S): Formally defined as an instance-level identifier or unique unit identifier. It is assigned to a single physical instantiation of a design to differentiate it uniquely from the next unit produced sequentially.\n\n2. MIL-STD-100G (Department of Defense Standard Practice for Engineering Drawings)\n\nFor aerospace and defense engineering, MIL-STD-100G (Section 3.51) officially dictates definitions for configuration management:\n\u2022 Part Identification Number (PIN / Part Number): A unique combination of letters and numbers used to identify a specific item across engineering drawings, manufacturing routers, and procurement systems. It represents a \"type\" or \"piece mark\" rather than an individual piece of hardware.\n\u2022 Serial Number: A unique tracking number appended to an individual unit when life-cycle traceability, warranty tracking, or specific quality control checks are required.\n\n",
+          "createdAt": "2026-10-30T14:21:33Z",
+          "updatedAt": "2026-10-30T14:21:33Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -12680,24 +12688,26 @@
       "id": "PR_kwDOKiDYo88AAAABGDFWQw",
       "title": "Edits/Nits from Med's IESG Review",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/169",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2026-10-01T07:47:28Z",
-      "updatedAt": "2026-10-20T22:13:45Z",
+      "updatedAt": "2026-10-30T14:41:32Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "3a3d69502cfffc44ed92ccb1d4fe3bf4ae60d21f",
       "headRepository": "boucadair/network-inventory-yang",
       "headRefName": "patch-16",
-      "headRefOid": "829f14ffd85396e13af45546ed19db5c00632476",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "6a8ccef4445ea5593cea56d34d5f3ef6796be038",
+      "closedAt": "2026-10-30T14:41:32Z",
+      "mergedAt": "2026-10-30T14:41:32Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "20c919a1b09b3ea352c4369f3c95975f1b96c889"
+      },
       "comments": [],
       "reviews": [
         {
@@ -12731,6 +12741,99 @@
               "updatedAt": "2026-10-20T22:13:45Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABU7_pFw",
+          "commit": {
+            "abbreviatedOid": "829f14f"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-29T15:08:33Z",
+          "updatedAt": "2026-10-29T15:08:34Z",
+          "comments": [
+            {
+              "originalPosition": 303,
+              "body": "This is mainly to have a consistent classification of RFC8341, which is already normative for Sec cons",
+              "createdAt": "2026-10-29T15:08:33Z",
+              "updatedAt": "2026-10-29T15:08:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABVJIJYw",
+          "commit": {
+            "abbreviatedOid": "9f0b72b"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T14:34:22Z",
+          "updatedAt": "2026-10-30T14:34:22Z",
+          "comments": [
+            {
+              "originalPosition": 133,
+              "body": "I think this may benefit from commas...\n\nThe top-level \"components\" container exposes a list of components, within each network element, and other parameters.",
+              "createdAt": "2026-10-30T14:34:22Z",
+              "updatedAt": "2026-10-30T14:34:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABVJKDZQ",
+          "commit": {
+            "abbreviatedOid": "9f0b72b"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T14:36:44Z",
+          "updatedAt": "2026-10-30T14:36:45Z",
+          "comments": [
+            {
+              "originalPosition": 133,
+              "body": "```suggestion\nThe top-level \"components\" container exposes a list of components, within each network element, and other parameters.\n```",
+              "createdAt": "2026-10-30T14:36:44Z",
+              "updatedAt": "2026-10-30T14:36:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABVJKvCQ",
+          "commit": {
+            "abbreviatedOid": "9f0b72b"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T14:37:33Z",
+          "updatedAt": "2026-10-30T14:37:33Z",
+          "comments": [
+            {
+              "originalPosition": 133,
+              "body": "Done",
+              "createdAt": "2026-10-30T14:37:33Z",
+              "updatedAt": "2026-10-30T14:37:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABVJM0RQ",
+          "commit": {
+            "abbreviatedOid": "9f0b72b"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "I approve as it. I did make one comment which you can apply if you think appropriate. I also approve if applied.",
+          "createdAt": "2026-10-30T14:40:02Z",
+          "updatedAt": "2026-10-30T14:40:02Z",
+          "comments": []
         }
       ]
     }
