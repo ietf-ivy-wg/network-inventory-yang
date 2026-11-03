@@ -66,7 +66,7 @@ module ietf-network-inventory {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-09-29 {
+  revision 2026-11-03 {
     description
       "Initial version";
     reference
@@ -200,7 +200,8 @@ module ietf-network-inventory {
   grouping ne-component-common-entity-attributes {
     description
       "The set of attributes which are common to all the entities
-       (e.g., component or network elements) defined in this module.";
+       (e.g., component or network elements) defined in this
+       module.";
     uses basic-common-entity-attributes;
     list software-rev {
       key "name";
@@ -323,9 +324,19 @@ module ietf-network-inventory {
       type string;
       description
         "The vendor-specific part number of the component
-         type. It is expected that vendors assign unique part
-         numbers to different component types within the
-         scope of the vendor.";
+         type.
+
+         It is expected that vendors assign unique part numbers to
+         different component types within the scope of the vendor.";
+      reference
+        "ISO/IEC 15418:2016: Information technology - Automatic
+                 identification and data capture techniques -
+                 GS1 Application Identifiers and ASC MH10 Data
+                 Identifiers and maintenance (Data Identifier: 1P)
+         ISO/IEC 15459-4:2014: Information technology - Automatic
+                 identification and data capture techniques - Unique
+                 identifiers - Part 4: Individual products and
+                 product packages";
     }
     leaf serial-number {
       type string;
@@ -335,6 +346,15 @@ module ietf-network-inventory {
          It is expected that vendors assign unique serial numbers to
          different component instances within the scope of the
          'part-number'.";
+      reference
+        "ISO/IEC 15418:2016: Information technology - Automatic
+                 identification and data capture techniques -
+                 GS1 Application Identifiers and ASC MH10 Data
+                 Identifiers and maintenance (Data Identifier: S)
+         ISO/IEC 15459-4:2014: Information technology - Automatic
+                 identification and data capture techniques - Unique
+                 identifiers - Part 4: Individual products and
+                 product packages";
     }
     leaf asset-id {
       type string;

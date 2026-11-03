@@ -92,6 +92,22 @@ normative:
     author:
       org: IANA
     target: https://www.iana.org/assignments/iana-hardware/iana-hardware.xhtml
+  ISO_IEC_15418:
+    title: Information technology - Automatic identification and data capture techniques - GS1 Application Identifiers and ASC MH10 Data Identifiers and maintenance
+    author:
+      org: ISO/IEC
+    date: 2016-03
+    seriesinfo:
+      ISO/IEC: 15418:2016
+    target: https://www.iso.org/standard/67405.html
+  ISO_IEC_15459-4:
+    title: "Information technology - Automatic identification and data capture techniques - Unique identifiers - Part 4: Individual products and product packages"
+    author:
+      org: ISO/IEC
+    date: 2014-11
+    seriesinfo:
+      ISO/IEC: 15459-4:2014
+    target: https://www.iso.org/standard/54782.html
 
 informative:
   TMF_SD2-20:
@@ -366,12 +382,12 @@ mfg-date:
 : The date of manufacturing of the component.
 
 part-number:
-: The vendor-specific part number of the component type.
+: The vendor-specific part number of the component type, as defined in {{ISO_IEC_15418}} and {{ISO_IEC_15459-4}}.
 : It is expected that vendors assign unique part numbers to different component types within the scope of the vendor.
 : > Although the part number is often an alphanumeric string and not a number, this document uses this term since it is widely used and well known in the industry.
 
 serial-number:
-: The vendor-specific serial number of the component instance.
+: The vendor-specific serial number of the component instance, as defined in {{ISO_IEC_15418}} and {{ISO_IEC_15459-4}}.
 : It is expected that vendors assign unique serial numbers to different component instances at least within the scope of the part-number.
 : > Although the serial number is often an alphanumeric string and not a number, this document uses this term since it is widely used and well known in the industry.
 
@@ -494,7 +510,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-09-29.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-11-03.yang"}
 
 # Operational Considerations {#operational}
 
