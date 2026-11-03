@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-11-01T03:29:54.858132+00:00",
+  "timestamp": "2026-11-03T04:43:13.215904+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -5935,9 +5935,9 @@
       "labels": [
         "priority-1"
       ],
-      "body": "> 1061 leaf part-number { \n> 1062 type string; \n> 1063 description \n> 1064 \"The vendor-specific part number of the component \n> 1065 type. It is expected that vendors assign unique part \n> 1066 numbers to different component types within the \n> 1067 scope of the vendor.\"; \n> 1068 } \n> 1069 leaf serial-number { \n> 1070 type string; \n> 1071 description \n> 1072 \"The vendor-specific serial number of the component instance.\n> \n> 1074 It is expected that vendors assign unique serial numbers to \n> 1075 different component instances within the scope of the \n> 1076 'part-number'.\"; \n> 1077 }\n> \n> \"part-number\" and \"serial-number\" carry no reference?\n> \n\n- [ ] Look for some references\n",
+      "body": "> 1061 leaf part-number { \n> 1062 type string; \n> 1063 description \n> 1064 \"The vendor-specific part number of the component \n> 1065 type. It is expected that vendors assign unique part \n> 1066 numbers to different component types within the \n> 1067 scope of the vendor.\"; \n> 1068 } \n> 1069 leaf serial-number { \n> 1070 type string; \n> 1071 description \n> 1072 \"The vendor-specific serial number of the component instance.\n> \n> 1074 It is expected that vendors assign unique serial numbers to \n> 1075 different component instances within the scope of the \n> 1076 'part-number'.\"; \n> 1077 }\n> \n> \"part-number\" and \"serial-number\" carry no reference?\n> \n\n- [x] Look for some references\n",
       "createdAt": "2026-10-21T16:30:04Z",
-      "updatedAt": "2026-10-30T14:21:33Z",
+      "updatedAt": "2026-11-03T03:06:42Z",
       "closedAt": null,
       "comments": [
         {
