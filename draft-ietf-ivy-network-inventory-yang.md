@@ -148,7 +148,7 @@ software, and hardware/software versions). Network inventories may
 be constructed from management system data to represent the expected
 devices present in a network, and also be used to audit and catalog
 what devices are discovered in the network, and to expose that
-information in a consistent way.
+information consistently.
 
 Network inventory management is a critical component for ensuring the infrastructure remains up-to-date (e.g., identifying assets that need to be upgraded or decommissioned), stays healthy (e.g., auditing to identify faulty elements), and is maintained to meet performance objectives.
 Also, network inventory management allows operators to keep track of which devices are deployed in their networks, including relevant embedded software and hardware versions.
@@ -324,13 +324,13 @@ However, the YANG data model defined in {{!RFC8348}} has been used as a referenc
 For all the inventory objects, there are some common attributes, including:
 
 uuid:
-: The Universally Unique Identifier (UUID) of the inventory object, assigned by the server. Such identifiers are widely implemented with systems and guaranteed to be globally unique.
+: The Universally Unique Identifier (UUID) of the inventory object, assigned by the server. Such identifiers are widely implemented with systems and designed to be globally unique.
 
 name:
 : A human-interpretable label of the inventory object, provided by a network operator or by the server. It could also be present on a Graphical User Interface (GUI).
 
 alias:
-: A human-interpretable label of the inventory object, provided by a network operator. It could also be present on a GUI instead as well as the name.
+: A human-interpretable label of the inventory object, provided by a network operator. It could also be present in a GUI instead as well as the name.
 
 description:
 : A human-interpretable description of the inventory object, provided by a network operator or by the server. The description provides more detailed information to prompt users when performing maintenance operations etc.
@@ -401,7 +401,7 @@ For state data like "admin-state", "oper-state", and so on, this document consid
 
 ### Hardware Components
 
-Other models (e.g., {{TMF_SD2-20}}) classify the hardware components into two groups: holder group and equipment group. The holder group contains rack, chassis, slot, and sub-slot while the equipment group contains network-element, board, and port. This data model, likewise {{!RFC8348}}, does not follow this classification and manages all the hardware components without distinguishing between holder and equipment groups.
+Other models (e.g., {{TMF_SD2-20}}) classify the hardware components into two groups: holder group and equipment group. The holder group contains rack, chassis, slot, and sub-slot while the equipment group contains network-element, board, and port. This data model, like {{!RFC8348}}, does not follow this classification and manages all the hardware components without distinguishing between holder and equipment groups.
 
 See {{port-examples}}, {{multi-chassis-examples}}, and {{non-modular-examples}} for concrete hardware component examples.
 
@@ -456,7 +456,7 @@ Each instance of a network element or a component includes its own "software-rev
 The scope of the list is to provide information about the software images that are running within the related entity. The term "running" here is intended as the software modules that the controller has discovered as running in the network element or component as explained in {{operational}}. How a controller discovers and keeps synchronized running software information as well as how it manages transient state (e.g., reboot or loss of connectivity with the network element) are outside the scope of this document.
 
 The data model supports scenarios where multiple software modules can be images running within the entity.
-For example, one Operating System and one or more application software modules can be running in a network element, and, in the same way, one boot-loader, one firmware and one or more Field-Programmable Gate Array (FPGA) software modules can be running on a component like a circuit pack.
+For example, one Operating System and one or more application software modules can be running in a network element, and, in the same way, one bootloader, one firmware and one or more Field-Programmable Gate Array (FPGA) software modules can be running on a component like a circuit pack.
 
 For each software module running on the entity, the name and version information is provided.
 
@@ -564,7 +564,7 @@ notification) to these data nodes.
 
 Specifically, the following subtrees and data nodes have particular sensitivities/vulnerabilities:
 
-- "/nwi:network-elements"
+- "/nwi:network-inventory/nwi:network-elements"
 
 > This subtree reports the inventory information for all the network elements and their hardware components deployed within the network as well as of the software modules being discovered as running on these network elements and components. Unauthorized access to this subtree can disclose this information. A malicious attacker can use this information to perform targeted attacks to network elements, hardware components or software modules with known vulnerabilities.
 
@@ -768,7 +768,7 @@ This appendix contains an example of an instance data tree in JSON encoding {{?R
 
 This appendix provides some examples of non-modular network elements and how they can be modelled using the "ietf-network-inventory" module defined in {{ni-yang}}.
 
-Non-modular network elements (also known as "pizza boxes") are network elements comprised of a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field replaceable modules other than pluggable ports.
+Non-modular network elements (also known as "pizza boxes") are network elements comprised of a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field-replaceable modules other than pluggable ports.
 
 {{fig-pizza-box}} describes an example of a pizza box with 8 ports.
 

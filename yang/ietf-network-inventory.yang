@@ -79,7 +79,7 @@ module ietf-network-inventory {
 
   identity non-hardware-component-class {
     description
-      "Base identity for non hardware components (e.g., software
+      "Base identity for non-hardware components (e.g., software
        components) in a managed device.";
   }
 
