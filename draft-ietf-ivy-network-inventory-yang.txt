@@ -5,14 +5,14 @@
 IVY Working Group                                                  C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 3 May 2027                                                Nokia
+Expires: 9 May 2027                                                Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                         30 October 2026
+                                                         5 November 2026
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 May 2027.
+   This Internet-Draft will expire on 9 May 2027.
 
 Copyright Notice
 
@@ -1446,12 +1446,12 @@ Table of Contents
               network-inventory-location-06>.
 
    [I-D.ietf-ivy-network-inventory-software]
-              Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
-              Network Data Model of Network Inventory Software
-              Extensions", Work in Progress, Internet-Draft, draft-ietf-
-              ivy-network-inventory-software-04, 6 July 2026,
+              Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG Data
+              Model of Network Inventory Software", Work in Progress,
+              Internet-Draft, draft-ietf-ivy-network-inventory-software-
+              05, 2 November 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-software-04>.
+              network-inventory-software-05>.
 
    [I-D.ietf-teas-actn-poi-applicability]
               Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
