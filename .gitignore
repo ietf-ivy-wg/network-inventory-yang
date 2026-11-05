@@ -22,6 +22,3 @@ draft-ietf-ivy-network-inventory-yang.xml
 package-lock.json
 report.xml
 !requirements.txt
-*.bash
-pretty/
-!figures/*
