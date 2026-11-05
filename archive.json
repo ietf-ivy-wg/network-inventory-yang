@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-11-03T04:43:13.215904+00:00",
+  "timestamp": "2026-11-05T04:26:44.061980+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -5570,19 +5570,27 @@
         "italobusi"
       ],
       "labels": [
+        "wait",
         "priority-1"
       ],
       "body": "Document: draft-ietf-ivy-network-inventory-yang\nTitle: A Base YANG Data Model for Network Inventory\nReviewer: Linda Dunbar\nReview result: Has Nits\n\nThe document is generally clear and the approach of separating a generic\nnetwork-wide inventory model from technology-specific augmentations seems\nreasonable.\n\nHere is one minor issue with the document:\n\nIn a hierarchical-controller deployment, a higher-level controller may combine\ninventories learned from multiple lower-level controllers. Since ne-id is\nassigned by the server and is the key of the network-element list, I assume\nthat the higher-level controller, acting as the server for the combined\ninventory, is responsible for ensuring that ne-id values are unique within the\ninventory it exposes. A short clarification to this effect could be helpful.\n\nBest Regards,\n\nLinda Dunbar\n\n---\n\nSee: https://datatracker.ietf.org/doc/review-ietf-ivy-network-inventory-yang-20-rtgdir-telechat-dunbar-2026-10-01/",
       "createdAt": "2026-10-06T15:29:46Z",
-      "updatedAt": "2026-10-08T16:32:16Z",
+      "updatedAt": "2026-11-04T19:01:38Z",
       "closedAt": null,
       "comments": [
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2026-10-07 Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2026-10-07)**\n\n- [ ] Propose some text",
+          "body": "**[2026-10-07 Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2026-10-07)**\n\n- [x] Propose some text",
           "createdAt": "2026-10-08T00:59:22Z",
-          "updatedAt": "2026-10-08T00:59:22Z"
+          "updatedAt": "2026-11-04T18:59:15Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> **[2026-10-07 Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2026-10-07)**\n> \n> - [x]  Propose some text\n\nProposed text change in Section 6:\n\nOLD\n\nThis information can be provided by a network controller to a higher level hierarchical network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.\n\nNEW\n\nIn case of hierarchical controllers, a hierarchical network controller can \nalso collect the network inventory information from its lower-level network \ncontrollers using this YANG data model (or other mechanisms which are \noutside the scope of this document) and report the combined network inventory \ninformation to a higher-level network controller, to an Inventory OSS, or \nto any other type of application which needs to discover the network inventory \ninformation. When combining network inventories from lower-level network \ncontrollers, the higher-level controller acts as \nthe server for its northbound interface and is responsible for ensuring that \nthe 'ne-id' values remain unique within the combined network-element list it \nexposes.\n",
+          "createdAt": "2026-11-04T19:01:30Z",
+          "updatedAt": "2026-11-04T19:01:30Z"
         }
       ]
     },
@@ -5598,11 +5606,12 @@
         "italobusi"
       ],
       "labels": [
-        "priority-1"
+        "priority-1",
+        "wait-PR-text"
       ],
       "body": "Document: draft-ietf-ivy-network-inventory-yang\nTitle: A Base YANG Data Model for Network Inventory\nReviewer: Haoyu Song\nReview result: Ready with Nits\n\nI am an assigned INT directorate reviewer for\ndraft-ietf-ivy-network-inventory-yang-19. These comments were written primarily\nfor the benefit of the Internet Area Directors. Document editors and\nshepherd(s) should treat these comments just like they would treat comments\nfrom any other IETF contributors and resolve them along with any other Last\nCall comments that have been received. For more details on the INT Directorate,\nsee https://datatracker.ietf.org/group/intdir/about/\n\nThis document defines a base YANG data model for reporting network inventory\nacross a network domain. The data model is application- and technology-\nagnostic. The model is a read-only network model intended for northbound\ncontroller-to-OSS or controller-to-controller interfaces. It offers a\nnetwork-wide view of discovered physical network elements and their\nhardware/software components. The document has limited Internet Area impact.\nThe comments below list a few potential issues and some nits I noticed during\nthe review.\n\nMy review conclusion is: Ready with Minor Issues / Nits\n\n------------------------------------------------\nPotential issues that SHOULD be addressed.\n-----------------------------------------------\n\n1. Possible identity name mismatch? Section 3 says the document defines the\n\"physical-network-element\" identity and a \"non-hardware\" identity. In Section\n5, the module defines \"ne-physical\" and \"non-hardware-component-class\". Please\nalign the names for consistency.\n\n2. mfg-date type uses yang:date-and-time.  Time of day is meaningless for\nmanufacturing date. Is yang:date a more proper type?\n\n3. Possible errors in the Appendix E.1 JSON.\n   - transceiver-module-2-1: description says \"first stack port of the first switch\"; it should be the second switch.\n   - transceiver-module-2-2: same issue. description should be the second switch.\n\n4. Appendix A, Table 2 mappings.\n   - \"location -> location\": the base module has no location node; it is defined in I-D.ietf-ivy-network-inventory-location. Please say so in the Remark column.\n   - \"id -> uuid\": the OpenConfig \"id\" is a vendor/device identifier, not necessarily a UUID. Mapping it to uuid seems wrong.\n   - \"subcomponents\" has an empty Remark. Presumably it maps to the inverse of \"parent\"; please state that if so.\n\n-------------------------------------------\nNits\n-------------------------------------------\n\n- Section 2.4: \"Table 1 list\" -> \"Table 1 lists\".\n- Section 3.3: the attribute list omits uri, parent, parent-rel-pos, and is-main, which are in the tree/module.\n- Section 3.3.1: \"This model, likewise [RFC8348],\" -> \"This model, like [RFC8348],\".\n- Section 5, revision reference and ne-type reference: \"A YANG Data Model for Network Inventory\" vs. the document title \"A Base YANG  Data Model for Network Inventory\".\n- Section 5, contact: Peruzzini's address (telecomitalia.it) and Belotti's address ([nokia.com](http://nokia.com/)) differ from the Authors' Addresses ([fibercop.com](http://fibercop.com/), [gmail.com](http://gmail.com/)) - Section 5, name description: \"The The network operator\".\n- Section 5, is-main description: \"which can can take\".\n- Section 6: \"reports what it is actually installed\" -> \"reports what is actually installed\".\n- Appendix B: \"an hardware\" -> \"a hardware\"; \"capabable\" ->  \"capable\".\n- Appendix C: \"documento\" ->\"document\".\n- Appendix E: \"Figure 7 describe\" -> \"Figure 7 describes\".\n- Appendix F: \"cannot take any non-field replaceable modules other than pluggable ports\" is hard to parse.  Do you mean field-replaceable modules? \n- Acknowledgments: \"YANG Doctor eview\" -> \"review\"; \"Valery Smyslov, Samier Barguil, and for their\" a name is missing after \"and\"?\n\n---\n\nSee: https://datatracker.ietf.org/doc/review-ietf-ivy-network-inventory-yang-19-intdir-telechat-song-2026-09-30/",
       "createdAt": "2026-10-06T15:31:18Z",
-      "updatedAt": "2026-10-22T15:22:04Z",
+      "updatedAt": "2026-11-04T18:57:01Z",
       "closedAt": null,
       "comments": [
         {
@@ -5684,14 +5693,16 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "italobusi"
+      ],
       "labels": [
-        "wait",
-        "priority-1"
+        "priority-1",
+        "wait-PR-text"
       ],
       "body": "----------------------------------------------------------------------\nCOMMENT:\n----------------------------------------------------------------------\n\nThank you to Elwyn Davies for the GENART review.\n\n** software-rev\n\nGiven the diverse choices in SBOM formats and the focus on software supply\nchain security, consider if richer format than name, revision and patch would\nbe helpful.\n\n---\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/HtXTvEhVGhEYuFrb4FwvtPfW2FM/",
       "createdAt": "2026-10-06T15:38:41Z",
-      "updatedAt": "2026-10-21T16:50:41Z",
+      "updatedAt": "2026-11-04T11:40:38Z",
       "closedAt": null,
       "comments": [
         {
@@ -5707,6 +5718,13 @@
           "body": "> - [x]  Ask the commenter whether adding richer formats would maintain backward compatibility with name, revision and patch and the YANG keys. If this is the case, this comment can be considered to be in the scope of model augmentations to be defined the software inventory model.\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/3fz3FHaAQqjQdzjqK25q07Ze-bk/\n\nWait for feedbacks from the AD\n",
           "createdAt": "2026-10-21T16:50:20Z",
           "updatedAt": "2026-10-21T16:50:20Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See: https://mailarchive.ietf.org/arch/msg/ivy/mCpxMTXEcCsdL-KlsoyddyVosKY/\n\n- [ ] Submit PR with proposed text",
+          "createdAt": "2026-11-04T11:32:30Z",
+          "updatedAt": "2026-11-04T11:32:30Z"
         }
       ]
     },
@@ -5722,11 +5740,12 @@
         "italobusi"
       ],
       "labels": [
-        "priority-1"
+        "priority-1",
+        "wait-PR-text"
       ],
       "body": "----------------------------------------------------------------------\nCOMMENT:\n----------------------------------------------------------------------\n\n\nThanks to Valery Smyslov for their secdir review.\n\nSection 3.2, para 2, sentence 2:  It is unusual to use the term being defined\n'running' in the definition.  Perhaps the word 'executing' might be an option?\nOr is the intent to define the difference between software images and software\nmodules?\n\nSection 3.4:  Is this an update to RFC 8348?  If so, that should be stated up\nfront.  It would not be shocking for an RFC published 8 years ago to benefit\nfrom an update.\n\nSection 3.4.2, last para:  Does 'name' really mean 'component name'?  Or is\nthere another form of 'name'?  The fact that there are components and\ncomponent-id as two distinct entities is confusing (to me, anyway).\n\nSection 7, bullet 1:  The example that comes to my mind with respect to\nsensitive information is version/patch level for hw/sw running on a network.\nThis isn't stated directly, but I assume that is what is reported in that\nsubtree.\n\n---\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/XnvQdxWmc0OuWVrYylu-3dAh2P4/",
       "createdAt": "2026-10-06T16:01:23Z",
-      "updatedAt": "2026-10-22T15:24:02Z",
+      "updatedAt": "2026-11-04T11:41:06Z",
       "closedAt": null,
       "comments": [
         {
@@ -5762,7 +5781,7 @@
       ],
       "body": "----------------------------------------------------------------------\nCOMMENT:\n----------------------------------------------------------------------\n\nThanks to the authors and the WG for their work on this document.\n\nPlease find below some comments, questions and suggestions on this document\ninline in the idnits output of v20 of this document. The end of the review is\nmarked by the tag <EoRv20>.\n\nI've not been following or familiar with this work, so please correct me if\nI am wrong.\n\n\n251\t   The following terms are defined in the description statements of the\n252\t   corresponding YANG identities, defined in [IANA_HW_YANG], and are not\n253\t   redefined here:\n\n<nit> Section 2.2 says \"power supply\" and \"storage device\" but the\niana-hardware identities are \"power-supply\" and \"storage-drive\".\n\n\n374\t   Physical network elements are usually devices such as hosts,\n375\t   gateways, terminal servers, and the like, which have management\n376\t   agents responsible for performing the network management functions\n377\t   requested by the network management stations ([RFC1157]).\n\n<minor> RFC 1157 is Historic; perhaps cite something current ?\n\n379\t   The \"ne-type\" is defined as a YANG identity to describe the type of\n380\t   the network element.  This document defines only the \"physical-\n381\t   network-element\" identity.\n\n<major> The module defines \"ne-physical\", not \"physical-network-element\".\nSimilarly, in the same section, it defines \"non-hardware-component-class\",\nnot \"non-hardware\". Also RFC 8348 carries no \"rack\", \"sub-slot\" or \"board\"\nat all, and no \"slot\" identity \u2014 a slot there seems to be modelled as\n\"ianahw:container\" and a board or card as \"ianahw:module\"?\n\n\n785\t     description\n786\t       \"This module defines a base model for retrieving network\n787\t        inventory.\n\n789\t        Copyright (c) 2026 IETF Trust and the persons\n790\t        identified as authors of the code.  All rights reserved.\n\n792\t        Redistribution and use in source and binary forms, with or\n793\t        without modification, is permitted pursuant to, and subject\n794\t        to the license terms contained in, the Revised BSD License\n795\t        set forth in Section 4.c of the IETF Trust's Legal Provisions\n796\t        Relating to IETF Documents\n797\t        (https://trustee.ietf.org/license-info).\n\n799\t        This version of this YANG module is part of RFC XXXX; see\n800\t        the RFC itself for full legal notices.\n\n802\t        The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL\n803\t        NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',\n804\t        'MAY', and 'OPTIONAL' in this document are to be interpreted as\n805\t        described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,\n806\t        they appear in all capitals, as shown here.\";\n\n<minor> RFC 9907 Section 4.8 asks every published module's description to\ncarry a pointer to the registry group where its revisions can be found, and\nthe module description does not have one. Suggest adding to the description:\n\n   All revisions of IETF and IANA published modules can be found at\n   the \"YANG Parameters\" registry group:\n   <https://www.iana.org/assignments/yang-parameters>.\n\n811\t       reference\n812\t         \"RFC XXXX: A YANG Data Model for Network Inventory.\";\n\n<nit> The revision and ne-type reference statements cite \"A YANG Data Model\nfor Network Inventory\"; the document's title has \"Base\" in it.\n\n1061\t       leaf part-number {\n1062\t         type string;\n1063\t         description\n1064\t           \"The vendor-specific part number of the component\n1065\t            type. It is expected that vendors assign unique part\n1066\t            numbers to different component types within the\n1067\t            scope of the vendor.\";\n1068\t       }\n1069\t       leaf serial-number {\n1070\t         type string;\n1071\t         description\n1072\t           \"The vendor-specific serial number of the component instance.\n\n1074\t            It is expected that vendors assign unique serial numbers to\n1075\t            different component instances within the scope of the\n1076\t            'part-number'.\";\n1077\t       }\n\n<minor> \"part-number\" and \"serial-number\" carry no reference?\n\n1136\t           leaf ne-id {\n1137\t             type string;\n1138\t             description\n1139\t               \"An identifier that uniquely identifies the NE in\n1140\t                a network.\";\n1141\t           }\n\n<minor> Section 3.2 says the ne-id is assigned by the server, and that it\nshould be assigned so that the same network element keeps the same identifier\neven across disconnection; Section 3.1 says the uuid is assigned by the\nserver. The module descriptions for those two nodes carry neither point.\n\n1271\t   are also allowed.  In case some information is not provided by the\n1272\t   device, the network controller SHALL omit this information unless\n1273\t   this information is known by other sources of information (e.g.,\n1274\t   through local configuration within the network controller).\n\n<major> This is a normative requirement on an implementation sits oddly in\nOperational Considerations. Suggest moving the sentence into Section 3.\n\n\n1361\t   IANA is requested to register the following URI in the \"ns\" registry\n1362\t   within the \"IETF XML Registry\" group [RFC3688]:\n\n1364\t      URI: urn:ietf:params:xml:ns:yang:ietf-network-inventory\n1365\t      Registrant Contact: The IESG\n1366\t      XML: N/A; the requested URI is an XML namespace.\n\n1368\t   IANA is requested to register the following YANG module in the \"YANG\n1369\t   Module Names\" registry [RFC6020] within the \"YANG Parameters\"\n1370\t   registry group.\n\n<minor> RFC 6020 is listed as normative and RFC 3688 as informative. Suggest\nclassifying the two the same way, whichever way is more accurate.\n\n\n<EoRv20>\n\n---\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/WD_aF0TvYzRgRrowejwZyTknN1M/",
       "createdAt": "2026-10-06T16:13:42Z",
-      "updatedAt": "2026-10-22T15:24:19Z",
+      "updatedAt": "2026-11-04T11:43:06Z",
       "closedAt": null,
       "comments": [
         {
@@ -5770,14 +5789,14 @@
           "authorAssociation": "COLLABORATOR",
           "body": "My initial proposed resolutions:\n\n> 251 The following terms are defined in the description statements of the \n> 252 corresponding YANG identities, defined in [IANA_HW_YANG], and are not \n> 253 redefined here:\n> \n> Section 2.2 says \"power supply\" and \"storage device\" but the iana-hardware identities are \"power-supply\" and \"storage-drive\".\n> \n\nWhat about:\n\nOLD\n\n   *  power supply\n   * <...>\n   *  storage device\n\nNEW\n\n   *  power supply: for the power-supply YANG identity [IANA_HW_YANG]\n   * <...>\n   *  storage device: for the storage-drive YANG identity [IANA_HW_YANG]\n\n> 374 Physical network elements are usually devices such as hosts, \n> 375 gateways, terminal servers, and the like, which have management \n> 376 agents responsible for performing the network management functions \n> 377 requested by the network management stations ([RFC1157]).\n> \n> RFC 1157 is Historic; perhaps cite something current ?\n> \n\nWhat about replacing gateways with routers and RFC1157 with RFC6632?\n\n\"Physical network elements are usually devices such as hosts, routers, terminal servers, and the like, which have management agents responsible for performing the network management functions requested by the network management stations ([RFC6632]).\"\n\n> 379 The \"ne-type\" is defined as a YANG identity to describe the type of \n> 380 the network element. This document defines only the \"physical- \n> 381 network-element\" identity.\n> \n> The module defines \"ne-physical\", not \"physical-network-element\". Similarly, in the same section, it defines \"non-hardware-component-class\", not \"non-hardware\". \n\nI would suggest c/physical-network-element/ne-physical/ and c/non-hardware/non-hardware-component-class/ for consistency.\n\n> Also RFC 8348 carries no \"rack\", \"sub-slot\" or \"board\" at all, and no \"slot\" identity \u2014 a slot there seems to be modelled as \"ianahw:container\" and a board or card as \"ianahw:module\"?\n> \n\nWhat about:\n\nOLD\n\n\"In [RFC8348], rack, chassis, slot, sub-slot, board and port are defined as components of network elements with generic attributes.\"\n\nNEW\n\n\"Like in [RFC8348], chassis, slot/sub-slot, board and port are defined respectively as \"chassis\", \"container\", \"module\" and \"port\" component classes, with generic attributes.\"\n\n> 785 description \n> 786 \"This module defines a base model for retrieving network \n> 787 inventory.\n> \n> 789 Copyright (c) 2026 IETF Trust and the persons \n> 790 identified as authors of the code. All rights reserved.\n> \n> 792 Redistribution and use in source and binary forms, with or \n> 793 without modification, is permitted pursuant to, and subject \n> 794 to the license terms contained in, the Revised BSD License \n> 795 set forth in Section 4.c of the IETF Trust's Legal Provisions \n> 796 Relating to IETF Documents \n> 797 (https://trustee.ietf.org/license-info).\n> \n> 799 This version of this YANG module is part of RFC XXXX; see \n> 800 the RFC itself for full legal notices.\n> \n> 802 The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL \n> 803 NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED', \n> 804 'MAY', and 'OPTIONAL' in this document are to be interpreted as \n> 805 described in BCP 14 (RFC 2119) (RFC 8174) when, and only when, \n> 806 they appear in all capitals, as shown here.\";\n> \n> RFC 9907 Section 4.8 asks every published module's description to carry a pointer to the registry group where its revisions can be found, and the module description does not have one. Suggest adding to the description:\n> \n> All revisions of IETF and IANA published modules can be found at the \"YANG Parameters\" registry group: https://www.iana.org/assignments/yang-parameters.\n> \n\nFixed by Med in PR #169 \n\n> 811 reference \n> 812 \"RFC XXXX: A YANG Data Model for Network Inventory.\";\n> \n> The revision and ne-type reference statements cite \"A YANG Data Model for Network Inventory\"; the document's title has \"Base\" in it.\n> \n\nFixed by Med in PR #169 \n\n> 1061 leaf part-number { \n> 1062 type string; \n> 1063 description \n> 1064 \"The vendor-specific part number of the component \n> 1065 type. It is expected that vendors assign unique part \n> 1066 numbers to different component types within the \n> 1067 scope of the vendor.\"; \n> 1068 } \n> 1069 leaf serial-number { \n> 1070 type string; \n> 1071 description \n> 1072 \"The vendor-specific serial number of the component instance.\n> \n> 1074 It is expected that vendors assign unique serial numbers to \n> 1075 different component instances within the scope of the \n> 1076 'part-number'.\"; \n> 1077 }\n> \n> \"part-number\" and \"serial-number\" carry no reference?\n> \n\n- [x] For discussion\n\nI am not aware of any standard definition to be referenced\n\n> 1136 leaf ne-id { \n> 1137 type string; \n> 1138 description \n> 1139 \"An identifier that uniquely identifies the NE in \n> 1140 a network.\"; \n> 1141 }\n> \n> Section 3.2 says the ne-id is assigned by the server, and that it should be assigned so that the same network element keeps the same identifier even across disconnection; Section 3.1 says the uuid is assigned by the server. The module descriptions for those two nodes carry neither point.\n> \n\nOLD\n\n```\n        leaf ne-id {\n          type string;\n          description\n            \"An identifier that uniquely identifies the NE in\n             a network.\";\n        }\n\n    leaf uuid {\n      type yang:uuid;\n      description\n        \"The Universally Unique Identifier of the entity\n         (e.g., component).\";\n    }\n```\n\nNEW\n\n```\n        leaf ne-id {\n          type string;\n          description\n            \"An identifier that uniquely identifies the NE in\n             a network.\n             \n             This identifier is assigned by the server and MUST be\n             persistent across disconnections, reboots, or\n             management  session losses.\";\n        }\n\n    leaf uuid {\n      type yang:uuid;\n      description\n        \"The Universally Unique Identifier of the entity\n         (e.g., component).\n         \n         This identifier is assigned by the server.\";\n    }\n```\n\n> 1271 are also allowed. In case some information is not provided by the \n> 1272 device, the network controller SHALL omit this information unless \n> 1273 this information is known by other sources of information (e.g., \n> 1274 through local configuration within the network controller).\n> \n> This is a normative requirement on an implementation sits oddly in Operational Considerations. Suggest moving the sentence into Section 3.\n> \n\n- [ ] For discussion\n\nThis is yet another comment asking to move (or copy) important operational considerations from Section 6 to Section 3. These comments are reasonable to me because YANG data model design is based on some operational considerations but these comments confirm my initial about about the real need for Section 6 in documents that define YANG data models.\n\n> 1361 IANA is requested to register the following URI in the \"ns\" registry \n> 1362 within the \"IETF XML Registry\" group [RFC3688]:\n> \n> 1364 URI: urn:ietf:params:xml:ns:yang:ietf-network-inventory \n> 1365 Registrant Contact: The IESG 1366 XML: N/A; the requested URI is an XML namespace.\n> \n> 1368 IANA is requested to register the following YANG module in the \"YANG \n> 1369 Module Names\" registry [RFC6020] within the \"YANG Parameters\" \n> 1370 registry group.\n> \n> RFC 6020 is listed as normative and RFC 3688 as informative. Suggest classifying the two the same way, whichever way is more accurate.\n> \n\nFixed by Med in PR #169 \n\n> See: https://mailarchive.ietf.org/arch/msg/ivy/WD_aF0TvYzRgRrowejwZyTknN1M/\n\n",
           "createdAt": "2026-10-20T21:49:50Z",
-          "updatedAt": "2026-10-22T15:24:19Z"
+          "updatedAt": "2026-11-04T11:42:01Z"
         },
         {
           "author": "italobusi",
           "authorAssociation": "COLLABORATOR",
-          "body": "**[2026-10-21 Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2026-10-21)**\n\n> 1061 leaf part-number { \n> 1062 type string; \n> 1063 description \n> 1064 \"The vendor-specific part number of the component \n> 1065 type. It is expected that vendors assign unique part \n> 1066 numbers to different component types within the \n> 1067 scope of the vendor.\"; \n> 1068 } \n> 1069 leaf serial-number { \n> 1070 type string; \n> 1071 description \n> 1072 \"The vendor-specific serial number of the component instance.\n> \n> 1074 It is expected that vendors assign unique serial numbers to \n> 1075 different component instances within the scope of the \n> 1076 'part-number'.\"; \n> 1077 }\n> \n> \"part-number\" and \"serial-number\" carry no reference?\n> \n\nSee #183",
+          "body": "**[2026-10-21 Network Inventory weekly call](https://github.com/ietf-ivy-wg/network-inventory-yang/wiki/minutes-2026-10-21)**\n\n> > 1061 leaf part-number {\n> > 1062 type string;\n> > 1063 description\n> > 1064 \"The vendor-specific part number of the component\n> > 1065 type. It is expected that vendors assign unique part\n> > 1066 numbers to different component types within the\n> > 1067 scope of the vendor.\";\n> > 1068 }\n> > 1069 leaf serial-number {\n> > 1070 type string;\n> > 1071 description\n> > 1072 \"The vendor-specific serial number of the component instance.\n> > 1074 It is expected that vendors assign unique serial numbers to\n> > 1075 different component instances within the scope of the\n> > 1076 'part-number'.\";\n> > 1077 }\n> > \"part-number\" and \"serial-number\" carry no reference?\n> \n> - [x]  For discussion\n> \n> I am not aware of any standard definition to be referenced\n> \n> >\n\nSee #183",
           "createdAt": "2026-10-21T16:30:31Z",
-          "updatedAt": "2026-10-21T16:30:31Z"
+          "updatedAt": "2026-11-04T11:43:06Z"
         }
       ]
     },
@@ -5789,15 +5808,26 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "italobusi"
+      ],
       "labels": [
+        "wait",
         "priority-1"
       ],
       "body": "----------------------------------------------------------------------\nCOMMENT:\n----------------------------------------------------------------------\n\nThank you for this specification, I do not see any transport-protocol related\nconcerns with the data model.\n\nHowever, I do have a query relating to the size of the data model that is\ntransferred: \"Large\" objects require a transport method that either uses\npre-provisioned capacity, a method that includes either rate-limiting (possibly\nby defining a circuit breaker) or uses a transport with congestion control.\n\nI expect a short note to be useful within the operational considerations\n(because I imagine the data volume can be large), but I also expect that\nanother document is the correct place to address such requirements.\n\n---\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/XjcPrR8B9Qg6fPDg0HD1hQSYOWs/",
       "createdAt": "2026-10-06T16:16:04Z",
-      "updatedAt": "2026-10-08T16:32:19Z",
+      "updatedAt": "2026-11-04T18:48:29Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> ## COMMENT:\n> Thank you for this specification, I do not see any transport-protocol related concerns with the data model.\n> \n> However, I do have a query relating to the size of the data model that is transferred: \"Large\" objects require a transport method that either uses pre-provisioned capacity, a method that includes either rate-limiting (possibly by defining a circuit breaker) or uses a transport with congestion control.\n> \n> I expect a short note to be useful within the operational considerations (because I imagine the data volume can be large), but I also expect that another document is the correct place to address such requirements.\n> \n\nPropose to add a new Section 6.1 for the opertional considerations:\n\n```\n6.1.  Transport Performance Considerations\n\n   Deployments of the data model defined in this document in large-\n   scale networks can generate substantial data payloads during full \n   inventory retrievals.  To prevent these large transfers from \n   causing network congestion or adversely impacting critical \n   operational traffic, the underlying transport sessions SHOULD be \n   managed carefully.\n\n   Operators should ensure that the transport method chosen for \n   retrieval either utilizes native congestion control mechanisms, \n   operates over network paths with pre-provisioned capacity, or \n   implements rate-limiting mechanisms (such as circuit breakers) \n   to safely throttle large-volume data transfers.\n\n```\n\n",
+          "createdAt": "2026-11-04T18:46:32Z",
+          "updatedAt": "2026-11-04T18:46:32Z"
+        }
+      ]
     },
     {
       "number": 178,
@@ -5807,15 +5837,40 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "italobusi"
+      ],
       "labels": [
+        "wait",
         "priority-1"
       ],
       "body": "Hi Chaode, Sergio, Jean-Francois, Fabio, and Phil,\n\nThank you for the effort put into this specification.\n\nI reviewed the document in the past, so I only have few comments:\n\n# Remove the NMDA statement as the guidance was reverted in RFC9907\n\n# Consider calling out appendices A/B/C in the main text to explain why these\nare provided. Not sure the terminology appendix brings much, btw.\n\n# Cyclic references\n\nThe following text in Section 3 points to Section 3! Consider adding a\nsubsection for the preamble and refer explicitly to it:\n\nCURRENT:\n\nne-type:\nThe type of network element (e.g., physical network element). See Section 3 for\nthe definition of NE types. .. class: The type of component (e.g., chassis,\nmodule, port). See Section 3 for the definition of component types.\n\n# The following is misleading as we are not replacing 8348 but leveraging it.\nPlease reword.\n\nCURRENT:\n3.4. Changes Since RFC 8348\n\n# For convenience, you may find some more edits/nits at\nhttps://github.com/ietf-ivy-wg/network-inventory-yang/pull/169\n\nCheers,\nMed\n\n---\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/0L3AL2SkUY-4UizWc6aSwNsoM7I/",
       "createdAt": "2026-10-06T16:17:19Z",
-      "updatedAt": "2026-10-08T16:32:19Z",
+      "updatedAt": "2026-11-04T16:15:03Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "My proposed answer:\n\n> # Remove the NMDA statement as the guidance was reverted in RFC9907\n\nOk, it will be fixed in the next update of the draft\n\n> # Consider calling out appendices A/B/C in the main text to explain why these\n> are provided. Not sure the terminology appendix brings much, btw.\n> \n\nOk, we will:\n\n1. remove Appendix B and move the clarification into the terminology section\n2. add some text in the Introduction to describe the Appendices\n\n> # Cyclic references\n> The following text in Section 3 points to Section 3! Consider adding a subsection for the preamble and refer explicitly to it:\n> \n> CURRENT:\n> \n> ne-type: The type of network element (e.g., physical network element). See Section 3 for the definition of NE types. .. class: The type of component (e.g., chassis, module, port). See Section 3 for the definition of component types.\n> \n\nWe will add a new section 3.1 \"Data Model Design\" and reference it instead of Section 3\n\n> # The following is misleading as we are not replacing 8348 but leveraging it.\n> Please reword.\n> \n> CURRENT: 3.4. Changes Since RFC 8348\n> \n\nWhat about: \"Differences from RFC 8348\"?\n\n> # For convenience, you may find some more edits/nits at\n> [#169](https://github.com/ietf-ivy-wg/network-inventory-yang/pull/169)\n> \n\nThanks a lot for the input: we have already reviewed the fixed and merged the PR in github\n\n> Cheers, Med\n> \n> See: https://mailarchive.ietf.org/arch/msg/ivy/0L3AL2SkUY-4UizWc6aSwNsoM7I/\n",
+          "createdAt": "2026-11-04T13:05:47Z",
+          "updatedAt": "2026-11-04T13:05:47Z"
+        },
+        {
+          "author": "philbedard",
+          "authorAssociation": "NONE",
+          "body": "\n> > # The following is misleading as we are not replacing 8348 but leveraging it.\n> > Please reword.\n> > CURRENT: 3.4. Changes Since RFC 8348\n> \n> What about: \"Differences from RFC 8348\"?\n> \n\nPerhaps just \"RFC 8348 Attribute Differences\" or \"RFC 8348 Attribute Comparison\" \n\n",
+          "createdAt": "2026-11-04T15:29:37Z",
+          "updatedAt": "2026-11-04T15:29:37Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> > > # The following is misleading as we are not replacing 8348 but leveraging it.\n> > > Please reword.\n> > > CURRENT: 3.4. Changes Since RFC 8348\n> > \n> > \n> > What about: \"Differences from RFC 8348\"?\n>     Perhaps just \"RFC 8348 Attribute Differences\" or \"RFC 8348 Attribute Comparison\"\n\nWhat about \"Comparison with RFC 8348\"?",
+          "createdAt": "2026-11-04T16:15:03Z",
+          "updatedAt": "2026-11-04T16:15:03Z"
+        }
+      ]
     },
     {
       "number": 179,
@@ -5877,31 +5932,57 @@
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [
+        "needs discussion",
         "priority-1"
       ],
       "body": "Thanks for the work done in this document (and using nice SVG graphics).\n\nOther thanks to Haoyu Song, the INT-directorate reviewer (at my request),\nplease consider and reply to the review posted at:\nhttps://datatracker.ietf.org/doc/review-ietf-ivy-network-inventory-yang-19-intdir-telechat-song-2026-09-30/\n\nThe document seems to be only about \"physical\" components, not about virtual or\n\"cloud instance\" and the latter are also important, IMHO, to network operations\n(e.g., licensing cost, power up/down, ...). If the model is limited to physical\nelements, then let's be clear in the title and in the abstract.\n\nSome other comments:\n\n### Section 2.2\n\nIs a Wi-Fi interface to be considered as a port ? The description seems to talk\nmainly about physical ports.\n\n---\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/ECilrzLBF9HYphydR49E9kjRaCA/",
       "createdAt": "2026-10-08T16:02:16Z",
-      "updatedAt": "2026-10-08T16:32:20Z",
+      "updatedAt": "2026-11-04T13:21:43Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Thanks for the work done in this document (and using nice SVG graphics).\n> \n> Other thanks to Haoyu Song, the INT-directorate reviewer (at my request), please consider and reply to the review posted at: https://datatracker.ietf.org/doc/review-ietf-ivy-network-inventory-yang-19-intdir-telechat-song-2026-09-30/\n> \n\n- [ ] Provide a link to the reply to these comments, when available\n\n> The document seems to be only about \"physical\" components, not about virtual or \"cloud instance\" and the latter are also important, IMHO, to network operations (e.g., licensing cost, power up/down, ...). If the model is limited to physical elements, then let's be clear in the title and in the abstract.\n> \n\n- [ ] For discussion\n\nThe draft define a base YANG data model which can be used as the basis for augmentations that provide support of the software or virtual elements but also used, as is, for the hardware inventory\n\nOne option could be to change the title as \"A Base YANG Data Model for Hardware and Core Network Inventory\" but I am not sure there is a real need to make the title so long and complex\n\n> Some other comments:\n> \n> ### Section 2.2\n> Is a Wi-Fi interface to be considered as a port ? The description seems to talk mainly about physical ports.\n> \n\n- [ ] For discussion\n\n> See: https://mailarchive.ietf.org/arch/msg/ivy/ECilrzLBF9HYphydR49E9kjRaCA/\n\n",
+          "createdAt": "2026-11-04T13:21:43Z",
+          "updatedAt": "2026-11-04T13:21:43Z"
+        }
+      ]
     },
     {
       "number": 181,
       "id": "I_kwDOKiDYo88AAAABV5-Txg",
       "title": "Christopher Inacio's No Objection on draft-ietf-ivy-network-inventory-yang-20: (with COMMENT)",
       "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/issues/181",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "italobusi"
+      ],
       "labels": [
         "priority-1"
       ],
       "body": "Thanks to Valery S. for the SECDIR review.\n\nThanks to the authors for the well written draft.\n\nIn section 3.1 the definition of UUID is given as follows:\n\n> uuid:\n>    The Universally Unique Identifier (UUID) of the inventory object, assigned\nby the server. Such identifiers are widely implemented with systems and >   \nguaranteed to be globally unique.\n\nWhat is \"the server\"?  Various servers are mentioned prior to this, but no\nclear indication of \"the server\" is given.\n\n---\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/LRRdlC4cxz4g2194P3IbZCAqJG0/",
       "createdAt": "2026-10-08T16:05:55Z",
-      "updatedAt": "2026-10-08T16:32:21Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2026-11-04T18:55:17Z",
+      "closedAt": "2026-11-04T18:55:17Z",
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Thanks to Valery S. for the SECDIR review.\n> \n> Thanks to the authors for the well written draft.\n> \n> In section 3.1 the definition of UUID is given as follows:\n> \n> > uuid:\n> > The Universally Unique Identifier (UUID) of the inventory object, assigned\n> > by the server. Such identifiers are widely implemented with systems and >\n> > guaranteed to be globally unique.\n> \n> What is \"the server\"? Various servers are mentioned prior to this, but no clear indication of \"the server\" is given.\n> \n> See: https://mailarchive.ietf.org/arch/msg/ivy/LRRdlC4cxz4g2194P3IbZCAqJG0/\n\nWe are using the term \"server\" as defined in RFC7950: see section 2.2",
+          "createdAt": "2026-11-04T13:27:22Z",
+          "updatedAt": "2026-11-04T13:27:22Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closed: https://mailarchive.ietf.org/arch/msg/ivy/gXFh4Pe5U9VMOkz1YkAvaJmrlhQ/",
+          "createdAt": "2026-11-04T18:54:47Z",
+          "updatedAt": "2026-11-04T18:54:47Z"
+        }
+      ]
     },
     {
       "number": 182,
@@ -5911,15 +5992,28 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "nigel-r-davis",
+        "italobusi",
+        "YuChaode"
+      ],
       "labels": [
+        "needs discussion",
         "priority-1"
       ],
       "body": "# IESG review of draft-ietf-ivy-network-inventory-yang-20\n\nCC @MikeBishop\n\n## Comments\n\n### Section 3.2, paragraph 3\n```\n        The ne-id should be assigned such that the same network element\n```\nSHOULD?\n\n### Section 3.3.1, paragraph 4\n\nThis shows slots and boards as peers, but the examples differ. Which is\ncorrect? If both are valid configurations, consider putting an example of each.\n\n### Section 3.4.3, paragraph 0\n\nWhy is parent not also listed as a difference? The change from leaf to\nleaf-list is potentially incompatible.\n\n### Section 5, paragraph 21\n```\n             \"The name of the entity (e.g., component), as specified by a\n              network operator, that provides a non-volatile 'handle' for\n              the entity. The network operator can specify a different\n```\nThe \"non-volatile handle\" description is used for the `alias` in RFC 8348. Is\nthe difference deliberate?\n\n### Section 5, paragraph 28\n```\n           type yang:date-and-time;\n           description\n             \"The date of manufacturing of the component.\";\n```\nWhy `date-and-time` rather than `date`? The description only indicates the date,\nnot the time.\n\n### Section 5, paragraph 33\n```\n                 leaf parent-rel-pos {\n                   when 'count(../parent) < 2' {\n```\nThe scenario RFC 8348 describes, where a component consumes multiple slots,\ndoesn't mean it no longer has a position relative to its siblings. Three\ndual-slot components across six slots, for example. How is that expressed with\nthis restriction?\n\n### \"Appendix C.\", paragraph 4\n```\n     resources in large scale networks.  This scalability limitation is\n     caused by the limited transmission capabilities of HTTP protocol.\n     This scalability limitation should be solved at protocol level rather\n     than data model level.\n```\nReally? What's the transmission capability limitation you're hitting?\n\n### \"Appendix F.\", paragraph 2\n```\n     system.  A non-modular network element does not have any slots to\n     take cards so it cannot take any non-field replaceable modules other\n```\nThis seems backwards. If it had slots, it *could* take field-replaceable\nmodules; if it lacks them, it can't take field-replaceable ones.\n\n## Nits\n\nAll comments below are about very minor potential issues that you may choose to\naddress in some way - or ignore - as you see fit. Some were flagged by\nautomated tools (via https://github.com/larseggert/ietf-reviewtool), so there\nwill likely be some false positives. There is no need to let me know what you\ndid with these suggestions.\n\n### Typos\n\n#### Section 2.2, paragraph 34\n```\n-       Elsewhere, a card can be called board, module, circuit pack, etc..\n-                                                                        -\n```\n\n#### Section 2.4, paragraph 1\n```\n-    Table 1 list the prefixes of the modules that are used in this\n+    Table 1 lists the prefixes of the modules that are used in this\n+                +\n```\n\n#### Section 3.1, paragraph 4\n```\n-       by a network operator.  It could also be present on a GUI instead\n-                                                        ^\n-       as well as the name.\n+       by a network operator.  It could also be present in a GUI instead of\n+                                                        ^               +++\n+       or in addition to the name.\n```\n\n#### Section 3.3.1, paragraph 1\n```\n-    contains network-element, board and port.  This model, likewise\n-                                                               ----\n```\n\n#### Section 5, paragraph 13\n```\n-          \"Base identity for non hardware components (e.g., software\n-                                ^\n+          \"Base identity for non-hardware components (e.g., software\n+                                ^\n```\n\n#### Section 7, paragraph 6\n```\n   *  \"/nwi:network-elements\"\n```\nDo you mean `/nwi:network-inventory/nwi:network-elements`?\n\n#### \"E.1.\", paragraph 4\n```\n-                     first stack port of the first switch in the stack.\",\n-                                             --- ^\n+                     first stack port of the second switch in the stack.\",\n+                                              ^^^^^\n```\n```\n-                    second stack port of the first switch in the stack.\",\n-                                             --- ^\n+                    second stack port of the second switch in the stack.\",\n+                                              ^^^^^\n```\n\n#### \"Appendix F.\", paragraph 2\n```\n-    take cards so it cannot take any non-field replaceable modules other\n-                                              ^\n+    take cards so it cannot take any non-field-replaceable modules other\n+                                              ^\n```\n\n### Section 2.2, paragraph 21\n```\n     *  storage device\n```\nIANA_HW_YANG uses \"storage drive\".\n\n### Section 3, paragraph 6\n\n\"physical-network-element\" vs. \"ne-physical\"\n\n### Section 3, paragraph 10\n\n\"non-hardware\" vs. \"non-hardware-component-class\"\n\n### Section 3.1, paragraph 2\n\n\"designed\" rather than \"guaranteed\"?\n\n### Section 5, paragraph 6\n```\n          Editor:   Sergio Belotti\n                    <[sergio.belotti@nokia.com](mailto:sergio.belotti@nokia.com)>\n\n          Editor:   Jean-Francois Bouquier\n                    <[jeff.bouquier@vodafone.com](mailto:jeff.bouquier@vodafone.com)>\n\n          Editor:   Fabio Peruzzini\n                    <[fabio.peruzzini@telecomitalia.it](mailto:fabio.peruzzini@telecomitalia.it)>\n```\nTwo authors have different contact info between here and the Authors' Addresses.\nIs that intentional?\n\n### Section 7, paragraph 6\n\nDo you mean `/nwi:network-inventory/nwi:network-elements`?\n\n### Grammar/style\n\n#### Section 1, paragraph 1\n```\nd to expose that information in a consistent way. Network inventory manageme\n                             ^^^^^^^^^^^^^^^^^^^\n```\nConsider replacing this phrase with the adverb \"consistently\" to avoid\nwordiness.\n\n#### Section 3.3.1, paragraph 1\n```\nt or component as explained in section Section 6. The way used by the contro\n                               ^^^^^^^^^^^^^^^\n```\nPossible typo: you repeated a word.\n\n#### Section 3.3.1, paragraph 4\n```\nement, and, in the same way, one boot-loader, one firmware and one or more Fi\n                                 ^^^^^^^^^^^\n```\nThis word is normally spelled as one.\n\n## Notes\n\nThis review is in the [\"IETF Comments\" Markdown format][ICMF]. You can use the\n[`ietf-comments` tool][ICT] to automatically convert this review into\nindividual GitHub issues. Review generated by the [`ietf-reviewtool`][IRT].\n\n[ICMF]: https://github.com/mnot/ietf-comments/blob/main/format.md\n[ICT]: https://github.com/mnot/ietf-comments\n[IRT]: https://github.com/larseggert/ietf-reviewtool\n\n---\n\nSee: https://mailarchive.ietf.org/arch/msg/ivy/NFArF-F76hnmn3w9z0Xx7hqXgV8/",
       "createdAt": "2026-10-08T16:31:28Z",
-      "updatedAt": "2026-10-08T16:31:47Z",
+      "updatedAt": "2026-11-04T18:56:09Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> # IESG review of draft-ietf-ivy-network-inventory-yang-20\n> CC [@MikeBishop](https://github.com/MikeBishop)\n> \n> ## Comments\n> ### Section 3.2, paragraph 3\n> ```\n>         The ne-id should be assigned such that the same network element\n> ```\n> \n> SHOULD?\n> \n\n- [ ] For discussion\n\nI think it should actually be a MUST\n\n> ### Section 3.3.1, paragraph 4\n> This shows slots and boards as peers, but the examples differ. Which is correct? If both are valid configurations, consider putting an example of each.\n> \n\n- [ ] For discussion (started offline with @YuChaode and @nigel-r-davis )\n\nMy understanding is that Figure 1 was provided by Yuchaode based on the TMF definitions (splitting between containers and equipment) which we are not strictly following\n\nI am wondering whether we cannot improve the figure showing some relationship between the slots and the boards and re-structure a bit the text around to indicate that this Figure represents the \"conceptual\" view based on TMF but that our model manages containers and equipment as components and therefore the direct association from NE and board is not modelled\n\n> ### Section 3.4.3, paragraph 0\n> Why is parent not also listed as a difference? The change from leaf to leaf-list is potentially incompatible.\n> \n\nWe will add a new paragraph to explain this difference\n\n> ### Section 5, paragraph 21\n> ```\n>              \"The name of the entity (e.g., component), as specified by a\n>               network operator, that provides a non-volatile 'handle' for\n>               the entity. The network operator can specify a different\n> ```\n> \n> The \"non-volatile handle\" description is used for the `alias` in RFC 8348. Is the difference deliberate?\n> \n\n- [ ] For discussion (started offline with @YuChaode and @nigel-r-davis )\n\nI think both \"name\" and \"alias\" are non-volatile handles: the difference is explained quite well in Section 3.1 but needs to be improved in the YANG data model\n\nI am also wondering whether it is worthwhile describing this difference from RFC 8348 in Section 3.4\n\n> ### Section 5, paragraph 28\n> ```\n>            type yang:date-and-time;\n>            description\n>              \"The date of manufacturing of the component.\";\n> ```\n> \n> Why `date-and-time` rather than `date`? The description only indicates the date, not the time.\n> \n\nWe have got a similar comment from the \"Telechat Intdir review\" and discussed the resolution on the list\n\nSee #179 \n\n> ### Section 5, paragraph 33\n> ```\n>                  leaf parent-rel-pos {\n>                    when 'count(../parent) < 2' {\n> ```\n> \n> The scenario RFC 8348 describes, where a component consumes multiple slots, doesn't mean it no longer has a position relative to its siblings. Three dual-slot components across six slots, for example. How is that expressed with this restriction?\n> \n\nThe 6 slots are modelled as six components of type \"container\" so the two slots are expressed as two parents in the parent list\n\n> ### \"Appendix C.\", paragraph 4\n> ```\n>      resources in large scale networks.  This scalability limitation is\n>      caused by the limited transmission capabilities of HTTP protocol.\n>      This scalability limitation should be solved at protocol level rather\n>      than data model level.\n> ```\n> \n> Really? What's the transmission capability limitation you're hitting?\n> \n\n- [ ] For discussion (started offline with @YuChaode )\n\n> ### \"Appendix F.\", paragraph 2\n> ```\n>      system.  A non-modular network element does not have any slots to\n>      take cards so it cannot take any non-field replaceable modules other\n> ```\n> \n> This seems backwards. If it had slots, it _could_ take field-replaceable modules; if it lacks them, it can't take field-replaceable ones.\n> \n\nc/non-field replaceable modules/field replaceable modules/\n\n> ## Nits\n> All comments below are about very minor potential issues that you may choose to address in some way - or ignore - as you see fit. Some were flagged by automated tools (via https://github.com/larseggert/ietf-reviewtool), so there will likely be some false positives. There is no need to let me know what you did with these suggestions.\n> \n\nSome of these nits have been already fixed by Med, see: https://github.com/ietf-ivy-wg/network-inventory-yang/pull/169\n\nOthers are duplicated with other IESG reviews\n\nFor the remaining nits, see: PR #184 \n\n\n> ### Typos\n> #### Section 2.2, paragraph 34\n> ```\n> -       Elsewhere, a card can be called board, module, circuit pack, etc..\n> -                                                                        -\n> ```\n> \n> #### Section 2.4, paragraph 1\n> ```\n> -    Table 1 list the prefixes of the modules that are used in this\n> +    Table 1 lists the prefixes of the modules that are used in this\n> +                +\n> ```\n> \n> #### Section 3.1, paragraph 4\n> ```\n> -       by a network operator.  It could also be present on a GUI instead\n> -                                                        ^\n> -       as well as the name.\n> +       by a network operator.  It could also be present in a GUI instead of\n> +                                                        ^               +++\n> +       or in addition to the name.\n> ```\n> \n> #### Section 3.3.1, paragraph 1\n> ```\n> -    contains network-element, board and port.  This model, likewise\n> -                                                               ----\n> ```\n> \n> #### Section 5, paragraph 13\n> ```\n> -          \"Base identity for non hardware components (e.g., software\n> -                                ^\n> +          \"Base identity for non-hardware components (e.g., software\n> +                                ^\n> ```\n> \n> #### Section 7, paragraph 6\n> ```\n>    *  \"/nwi:network-elements\"\n> ```\n> \n> Do you mean `/nwi:network-inventory/nwi:network-elements`?\n> \n> #### \"E.1.\", paragraph 4\n> ```\n> -                     first stack port of the first switch in the stack.\",\n> -                                             --- ^\n> +                     first stack port of the second switch in the stack.\",\n> +                                              ^^^^^\n> ```\n> \n> ```\n> -                    second stack port of the first switch in the stack.\",\n> -                                             --- ^\n> +                    second stack port of the second switch in the stack.\",\n> +                                              ^^^^^\n> ```\n> \n> #### \"Appendix F.\", paragraph 2\n> ```\n> -    take cards so it cannot take any non-field replaceable modules other\n> -                                              ^\n> +    take cards so it cannot take any non-field-replaceable modules other\n> +                                              ^\n> ```\n> \n> ### Section 2.2, paragraph 21\n> ```\n>      *  storage device\n> ```\n> \n> IANA_HW_YANG uses \"storage drive\".\n> \n> ### Section 3, paragraph 6\n> \"physical-network-element\" vs. \"ne-physical\"\n> \n> ### Section 3, paragraph 10\n> \"non-hardware\" vs. \"non-hardware-component-class\"\n> \n> ### Section 3.1, paragraph 2\n> \"designed\" rather than \"guaranteed\"?\n> \n> ### Section 5, paragraph 6\n> ```\n>           Editor:   Sergio Belotti\n>                     <[sergio.belotti@nokia.com](mailto:sergio.belotti@nokia.com)>\n> \n>           Editor:   Jean-Francois Bouquier\n>                     <[jeff.bouquier@vodafone.com](mailto:jeff.bouquier@vodafone.com)>\n> \n>           Editor:   Fabio Peruzzini\n>                     <[fabio.peruzzini@telecomitalia.it](mailto:fabio.peruzzini@telecomitalia.it)>\n> ```\n> \n> Two authors have different contact info between here and the Authors' Addresses. Is that intentional?\n> \n> ### Section 7, paragraph 6\n> Do you mean `/nwi:network-inventory/nwi:network-elements`?\n> \n> ### Grammar/style\n> #### Section 1, paragraph 1\n> ```\n> d to expose that information in a consistent way. Network inventory manageme\n>                              ^^^^^^^^^^^^^^^^^^^\n> ```\n> \n> Consider replacing this phrase with the adverb \"consistently\" to avoid wordiness.\n> \n> #### Section 3.3.1, paragraph 1\n> ```\n> t or component as explained in section Section 6. The way used by the contro\n>                                ^^^^^^^^^^^^^^^\n> ```\n> \n> Possible typo: you repeated a word.\n> \n> #### Section 3.3.1, paragraph 4\n> ```\n> ement, and, in the same way, one boot-loader, one firmware and one or more Fi\n>                                  ^^^^^^^^^^^\n> ```\n> \n> This word is normally spelled as one.\n> \n> ## Notes\n> This review is in the [\"IETF Comments\" Markdown format](https://github.com/mnot/ietf-comments/blob/main/format.md). You can use the [`ietf-comments` tool](https://github.com/mnot/ietf-comments) to automatically convert this review into individual GitHub issues. Review generated by the [`ietf-reviewtool`](https://github.com/larseggert/ietf-reviewtool).\n> \n> See: https://mailarchive.ietf.org/arch/msg/ivy/NFArF-F76hnmn3w9z0Xx7hqXgV8/\n\n",
+          "createdAt": "2026-11-04T13:57:48Z",
+          "updatedAt": "2026-11-04T18:42:48Z"
+        }
+      ]
     },
     {
       "number": 183,
@@ -5937,7 +6031,7 @@
       ],
       "body": "> 1061 leaf part-number { \n> 1062 type string; \n> 1063 description \n> 1064 \"The vendor-specific part number of the component \n> 1065 type. It is expected that vendors assign unique part \n> 1066 numbers to different component types within the \n> 1067 scope of the vendor.\"; \n> 1068 } \n> 1069 leaf serial-number { \n> 1070 type string; \n> 1071 description \n> 1072 \"The vendor-specific serial number of the component instance.\n> \n> 1074 It is expected that vendors assign unique serial numbers to \n> 1075 different component instances within the scope of the \n> 1076 'part-number'.\"; \n> 1077 }\n> \n> \"part-number\" and \"serial-number\" carry no reference?\n> \n\n- [x] Look for some references\n",
       "createdAt": "2026-10-21T16:30:04Z",
-      "updatedAt": "2026-11-03T03:06:42Z",
+      "updatedAt": "2026-11-03T04:45:13Z",
       "closedAt": null,
       "comments": [
         {
@@ -5946,6 +6040,13 @@
           "body": "I found the following references:\n\n1. ANSI MH10.8.2 / ISO 15459 (Data Identifiers)\n\nThe most widely used global trade and industrial standard for labeling and data structures is ANSI MH10.8.2. It assigns strict codes (Data Identifiers) to distinguish the two concepts globally:\n\u2022 Part Number (DI: 1P): Formally defined as a class-level identifier or manufacturer catalog ID. It identifies the specific design, model, or form/fit/function configuration of an item. All physical items manufactured to that exact design share the same part number.\n\u2022 Serial Number (DI: S): Formally defined as an instance-level identifier or unique unit identifier. It is assigned to a single physical instantiation of a design to differentiate it uniquely from the next unit produced sequentially.\n\n2. MIL-STD-100G (Department of Defense Standard Practice for Engineering Drawings)\n\nFor aerospace and defense engineering, MIL-STD-100G (Section 3.51) officially dictates definitions for configuration management:\n\u2022 Part Identification Number (PIN / Part Number): A unique combination of letters and numbers used to identify a specific item across engineering drawings, manufacturing routers, and procurement systems. It represents a \"type\" or \"piece mark\" rather than an individual piece of hardware.\n\u2022 Serial Number: A unique tracking number appended to an individual unit when life-cycle traceability, warranty tracking, or specific quality control checks are required.\n\n",
           "createdAt": "2026-10-30T14:21:33Z",
           "updatedAt": "2026-10-30T14:21:33Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think that ANSI MH10.8.2 / ISO 15459 (Data Identifiers) can be sufficient\n\nA couple of follow-up questions:\n\n1. Can we reference ISO/IEC 15418 instead of ANSI MH10.8.2?\n\n2. Should we specifically reference ISO/IEC 15459-4 (Part 4)?\n\nSee for detailed text proposal in c2467a16e901078ccc12642e42dfa6f2a1293743",
+          "createdAt": "2026-11-03T04:45:13Z",
+          "updatedAt": "2026-11-03T04:45:13Z"
         }
       ]
     }
@@ -12836,6 +12937,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 184,
+      "id": "PR_kwDOKiDYo88AAAABM4nNTQ",
+      "title": "Edits/Nits from Mike's IESG Review",
+      "url": "https://github.com/ietf-ivy-wg/network-inventory-yang/pull/184",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "See nits in issue #182 ",
+      "createdAt": "2026-11-04T18:40:07Z",
+      "updatedAt": "2026-11-04T18:40:46Z",
+      "baseRepository": "ietf-ivy-wg/network-inventory-yang",
+      "baseRefName": "iesg-review-00",
+      "baseRefOid": "c2467a16e901078ccc12642e42dfa6f2a1293743",
+      "headRepository": "italobusi/network-inventory-yang",
+      "headRefName": "mike-nits",
+      "headRefOid": "07c913129a8f8d31d442417e2deaa8585bb85a6e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
