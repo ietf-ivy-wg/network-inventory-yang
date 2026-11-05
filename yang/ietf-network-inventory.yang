@@ -175,10 +175,9 @@ module ietf-network-inventory {
     leaf name {
       type string;
       description
-        "The name of the entity (e.g., component), as specified by a
-         network operator, that provides a non-volatile 'handle' for
-         the entity. The network operator can specify a different
-         value anytime during the entity lifetime.
+        "A human-interpretable label of the inventory object,
+         specified by a network operator or by the server to provide
+         a non-volatile 'handle' for the entity (e.g., component).
 
          If no value is discovered, the server MAY set the value of
          this node to a locally unique value in the operational
@@ -187,8 +186,9 @@ module ietf-network-inventory {
     leaf alias {
       type string;
       description
-        "The alias name of the entity (e.g., component). This alias
-         name can be specified by a network operator.";
+        "A human-interpretable label of the inventory object,
+         specified by a network operator that provides a non-volatile
+         'handle' for the entity (e.g., component)";
     }
     leaf description {
       type string;
