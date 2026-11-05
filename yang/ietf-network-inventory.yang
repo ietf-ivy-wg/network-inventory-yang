@@ -29,13 +29,13 @@ module ietf-network-inventory {
                <yuchaode@huawei.com>
 
      Editor:   Sergio Belotti
-               <sergio.belotti@nokia.com>
+               <s.belotti.ietf@gmail.com>
 
      Editor:   Jean-Francois Bouquier
                <jeff.bouquier@vodafone.com>
 
      Editor:   Fabio Peruzzini
-               <fabio.peruzzini@telecomitalia.it>
+               <fabio.peruzzini@fibercop.com>
 
      Editor:   Phil Bedard
                <phbedard@cisco.com>";
@@ -66,7 +66,7 @@ module ietf-network-inventory {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-11-03 {
+  revision 2026-11-05 {
     description
       "Initial version";
     reference
@@ -77,7 +77,7 @@ module ietf-network-inventory {
    * Identities
    */
 
-  identity non-hardware-component-class {
+  identity non-hardware-class {
     description
       "Base identity for non hardware components (e.g., software
        components) in a managed device.";
@@ -268,7 +268,7 @@ module ietf-network-inventory {
           base ianahw:hardware-class;
         }
         type identityref {
-          base nwi:non-hardware-component-class;
+          base nwi:non-hardware-class;
         }
       }
       mandatory true;
