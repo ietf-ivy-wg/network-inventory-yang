@@ -1354,7 +1354,7 @@ summarizes all of the substitutions that are needed.<a href="#section-1.1-2" cla
             <p id="section-1.1-4.1.1">XXXX --&gt; the assigned RFC number for this I-D<a href="#section-1.1-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.1-4.2">
-            <p id="section-1.1-4.2.1">2026-09-29 --&gt; the actual date of the publication of this document<a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-1.1-4.2.1">2026-11-05 --&gt; the actual date of the publication of this document<a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1607,11 +1607,11 @@ A chassis can, but does not need to, include spaces (called slots) to take cards
 network elements and other types of components' groups that can be managed as physical network elements from an
 inventory perspective.<a href="#section-3-4" class="pilcrow">¶</a></p>
 <p id="section-3-5">Physical network elements are usually devices such as hosts, gateways, terminal servers, and the like, which have management agents responsible for performing the network management functions requested by the network management stations <span>[<a href="#RFC1157" class="cite xref">RFC1157</a>]</span>.<a href="#section-3-5" class="pilcrow">¶</a></p>
-<p id="section-3-6">The "ne-type" YANG identity is defined as a base identity to describe the type of a network element. This document defines only the "physical-network-element" identity. Other types of network elements can be defined in other documents, together with the associated YANG identities and the rationale for managing them as network elements from an inventory perspective.<a href="#section-3-6" class="pilcrow">¶</a></p>
+<p id="section-3-6">The "ne-type" YANG identity is defined as a base identity to describe the type of a network element. This document defines only the "ne-physical" identity. Other types of network elements can be defined in other documents, together with the associated YANG identities and the rationale for managing them as network elements from an inventory perspective.<a href="#section-3-6" class="pilcrow">¶</a></p>
 <p id="section-3-7">The component definition is also generalized to support any types of
 component inventory objects that can be managed as hardware components from an inventory perspective.<a href="#section-3-7" class="pilcrow">¶</a></p>
 <p id="section-3-8">The top-level "components" container exposes a list of components, within each network element, and other parameters.<a href="#section-3-8" class="pilcrow">¶</a></p>
-<p id="section-3-9">Different component types can be distinguished by the class of component. The component "class" is defined as a union between the hardware class identity, defined in "iana-hardware", and the "non-hardware" identity, defined in this document.<a href="#section-3-9" class="pilcrow">¶</a></p>
+<p id="section-3-9">Different component types can be distinguished by the class of component. The component "class" is defined as a union between the hardware class identity, defined in "iana-hardware", and the "non-hardware-class" identity, defined in this document.<a href="#section-3-9" class="pilcrow">¶</a></p>
 <p id="section-3-10">Other component types can be defined in other documents, together with the associated YANG identities and the rationale for managing them as components from an inventory perspective.<a href="#section-3-10" class="pilcrow">¶</a></p>
 <p id="section-3-11">The identity definition of additional types of "ne-type" and "non-
 hardware" identity of component are outside the scope of this
@@ -1786,6 +1786,41 @@ document and could be defined in application- and technology-specific companion 
           <dd style="margin-left: 1.5em" id="section-3.3-3.26">
             <p id="section-3.3-3.26.1">Indicates whether or not a component is considered a 'field-replaceable unit' by the vendor.<a href="#section-3.3-3.26.1" class="pilcrow">¶</a></p>
 </dd>
+          <dd class="break"></dd>
+<dt id="section-3.3-3.27">uri:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.3-3.28">
+            <p id="section-3.3-3.28.1">A list of Uniform Resource Identifiers (URIs) which provides additional identification information about the component.<a href="#section-3.3-3.28.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-3.3-3.29">parent:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.3-3.30">
+            <p id="section-3.3-3.30.1">The list of the parent components that physically contain this component.<a href="#section-3.3-3.30.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-3.3-3.31"></dt>
+          <dd style="margin-left: 1.5em" id="section-3.3-3.32">
+            <p id="section-3.3-3.32.1">Usually a component has only one parent component.<a href="#section-3.3-3.32.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-3.3-3.33"></dt>
+          <dd style="margin-left: 1.5em" id="section-3.3-3.34">
+            <p id="section-3.3-3.34.1">Components which are contained within the network element has no parent component.<a href="#section-3.3-3.34.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-3.3-3.35"></dt>
+          <dd style="margin-left: 1.5em" id="section-3.3-3.36">
+            <p id="section-3.3-3.36.1">Boards which occupy multiple slots have multiple parent components (one for each occupied slot);<a href="#section-3.3-3.36.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-3.3-3.37">parent-rel-pos:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.3-3.38">
+            <p id="section-3.3-3.38.1">When this component is contained in the network-element or in only one parent component and has sibling components, this attribute represents the relative position of this component with respect to the parent component among all the sibling components.<a href="#section-3.3-3.38.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-3.3-3.39">is-main:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.3-3.40">
+            <p id="section-3.3-3.40.1">Whe the network element contains chassis components which can take or not the 'main' role (e.g., in case of multi-chassis network elements), this attributes indicates whether the chassis is taking or not the 'main' role. See for example <a href="#multi-chassis-examples" class="auto internal xref">Appendix E</a>.<a href="#section-3.3-3.40.1" class="pilcrow">¶</a></p>
+</dd>
         <dd class="break"></dd>
 </dl>
 <p id="section-3.3-4">For state data like "admin-state", "oper-state", and so on, this document considers that they are related to device hardware management, not network inventory. Therefore, they are outside of the scope of this document. Same for the sensor-data, they might be defined in some other performance monitoring data models instead of the inventory data model.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
@@ -1794,82 +1829,74 @@ document and could be defined in application- and technology-specific companion 
           <h4 id="name-hardware-components">
 <a href="#section-3.3.1" class="section-number selfRef">3.3.1. </a><a href="#name-hardware-components" class="section-name selfRef">Hardware Components</a>
           </h4>
-<p id="section-3.3.1-1">Other models (e.g., <span>[<a href="#TMF_SD2-20" class="cite xref">TMF_SD2-20</a>]</span>) classify the hardware components into two groups: holder group and equipment group. The holder group contains rack, chassis, slot, and sub-slot while the equipment group contains network-element, board, and port. This data model, likewise <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, does not follow this classification and manages all the hardware components without distinguishing between holder and equipment groups.<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.3.1-1">Other models (e.g., <span>[<a href="#TMF_SD2-20" class="cite xref">TMF_SD2-20</a>]</span>) classify the hardware components into two groups: holder group and equipment group. The holder group contains rack, chassis, slot, and sub-slot while the equipment group contains network-element, board, and port. This data model, like <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, does not follow this classification and manages all the hardware components without distinguishing between holder and equipment groups.<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.3.1-2">See <a href="#port-examples" class="auto internal xref">Appendix D</a>, <a href="#multi-chassis-examples" class="auto internal xref">Appendix E</a>, and <a href="#non-modular-examples" class="auto internal xref">Appendix F</a> for concrete hardware component examples.<a href="#section-3.3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.3.1-3"><a href="#fig-hw-inventory-object-relationship" class="auto internal xref">Figure 1</a> describes the relationship between typical inventory objects in a physical network element.<a href="#section-3.3.1-3" class="pilcrow">¶</a></p>
 <span id="name-relationship-between-typica"></span><div id="fig-hw-inventory-object-relationship">
 <figure id="figure-1">
             <div id="section-3.3.1-4.1">
               <div class="alignLeft art-svg artwork" id="section-3.3.1-4.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="592" width="528" viewBox="0 0 528 592" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-                  <path d="M 56,368 L 56,400" fill="none" stroke="black"></path>
-                  <path d="M 88,352 L 88,416" fill="none" stroke="black"></path>
-                  <path d="M 136,288 L 136,344" fill="none" stroke="black"></path>
-                  <path d="M 200,32 L 200,64" fill="none" stroke="black"></path>
-                  <path d="M 200,352 L 200,416" fill="none" stroke="black"></path>
-                  <path d="M 216,176 L 216,240" fill="none" stroke="black"></path>
-                  <path d="M 264,240 L 264,288" fill="none" stroke="black"></path>
-                  <path d="M 272,64 L 272,168" fill="none" stroke="black"></path>
-                  <path d="M 280,240 L 280,288" fill="none" stroke="black"></path>
-                  <path d="M 328,176 L 328,240" fill="none" stroke="black"></path>
-                  <path d="M 344,32 L 344,64" fill="none" stroke="black"></path>
-                  <path d="M 360,192 L 360,224" fill="none" stroke="black"></path>
-                  <path d="M 360,352 L 360,416" fill="none" stroke="black"></path>
-                  <path d="M 360,480 L 360,512" fill="none" stroke="black"></path>
-                  <path d="M 408,288 L 408,344" fill="none" stroke="black"></path>
-                  <path d="M 408,416 L 408,472" fill="none" stroke="black"></path>
-                  <path d="M 456,352 L 456,416" fill="none" stroke="black"></path>
-                  <path d="M 456,480 L 456,512" fill="none" stroke="black"></path>
-                  <path d="M 488,368 L 488,400" fill="none" stroke="black"></path>
-                  <path d="M 200,32 L 344,32" fill="none" stroke="black"></path>
-                  <path d="M 200,64 L 344,64" fill="none" stroke="black"></path>
-                  <path d="M 216,176 L 328,176" fill="none" stroke="black"></path>
-                  <path d="M 328,192 L 360,192" fill="none" stroke="black"></path>
-                  <path d="M 336,224 L 360,224" fill="none" stroke="black"></path>
-                  <path d="M 216,240 L 328,240" fill="none" stroke="black"></path>
-                  <path d="M 136,288 L 264,288" fill="none" stroke="black"></path>
-                  <path d="M 280,288 L 408,288" fill="none" stroke="black"></path>
-                  <path d="M 88,352 L 200,352" fill="none" stroke="black"></path>
-                  <path d="M 360,352 L 456,352" fill="none" stroke="black"></path>
-                  <path d="M 56,368 L 88,368" fill="none" stroke="black"></path>
-                  <path d="M 456,368 L 488,368" fill="none" stroke="black"></path>
-                  <path d="M 200,384 L 352,384" fill="none" stroke="black"></path>
-                  <path d="M 56,400 L 80,400" fill="none" stroke="black"></path>
-                  <path d="M 464,400 L 488,400" fill="none" stroke="black"></path>
-                  <path d="M 88,416 L 200,416" fill="none" stroke="black"></path>
-                  <path d="M 360,416 L 456,416" fill="none" stroke="black"></path>
-                  <path d="M 360,480 L 456,480" fill="none" stroke="black"></path>
-                  <path d="M 360,512 L 456,512" fill="none" stroke="black"></path>
-                  <polygon class="arrowhead" points="472,400 460,394.4 460,405.6" fill="black" transform="rotate(180,464,400)"></polygon>
-                  <polygon class="arrowhead" points="416,472 404,466.4 404,477.6" fill="black" transform="rotate(90,408,472)"></polygon>
-                  <polygon class="arrowhead" points="416,344 404,338.4 404,349.6" fill="black" transform="rotate(90,408,344)"></polygon>
-                  <polygon class="arrowhead" points="360,384 348,378.4 348,389.6" fill="black" transform="rotate(0,352,384)"></polygon>
-                  <polygon class="arrowhead" points="344,224 332,218.4 332,229.6" fill="black" transform="rotate(180,336,224)"></polygon>
-                  <polygon class="arrowhead" points="280,168 268,162.4 268,173.6" fill="black" transform="rotate(90,272,168)"></polygon>
-                  <polygon class="arrowhead" points="144,344 132,338.4 132,349.6" fill="black" transform="rotate(90,136,344)"></polygon>
-                  <polygon class="arrowhead" points="88,400 76,394.4 76,405.6" fill="black" transform="rotate(0,80,400)"></polygon>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="512" width="392" viewBox="0 0 392 512" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                  <path d="M 8,352 L 8,368" fill="none" stroke="black"></path>
+                  <path d="M 40,336 L 40,384" fill="none" stroke="black"></path>
+                  <path d="M 96,296 L 96,304" fill="none" stroke="black"></path>
+                  <path d="M 104,296 L 104,304" fill="none" stroke="black"></path>
+                  <path d="M 152,32 L 152,64" fill="none" stroke="black"></path>
+                  <path d="M 160,336 L 160,384" fill="none" stroke="black"></path>
+                  <path d="M 168,208 L 168,256" fill="none" stroke="black"></path>
+                  <path d="M 216,72 L 216,176" fill="none" stroke="black"></path>
+                  <path d="M 216,264 L 216,296" fill="none" stroke="black"></path>
+                  <path d="M 224,72 L 224,176" fill="none" stroke="black"></path>
+                  <path d="M 224,264 L 224,296" fill="none" stroke="black"></path>
+                  <path d="M 280,208 L 280,256" fill="none" stroke="black"></path>
+                  <path d="M 288,336 L 288,384" fill="none" stroke="black"></path>
+                  <path d="M 288,448 L 288,480" fill="none" stroke="black"></path>
+                  <path d="M 296,32 L 296,64" fill="none" stroke="black"></path>
+                  <path d="M 312,224 L 312,240" fill="none" stroke="black"></path>
+                  <path d="M 336,296 L 336,304" fill="none" stroke="black"></path>
+                  <path d="M 336,392 L 336,416" fill="none" stroke="black"></path>
+                  <path d="M 344,296 L 344,304" fill="none" stroke="black"></path>
+                  <path d="M 344,392 L 344,416" fill="none" stroke="black"></path>
+                  <path d="M 384,336 L 384,384" fill="none" stroke="black"></path>
+                  <path d="M 384,448 L 384,480" fill="none" stroke="black"></path>
+                  <path d="M 152,32 L 296,32" fill="none" stroke="black"></path>
+                  <path d="M 152,64 L 296,64" fill="none" stroke="black"></path>
+                  <path d="M 168,208 L 280,208" fill="none" stroke="black"></path>
+                  <path d="M 288,224 L 312,224" fill="none" stroke="black"></path>
+                  <path d="M 288,240 L 304,240" fill="none" stroke="black"></path>
+                  <path d="M 168,256 L 280,256" fill="none" stroke="black"></path>
+                  <path d="M 112,304 L 248,304" fill="none" stroke="black"></path>
+                  <path d="M 264,304 L 328,304" fill="none" stroke="black"></path>
+                  <path d="M 40,336 L 160,336" fill="none" stroke="black"></path>
+                  <path d="M 288,336 L 384,336" fill="none" stroke="black"></path>
+                  <path d="M 8,352 L 32,352" fill="none" stroke="black"></path>
+                  <path d="M 16,368 L 32,368" fill="none" stroke="black"></path>
+                  <path d="M 40,384 L 160,384" fill="none" stroke="black"></path>
+                  <path d="M 288,384 L 384,384" fill="none" stroke="black"></path>
+                  <path d="M 288,448 L 384,448" fill="none" stroke="black"></path>
+                  <path d="M 288,480 L 384,480" fill="none" stroke="black"></path>
+                  <path d="M 92,296 L 140,296" fill="none" stroke="black"></path>
+                  <path d="M 164,296 L 216,296" fill="none" stroke="black"></path>
+                  <path d="M 224,296 L 268,296" fill="none" stroke="black"></path>
+                  <path d="M 292,296 L 348,296" fill="none" stroke="black"></path>
+                  <polygon class="arrowhead" points="296,240 284,234.4 284,245.6" fill="black" transform="rotate(180,288,240)"></polygon>
+                  <polygon class="arrowhead" points="40,368 28,362.4 28,373.6" fill="black" transform="rotate(0,32,368)"></polygon>
                   <g class="text">
-                    <text x="240" y="52">network</text>
-                    <text x="304" y="52">element</text>
-                    <text x="296" y="116">1:M</text>
-                    <text x="272" y="196">chassis</text>
-                    <text x="384" y="212">1:N</text>
-                    <text x="208" y="276">1:N</text>
-                    <text x="328" y="276">1:M</text>
-                    <text x="360" y="276">(1)</text>
-                    <text x="148" y="372">slot</text>
-                    <text x="280" y="372">N:1</text>
-                    <text x="32" y="388">1:N</text>
-                    <text x="144" y="388">/sub-slot</text>
-                    <text x="408" y="388">board</text>
-                    <text x="512" y="388">1:N</text>
-                    <text x="512" y="404">(1)</text>
-                    <text x="432" y="452">1:N</text>
-                    <text x="412" y="500">port</text>
-                    <text x="28" y="548">Notes:</text>
-                    <text x="16" y="580">(1)</text>
-                    <text x="48" y="580">non</text>
-                    <text x="136" y="580">field-replaceable</text>
+                    <text x="192" y="52">network</text>
+                    <text x="256" y="52">element</text>
+                    <text x="240" y="132">1:M</text>
+                    <text x="220" y="196">\/</text>
+                    <text x="224" y="228">chassis</text>
+                    <text x="152" y="292">1:N</text>
+                    <text x="280" y="292">1:M</text>
+                    <text x="100" y="324">\/</text>
+                    <text x="340" y="324">\/</text>
+                    <text x="100" y="356">slot</text>
+                    <text x="336" y="356">board</text>
+                    <text x="96" y="372">/sub-slot</text>
+                    <text x="360" y="420">1:N</text>
+                    <text x="340" y="436">\/</text>
+                    <text x="340" y="468">port</text>
                   </g>
                 </svg><a href="#section-3.3.1-4.1.1" class="pilcrow">¶</a>
 </div>
@@ -1921,7 +1948,7 @@ records of software patches that have been applied.<a href="#section-3.3.2-6" cl
 <p id="section-3.4.1-1">According to the description in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. The "model-name" data node identifier is not straightforward to understand, and therefore, in the base inventory data model the attribute is called "part-number".<a href="#section-3.4.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="component-identifiers">
+<div id="component-id">
 <section id="section-3.4.2">
           <h4 id="name-component-identifiers">
 <a href="#section-3.4.2" class="section-number selfRef">3.4.2. </a><a href="#name-component-identifiers" class="section-name selfRef">Component identifiers</a>
@@ -2015,7 +2042,7 @@ module: ietf-network-inventory
 <span id="name-network-inventory-yang-modu"></span><div id="fig-ni-yang">
 <figure id="figure-3">
         <div class="breakable lang-yang sourcecode" id="section-5-1.1">
-<pre>&lt;CODE BEGINS&gt; file "ietf-network-inventory@2026-11-03.yang"
+<pre>&lt;CODE BEGINS&gt; file "ietf-network-inventory@2026-11-05.yang"
 
 module ietf-network-inventory {
   yang-version 1.1;
@@ -2048,13 +2075,13 @@ module ietf-network-inventory {
                &lt;yuchaode@huawei.com&gt;
 
      Editor:   Sergio Belotti
-               &lt;sergio.belotti@nokia.com&gt;
+               &lt;s.belotti.ietf@gmail.com&gt;
 
      Editor:   Jean-Francois Bouquier
                &lt;jeff.bouquier@vodafone.com&gt;
 
      Editor:   Fabio Peruzzini
-               &lt;fabio.peruzzini@telecomitalia.it&gt;
+               &lt;fabio.peruzzini@fibercop.com&gt;
 
      Editor:   Phil Bedard
                &lt;phbedard@cisco.com&gt;";
@@ -2085,7 +2112,7 @@ module ietf-network-inventory {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-11-03 {
+  revision 2026-11-05 {
     description
       "Initial version";
     reference
@@ -2096,7 +2123,7 @@ module ietf-network-inventory {
    * Identities
    */
 
-  identity non-hardware-component-class {
+  identity non-hardware-class {
     description
       "Base identity for non hardware components (e.g., software
        components) in a managed device.";
@@ -2287,7 +2314,7 @@ module ietf-network-inventory {
           base ianahw:hardware-class;
         }
         type identityref {
-          base nwi:non-hardware-component-class;
+          base nwi:non-hardware-class;
         }
       }
       mandatory true;
@@ -2550,7 +2577,7 @@ module ietf-network-inventory {
 <p id="section-6-8">For example, the network controller can collect this information by reading it from the devices using the device model supported by the devices. This model does not constrain the device models used on the device: the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).<a href="#section-6-8" class="pilcrow">¶</a></p>
 <p id="section-6-9">In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to a higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.<a href="#section-6-9" class="pilcrow">¶</a></p>
 <p id="section-6-10">The inventory needs to be updated every time components are added or removed from the network. Protocol-specific mechanisms can be used to notify the client about these changes.<a href="#section-6-10" class="pilcrow">¶</a></p>
-<p id="section-6-11">Since this YANG data model reports what it is actually installed in the network, if a component (e.g., a board) is physically removed from the network, also its descendant components (e.g., daughter boards and ports) are also physically removed from the network and, as a consequence, from the inventory data being reported through this YANG data model.<a href="#section-6-11" class="pilcrow">¶</a></p>
+<p id="section-6-11">Since this YANG data model reports what is actually installed in the network, if a component (e.g., a board) is physically removed from the network, also its descendant components (e.g., daughter boards and ports) are also physically removed from the network and, as a consequence, from the inventory data being reported through this YANG data model.<a href="#section-6-11" class="pilcrow">¶</a></p>
 <p id="section-6-12">If the inventory system defined by this document is to be deployed into a network which has a preexisting inventory system, it is worth noting that existing deployments are based on proprietary Inventory OSS and that the migration path is highly dependent on the specific proprietary solution. Therefore, the migration processes are operator dependent: it is expected that the deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing Inventory OSSes will also take longer time. In a longer term, the network controllers could provide inventory information, using this YANG data model, also to next generation OSSes.<a href="#section-6-12" class="pilcrow">¶</a></p>
 <p id="section-6-13">When this model is used, the source of truth for the inventory data in the scope of this model is the network controller providing this data. Some legacy inventory information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model.<a href="#section-6-13" class="pilcrow">¶</a></p>
 </section>
@@ -2804,7 +2831,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">name</td>
             <td class="text-left" rowspan="1" colspan="1">name</td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">In OpenConfig the name attribute is also a key (see {component-id})</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">type</td>
@@ -2813,13 +2840,13 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">id</td>
-            <td class="text-left" rowspan="1" colspan="1">uuid</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">Deprecated</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">location</td>
-            <td class="text-left" rowspan="1" colspan="1">location</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">Deprecated</td>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">description</td>
@@ -2950,7 +2977,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">subcomponents</td>
             <td class="text-left" rowspan="1" colspan="1"> </td>
-            <td class="text-left" rowspan="1" colspan="1"> </td>
+            <td class="text-left" rowspan="1" colspan="1">Duplicated information with respect to the parent attribute, to support reverse navigation from parent to children components</td>
           </tr>
         </tbody>
       </table>
@@ -3424,7 +3451,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
           <p id="appendix-E-10.3.1">the root of the tree is configured as Main.<a href="#appendix-E-10.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-E-11"><a href="#fig-tree-cascaded" class="auto internal xref">Figure 7</a> describe an example of cascaded switches with three chassis connected in a tree topology.<a href="#appendix-E-11" class="pilcrow">¶</a></p>
+<p id="appendix-E-11"><a href="#fig-tree-cascaded" class="auto internal xref">Figure 7</a> describes an example of cascaded switches with three chassis connected in a tree topology.<a href="#appendix-E-11" class="pilcrow">¶</a></p>
 <span id="name-example-of-cascaded-switche"></span><div id="fig-tree-cascaded">
 <figure id="figure-7">
         <div id="appendix-E-12.1">
@@ -3668,7 +3695,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "component-id": "transceiver-module-2-1",
                 "class": "iana-hardware:module",
                 "description": "Transceiver module plugged in the \
-                 first stack port of the first switch in the stack.",
+                first stack port of the second switch in the stack.",
                 "parent": [
                   "port-2-1"
                 ],
@@ -3688,7 +3715,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
                 "component-id": "transceiver-module-2-2",
                 "class": "iana-hardware:module",
                 "description": "Transceiver module plugged in the \
-                second stack port of the first switch in the stack.",
+               second stack port of the second switch in the stack.",
                 "parent": [
                   "port-2-2"
                 ],

@@ -206,7 +206,7 @@ Table of Contents
 
    *  XXXX --> the assigned RFC number for this I-D
 
-   *  2026-09-29 --> the actual date of the publication of this document
+   *  2026-11-05 --> the actual date of the publication of this document
 
 2.  Terminology and Notations
 
@@ -375,11 +375,11 @@ Table of Contents
    requested by the network management stations [RFC1157].
 
    The "ne-type" YANG identity is defined as a base identity to describe
-   the type of a network element.  This document defines only the
-   "physical-network-element" identity.  Other types of network elements
-   can be defined in other documents, together with the associated YANG
-   identities and the rationale for managing them as network elements
-   from an inventory perspective.
+   the type of a network element.  This document defines only the "ne-
+   physical" identity.  Other types of network elements can be defined
+   in other documents, together with the associated YANG identities and
+   the rationale for managing them as network elements from an inventory
+   perspective.
 
    The component definition is also generalized to support any types of
    component inventory objects that can be managed as hardware
@@ -391,7 +391,7 @@ Table of Contents
    Different component types can be distinguished by the class of
    component.  The component "class" is defined as a union between the
    hardware class identity, defined in "iana-hardware", and the "non-
-   hardware" identity, defined in this document.
+   hardware-class" identity, defined in this document.
 
    Other component types can be defined in other documents, together
    with the associated YANG identities and the rationale for managing
@@ -535,6 +535,31 @@ Table of Contents
    is-fru:  Indicates whether or not a component is considered a 'field-
       replaceable unit' by the vendor.
 
+   uri:  A list of Uniform Resource Identifiers (URIs) which provides
+      additional identification information about the component.
+
+   parent:  The list of the parent components that physically contain
+      this component.
+
+      Usually a component has only one parent component.
+
+      Components which are contained within the network element has no
+      parent component.
+
+      Boards which occupy multiple slots have multiple parent components
+      (one for each occupied slot);
+
+   parent-rel-pos:  When this component is contained in the network-
+      element or in only one parent component and has sibling
+      components, this attribute represents the relative position of
+      this component with respect to the parent component among all the
+      sibling components.
+
+   is-main:  Whe the network element contains chassis components which
+      can take or not the 'main' role (e.g., in case of multi-chassis
+      network elements), this attributes indicates whether the chassis
+      is taking or not the 'main' role.  See for example Appendix E.
+
    For state data like "admin-state", "oper-state", and so on, this
    document considers that they are related to device hardware
    management, not network inventory.  Therefore, they are outside of
@@ -547,7 +572,7 @@ Table of Contents
    Other models (e.g., [TMF_SD2-20]) classify the hardware components
    into two groups: holder group and equipment group.  The holder group
    contains rack, chassis, slot, and sub-slot while the equipment group
-   contains network-element, board, and port.  This data model, likewise
+   contains network-element, board, and port.  This data model, like
    [RFC8348], does not follow this classification and manages all the
    hardware components without distinguishing between holder and
    equipment groups.
@@ -558,41 +583,35 @@ Table of Contents
    Figure 1 describes the relationship between typical inventory objects
    in a physical network element.
 
-                           +-----------------+
-                           | network element |
-                           +--------+--------+
-                                    |
-                                    |
-                                    | 1:M
-                                    |
-                                    |
-                                    V
-                             +-------------+
-                             |   chassis   +---+
-                             |             |   | 1:N
-                             |             |<--+
-                             +-----+-+-----+
-                                   | |
-                           1:N     | |    1:M (1)
-                   +---------------+ +---------------+
-                   |                                 |
-                   |                                 |
-                   V                                 V
-             +-------------+                   +-----------+
-         +---+     slot    |        N:1        |           +---+
-     1:N |   |  /sub-slot  +------------------>|   board   |   | 1:N
-         +-->|             |                   |           |<--+ (1)
-             +-------------+                   +-----+-----+
-                                                     |
-                                                     | 1:N
-                                                     V
-                                               +-----------+
-                                               |    port   |
-                                               +-----------+
-
-   Notes:
-
-   (1) non field-replaceable
+                               +-----------------+
+                               | network element |
+                               +-----------------+
+                                       ||
+                                       ||
+                                       ||
+                                       ||1:M
+                                       ||
+                                       ||
+                                       ||
+                                       \/
+                                 +-------------+
+                                 |   chassis   |---+
+                                 |             |<--|
+                                 +-------------+
+                                       ||
+                        ______1:N______||_____1:M_______
+                        ||------------------ ---------||
+                        \/                            \/
+                 +--------------+               +-----------+
+             +---|     slot     |               |   board   |
+             |-->|  /sub-slot   |               |           |
+                 +--------------+               +-----------+
+                                                      ||
+                                                      ||1:N
+                                                      \/
+                                                +-----------+
+                                                |    port   |
+                                                +-----------+
 
         Figure 1: Relationship between typical inventory objects in
                          physical network elements
@@ -744,7 +763,7 @@ Table of Contents
 
 5.  YANG Data Model for Network Inventory
 
-   <CODE BEGINS> file "ietf-network-inventory@2026-11-03.yang"
+   <CODE BEGINS> file "ietf-network-inventory@2026-11-05.yang"
    module ietf-network-inventory {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-network-inventory";
@@ -776,13 +795,13 @@ Table of Contents
                   <yuchaode@huawei.com>
 
         Editor:   Sergio Belotti
-                  <sergio.belotti@nokia.com>
+                  <s.belotti.ietf@gmail.com>
 
         Editor:   Jean-Francois Bouquier
                   <jeff.bouquier@vodafone.com>
 
         Editor:   Fabio Peruzzini
-                  <fabio.peruzzini@telecomitalia.it>
+                  <fabio.peruzzini@fibercop.com>
 
         Editor:   Phil Bedard
                   <phbedard@cisco.com>";
@@ -813,7 +832,7 @@ Table of Contents
         described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
         they appear in all capitals, as shown here.";
 
-     revision 2026-11-03 {
+     revision 2026-11-05 {
        description
          "Initial version";
        reference
@@ -824,7 +843,7 @@ Table of Contents
       * Identities
       */
 
-     identity non-hardware-component-class {
+     identity non-hardware-class {
        description
          "Base identity for non hardware components (e.g., software
           components) in a managed device.";
@@ -1015,7 +1034,7 @@ Table of Contents
              base ianahw:hardware-class;
            }
            type identityref {
-             base nwi:non-hardware-component-class;
+             base nwi:non-hardware-class;
            }
          }
          mandatory true;
@@ -1313,12 +1332,12 @@ Table of Contents
    removed from the network.  Protocol-specific mechanisms can be used
    to notify the client about these changes.
 
-   Since this YANG data model reports what it is actually installed in
-   the network, if a component (e.g., a board) is physically removed
-   from the network, also its descendant components (e.g., daughter
-   boards and ports) are also physically removed from the network and,
-   as a consequence, from the inventory data being reported through this
-   YANG data model.
+   Since this YANG data model reports what is actually installed in the
+   network, if a component (e.g., a board) is physically removed from
+   the network, also its descendant components (e.g., daughter boards
+   and ports) are also physically removed from the network and, as a
+   consequence, from the inventory data being reported through this YANG
+   data model.
 
    If the inventory system defined by this document is to be deployed
    into a network which has a preexisting inventory system, it is worth
@@ -1601,16 +1620,17 @@ Appendix A.  Comparison With OpenConfig Platform YANG Data Model
     | platform"     |network-   |                                     |
     |               |inventory" |                                     |
     +===============+===========+=====================================+
-    | name          |name       |                                     |
+    | name          |name       | In OpenConfig the name attribute is |
+    |               |           | also a key (see {component-id})     |
     +---------------+-----------+-------------------------------------+
     | type          |class      | See Table 3 for the comparison      |
     |               |           | between "oc-platform-               |
     |               |           | type:OPENCONFIG_HARDWARE_COMPONENT" |
     |               |           | and "ianahw:hardware-class"         |
     +---------------+-----------+-------------------------------------+
-    | id            |uuid       |                                     |
+    | id            |           | Deprecated                          |
     +---------------+-----------+-------------------------------------+
-    | location      |location   |                                     |
+    | location      |           | Deprecated                          |
     +---------------+-----------+-------------------------------------+
     | description   |description|                                     |
     +---------------+-----------+-------------------------------------+
@@ -1680,7 +1700,10 @@ Appendix A.  Comparison With OpenConfig Platform YANG Data Model
     | properties    |           | Generic properties can be handled   |
     |               |           | as part of "description"            |
     +---------------+-----------+-------------------------------------+
-    | subcomponents |           |                                     |
+    | subcomponents |           | Duplicated information with respect |
+    |               |           | to the parent attribute, to support |
+    |               |           | reverse navigation from parent to   |
+    |               |           | children components                 |
     +---------------+-----------+-------------------------------------+
 
        Table 2: Comparison between openconfig platform and inventory
@@ -2034,7 +2057,7 @@ Appendix E.  Example of Multi-chassis Network Elements
 
    *  the root of the tree is configured as Main.
 
-   Figure 7 describe an example of cascaded switches with three chassis
+   Figure 7 describes an example of cascaded switches with three chassis
    connected in a tree topology.
 
            +----------------------------------------------+
@@ -2176,7 +2199,7 @@ E.1.  JSON Examples
                    "component-id": "transceiver-module-2-1",
                    "class": "iana-hardware:module",
                    "description": "Transceiver module plugged in the \
-                    first stack port of the first switch in the stack.",
+                   first stack port of the second switch in the stack.",
                    "parent": [
                      "port-2-1"
                    ],
@@ -2196,7 +2219,7 @@ E.1.  JSON Examples
                    "component-id": "transceiver-module-2-2",
                    "class": "iana-hardware:module",
                    "description": "Transceiver module plugged in the \
-                   second stack port of the first switch in the stack.",
+                  second stack port of the second switch in the stack.",
                    "parent": [
                      "port-2-2"
                    ],
