@@ -60,7 +60,7 @@
               {
                 "component-id": "transceiver-module-2-1",
                 "class": "iana-hardware:module",
-                "description": "Transceiver module plugged in the first stack port of the first switch in the stack.",
+                "description": "Transceiver module plugged in the first stack port of the second switch in the stack.",
                 "parent": [
                   "port-2-1"
                 ],
@@ -78,7 +78,7 @@
               {
                 "component-id": "transceiver-module-2-2",
                 "class": "iana-hardware:module",
-                "description": "Transceiver module plugged in the second stack port of the first switch in the stack.",
+                "description": "Transceiver module plugged in the second stack port of the second switch in the stack.",
                 "parent": [
                   "port-2-2"
                 ],
