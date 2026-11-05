@@ -5,14 +5,14 @@
 IVY Working Group                                                  C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 7 May 2027                                                Nokia
+Expires: 9 May 2027                                                Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                         3 November 2026
+                                                         5 November 2026
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 May 2027.
+   This Internet-Draft will expire on 9 May 2027.
 
 Copyright Notice
 
@@ -558,35 +558,41 @@ Table of Contents
    Figure 1 describes the relationship between typical inventory objects
    in a physical network element.
 
-                               +-----------------+
-                               | network element |
-                               +-----------------+
-                                       ||
-                                       ||
-                                       ||
-                                       ||1:M
-                                       ||
-                                       ||
-                                       ||
-                                       \/
-                                 +-------------+
-                                 |   chassis   |---+
-                                 |             |<--|
-                                 +-------------+
-                                       ||
-                        ______1:N______||_____1:M_______
-                        ||------------------ ---------||
-                        \/                            \/
-                 +--------------+               +-----------+
-             +---|     slot     |               |   board   |
-             |-->|  /sub-slot   |               |           |
-                 +--------------+               +-----------+
-                                                      ||
-                                                      ||1:N
-                                                      \/
-                                                +-----------+
-                                                |    port   |
-                                                +-----------+
+                           +-----------------+
+                           | network element |
+                           +--------+--------+
+                                    |
+                                    |
+                                    | 1:M
+                                    |
+                                    |
+                                    V
+                             +-------------+
+                             |   chassis   +---+
+                             |             |   | 1:N
+                             |             |<--+
+                             +-----+-+-----+
+                                   | |
+                           1:N     | |    1:M (1)
+                   +---------------+ +---------------+
+                   |                                 |
+                   |                                 |
+                   V                                 V
+             +-------------+                   +-----------+
+         +---+     slot    |        N:1        |           +---+
+     1:N |   |  /sub-slot  +------------------>|   board   |   | 1:N
+         +-->|             |                   |           |<--+ (1)
+             +-------------+                   +-----+-----+
+                                                     |
+                                                     | 1:N
+                                                     V
+                                               +-----------+
+                                               |    port   |
+                                               +-----------+
+
+   Notes:
+
+   (1) non field-replaceable
 
         Figure 1: Relationship between typical inventory objects in
                          physical network elements
