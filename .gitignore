@@ -18,10 +18,7 @@
 /versioned/
 Gemfile.lock
 archive.json
-draft-ietf-ivy-network-inventory-yang.xml
+draft-busi-ccamp-test.xml
 package-lock.json
 report.xml
 !requirements.txt
-*.bash
-pretty/
-!figures/*
