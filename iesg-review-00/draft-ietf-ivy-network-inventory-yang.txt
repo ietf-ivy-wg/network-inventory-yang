@@ -5,14 +5,14 @@
 IVY Working Group                                                  C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 14 May 2027                                               Nokia
+Expires: 15 May 2027                                               Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                        10 November 2026
+                                                        11 November 2026
 
 
               A Base YANG Data Model for Network Inventory
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 May 2027.
+   This Internet-Draft will expire on 15 May 2027.
 
 Copyright Notice
 
@@ -2837,8 +2837,13 @@ Acknowledgments
    review.
 
    The authors would like to thank Valery Smyslov, Samier Barguil, and
-   Elwyn Davies for their Security Directorate, Operational Directorate
-   (ops-dir), and General Area Review Team (Gen-ART) reviews.
+   Elwyn Davies for their Security Area Directorate (secdir), Operations
+   and Management Area (OPS) Directorate (opsdir), and General Area
+   Review Team (genart) reviews.
+
+   The authors would like to thank Linda Dunbar and Haoyu Song for their
+   Routing Area Directorate (Rtgdir) and Internet Area Directorate
+   (Intdir) telechat reviews.
 
    This document was prepared using kramdown.
 
