@@ -423,35 +423,7 @@ See {{port-examples}}, {{multi-chassis-examples}}, and {{non-modular-examples}} 
 {{fig-hw-inventory-object-relationship}} describes the relationship between typical inventory objects in a physical network element.
 
 ~~~~ aasvg
-                            +-----------------+
-                            | network element |
-                            +-----------------+
-                                    ||
-                                    ||
-                                    ||
-                                    ||1:M
-                                    ||
-                                    ||
-                                    ||
-                                    \/
-                              +-------------+
-                              |   chassis   |---+
-                              |             |<--|
-                              +-------------+
-                                    ||
-                     ______1:N______||_____1:M_______
-                     ||------------------ ---------||
-                     \/                            \/
-              +--------------+               +-----------+
-          +---|     slot     |               |   board   |
-          |-->|  /sub-slot   |               |           |
-              +--------------+               +-----------+
-                                                   ||
-                                                   ||1:N
-                                                   \/
-                                             +-----------+
-                                             |    port   |
-                                             +-----------+
+{::include figures/hw-inventory-object-relationship.txt}
 ~~~~
 {:#fig-hw-inventory-object-relationship title="Relationship between typical inventory objects in physical network elements"}
 
