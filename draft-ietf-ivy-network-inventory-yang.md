@@ -819,6 +819,12 @@ Swamynathan Balasundaram for their valuable input to the technical discussions d
 The authors would like to thank Reshad Rahman for his YANG Doctors review.
 
 The authors would like to thank Valery Smyslov, Samier Barguil, and Elwyn Davies
-for their Security Directorate, Operational Directorate (ops-dir), and General Area Review Team (Gen-ART) reviews.
+for their Security Area Directorate (secdir), Operations and Management Area (OPS) Directorate (opsdir), and General Area Review Team (genart) reviews.
+
+The authors would like to thank
+Linda Dunbar and Haoyu Song
+for their
+Routing Area Directorate (Rtgdir) and Internet Area Directorate (Intdir)
+telechat reviews.
 
 This document was prepared using kramdown.
