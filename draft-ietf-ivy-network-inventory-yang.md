@@ -354,7 +354,7 @@ In addition to the common attributes defined for network elements and components
 
 ne-id:
 : The identifier that uniquely identifies the network element (NE) within the network, assigned by the server since the network elements cannot guarantee that their local  identifier is unique within the network.
-: The "ne-id" should be assigned such that the same network element will always be identified through the same identifier, even if the network elements get disconnected from the network controller. Mechanisms to ensure this (e.g., checking the "mfg-name", "product-name", management IP address, and physical location) are implementation specific and outside the scope of this document.
+: The "ne-id" MUST be assigned such that the same network element will always be identified through the same identifier, even if the network elements get disconnected from the network controller. Mechanisms to ensure this (e.g., checking the "mfg-name", "product-name", management IP address, and physical location) are implementation specific and outside the scope of this document.
 
 ne-type:
 : The type of network element (e.g., physical network element). See {{overview}} for the definition of NE types.
