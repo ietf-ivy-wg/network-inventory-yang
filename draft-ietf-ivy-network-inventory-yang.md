@@ -92,6 +92,22 @@ normative:
     author:
       org: IANA
     target: https://www.iana.org/assignments/iana-hardware/iana-hardware.xhtml
+  ISO_IEC_15418:
+    title: Information technology - Automatic identification and data capture techniques - GS1 Application Identifiers and ASC MH10 Data Identifiers and maintenance
+    author:
+      org: ISO/IEC
+    date: 2016-03
+    seriesinfo:
+      ISO/IEC: 15418:2016
+    target: https://www.iso.org/standard/67405.html
+  ISO_IEC_15459-4:
+    title: "Information technology - Automatic identification and data capture techniques - Unique identifiers - Part 4: Individual products and product packages"
+    author:
+      org: ISO/IEC
+    date: 2014-11
+    seriesinfo:
+      ISO/IEC: 15459-4:2014
+    target: https://www.iso.org/standard/54782.html
 
 informative:
   TMF_SD2-20:
@@ -169,7 +185,7 @@ summarizes all of the substitutions that are needed.
 Please apply the following replacements:
 
 - XXXX --> the assigned RFC number for this I-D
-- 2026-09-29 --> the actual date of the publication of this document
+- 2026-11-05 --> the actual date of the publication of this document
 
 # Terminology and Notations
 
@@ -281,14 +297,14 @@ inventory perspective.
 
 Physical network elements are usually devices such as hosts, gateways, terminal servers, and the like, which have management agents responsible for performing the network management functions requested by the network management stations {{?RFC1157}}.
 
-The "ne-type" YANG identity is defined as a base identity to describe the type of a network element. This document defines only the "physical-network-element" identity. Other types of network elements can be defined in other documents, together with the associated YANG identities and the rationale for managing them as network elements from an inventory perspective.
+The "ne-type" YANG identity is defined as a base identity to describe the type of a network element. This document defines only the "ne-physical" identity. Other types of network elements can be defined in other documents, together with the associated YANG identities and the rationale for managing them as network elements from an inventory perspective.
 
 The component definition is also generalized to support any types of
 component inventory objects that can be managed as hardware components from an inventory perspective.
 
 The top-level "components" container exposes a list of components, within each network element, and other parameters.
 
-Different component types can be distinguished by the class of component. The component "class" is defined as a union between the hardware class identity, defined in "iana-hardware", and the "non-hardware" identity, defined in this document.
+Different component types can be distinguished by the class of component. The component "class" is defined as a union between the hardware class identity, defined in "iana-hardware", and the "non-hardware-class" identity, defined in this document.
 
 Other component types can be defined in other documents, together with the associated YANG identities and the rationale for managing them as components from an inventory perspective.
 
@@ -338,7 +354,7 @@ In addition to the common attributes defined for network elements and components
 
 ne-id:
 : The identifier that uniquely identifies the network element (NE) within the network, assigned by the server since the network elements cannot guarantee that their local  identifier is unique within the network.
-: The "ne-id" should be assigned such that the same network element will always be identified through the same identifier, even if the network elements get disconnected from the network controller. Mechanisms to ensure this (e.g., checking the "mfg-name", "product-name", management IP address, and physical location) are implementation specific and outside the scope of this document.
+: The "ne-id" MUST be assigned such that the same network element will always be identified through the same identifier, even if the network elements get disconnected from the network controller. Mechanisms to ensure this (e.g., checking the "mfg-name", "product-name", management IP address, and physical location) are implementation specific and outside the scope of this document.
 
 ne-type:
 : The type of network element (e.g., physical network element). See {{overview}} for the definition of NE types.
@@ -366,12 +382,12 @@ mfg-date:
 : The date of manufacturing of the component.
 
 part-number:
-: The vendor-specific part number of the component type.
+: The vendor-specific part number of the component type, as defined in {{ISO_IEC_15418}} and {{ISO_IEC_15459-4}}.
 : It is expected that vendors assign unique part numbers to different component types within the scope of the vendor.
 : > Although the part number is often an alphanumeric string and not a number, this document uses this term since it is widely used and well known in the industry.
 
 serial-number:
-: The vendor-specific serial number of the component instance.
+: The vendor-specific serial number of the component instance, as defined in {{ISO_IEC_15418}} and {{ISO_IEC_15459-4}}.
 : It is expected that vendors assign unique serial numbers to different component instances at least within the scope of the part-number.
 : > Although the serial number is often an alphanumeric string and not a number, this document uses this term since it is widely used and well known in the industry.
 
@@ -381,11 +397,26 @@ asset-id:
 is-fru:
 : Indicates whether or not a component is considered a 'field-replaceable unit' by the vendor.
 
+uri:
+: A list of Uniform Resource Identifiers (URIs) which provides additional identification information about the component.
+
+parent:
+: The list of the parent components that physically contain this component.
+: Usually a component has only one parent component.
+: Components which are contained within the network element has no parent component.
+: Boards which occupy multiple slots have multiple parent components (one for each occupied slot);
+
+parent-rel-pos:
+: When this component is contained in the network-element or in only one parent component and has sibling components, this attribute represents the relative position of this component with respect to the parent component among all the sibling components.
+
+is-main:
+: Whe the network element contains chassis components which can take or not the 'main' role (e.g., in case of multi-chassis network elements), this attributes indicates whether the chassis is taking or not the 'main' role. See for example {{multi-chassis-examples}}.
+
 For state data like "admin-state", "oper-state", and so on, this document considers that they are related to device hardware management, not network inventory. Therefore, they are outside of the scope of this document. Same for the sensor-data, they might be defined in some other performance monitoring data models instead of the inventory data model.
 
 ### Hardware Components
 
-Other models (e.g., {{TMF_SD2-20}}) classify the hardware components into two groups: holder group and equipment group. The holder group contains rack, chassis, slot, and sub-slot while the equipment group contains network-element, board, and port. This data model, likewise {{!RFC8348}}, does not follow this classification and manages all the hardware components without distinguishing between holder and equipment groups.
+Other models (e.g., {{TMF_SD2-20}}) classify the hardware components into two groups: holder group and equipment group. The holder group contains rack, chassis, slot, and sub-slot while the equipment group contains network-element, board, and port. This data model, like {{!RFC8348}}, does not follow this classification and manages all the hardware components without distinguishing between holder and equipment groups.
 
 See {{port-examples}}, {{multi-chassis-examples}}, and {{non-modular-examples}} for concrete hardware component examples.
 
@@ -462,7 +493,7 @@ This document re-defines some attributes listed in {{!RFC8348}}, based on some i
 
 According to the description in {{!RFC8348}}, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. The "model-name" data node identifier is not straightforward to understand, and therefore, in the base inventory data model the attribute is called "part-number".
 
-### Component identifiers
+### Component identifiers {#component-id}
 
 There are some use cases where the name of the components are assigned and changed by the operator. In these cases, the assigned names are also not guaranteed to be always unique.
 
@@ -494,7 +525,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-09-29.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-11-05.yang"}
 
 # Operational Considerations {#operational}
 
@@ -518,7 +549,7 @@ In case of hierarchical controllers, a hierarchical network controller can also 
 
 The inventory needs to be updated every time components are added or removed from the network. Protocol-specific mechanisms can be used to notify the client about these changes.
 
-Since this YANG data model reports what it is actually installed in the network, if a component (e.g., a board) is physically removed from the network, also its descendant components (e.g., daughter boards and ports) are also physically removed from the network and, as a consequence, from the inventory data being reported through this YANG data model.
+Since this YANG data model reports what is actually installed in the network, if a component (e.g., a board) is physically removed from the network, also its descendant components (e.g., daughter boards and ports) are also physically removed from the network and, as a consequence, from the inventory data being reported through this YANG data model.
 
 If the inventory system defined by this document is to be deployed into a network which has a preexisting inventory system, it is worth noting that existing deployments are based on proprietary Inventory OSS and that the migration path is highly dependent on the specific proprietary solution. Therefore, the migration processes are operator dependent: it is expected that the deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing Inventory OSSes will also take longer time. In a longer term, the network controllers could provide inventory information, using this YANG data model, also to next generation OSSes.
 
@@ -590,10 +621,10 @@ The OpenConfig platform data model, defined by the "openconfig-platform" and "op
 
 | Attributes in "openconfig-platform" | Attributes in "ietf-network-inventory" | Remark |
 | ----------------------------------- | -------------------------------------- | ------ |
-| name                                | name                                   |        |
+| name                                | name                                   | In OpenConfig the name attribute is also a key (see {component-id}) |
 | type                                | class                                  | See {{tab-oc-hw}} for the comparison between "oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT" and "ianahw:hardware-class" |
-| id                                  | uuid                                   |        |
-| location                            | location                               |        |
+| id                                  |                                        | Deprecated |
+| location                            |                                        | Deprecated |
 | description                         | description                            |        |
 | mfg-name                            | mfg-name                               |        |
 | mfg-date                            | mfg-date                               |        |
@@ -619,7 +650,7 @@ The OpenConfig platform data model, defined by the "openconfig-platform" and "op
 | used-power                          |                                        | State/performance data |
 | pcie                                |                                        | Alarm data |
 | properties                          |                                        | Generic properties can be handled as part of "description" |
-| subcomponents                       |                                        |        |
+| subcomponents                       |                                        | Duplicated information with respect to the parent attribute, to support reverse navigation from parent to children components |
 {:#tab-oc title="Comparison between openconfig platform and inventory data models"}
 
 As mentioned in {{ne-component}}, state data, performance data, and alarm data are out of scope of the data model defined in this document, and they should be defined in other data models separately. For the same reason some component specific structures in "openconfig-platform", like the one defined for fan, backplane, controller-card, etc., are considered out of scope since they provide specialized operational and alarm data for those components.
@@ -729,7 +760,7 @@ Cascaded switches are another example of multi-chassis which consist of multiple
 - are managed using a single IP Address
 - the root of the tree is configured as Main.
 
-{{fig-tree-cascaded}} describe an example of cascaded switches with three chassis connected in a tree topology.
+{{fig-tree-cascaded}} describes an example of cascaded switches with three chassis connected in a tree topology.
 
 ~~~~ aasvg
 {::include figures/multichassis-hierarchical-example.txt}
