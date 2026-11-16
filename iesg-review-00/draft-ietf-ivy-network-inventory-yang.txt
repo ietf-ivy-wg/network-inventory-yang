@@ -128,7 +128,7 @@ Table of Contents
    inventories may be constructed from management system data to
    represent the expected devices present in a network, and also be used
    to audit and catalog what devices are discovered in the network, and
-   to expose that information in a consistent way.
+   to expose that information consistently.
 
    Network inventory management is a critical component for ensuring the
    infrastructure remains up-to-date (e.g., identifying assets that need
@@ -425,14 +425,14 @@ Table of Contents
 
    uuid:  The Universally Unique Identifier (UUID) of the inventory
       object, assigned by the server.  Such identifiers are widely
-      implemented with systems and guaranteed to be globally unique.
+      implemented with systems and designed to be globally unique.
 
    name:  A human-interpretable label of the inventory object, provided
       by a network operator or by the server.  It could also be present
       on a Graphical User Interface (GUI).
 
    alias:  A human-interpretable label of the inventory object, provided
-      by a network operator.  It could also be present on a GUI instead
+      by a network operator.  It could also be present in a GUI instead
       as well as the name.
 
    description:  A human-interpretable description of the inventory
@@ -650,9 +650,9 @@ Table of Contents
    The data model supports scenarios where multiple software modules can
    be images running within the entity.  For example, one Operating
    System and one or more application software modules can be running in
-   a network element, and, in the same way, one boot-loader, one
-   firmware and one or more Field-Programmable Gate Array (FPGA)
-   software modules can be running on a component like a circuit pack.
+   a network element, and, in the same way, one bootloader, one firmware
+   and one or more Field-Programmable Gate Array (FPGA) software modules
+   can be running on a component like a circuit pack.
 
    For each software module running on the entity, the name and version
    information is provided.
@@ -851,7 +851,7 @@ Table of Contents
 
      identity non-hardware-class {
        description
-         "Base identity for non hardware components (e.g., software
+         "Base identity for non-hardware components (e.g., software
           components) in a managed device.";
      }
 
@@ -1388,7 +1388,7 @@ Table of Contents
    Specifically, the following subtrees and data nodes have particular
    sensitivities/vulnerabilities:
 
-   *  "/nwi:network-elements"
+   *  "/nwi:network-inventory/nwi:network-elements"
 
       This subtree reports the inventory information for all the network
       elements and their hardware components deployed within the network
@@ -2700,7 +2700,7 @@ Appendix F.  Example of Non-modular Network Elements
    Non-modular network elements (also known as "pizza boxes") are
    network elements comprised of a single chassis as a self-contained
    system.  A non-modular network element does not have any slots to
-   take cards so it cannot take any non-field replaceable modules other
+   take cards so it cannot take any non-field-replaceable modules other
    than pluggable ports.
 
    Figure 8 describes an example of a pizza box with 8 ports.

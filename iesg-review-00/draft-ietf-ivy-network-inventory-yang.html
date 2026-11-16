@@ -1320,7 +1320,7 @@ software, and hardware/software versions). Network inventories may
 be constructed from management system data to represent the expected
 devices present in a network, and also be used to audit and catalog
 what devices are discovered in the network, and to expose that
-information in a consistent way.<a href="#section-1-2" class="pilcrow">¶</a></p>
+information consistently.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">Network inventory management is a critical component for ensuring the infrastructure remains up-to-date (e.g., identifying assets that need to be upgraded or decommissioned), stays healthy (e.g., auditing to identify faulty elements), and is maintained to meet performance objectives.
 Also, network inventory management allows operators to keep track of which devices are deployed in their networks, including relevant embedded software and hardware versions.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">Exposing standard interfaces to retrieve information relating to network element components as maintained in an inventory provides key enablers for many applications. For example, <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> identifies a gap relating to the lack of YANG data models that could be used at Abstraction and Control of TE Networks (ACTN) Multi-Domain Service Coordinator-Provisioning Network Controller Interface (MPI) level to report whole or partial network hardware inventory information available at domain controller level towards
@@ -1629,7 +1629,7 @@ document and could be defined in application- and technology-specific companion 
 <span class="break"></span><dl class="dlParallel" id="section-3.1-2">
           <dt id="section-3.1-2.1">uuid:</dt>
           <dd style="margin-left: 1.5em" id="section-3.1-2.2">
-            <p id="section-3.1-2.2.1">The Universally Unique Identifier (UUID) of the inventory object, assigned by the server. Such identifiers are widely implemented with systems and guaranteed to be globally unique.<a href="#section-3.1-2.2.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-2.2.1">The Universally Unique Identifier (UUID) of the inventory object, assigned by the server. Such identifiers are widely implemented with systems and designed to be globally unique.<a href="#section-3.1-2.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-3.1-2.3">name:</dt>
@@ -1639,7 +1639,7 @@ document and could be defined in application- and technology-specific companion 
           <dd class="break"></dd>
 <dt id="section-3.1-2.5">alias:</dt>
           <dd style="margin-left: 1.5em" id="section-3.1-2.6">
-            <p id="section-3.1-2.6.1">A human-interpretable label of the inventory object, provided by a network operator. It could also be present on a GUI instead as well as the name.<a href="#section-3.1-2.6.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-2.6.1">A human-interpretable label of the inventory object, provided by a network operator. It could also be present in a GUI instead as well as the name.<a href="#section-3.1-2.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-3.1-2.7">description:</dt>
@@ -1932,7 +1932,7 @@ storage, port, or power supply are defined in the hardware extension.<a href="#s
 <p id="section-3.3.2-1">Each instance of a network element or a component includes its own "software-rev" list which provides basic software attributes for each entity (network element and component).<a href="#section-3.3.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.3.2-2">The scope of the list is to provide information about the software images that are running within the related entity. The term "running" here is intended as the software modules that the controller has discovered as running in the network element or component as explained in <a href="#operational" class="auto internal xref">Section 6</a>. How a controller discovers and keeps synchronized running software information as well as how it manages transient state (e.g., reboot or loss of connectivity with the network element) are outside the scope of this document.<a href="#section-3.3.2-2" class="pilcrow">¶</a></p>
 <p id="section-3.3.2-3">The data model supports scenarios where multiple software modules can be images running within the entity.
-For example, one Operating System and one or more application software modules can be running in a network element, and, in the same way, one boot-loader, one firmware and one or more Field-Programmable Gate Array (FPGA) software modules can be running on a component like a circuit pack.<a href="#section-3.3.2-3" class="pilcrow">¶</a></p>
+For example, one Operating System and one or more application software modules can be running in a network element, and, in the same way, one bootloader, one firmware and one or more Field-Programmable Gate Array (FPGA) software modules can be running on a component like a circuit pack.<a href="#section-3.3.2-3" class="pilcrow">¶</a></p>
 <p id="section-3.3.2-4">For each software module running on the entity, the name and version information is provided.<a href="#section-3.3.2-4" class="pilcrow">¶</a></p>
 <p id="section-3.3.2-5">The management of inactive/standby software
 modules and of the software upgrade or downgrade life-cycle are outside the scope of the base inventory model and can be addressed in other YANG modules that augment the base inventory model such as <span>[<a href="#I-D.ietf-ivy-network-inventory-software" class="cite xref">I-D.ietf-ivy-network-inventory-software</a>]</span>.<a href="#section-3.3.2-5" class="pilcrow">¶</a></p>
@@ -2136,7 +2136,7 @@ module ietf-network-inventory {
 
   identity non-hardware-class {
     description
-      "Base identity for non hardware components (e.g., software
+      "Base identity for non-hardware components (e.g., software
        components) in a managed device.";
   }
 
@@ -2616,7 +2616,7 @@ notification) to these data nodes.<a href="#section-7-4" class="pilcrow">¶</a><
 <p id="section-7-5">Specifically, the following subtrees and data nodes have particular sensitivities/vulnerabilities:<a href="#section-7-5" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-7-6.1">
-          <p id="section-7-6.1.1">"/nwi:network-elements"<a href="#section-7-6.1.1" class="pilcrow">¶</a></p>
+          <p id="section-7-6.1.1">"/nwi:network-inventory/nwi:network-elements"<a href="#section-7-6.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <ul class="normal ulEmpty">
@@ -4203,7 +4203,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <a href="#appendix-F" class="section-number selfRef">Appendix F. </a><a href="#name-example-of-non-modular-netw" class="section-name selfRef">Example of Non-modular Network Elements</a>
       </h2>
 <p id="appendix-F-1">This appendix provides some examples of non-modular network elements and how they can be modelled using the "ietf-network-inventory" module defined in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#appendix-F-1" class="pilcrow">¶</a></p>
-<p id="appendix-F-2">Non-modular network elements (also known as "pizza boxes") are network elements comprised of a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field replaceable modules other than pluggable ports.<a href="#appendix-F-2" class="pilcrow">¶</a></p>
+<p id="appendix-F-2">Non-modular network elements (also known as "pizza boxes") are network elements comprised of a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field-replaceable modules other than pluggable ports.<a href="#appendix-F-2" class="pilcrow">¶</a></p>
 <p id="appendix-F-3"><a href="#fig-pizza-box" class="auto internal xref">Figure 8</a> describes an example of a pizza box with 8 ports.<a href="#appendix-F-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-an-8-ports-pizza"></span><div id="fig-pizza-box">
 <figure id="figure-8">
