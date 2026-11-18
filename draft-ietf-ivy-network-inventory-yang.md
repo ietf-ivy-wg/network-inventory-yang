@@ -156,7 +156,15 @@ The distinction between a temporarily unreachable network element and one that h
 
 As outlined in {{overview}}, the base inventory YANG data model supports only physical network elements but generalizes the network element definition to allow supporting other types of network elements through adequate augmentations.
 
-This document defines one YANG module "ietf-network-inventory" in {{ni-yang}}.
+This document defines one YANG module "ietf-network-inventory" in {{nwi-yang}}.
+
+{{overview}} provides an overview of the YANG data model defined in this document, which consists of one YANG module "ietf-network-inventory" defined in {{nwi-yang}}. {{nwi-tree}} provides the tree diagram of this YANG data model.
+
+{{oc-comparison}} provides a mapping between the network inventory YANG data model defined in this document and the OpenConfig Platform model, which can be used by a network controller to discover the device data to expose in the network inventory.
+
+{{scalability}} provides further information on the efficiency and scalability concerns discovered during the integration with Inventory OSS in some operator networks.
+
+{{port-examples}}, {{multi-chassis-examples}}, and {{non-modular-examples}} provide JSON examples illustrating how to use this YANG data model.
 
 This base data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
 microwave networks as well as optical local loops, access networks, core networks, data centers, etc.) and can be augmented to
@@ -251,6 +259,8 @@ Slot:
 
 Container:
 : A hardware component class that is capable of containing one or more removable physical entities (e.g., a slot in a chassis is containing a board).
+: Within this document, the term "container" represents a hardware component class capable of containing one or more removable physical entities, e.g., a slot in a chassis capable of containing a board.
+: Elsewhere, a container can be called holder.
 
 ## Tree Diagrams
 
@@ -279,6 +289,8 @@ The base network inventory model, defined in this document, provides a list of n
 The information in the data model is discovered by the controller through mechanisms which are outside the scope of this document.
 
 In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
+
+## Data Model Design {#design}
 
 The "network-inventory" top level container is defined to support reporting other types of network inventory objects, besides the network elements and network element components.
 
@@ -355,7 +367,7 @@ ne-id:
 : The "ne-id" MUST be assigned such that the same network element will always be identified through the same identifier, even if the network elements get disconnected from the network controller. Mechanisms to ensure this (e.g., checking the "mfg-name", "product-name", management IP address, and physical location) are implementation specific and outside the scope of this document.
 
 ne-type:
-: The type of network element (e.g., physical network element). See {{overview}} for the definition of NE types.
+: The type of network element (e.g., physical network element). See {{design}} for the definition of NE types.
 
 product-rev:
 : A vendor-specific product revision string for the NE.
@@ -370,7 +382,7 @@ component-id:
 : The identifier that uniquely identifies the component within the NE. It can be assigned by the NE or by the server.
 
 class:
-: The type of component (e.g., chassis, module, or port). See {{overview}} for the definition of component types.
+: The type of component (e.g., chassis, module, or port). See {{design}} for the definition of component types.
 
 hardware-rev:
 : The vendor-specific hardware revision string for the component.
@@ -491,24 +503,14 @@ The "mfg-date" data node in {{!RFC8348}} is defined as the "date of manufacturin
 
 While the time of day is typically not meaningful for hardware components, it can be useful for other types of components (e.g., software components). Therefore, this model defines the "mfg-date" data node as a "union" of the "date-and-time" and "date" data types defined in {{!RFC9911}}.
 
-Although using a "union" adds some complexity and overhead to data parsing, cleaning, and normalization, this modeling approach is more versatile, flexible, and interoperable when devices only report the manufacturing date. In particular, it avoids the need to use a dummy time value (such as "T00:00:00Z"), which would be indistinguishable from a valid timestamp.
+Although using a "union" adds some complexity and overhead to data parsing, cleaning, and normalization, this modeling approach is more versatile, flexible, and allows for a straightforward match between the manufacturing date definition in the device and in the network inventory. In particular, it avoids the need to use a dummy time value (such as "T00:00:00Z"), which would be indistinguishable from a valid timestamp.
 
-# Network Inventory Tree Diagram {#ni-tree}
-
-{{fig-ni-tree}} shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
-
-~~~~ yangtree
-{::include-fold yang/ietf-network-inventory.tree}
-~~~~
-{:#fig-ni-tree title="Network Inventory Tree Diagram"
-artwork-name="ietf-network-inventory.tree"}
-
-# YANG Data Model for Network Inventory {#ni-yang}
+# YANG Data Model for Network Inventory {#nwi-yang}
 
 ~~~~ yang
 {::include yang/ietf-network-inventory.yang}
 ~~~~
-{:#fig-ni-yang title="Network inventory YANG module"
+{:#fig-nwi-yang title="Network inventory YANG module"
 sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-11-17.yang"}
 
 # Operational Considerations {#operational}
@@ -622,11 +624,21 @@ registry group.
 
 --- back
 
-# Comparison With OpenConfig Platform YANG Data Model
+# Network Inventory Tree Diagram {#nwi-tree}
+
+{{fig-nwi-tree}} shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{nwi-yang}}).
+
+~~~~ yangtree
+{::include-fold yang/ietf-network-inventory.tree}
+~~~~
+{:#fig-nwi-tree title="Network Inventory Tree Diagram"
+artwork-name="ietf-network-inventory.tree"}
+
+# Comparison With OpenConfig Platform YANG Data Model {#oc-comparison}
 
 Given that many devices implement OpenConfig, this appendix compares the OpenConfig Platform model, defined in {{OpenConfig}}, with the base network inventory model, defined in this document, to ensure network controllers can accurately report discovered data.
 
-The OpenConfig platform data model, defined by the "openconfig-platform" and "openconfig-platform-types" modules in {{OpenConfig}}, is a device model that uses a generic component concept to describe internal components and containers, similar to the models in {{?RFC8348}} and in this document. Therefore, {{tab-oc}} compares the component attributes between the "openconfig-platform" YANG module in {{OpenConfig}} and the "ietf-network-inventory" module in {{ni-yang}}.
+The OpenConfig platform data model, defined by the "openconfig-platform" and "openconfig-platform-types" modules in {{OpenConfig}}, is a device model that uses a generic component concept to describe internal components and containers, similar to the models in {{?RFC8348}} and in this document. Therefore, {{tab-oc}} compares the component attributes between the "openconfig-platform" YANG module in {{OpenConfig}} and the "ietf-network-inventory" module in {{nwi-yang}}.
 
 | Attributes in "openconfig-platform" | Attributes in "ietf-network-inventory" | Remark |
 | ----------------------------------- | -------------------------------------- | ------ |
@@ -690,18 +702,9 @@ As mentioned in {{ne-component}}, state data, performance data, and alarm data a
 
 Overall, the analysis in this appendix confirms that the base network inventory YANG data model can be populated with data discovered from devices running OpenConfig.
 
-# Terminology of Container
-
-Within this document, the term "container" represents a hardware component class capable of containing one or more removable physical entities, e.g., a slot in a chassis capable of containing a board.
-
-| terminology of IVY base model  | terminology in other models |
-| ------------------------------ | --------------------------- |
-| container                      | holder                      |
-{:#tab-term title="terminology mapping"}
-
 # Efficiency Issue {#scalability}
 
-During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks. As outlined in {{security}}, these efficiency and scalability issues can pose security issues.
+During  the integration with Inventory OSS in some operator networkss, some efficiency and scalability concerns have been discovered when synchronizing network inventory data for big networks. As outlined in {{security}}, these efficiency and scalability issues can pose security issues.
 
 While implementing NACM {{!RFC8341}} and protocol-specific filtering mechanisms (e.g., RESTCONF filtering {{?RFC8040}}) mitigates these efficiency and scalability concerns, full resolution may require further protocol enhancements beyond the scope of this document.
 
@@ -715,7 +718,7 @@ The main scope of this document is to define the generic data model, enabling a 
 
 # Examples of Ports {#port-examples}
 
-This appendix provides some examples of port implementations and how they can be modelled using the "ietf-network-inventory" module defined in {{ni-yang}}.
+This appendix provides some examples of port implementations and how they can be modelled using the "ietf-network-inventory" module defined in {{nwi-yang}}.
 
 {{fig-board}} shows an example of a single board which contains three types of port:
 
@@ -738,7 +741,7 @@ This appendix contains an example of an instance data tree in JSON encoding {{?R
 
 # Example of Multi-chassis Network Elements {#multi-chassis-examples}
 
-This appendix provides some examples of multi-chassis network elements and how they can be modelled using the "ietf-network-inventory" module defined in {{ni-yang}}.
+This appendix provides some examples of multi-chassis network elements and how they can be modelled using the "ietf-network-inventory" module defined in {{nwi-yang}}.
 
 Multi-chassis network elements are network elements comprised of two or more chassis interconnected, in principle, with any topology.
 
@@ -790,7 +793,7 @@ This appendix contains an example of an instance data tree in JSON encoding {{?R
 
 # Example of Non-modular Network Elements {#non-modular-examples}
 
-This appendix provides some examples of non-modular network elements and how they can be modelled using the "ietf-network-inventory" module defined in {{ni-yang}}.
+This appendix provides some examples of non-modular network elements and how they can be modelled using the "ietf-network-inventory" module defined in {{nwi-yang}}.
 
 Non-modular network elements (also known as "pizza boxes") are network elements comprised of a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field-replaceable modules other than pluggable ports.
 
