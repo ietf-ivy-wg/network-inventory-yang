@@ -66,7 +66,7 @@ module ietf-network-inventory {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-11-05 {
+  revision 2026-11-17 {
     description
       "Initial version";
     reference
@@ -314,7 +314,10 @@ module ietf-network-inventory {
         "RFC 6933: Entity MIB (Version 4) - entPhysicalHardwareRev";
     }
     leaf mfg-date {
-      type yang:date-and-time;
+      type union {
+        type yang:date-and-time;
+        type yang:date;
+      }
       description
         "The date of manufacturing of the component.";
       reference

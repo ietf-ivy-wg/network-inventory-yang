@@ -32,7 +32,7 @@ module: ietf-network-inventory
                  +--ro mfg-name?         string
                  +--ro product-name?     string
                  +--ro hardware-rev?     string
-                 +--ro mfg-date?         yang:date-and-time
+                 +--ro mfg-date?         union
                  +--ro part-number?      string
                  +--ro serial-number?    string
                  +--ro asset-id?         string

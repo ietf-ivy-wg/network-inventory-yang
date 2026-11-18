@@ -481,6 +481,14 @@ In order to support these use cases and allowing a straightforward match between
 
 If the device reports the relative position as an integer, e.g., using the device model defined in {{!RFC8348}}, the integer value reported by the device can be mapped into a string within the network inventory.
 
+### Manufacturing Date
+
+The "mfg-date" data node in {{!RFC8348}} is defined as the "date of manufacturing of the managed component" using the "date-and-time" data type defined in {{!RFC9911}}.
+
+While the time of day is typically not meaningful for hardware components, it can be useful for other types of components (e.g., software components). Therefore, this model defines the "mfg-date" data node as a "union" of the "date-and-time" and "date" data types defined in {{!RFC9911}}.
+
+Although using a "union" adds some complexity and overhead to data parsing, cleaning, and normalization, this modeling approach is more versatile, flexible, and interoperable when devices only report the manufacturing date. In particular, it avoids the need to use a dummy time value (such as "T00:00:00Z"), which would be indistinguishable from a valid timestamp.
+
 # Network Inventory Tree Diagram {#ni-tree}
 
 {{fig-ni-tree}} shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" ({{ni-yang}}).
