@@ -117,8 +117,12 @@ informative:
 
 --- abstract
 
-This document defines a base YANG data model for reporting network inventory. The scope of this base model is set to
-be application- and technology-agnostic. The base data model can be augmented with application- and technology-specific details.
+This document defines a base YANG data model for reporting network inventory.
+
+The model can be used directly, as is, to report physical hardware inventory
+(including basic running software attributes).
+It also provides a generalized, application- and technology-agnostic foundation
+that can be augmented with technology- or application-specific inventory details.
 
 --- middle
 
@@ -156,8 +160,6 @@ The distinction between a temporarily unreachable network element and one that h
 
 As outlined in {{overview}}, the base inventory YANG data model supports only physical network elements but generalizes the network element definition to allow supporting other types of network elements through adequate augmentations.
 
-This document defines one YANG module "ietf-network-inventory" in {{nwi-yang}}.
-
 {{overview}} provides an overview of the YANG data model defined in this document, which consists of one YANG module "ietf-network-inventory" defined in {{nwi-yang}}. {{nwi-tree}} provides the tree diagram of this YANG data model.
 
 {{oc-comparison}} provides a mapping between the network inventory YANG data model defined in this document and the OpenConfig Platform model, which can be used by a network controller to discover the device data to expose in the network inventory.
@@ -166,11 +168,11 @@ This document defines one YANG module "ietf-network-inventory" in {{nwi-yang}}.
 
 {{port-examples}}, {{multi-chassis-examples}}, and {{non-modular-examples}} provide JSON examples illustrating how to use this YANG data model.
 
-This base data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
+This YANG data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
 microwave networks as well as optical local loops, access networks, core networks, data centers, etc.) and can be augmented to
 include required application- and technology-specific inventory details together with specific hardware or software component's attributes.
 
-The base inventory YANG data model is scoped to cover the common use cases for inventory but at network-wide level, covering both hardware and base software information.
+The base inventory YANG data model is scoped to cover the common use cases for inventory but at a network-wide level, and can be used directly, as is, to report physical hardware and basic software information.
 
 ## Editorial Note (To be removed by RFC Editor)
 
