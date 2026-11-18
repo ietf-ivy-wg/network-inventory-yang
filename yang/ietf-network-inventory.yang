@@ -66,7 +66,7 @@ module ietf-network-inventory {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-11-17 {
+  revision 2026-11-18 {
     description
       "Initial version";
     reference
@@ -477,7 +477,13 @@ module ietf-network-inventory {
                 description
                   "This data node is applicable only when this
                    component is contained in the network-element or
-                   in only one parent component.";
+                   in only one parent component.
+
+                   When a component is contained in multiple parent
+                   components (e.g., a multi-slot board occupying
+                   multiple slots), it is assumed that it fully
+                   occupies each referenced parent container, making
+                   the relative position inapplicable.";
               }
               type string;
               description

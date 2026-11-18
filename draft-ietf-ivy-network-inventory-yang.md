@@ -185,7 +185,7 @@ summarizes all of the substitutions that are needed.
 Please apply the following replacements:
 
 - XXXX --> the assigned RFC number for this I-D
-- 2026-11-17 --> the actual date of the publication of this document
+- 2026-11-18 --> the actual date of the publication of this document
 
 # Terminology and Notations
 
@@ -491,13 +491,27 @@ Instead, the component "name" is defined as an optional attribute and the "compo
 attribute is defined as the key for the component list (in alignment with the approach
 followed for the network-element list).
 
-### Parent Relative Position
+### Association with the parent component
 
 There are some use cases where the parent relative position is not reported as an integer but as a string.
 
-In order to support these use cases and allowing a straightforward match between the relative position definition in the device and in the network inventory, this model is defining the 'parent-rel-pos' data node as a string instead of as an integer.
+In order to support these use cases and allow a straightforward match
+between the relative position definition in the device and in the network inventory,
+this model defines the 'parent-rel-pos' data node as a string instead of as an integer.
 
 If the device reports the relative position as an integer, e.g., using the device model defined in {{!RFC8348}}, the integer value reported by the device can be mapped into a string within the network inventory.
+
+Furthermore, to support cases where a component is physically contained within multiple
+parent components (e.g., a board occupying multiple slots), the 'parent' data node
+is defined as a leaf-list rather than a single leaf (as in {{!RFC8348}}).
+
+In such multi-parent cases, each referenced parent is an atomic container
+(such as a slot or sub-slot) that is fully occupied by that component.
+Because the component occupies each parent container entirely, a relative
+position within a single parent has no meaning, and the 'parent-rel-pos' MUST be omitted.
+
+If a physical slot can be shared by multiple boards, each partition is
+modeled as a separate sub-slot container component.
 
 ### Manufacturing Date
 
@@ -513,7 +527,7 @@ Although using a "union" adds some complexity and overhead to data parsing, clea
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-nwi-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-11-17.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-11-18.yang"}
 
 # Operational Considerations {#operational}
 
@@ -797,7 +811,7 @@ This appendix contains an example of an instance data tree in JSON encoding {{?R
 
 This appendix provides some examples of non-modular network elements and how they can be modelled using the "ietf-network-inventory" module defined in {{nwi-yang}}.
 
-Non-modular network elements (also known as "pizza boxes") are network elements comprised of a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field-replaceable modules other than pluggable ports.
+Non-modular network elements (also known as "pizza boxes") are network elements comprised of a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any field-replaceable modules other than pluggable ports.
 
 {{fig-pizza-box}} describes an example of a pizza box with 8 ports.
 
