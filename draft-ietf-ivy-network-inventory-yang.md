@@ -82,16 +82,6 @@ contributor:
     email: rmanzott@cisco.com
 
 normative:
-  IANA_ENTITY_MIB:
-    title: IANA-ENTITY-MIB
-    author:
-      org: IANA
-    target: https://www.iana.org/assignments/ianaentity-mib/ianaentity-mib.xhtml
-  IANA_HW_YANG:
-    title: iana-hardware YANG Module
-    author:
-      org: IANA
-    target: https://www.iana.org/assignments/iana-hardware/iana-hardware.xhtml
   ISO_IEC_15418:
     title: Information technology - Automatic identification and data capture techniques - GS1 Application Identifiers and ASC MH10 Data Identifiers and maintenance
     author:
@@ -185,7 +175,7 @@ summarizes all of the substitutions that are needed.
 Please apply the following replacements:
 
 - XXXX --> the assigned RFC number for this I-D
-- 2026-11-05 --> the actual date of the publication of this document
+- 2026-11-17 --> the actual date of the publication of this document
 
 # Terminology and Notations
 
@@ -213,17 +203,17 @@ The following terms are defined in {{?RFC8453}} and are not redefined here:
 - Provisioning Network Controller (PNC)
 - MDSC-PNC Interface (MPI)
 
-The following terms are defined in the description statements of the corresponding YANG identities, defined in {{IANA_HW_YANG}}, and are not redefined here:
+The following terms are defined in the description statements of the corresponding YANG identities, defined in {{!IANA.iana-hardware}}, and are not redefined here:
 
 - backplane
 - battery
 - cpu
 - fan
 - module
-- power supply
+- power supply: for the "power-supply" YANG identity {{!IANA.iana-hardware}}
 - sensor
 - stack
-- storage device
+- storage device: for the "storage-drive" YANG identity {{!IANA.iana-hardware}}
 
 Also, the document makes use of the following terms:
 
@@ -246,8 +236,8 @@ Network element:
 : The generalization of the physical network element definition.
 
 Hardware component:
-: A general definition of category of components as defined in {{!RFC8348}} and {{IANA_HW_YANG}} (e.g., backplane, battery, container, central processing unit (CPU), chassis, fan, module, port, power supply, sensor, stack, and storage device components).
-: The list of hardware components can be extended in future versions of {{IANA_ENTITY_MIB}} (and, consequently, of ({{IANA_HW_YANG}}).
+: A general definition of category of components as defined in {{!RFC8348}} and {{!IANA.iana-hardware}} (e.g., backplane, battery, container, central processing unit (CPU), chassis, fan, module, port, power supply, sensor, stack, and storage device components).
+: The list of hardware components can be extended in future versions of {{!IANA.ianaentity-mib}} (and, consequently, of ({{!IANA.iana-hardware}}).
 
 Component:
 : A further extension of the hardware component definition to include other inventory objects which can be managed, from an inventory perspective, in the same way as hardware components.
@@ -274,7 +264,7 @@ The meanings of the symbols in the YANG tree diagrams are defined in {{?RFC8340}
 | ------ | ------------------------------- | ------------- |
 | inet   | ietf-inet-types                 | {{Section 4 of !RFC9911}}  |
 | yang   | ietf-yang-types                 | {{Section 3 of !RFC9911}}  |
-| ianahw | iana-hardware                   | {{IANA_HW_YANG}} |
+| ianahw | iana-hardware                   | {{!IANA.iana-hardware}} |
 | nwi    | ietf-network-inventory          | RFC XXXX      |
 {:#tab-prefixes title="Prefixes and corresponding YANG modules"}
 
@@ -286,6 +276,10 @@ This document uses artwork folding {{?RFC8792}} for better formatting.
 
 The base network inventory model, defined in this document, provides a list of network elements and network element components.
 
+The information in the data model is discovered by the controller through mechanisms which are outside the scope of this document.
+
+In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
+
 The "network-inventory" top level container is defined to support reporting other types of network inventory objects, besides the network elements and network element components.
 
 These additional types of network inventory objects can be defined, together with the associated YANG data model and the rationale for managing them as part of the network inventory, in other documents providing application- and technology-specific companion augmentation data models, such as
@@ -295,7 +289,10 @@ The network element definition is generalized to support physical
 network elements and other types of components' groups that can be managed as physical network elements from an
 inventory perspective.
 
-Physical network elements are usually devices such as hosts, gateways, terminal servers, and the like, which have management agents responsible for performing the network management functions requested by the network management stations {{?RFC1157}}.
+Physical network elements are usually devices such as hosts, routers,
+terminal servers, and the like, which have management agents responsible
+for performing the network management functions requested by the
+network management stations ({{?RFC6632}}).
 
 The "ne-type" YANG identity is defined as a base identity to describe the type of a network element. This document defines only the "ne-physical" identity. Other types of network elements can be defined in other documents, together with the associated YANG identities and the rationale for managing them as network elements from an inventory perspective.
 
@@ -313,7 +310,8 @@ hardware" identity of component are outside the scope of this
 document and could be defined in application- and technology-specific companion augmentation data models, such as
 {{?I-D.ietf-ivy-network-inventory-software}}.
 
-{{!RFC8348}} defines rack, chassis, slot, sub-slot, board, and port as components of network elements with generic attributes.
+Like in {{!RFC8348}}, rack, chassis, slot, sub-slot, board, and port are defined respectively as
+"chassis", "container", "module" and "port" component classes, with generic attributes.
 
 While {{!RFC8348}} is used to manage the hardware of a single server (e.g., a network element), the Network Inventory YANG data model is used to retrieve the base inventory information that a controller discovers from all the network elements with network-wide scope under its control.
 
@@ -427,7 +425,7 @@ See {{port-examples}}, {{multi-chassis-examples}}, and {{non-modular-examples}} 
 ~~~~
 {:#fig-hw-inventory-object-relationship title="Relationship between typical inventory objects in physical network elements"}
 
-The "iana-hardware" module {{IANA_HW_YANG}} defines YANG identities for
+The "iana-hardware" module {{!IANA.iana-hardware}} defines YANG identities for
 the hardware component types in the IANA-maintained "IANA-ENTITY-MIB"
 registry.
 
@@ -511,7 +509,7 @@ artwork-name="ietf-network-inventory.tree"}
 {::include yang/ietf-network-inventory.yang}
 ~~~~
 {:#fig-ni-yang title="Network inventory YANG module"
-sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-11-05.yang"}
+sourcecode-markers="true" sourcecode-name="ietf-network-inventory@2026-11-17.yang"}
 
 # Operational Considerations {#operational}
 
@@ -535,11 +533,11 @@ exposes.
 
 For example, in the context of ACTN, the network inventory YANG data model can be used at the MPI interfaces, as defined in {{?RFC8453}}, or on an interface, not defined in {{?RFC8453}} between the MDSC and the Inventory OSS.
 
-The information in the data model is discovered by the controller through mechanisms which are outside the scope of this document.
+As outlined in {{overview}}, the information in the data model is discovered by the controller through mechanisms which are outside the scope of this document.
+
+For example, the network controller can collect this information by reading it from the devices using the device model supported by the devices. This model does not constrain the device models used on the device: the YANG data model defined in {{!RFC8348}} is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed.
 
 Note that distinguishing between the cases where a NE is unreachable versus decommissioned depends on the mechanism used for discovering this information and is outside the scope of this document.
-
-For example, the network controller can collect this information by reading it from the devices using the device model supported by the devices. This model does not constrain the device models used on the device: the YANG data model defined in {{!RFC8348}} is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).
 
 In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to a higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
 

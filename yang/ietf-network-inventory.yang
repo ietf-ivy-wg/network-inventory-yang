@@ -170,7 +170,9 @@ module ietf-network-inventory {
       type yang:uuid;
       description
         "The Universally Unique Identifier of the entity
-         (e.g., component).";
+         (e.g., component).
+
+         This identifier is assigned by the server.";
     }
     leaf name {
       type string;
@@ -421,7 +423,11 @@ module ietf-network-inventory {
           type string;
           description
             "An identifier that uniquely identifies the NE in
-             a network.";
+             a network.
+
+             This identifier is assigned by the server and MUST be
+             persistent across disconnections, reboots, or
+             management  session losses.";
         }
         leaf ne-type {
           type identityref {
