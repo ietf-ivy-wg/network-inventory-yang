@@ -440,12 +440,16 @@ storage, port, or power supply are defined in the hardware extension.
 
 Each instance of a network element or a component includes its own "software-rev" list which provides basic software attributes for each entity (network element and component).
 
-The scope of the list is to provide information about the software images that are running within the related entity. The term "running" here is intended as the software modules that the controller has discovered as running in the network element or component as explained in {{operational}}. How a controller discovers and keeps synchronized running software information as well as how it manages transient state (e.g., reboot or loss of connectivity with the network element) are outside the scope of this document.
+The scope of the list is to provide information about the software images that are running within the related entity.
 
-The data model supports scenarios where multiple software modules can be images running within the entity.
-For example, one Operating System and one or more application software modules can be running in a network element, and, in the same way, one bootloader, one firmware and one or more Field-Programmable Gate Array (FPGA) software modules can be running on a component like a circuit pack.
+The term "software image" in this document refers to a software binary image which can be run on a system with lifecycle state (e.g., running, inactive/standby).
 
-For each software module running on the entity, the name and version information is provided.
+The term "running" in this document refers to the software images that the controller has discovered as running in the network element or component as explained in {{operational}}. How a controller discovers and keeps synchronized running software information as well as how it manages transient state (e.g., reboot or loss of connectivity with the network element) are outside the scope of this document.
+
+The data model supports scenarios where multiple software images can be images running within the entity.
+For example, one Operating System and one or more application software images can be running in a network element, and, in the same way, one bootloader, one firmware and one or more Field-Programmable Gate Array (FPGA) software images can be running on a component like a circuit pack.
+
+For each software image running on the entity, the name and version information is provided.
 
 The management of inactive/standby software
 modules and of the software upgrade or downgrade life-cycle are outside the scope of the base inventory model and can be addressed in other YANG modules that augment the base inventory model such as {{?I-D.ietf-ivy-network-inventory-software}}.
@@ -457,7 +461,7 @@ records of software patches that have been applied.
 
 The software components lifecycle (such as activation, deactivation, installation, storage, removal, etc.) is outside the scope of this document and defined in other documents such as {{?I-D.ietf-ivy-network-inventory-software}}.
 
-## Changes vs. RFC 8348
+## Differences from RFC 8348
 
 This document re-defines some attributes listed in {{!RFC8348}}, based on some integration experience for network inventory data.
 
@@ -471,7 +475,9 @@ There are some use cases where the name of the components are assigned and chang
 
 In order to support these use cases, the base inventory data model is not aligned with {{!RFC8348}} in defining the component name as the key for the component list.
 
-Instead, the name is defined as an optional attribute and the "component-id" is defined as the key for the "component" list (in alignment with the approach followed for the "network-element" list).
+Instead, the component "name" is defined as an optional attribute and the "component-id"
+attribute is defined as the key for the component list (in alignment with the approach
+followed for the network-element list).
 
 ### Parent Relative Position
 
@@ -571,7 +577,7 @@ Specifically, the following subtrees and data nodes have particular sensitivitie
 
 - "/nwi:network-inventory/nwi:network-elements"
 
-> This subtree reports the inventory information for all the network elements and their hardware components deployed within the network as well as of the software modules being discovered as running on these network elements and components. Unauthorized access to this subtree can disclose this information. A malicious attacker can use this information to perform targeted attacks to network elements, hardware components or software modules with known vulnerabilities.
+> This subtree reports the inventory information for all the network elements and their hardware components deployed within the network as well as of the software images being discovered as running on these network elements and components. Unauthorized access to this subtree can disclose this information. A malicious attacker can use this information to perform targeted attacks to network elements, hardware components or software images with known vulnerabilities.
 
 > In large networks, the massive volume of reported data can cause scalability issues, as reported in {{scalability}}. A malicious attacker could leverage this to cause  resource exhaustion.
 
