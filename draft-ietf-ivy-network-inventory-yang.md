@@ -549,6 +549,21 @@ If the inventory system defined by this document is to be deployed into a networ
 
 When this model is used, the source of truth for the inventory data in the scope of this model is the network controller providing this data. Some legacy inventory information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model.
 
+## Transport Performance Considerations
+
+Deployments of the data model defined in this document in large-
+scale networks can generate substantial data payloads during full
+inventory retrievals.  To prevent these large transfers from
+causing network congestion or adversely impacting critical
+operational traffic, the underlying transport sessions SHOULD be
+managed carefully.
+
+Operators should ensure that the transport method chosen for
+retrieval either utilizes native congestion control mechanisms,
+operates over network paths with pre-provisioned capacity, or
+implements rate-limiting mechanisms (such as circuit breakers)
+to safely throttle large-volume data transfers.
+
 # Security Considerations {#security}
 
 This section is modeled after the template described in {{Section 3.7.1
