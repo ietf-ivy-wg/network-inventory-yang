@@ -515,7 +515,17 @@ It is worth noting that some information reported within this YANG data model ca
 
 As outlined in {{intro}}, per the definition of {{?RFC8309}} and {{?RFC8969}}, the network inventory model is a network model.
 
-This information can be provided by a network controller to a higher level hierarchical network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
+In case of hierarchical controllers, a hierarchical network controller can
+also collect the network inventory information from its lower-level network
+controllers using this YANG data model (or other mechanisms which are
+outside the scope of this document) and report the combined network inventory
+information to a higher-level network controller, to an Inventory OSS, or
+to any other type of application which needs to discover the network inventory
+information. When combining network inventories from lower-level network
+controllers, the higher-level controller acts as
+the server for its northbound interface and is responsible for ensuring that
+the 'ne-id' values remain unique within the combined network-element list it
+exposes.
 
 For example, in the context of ACTN, the network inventory YANG data model can be used at the MPI interfaces, as defined in {{?RFC8453}}, or on an interface, not defined in {{?RFC8453}} between the MDSC and the Inventory OSS.
 
