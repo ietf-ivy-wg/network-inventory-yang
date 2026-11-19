@@ -602,7 +602,7 @@ Table of Contents
    is-main:  When the network element contains chassis components which
       can take or not the "main" role (e.g., in case of multi-chassis
       network elements), this attribute indicates whether the chassis is
-      taking or not the "main" role.  See for example Appendix E.
+      taking or not the "main" role.  See, for example, Appendix E.
 
    For state data like "admin-state", "oper-state", and so on, this
    document considers that they are related to device hardware
