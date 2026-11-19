@@ -11,8 +11,11 @@
 <meta content="Fabio Peruzzini" name="author">
 <meta content="Phil Bedard" name="author">
 <meta content="
-       This document defines a base YANG data model for reporting network inventory. The scope of this base model is set to
-be application- and technology-agnostic. The base data model can be augmented with application- and technology-specific details. 
+       This document defines a base YANG data model for reporting network inventory. 
+       The model can be used directly, as is, to report physical hardware inventory
+(including basic running software attributes).
+It also provides a generalized, application- and technology-agnostic foundation
+that can be augmented with technology- or application-specific inventory details. 
     " name="description">
 <meta content="xml2rfc 3.35.0" name="generator">
 <meta content="next generation" name="keyword">
@@ -22,13 +25,13 @@ be application- and technology-agnostic. The base data model can be augmented wi
 <!-- Generator version information:
   xml2rfc 3.35.0
     Python 3.14.10
-    ConfigArgParse 1.9.0
+    ConfigArgParse 1.10.1
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.14.3
+    platformdirs 4.14.7
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
@@ -1052,7 +1055,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Yu, et al.</td>
-<td class="center">Expires 20 May 2027</td>
+<td class="center">Expires 23 May 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1065,12 +1068,12 @@ svg {
 <dd class="internet-draft">draft-ietf-ivy-network-inventory-yang-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-11-16" class="published">16 November 2026</time>
+<time datetime="2026-11-19" class="published">19 November 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-05-20">20 May 2027</time></dd>
+<dd class="expires"><time datetime="2027-05-23">23 May 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1099,8 +1102,11 @@ svg {
 <h1 id="title">A Base YANG Data Model for Network Inventory</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document defines a base YANG data model for reporting network inventory. The scope of this base model is set to
-be application- and technology-agnostic. The base data model can be augmented with application- and technology-specific details.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document defines a base YANG data model for reporting network inventory.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">The model can be used directly, as is, to report physical hardware inventory
+(including basic running software attributes).
+It also provides a generalized, application- and technology-agnostic foundation
+that can be augmented with technology- or application-specific inventory details.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1132,7 +1138,7 @@ be application- and technology-agnostic. The base data model can be augmented wi
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 20 May 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 23 May 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1193,110 +1199,118 @@ be application- and technology-agnostic. The base data model can be augmented wi
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-yang-data-model-for-network" class="internal xref">YANG Data Model for Network Inventory Overview</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-common-attributes-for-inven" class="internal xref">Common Attributes for Inventory Objects</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
-                    <p id="section-toc.1-1.3.2.1.2.1.1"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-common-attributes-for-netwo" class="internal xref">Common Attributes for Network Elements and Components</a></p>
-</li>
-                </ul>
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-data-model-design" class="internal xref">Data Model Design</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-network-element" class="internal xref">Network Element</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-components" class="internal xref">Components</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-common-attributes-for-inven" class="internal xref">Common Attributes for Inventory Objects</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3.2.1">
-                    <p id="section-toc.1-1.3.2.3.2.1.1"><a href="#section-3.3.1" class="auto internal xref">3.3.1</a>.  <a href="#name-hardware-components" class="internal xref">Hardware Components</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3.2.2">
-                    <p id="section-toc.1-1.3.2.3.2.2.1"><a href="#section-3.3.2" class="auto internal xref">3.3.2</a>.  <a href="#name-software-components" class="internal xref">Software Components</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2.2.1">
+                    <p id="section-toc.1-1.3.2.2.2.1.1"><a href="#section-3.2.1" class="auto internal xref">3.2.1</a>.  <a href="#name-common-attributes-for-netwo" class="internal xref">Common Attributes for Network Elements and Components</a></p>
 </li>
                 </ul>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-network-element" class="internal xref">Network Element</a></p>
+</li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
-                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-changes-vs-rfc-8348" class="internal xref">Changes vs. RFC 8348</a></p>
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-components" class="internal xref">Components</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4.2.1">
-                    <p id="section-toc.1-1.3.2.4.2.1.1"><a href="#section-3.4.1" class="auto internal xref">3.4.1</a>.  <a href="#name-part-number" class="internal xref">Part Number</a></p>
+                    <p id="section-toc.1-1.3.2.4.2.1.1"><a href="#section-3.4.1" class="auto internal xref">3.4.1</a>.  <a href="#name-hardware-components" class="internal xref">Hardware Components</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4.2.2">
-                    <p id="section-toc.1-1.3.2.4.2.2.1"><a href="#section-3.4.2" class="auto internal xref">3.4.2</a>.  <a href="#name-component-identifiers" class="internal xref">Component identifiers</a></p>
+                    <p id="section-toc.1-1.3.2.4.2.2.1"><a href="#section-3.4.2" class="auto internal xref">3.4.2</a>.  <a href="#name-software-components" class="internal xref">Software Components</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4.2.3">
-                    <p id="section-toc.1-1.3.2.4.2.3.1"><a href="#section-3.4.3" class="auto internal xref">3.4.3</a>.  <a href="#name-parent-relative-position" class="internal xref">Parent Relative Position</a></p>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
+                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-differences-from-rfc-8348" class="internal xref">Differences from RFC 8348</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5.2.1">
+                    <p id="section-toc.1-1.3.2.5.2.1.1"><a href="#section-3.5.1" class="auto internal xref">3.5.1</a>.  <a href="#name-part-number" class="internal xref">Part Number</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5.2.2">
+                    <p id="section-toc.1-1.3.2.5.2.2.1"><a href="#section-3.5.2" class="auto internal xref">3.5.2</a>.  <a href="#name-component-identifiers" class="internal xref">Component identifiers</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5.2.3">
+                    <p id="section-toc.1-1.3.2.5.2.3.1"><a href="#section-3.5.3" class="auto internal xref">3.5.3</a>.  <a href="#name-association-with-the-parent" class="internal xref">Association with the parent component</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5.2.4">
+                    <p id="section-toc.1-1.3.2.5.2.4.1"><a href="#section-3.5.4" class="auto internal xref">3.5.4</a>.  <a href="#name-manufacturing-date" class="internal xref">Manufacturing Date</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-network-inventory-tree-diag" class="internal xref">Network Inventory Tree Diagram</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-yang-data-model-for-network-" class="internal xref">YANG Data Model for Network Inventory</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-yang-data-model-for-network-" class="internal xref">YANG Data Model for Network Inventory</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-operational-considerations" class="internal xref">Operational Considerations</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-operational-considerations" class="internal xref">Operational Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
-                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
-                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-transport-performance-consi" class="internal xref">Transport Performance Considerations</a></p>
 </li>
             </ul>
 </li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-network-inventory-tree-diag" class="internal xref">Network Inventory Tree Diagram</a></p>
+</li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-comparison-with-openconfig-" class="internal xref">Comparison With OpenConfig Platform YANG Data Model</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-comparison-with-openconfig-" class="internal xref">Comparison With OpenConfig Platform YANG Data Model</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-terminology-of-container" class="internal xref">Terminology of Container</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-C" class="auto internal xref">Appendix C</a>.  <a href="#name-efficiency-issue" class="internal xref">Efficiency Issue</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref">Appendix C</a>.  <a href="#name-efficiency-issue" class="internal xref">Efficiency Issue</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-D" class="auto internal xref">Appendix D</a>.  <a href="#name-examples-of-ports" class="internal xref">Examples of Ports</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.1">
+                <p id="section-toc.1-1.12.2.1.1"><a href="#appendix-D.1" class="auto internal xref">D.1</a>.  <a href="#name-json-examples" class="internal xref">JSON Examples</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#appendix-D" class="auto internal xref">Appendix D</a>.  <a href="#name-examples-of-ports" class="internal xref">Examples of Ports</a></p>
+            <p id="section-toc.1-1.13.1"><a href="#appendix-E" class="auto internal xref">Appendix E</a>.  <a href="#name-example-of-multi-chassis-ne" class="internal xref">Example of Multi-chassis Network Elements</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.1">
-                <p id="section-toc.1-1.13.2.1.1"><a href="#appendix-D.1" class="auto internal xref">D.1</a>.  <a href="#name-json-examples" class="internal xref">JSON Examples</a></p>
+                <p id="section-toc.1-1.13.2.1.1"><a href="#appendix-E.1" class="auto internal xref">E.1</a>.  <a href="#name-json-examples-2" class="internal xref">JSON Examples</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
-            <p id="section-toc.1-1.14.1"><a href="#appendix-E" class="auto internal xref">Appendix E</a>.  <a href="#name-example-of-multi-chassis-ne" class="internal xref">Example of Multi-chassis Network Elements</a></p>
+            <p id="section-toc.1-1.14.1"><a href="#appendix-F" class="auto internal xref">Appendix F</a>.  <a href="#name-example-of-non-modular-netw" class="internal xref">Example of Non-modular Network Elements</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14.2.1">
-                <p id="section-toc.1-1.14.2.1.1"><a href="#appendix-E.1" class="auto internal xref">E.1</a>.  <a href="#name-json-examples-2" class="internal xref">JSON Examples</a></p>
+                <p id="section-toc.1-1.14.2.1.1"><a href="#appendix-F.1" class="auto internal xref">F.1</a>.  <a href="#name-json-examples-3" class="internal xref">JSON Examples</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15">
-            <p id="section-toc.1-1.15.1"><a href="#appendix-F" class="auto internal xref">Appendix F</a>.  <a href="#name-example-of-non-modular-netw" class="internal xref">Example of Non-modular Network Elements</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.1">
-                <p id="section-toc.1-1.15.2.1.1"><a href="#appendix-F.1" class="auto internal xref">F.1</a>.  <a href="#name-json-examples-3" class="internal xref">JSON Examples</a></p>
-</li>
-            </ul>
+            <p id="section-toc.1-1.15.1"><a href="#appendix-G" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16">
-            <p id="section-toc.1-1.16.1"><a href="#appendix-G" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.16.1"><a href="#appendix-H" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.17">
-            <p id="section-toc.1-1.17.1"><a href="#appendix-H" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.18">
-            <p id="section-toc.1-1.18.1"><a href="#appendix-I" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.17.1"><a href="#appendix-I" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1327,14 +1341,17 @@ Also, network inventory management allows operators to keep track of which devic
 upper layer systems (e.g., Multi-Domain Service Coordinator (MDSC) or Operations Support Systems (OSS) layers).<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5"><span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> defines a YANG data model for the management of the hardware on a single server and, therefore, it is more applicable to the domain controller towards the network elements rather than at the northbound interface of a network controller (e.g., toward an application or another hierarchical network controller). However, the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> has been used as a reference for defining the YANG network inventory data model presented in this document.<a href="#section-1-5" class="pilcrow">¶</a></p>
 <p id="section-1-6">Per the definition of <span>[<a href="#RFC8309" class="cite xref">RFC8309</a>]</span> and <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>, the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> is a device model while the YANG data model defined in this document is a network model.<a href="#section-1-6" class="pilcrow">¶</a></p>
-<p id="section-1-7">As outlined in <a href="#operational" class="auto internal xref">Section 6</a>, the base network inventory model provides a read-only perspective of the installed network inventory data the controller is aware of. Therefore, other inventory data (e.g., inactive assets, warehouse spares, or planned assets) are outside the scope of this data model.<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-1-7">As outlined in <a href="#operational" class="auto internal xref">Section 5</a>, the base network inventory model provides a read-only perspective of the installed network inventory data the controller is aware of. Therefore, other inventory data (e.g., inactive assets, warehouse spares, or planned assets) are outside the scope of this data model.<a href="#section-1-7" class="pilcrow">¶</a></p>
 <p id="section-1-8">The distinction between a temporarily unreachable network element and one that has been removed from the network is outside the scope of this document and depends on the discovery mechanism used by the controller.<a href="#section-1-8" class="pilcrow">¶</a></p>
 <p id="section-1-9">As outlined in <a href="#overview" class="auto internal xref">Section 3</a>, the base inventory YANG data model supports only physical network elements but generalizes the network element definition to allow supporting other types of network elements through adequate augmentations.<a href="#section-1-9" class="pilcrow">¶</a></p>
-<p id="section-1-10">This document defines one YANG module "ietf-network-inventory" in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#section-1-10" class="pilcrow">¶</a></p>
-<p id="section-1-11">This base data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
+<p id="section-1-10"><a href="#overview" class="auto internal xref">Section 3</a> provides an overview of the YANG data model defined in this document, which consists of one YANG module "ietf-network-inventory" defined in <a href="#nwi-yang" class="auto internal xref">Section 4</a>. <a href="#nwi-tree" class="auto internal xref">Appendix A</a> provides the tree diagram of this YANG data model.<a href="#section-1-10" class="pilcrow">¶</a></p>
+<p id="section-1-11"><a href="#oc-comparison" class="auto internal xref">Appendix B</a> provides a mapping between the network inventory YANG data model defined in this document and the OpenConfig Platform model, which can be used by a network controller to discover the device data to expose in the network inventory.<a href="#section-1-11" class="pilcrow">¶</a></p>
+<p id="section-1-12"><a href="#scalability" class="auto internal xref">Appendix C</a> provides further information on the efficiency and scalability concerns discovered during the integration with Inventory OSS in some operator networks.<a href="#section-1-12" class="pilcrow">¶</a></p>
+<p id="section-1-13"><a href="#port-examples" class="auto internal xref">Appendix D</a>, <a href="#multi-chassis-examples" class="auto internal xref">Appendix E</a>, and <a href="#non-modular-examples" class="auto internal xref">Appendix F</a> provide JSON examples illustrating how to use this YANG data model.<a href="#section-1-13" class="pilcrow">¶</a></p>
+<p id="section-1-14">This YANG data model is application- and technology-agnostic (that is, valid for IP/MPLS, optical, and
 microwave networks as well as optical local loops, access networks, core networks, data centers, etc.) and can be augmented to
-include required application- and technology-specific inventory details together with specific hardware or software component's attributes.<a href="#section-1-11" class="pilcrow">¶</a></p>
-<p id="section-1-12">The base inventory YANG data model is scoped to cover the common use cases for inventory but at network-wide level, covering both hardware and base software information.<a href="#section-1-12" class="pilcrow">¶</a></p>
+include required application- and technology-specific inventory details together with specific hardware or software component's attributes.<a href="#section-1-14" class="pilcrow">¶</a></p>
+<p id="section-1-15">The base inventory YANG data model is scoped to cover the common use cases for inventory but at a network-wide level, and can be used directly, as is, to report physical hardware and basic software information.<a href="#section-1-15" class="pilcrow">¶</a></p>
 <div id="editorial-note-to-be-removed-by-rfc-editor">
 <section id="section-1.1">
         <h3 id="name-editorial-note-to-be-remove">
@@ -1354,7 +1371,7 @@ summarizes all of the substitutions that are needed.<a href="#section-1.1-2" cla
             <p id="section-1.1-4.1.1">XXXX --&gt; the assigned RFC number for this I-D<a href="#section-1.1-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-1.1-4.2">
-            <p id="section-1.1-4.2.1">2026-11-05 --&gt; the actual date of the publication of this document<a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-1.1-4.2.1">2026-11-18 --&gt; the actual date of the publication of this document<a href="#section-1.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1419,7 +1436,7 @@ appear in all capitals, as shown here.<a href="#section-2.1-1" class="pilcrow">�
             <p id="section-2.2-6.4.1">MDSC-PNC Interface (MPI)<a href="#section-2.2-6.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-2.2-7">The following terms are defined in the description statements of the corresponding YANG identities, defined in <span>[<a href="#IANA_HW_YANG" class="cite xref">IANA_HW_YANG</a>]</span>, and are not redefined here:<a href="#section-2.2-7" class="pilcrow">¶</a></p>
+<p id="section-2.2-7">The following terms are defined in the description statements of the corresponding YANG identities, defined in <span>[<a href="#IANA.iana-hardware" class="cite xref">IANA.iana-hardware</a>]</span>, and are not redefined here:<a href="#section-2.2-7" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.2-8.1">
             <p id="section-2.2-8.1.1">backplane<a href="#section-2.2-8.1.1" class="pilcrow">¶</a></p>
@@ -1437,7 +1454,7 @@ appear in all capitals, as shown here.<a href="#section-2.1-1" class="pilcrow">�
             <p id="section-2.2-8.5.1">module<a href="#section-2.2-8.5.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.2-8.6">
-            <p id="section-2.2-8.6.1">power supply<a href="#section-2.2-8.6.1" class="pilcrow">¶</a></p>
+            <p id="section-2.2-8.6.1">power supply: for the "power-supply" YANG identity <span>[<a href="#IANA.iana-hardware" class="cite xref">IANA.iana-hardware</a>]</span><a href="#section-2.2-8.6.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.2-8.7">
             <p id="section-2.2-8.7.1">sensor<a href="#section-2.2-8.7.1" class="pilcrow">¶</a></p>
@@ -1446,7 +1463,7 @@ appear in all capitals, as shown here.<a href="#section-2.1-1" class="pilcrow">�
             <p id="section-2.2-8.8.1">stack<a href="#section-2.2-8.8.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.2-8.9">
-            <p id="section-2.2-8.9.1">storage device<a href="#section-2.2-8.9.1" class="pilcrow">¶</a></p>
+            <p id="section-2.2-8.9.1">storage device: for the "storage-drive" YANG identity <span>[<a href="#IANA.iana-hardware" class="cite xref">IANA.iana-hardware</a>]</span><a href="#section-2.2-8.9.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-2.2-9">Also, the document makes use of the following terms:<a href="#section-2.2-9" class="pilcrow">¶</a></p>
@@ -1489,12 +1506,12 @@ A chassis can, but does not need to, include spaces (called slots) to take cards
           <dd class="break"></dd>
 <dt id="section-2.2-10.15">Hardware component:</dt>
           <dd style="margin-left: 1.5em" id="section-2.2-10.16">
-            <p id="section-2.2-10.16.1">A general definition of category of components as defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> and <span>[<a href="#IANA_HW_YANG" class="cite xref">IANA_HW_YANG</a>]</span> (e.g., backplane, battery, container, central processing unit (CPU), chassis, fan, module, port, power supply, sensor, stack, and storage device components).<a href="#section-2.2-10.16.1" class="pilcrow">¶</a></p>
+            <p id="section-2.2-10.16.1">A general definition of category of components as defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> and <span>[<a href="#IANA.iana-hardware" class="cite xref">IANA.iana-hardware</a>]</span> (e.g., backplane, battery, container, central processing unit (CPU), chassis, fan, module, port, power supply, sensor, stack, and storage device components).<a href="#section-2.2-10.16.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-10.17"></dt>
           <dd style="margin-left: 1.5em" id="section-2.2-10.18">
-            <p id="section-2.2-10.18.1">The list of hardware components can be extended in future versions of <span>[<a href="#IANA_ENTITY_MIB" class="cite xref">IANA_ENTITY_MIB</a>]</span> (and, consequently, of (<span>[<a href="#IANA_HW_YANG" class="cite xref">IANA_HW_YANG</a>]</span>).<a href="#section-2.2-10.18.1" class="pilcrow">¶</a></p>
+            <p id="section-2.2-10.18.1">The list of hardware components can be extended in future versions of <span>[<a href="#IANA.ianaentity-mib" class="cite xref">IANA.ianaentity-mib</a>]</span> (and, consequently, of (<span>[<a href="#IANA.iana-hardware" class="cite xref">IANA.iana-hardware</a>]</span>).<a href="#section-2.2-10.18.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-10.19">Component:</dt>
@@ -1520,6 +1537,16 @@ A chassis can, but does not need to, include spaces (called slots) to take cards
 <dt id="section-2.2-10.27">Container:</dt>
           <dd style="margin-left: 1.5em" id="section-2.2-10.28">
             <p id="section-2.2-10.28.1">A hardware component class that is capable of containing one or more removable physical entities (e.g., a slot in a chassis is containing a board).<a href="#section-2.2-10.28.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.2-10.29"></dt>
+          <dd style="margin-left: 1.5em" id="section-2.2-10.30">
+            <p id="section-2.2-10.30.1">Within this document, the term "container" represents a hardware component class capable of containing one or more removable physical entities, e.g., a slot in a chassis capable of containing a board.<a href="#section-2.2-10.30.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.2-10.31"></dt>
+          <dd style="margin-left: 1.5em" id="section-2.2-10.32">
+            <p id="section-2.2-10.32.1">Elsewhere, a container can be called holder.<a href="#section-2.2-10.32.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1571,7 +1598,7 @@ A chassis can, but does not need to, include spaces (called slots) to take cards
               <td class="text-left" rowspan="1" colspan="1">ianahw</td>
               <td class="text-left" rowspan="1" colspan="1">iana-hardware</td>
               <td class="text-left" rowspan="1" colspan="1">
-                <span>[<a href="#IANA_HW_YANG" class="cite xref">IANA_HW_YANG</a>]</span>
+                <span>[<a href="#IANA.iana-hardware" class="cite xref">IANA.iana-hardware</a>]</span>
 </td>
             </tr>
             <tr>
@@ -1600,242 +1627,255 @@ A chassis can, but does not need to, include spaces (called slots) to take cards
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-yang-data-model-for-network" class="section-name selfRef">YANG Data Model for Network Inventory Overview</a>
       </h2>
 <p id="section-3-1">The base network inventory model, defined in this document, provides a list of network elements and network element components.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">The "network-inventory" top level container is defined to support reporting other types of network inventory objects, besides the network elements and network element components.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<p id="section-3-3">These additional types of network inventory objects can be defined, together with the associated YANG data model and the rationale for managing them as part of the network inventory, in other documents providing application- and technology-specific companion augmentation data models, such as
-<span>[<a href="#I-D.ietf-ivy-network-inventory-location" class="cite xref">I-D.ietf-ivy-network-inventory-location</a>]</span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">The network element definition is generalized to support physical
+<p id="section-3-2">The information in the data model is discovered by the controller through mechanisms which are outside the scope of this document.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-3">In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).<a href="#section-3-3" class="pilcrow">¶</a></p>
+<div id="design">
+<section id="section-3.1">
+        <h3 id="name-data-model-design">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-data-model-design" class="section-name selfRef">Data Model Design</a>
+        </h3>
+<p id="section-3.1-1">The "network-inventory" top level container is defined to support reporting other types of network inventory objects, besides the network elements and network element components.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">These additional types of network inventory objects can be defined, together with the associated YANG data model and the rationale for managing them as part of the network inventory, in other documents providing application- and technology-specific companion augmentation data models, such as
+<span>[<a href="#I-D.ietf-ivy-network-inventory-location" class="cite xref">I-D.ietf-ivy-network-inventory-location</a>]</span>.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">The network element definition is generalized to support physical
 network elements and other types of components' groups that can be managed as physical network elements from an
-inventory perspective.<a href="#section-3-4" class="pilcrow">¶</a></p>
-<p id="section-3-5">Physical network elements are usually devices such as hosts, gateways, terminal servers, and the like, which have management agents responsible for performing the network management functions requested by the network management stations <span>[<a href="#RFC1157" class="cite xref">RFC1157</a>]</span>.<a href="#section-3-5" class="pilcrow">¶</a></p>
-<p id="section-3-6">The "ne-type" YANG identity is defined as a base identity to describe the type of a network element. This document defines only the "ne-physical" identity. Other types of network elements can be defined in other documents, together with the associated YANG identities and the rationale for managing them as network elements from an inventory perspective.<a href="#section-3-6" class="pilcrow">¶</a></p>
-<p id="section-3-7">The component definition is also generalized to support any types of
-component inventory objects that can be managed as hardware components from an inventory perspective.<a href="#section-3-7" class="pilcrow">¶</a></p>
-<p id="section-3-8">The top-level "components" container exposes a list of components, within each network element, and other parameters.<a href="#section-3-8" class="pilcrow">¶</a></p>
-<p id="section-3-9">Different component types can be distinguished by the class of component. The component "class" is defined as a union between the hardware class identity, defined in "iana-hardware", and the "non-hardware-class" identity, defined in this document.<a href="#section-3-9" class="pilcrow">¶</a></p>
-<p id="section-3-10">Other component types can be defined in other documents, together with the associated YANG identities and the rationale for managing them as components from an inventory perspective.<a href="#section-3-10" class="pilcrow">¶</a></p>
-<p id="section-3-11">The identity definition of additional types of "ne-type" and "non-
+inventory perspective.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1-4">Physical network elements are usually devices such as hosts, routers,
+terminal servers, and the like, which have management agents responsible
+for performing the network management functions requested by the
+network management stations (<span>[<a href="#RFC6632" class="cite xref">RFC6632</a>]</span>).<a href="#section-3.1-4" class="pilcrow">¶</a></p>
+<p id="section-3.1-5">The "ne-type" YANG identity is defined as a base identity to describe the type of a network element. This document defines only the "ne-physical" identity. Other types of network elements can be defined in other documents, together with the associated YANG identities and the rationale for managing them as network elements from an inventory perspective.<a href="#section-3.1-5" class="pilcrow">¶</a></p>
+<p id="section-3.1-6">The component definition is also generalized to support any types of
+component inventory objects that can be managed as hardware components from an inventory perspective.<a href="#section-3.1-6" class="pilcrow">¶</a></p>
+<p id="section-3.1-7">The top-level "components" container exposes a list of components, within each network element, and other parameters.<a href="#section-3.1-7" class="pilcrow">¶</a></p>
+<p id="section-3.1-8">Different component types can be distinguished by the class of component. The component "class" is defined as a union between the hardware class identity, defined in "iana-hardware", and the "non-hardware-class" identity, defined in this document.<a href="#section-3.1-8" class="pilcrow">¶</a></p>
+<p id="section-3.1-9">Other component types can be defined in other documents, together with the associated YANG identities and the rationale for managing them as components from an inventory perspective.<a href="#section-3.1-9" class="pilcrow">¶</a></p>
+<p id="section-3.1-10">The identity definition of additional types of "ne-type" and "non-
 hardware" identity of component are outside the scope of this
 document and could be defined in application- and technology-specific companion augmentation data models, such as
-<span>[<a href="#I-D.ietf-ivy-network-inventory-software" class="cite xref">I-D.ietf-ivy-network-inventory-software</a>]</span>.<a href="#section-3-11" class="pilcrow">¶</a></p>
-<p id="section-3-12"><span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> defines rack, chassis, slot, sub-slot, board, and port as components of network elements with generic attributes.<a href="#section-3-12" class="pilcrow">¶</a></p>
-<p id="section-3-13">While <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> is used to manage the hardware of a single server (e.g., a network element), the Network Inventory YANG data model is used to retrieve the base inventory information that a controller discovers from all the network elements with network-wide scope under its control.<a href="#section-3-13" class="pilcrow">¶</a></p>
-<p id="section-3-14">However, the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> has been used as a reference for defining the YANG network inventory data model. This approach can simplify the implementation of this inventory model when the controller uses the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> to retrieve the hardware  from the network elements under its control.<a href="#section-3-14" class="pilcrow">¶</a></p>
+<span>[<a href="#I-D.ietf-ivy-network-inventory-software" class="cite xref">I-D.ietf-ivy-network-inventory-software</a>]</span>.<a href="#section-3.1-10" class="pilcrow">¶</a></p>
+<p id="section-3.1-11">Like in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, rack, chassis, slot, sub-slot, board, and port are defined respectively as
+"chassis", "container", "module" and "port" component classes, with generic attributes.<a href="#section-3.1-11" class="pilcrow">¶</a></p>
+<p id="section-3.1-12">While <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> is used to manage the hardware of a single server (e.g., a network element), the Network Inventory YANG data model is used to retrieve the base inventory information that a controller discovers from all the network elements with network-wide scope under its control.<a href="#section-3.1-12" class="pilcrow">¶</a></p>
+<p id="section-3.1-13">However, the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> has been used as a reference for defining the YANG network inventory data model. This approach can simplify the implementation of this inventory model when the controller uses the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> to retrieve the hardware  from the network elements under its control.<a href="#section-3.1-13" class="pilcrow">¶</a></p>
+</section>
+</div>
 <div id="common-attributes">
-<section id="section-3.1">
+<section id="section-3.2">
         <h3 id="name-common-attributes-for-inven">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-common-attributes-for-inven" class="section-name selfRef">Common Attributes for Inventory Objects</a>
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-common-attributes-for-inven" class="section-name selfRef">Common Attributes for Inventory Objects</a>
         </h3>
-<p id="section-3.1-1">For all the inventory objects, there are some common attributes, including:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-3.1-2">
-          <dt id="section-3.1-2.1">uuid:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.1-2.2">
-            <p id="section-3.1-2.2.1">The Universally Unique Identifier (UUID) of the inventory object, assigned by the server. Such identifiers are widely implemented with systems and designed to be globally unique.<a href="#section-3.1-2.2.1" class="pilcrow">¶</a></p>
+<p id="section-3.2-1">For all the inventory objects, there are some common attributes, including:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-3.2-2">
+          <dt id="section-3.2-2.1">uuid:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.2-2.2">
+            <p id="section-3.2-2.2.1">The Universally Unique Identifier (UUID) of the inventory object, assigned by the server. Such identifiers are widely implemented with systems and designed to be globally unique.<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.1-2.3">name:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.1-2.4">
-            <p id="section-3.1-2.4.1">A human-interpretable label of the inventory object, provided by a network operator or by the server. It could also be present on a Graphical User Interface (GUI).<a href="#section-3.1-2.4.1" class="pilcrow">¶</a></p>
+<dt id="section-3.2-2.3">name:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.2-2.4">
+            <p id="section-3.2-2.4.1">A human-interpretable label of the inventory object, provided by a network operator or by the server. It could also be present on a Graphical User Interface (GUI).<a href="#section-3.2-2.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.1-2.5">alias:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.1-2.6">
-            <p id="section-3.1-2.6.1">A human-interpretable label of the inventory object, provided by a network operator. It could also be present in a GUI instead as well as the name.<a href="#section-3.1-2.6.1" class="pilcrow">¶</a></p>
+<dt id="section-3.2-2.5">alias:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.2-2.6">
+            <p id="section-3.2-2.6.1">A human-interpretable label of the inventory object, provided by a network operator. It could also be present in a GUI instead as well as the name.<a href="#section-3.2-2.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.1-2.7">description:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.1-2.8">
-            <p id="section-3.1-2.8.1">A human-interpretable description of the inventory object, provided by a network operator or by the server. The description provides more detailed information to prompt users when performing maintenance operations etc.<a href="#section-3.1-2.8.1" class="pilcrow">¶</a></p>
+<dt id="section-3.2-2.7">description:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.2-2.8">
+            <p id="section-3.2-2.8.1">A human-interpretable description of the inventory object, provided by a network operator or by the server. The description provides more detailed information to prompt users when performing maintenance operations etc.<a href="#section-3.2-2.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
 <div id="common-attributes-for-network-elements-and-components">
-<section id="section-3.1.1">
+<section id="section-3.2.1">
           <h4 id="name-common-attributes-for-netwo">
-<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-common-attributes-for-netwo" class="section-name selfRef">Common Attributes for Network Elements and Components</a>
+<a href="#section-3.2.1" class="section-number selfRef">3.2.1. </a><a href="#name-common-attributes-for-netwo" class="section-name selfRef">Common Attributes for Network Elements and Components</a>
           </h4>
-<p id="section-3.1.1-1">To be consistent with the component definition, the following attributes defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> for components are reused for network elements:<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-3.1.1-2">
-            <dt id="section-3.1.1-2.1">mfg-name:</dt>
-            <dd style="margin-left: 1.5em" id="section-3.1.1-2.2">
-              <p id="section-3.1.1-2.2.1">The name of the manufacturer of the entity (component or network element).<a href="#section-3.1.1-2.2.1" class="pilcrow">¶</a></p>
+<p id="section-3.2.1-1">To be consistent with the component definition, the following attributes defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> for components are reused for network elements:<a href="#section-3.2.1-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-3.2.1-2">
+            <dt id="section-3.2.1-2.1">mfg-name:</dt>
+            <dd style="margin-left: 1.5em" id="section-3.2.1-2.2">
+              <p id="section-3.2.1-2.2.1">The name of the manufacturer of the entity (component or network element).<a href="#section-3.2.1-2.2.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-3.1.1-2.3">product-name:</dt>
-            <dd style="margin-left: 1.5em" id="section-3.1.1-2.4">
-              <p id="section-3.1.1-2.4.1">The vendor-specific and human-interpretable string describing the entity (component or network element) type.<a href="#section-3.1.1-2.4.1" class="pilcrow">¶</a></p>
+<dt id="section-3.2.1-2.3">product-name:</dt>
+            <dd style="margin-left: 1.5em" id="section-3.2.1-2.4">
+              <p id="section-3.2.1-2.4.1">The vendor-specific and human-interpretable string describing the entity (component or network element) type.<a href="#section-3.2.1-2.4.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-3.1.1-2.5"></dt>
-            <dd style="margin-left: 1.5em" id="section-3.1.1-2.6">
-              <p id="section-3.1.1-2.6.1">It is expected that vendors assign unique product names to different entities within the scope of the vendor.<a href="#section-3.1.1-2.6.1" class="pilcrow">¶</a></p>
+<dt id="section-3.2.1-2.5"></dt>
+            <dd style="margin-left: 1.5em" id="section-3.2.1-2.6">
+              <p id="section-3.2.1-2.6.1">It is expected that vendors assign unique product names to different entities within the scope of the vendor.<a href="#section-3.2.1-2.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 </dl>
-<p id="section-3.1.1-3">Other software-related attributes are defined in <a href="#sw-inventory" class="auto internal xref">Section 3.3.2</a> and applicable to network elements and components.<a href="#section-3.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.2.1-3">Other software-related attributes are defined in <a href="#sw-inventory" class="auto internal xref">Section 3.4.2</a> and applicable to network elements and components.<a href="#section-3.2.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="network-element">
-<section id="section-3.2">
+<section id="section-3.3">
         <h3 id="name-network-element">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-network-element" class="section-name selfRef">Network Element</a>
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-network-element" class="section-name selfRef">Network Element</a>
         </h3>
-<p id="section-3.2-1">In addition to the common attributes defined for network elements and components in <a href="#common-attributes" class="auto internal xref">Section 3.1</a>, the following attributes are defined for the network elements:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-3.2-2">
-          <dt id="section-3.2-2.1">ne-id:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.2-2.2">
-            <p id="section-3.2-2.2.1">The identifier that uniquely identifies the network element (NE) within the network, assigned by the server since the network elements cannot guarantee that their local  identifier is unique within the network.<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
+<p id="section-3.3-1">In addition to the common attributes defined for network elements and components in <a href="#common-attributes" class="auto internal xref">Section 3.2</a>, the following attributes are defined for the network elements:<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-3.3-2">
+          <dt id="section-3.3-2.1">ne-id:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.3-2.2">
+            <p id="section-3.3-2.2.1">The identifier that uniquely identifies the network element (NE) within the network, assigned by the server since the network elements cannot guarantee that their local  identifier is unique within the network.<a href="#section-3.3-2.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.2-2.3"></dt>
-          <dd style="margin-left: 1.5em" id="section-3.2-2.4">
-            <p id="section-3.2-2.4.1">The "ne-id" MUST be assigned such that the same network element will always be identified through the same identifier, even if the network elements get disconnected from the network controller. Mechanisms to ensure this (e.g., checking the "mfg-name", "product-name", management IP address, and physical location) are implementation specific and outside the scope of this document.<a href="#section-3.2-2.4.1" class="pilcrow">¶</a></p>
+<dt id="section-3.3-2.3"></dt>
+          <dd style="margin-left: 1.5em" id="section-3.3-2.4">
+            <p id="section-3.3-2.4.1">The "ne-id" MUST be assigned such that the same network element will always be identified through the same identifier, even if the network elements get disconnected from the network controller. Mechanisms to ensure this (e.g., checking the "mfg-name", "product-name", management IP address, and physical location) are implementation specific and outside the scope of this document.<a href="#section-3.3-2.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.2-2.5">ne-type:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.2-2.6">
-            <p id="section-3.2-2.6.1">The type of network element (e.g., physical network element). See <a href="#overview" class="auto internal xref">Section 3</a> for the definition of NE types.<a href="#section-3.2-2.6.1" class="pilcrow">¶</a></p>
+<dt id="section-3.3-2.5">ne-type:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.3-2.6">
+            <p id="section-3.3-2.6.1">The type of network element (e.g., physical network element). See <a href="#design" class="auto internal xref">Section 3.1</a> for the definition of NE types.<a href="#section-3.3-2.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.2-2.7">product-rev:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.2-2.8">
-            <p id="section-3.2-2.8.1">A vendor-specific product revision string for the NE.<a href="#section-3.2-2.8.1" class="pilcrow">¶</a></p>
+<dt id="section-3.3-2.7">product-rev:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.3-2.8">
+            <p id="section-3.3-2.8.1">A vendor-specific product revision string for the NE.<a href="#section-3.3-2.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
 </section>
 </div>
 <div id="ne-component">
-<section id="section-3.3">
+<section id="section-3.4">
         <h3 id="name-components">
-<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-components" class="section-name selfRef">Components</a>
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-components" class="section-name selfRef">Components</a>
         </h3>
-<p id="section-3.3-1">The YANG data model for network inventory mainly follows the same approach as <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> and reports the network hardware inventory as a list of components with different types (e.g., chassis, module, and port).<a href="#section-3.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.3-2">In addition to the common attributes defined for network elements and components in <a href="#common-attributes" class="auto internal xref">Section 3.1</a>, the following attributes are defined for the components:<a href="#section-3.3-2" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-3.3-3">
-          <dt id="section-3.3-3.1">component-id:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.2">
-            <p id="section-3.3-3.2.1">The identifier that uniquely identifies the component within the NE. It can be assigned by the NE or by the server.<a href="#section-3.3-3.2.1" class="pilcrow">¶</a></p>
+<p id="section-3.4-1">The YANG data model for network inventory mainly follows the same approach as <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> and reports the network hardware inventory as a list of components with different types (e.g., chassis, module, and port).<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-2">In addition to the common attributes defined for network elements and components in <a href="#common-attributes" class="auto internal xref">Section 3.2</a>, the following attributes are defined for the components:<a href="#section-3.4-2" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-3.4-3">
+          <dt id="section-3.4-3.1">component-id:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.2">
+            <p id="section-3.4-3.2.1">The identifier that uniquely identifies the component within the NE. It can be assigned by the NE or by the server.<a href="#section-3.4-3.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.3">class:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.4">
-            <p id="section-3.3-3.4.1">The type of component (e.g., chassis, module, or port). See <a href="#overview" class="auto internal xref">Section 3</a> for the definition of component types.<a href="#section-3.3-3.4.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.3">class:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.4">
+            <p id="section-3.4-3.4.1">The type of component (e.g., chassis, module, or port). See <a href="#design" class="auto internal xref">Section 3.1</a> for the definition of component types.<a href="#section-3.4-3.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.5">hardware-rev:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.6">
-            <p id="section-3.3-3.6.1">The vendor-specific hardware revision string for the component.<a href="#section-3.3-3.6.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.5">hardware-rev:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.6">
+            <p id="section-3.4-3.6.1">The vendor-specific hardware revision string for the component.<a href="#section-3.4-3.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.7"></dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.8">
-            <p id="section-3.3-3.8.1">The preferred value is the hardware revision identifier actually printed on the component itself (if present).<a href="#section-3.3-3.8.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.7"></dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.8">
+            <p id="section-3.4-3.8.1">The preferred value is the hardware revision identifier actually printed on the component itself (if present).<a href="#section-3.4-3.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.9">mfg-date:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.10">
-            <p id="section-3.3-3.10.1">The date of manufacturing of the component.<a href="#section-3.3-3.10.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.9">mfg-date:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.10">
+            <p id="section-3.4-3.10.1">The date of manufacturing of the component.<a href="#section-3.4-3.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.11">part-number:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.12">
-            <p id="section-3.3-3.12.1">The vendor-specific part number of the component type, as defined in <span>[<a href="#ISO_IEC_15418" class="cite xref">ISO_IEC_15418</a>]</span> and <span>[<a href="#ISO_IEC_15459-4" class="cite xref">ISO_IEC_15459-4</a>]</span>.<a href="#section-3.3-3.12.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.11">part-number:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.12">
+            <p id="section-3.4-3.12.1">The vendor-specific part number of the component type, as defined in <span>[<a href="#ISO_IEC_15418" class="cite xref">ISO_IEC_15418</a>]</span> and <span>[<a href="#ISO_IEC_15459-4" class="cite xref">ISO_IEC_15459-4</a>]</span>.<a href="#section-3.4-3.12.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.13"></dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.14">
-            <p id="section-3.3-3.14.1">It is expected that vendors assign unique part numbers to different component types within the scope of the vendor.<a href="#section-3.3-3.14.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.13"></dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.14">
+            <p id="section-3.4-3.14.1">It is expected that vendors assign unique part numbers to different component types within the scope of the vendor.<a href="#section-3.4-3.14.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.15"></dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.16">
+<dt id="section-3.4-3.15"></dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.16">
             <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-3.3-3.16.1.1">
-                <p id="section-3.3-3.16.1.1.1">Although the part number is often an alphanumeric string and not a number, this document uses this term since it is widely used and well known in the industry.<a href="#section-3.3-3.16.1.1.1" class="pilcrow">¶</a></p>
+<li class="normal ulEmpty" id="section-3.4-3.16.1.1">
+                <p id="section-3.4-3.16.1.1.1">Although the part number is often an alphanumeric string and not a number, this document uses this term since it is widely used and well known in the industry.<a href="#section-3.4-3.16.1.1.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.17">serial-number:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.18">
-            <p id="section-3.3-3.18.1">The vendor-specific serial number of the component instance, as defined in <span>[<a href="#ISO_IEC_15418" class="cite xref">ISO_IEC_15418</a>]</span> and <span>[<a href="#ISO_IEC_15459-4" class="cite xref">ISO_IEC_15459-4</a>]</span>.<a href="#section-3.3-3.18.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.17">serial-number:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.18">
+            <p id="section-3.4-3.18.1">The vendor-specific serial number of the component instance, as defined in <span>[<a href="#ISO_IEC_15418" class="cite xref">ISO_IEC_15418</a>]</span> and <span>[<a href="#ISO_IEC_15459-4" class="cite xref">ISO_IEC_15459-4</a>]</span>.<a href="#section-3.4-3.18.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.19"></dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.20">
-            <p id="section-3.3-3.20.1">It is expected that vendors assign unique serial numbers to different component instances at least within the scope of the part-number.<a href="#section-3.3-3.20.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.19"></dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.20">
+            <p id="section-3.4-3.20.1">It is expected that vendors assign unique serial numbers to different component instances at least within the scope of the part-number.<a href="#section-3.4-3.20.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.21"></dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.22">
+<dt id="section-3.4-3.21"></dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.22">
             <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-3.3-3.22.1.1">
-                <p id="section-3.3-3.22.1.1.1">Although the serial number is often an alphanumeric string and not a number, this document uses this term since it is widely used and well known in the industry.<a href="#section-3.3-3.22.1.1.1" class="pilcrow">¶</a></p>
+<li class="normal ulEmpty" id="section-3.4-3.22.1.1">
+                <p id="section-3.4-3.22.1.1.1">Although the serial number is often an alphanumeric string and not a number, this document uses this term since it is widely used and well known in the industry.<a href="#section-3.4-3.22.1.1.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.23">asset-id:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.24">
-            <p id="section-3.3-3.24.1">An asset tracking identifier for the component, provided by a network operator.<a href="#section-3.3-3.24.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.23">asset-id:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.24">
+            <p id="section-3.4-3.24.1">An asset tracking identifier for the component, provided by a network operator.<a href="#section-3.4-3.24.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.25">is-fru:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.26">
-            <p id="section-3.3-3.26.1">Indicates whether or not a component is considered a 'field-replaceable unit' by the vendor.<a href="#section-3.3-3.26.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.25">is-fru:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.26">
+            <p id="section-3.4-3.26.1">Indicates whether or not a component is considered a 'field-replaceable unit' by the vendor.<a href="#section-3.4-3.26.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.27">uri:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.28">
-            <p id="section-3.3-3.28.1">A list of Uniform Resource Identifiers (URIs) which provides additional identification information about the component.<a href="#section-3.3-3.28.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.27">uri:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.28">
+            <p id="section-3.4-3.28.1">A list of Uniform Resource Identifiers (URIs) which provides additional identification information about the component.<a href="#section-3.4-3.28.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.29">parent:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.30">
-            <p id="section-3.3-3.30.1">The list of the parent components that physically contain this component.<a href="#section-3.3-3.30.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.29">parent:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.30">
+            <p id="section-3.4-3.30.1">The list of the parent components that physically contain this component.<a href="#section-3.4-3.30.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.31"></dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.32">
-            <p id="section-3.3-3.32.1">Usually a component has only one parent component.<a href="#section-3.3-3.32.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.31"></dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.32">
+            <p id="section-3.4-3.32.1">Usually a component has only one parent component.<a href="#section-3.4-3.32.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.33"></dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.34">
-            <p id="section-3.3-3.34.1">Components which are contained within the network element has no parent component.<a href="#section-3.3-3.34.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.33"></dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.34">
+            <p id="section-3.4-3.34.1">Components which are contained within the network element has no parent component.<a href="#section-3.4-3.34.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.35"></dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.36">
-            <p id="section-3.3-3.36.1">Boards which occupy multiple slots have multiple parent components (one for each occupied slot);<a href="#section-3.3-3.36.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.35"></dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.36">
+            <p id="section-3.4-3.36.1">Boards which occupy multiple slots have multiple parent components (one for each occupied slot);<a href="#section-3.4-3.36.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.37">parent-rel-pos:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.38">
-            <p id="section-3.3-3.38.1">When this component is contained in the network-element or in only one parent component and has sibling components, this attribute represents the relative position of this component with respect to the parent component among all the sibling components.<a href="#section-3.3-3.38.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.37">parent-rel-pos:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.38">
+            <p id="section-3.4-3.38.1">When this component is contained in the network-element or in only one parent component and has sibling components, this attribute represents the relative position of this component with respect to the parent component among all the sibling components.<a href="#section-3.4-3.38.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-3.3-3.39">is-main:</dt>
-          <dd style="margin-left: 1.5em" id="section-3.3-3.40">
-            <p id="section-3.3-3.40.1">Whe the network element contains chassis components which can take or not the 'main' role (e.g., in case of multi-chassis network elements), this attributes indicates whether the chassis is taking or not the 'main' role. See for example <a href="#multi-chassis-examples" class="auto internal xref">Appendix E</a>.<a href="#section-3.3-3.40.1" class="pilcrow">¶</a></p>
+<dt id="section-3.4-3.39">is-main:</dt>
+          <dd style="margin-left: 1.5em" id="section-3.4-3.40">
+            <p id="section-3.4-3.40.1">Whe the network element contains chassis components which can take or not the 'main' role (e.g., in case of multi-chassis network elements), this attributes indicates whether the chassis is taking or not the 'main' role. See for example <a href="#multi-chassis-examples" class="auto internal xref">Appendix E</a>.<a href="#section-3.4-3.40.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
-<p id="section-3.3-4">For state data like "admin-state", "oper-state", and so on, this document considers that they are related to device hardware management, not network inventory. Therefore, they are outside of the scope of this document. Same for the sensor-data, they might be defined in some other performance monitoring data models instead of the inventory data model.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
+<p id="section-3.4-4">For state data like "admin-state", "oper-state", and so on, this document considers that they are related to device hardware management, not network inventory. Therefore, they are outside of the scope of this document. Same for the sensor-data, they might be defined in some other performance monitoring data models instead of the inventory data model.<a href="#section-3.4-4" class="pilcrow">¶</a></p>
 <div id="hardware-components">
-<section id="section-3.3.1">
+<section id="section-3.4.1">
           <h4 id="name-hardware-components">
-<a href="#section-3.3.1" class="section-number selfRef">3.3.1. </a><a href="#name-hardware-components" class="section-name selfRef">Hardware Components</a>
+<a href="#section-3.4.1" class="section-number selfRef">3.4.1. </a><a href="#name-hardware-components" class="section-name selfRef">Hardware Components</a>
           </h4>
-<p id="section-3.3.1-1">Other models (e.g., <span>[<a href="#TMF_SD2-20" class="cite xref">TMF_SD2-20</a>]</span>) classify the hardware components into two groups: holder group and equipment group. The holder group contains rack, chassis, slot, and sub-slot while the equipment group contains network-element, board, and port. This data model, like <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, does not follow this classification and manages all the hardware components without distinguishing between holder and equipment groups.<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.3.1-2">See <a href="#port-examples" class="auto internal xref">Appendix D</a>, <a href="#multi-chassis-examples" class="auto internal xref">Appendix E</a>, and <a href="#non-modular-examples" class="auto internal xref">Appendix F</a> for concrete hardware component examples.<a href="#section-3.3.1-2" class="pilcrow">¶</a></p>
-<p id="section-3.3.1-3"><a href="#fig-hw-inventory-object-relationship" class="auto internal xref">Figure 1</a> describes the relationship between typical inventory objects in a physical network element.<a href="#section-3.3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.4.1-1">Other models (e.g., <span>[<a href="#TMF_SD2-20" class="cite xref">TMF_SD2-20</a>]</span>) classify the hardware components into two groups: holder group and equipment group. The holder group contains rack, chassis, slot, and sub-slot while the equipment group contains network-element, board, and port. This data model, like <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, does not follow this classification and manages all the hardware components without distinguishing between holder and equipment groups.<a href="#section-3.4.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.4.1-2">See <a href="#port-examples" class="auto internal xref">Appendix D</a>, <a href="#multi-chassis-examples" class="auto internal xref">Appendix E</a>, and <a href="#non-modular-examples" class="auto internal xref">Appendix F</a> for concrete hardware component examples.<a href="#section-3.4.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.4.1-3"><a href="#fig-hw-inventory-object-relationship" class="auto internal xref">Figure 1</a> describes the relationship between typical inventory objects in a physical network element.<a href="#section-3.4.1-3" class="pilcrow">¶</a></p>
 <span id="name-relationship-between-typica"></span><div id="fig-hw-inventory-object-relationship">
 <figure id="figure-1">
-            <div id="section-3.3.1-4.1">
-              <div class="alignLeft art-svg artwork" id="section-3.3.1-4.1.1">
+            <div id="section-3.4.1-4.1">
+              <div class="alignLeft art-svg artwork" id="section-3.4.1-4.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="592" width="528" viewBox="0 0 528 592" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
                   <path d="M 56,368 L 56,400" fill="none" stroke="black"></path>
                   <path d="M 88,352 L 88,416" fill="none" stroke="black"></path>
@@ -1909,151 +1949,118 @@ document and could be defined in application- and technology-specific companion 
                     <text x="48" y="580">non</text>
                     <text x="136" y="580">field-replaceable</text>
                   </g>
-                </svg><a href="#section-3.3.1-4.1.1" class="pilcrow">¶</a>
+                </svg><a href="#section-3.4.1-4.1.1" class="pilcrow">¶</a>
 </div>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-relationship-between-typica" class="selfRef">Relationship between typical inventory objects in physical network elements</a>
             </figcaption></figure>
 </div>
-<p id="section-3.3.1-5">The "iana-hardware" module <span>[<a href="#IANA_HW_YANG" class="cite xref">IANA_HW_YANG</a>]</span> defines YANG identities for
+<p id="section-3.4.1-5">The "iana-hardware" module <span>[<a href="#IANA.iana-hardware" class="cite xref">IANA.iana-hardware</a>]</span> defines YANG identities for
 the hardware component types in the IANA-maintained "IANA-ENTITY-MIB"
-registry.<a href="#section-3.3.1-5" class="pilcrow">¶</a></p>
-<p id="section-3.3.1-6">Some of the definitions taken from <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> are based on the ENTITY-MIB <span>[<a href="#RFC6933" class="cite xref">RFC6933</a>]</span>.<a href="#section-3.3.1-6" class="pilcrow">¶</a></p>
-<p id="section-3.3.1-7">Additional attributes of specific hardware, such as CPU,
-storage, port, or power supply are defined in the hardware extension.<a href="#section-3.3.1-7" class="pilcrow">¶</a></p>
+registry.<a href="#section-3.4.1-5" class="pilcrow">¶</a></p>
+<p id="section-3.4.1-6">Some of the definitions taken from <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> are based on the ENTITY-MIB <span>[<a href="#RFC6933" class="cite xref">RFC6933</a>]</span>.<a href="#section-3.4.1-6" class="pilcrow">¶</a></p>
+<p id="section-3.4.1-7">Additional attributes of specific hardware, such as CPU,
+storage, port, or power supply are defined in the hardware extension.<a href="#section-3.4.1-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sw-inventory">
-<section id="section-3.3.2">
+<section id="section-3.4.2">
           <h4 id="name-software-components">
-<a href="#section-3.3.2" class="section-number selfRef">3.3.2. </a><a href="#name-software-components" class="section-name selfRef">Software Components</a>
+<a href="#section-3.4.2" class="section-number selfRef">3.4.2. </a><a href="#name-software-components" class="section-name selfRef">Software Components</a>
           </h4>
-<p id="section-3.3.2-1">Each instance of a network element or a component includes its own "software-rev" list which provides basic software attributes for each entity (network element and component).<a href="#section-3.3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.3.2-2">The scope of the list is to provide information about the software images that are running within the related entity. The term "running" here is intended as the software modules that the controller has discovered as running in the network element or component as explained in <a href="#operational" class="auto internal xref">Section 6</a>. How a controller discovers and keeps synchronized running software information as well as how it manages transient state (e.g., reboot or loss of connectivity with the network element) are outside the scope of this document.<a href="#section-3.3.2-2" class="pilcrow">¶</a></p>
-<p id="section-3.3.2-3">The data model supports scenarios where multiple software modules can be images running within the entity.
-For example, one Operating System and one or more application software modules can be running in a network element, and, in the same way, one bootloader, one firmware and one or more Field-Programmable Gate Array (FPGA) software modules can be running on a component like a circuit pack.<a href="#section-3.3.2-3" class="pilcrow">¶</a></p>
-<p id="section-3.3.2-4">For each software module running on the entity, the name and version information is provided.<a href="#section-3.3.2-4" class="pilcrow">¶</a></p>
-<p id="section-3.3.2-5">The management of inactive/standby software
-modules and of the software upgrade or downgrade life-cycle are outside the scope of the base inventory model and can be addressed in other YANG modules that augment the base inventory model such as <span>[<a href="#I-D.ietf-ivy-network-inventory-software" class="cite xref">I-D.ietf-ivy-network-inventory-software</a>]</span>.<a href="#section-3.3.2-5" class="pilcrow">¶</a></p>
-<p id="section-3.3.2-6">The software and hardware components share the same attributes of the
+<p id="section-3.4.2-1">Each instance of a network element or a component includes its own "software-rev" list which provides basic software attributes for each entity (network element and component).<a href="#section-3.4.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.4.2-2">The scope of the list is to provide information about the software images that are running within the related entity.<a href="#section-3.4.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.4.2-3">The term "software image" in this document refers to a software binary image which can be run on a system with lifecycle state (e.g., running, inactive/standby).<a href="#section-3.4.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.4.2-4">The term "running" in this document refers to the software images that the controller has discovered as running in the network element or component as explained in <a href="#operational" class="auto internal xref">Section 5</a>. How a controller discovers and keeps synchronized running software information as well as how it manages transient state (e.g., reboot or loss of connectivity with the network element) are outside the scope of this document.<a href="#section-3.4.2-4" class="pilcrow">¶</a></p>
+<p id="section-3.4.2-5">The data model supports scenarios where multiple software images can be images running within the entity.
+For example, one Operating System and one or more application software images can be running in a network element, and, in the same way, one bootloader, one firmware and one or more Field-Programmable Gate Array (FPGA) software images can be running on a component like a circuit pack.<a href="#section-3.4.2-5" class="pilcrow">¶</a></p>
+<p id="section-3.4.2-6">For each software image running on the entity, the name and version information is provided.<a href="#section-3.4.2-6" class="pilcrow">¶</a></p>
+<p id="section-3.4.2-7">The representation of inactive or standby software modules within the
+network inventory is outside the scope of this document and it can be
+addressed by augmenting the base inventory model, such as the
+extension defined in <span>[<a href="#I-D.ietf-ivy-network-inventory-software" class="cite xref">I-D.ietf-ivy-network-inventory-software</a>]</span>.<a href="#section-3.4.2-7" class="pilcrow">¶</a></p>
+<p id="section-3.4.2-8">The software and hardware components share the same attributes of the
 component and have similar replaceability requirements. Generally, the
 device also has other software data, for example, one or more
-records of software patches that have been applied.<a href="#section-3.3.2-6" class="pilcrow">¶</a></p>
-<p id="section-3.3.2-7">The software components lifecycle (such as activation, deactivation, installation, storage, removal, etc.) is outside the scope of this document and defined in other documents such as <span>[<a href="#I-D.ietf-ivy-network-inventory-software" class="cite xref">I-D.ietf-ivy-network-inventory-software</a>]</span>.<a href="#section-3.3.2-7" class="pilcrow">¶</a></p>
+records of software patches that have been applied.<a href="#section-3.4.2-8" class="pilcrow">¶</a></p>
+<p id="section-3.4.2-9">Software upgrade, downgrade, and all software lifecycle control
+operations (install, activate, deactivate, removal, etc.) are out of
+scope of the network inventory model.<a href="#section-3.4.2-9" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
-<div id="changes-vs-rfc-8348">
-<section id="section-3.4">
-        <h3 id="name-changes-vs-rfc-8348">
-<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-changes-vs-rfc-8348" class="section-name selfRef">Changes vs. RFC 8348</a>
+<div id="differences-from-rfc-8348">
+<section id="section-3.5">
+        <h3 id="name-differences-from-rfc-8348">
+<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-differences-from-rfc-8348" class="section-name selfRef">Differences from RFC 8348</a>
         </h3>
-<p id="section-3.4-1">This document re-defines some attributes listed in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, based on some integration experience for network inventory data.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.5-1">This document re-defines some attributes listed in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, based on some integration experience for network inventory data.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
 <div id="part-number">
-<section id="section-3.4.1">
+<section id="section-3.5.1">
           <h4 id="name-part-number">
-<a href="#section-3.4.1" class="section-number selfRef">3.4.1. </a><a href="#name-part-number" class="section-name selfRef">Part Number</a>
+<a href="#section-3.5.1" class="section-number selfRef">3.5.1. </a><a href="#name-part-number" class="section-name selfRef">Part Number</a>
           </h4>
-<p id="section-3.4.1-1">According to the description in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. The "model-name" data node identifier is not straightforward to understand, and therefore, in the base inventory data model the attribute is called "part-number".<a href="#section-3.4.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.5.1-1">According to the description in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. The "model-name" data node identifier is not straightforward to understand, and therefore, in the base inventory data model the attribute is called "part-number".<a href="#section-3.5.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="component-id">
-<section id="section-3.4.2">
+<section id="section-3.5.2">
           <h4 id="name-component-identifiers">
-<a href="#section-3.4.2" class="section-number selfRef">3.4.2. </a><a href="#name-component-identifiers" class="section-name selfRef">Component identifiers</a>
+<a href="#section-3.5.2" class="section-number selfRef">3.5.2. </a><a href="#name-component-identifiers" class="section-name selfRef">Component identifiers</a>
           </h4>
-<p id="section-3.4.2-1">There are some use cases where the name of the components are assigned and changed by the operator. In these cases, the assigned names are also not guaranteed to be always unique.<a href="#section-3.4.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.4.2-2">In order to support these use cases, the base inventory data model is not aligned with <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> in defining the component name as the key for the component list.<a href="#section-3.4.2-2" class="pilcrow">¶</a></p>
-<p id="section-3.4.2-3">Instead, the name is defined as an optional attribute and the "component-id" is defined as the key for the "component" list (in alignment with the approach followed for the "network-element" list).<a href="#section-3.4.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.5.2-1">There are some use cases where the name of the components are assigned and changed by the operator. In these cases, the assigned names are also not guaranteed to be always unique.<a href="#section-3.5.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.5.2-2">In order to support these use cases, the base inventory data model is not aligned with <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> in defining the component name as the key for the component list.<a href="#section-3.5.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.5.2-3">Instead, the component "name" is defined as an optional attribute and the "component-id"
+attribute is defined as the key for the component list (in alignment with the approach
+followed for the network-element list).<a href="#section-3.5.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="parent-relative-position">
-<section id="section-3.4.3">
-          <h4 id="name-parent-relative-position">
-<a href="#section-3.4.3" class="section-number selfRef">3.4.3. </a><a href="#name-parent-relative-position" class="section-name selfRef">Parent Relative Position</a>
+<div id="association-with-the-parent-component">
+<section id="section-3.5.3">
+          <h4 id="name-association-with-the-parent">
+<a href="#section-3.5.3" class="section-number selfRef">3.5.3. </a><a href="#name-association-with-the-parent" class="section-name selfRef">Association with the parent component</a>
           </h4>
-<p id="section-3.4.3-1">There are some use cases where the parent relative position is not reported as an integer but as a string.<a href="#section-3.4.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.4.3-2">In order to support these use cases and allowing a straightforward match between the relative position definition in the device and in the network inventory, this model is defining the 'parent-rel-pos' data node as a string instead of as an integer.<a href="#section-3.4.3-2" class="pilcrow">¶</a></p>
-<p id="section-3.4.3-3">If the device reports the relative position as an integer, e.g., using the device model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, the integer value reported by the device can be mapped into a string within the network inventory.<a href="#section-3.4.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.5.3-1">There are some use cases where the parent relative position is not reported as an integer but as a string.<a href="#section-3.5.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.5.3-2">In order to support these use cases and allow a straightforward match
+between the relative position definition in the device and in the network inventory,
+this model defines the 'parent-rel-pos' data node as a string instead of as an integer.<a href="#section-3.5.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.5.3-3">If the device reports the relative position as an integer, e.g., using the device model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>, the integer value reported by the device can be mapped into a string within the network inventory.<a href="#section-3.5.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.5.3-4">Furthermore, to support cases where a component is physically contained within multiple
+parent components (e.g., a board occupying multiple slots), the 'parent' data node
+is defined as a leaf-list rather than a single leaf (as in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span>).<a href="#section-3.5.3-4" class="pilcrow">¶</a></p>
+<p id="section-3.5.3-5">In such multi-parent cases, each referenced parent is an atomic container
+(such as a slot or sub-slot) that is fully occupied by that component.
+Because the component occupies each parent container entirely, a relative
+position within a single parent has no meaning, and the 'parent-rel-pos' MUST be omitted.<a href="#section-3.5.3-5" class="pilcrow">¶</a></p>
+<p id="section-3.5.3-6">If a physical slot can be shared by multiple boards, each partition is
+modeled as a separate sub-slot container component.<a href="#section-3.5.3-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="manufacturing-date">
+<section id="section-3.5.4">
+          <h4 id="name-manufacturing-date">
+<a href="#section-3.5.4" class="section-number selfRef">3.5.4. </a><a href="#name-manufacturing-date" class="section-name selfRef">Manufacturing Date</a>
+          </h4>
+<p id="section-3.5.4-1">The "mfg-date" data node in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> is defined as the "date of manufacturing of the managed component" using the "date-and-time" data type defined in <span>[<a href="#RFC9911" class="cite xref">RFC9911</a>]</span>.<a href="#section-3.5.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.5.4-2">While the time of day is typically not meaningful for hardware components, it can be useful for other types of components (e.g., software components). Therefore, this model defines the "mfg-date" data node as a "union" of the "date-and-time" and "date" data types defined in <span>[<a href="#RFC9911" class="cite xref">RFC9911</a>]</span>.<a href="#section-3.5.4-2" class="pilcrow">¶</a></p>
+<p id="section-3.5.4-3">Although using a "union" adds some complexity and overhead to data parsing, cleaning, and normalization, this modeling approach is more versatile, flexible, and allows for a straightforward match between the manufacturing date definition in the device and in the network inventory. In particular, it avoids the need to use a dummy time value (such as "T00:00:00Z"), which would be indistinguishable from a valid timestamp.<a href="#section-3.5.4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 </section>
 </div>
-<div id="ni-tree">
+<div id="nwi-yang">
 <section id="section-4">
-      <h2 id="name-network-inventory-tree-diag">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-network-inventory-tree-diag" class="section-name selfRef">Network Inventory Tree Diagram</a>
-      </h2>
-<p id="section-4-1"><a href="#fig-ni-tree" class="auto internal xref">Figure 2</a> shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" (<a href="#ni-yang" class="auto internal xref">Section 5</a>).<a href="#section-4-1" class="pilcrow">¶</a></p>
-<span id="name-network-inventory-tree-diagr"></span><div id="fig-ni-tree">
-<figure id="figure-2">
-        <div class="lang-yangtree sourcecode" id="section-4-2.1">
-<pre>
-module: ietf-network-inventory
-  +--ro network-inventory
-     +--ro network-elements
-        +--ro network-element* [ne-id]
-           +--ro ne-id           string
-           +--ro ne-type?        identityref
-           +--ro uuid?           yang:uuid
-           +--ro name?           string
-           +--ro alias?          string
-           +--ro description?    string
-           +--ro software-rev* [name]
-           |  +--ro name        string
-           |  +--ro revision?   string
-           |  +--ro patch* [revision]
-           |     +--ro revision    string
-           +--ro mfg-name?       string
-           +--ro product-name?   string
-           +--ro product-rev?    string
-           +--ro components
-              +--ro component* [component-id]
-                 +--ro component-id      string
-                 +--ro class             union
-                 +--ro uuid?             yang:uuid
-                 +--ro name?             string
-                 +--ro alias?            string
-                 +--ro description?      string
-                 +--ro software-rev* [name]
-                 |  +--ro name        string
-                 |  +--ro revision?   string
-                 |  +--ro patch* [revision]
-                 |     +--ro revision    string
-                 +--ro mfg-name?         string
-                 +--ro product-name?     string
-                 +--ro hardware-rev?     string
-                 +--ro mfg-date?         yang:date-and-time
-                 +--ro part-number?      string
-                 +--ro serial-number?    string
-                 +--ro asset-id?         string
-                 +--ro is-fru?           boolean
-                 +--ro uri*              inet:uri
-                 +--ro parent*
-                 |       -&gt; ../../component/component-id
-                 +--ro parent-rel-pos?   string
-                 +--ro is-main?          boolean
-</pre>
-</div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
-<a href="#name-network-inventory-tree-diagr" class="selfRef">Network Inventory Tree Diagram</a>
-        </figcaption></figure>
-</div>
-</section>
-</div>
-<div id="ni-yang">
-<section id="section-5">
       <h2 id="name-yang-data-model-for-network-">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-yang-data-model-for-network-" class="section-name selfRef">YANG Data Model for Network Inventory</a>
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-yang-data-model-for-network-" class="section-name selfRef">YANG Data Model for Network Inventory</a>
       </h2>
-<span id="name-network-inventory-yang-modu"></span><div id="fig-ni-yang">
-<figure id="figure-3">
-        <div class="breakable lang-yang sourcecode" id="section-5-1.1">
-<pre>&lt;CODE BEGINS&gt; file "ietf-network-inventory@2026-11-05.yang"
+<span id="name-network-inventory-yang-modu"></span><div id="fig-nwi-yang">
+<figure id="figure-2">
+        <div class="breakable lang-yang sourcecode" id="section-4-1.1">
+<pre>&lt;CODE BEGINS&gt; file "ietf-network-inventory@2026-11-18.yang"
 
 module ietf-network-inventory {
   yang-version 1.1;
@@ -2123,7 +2130,7 @@ module ietf-network-inventory {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2026-11-05 {
+  revision 2026-11-18 {
     description
       "Initial version";
     reference
@@ -2227,7 +2234,9 @@ module ietf-network-inventory {
       type yang:uuid;
       description
         "The Universally Unique Identifier of the entity
-         (e.g., component).";
+         (e.g., component).
+
+         This identifier is assigned by the server.";
     }
     leaf name {
       type string;
@@ -2371,7 +2380,10 @@ module ietf-network-inventory {
         "RFC 6933: Entity MIB (Version 4) - entPhysicalHardwareRev";
     }
     leaf mfg-date {
-      type yang:date-and-time;
+      type union {
+        type yang:date-and-time;
+        type yang:date;
+      }
       description
         "The date of manufacturing of the component.";
       reference
@@ -2475,7 +2487,11 @@ module ietf-network-inventory {
           type string;
           description
             "An identifier that uniquely identifies the NE in
-             a network.";
+             a network.
+
+             This identifier is assigned by the server and MUST be
+             persistent across disconnections, reboots, or
+             management  session losses.";
         }
         leaf ne-type {
           type identityref {
@@ -2525,7 +2541,13 @@ module ietf-network-inventory {
                 description
                   "This data node is applicable only when this
                    component is contained in the network-element or
-                   in only one parent component.";
+                   in only one parent component.
+
+                   When a component is contained in multiple parent
+                   components (e.g., a multi-slot board occupying
+                   multiple slots), it is assumed that it fully
+                   occupies each referenced parent container, making
+                   the relative position inapplicable.";
               }
               type string;
               description
@@ -2567,118 +2589,146 @@ module ietf-network-inventory {
 
 &lt;CODE ENDS&gt;</pre>
 </div>
-<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-network-inventory-yang-modu" class="selfRef">Network inventory YANG module</a>
         </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="operational">
-<section id="section-6">
+<section id="section-5">
       <h2 id="name-operational-considerations">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-operational-considerations" class="section-name selfRef">Operational Considerations</a>
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-operational-considerations" class="section-name selfRef">Operational Considerations</a>
       </h2>
-<p id="section-6-1">The network inventory YANG data model defined in the document is intended to report the actual inventory data that a network controller knows of the network elements and components actually installed within the network. Therefore, this data model provides a read-only perspective of the network inventory information.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">It is worth noting that some information reported within this YANG data model can be configured on the device through mechanisms which are outside the scope of this document.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<p id="section-6-3">As outlined in <a href="#intro" class="auto internal xref">Section 1</a>, per the definition of <span>[<a href="#RFC8309" class="cite xref">RFC8309</a>]</span> and <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>, the network inventory model is a network model.<a href="#section-6-3" class="pilcrow">¶</a></p>
-<p id="section-6-4">This information can be provided by a network controller to a higher level hierarchical network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.<a href="#section-6-4" class="pilcrow">¶</a></p>
-<p id="section-6-5">For example, in the context of ACTN, the network inventory YANG data model can be used at the MPI interfaces, as defined in <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span>, or on an interface, not defined in <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span> between the MDSC and the Inventory OSS.<a href="#section-6-5" class="pilcrow">¶</a></p>
-<p id="section-6-6">The information in the data model is discovered by the controller through mechanisms which are outside the scope of this document.<a href="#section-6-6" class="pilcrow">¶</a></p>
-<p id="section-6-7">Note that distinguishing between the cases where a NE is unreachable versus decommissioned depends on the mechanism used for discovering this information and is outside the scope of this document.<a href="#section-6-7" class="pilcrow">¶</a></p>
-<p id="section-6-8">For example, the network controller can collect this information by reading it from the devices using the device model supported by the devices. This model does not constrain the device models used on the device: the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed. In case some information is not provided by the device, the network controller SHALL omit this information unless this information is known by other sources of information (e.g., through local configuration within the network controller).<a href="#section-6-8" class="pilcrow">¶</a></p>
-<p id="section-6-9">In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to a higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.<a href="#section-6-9" class="pilcrow">¶</a></p>
-<p id="section-6-10">The inventory needs to be updated every time components are added or removed from the network. Protocol-specific mechanisms can be used to notify the client about these changes.<a href="#section-6-10" class="pilcrow">¶</a></p>
-<p id="section-6-11">Since this YANG data model reports what is actually installed in the network, if a component (e.g., a board) is physically removed from the network, also its descendant components (e.g., daughter boards and ports) are also physically removed from the network and, as a consequence, from the inventory data being reported through this YANG data model.<a href="#section-6-11" class="pilcrow">¶</a></p>
-<p id="section-6-12">If the inventory system defined by this document is to be deployed into a network which has a preexisting inventory system, it is worth noting that existing deployments are based on proprietary Inventory OSS and that the migration path is highly dependent on the specific proprietary solution. Therefore, the migration processes are operator dependent: it is expected that the deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing Inventory OSSes will also take longer time. In a longer term, the network controllers could provide inventory information, using this YANG data model, also to next generation OSSes.<a href="#section-6-12" class="pilcrow">¶</a></p>
-<p id="section-6-13">When this model is used, the source of truth for the inventory data in the scope of this model is the network controller providing this data. Some legacy inventory information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model.<a href="#section-6-13" class="pilcrow">¶</a></p>
+<p id="section-5-1">The network inventory YANG data model defined in the document is intended to report the actual inventory data that a network controller knows of the network elements and components actually installed within the network. Therefore, this data model provides a read-only perspective of the network inventory information.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">It is worth noting that some information reported within this YANG data model can be configured on the device through mechanisms which are outside the scope of this document.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">As outlined in <a href="#intro" class="auto internal xref">Section 1</a>, per the definition of <span>[<a href="#RFC8309" class="cite xref">RFC8309</a>]</span> and <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>, the network inventory model is a network model.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<p id="section-5-4">In case of hierarchical controllers, a hierarchical network controller can
+also collect the network inventory information from its lower-level network
+controllers using this YANG data model (or other mechanisms which are
+outside the scope of this document) and report the combined network inventory
+information to a higher-level network controller, to an Inventory OSS, or
+to any other type of application which needs to discover the network inventory
+information. When combining network inventories from lower-level network
+controllers, the higher-level controller acts as
+the server for its northbound interface and is responsible for ensuring that
+the 'ne-id' values remain unique within the combined network-element list it
+exposes.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-5">For example, in the context of ACTN, the network inventory YANG data model can be used at the MPI interfaces, as defined in <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span>, or on an interface, not defined in <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span> between the MDSC and the Inventory OSS.<a href="#section-5-5" class="pilcrow">¶</a></p>
+<p id="section-5-6">As outlined in <a href="#overview" class="auto internal xref">Section 3</a>, the information in the data model is discovered by the controller through mechanisms which are outside the scope of this document.<a href="#section-5-6" class="pilcrow">¶</a></p>
+<p id="section-5-7">For example, the network controller can collect this information by reading it from the devices using the device model supported by the devices. This model does not constrain the device models used on the device: the YANG data model defined in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> is an option but other options (e.g., vendor specific interfaces or YANG data models) are also allowed.<a href="#section-5-7" class="pilcrow">¶</a></p>
+<p id="section-5-8">Note that distinguishing between the cases where a NE is unreachable versus decommissioned depends on the mechanism used for discovering this information and is outside the scope of this document.<a href="#section-5-8" class="pilcrow">¶</a></p>
+<p id="section-5-9">In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to a higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.<a href="#section-5-9" class="pilcrow">¶</a></p>
+<p id="section-5-10">The inventory needs to be updated every time components are added or removed from the network. Protocol-specific mechanisms can be used to notify the client about these changes.<a href="#section-5-10" class="pilcrow">¶</a></p>
+<p id="section-5-11">Since this YANG data model reports what is actually installed in the network, if a component (e.g., a board) is physically removed from the network, also its descendant components (e.g., daughter boards and ports) are also physically removed from the network and, as a consequence, from the inventory data being reported through this YANG data model.<a href="#section-5-11" class="pilcrow">¶</a></p>
+<p id="section-5-12">If the inventory system defined by this document is to be deployed into a network which has a preexisting inventory system, it is worth noting that existing deployments are based on proprietary Inventory OSS and that the migration path is highly dependent on the specific proprietary solution. Therefore, the migration processes are operator dependent: it is expected that the deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing Inventory OSSes will also take longer time. In a longer term, the network controllers could provide inventory information, using this YANG data model, also to next generation OSSes.<a href="#section-5-12" class="pilcrow">¶</a></p>
+<p id="section-5-13">When this model is used, the source of truth for the inventory data in the scope of this model is the network controller providing this data. Some legacy inventory information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model.<a href="#section-5-13" class="pilcrow">¶</a></p>
+<div id="transport-performance-considerations">
+<section id="section-5.1">
+        <h3 id="name-transport-performance-consi">
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-transport-performance-consi" class="section-name selfRef">Transport Performance Considerations</a>
+        </h3>
+<p id="section-5.1-1">Deployments of the data model defined in this document in large-
+scale networks can generate substantial data payloads during full
+inventory retrievals.  To prevent these large transfers from
+causing network congestion or adversely impacting critical
+operational traffic, the underlying transport sessions SHOULD be
+managed carefully.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">Operators should ensure that the transport method chosen for
+retrieval either utilizes native congestion control mechanisms,
+operates over network paths with pre-provisioned capacity, or
+implements rate-limiting mechanisms (such as circuit breakers)
+to safely throttle large-volume data transfers.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="security">
-<section id="section-7">
+<section id="section-6">
       <h2 id="name-security-considerations">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-7-1">This section is modeled after the template described in <span><a href="https://rfc-editor.org/rfc/rfc9907#section-3.7.1" class="relref">Section 3.7.1</a> of [<a href="#RFC9907" class="cite xref">RFC9907</a>]</span>.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">The "ietf-network-inventory" YANG module defines a data model that is
+<p id="section-6-1">This section is modeled after the template described in <span><a href="https://rfc-editor.org/rfc/rfc9907#section-3.7.1" class="relref">Section 3.7.1</a> of [<a href="#RFC9907" class="cite xref">RFC9907</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">The "ietf-network-inventory" YANG module defines a data model that is
 designed to be accessed via YANG-based management protocols, such as
 Network Configuration Protocol (NETCONF) <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>.
 These YANG-based management protocols (1) have to use a secure transport
 layer (e.g., SSH <span>[<a href="#RFC4252" class="cite xref">RFC4252</a>]</span>, TLS <span>[<a href="#RFC9846" class="cite xref">RFC9846</a>]</span>, and
-QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>) and (2) have to use mutual authentication.<a href="#section-7-2" class="pilcrow">¶</a></p>
-<p id="section-7-3">The Network Configuration Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
+QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>) and (2) have to use mutual authentication.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">The Network Configuration Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
 provides the means to restrict access for particular NETCONF or
 RESTCONF users to a preconfigured subset of all available NETCONF or
-RESTCONF protocol operations and content.<a href="#section-7-3" class="pilcrow">¶</a></p>
-<p id="section-7-4">Some of the readable data nodes in this YANG module may be considered
+RESTCONF protocol operations and content.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">Some of the readable data nodes in this YANG module may be considered
 sensitive or vulnerable in some network environments.  It is thus
 important to control read access (e.g., via get, get-config, or
-notification) to these data nodes.<a href="#section-7-4" class="pilcrow">¶</a></p>
-<p id="section-7-5">Specifically, the following subtrees and data nodes have particular sensitivities/vulnerabilities:<a href="#section-7-5" class="pilcrow">¶</a></p>
+notification) to these data nodes.<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-5">Specifically, the following subtrees and data nodes have particular sensitivities/vulnerabilities:<a href="#section-6-5" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-7-6.1">
-          <p id="section-7-6.1.1">"/nwi:network-inventory/nwi:network-elements"<a href="#section-7-6.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6-6.1">
+          <p id="section-6-6.1.1">"/nwi:network-inventory/nwi:network-elements"<a href="#section-6-6.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-7-7.1">
-          <p id="section-7-7.1.1">This subtree reports the inventory information for all the network elements and their hardware components deployed within the network as well as of the software modules being discovered as running on these network elements and components. Unauthorized access to this subtree can disclose this information. A malicious attacker can use this information to perform targeted attacks to network elements, hardware components or software modules with known vulnerabilities.<a href="#section-7-7.1.1" class="pilcrow">¶</a></p>
+<li class="normal ulEmpty" id="section-6-7.1">
+          <p id="section-6-7.1.1">This subtree reports the inventory information for all the network elements and their hardware components deployed within the network as well as of the software images being discovered as running on these network elements and components. Unauthorized access to this subtree can disclose this information. A malicious attacker can use this information to perform targeted attacks to network elements, hardware components or software images with known vulnerabilities.<a href="#section-6-7.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-7-8.1">
-          <p id="section-7-8.1.1">In large networks, the massive volume of reported data can cause scalability issues, as reported in <a href="#scalability" class="auto internal xref">Appendix C</a>. A malicious attacker could leverage this to cause  resource exhaustion.<a href="#section-7-8.1.1" class="pilcrow">¶</a></p>
+<li class="normal ulEmpty" id="section-6-8.1">
+          <p id="section-6-8.1.1">In large networks, the massive volume of reported data can cause scalability issues, as reported in <a href="#scalability" class="auto internal xref">Appendix C</a>. A malicious attacker could leverage this to cause  resource exhaustion.<a href="#section-6-8.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-7-9">Modules that use the groupings that are defined in this document
-should identify the corresponding security considerations. For example, reusing the 'component-attributes' grouping may expose sensitive information.<a href="#section-7-9" class="pilcrow">¶</a></p>
+<p id="section-6-9">Modules that use the groupings that are defined in this document
+should identify the corresponding security considerations. For example, reusing the 'component-attributes' grouping may expose sensitive information.<a href="#section-6-9" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-8">
+<section id="section-7">
       <h2 id="name-iana-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-8-1">IANA is requested to register the following URI in the "ns"
-registry within the "IETF XML Registry" group <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span>:<a href="#section-8-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-8-2">
+<p id="section-7-1">IANA is requested to register the following URI in the "ns"
+registry within the "IETF XML Registry" group <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span>:<a href="#section-7-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-7-2">
 <pre>
    URI: urn:ietf:params:xml:ns:yang:ietf-network-inventory
    Registrant Contact: The IESG
    XML: N/A; the requested URI is an XML namespace.
-</pre><a href="#section-8-2" class="pilcrow">¶</a>
+</pre><a href="#section-7-2" class="pilcrow">¶</a>
 </div>
-<p id="section-8-3">IANA is requested to register the following YANG module in the "YANG
+<p id="section-7-3">IANA is requested to register the following YANG module in the "YANG
 Module Names" registry <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span> within the "YANG Parameters"
-registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-8-4">
+registry group.<a href="#section-7-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-7-4">
 <pre>
    Name:         ietf-network-inventory
    Maintained by IANA?  N
    Namespace:    urn:ietf:params:xml:ns:yang:ietf-network-inventory
    Prefix:       nwi
    Reference:    RFC XXXX
-</pre><a href="#section-8-4" class="pilcrow">¶</a>
+</pre><a href="#section-7-4" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="sec-combined-references">
-<section id="section-9">
+<section id="section-8">
       <h2 id="name-references">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
 <div id="sec-normative-references">
-<section id="section-9.1">
+<section id="section-8.1">
         <h3 id="name-normative-references">
-<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
-<dt id="IANA_ENTITY_MIB">[IANA_ENTITY_MIB]</dt>
+<dt id="IANA.iana-hardware">[IANA.iana-hardware]</dt>
         <dd>
-<span class="refAuthor">IANA</span>, <span class="refTitle">"IANA-ENTITY-MIB"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.iana.org/assignments/ianaentity-mib/ianaentity-mib.xhtml">https://www.iana.org/assignments/ianaentity-mib/ianaentity-mib.xhtml</a>&gt;</span>. </dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"iana-hardware YANG Module"</span>, <span>&lt;<a href="https://www.iana.org/assignments/iana-hardware">https://www.iana.org/assignments/iana-hardware</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="IANA_HW_YANG">[IANA_HW_YANG]</dt>
+<dt id="IANA.ianaentity-mib">[IANA.ianaentity-mib]</dt>
         <dd>
-<span class="refAuthor">IANA</span>, <span class="refTitle">"iana-hardware YANG Module"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.iana.org/assignments/iana-hardware/iana-hardware.xhtml">https://www.iana.org/assignments/iana-hardware/iana-hardware.xhtml</a>&gt;</span>. </dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"IANA-ENTITY-MIB"</span>, <span>&lt;<a href="https://www.iana.org/assignments/ianaentity-mib">https://www.iana.org/assignments/ianaentity-mib</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="ISO_IEC_15418">[ISO_IEC_15418]</dt>
         <dd>
@@ -2732,9 +2782,9 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-informative-references">
-<section id="section-9.2">
+<section id="section-8.2">
         <h3 id="name-informative-references">
-<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="I-D.ietf-ivy-network-inventory-location">[I-D.ietf-ivy-network-inventory-location]</dt>
@@ -2757,10 +2807,6 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">OpenConfig Working Group</span>, <span class="refTitle">"OpenConfig Public Release v5.6.0"</span>, <span class="seriesInfo">Release 5.6.0 </span>, <time datetime="2026-01" class="refDate">January 2026</time>, <span>&lt;<a href="https://github.com/openconfig/public/tree/v5.6.0/">https://github.com/openconfig/public/tree/v5.6.0/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC1157">[RFC1157]</dt>
-        <dd>
-<span class="refAuthor">Case, J.</span>, <span class="refAuthor">Fedor, M.</span>, <span class="refAuthor">Schoffstall, M.</span>, and <span class="refAuthor">J. Davin</span>, <span class="refTitle">"Simple Network Management Protocol (SNMP)"</span>, <span class="seriesInfo">RFC 1157</span>, <span class="seriesInfo">DOI 10.17487/RFC1157</span>, <time datetime="1990-05" class="refDate">May 1990</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc1157">https://www.rfc-editor.org/rfc/rfc1157</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC4152">[RFC4152]</dt>
         <dd>
 <span class="refAuthor">Tesink, K.</span> and <span class="refAuthor">R. Fox</span>, <span class="refTitle">"A Uniform Resource Name (URN) Namespace for the Common Language Equipment Identifier (CLEI) Code"</span>, <span class="seriesInfo">RFC 4152</span>, <span class="seriesInfo">DOI 10.17487/RFC4152</span>, <time datetime="2005-08" class="refDate">August 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4152">https://www.rfc-editor.org/rfc/rfc4152</a>&gt;</span>. </dd>
@@ -2768,6 +2814,10 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <dt id="RFC4252">[RFC4252]</dt>
         <dd>
 <span class="refAuthor">Ylonen, T.</span> and <span class="refAuthor">C. Lonvick, Ed.</span>, <span class="refTitle">"The Secure Shell (SSH) Authentication Protocol"</span>, <span class="seriesInfo">RFC 4252</span>, <span class="seriesInfo">DOI 10.17487/RFC4252</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4252">https://www.rfc-editor.org/rfc/rfc4252</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6632">[RFC6632]</dt>
+        <dd>
+<span class="refAuthor">Ersue, M., Ed.</span> and <span class="refAuthor">B. Claise</span>, <span class="refTitle">"An Overview of the IETF Network Management Standards"</span>, <span class="seriesInfo">RFC 6632</span>, <span class="seriesInfo">DOI 10.17487/RFC6632</span>, <time datetime="2012-06" class="refDate">June 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6632">https://www.rfc-editor.org/rfc/rfc6632</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7951">[RFC7951]</dt>
         <dd>
@@ -2818,13 +2868,75 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
-<div id="comparison-with-openconfig-platform-yang-data-model">
+<div id="nwi-tree">
 <section id="appendix-A">
-      <h2 id="name-comparison-with-openconfig-">
-<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-comparison-with-openconfig-" class="section-name selfRef">Comparison With OpenConfig Platform YANG Data Model</a>
+      <h2 id="name-network-inventory-tree-diag">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-network-inventory-tree-diag" class="section-name selfRef">Network Inventory Tree Diagram</a>
       </h2>
-<p id="appendix-A-1">Given that many devices implement OpenConfig, this appendix compares the OpenConfig Platform model, defined in <span>[<a href="#OpenConfig" class="cite xref">OpenConfig</a>]</span>, with the base network inventory model, defined in this document, to ensure network controllers can accurately report discovered data.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
-<p id="appendix-A-2">The OpenConfig platform data model, defined by the "openconfig-platform" and "openconfig-platform-types" modules in <span>[<a href="#OpenConfig" class="cite xref">OpenConfig</a>]</span>, is a device model that uses a generic component concept to describe internal components and containers, similar to the models in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> and in this document. Therefore, <a href="#tab-oc" class="auto internal xref">Table 2</a> compares the component attributes between the "openconfig-platform" YANG module in <span>[<a href="#OpenConfig" class="cite xref">OpenConfig</a>]</span> and the "ietf-network-inventory" module in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+<p id="appendix-A-1"><a href="#fig-nwi-tree" class="auto internal xref">Figure 3</a> shows the tree diagram of the YANG data model defined in module "ietf-network-inventory" (<a href="#nwi-yang" class="auto internal xref">Section 4</a>).<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<span id="name-network-inventory-tree-diagr"></span><div id="fig-nwi-tree">
+<figure id="figure-3">
+        <div class="lang-yangtree sourcecode" id="appendix-A-2.1">
+<pre>
+module: ietf-network-inventory
+  +--ro network-inventory
+     +--ro network-elements
+        +--ro network-element* [ne-id]
+           +--ro ne-id           string
+           +--ro ne-type?        identityref
+           +--ro uuid?           yang:uuid
+           +--ro name?           string
+           +--ro alias?          string
+           +--ro description?    string
+           +--ro software-rev* [name]
+           |  +--ro name        string
+           |  +--ro revision?   string
+           |  +--ro patch* [revision]
+           |     +--ro revision    string
+           +--ro mfg-name?       string
+           +--ro product-name?   string
+           +--ro product-rev?    string
+           +--ro components
+              +--ro component* [component-id]
+                 +--ro component-id      string
+                 +--ro class             union
+                 +--ro uuid?             yang:uuid
+                 +--ro name?             string
+                 +--ro alias?            string
+                 +--ro description?      string
+                 +--ro software-rev* [name]
+                 |  +--ro name        string
+                 |  +--ro revision?   string
+                 |  +--ro patch* [revision]
+                 |     +--ro revision    string
+                 +--ro mfg-name?         string
+                 +--ro product-name?     string
+                 +--ro hardware-rev?     string
+                 +--ro mfg-date?         union
+                 +--ro part-number?      string
+                 +--ro serial-number?    string
+                 +--ro asset-id?         string
+                 +--ro is-fru?           boolean
+                 +--ro uri*              inet:uri
+                 +--ro parent*
+                 |       -&gt; ../../component/component-id
+                 +--ro parent-rel-pos?   string
+                 +--ro is-main?          boolean
+</pre>
+</div>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-network-inventory-tree-diagr" class="selfRef">Network Inventory Tree Diagram</a>
+        </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="oc-comparison">
+<section id="appendix-B">
+      <h2 id="name-comparison-with-openconfig-">
+<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-comparison-with-openconfig-" class="section-name selfRef">Comparison With OpenConfig Platform YANG Data Model</a>
+      </h2>
+<p id="appendix-B-1">Given that many devices implement OpenConfig, this appendix compares the OpenConfig Platform model, defined in <span>[<a href="#OpenConfig" class="cite xref">OpenConfig</a>]</span>, with the base network inventory model, defined in this document, to ensure network controllers can accurately report discovered data.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">The OpenConfig platform data model, defined by the "openconfig-platform" and "openconfig-platform-types" modules in <span>[<a href="#OpenConfig" class="cite xref">OpenConfig</a>]</span>, is a device model that uses a generic component concept to describe internal components and containers, similar to the models in <span>[<a href="#RFC8348" class="cite xref">RFC8348</a>]</span> and in this document. Therefore, <a href="#tab-oc" class="auto internal xref">Table 2</a> compares the component attributes between the "openconfig-platform" YANG module in <span>[<a href="#OpenConfig" class="cite xref">OpenConfig</a>]</span> and the "ietf-network-inventory" module in <a href="#nwi-yang" class="auto internal xref">Section 4</a>.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <span id="name-comparison-between-openconf"></span><div id="tab-oc">
 <table class="center" id="table-2">
         <caption>
@@ -2993,8 +3105,8 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
         </tbody>
       </table>
 </div>
-<p id="appendix-A-4">As mentioned in <a href="#ne-component" class="auto internal xref">Section 3.3</a>, state data, performance data, and alarm data are out of scope of the data model defined in this document, and they should be defined in other data models separately. For the same reason some component specific structures in "openconfig-platform", like the one defined for fan, backplane, controller-card, etc., are considered out of scope since they provide specialized operational and alarm data for those components.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
-<p id="appendix-A-5"><a href="#tab-oc-hw" class="auto internal xref">Table 3</a> compares the identities derived from "oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT" with those derived from "ianahw:hardware-class". This comparison highlights that the base network inventory model aligns with the OpenConfig Platform model also regarding hardware component "type"/"class" definition.<a href="#appendix-A-5" class="pilcrow">¶</a></p>
+<p id="appendix-B-4">As mentioned in <a href="#ne-component" class="auto internal xref">Section 3.4</a>, state data, performance data, and alarm data are out of scope of the data model defined in this document, and they should be defined in other data models separately. For the same reason some component specific structures in "openconfig-platform", like the one defined for fan, backplane, controller-card, etc., are considered out of scope since they provide specialized operational and alarm data for those components.<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<p id="appendix-B-5"><a href="#tab-oc-hw" class="auto internal xref">Table 3</a> compares the identities derived from "oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT" with those derived from "ianahw:hardware-class". This comparison highlights that the base network inventory model aligns with the OpenConfig Platform model also regarding hardware component "type"/"class" definition.<a href="#appendix-B-5" class="pilcrow">¶</a></p>
 <span id="name-comparison-between-openconfi"></span><div id="tab-oc-hw">
 <table class="center" id="table-3">
         <caption>
@@ -3083,35 +3195,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
         </tbody>
       </table>
 </div>
-<p id="appendix-A-7">Overall, the analysis in this appendix confirms that the base network inventory YANG data model can be populated with data discovered from devices running OpenConfig.<a href="#appendix-A-7" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="terminology-of-container">
-<section id="appendix-B">
-      <h2 id="name-terminology-of-container">
-<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-terminology-of-container" class="section-name selfRef">Terminology of Container</a>
-      </h2>
-<p id="appendix-B-1">Within this document, the term "container" represents a hardware component class capable of containing one or more removable physical entities, e.g., a slot in a chassis capable of containing a board.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
-<span id="name-terminology-mapping"></span><div id="tab-term">
-<table class="center" id="table-4">
-        <caption>
-<a href="#table-4" class="selfRef">Table 4</a>:
-<a href="#name-terminology-mapping" class="selfRef">terminology mapping</a>
-        </caption>
-<thead>
-          <tr>
-            <th class="text-left" rowspan="1" colspan="1">terminology of IVY base model</th>
-            <th class="text-left" rowspan="1" colspan="1">terminology in other models</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">container</td>
-            <td class="text-left" rowspan="1" colspan="1">holder</td>
-          </tr>
-        </tbody>
-      </table>
-</div>
+<p id="appendix-B-7">Overall, the analysis in this appendix confirms that the base network inventory YANG data model can be populated with data discovered from devices running OpenConfig.<a href="#appendix-B-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="scalability">
@@ -3119,7 +3203,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
       <h2 id="name-efficiency-issue">
 <a href="#appendix-C" class="section-number selfRef">Appendix C. </a><a href="#name-efficiency-issue" class="section-name selfRef">Efficiency Issue</a>
       </h2>
-<p id="appendix-C-1">During  the integration with OSS in some operators, some efficiency/scalability concerns have been discovered when synchronizing network inventory data for big networks. As outlined in <a href="#security" class="auto internal xref">Section 7</a>, these efficiency and scalability issues can pose security issues.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">During  the integration with Inventory OSS in some operator networkss, some efficiency and scalability concerns have been discovered when synchronizing network inventory data for big networks. As outlined in <a href="#security" class="auto internal xref">Section 6</a>, these efficiency and scalability issues can pose security issues.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 <p id="appendix-C-2">While implementing NACM <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span> and protocol-specific filtering mechanisms (e.g., RESTCONF filtering <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>) mitigates these efficiency and scalability concerns, full resolution may require further protocol enhancements beyond the scope of this document.<a href="#appendix-C-2" class="pilcrow">¶</a></p>
 <p id="appendix-C-3">Considering that relational databases are widely used by existing OSS systems and also by some network controllers, the inventory objects are most likely to be saved in different tables. With the model defined in this document, when doing a full synchronization, network controller needs to convert all inventory objects of each NE into component objects and combine them together into a single list, and then construct a response and send to OSS or MDSC. The OSS or MDSC needs to classify the component list and divide them into different groups, in order to save them in different tables. The combining-regrouping steps are impacting the network controller &amp; OSS/MDSC processing, which may result in efficiency/scalability limitations in large scale networks.<a href="#appendix-C-3" class="pilcrow">¶</a></p>
 <p id="appendix-C-4">An alternative YANG model structure, which defines the inventory objects directly, instead of defining generic components, has also been analyzed. However, also with this model, there still could be some scalability limitations when synchronizing full inventory resources in large scale networks. This scalability limitation is caused by the limited transmission capabilities of HTTP protocol. This scalability limitation should be solved at protocol level rather than data model level.<a href="#appendix-C-4" class="pilcrow">¶</a></p>
@@ -3132,7 +3216,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
       <h2 id="name-examples-of-ports">
 <a href="#appendix-D" class="section-number selfRef">Appendix D. </a><a href="#name-examples-of-ports" class="section-name selfRef">Examples of Ports</a>
       </h2>
-<p id="appendix-D-1">This appendix provides some examples of port implementations and how they can be modelled using the "ietf-network-inventory" module defined in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#appendix-D-1" class="pilcrow">¶</a></p>
+<p id="appendix-D-1">This appendix provides some examples of port implementations and how they can be modelled using the "ietf-network-inventory" module defined in <a href="#nwi-yang" class="auto internal xref">Section 4</a>.<a href="#appendix-D-1" class="pilcrow">¶</a></p>
 <p id="appendix-D-2"><a href="#fig-board" class="auto internal xref">Figure 4</a> shows an example of a single board which contains three types of port:<a href="#appendix-D-2" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="appendix-D-3">
 <li id="appendix-D-3.1">
@@ -3284,7 +3368,7 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
       <h2 id="name-example-of-multi-chassis-ne">
 <a href="#appendix-E" class="section-number selfRef">Appendix E. </a><a href="#name-example-of-multi-chassis-ne" class="section-name selfRef">Example of Multi-chassis Network Elements</a>
       </h2>
-<p id="appendix-E-1">This appendix provides some examples of multi-chassis network elements and how they can be modelled using the "ietf-network-inventory" module defined in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#appendix-E-1" class="pilcrow">¶</a></p>
+<p id="appendix-E-1">This appendix provides some examples of multi-chassis network elements and how they can be modelled using the "ietf-network-inventory" module defined in <a href="#nwi-yang" class="auto internal xref">Section 4</a>.<a href="#appendix-E-1" class="pilcrow">¶</a></p>
 <p id="appendix-E-2">Multi-chassis network elements are network elements comprised of two or more chassis interconnected, in principle, with any topology.<a href="#appendix-E-2" class="pilcrow">¶</a></p>
 <p id="appendix-E-3">Stacked switches are an example of multi-chassis which consist of multiple standalone switches that are interconnected through dedicated stack ports and cables and managed as a single logical unit. Stacked switches:<a href="#appendix-E-3" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -4202,8 +4286,8 @@ registry group.<a href="#section-8-3" class="pilcrow">¶</a></p>
       <h2 id="name-example-of-non-modular-netw">
 <a href="#appendix-F" class="section-number selfRef">Appendix F. </a><a href="#name-example-of-non-modular-netw" class="section-name selfRef">Example of Non-modular Network Elements</a>
       </h2>
-<p id="appendix-F-1">This appendix provides some examples of non-modular network elements and how they can be modelled using the "ietf-network-inventory" module defined in <a href="#ni-yang" class="auto internal xref">Section 5</a>.<a href="#appendix-F-1" class="pilcrow">¶</a></p>
-<p id="appendix-F-2">Non-modular network elements (also known as "pizza boxes") are network elements comprised of a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any non-field-replaceable modules other than pluggable ports.<a href="#appendix-F-2" class="pilcrow">¶</a></p>
+<p id="appendix-F-1">This appendix provides some examples of non-modular network elements and how they can be modelled using the "ietf-network-inventory" module defined in <a href="#nwi-yang" class="auto internal xref">Section 4</a>.<a href="#appendix-F-1" class="pilcrow">¶</a></p>
+<p id="appendix-F-2">Non-modular network elements (also known as "pizza boxes") are network elements comprised of a single chassis as a self-contained system. A non-modular network element does not have any slots to take cards so it cannot take any field-replaceable modules other than pluggable ports.<a href="#appendix-F-2" class="pilcrow">¶</a></p>
 <p id="appendix-F-3"><a href="#fig-pizza-box" class="auto internal xref">Figure 8</a> describes an example of a pizza box with 8 ports.<a href="#appendix-F-3" class="pilcrow">¶</a></p>
 <span id="name-example-of-an-8-ports-pizza"></span><div id="fig-pizza-box">
 <figure id="figure-8">

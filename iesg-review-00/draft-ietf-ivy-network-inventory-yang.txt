@@ -5,14 +5,14 @@
 IVY Working Group                                                  C. Yu
 Internet-Draft                                       Huawei Technologies
 Intended status: Standards Track                              S. Belotti
-Expires: 20 May 2027                                               Nokia
+Expires: 23 May 2027                                               Nokia
                                                           J.-F. Bouquier
                                                                 Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
-                                                        16 November 2026
+                                                        19 November 2026
 
 
               A Base YANG Data Model for Network Inventory
@@ -21,9 +21,13 @@ Expires: 20 May 2027                                               Nokia
 Abstract
 
    This document defines a base YANG data model for reporting network
-   inventory.  The scope of this base model is set to be application-
-   and technology-agnostic.  The base data model can be augmented with
-   application- and technology-specific details.
+   inventory.
+
+   The model can be used directly, as is, to report physical hardware
+   inventory (including basic running software attributes).  It also
+   provides a generalized, application- and technology-agnostic
+   foundation that can be augmented with technology- or application-
+   specific inventory details.
 
 About This Document
 
@@ -53,7 +57,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 May 2027.
+   This Internet-Draft will expire on 23 May 2027.
 
 Copyright Notice
 
@@ -80,26 +84,28 @@ Table of Contents
      2.4.  YANG Prefixes
      2.5.  Artwork folding
    3.  YANG Data Model for Network Inventory Overview
-     3.1.  Common Attributes for Inventory Objects
-       3.1.1.  Common Attributes for Network Elements and Components
-     3.2.  Network Element
-     3.3.  Components
-       3.3.1.  Hardware Components
-       3.3.2.  Software Components
-     3.4.  Changes vs. RFC 8348
-       3.4.1.  Part Number
-       3.4.2.  Component identifiers
-       3.4.3.  Parent Relative Position
-   4.  Network Inventory Tree Diagram
-   5.  YANG Data Model for Network Inventory
-   6.  Operational Considerations
-   7.  Security Considerations
-   8.  IANA Considerations
-   9.  References
-     9.1.  Normative References
-     9.2.  Informative References
-   Appendix A.  Comparison With OpenConfig Platform YANG Data Model
-   Appendix B.  Terminology of Container
+     3.1.  Data Model Design
+     3.2.  Common Attributes for Inventory Objects
+       3.2.1.  Common Attributes for Network Elements and Components
+     3.3.  Network Element
+     3.4.  Components
+       3.4.1.  Hardware Components
+       3.4.2.  Software Components
+     3.5.  Differences from RFC 8348
+       3.5.1.  Part Number
+       3.5.2.  Component identifiers
+       3.5.3.  Association with the parent component
+       3.5.4.  Manufacturing Date
+   4.  YANG Data Model for Network Inventory
+   5.  Operational Considerations
+     5.1.  Transport Performance Considerations
+   6.  Security Considerations
+   7.  IANA Considerations
+   8.  References
+     8.1.  Normative References
+     8.2.  Informative References
+   Appendix A.  Network Inventory Tree Diagram
+   Appendix B.  Comparison With OpenConfig Platform YANG Data Model
    Appendix C.  Efficiency Issue
    Appendix D.  Examples of Ports
      D.1.  JSON Examples
@@ -163,7 +169,7 @@ Table of Contents
    defined in [RFC8348] is a device model while the YANG data model
    defined in this document is a network model.
 
-   As outlined in Section 6, the base network inventory model provides a
+   As outlined in Section 5, the base network inventory model provides a
    read-only perspective of the installed network inventory data the
    controller is aware of.  Therefore, other inventory data (e.g.,
    inactive assets, warehouse spares, or planned assets) are outside the
@@ -179,10 +185,24 @@ Table of Contents
    definition to allow supporting other types of network elements
    through adequate augmentations.
 
-   This document defines one YANG module "ietf-network-inventory" in
-   Section 5.
+   Section 3 provides an overview of the YANG data model defined in this
+   document, which consists of one YANG module "ietf-network-inventory"
+   defined in Section 4.  Appendix A provides the tree diagram of this
+   YANG data model.
 
-   This base data model is application- and technology-agnostic (that
+   Appendix B provides a mapping between the network inventory YANG data
+   model defined in this document and the OpenConfig Platform model,
+   which can be used by a network controller to discover the device data
+   to expose in the network inventory.
+
+   Appendix C provides further information on the efficiency and
+   scalability concerns discovered during the integration with Inventory
+   OSS in some operator networks.
+
+   Appendix D, Appendix E, and Appendix F provide JSON examples
+   illustrating how to use this YANG data model.
+
+   This YANG data model is application- and technology-agnostic (that
    is, valid for IP/MPLS, optical, and microwave networks as well as
    optical local loops, access networks, core networks, data centers,
    etc.) and can be augmented to include required application- and
@@ -190,8 +210,9 @@ Table of Contents
    or software component's attributes.
 
    The base inventory YANG data model is scoped to cover the common use
-   cases for inventory but at network-wide level, covering both hardware
-   and base software information.
+   cases for inventory but at a network-wide level, and can be used
+   directly, as is, to report physical hardware and basic software
+   information.
 
 1.1.  Editorial Note (To be removed by RFC Editor)
 
@@ -206,7 +227,7 @@ Table of Contents
 
    *  XXXX --> the assigned RFC number for this I-D
 
-   *  2026-11-05 --> the actual date of the publication of this document
+   *  2026-11-18 --> the actual date of the publication of this document
 
 2.  Terminology and Notations
 
@@ -247,8 +268,8 @@ Table of Contents
    *  MDSC-PNC Interface (MPI)
 
    The following terms are defined in the description statements of the
-   corresponding YANG identities, defined in [IANA_HW_YANG], and are not
-   redefined here:
+   corresponding YANG identities, defined in [IANA.iana-hardware], and
+   are not redefined here:
 
    *  backplane
 
@@ -260,13 +281,15 @@ Table of Contents
 
    *  module
 
-   *  power supply
+   *  power supply: for the "power-supply" YANG identity
+      [IANA.iana-hardware]
 
    *  sensor
 
    *  stack
 
-   *  storage device
+   *  storage device: for the "storage-drive" YANG identity
+      [IANA.iana-hardware]
 
    Also, the document makes use of the following terms:
 
@@ -294,13 +317,14 @@ Table of Contents
       definition.
 
    Hardware component:  A general definition of category of components
-      as defined in [RFC8348] and [IANA_HW_YANG] (e.g., backplane,
+      as defined in [RFC8348] and [IANA.iana-hardware] (e.g., backplane,
       battery, container, central processing unit (CPU), chassis, fan,
       module, port, power supply, sensor, stack, and storage device
       components).
 
       The list of hardware components can be extended in future versions
-      of [IANA_ENTITY_MIB] (and, consequently, of ([IANA_HW_YANG]).
+      of [IANA.ianaentity-mib] (and, consequently, of
+      ([IANA.iana-hardware]).
 
    Component:  A further extension of the hardware component definition
       to include other inventory objects which can be managed, from an
@@ -322,6 +346,13 @@ Table of Contents
       one or more removable physical entities (e.g., a slot in a chassis
       is containing a board).
 
+      Within this document, the term "container" represents a hardware
+      component class capable of containing one or more removable
+      physical entities, e.g., a slot in a chassis capable of containing
+      a board.
+
+      Elsewhere, a container can be called holder.
+
 2.3.  Tree Diagrams
 
    The meanings of the symbols in the YANG tree diagrams are defined in
@@ -339,7 +370,7 @@ Table of Contents
        +--------+------------------------+------------------------+
        | yang   | ietf-yang-types        | Section 3 of [RFC9911] |
        +--------+------------------------+------------------------+
-       | ianahw | iana-hardware          | [IANA_HW_YANG]         |
+       | ianahw | iana-hardware          | [IANA.iana-hardware]   |
        +--------+------------------------+------------------------+
        | nwi    | ietf-network-inventory | RFC XXXX               |
        +--------+------------------------+------------------------+
@@ -355,6 +386,16 @@ Table of Contents
    The base network inventory model, defined in this document, provides
    a list of network elements and network element components.
 
+   The information in the data model is discovered by the controller
+   through mechanisms which are outside the scope of this document.
+
+   In case some information is not provided by the device, the network
+   controller SHALL omit this information unless this information is
+   known by other sources of information (e.g., through local
+   configuration within the network controller).
+
+3.1.  Data Model Design
+
    The "network-inventory" top level container is defined to support
    reporting other types of network inventory objects, besides the
    network elements and network element components.
@@ -369,10 +410,10 @@ Table of Contents
    network elements and other types of components' groups that can be
    managed as physical network elements from an inventory perspective.
 
-   Physical network elements are usually devices such as hosts,
-   gateways, terminal servers, and the like, which have management
-   agents responsible for performing the network management functions
-   requested by the network management stations [RFC1157].
+   Physical network elements are usually devices such as hosts, routers,
+   terminal servers, and the like, which have management agents
+   responsible for performing the network management functions requested
+   by the network management stations ([RFC6632]).
 
    The "ne-type" YANG identity is defined as a base identity to describe
    the type of a network element.  This document defines only the "ne-
@@ -403,8 +444,9 @@ Table of Contents
    companion augmentation data models, such as
    [I-D.ietf-ivy-network-inventory-software].
 
-   [RFC8348] defines rack, chassis, slot, sub-slot, board, and port as
-   components of network elements with generic attributes.
+   Like in [RFC8348], rack, chassis, slot, sub-slot, board, and port are
+   defined respectively as "chassis", "container", "module" and "port"
+   component classes, with generic attributes.
 
    While [RFC8348] is used to manage the hardware of a single server
    (e.g., a network element), the Network Inventory YANG data model is
@@ -418,7 +460,7 @@ Table of Contents
    the controller uses the YANG data model defined in [RFC8348] to
    retrieve the hardware from the network elements under its control.
 
-3.1.  Common Attributes for Inventory Objects
+3.2.  Common Attributes for Inventory Objects
 
    For all the inventory objects, there are some common attributes,
    including:
@@ -440,7 +482,7 @@ Table of Contents
       description provides more detailed information to prompt users
       when performing maintenance operations etc.
 
-3.1.1.  Common Attributes for Network Elements and Components
+3.2.1.  Common Attributes for Network Elements and Components
 
    To be consistent with the component definition, the following
    attributes defined in [RFC8348] for components are reused for network
@@ -455,13 +497,13 @@ Table of Contents
       It is expected that vendors assign unique product names to
       different entities within the scope of the vendor.
 
-   Other software-related attributes are defined in Section 3.3.2 and
+   Other software-related attributes are defined in Section 3.4.2 and
    applicable to network elements and components.
 
-3.2.  Network Element
+3.3.  Network Element
 
    In addition to the common attributes defined for network elements and
-   components in Section 3.1, the following attributes are defined for
+   components in Section 3.2, the following attributes are defined for
    the network elements:
 
    ne-id:  The identifier that uniquely identifies the network element
@@ -477,11 +519,11 @@ Table of Contents
       implementation specific and outside the scope of this document.
 
    ne-type:  The type of network element (e.g., physical network
-      element).  See Section 3 for the definition of NE types.
+      element).  See Section 3.1 for the definition of NE types.
 
    product-rev:  A vendor-specific product revision string for the NE.
 
-3.3.  Components
+3.4.  Components
 
    The YANG data model for network inventory mainly follows the same
    approach as [RFC8348] and reports the network hardware inventory as a
@@ -489,14 +531,14 @@ Table of Contents
    port).
 
    In addition to the common attributes defined for network elements and
-   components in Section 3.1, the following attributes are defined for
+   components in Section 3.2, the following attributes are defined for
    the components:
 
    component-id:  The identifier that uniquely identifies the component
       within the NE.  It can be assigned by the NE or by the server.
 
    class:  The type of component (e.g., chassis, module, or port).  See
-      Section 3 for the definition of component types.
+      Section 3.1 for the definition of component types.
 
    hardware-rev:  The vendor-specific hardware revision string for the
       component.
@@ -567,7 +609,7 @@ Table of Contents
    defined in some other performance monitoring data models instead of
    the inventory data model.
 
-3.3.1.  Hardware Components
+3.4.1.  Hardware Components
 
    Other models (e.g., [TMF_SD2-20]) classify the hardware components
    into two groups: holder group and equipment group.  The holder group
@@ -622,9 +664,9 @@ Table of Contents
         Figure 1: Relationship between typical inventory objects in
                          physical network elements
 
-   The "iana-hardware" module [IANA_HW_YANG] defines YANG identities for
-   the hardware component types in the IANA-maintained "IANA-ENTITY-MIB"
-   registry.
+   The "iana-hardware" module [IANA.iana-hardware] defines YANG
+   identities for the hardware component types in the IANA-maintained
+   "IANA-ENTITY-MIB" registry.
 
    Some of the definitions taken from [RFC8348] are based on the ENTITY-
    MIB [RFC6933].
@@ -632,53 +674,56 @@ Table of Contents
    Additional attributes of specific hardware, such as CPU, storage,
    port, or power supply are defined in the hardware extension.
 
-3.3.2.  Software Components
+3.4.2.  Software Components
 
    Each instance of a network element or a component includes its own
    "software-rev" list which provides basic software attributes for each
    entity (network element and component).
 
    The scope of the list is to provide information about the software
-   images that are running within the related entity.  The term
-   "running" here is intended as the software modules that the
-   controller has discovered as running in the network element or
-   component as explained in Section 6.  How a controller discovers and
-   keeps synchronized running software information as well as how it
+   images that are running within the related entity.
+
+   The term "software image" in this document refers to a software
+   binary image which can be run on a system with lifecycle state (e.g.,
+   running, inactive/standby).
+
+   The term "running" in this document refers to the software images
+   that the controller has discovered as running in the network element
+   or component as explained in Section 5.  How a controller discovers
+   and keeps synchronized running software information as well as how it
    manages transient state (e.g., reboot or loss of connectivity with
    the network element) are outside the scope of this document.
 
-   The data model supports scenarios where multiple software modules can
+   The data model supports scenarios where multiple software images can
    be images running within the entity.  For example, one Operating
-   System and one or more application software modules can be running in
+   System and one or more application software images can be running in
    a network element, and, in the same way, one bootloader, one firmware
-   and one or more Field-Programmable Gate Array (FPGA) software modules
+   and one or more Field-Programmable Gate Array (FPGA) software images
    can be running on a component like a circuit pack.
 
-   For each software module running on the entity, the name and version
+   For each software image running on the entity, the name and version
    information is provided.
 
-   The management of inactive/standby software modules and of the
-   software upgrade or downgrade life-cycle are outside the scope of the
-   base inventory model and can be addressed in other YANG modules that
-   augment the base inventory model such as
-   [I-D.ietf-ivy-network-inventory-software].
+   The representation of inactive or standby software modules within the
+   network inventory is outside the scope of this document and it can be
+   addressed by augmenting the base inventory model, such as the
+   extension defined in [I-D.ietf-ivy-network-inventory-software].
 
    The software and hardware components share the same attributes of the
    component and have similar replaceability requirements.  Generally,
    the device also has other software data, for example, one or more
    records of software patches that have been applied.
 
-   The software components lifecycle (such as activation, deactivation,
-   installation, storage, removal, etc.) is outside the scope of this
-   document and defined in other documents such as
-   [I-D.ietf-ivy-network-inventory-software].
+   Software upgrade, downgrade, and all software lifecycle control
+   operations (install, activate, deactivate, removal, etc.) are out of
+   scope of the network inventory model.
 
-3.4.  Changes vs. RFC 8348
+3.5.  Differences from RFC 8348
 
    This document re-defines some attributes listed in [RFC8348], based
    on some integration experience for network inventory data.
 
-3.4.1.  Part Number
+3.5.1.  Part Number
 
    According to the description in [RFC8348], the attribute named
    "model-name" under the component, is preferred to have a customer-
@@ -686,7 +731,7 @@ Table of Contents
    not straightforward to understand, and therefore, in the base
    inventory data model the attribute is called "part-number".
 
-3.4.2.  Component identifiers
+3.5.2.  Component identifiers
 
    There are some use cases where the name of the components are
    assigned and changed by the operator.  In these cases, the assigned
@@ -696,80 +741,63 @@ Table of Contents
    not aligned with [RFC8348] in defining the component name as the key
    for the component list.
 
-   Instead, the name is defined as an optional attribute and the
-   "component-id" is defined as the key for the "component" list (in
-   alignment with the approach followed for the "network-element" list).
+   Instead, the component "name" is defined as an optional attribute and
+   the "component-id" attribute is defined as the key for the component
+   list (in alignment with the approach followed for the network-element
+   list).
 
-3.4.3.  Parent Relative Position
+3.5.3.  Association with the parent component
 
    There are some use cases where the parent relative position is not
    reported as an integer but as a string.
 
-   In order to support these use cases and allowing a straightforward
-   match between the relative position definition in the device and in
-   the network inventory, this model is defining the 'parent-rel-pos'
-   data node as a string instead of as an integer.
+   In order to support these use cases and allow a straightforward match
+   between the relative position definition in the device and in the
+   network inventory, this model defines the 'parent-rel-pos' data node
+   as a string instead of as an integer.
 
    If the device reports the relative position as an integer, e.g.,
    using the device model defined in [RFC8348], the integer value
    reported by the device can be mapped into a string within the network
    inventory.
 
-4.  Network Inventory Tree Diagram
+   Furthermore, to support cases where a component is physically
+   contained within multiple parent components (e.g., a board occupying
+   multiple slots), the 'parent' data node is defined as a leaf-list
+   rather than a single leaf (as in [RFC8348]).
 
-   Figure 2 shows the tree diagram of the YANG data model defined in
-   module "ietf-network-inventory" (Section 5).
+   In such multi-parent cases, each referenced parent is an atomic
+   container (such as a slot or sub-slot) that is fully occupied by that
+   component.  Because the component occupies each parent container
+   entirely, a relative position within a single parent has no meaning,
+   and the 'parent-rel-pos' MUST be omitted.
 
-   module: ietf-network-inventory
-     +--ro network-inventory
-        +--ro network-elements
-           +--ro network-element* [ne-id]
-              +--ro ne-id           string
-              +--ro ne-type?        identityref
-              +--ro uuid?           yang:uuid
-              +--ro name?           string
-              +--ro alias?          string
-              +--ro description?    string
-              +--ro software-rev* [name]
-              |  +--ro name        string
-              |  +--ro revision?   string
-              |  +--ro patch* [revision]
-              |     +--ro revision    string
-              +--ro mfg-name?       string
-              +--ro product-name?   string
-              +--ro product-rev?    string
-              +--ro components
-                 +--ro component* [component-id]
-                    +--ro component-id      string
-                    +--ro class             union
-                    +--ro uuid?             yang:uuid
-                    +--ro name?             string
-                    +--ro alias?            string
-                    +--ro description?      string
-                    +--ro software-rev* [name]
-                    |  +--ro name        string
-                    |  +--ro revision?   string
-                    |  +--ro patch* [revision]
-                    |     +--ro revision    string
-                    +--ro mfg-name?         string
-                    +--ro product-name?     string
-                    +--ro hardware-rev?     string
-                    +--ro mfg-date?         yang:date-and-time
-                    +--ro part-number?      string
-                    +--ro serial-number?    string
-                    +--ro asset-id?         string
-                    +--ro is-fru?           boolean
-                    +--ro uri*              inet:uri
-                    +--ro parent*
-                    |       -> ../../component/component-id
-                    +--ro parent-rel-pos?   string
-                    +--ro is-main?          boolean
+   If a physical slot can be shared by multiple boards, each partition
+   is modeled as a separate sub-slot container component.
 
-                  Figure 2: Network Inventory Tree Diagram
+3.5.4.  Manufacturing Date
 
-5.  YANG Data Model for Network Inventory
+   The "mfg-date" data node in [RFC8348] is defined as the "date of
+   manufacturing of the managed component" using the "date-and-time"
+   data type defined in [RFC9911].
 
-   <CODE BEGINS> file "ietf-network-inventory@2026-11-05.yang"
+   While the time of day is typically not meaningful for hardware
+   components, it can be useful for other types of components (e.g.,
+   software components).  Therefore, this model defines the "mfg-date"
+   data node as a "union" of the "date-and-time" and "date" data types
+   defined in [RFC9911].
+
+   Although using a "union" adds some complexity and overhead to data
+   parsing, cleaning, and normalization, this modeling approach is more
+   versatile, flexible, and allows for a straightforward match between
+   the manufacturing date definition in the device and in the network
+   inventory.  In particular, it avoids the need to use a dummy time
+   value (such as "T00:00:00Z"), which would be indistinguishable from a
+   valid timestamp.
+
+4.  YANG Data Model for Network Inventory
+
+   <CODE BEGINS> file "ietf-network-inventory@2026-11-18.yang"
    module ietf-network-inventory {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-network-inventory";
@@ -838,7 +866,7 @@ Table of Contents
         described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
         they appear in all capitals, as shown here.";
 
-     revision 2026-11-05 {
+     revision 2026-11-18 {
        description
          "Initial version";
        reference
@@ -942,7 +970,9 @@ Table of Contents
          type yang:uuid;
          description
            "The Universally Unique Identifier of the entity
-            (e.g., component).";
+            (e.g., component).
+
+            This identifier is assigned by the server.";
        }
        leaf name {
          type string;
@@ -1086,7 +1116,10 @@ Table of Contents
            "RFC 6933: Entity MIB (Version 4) - entPhysicalHardwareRev";
        }
        leaf mfg-date {
-         type yang:date-and-time;
+         type union {
+           type yang:date-and-time;
+           type yang:date;
+         }
          description
            "The date of manufacturing of the component.";
          reference
@@ -1190,7 +1223,11 @@ Table of Contents
              type string;
              description
                "An identifier that uniquely identifies the NE in
-                a network.";
+                a network.
+
+                This identifier is assigned by the server and MUST be
+                persistent across disconnections, reboots, or
+                management  session losses.";
            }
            leaf ne-type {
              type identityref {
@@ -1240,7 +1277,13 @@ Table of Contents
                    description
                      "This data node is applicable only when this
                       component is contained in the network-element or
-                      in only one parent component.";
+                      in only one parent component.
+
+                      When a component is contained in multiple parent
+                      components (e.g., a multi-slot board occupying
+                      multiple slots), it is assumed that it fully
+                      occupies each referenced parent container, making
+                      the relative position inapplicable.";
                  }
                  type string;
                  description
@@ -1281,9 +1324,9 @@ Table of Contents
    }
    <CODE ENDS>
 
-                  Figure 3: Network inventory YANG module
+                  Figure 2: Network inventory YANG module
 
-6.  Operational Considerations
+5.  Operational Considerations
 
    The network inventory YANG data model defined in the document is
    intended to report the actual inventory data that a network
@@ -1298,32 +1341,38 @@ Table of Contents
    As outlined in Section 1, per the definition of [RFC8309] and
    [RFC8969], the network inventory model is a network model.
 
-   This information can be provided by a network controller to a higher
-   level hierarchical network controller, to an Inventory OSS or to any
-   other type of application which needs to discover the network
-   inventory information.
+   In case of hierarchical controllers, a hierarchical network
+   controller can also collect the network inventory information from
+   its lower-level network controllers using this YANG data model (or
+   other mechanisms which are outside the scope of this document) and
+   report the combined network inventory information to a higher-level
+   network controller, to an Inventory OSS, or to any other type of
+   application which needs to discover the network inventory
+   information.  When combining network inventories from lower-level
+   network controllers, the higher-level controller acts as the server
+   for its northbound interface and is responsible for ensuring that the
+   'ne-id' values remain unique within the combined network-element list
+   it exposes.
 
    For example, in the context of ACTN, the network inventory YANG data
    model can be used at the MPI interfaces, as defined in [RFC8453], or
    on an interface, not defined in [RFC8453] between the MDSC and the
    Inventory OSS.
 
-   The information in the data model is discovered by the controller
-   through mechanisms which are outside the scope of this document.
-
-   Note that distinguishing between the cases where a NE is unreachable
-   versus decommissioned depends on the mechanism used for discovering
-   this information and is outside the scope of this document.
+   As outlined in Section 3, the information in the data model is
+   discovered by the controller through mechanisms which are outside the
+   scope of this document.
 
    For example, the network controller can collect this information by
    reading it from the devices using the device model supported by the
    devices.  This model does not constrain the device models used on the
    device: the YANG data model defined in [RFC8348] is an option but
    other options (e.g., vendor specific interfaces or YANG data models)
-   are also allowed.  In case some information is not provided by the
-   device, the network controller SHALL omit this information unless
-   this information is known by other sources of information (e.g.,
-   through local configuration within the network controller).
+   are also allowed.
+
+   Note that distinguishing between the cases where a NE is unreachable
+   versus decommissioned depends on the mechanism used for discovering
+   this information and is outside the scope of this document.
 
    In case of hierarchical controllers, a hierarchical network
    controller can also collect the network inventory information from
@@ -1363,7 +1412,22 @@ Table of Contents
    warehouse spares, procurement or commercial metadata) fall outside
    the scope of the base model.
 
-7.  Security Considerations
+5.1.  Transport Performance Considerations
+
+   Deployments of the data model defined in this document in large-
+   scale networks can generate substantial data payloads during full
+   inventory retrievals.  To prevent these large transfers from causing
+   network congestion or adversely impacting critical operational
+   traffic, the underlying transport sessions SHOULD be managed
+   carefully.
+
+   Operators should ensure that the transport method chosen for
+   retrieval either utilizes native congestion control mechanisms,
+   operates over network paths with pre-provisioned capacity, or
+   implements rate-limiting mechanisms (such as circuit breakers) to
+   safely throttle large-volume data transfers.
+
+6.  Security Considerations
 
    This section is modeled after the template described in Section 3.7.1
    of [RFC9907].
@@ -1392,11 +1456,11 @@ Table of Contents
 
       This subtree reports the inventory information for all the network
       elements and their hardware components deployed within the network
-      as well as of the software modules being discovered as running on
+      as well as of the software images being discovered as running on
       these network elements and components.  Unauthorized access to
       this subtree can disclose this information.  A malicious attacker
       can use this information to perform targeted attacks to network
-      elements, hardware components or software modules with known
+      elements, hardware components or software images with known
       vulnerabilities.
 
       In large networks, the massive volume of reported data can cause
@@ -1408,7 +1472,7 @@ Table of Contents
    example, reusing the 'component-attributes' grouping may expose
    sensitive information.
 
-8.  IANA Considerations
+7.  IANA Considerations
 
    IANA is requested to register the following URI in the "ns" registry
    within the "IETF XML Registry" group [RFC3688]:
@@ -1427,19 +1491,17 @@ Table of Contents
       Prefix:       nwi
       Reference:    RFC XXXX
 
-9.  References
+8.  References
 
-9.1.  Normative References
+8.1.  Normative References
 
-   [IANA_ENTITY_MIB]
-              IANA, "IANA-ENTITY-MIB", n.d.,
-              <https://www.iana.org/assignments/ianaentity-mib/
-              ianaentity-mib.xhtml>.
+   [IANA.iana-hardware]
+              IANA, "iana-hardware YANG Module",
+              <https://www.iana.org/assignments/iana-hardware>.
 
-   [IANA_HW_YANG]
-              IANA, "iana-hardware YANG Module", n.d.,
-              <https://www.iana.org/assignments/iana-hardware/iana-
-              hardware.xhtml>.
+   [IANA.ianaentity-mib]
+              IANA, "IANA-ENTITY-MIB",
+              <https://www.iana.org/assignments/ianaentity-mib>.
 
    [ISO_IEC_15418]
               ISO/IEC, "Information technology - Automatic
@@ -1501,7 +1563,7 @@ Table of Contents
               DOI 10.17487/RFC9911, December 2025,
               <https://www.rfc-editor.org/rfc/rfc9911>.
 
-9.2.  Informative References
+8.2.  Informative References
 
    [I-D.ietf-ivy-network-inventory-location]
               Wu, B., Belotti, S., Bouquier, J., Peruzzini, F., and P.
@@ -1541,11 +1603,6 @@ Table of Contents
               v5.6.0", Release 5.6.0 , January 2026,
               <https://github.com/openconfig/public/tree/v5.6.0/>.
 
-   [RFC1157]  Case, J., Fedor, M., Schoffstall, M., and J. Davin,
-              "Simple Network Management Protocol (SNMP)", RFC 1157,
-              DOI 10.17487/RFC1157, May 1990,
-              <https://www.rfc-editor.org/rfc/rfc1157>.
-
    [RFC4152]  Tesink, K. and R. Fox, "A Uniform Resource Name (URN)
               Namespace for the Common Language Equipment Identifier
               (CLEI) Code", RFC 4152, DOI 10.17487/RFC4152, August 2005,
@@ -1554,6 +1611,11 @@ Table of Contents
    [RFC4252]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
               Authentication Protocol", RFC 4252, DOI 10.17487/RFC4252,
               January 2006, <https://www.rfc-editor.org/rfc/rfc4252>.
+
+   [RFC6632]  Ersue, M., Ed. and B. Claise, "An Overview of the IETF
+              Network Management Standards", RFC 6632,
+              DOI 10.17487/RFC6632, June 2012,
+              <https://www.rfc-editor.org/rfc/rfc6632>.
 
    [RFC7951]  Lhotka, L., "JSON Encoding of Data Modeled with YANG",
               RFC 7951, DOI 10.17487/RFC7951, August 2016,
@@ -1605,7 +1667,59 @@ Table of Contents
               Resource Fulfilment (NRF), SD2-20 , May 2008,
               <https://www.tmforum.org/resources/suite/mtosi-4-0/>.
 
-Appendix A.  Comparison With OpenConfig Platform YANG Data Model
+Appendix A.  Network Inventory Tree Diagram
+
+   Figure 3 shows the tree diagram of the YANG data model defined in
+   module "ietf-network-inventory" (Section 4).
+
+   module: ietf-network-inventory
+     +--ro network-inventory
+        +--ro network-elements
+           +--ro network-element* [ne-id]
+              +--ro ne-id           string
+              +--ro ne-type?        identityref
+              +--ro uuid?           yang:uuid
+              +--ro name?           string
+              +--ro alias?          string
+              +--ro description?    string
+              +--ro software-rev* [name]
+              |  +--ro name        string
+              |  +--ro revision?   string
+              |  +--ro patch* [revision]
+              |     +--ro revision    string
+              +--ro mfg-name?       string
+              +--ro product-name?   string
+              +--ro product-rev?    string
+              +--ro components
+                 +--ro component* [component-id]
+                    +--ro component-id      string
+                    +--ro class             union
+                    +--ro uuid?             yang:uuid
+                    +--ro name?             string
+                    +--ro alias?            string
+                    +--ro description?      string
+                    +--ro software-rev* [name]
+                    |  +--ro name        string
+                    |  +--ro revision?   string
+                    |  +--ro patch* [revision]
+                    |     +--ro revision    string
+                    +--ro mfg-name?         string
+                    +--ro product-name?     string
+                    +--ro hardware-rev?     string
+                    +--ro mfg-date?         union
+                    +--ro part-number?      string
+                    +--ro serial-number?    string
+                    +--ro asset-id?         string
+                    +--ro is-fru?           boolean
+                    +--ro uri*              inet:uri
+                    +--ro parent*
+                    |       -> ../../component/component-id
+                    +--ro parent-rel-pos?   string
+                    +--ro is-main?          boolean
+
+                  Figure 3: Network Inventory Tree Diagram
+
+Appendix B.  Comparison With OpenConfig Platform YANG Data Model
 
    Given that many devices implement OpenConfig, this appendix compares
    the OpenConfig Platform model, defined in [OpenConfig], with the base
@@ -1618,7 +1732,7 @@ Appendix A.  Comparison With OpenConfig Platform YANG Data Model
    internal components and containers, similar to the models in
    [RFC8348] and in this document.  Therefore, Table 2 compares the
    component attributes between the "openconfig-platform" YANG module in
-   [OpenConfig] and the "ietf-network-inventory" module in Section 5.
+   [OpenConfig] and the "ietf-network-inventory" module in Section 4.
 
     +===============+===========+=====================================+
     | Attributes in |Attributes | Remark                              |
@@ -1715,7 +1829,7 @@ Appendix A.  Comparison With OpenConfig Platform YANG Data Model
        Table 2: Comparison between openconfig platform and inventory
                                 data models
 
-   As mentioned in Section 3.3, state data, performance data, and alarm
+   As mentioned in Section 3.4, state data, performance data, and alarm
    data are out of scope of the data model defined in this document, and
    they should be defined in other data models separately.  For the same
    reason some component specific structures in "openconfig-platform",
@@ -1779,26 +1893,13 @@ Appendix A.  Comparison With OpenConfig Platform YANG Data Model
    inventory YANG data model can be populated with data discovered from
    devices running OpenConfig.
 
-Appendix B.  Terminology of Container
-
-   Within this document, the term "container" represents a hardware
-   component class capable of containing one or more removable physical
-   entities, e.g., a slot in a chassis capable of containing a board.
-
-      +===============================+=============================+
-      | terminology of IVY base model | terminology in other models |
-      +===============================+=============================+
-      | container                     | holder                      |
-      +-------------------------------+-----------------------------+
-
-                        Table 4: terminology mapping
-
 Appendix C.  Efficiency Issue
 
-   During the integration with OSS in some operators, some efficiency/
-   scalability concerns have been discovered when synchronizing network
-   inventory data for big networks.  As outlined in Section 7, these
-   efficiency and scalability issues can pose security issues.
+   During the integration with Inventory OSS in some operator networkss,
+   some efficiency and scalability concerns have been discovered when
+   synchronizing network inventory data for big networks.  As outlined
+   in Section 6, these efficiency and scalability issues can pose
+   security issues.
 
    While implementing NACM [RFC8341] and protocol-specific filtering
    mechanisms (e.g., RESTCONF filtering [RFC8040]) mitigates these
@@ -1848,7 +1949,7 @@ Appendix D.  Examples of Ports
 
    This appendix provides some examples of port implementations and how
    they can be modelled using the "ietf-network-inventory" module
-   defined in Section 5.
+   defined in Section 4.
 
    Figure 4 shows an example of a single board which contains three
    types of port:
@@ -1960,7 +2061,7 @@ Appendix E.  Example of Multi-chassis Network Elements
 
    This appendix provides some examples of multi-chassis network
    elements and how they can be modelled using the "ietf-network-
-   inventory" module defined in Section 5.
+   inventory" module defined in Section 4.
 
    Multi-chassis network elements are network elements comprised of two
    or more chassis interconnected, in principle, with any topology.
@@ -2695,13 +2796,13 @@ Appendix F.  Example of Non-modular Network Elements
 
    This appendix provides some examples of non-modular network elements
    and how they can be modelled using the "ietf-network-inventory"
-   module defined in Section 5.
+   module defined in Section 4.
 
    Non-modular network elements (also known as "pizza boxes") are
    network elements comprised of a single chassis as a self-contained
    system.  A non-modular network element does not have any slots to
-   take cards so it cannot take any non-field-replaceable modules other
-   than pluggable ports.
+   take cards so it cannot take any field-replaceable modules other than
+   pluggable ports.
 
    Figure 8 describes an example of a pizza box with 8 ports.
 
