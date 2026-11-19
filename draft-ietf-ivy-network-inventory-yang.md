@@ -477,6 +477,13 @@ Software upgrade, downgrade, and all software lifecycle control
 operations (install, activate, deactivate, removal, etc.) are out of
 scope of the network inventory model.
 
+Richer software identification, such as references to Software
+Bills of Materials (e.g., SPDX or CycloneDX), Concise Software
+Identification (CoSWID) tags {{?RFC9393}}, or cryptographic digests of
+software images, is outside the scope of the base inventory model.
+Such information can be added by augmenting the "software-rev"
+list, for example in {{?I-D.ietf-ivy-network-inventory-software}}.
+
 ## Differences from RFC 8348
 
 This document re-defines some attributes listed in {{!RFC8348}}, based on some integration experience for network inventory data.
