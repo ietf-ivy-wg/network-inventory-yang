@@ -463,15 +463,19 @@ For example, one Operating System and one or more application software images ca
 
 For each software image running on the entity, the name and version information is provided.
 
-The management of inactive/standby software
-modules and of the software upgrade or downgrade life-cycle are outside the scope of the base inventory model and can be addressed in other YANG modules that augment the base inventory model such as {{?I-D.ietf-ivy-network-inventory-software}}.
+The representation of inactive or standby software modules within the
+network inventory is outside the scope of this document and it can be
+addressed by augmenting the base inventory model, such as the
+extension defined in {{?I-D.ietf-ivy-network-inventory-software}}.
 
 The software and hardware components share the same attributes of the
 component and have similar replaceability requirements. Generally, the
 device also has other software data, for example, one or more
 records of software patches that have been applied.
 
-The software components lifecycle (such as activation, deactivation, installation, storage, removal, etc.) is outside the scope of this document and defined in other documents such as {{?I-D.ietf-ivy-network-inventory-software}}.
+Software upgrade, downgrade, and all software lifecycle control
+operations (install, activate, deactivate, removal, etc.) are out of
+scope of the network inventory model.
 
 ## Differences from RFC 8348
 
