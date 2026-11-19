@@ -45,12 +45,12 @@ author:
     name: Phil Bedard
     org: Cisco
     email: phbedard@cisco.com
-
-contributor:
   -
     name: Italo Busi
     org: Huawei Technologies
     email: italo.busi@huawei.com
+
+contributor:
   -
     name: Aihua Guo
     org: Futurewei Technologies
