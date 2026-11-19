@@ -410,7 +410,7 @@ is-fru:
 : Indicates whether or not a component is considered a field-replaceable unit by the vendor.
 
 uri:
-: A list of Uniform Resource Identifiers (URIs) which provide additional identification information about the component.
+: A list of Uniform Resource Identifiers (URIs) {{!RFC3986}} which provide additional identification information about the component.
 
 parent:
 : The list of the parent components that physically contain this component.
