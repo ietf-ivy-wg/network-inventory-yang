@@ -12,6 +12,8 @@ Expires: 23 May 2027                                               Nokia
                                                                 FiberCop
                                                                P. Bedard
                                                                    Cisco
+                                                                 I. Busi
+                                                     Huawei Technologies
                                                         19 November 2026
 
 
@@ -2974,11 +2976,6 @@ Acknowledgments
 
 Contributors
 
-   Italo Busi
-   Huawei Technologies
-   Email: italo.busi@huawei.com
-
-
    Aihua Guo
    Futurewei Technologies
    Email: aihuaguo.ietf@gmail.com
@@ -3039,3 +3036,8 @@ Authors' Addresses
    Phil Bedard
    Cisco
    Email: phbedard@cisco.com
+
+
+   Italo Busi
+   Huawei Technologies
+   Email: italo.busi@huawei.com
