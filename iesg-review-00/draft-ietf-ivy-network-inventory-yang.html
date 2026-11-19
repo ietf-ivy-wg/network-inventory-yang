@@ -1829,7 +1829,7 @@ document and could be defined in application- and technology-specific companion 
           <dd class="break"></dd>
 <dt id="section-3.4-3.27">uri:</dt>
           <dd style="margin-left: 1.5em" id="section-3.4-3.28">
-            <p id="section-3.4-3.28.1">A list of Uniform Resource Identifiers (URIs) which provide additional identification information about the component.<a href="#section-3.4-3.28.1" class="pilcrow">¶</a></p>
+            <p id="section-3.4-3.28.1">A list of Uniform Resource Identifiers (URIs) <span>[<a href="#RFC3986" class="cite xref">RFC3986</a>]</span> which provide additional identification information about the component.<a href="#section-3.4-3.28.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-3.4-3.29">parent:</dt>
@@ -1987,6 +1987,12 @@ records of software patches that have been applied.<a href="#section-3.4.2-8" cl
 <p id="section-3.4.2-9">Software upgrade, downgrade, and all software lifecycle control
 operations (install, activate, deactivate, removal, etc.) are out of
 scope of the network inventory model.<a href="#section-3.4.2-9" class="pilcrow">¶</a></p>
+<p id="section-3.4.2-10">Richer software identification, such as references to Software
+Bills of Materials (e.g., SPDX or CycloneDX), Concise Software
+Identification (CoSWID) tags <span>[<a href="#RFC9393" class="cite xref">RFC9393</a>]</span>, or cryptographic digests of
+software images, is outside the scope of the base inventory model.
+Such information can be added by augmenting the "software-rev"
+list, for example in <span>[<a href="#I-D.ietf-ivy-network-inventory-software" class="cite xref">I-D.ietf-ivy-network-inventory-software</a>]</span>.<a href="#section-3.4.2-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2746,6 +2752,10 @@ registry group.<a href="#section-7-3" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">Mealling, M.</span>, <span class="refTitle">"The IETF XML Registry"</span>, <span class="seriesInfo">BCP 81</span>, <span class="seriesInfo">RFC 3688</span>, <span class="seriesInfo">DOI 10.17487/RFC3688</span>, <time datetime="2004-01" class="refDate">January 2004</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3688">https://www.rfc-editor.org/rfc/rfc3688</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC3986">[RFC3986]</dt>
+        <dd>
+<span class="refAuthor">Berners-Lee, T.</span>, <span class="refAuthor">Fielding, R.</span>, and <span class="refAuthor">L. Masinter</span>, <span class="refTitle">"Uniform Resource Identifier (URI): Generic Syntax"</span>, <span class="seriesInfo">STD 66</span>, <span class="seriesInfo">RFC 3986</span>, <span class="seriesInfo">DOI 10.17487/RFC3986</span>, <time datetime="2005-01" class="refDate">January 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3986">https://www.rfc-editor.org/rfc/rfc3986</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC6020">[RFC6020]</dt>
         <dd>
 <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"YANG - A Data Modeling Language for the Network Configuration Protocol (NETCONF)"</span>, <span class="seriesInfo">RFC 6020</span>, <span class="seriesInfo">DOI 10.17487/RFC6020</span>, <time datetime="2010-10" class="refDate">October 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6020">https://www.rfc-editor.org/rfc/rfc6020</a>&gt;</span>. </dd>
@@ -2850,6 +2860,10 @@ registry group.<a href="#section-7-3" class="pilcrow">¶</a></p>
 <dt id="RFC9000">[RFC9000]</dt>
         <dd>
 <span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9000">https://www.rfc-editor.org/rfc/rfc9000</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9393">[RFC9393]</dt>
+        <dd>
+<span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Fitzgerald-McKay, J.</span>, <span class="refAuthor">Schmidt, C.</span>, and <span class="refAuthor">D. Waltermire</span>, <span class="refTitle">"Concise Software Identification Tags"</span>, <span class="seriesInfo">RFC 9393</span>, <span class="seriesInfo">DOI 10.17487/RFC9393</span>, <time datetime="2023-06" class="refDate">June 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9393">https://www.rfc-editor.org/rfc/rfc9393</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9846">[RFC9846]</dt>
         <dd>
