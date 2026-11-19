@@ -190,7 +190,7 @@ module ietf-network-inventory {
       description
         "A human-interpretable label of the inventory object,
          specified by a network operator that provides a non-volatile
-         'handle' for the entity (e.g., component)";
+         'handle' for the entity (e.g., component).";
     }
     leaf description {
       type string;
@@ -396,8 +396,8 @@ module ietf-network-inventory {
     leaf-list uri {
       type inet:uri;
       description
-        "This node contains identification information about
-         the component.";
+        "A list of Uniform Resource Identifiers (URIs) that provide
+         additional identification information about the component.";
       reference
         "RFC 6933: Entity MIB (Version 4) - entPhysicalUris";
     }
@@ -427,7 +427,7 @@ module ietf-network-inventory {
 
              This identifier is assigned by the server and MUST be
              persistent across disconnections, reboots, or
-             management  session losses.";
+             management session losses.";
         }
         leaf ne-type {
           type identityref {
@@ -445,7 +445,7 @@ module ietf-network-inventory {
           type string;
           description
             "The vendor-specific product revision string for the
-             network-element.";
+             network element.";
         }
         container components {
           description
@@ -476,7 +476,7 @@ module ietf-network-inventory {
               when 'count(../parent) < 2' {
                 description
                   "This data node is applicable only when this
-                   component is contained in the network-element or
+                   component is contained in the network element or
                    in only one parent component.
 
                    When a component is contained in multiple parent

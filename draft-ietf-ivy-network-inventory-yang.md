@@ -12,9 +12,9 @@ v: 3
 area: Operations and Management
 workgroup: IVY Working Group
 keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
+ - YANG
+ - network inventory
+ - hardware inventory
 venue:
 #  group: WG
 #  type: Working Group
@@ -131,7 +131,7 @@ that can be augmented with technology- or application-specific inventory details
 This document defines a base YANG data model for reporting network inventory
 that is application- and technology-agnostic.  The
 base data model can be augmented to describe application- and technology-specific information.
-Note that the usage of term "network inventory", in the context of this document, is to indicate that it is
+Note that the usage of the term "network inventory", in the context of this document, is to indicate that it is
 describing "network-wide" scope inventory information.
 
 Network inventory is a foundation for network management in all types
@@ -247,7 +247,7 @@ Network element:
 
 Hardware component:
 : A general definition of category of components as defined in {{!RFC8348}} and {{!IANA.iana-hardware}} (e.g., backplane, battery, container, central processing unit (CPU), chassis, fan, module, port, power supply, sensor, stack, and storage device components).
-: The list of hardware components can be extended in future versions of {{!IANA.ianaentity-mib}} (and, consequently, of ({{!IANA.iana-hardware}}).
+: The list of hardware components can be extended in future versions of {{!IANA.ianaentity-mib}} (and, consequently, of {{!IANA.iana-hardware}}).
 
 Component:
 : A further extension of the hardware component definition to include other inventory objects which can be managed, from an inventory perspective, in the same way as hardware components.
@@ -319,8 +319,8 @@ Different component types can be distinguished by the class of component. The co
 
 Other component types can be defined in other documents, together with the associated YANG identities and the rationale for managing them as components from an inventory perspective.
 
-The identity definition of additional types of "ne-type" and "non-
-hardware" identity of component are outside the scope of this
+The identity definition of additional types of "ne-type" and "non-hardware-class"
+identity of component are outside the scope of this
 document and could be defined in application- and technology-specific companion augmentation data models, such as
 {{?I-D.ietf-ivy-network-inventory-software}}.
 
@@ -342,7 +342,7 @@ name:
 : A human-interpretable label of the inventory object, provided by a network operator or by the server. It could also be present on a Graphical User Interface (GUI).
 
 alias:
-: A human-interpretable label of the inventory object, provided by a network operator. It could also be present in a GUI instead as well as the name.
+: A human-interpretable label of the inventory object, provided by a network operator. It could also be present in a GUI instead of or in addition to the name.
 
 description:
 : A human-interpretable description of the inventory object, provided by a network operator or by the server. The description provides more detailed information to prompt users when performing maintenance operations etc.
@@ -407,24 +407,24 @@ asset-id:
 : An asset tracking identifier for the component, provided by a network operator.
 
 is-fru:
-: Indicates whether or not a component is considered a 'field-replaceable unit' by the vendor.
+: Indicates whether or not a component is considered a field-replaceable unit by the vendor.
 
 uri:
-: A list of Uniform Resource Identifiers (URIs) which provides additional identification information about the component.
+: A list of Uniform Resource Identifiers (URIs) which provide additional identification information about the component.
 
 parent:
 : The list of the parent components that physically contain this component.
 : Usually a component has only one parent component.
-: Components which are contained within the network element has no parent component.
-: Boards which occupy multiple slots have multiple parent components (one for each occupied slot);
+: Components which are contained within the network element have no parent component.
+: Boards which occupy multiple slots have multiple parent components (one for each occupied slot).
 
 parent-rel-pos:
-: When this component is contained in the network-element or in only one parent component and has sibling components, this attribute represents the relative position of this component with respect to the parent component among all the sibling components.
+: When this component is contained in the network element or in only one parent component and has sibling components, this attribute represents the relative position of this component with respect to the parent component among all the sibling components.
 
 is-main:
-: Whe the network element contains chassis components which can take or not the 'main' role (e.g., in case of multi-chassis network elements), this attributes indicates whether the chassis is taking or not the 'main' role. See for example {{multi-chassis-examples}}.
+: When the network element contains chassis components which can take or not the "main" role (e.g., in case of multi-chassis network elements), this attribute indicates whether the chassis is taking or not the "main" role. See for example {{multi-chassis-examples}}.
 
-For state data like "admin-state", "oper-state", and so on, this document considers that they are related to device hardware management, not network inventory. Therefore, they are outside of the scope of this document. Same for the sensor-data, they might be defined in some other performance monitoring data models instead of the inventory data model.
+For state data like "admin-state", "oper-state", and so on, this document considers that they are related to device hardware management, not network inventory. Therefore, they are outside of the scope of this document. Same for the "sensor-data", they might be defined in some other performance monitoring data models instead of the inventory data model.
 
 ### Hardware Components
 
@@ -458,10 +458,10 @@ The term "software image" in this document refers to a software binary image whi
 
 The term "running" in this document refers to the software images that the controller has discovered as running in the network element or component as explained in {{operational}}. How a controller discovers and keeps synchronized running software information as well as how it manages transient state (e.g., reboot or loss of connectivity with the network element) are outside the scope of this document.
 
-The data model supports scenarios where multiple software images can be images running within the entity.
+The data model supports scenarios where multiple software images can be running within the entity.
 For example, one Operating System and one or more application software images can be running in a network element, and, in the same way, one bootloader, one firmware and one or more Field-Programmable Gate Array (FPGA) software images can be running on a component like a circuit pack.
 
-For each software image running on the entity, the name and version information is provided.
+For each software image running on the entity, the name and version information are provided.
 
 The representation of inactive or standby software modules within the
 network inventory is outside the scope of this document and it can be
@@ -483,7 +483,7 @@ This document re-defines some attributes listed in {{!RFC8348}}, based on some i
 
 ### Part Number
 
-According to the description in {{!RFC8348}}, the attribute named "model-name" under the component, is preferred to have a customer-visible part number value. The "model-name" data node identifier is not straightforward to understand, and therefore, in the base inventory data model the attribute is called "part-number".
+According to the description in {{!RFC8348}}, the attribute named "model-name" under the component is preferred to have a customer-visible part number value. The "model-name" data node identifier is not straightforward to understand, and therefore, in the base inventory data model the attribute is called "part-number".
 
 ### Component identifiers {#component-id}
 
@@ -493,7 +493,7 @@ In order to support these use cases, the base inventory data model is not aligne
 
 Instead, the component "name" is defined as an optional attribute and the "component-id"
 attribute is defined as the key for the component list (in alignment with the approach
-followed for the network-element list).
+followed for the "network-element" list).
 
 ### Association with the parent component
 
@@ -501,18 +501,18 @@ There are some use cases where the parent relative position is not reported as a
 
 In order to support these use cases and allow a straightforward match
 between the relative position definition in the device and in the network inventory,
-this model defines the 'parent-rel-pos' data node as a string instead of as an integer.
+this model defines the "parent-rel-pos" data node as a string instead of as an integer.
 
 If the device reports the relative position as an integer, e.g., using the device model defined in {{!RFC8348}}, the integer value reported by the device can be mapped into a string within the network inventory.
 
 Furthermore, to support cases where a component is physically contained within multiple
-parent components (e.g., a board occupying multiple slots), the 'parent' data node
-is defined as a leaf-list rather than a single leaf (as in {{!RFC8348}}).
+parent components (e.g., a board occupying multiple slots), the "parent" data node
+is defined as a "leaf-list" rather than a single "leaf" (as in {{!RFC8348}}).
 
 In such multi-parent cases, each referenced parent is an atomic container
 (such as a slot or sub-slot) that is fully occupied by that component.
 Because the component occupies each parent container entirely, a relative
-position within a single parent has no meaning, and the 'parent-rel-pos' MUST be omitted.
+position within a single parent has no meaning, and the "parent-rel-pos" data node MUST be omitted.
 
 If a physical slot can be shared by multiple boards, each partition is
 modeled as a separate sub-slot container component.
@@ -541,17 +541,7 @@ It is worth noting that some information reported within this YANG data model ca
 
 As outlined in {{intro}}, per the definition of {{?RFC8309}} and {{?RFC8969}}, the network inventory model is a network model.
 
-In case of hierarchical controllers, a hierarchical network controller can
-also collect the network inventory information from its lower-level network
-controllers using this YANG data model (or other mechanisms which are
-outside the scope of this document) and report the combined network inventory
-information to a higher-level network controller, to an Inventory OSS, or
-to any other type of application which needs to discover the network inventory
-information. When combining network inventories from lower-level network
-controllers, the higher-level controller acts as
-the server for its northbound interface and is responsible for ensuring that
-the 'ne-id' values remain unique within the combined network-element list it
-exposes.
+This information can be provided by a network controller to a higher level hierarchical network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
 
 For example, in the context of ACTN, the network inventory YANG data model can be used at the MPI interfaces, as defined in {{?RFC8453}}, or on an interface, not defined in {{?RFC8453}} between the MDSC and the Inventory OSS.
 
@@ -561,7 +551,17 @@ For example, the network controller can collect this information by reading it f
 
 Note that distinguishing between the cases where a NE is unreachable versus decommissioned depends on the mechanism used for discovering this information and is outside the scope of this document.
 
-In case of hierarchical controllers, a hierarchical network controller can also collect the network inventory information from its lower level network controllers using this YANG data model (or other mechanisms which are outside the scope of this document) and report the combined network inventory information to a higher level network controller, to an Inventory OSS or to any other type of application which needs to discover the network inventory information.
+In case of hierarchical controllers, a hierarchical network controller can
+also collect the network inventory information from its lower-level network
+controllers using this YANG data model (or other mechanisms which are
+outside the scope of this document) and report the combined network inventory
+information to a higher-level network controller, to an Inventory OSS, or
+to any other type of application which needs to discover the network inventory
+information. When combining network inventories from lower-level network
+controllers, the higher-level controller acts as
+the server for its northbound interface and is responsible for ensuring that
+the "ne-id" values remain unique within the combined "network-element" list it
+exposes.
 
 The inventory needs to be updated every time components are added or removed from the network. Protocol-specific mechanisms can be used to notify the client about these changes.
 
@@ -569,12 +569,12 @@ Since this YANG data model reports what is actually installed in the network, if
 
 If the inventory system defined by this document is to be deployed into a network which has a preexisting inventory system, it is worth noting that existing deployments are based on proprietary Inventory OSS and that the migration path is highly dependent on the specific proprietary solution. Therefore, the migration processes are operator dependent: it is expected that the deployment of the standard YANG-based solution on the controllers will take some time and its integration with existing Inventory OSSes will also take longer time. In a longer term, the network controllers could provide inventory information, using this YANG data model, also to next generation OSSes.
 
-When this model is used, the source of truth for the inventory data in the scope of this model is the network controller providing this data. Some legacy inventory information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) fall outside the scope of the base model.
+When this model is used, the source of truth for the inventory data in the scope of this model is the network controller providing this data. Some legacy inventory information (e.g., inactive assets, warehouse spares, procurement or commercial metadata) falls outside the scope of the base model.
 
 ## Transport Performance Considerations
 
-Deployments of the data model defined in this document in large-
-scale networks can generate substantial data payloads during full
+Deployments of the data model defined in this document in large-scale
+networks can generate substantial data payloads during full
 inventory retrievals.  To prevent these large transfers from
 causing network congestion or adversely impacting critical
 operational traffic, the underlying transport sessions SHOULD be
@@ -612,12 +612,12 @@ Specifically, the following subtrees and data nodes have particular sensitivitie
 
 - "/nwi:network-inventory/nwi:network-elements"
 
-> This subtree reports the inventory information for all the network elements and their hardware components deployed within the network as well as of the software images being discovered as running on these network elements and components. Unauthorized access to this subtree can disclose this information. A malicious attacker can use this information to perform targeted attacks to network elements, hardware components or software images with known vulnerabilities.
+> This subtree reports the inventory information for all the network elements and their hardware components deployed within the network as well as of the software images being discovered as running on these network elements and components. Unauthorized access to this subtree can disclose this information. A malicious attacker can use this information to perform targeted attacks against network elements, hardware components or software images with known vulnerabilities.
 
 > In large networks, the massive volume of reported data can cause scalability issues, as reported in {{scalability}}. A malicious attacker could leverage this to cause  resource exhaustion.
 
 Modules that use the groupings that are defined in this document
-should identify the corresponding security considerations. For example, reusing the 'component-attributes' grouping may expose sensitive information.
+should identify the corresponding security considerations. For example, reusing the "component-attributes" grouping may expose sensitive information.
 
 # IANA Considerations
 
@@ -662,7 +662,7 @@ The OpenConfig platform data model, defined by the "openconfig-platform" and "op
 
 | Attributes in "openconfig-platform" | Attributes in "ietf-network-inventory" | Remark |
 | ----------------------------------- | -------------------------------------- | ------ |
-| name                                | name                                   | In OpenConfig the name attribute is also a key (see {component-id}) |
+| name                                | name                                   | In OpenConfig the name attribute is also a key (see {{component-id}}) |
 | type                                | class                                  | See {{tab-oc-hw}} for the comparison between "oc-platform-type:OPENCONFIG_HARDWARE_COMPONENT" and "ianahw:hardware-class" |
 | id                                  |                                        | Deprecated |
 | location                            |                                        | Deprecated |
@@ -678,7 +678,7 @@ The OpenConfig platform data model, defined by the "openconfig-platform" and "op
 | removable                           | is-fru                                 |        |
 | oper-status                         |                                        | State data |
 | empty                               |                                        | If there is no other component that refers to a holder as a parent, it can be considered empty |
-| parent                              | parent-references                      |        |
+| parent                              | parent                      |          | In OpenConfig, the "parent" data node is a "leaf" and not a "leaf-list" |
 | redundant-role                      |                                        | Functional information, may be part of a future augmentation |
 | last-switchover-reason              |                                        | State data |
 | last-switchover-time                |                                        | State data |
@@ -691,7 +691,7 @@ The OpenConfig platform data model, defined by the "openconfig-platform" and "op
 | used-power                          |                                        | State/performance data |
 | pcie                                |                                        | Alarm data |
 | properties                          |                                        | Generic properties can be handled as part of "description" |
-| subcomponents                       |                                        | Duplicated information with respect to the parent attribute, to support reverse navigation from parent to children components |
+| subcomponents                       |                                        | Duplicated information with respect to the "parent" data node, to support reverse navigation from parent to children components |
 {:#tab-oc title="Comparison between openconfig platform and inventory data models"}
 
 As mentioned in {{ne-component}}, state data, performance data, and alarm data are out of scope of the data model defined in this document, and they should be defined in other data models separately. For the same reason some component specific structures in "openconfig-platform", like the one defined for fan, backplane, controller-card, etc., are considered out of scope since they provide specialized operational and alarm data for those components.
@@ -724,7 +724,7 @@ Overall, the analysis in this appendix confirms that the base network inventory 
 
 # Efficiency Issue {#scalability}
 
-During  the integration with Inventory OSS in some operator networkss, some efficiency and scalability concerns have been discovered when synchronizing network inventory data for big networks. As outlined in {{security}}, these efficiency and scalability issues can pose security issues.
+During  the integration with Inventory OSS in some operator networks, some efficiency and scalability concerns have been discovered when synchronizing network inventory data for big networks. As outlined in {{security}}, these efficiency and scalability issues can pose security issues.
 
 While implementing NACM {{!RFC8341}} and protocol-specific filtering mechanisms (e.g., RESTCONF filtering {{?RFC8040}}) mitigates these efficiency and scalability concerns, full resolution may require further protocol enhancements beyond the scope of this document.
 
