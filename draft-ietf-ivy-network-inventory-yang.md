@@ -422,7 +422,7 @@ parent-rel-pos:
 : When this component is contained in the network element or in only one parent component and has sibling components, this attribute represents the relative position of this component with respect to the parent component among all the sibling components.
 
 is-main:
-: When the network element contains chassis components which can take or not the "main" role (e.g., in case of multi-chassis network elements), this attribute indicates whether the chassis is taking or not the "main" role. See for example {{multi-chassis-examples}}.
+: When the network element contains chassis components which can take or not the "main" role (e.g., in case of multi-chassis network elements), this attribute indicates whether the chassis is taking or not the "main" role. See, for example, {{multi-chassis-examples}}.
 
 For state data like "admin-state", "oper-state", and so on, this document considers that they are related to device hardware management, not network inventory. Therefore, they are outside of the scope of this document. Same for the "sensor-data", they might be defined in some other performance monitoring data models instead of the inventory data model.
 
