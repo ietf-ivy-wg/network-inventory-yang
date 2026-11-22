@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-11-19T05:13:27.650790+00:00",
+  "timestamp": "2026-11-22T04:16:38.401735+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -13295,7 +13295,7 @@
       "labels": [],
       "body": "Addressing IESG and IETF LC review comments:\r\n- See issue #171 \r\n\r\nPending merge of PR #185 and #188\r\n",
       "createdAt": "2026-11-05T16:54:57Z",
-      "updatedAt": "2026-11-19T02:34:49Z",
+      "updatedAt": "2026-11-19T20:47:22Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "20c919a1b09b3ea352c4369f3c95975f1b96c889",
