@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-11-22T04:16:38.401735+00:00",
+  "timestamp": "2026-11-26T06:07:21.802480+00:00",
   "repo": "ietf-ivy-wg/network-inventory-yang",
   "labels": [
     {
@@ -13295,7 +13295,7 @@
       "labels": [],
       "body": "Addressing IESG and IETF LC review comments:\r\n- See issue #171 \r\n\r\nPending merge of PR #185 and #188\r\n",
       "createdAt": "2026-11-05T16:54:57Z",
-      "updatedAt": "2026-11-19T20:47:22Z",
+      "updatedAt": "2026-11-25T16:50:16Z",
       "baseRepository": "ietf-ivy-wg/network-inventory-yang",
       "baseRefName": "main",
       "baseRefOid": "20c919a1b09b3ea352c4369f3c95975f1b96c889",
@@ -13397,6 +13397,45 @@
               "body": "Fixed in 4e0fb76ea720cf2a9e842e9fadca8c9f4d8f9eb1",
               "createdAt": "2026-11-19T02:22:27Z",
               "updatedAt": "2026-11-19T02:22:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABaPL2Ww",
+          "commit": {
+            "abbreviatedOid": "c8a491d"
+          },
+          "author": "lana-wu",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Looks good to me.\nFor inventory software, we will align `identity software-component { base nwi:non-hardware-component-class; }`  to nwi:non-hardware-class in a future revision",
+          "createdAt": "2026-11-25T10:19:49Z",
+          "updatedAt": "2026-11-25T10:19:49Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOKiDYo88AAAABaUeaLA",
+          "commit": {
+            "abbreviatedOid": "c8a491d"
+          },
+          "author": "manzoro",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Beside the two comment that I suggest to apply, everything else looks fine for me and ready to merge.",
+          "createdAt": "2026-11-25T16:35:03Z",
+          "updatedAt": "2026-11-25T16:50:15Z",
+          "comments": [
+            {
+              "originalPosition": 447,
+              "body": "I think this sentence is in contrast with the next one where we correctly state that mfg-date is a union.\\\n\nMy suggestion is to remove the final part \" using ....\" since the data type used is better explained in the next sentence.\n\n```suggestion\nThe \"mfg-date\" data node in {{!RFC8348}} is defined as the \"date of manufacturing of the managed component\".\n```",
+              "createdAt": "2026-11-25T16:35:03Z",
+              "updatedAt": "2026-11-25T16:50:15Z"
+            },
+            {
+              "originalPosition": 576,
+              "body": "If I'm not wrong there is an affitional \"|\" in this line that may add a column to the table\n\n\n```suggestion\n| parent                              | parent                                 | In OpenConfig, the \"parent\" data node is a \"leaf\" and not a \"leaf-list\" |\n```",
+              "createdAt": "2026-11-25T16:45:37Z",
+              "updatedAt": "2026-11-25T16:50:15Z"
             }
           ]
         }
